@@ -17,6 +17,7 @@
     <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../styles/tips.css"	rel="stylesheet">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
     <link href="css/scenicbase.css" type="text/css" rel="stylesheet" media="all">
 	</head>
 	<body>
@@ -324,9 +325,9 @@
           <i class="booking_package_i"></i>
           <h3 class="booking_package_h3"><%=lists.DetailData.data.tours[i].tourName %></h3>
         </div>
-        <div class="booking_package_date">
-          <p class="booking_package_date_p">03月12日</p>
-          <i class="booking_package_date_i"></i>
+        <div id="js_booking_package_date<%=i%>" class="booking_package_date js_booking_package_date" data-defaultdate="<%=lists.DefaultDate%>" data-value="<%=lists.DetailData.data.defaultDepartStartDate%>">
+          <p id="js_booking_package_date_p<%=i%>" class="booking_package_date_p js_booking_package_date_p"><%=T.Command().callCommand("formatDate",{date:lists.DetailData.data.defaultDepartStartDate,format:"MM月dd日"})%></p>
+          <i class="booking_package_date_i js_booking_package_date_i"></i>
         </div>
         <div class="booking_package_fullday">
           <ul class="booking_package_fullday_ul">
@@ -444,6 +445,7 @@
   <script type="text/javascript" src="../js/lib/vlm.js"></script>
   <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
   <script type="text/javascript" src="../js/lib/ejs.js"></script>
+  <script type="text/javascript" src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
   <script type="text/javascript" src="js/scenic_booking.js"></script>
 	</body>
 

@@ -8,7 +8,6 @@
     ,travId=vlm.getpara("Id")//id,
     ,elementId=vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, "")//id
     ,from=vlm.getpara("from")
-
     ,ifrCilent=window.parent.document.getElementById("choiceAir")
     ,numofAdult=vlm.getpara("numofAdult")//id
     ,numofChlid=vlm.getpara("numofChlid")//id;
@@ -25,7 +24,6 @@
       new:{id:1,name:"新增",code:"70100012"},
       edit:{id:2,name:"编辑",code:"70100013"},
     }
-
     ,isShowChinaName=vlm.getpara("isShowChinaName").toLowerCase()=="false"?false:true
     ,isShowContact=vlm.getpara("isShowContact").toLowerCase()=="false"?false:true
     ,callback=vlm.getpara("callback")
@@ -38,12 +36,8 @@
      var nameDescriptBtn=$(".user_must");
      var nameDescriptPager=$(".fillName_page ");
      var submitBtn=$("#toper .header_finish");
-
-
-
      var uc_cnName=$(".addAir_page .cnNameUL");
      var ul_contect=$(".addAir_page .ul_contect");
-
 
      var titleTip=$("#toper h3");
      /*页面*/
@@ -84,7 +78,6 @@
          _clearDate();
          passagerListPage.hide();
          addOrEditPassagePage.show();
-
     });
     addPassagerBackBtn.on("click",function(){
         passagerListPage.show();
@@ -101,8 +94,6 @@
       };
     });
     submitBtn.on("click",function(){
-      debugger;
-
       var selectPassagerList= $(".list-traveler .choiced")
       for(var i=0;i<=selectPassagerList.length-1;i++){
         var key=$(selectPassagerList[i]).attr("data-id")
@@ -116,9 +107,7 @@
         //parent.callback();
         eval("parent."+callback+'()');
       }
-
       closeWindowBtn.click();
-
 
     });
 
@@ -219,38 +208,31 @@
       return model;
     }
     else{
-
-       var modle= {
-        "traveller": {
-          "travellerId": memberId==null? new Date().getTime():editIDKey,
-          "idName": $(".addAir_page .cnName").val(),
-          "lastName": $(".addAir_page .lastName").val(),
-          "firstName": $(".addAir_page .firstName").val(),
-          "countryCode": $(".addAir_page .country").attr("data-code"),
-          "countryName": $(".addAir_page .country").html(),
-          "sexCode": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code"),
-          "sexName": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name"),
-          "dateOfBirth": $(".addAir_page .birthDay").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', ''),
-          "email": $(".addAir_page .email").val(),
-          //"createTime":"2016-05-25T18:53:09",
-          "memberId": memberId,
-          "isDelete": false,
-          "mobilePhone": $(".addAir_page .telephone").val(),
-          "mobilePhoneAreaCode": $(".addAir_page .phone_pre").html()
-        },
-        "listTravellerIdInfo": [
-          {
-            "id": editIDKey == null ? 0 : editIDKey,
-            "travellerId": editIDKey,
-            "idType": $(".addAir_page .postCard").attr("data-code"),
-            "idNumber": $(".addAir_page .cardNumber").val(),
-            "idCountry": $(".addAir_page .cardCountry").attr("data-code"),
-            "idCountryName": $(".addAir_page .cardCountry").html(),
-            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', ''),
-            "nationalityCode": $(".addAir_page .cardCountry").attr("data-code")
-          }
-        ]
+      
+      var modle;
+      for(var key in passagerArray){
+        if(key==editIDKey){
+          modle=passagerArray[key];
+          break;
+        }
       }
+      modle.traveller.idName=$(".addAir_page .cnName").val();
+      modle.traveller.lastName=$(".addAir_page .lastName").val();
+      modle.traveller.firstName=$(".addAir_page .firstName").val();
+      modle.traveller.countryCode=$(".addAir_page .country").attr("data-code");
+      modle.traveller.countryName=$(".addAir_page .country").html();
+      modle.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
+      modle.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
+      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
+      modle.traveller.email=$(".addAir_page .email").val();
+      modle.traveller.mobilePhone=$(".addAir_page .telephone").val();
+      modle.traveller.mobilePhoneAreaCode= $(".addAir_page .phone_pre").html();
+      modle.listTravellerIdInfo[0].idType=$(".addAir_page .postCard").attr("data-code");
+      modle.listTravellerIdInfo[0].idNumber=$(".addAir_page .cardNumber").val();
+      modle.listTravellerIdInfo[0].idCountry= $(".addAir_page .cardCountry").attr("data-code");
+      modle.listTravellerIdInfo[0].idCountryName= $(".addAir_page .cardCountry").html();
+      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
+      modle.listTravellerIdInfo[0].nationalityCode= $(".addAir_page .cardCountry").attr("data-code");
 
       return modle;
     }
