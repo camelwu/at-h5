@@ -28,6 +28,7 @@
 
     ,isShowChinaName=vlm.getpara("isShowChinaName").toLowerCase()=="false"?false:true
     ,isShowContact=vlm.getpara("isShowContact").toLowerCase()=="false"?false:true
+    ,callback=vlm.getpara("callback")
 
      //页面Dom对象
      var saveDbBtn=$(".addFinish");
@@ -37,6 +38,8 @@
      var nameDescriptBtn=$(".user_must");
      var nameDescriptPager=$(".fillName_page ");
      var submitBtn=$("#toper .header_finish");
+
+
 
      var uc_cnName=$(".addAir_page .cnNameUL");
      var ul_contect=$(".addAir_page .ul_contect");
@@ -66,8 +69,8 @@
     '<i class="per_type" data-id="1">儿童</i></li>'+
     '{% } else if(age>=12){ %}'+
     '<i class="per_type" data-id="2">成人</i></li>',
-    '{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ %}',
-    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
+    '{% } if(dd.listTravellerIdInfo.length>0){ %}',
+    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
     '{% } %}',
     '</ul>',
     '</li>',
@@ -98,6 +101,8 @@
       };
     });
     submitBtn.on("click",function(){
+      debugger;
+
       var selectPassagerList= $(".list-traveler .choiced")
       for(var i=0;i<=selectPassagerList.length-1;i++){
         var key=$(selectPassagerList[i]).attr("data-id")
@@ -106,7 +111,15 @@
       }
       _replacePagerAttri();
       _saveLocalStorge();
+
+      if(callback !=undefined && callback !="undefined"){
+        //parent.callback();
+        eval("parent."+callback+'()');
+      }
+
       closeWindowBtn.click();
+
+
     });
 
     //保存事件
