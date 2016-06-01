@@ -161,7 +161,7 @@
 				function package_back(ret) {
 					var json = ret;
 					console.log(json);
-					if (json.success) {
+					if (json.success&& json.data != null) {
 						var data = json.data;
 						var html_pb = ejs.render(tpl1, data);
 						$("#packageBox").html(html_pb);

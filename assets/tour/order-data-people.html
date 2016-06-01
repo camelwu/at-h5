@@ -23,10 +23,10 @@
 		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 		<title>输入资料页 - 亚程旅行网</title>
-    <link href="../styles/reset.css" type="text/css" rel="stylesheet">
+   		<link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
-    <!--<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>-->
-    <link href="css/tour_search.css" rel="stylesheet">
+	    <link href="../css/plugins/calendar/calendar1.0.2.css" rel="stylesheet">
+	    <link href="css/tour_search.css" rel="stylesheet">
       <link href="css/tours.css" rel="stylesheet">
 	</head>
 	<body>
@@ -970,7 +970,7 @@
                   that.timer = null;
                 }, 3000);
                 return;
-              }
+              }alert("dd");
             },
             fn2: function (arg) {
               var inputs = document.querySelectorAll('.' + this.sClass1), span1 = document.querySelector('#week_span1'), span2 = document.querySelector('#week_span2');
@@ -983,7 +983,7 @@
                   return week;
                 }
               };
-
+alert(arg.start+',,'+arg.end);
               allDivs = tourLi.querySelectorAll('.nav2-tour');
               inputs[0].value = arg.start;
               inputs[1].value = arg.end;

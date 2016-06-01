@@ -338,7 +338,8 @@ var fOrder = {
         priceDetailInfo.style.bottom = ".89rem";
       }
     });
-    this.addHandler(document.body, 'click', function (e){
+    $("body").children().click(function () {});  //解决iPhone safari中Document事件不触发
+    this.addHandler(document, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
         target.style.display = "none";
@@ -347,7 +348,7 @@ var fOrder = {
       }else if(target.className.indexOf('country_header')>-1){
         document.querySelector('.country-cho-wrap').style.display ="none";
       }
-    })
+    });
 
     deletePassager=function(obj){
       $(obj).parent().parent().remove();

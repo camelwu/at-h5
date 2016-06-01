@@ -395,6 +395,9 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .sce_img_box img{
   width: 100%;
   height: 1.42rem;
+  background:url(../../images/hotelListerrorpic.png) no-repeat;
+  -webkit-background-size: 100%;
+  background-size: 100% 100%;
 }
 .sce_detail {
   -webkit-box-felx:1;

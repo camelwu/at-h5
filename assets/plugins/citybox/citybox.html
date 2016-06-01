@@ -1,422 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-  <meta name="screen-orientation" content="portrait">
-  <meta name="full-screen" content="yes">
-  <meta name="browsermode" content="application">
-  <meta name="x5-orientation" content="portrait">
-  <meta name="x5-fullscreen" content="true">
-  <meta name="x5-page-mode" content="app">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="green">
-  <meta name="Keywords" content="亚程旅行网">
-  <meta name="Description" content="境外专业旅行服务提供机构">
-  <title>首页 - 亚程旅行网</title>
-  <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
-  <link href="citybox.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚程旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>首页 - 亚程旅行网</title>
+    <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="citybox.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 
-<a href="javascript:void(0);" id="hft_ori" data-bind="type:'setCityBox',data:'hft_ori',returnId:'#ret'">机+酒+景 去程</a>
-<p>
-<a href="javascript:void(0);"  id="hft_des" data-bind="type:'setCityBox',data:'hft_des',returnId:'#ret'">机+酒+景 返程</a>
-<p>
-  <a href="javascript:void(0);" id="hf_ori" data-bind="type:'setCityBox',data:'hf_ori',returnId:'#ret'">机+酒 去程</a>
-<p>
-  <a href="javascript:void(0);"  id="hf_des" data-bind="type:'setCityBox',data:'hf_des',returnId:'#ret'">机+酒 返程</a>
-<p>
-  <a href="javascript:void(0);"  id="t_des" data-bind="type:'setCityBox',data:'t_des'">景 城市列表</a>
-<p>
-  <a href="javascript:void(0);"  id="ht_des" data-bind="type:'setCityBox',data:'ht_des'">酒+景 城市列表</a>
-<p>
-  <a href="javascript:void(0);"  id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#ret'">机票 国内 去程</a>
-<p>
-  <a href="javascript:void(0);"  id="f_indes" data-bind="type:'setCityBox',data:'f_indes',returnId:'#ret'">机票 国内 返程</a>
-<p>
-  <a href="javascript:void(0);"  id="f_outori" data-bind="type:'setCityBox',data:'f_outori',returnId:'#ret'">机票 国际 去程</a>
-<p>
-  <a href="javascript:void(0);"  id="f_outdes" data-bind="type:'setCityBox',data:'f_outdes',returnId:'#ret'">机票 国际 返程</a>
-<p>
-  <a href="javascript:void(0);"  id="h_in" data-bind="type:'setCityBox',data:'h_in',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret',returnStrVal:'data-value'">酒店 国内</a>
-<p>
-  <a href="javascript:void(0);"  id="h_out" data-bind="type:'setCityBox',data:'h_out',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret'">酒店 国际</a>
-<p>
-  <div id="ret"></div>
-  <div id="h_ret"></div>
-<div id="preloader" style="display: none;">
-  <div id="status">
-  </div>
-</div>
-<div id="citybox_search_container" class="citybox_search_container citybox_search_state">
-  <div id="citybox_BG" class="citybox_search_suggestBG"></div>
-  <div id="citybox_header" data-bind="type:'cityboxHeader'">
-    <!--默认搜索-->
-    <div class="citybox_header citybox_header_fixed js_citybox_header_default">
-      <div class="citybox_header_left">
-        <a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn">
-          <span class="citybox_header_return citybox_header_return_icon"></span>
-        </a>
-      </div>
-      <div class="citybox_search_relative">
-        <span class="citybox_search_icon"></span>
-        <input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
-      </div>
-    </div>
-    <!--搜索头部-->
-    <div class="citybox_header citybox_header_fixed js_citybox_header_search">
-      <div class="citybox_searchactive_relative">
-        <span class="citybox_searchactive_icon"></span>
-        <input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
-      </div>
-      <div class="citybox_header_right">
-        <a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn">
-          <span class="citybox_searchactive_return">取消</span>
-        </a>
-      </div>
-    </div>
-  </div>
-  <!--搜索列表-->
-  <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-    <!--<li class="thin_border ">-->
-      <!--<span class="citybox_searchactive_li_icon"></span>-->
-      <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
-    <!--</li>-->
-  </div>
-  <!--城市列表和字母定位-->
-  <div class="citybox_content">
-    <div id="citybox_location" data-bind="type:'cityboxLocation'">
-      <div class="citybox_content_title" id="js_location">当前</div>
-      <ul class="citybox_content_container">
-        <li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
-          <div class="citybox_content_itemtitle">
-            北京
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
-      <div class="citybox_content_title" id="js_history">历史选择</div>
-      <!--<ul class="citybox_content_container">-->
-        <!--<li class="citybox_content_item " data-code="200" data-name="北京" data-letter="bj">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--北京-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item  selected" data-code="1602" data-name="南京" data-letter="nj">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--南京-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="2500" data-name="上海" data-letter="sh">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--上海-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    </div>
-    <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
-      <div class="citybox_content_title" id="js_hotcity">热门城市</div>
-      <!--<ul class="citybox_content_container">-->
-        <!--<li class="citybox_content_item  selected" data-code="200" data-name="北京" data-letter="bj">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--北京-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="1602" data-name="南京" data-letter="nj">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--南京-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="2500" data-name="上海" data-letter="sh">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--上海-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="3402" data-name="杭州" data-letter="hz">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--杭州-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="1615" data-name="苏州" data-letter="sz">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--苏州-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="3000" data-name="天津" data-letter="tj">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--天津-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="619" data-name="深圳" data-letter="shz">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--深圳-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="1619" data-name="无锡" data-letter="wx">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--无锡-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="2802" data-name="成都" data-letter="cd">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--成都-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="300" data-name="重庆" data-letter="cq">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--重庆-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="1402" data-name="武汉" data-letter="wh">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--武汉-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="1902" data-name="沈阳" data-letter="sy">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--沈阳-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="602" data-name="广州" data-letter="gz">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--广州-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="3415" data-name="宁波" data-letter="nb">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--宁波-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="citybox_content_item " data-code="2702" data-name="西安" data-letter="xa">-->
-          <!--<div class="citybox_content_itemtitle ">-->
-            <!--西安-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    </div>
-    <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
-      <!--<div class="citybox_content_title" id="js_index_a">A</div>-->
-      <!--<ul class="citybox_content_lettercitylist">-->
-        <!--<li class="citybox_content_lettername " data-code="1903" data-name="鞍山" data-letter="as">-->
-          <!--鞍山-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="103" data-name="安庆" data-letter="aq">-->
-          <!--安庆-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="2703" data-name="安康" data-letter="ak">-->
-          <!--安康-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="3104" data-name="阿勒泰" data-letter="alt">-->
-          <!--阿勒泰-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="3103" data-name="阿克苏" data-letter="aks">-->
-          <!--阿克苏-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="40393" data-name="阿拉善右旗" data-letter="alsyq">-->
-          <!--阿拉善右旗-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="40392" data-name="阿拉善左旗" data-letter="alszq">-->
-          <!--阿拉善左旗-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="40374" data-name="阿尔山市" data-letter="aesh">-->
-          <!--阿尔山市-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="803" data-name="安顺" data-letter="ash">-->
-          <!--安顺-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="2815" data-name="阿坝" data-letter="ab">-->
-          <!--阿坝-->
-        <!--</li>-->
-      <!--</ul>-->
-      <!--<div class="citybox_content_title" id="js_index_b">B</div>-->
-      <!--<ul class="citybox_content_lettercitylist">-->
-        <!--<li class="citybox_content_lettername " data-code="1903" data-name="鞍山" data-letter="as">-->
-          <!--鞍山-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="103" data-name="安庆" data-letter="aq">-->
-          <!--安庆-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="2703" data-name="安康" data-letter="ak">-->
-          <!--安康-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="3104" data-name="阿勒泰" data-letter="alt">-->
-          <!--阿勒泰-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="3103" data-name="阿克苏" data-letter="aks">-->
-          <!--阿克苏-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="40393" data-name="阿拉善右旗" data-letter="alsyq">-->
-          <!--阿拉善右旗-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="40392" data-name="阿拉善左旗" data-letter="alszq">-->
-          <!--阿拉善左旗-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="40374" data-name="阿尔山市" data-letter="aesh">-->
-          <!--阿尔山市-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="803" data-name="安顺" data-letter="ash">-->
-          <!--安顺-->
-        <!--</li>-->
-        <!--<li class="citybox_content_lettername " data-code="2815" data-name="阿坝" data-letter="ab">-->
-          <!--阿坝-->
-        <!--</li>-->
-      <!--</ul>-->
-    </div>
+    <a href="javascript:void(0);" id="hft_ori" data-bind="type:'setCityBox',data:'hft_ori',returnId:'#ret'">机+酒+景 去程</a>
+    <p>
+        <a href="javascript:void(0);" id="hft_des" data-bind="type:'setCityBox',data:'hft_des',returnId:'#ret'">机+酒+景 返程</a>
+        <p>
+            <a href="javascript:void(0);" id="hf_ori" data-bind="type:'setCityBox',data:'hf_ori',returnId:'#ret'">机+酒 去程</a>
+            <p>
+                <a href="javascript:void(0);" id="hf_des" data-bind="type:'setCityBox',data:'hf_des',returnId:'#ret'">机+酒 返程</a>
+                <p>
+                    <a href="javascript:void(0);" id="t_des" data-bind="type:'setCityBox',data:'t_des'">景 城市列表</a>
+                    <p>
+                        <a href="javascript:void(0);" id="ht_des" data-bind="type:'setCityBox',data:'ht_des'">酒+景 城市列表</a>
+                        <p>
+                            <a href="javascript:void(0);" id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#ret'">机票 国内 去程</a>
+                            <p>
+                                <a href="javascript:void(0);" id="f_indes" data-bind="type:'setCityBox',data:'f_indes',returnId:'#ret'">机票 国内 返程</a>
+                                <p>
+                                    <a href="javascript:void(0);" id="f_outori" data-bind="type:'setCityBox',data:'f_outori',returnId:'#ret'">机票 国际 去程</a>
+                                    <p>
+                                        <a href="javascript:void(0);" id="f_outdes" data-bind="type:'setCityBox',data:'f_outdes',returnId:'#ret'">机票 国际 返程</a>
+                                        <p>
+                                            <a href="javascript:void(0);" id="h_in" data-bind="type:'setCityBox',data:'h_in',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret',returnStrVal:'data-value'">酒店 国内</a>
+                                            <p>
+                                                <a href="javascript:void(0);" id="h_out" data-bind="type:'setCityBox',data:'h_out',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret'">酒店 国际</a>
+                                                <p>
+                                                    <div id="ret"></div>
+                                                    <div id="h_ret"></div>
+                                                    <div id="preloader" style="display: none;">
+                                                        <div id="status">
+                                                        </div>
+                                                    </div>
+                                                    <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
+                                                        <div id="citybox_BG" class="citybox_search_suggestBG"></div>
+                                                        <div id="citybox_header" data-bind="type:'cityboxHeader'">
+                                                            <!--默认搜索-->
+                                                            <div class="citybox_header citybox_header_fixed js_citybox_header_default">
+                                                                <div class="citybox_header_left">
+                                                                    <a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn">
+                                                                        <span class="citybox_header_return citybox_header_return_icon"></span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="citybox_search_relative">
+                                                                    <span class="citybox_search_icon"></span>
+                                                                    <input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
+                                                                </div>
+                                                            </div>
+                                                            <!--搜索头部-->
+                                                            <div class="citybox_header citybox_header_fixed js_citybox_header_search">
+                                                                <div class="citybox_searchactive_relative">
+                                                                    <span class="citybox_searchactive_icon"></span>
+                                                                    <input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
+                                                                </div>
+                                                                <div class="citybox_header_right">
+                                                                    <a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn">
+                                                                        <span class="citybox_searchactive_return">取消</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--搜索列表-->
+                                                        <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="thin_border ">-->
+                                                            <!--<span class="citybox_searchactive_li_icon"></span>-->
+                                                            <!--<p class="citybox_searchactive_li_p" data-code="402" data-name="福州" data-letter="fz">福州</p>-->
+                                                            <!--</li>-->
+                                                        </div>
+                                                        <!--城市列表和字母定位-->
+                                                        <div class="citybox_content">
+                                                            <div id="citybox_location" data-bind="type:'cityboxLocation'">
+                                                                <div class="citybox_content_title" id="js_location">当前</div>
+                                                                <ul class="citybox_content_container">
+                                                                    <li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
+                                                                        <div class="citybox_content_itemtitle">
+                                                                            北京
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
+                                                                <div class="citybox_content_title" id="js_history">历史选择</div>
+                                                                <!--<ul class="citybox_content_container">-->
+                                                                <!--<li class="citybox_content_item " data-code="200" data-name="北京" data-letter="bj">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--北京-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item  selected" data-code="1602" data-name="南京" data-letter="nj">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--南京-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="2500" data-name="上海" data-letter="sh">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--上海-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--</ul>-->
+                                                            </div>
+                                                            <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
+                                                                <div class="citybox_content_title" id="js_hotcity">热门城市</div>
+                                                                <!--<ul class="citybox_content_container">-->
+                                                                <!--<li class="citybox_content_item  selected" data-code="200" data-name="北京" data-letter="bj">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--北京-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="1602" data-name="南京" data-letter="nj">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--南京-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="2500" data-name="上海" data-letter="sh">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--上海-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="3402" data-name="杭州" data-letter="hz">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--杭州-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="1615" data-name="苏州" data-letter="sz">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--苏州-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="3000" data-name="天津" data-letter="tj">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--天津-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="619" data-name="深圳" data-letter="shz">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--深圳-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="1619" data-name="无锡" data-letter="wx">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--无锡-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="2802" data-name="成都" data-letter="cd">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--成都-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="300" data-name="重庆" data-letter="cq">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--重庆-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="1402" data-name="武汉" data-letter="wh">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--武汉-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="1902" data-name="沈阳" data-letter="sy">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--沈阳-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="602" data-name="广州" data-letter="gz">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--广州-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="3415" data-name="宁波" data-letter="nb">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--宁波-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_item " data-code="2702" data-name="西安" data-letter="xa">-->
+                                                                <!--<div class="citybox_content_itemtitle ">-->
+                                                                <!--西安-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--</ul>-->
+                                                            </div>
+                                                            <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
+                                                                <!--<div class="citybox_content_title" id="js_index_a">A</div>-->
+                                                                <!--<ul class="citybox_content_lettercitylist">-->
+                                                                <!--<li class="citybox_content_lettername " data-code="1903" data-name="鞍山" data-letter="as">-->
+                                                                <!--鞍山-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="103" data-name="安庆" data-letter="aq">-->
+                                                                <!--安庆-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="2703" data-name="安康" data-letter="ak">-->
+                                                                <!--安康-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="3104" data-name="阿勒泰" data-letter="alt">-->
+                                                                <!--阿勒泰-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="3103" data-name="阿克苏" data-letter="aks">-->
+                                                                <!--阿克苏-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="40393" data-name="阿拉善右旗" data-letter="alsyq">-->
+                                                                <!--阿拉善右旗-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="40392" data-name="阿拉善左旗" data-letter="alszq">-->
+                                                                <!--阿拉善左旗-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="40374" data-name="阿尔山市" data-letter="aesh">-->
+                                                                <!--阿尔山市-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="803" data-name="安顺" data-letter="ash">-->
+                                                                <!--安顺-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="2815" data-name="阿坝" data-letter="ab">-->
+                                                                <!--阿坝-->
+                                                                <!--</li>-->
+                                                                <!--</ul>-->
+                                                                <!--<div class="citybox_content_title" id="js_index_b">B</div>-->
+                                                                <!--<ul class="citybox_content_lettercitylist">-->
+                                                                <!--<li class="citybox_content_lettername " data-code="1903" data-name="鞍山" data-letter="as">-->
+                                                                <!--鞍山-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="103" data-name="安庆" data-letter="aq">-->
+                                                                <!--安庆-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="2703" data-name="安康" data-letter="ak">-->
+                                                                <!--安康-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="3104" data-name="阿勒泰" data-letter="alt">-->
+                                                                <!--阿勒泰-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="3103" data-name="阿克苏" data-letter="aks">-->
+                                                                <!--阿克苏-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="40393" data-name="阿拉善右旗" data-letter="alsyq">-->
+                                                                <!--阿拉善右旗-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="40392" data-name="阿拉善左旗" data-letter="alszq">-->
+                                                                <!--阿拉善左旗-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="40374" data-name="阿尔山市" data-letter="aesh">-->
+                                                                <!--阿尔山市-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="803" data-name="安顺" data-letter="ash">-->
+                                                                <!--安顺-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_content_lettername " data-code="2815" data-name="阿坝" data-letter="ab">-->
+                                                                <!--阿坝-->
+                                                                <!--</li>-->
+                                                                <!--</ul>-->
+                                                            </div>
 
-    <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
-      <li class="citybox_summary_item" data-key="location">
-        当前
-      </li>
-      <li class="citybox_summary_item" data-key="history">
-        历史
-      </li>
-      <li class="citybox_summary_item" data-key="hotcity">
-        热门
-      </li>
-      <!--<li class="citybox_summary_item" data-key="A">-->
-        <!--A-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="B">-->
-        <!--B-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="C">-->
-        <!--C-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="D">-->
-        <!--D-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="E">-->
-        <!--E-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="F">-->
-        <!--F-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="G">-->
-        <!--G-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="H">-->
-        <!--H-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="J">-->
-        <!--J-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="K">-->
-        <!--K-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="L">-->
-        <!--L-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="M">-->
-        <!--M-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="N">-->
-        <!--N-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="P">-->
-        <!--P-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="Q">-->
-        <!--Q-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="R">-->
-        <!--R-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="S">-->
-        <!--S-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="T">-->
-        <!--T-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="W">-->
-        <!--W-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="X">-->
-        <!--X-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="Y">-->
-        <!--Y-->
-      <!--</li>-->
-      <!--<li class="citybox_summary_item" data-key="Z">-->
-        <!--Z-->
-      <!--</li>-->
-    </div>
-  </div>
-</div>
+                                                            <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
+                                                                <li class="citybox_summary_item" data-key="location">
+                                                                    当前
+                                                                </li>
+                                                                <li class="citybox_summary_item" data-key="history">
+                                                                    历史
+                                                                </li>
+                                                                <li class="citybox_summary_item" data-key="hotcity">
+                                                                    热门
+                                                                </li>
+                                                                <!--<li class="citybox_summary_item" data-key="A">-->
+                                                                <!--A-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="B">-->
+                                                                <!--B-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="C">-->
+                                                                <!--C-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="D">-->
+                                                                <!--D-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="E">-->
+                                                                <!--E-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="F">-->
+                                                                <!--F-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="G">-->
+                                                                <!--G-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="H">-->
+                                                                <!--H-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="J">-->
+                                                                <!--J-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="K">-->
+                                                                <!--K-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="L">-->
+                                                                <!--L-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="M">-->
+                                                                <!--M-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="N">-->
+                                                                <!--N-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="P">-->
+                                                                <!--P-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="Q">-->
+                                                                <!--Q-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="R">-->
+                                                                <!--R-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="S">-->
+                                                                <!--S-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="T">-->
+                                                                <!--T-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="W">-->
+                                                                <!--W-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="X">-->
+                                                                <!--X-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="Y">-->
+                                                                <!--Y-->
+                                                                <!--</li>-->
+                                                                <!--<li class="citybox_summary_item" data-key="Z">-->
+                                                                <!--Z-->
+                                                                <!--</li>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-<script src="../../js/lib/jquery-1.10.2.min.js"></script>
-<script src="../../js/lib/vlm.js"></script>
-<script src="ticketCityData.js"></script>
-<script src="citybox.js"></script>
-<script src="city.js"></script>
+                                                    <script src="../../js/lib/jquery-1.10.2.min.js"></script>
+                                                    <script src="../../js/lib/vlm.js"></script>
+                                                    <script src="ticketCityData.js"></script>
+                                                    <script src="citybox.js"></script>
+                                                    <script src="city.js"></script>
 </body>
+
 </html>
