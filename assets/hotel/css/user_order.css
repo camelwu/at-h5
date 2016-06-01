@@ -126,14 +126,14 @@ i.right{
 }
 .hotel_user_detail_phone input{
   position: absolute;left:3.7rem;
-  top: 0.1rem;
+  top: 0.3rem;
   font-size: .28rem;
 }
 .hotel_user_detail_Email input{
     font-size: .28rem;
     color:#d1d1d1;
     position: absolute;left:1.9rem;
-    top: 0.1rem;
+    top: 0.3rem;
 }
 .hotel_user_prompt{
     color: #999999;
