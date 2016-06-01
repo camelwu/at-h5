@@ -76,7 +76,7 @@
           <a href="javascript:;" id="login_btn" class="login_button">登录</a>
         </div>
 					<!--   注册页   -->
-					<div class="login-page-wrapper" id="register_page" style="display:none;">
+					<div class="login-page-wrapper" id="register_page">
           <div class="login_header">
             <a href="javascript:;" id="close_register" class="header_back"><i class="icon_person go_back"></i></a>
 							<h3>注册</h3>
@@ -105,7 +105,7 @@
               <b class="icon login_clear"></b>
 							</div>
 						</div>
-						<div id="email_register" style="display: none">
+						<div id="email_register">
             <div class="login_input">
               <b class="icon_person login_mail"></b>
 								<input id="r_email" type="text" value="" autofocus="autofocus" placeholder="输入邮箱" data-type="email">
@@ -126,64 +126,105 @@
 					</div>
 				</div>
 			</div>
-			<!--   找回密码页   -->
+		</div>
+    <!--   找回密码页   -->
     <div id="fkey_page" class="all_elements">
       <div class="header_fd">
         <a class="header_back" onclick="close_keypage()"><i class="icon_common find_go_back"></i></a>
-					<h3 id="find_title">手机找回</h3>
+        <h3 id="find_title">手机找回</h3>
         <div id="cha_email" class="header_finish">邮箱找回</div>
         <div id="cha_phone" class="header_finish">手机找回</div>
-					</div>
+      </div>
       <div class="user_content">
-					<div id="phone_find">
-						<ul class="f_key">
-							<li class="tel-btn coun-find">
-								<div>中国+86</div>
+        <div id="phone_find">
+          <ul class="f_key">
+            <li class="tel-btn coun-find">
+              <div>中国+86</div>
               <b class="open_arw tip_right"></b>
-							</li>
-							<li>
-								<input id="find_phone" class="fk_put" type="tel" value placeholder="输入有效手机号" data-type="tel">
-							</li>
+            </li>
             <li>
-								<input id="find_veri" class="fk_put" type="text" value placeholder="输入验证码" data-type="code">
+              <input id="find_phone" class="fk_put" type="tel" value placeholder="输入有效手机号" data-type="tel">
+            </li>
+            <li>
+              <input id="find_veri" class="fk_put" type="text" value placeholder="输入验证码" data-type="code">
               <div class="fk_div" id="find_verify">获取验证码</div>
-							</li>
-							<li>
-								<input class="fk_put"  type="password" value placeholder="输入6-18位新密码" data-type="pass">
-							</li>
-						</ul>
-					</div>
-					<div id="email_find" class="u_name" style="display: none">
+            </li>
+            <li>
+              <input class="fk_put"  type="password" value placeholder="输入6-18位新密码" data-type="pass">
+            </li>
+          </ul>
+        </div>
+        <div id="email_find" class="u_name">
           <input id="find_email" type="text"  placeholder="请输入邮箱" data-type="email">
-					</div>
+        </div>
         <div class="f_btn_wrap"><a id="findkey_btn" href="javascript:;" class="f_btn">完成</a></div>
-				</div>
-			</div>
-		</div>
-		<!--国籍选择开始-->
-  <div class="all_elements country-cho-wrap">
-    <div class="header country_header">
-      <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
-				<div class="cl_search">
-					<input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
-        <i class="icon_common"></i>
-				</div>
-			</div>
-			<!--国籍弹窗开始-->
-			<ul class="country-list-searched"></ul>
-			<!--国籍弹窗结束-->
+      </div>
+    </div>
 
-    <div class="content">
-				<div class="country-wrap" id="country-wrap">
-				</div>
-			</div>
-		</div>
-		<!--国籍选择结束-->
+    <!--国籍选择开始-->
+    <div class="all_elements country-cho-wrap">
+      <div class="header country_header">
+        <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
+        <div class="cl_search">
+          <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
+          <i class="icon_common"></i>
+        </div>
+      </div>
+      <!--国籍弹窗开始-->
+      <ul class="country-list-searched"></ul>
+      <!--国籍弹窗结束-->
+
+      <div class="content">
+        <div id="country-wrap-hot"></div>
+        <div class="country-wrap" id="country-wrap"></div>
+      </div>
+      <!--右侧a-z-->
+      <div class="country_index" id="country_index_wrap"></div>
+
+      <!--热门-->
+      <script id="countryList_hot" type="text/template">
+        <h4><a name="rm" class="target"></a>热门</h4>
+        <ul class="country_hot">
+          <% for(var i=0; i< arrCountry.length; i++){ %>
+          <% if(arrCountry[i].isHot == 1) { %>
+          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
+          <% } %>
+          <% } %>
+        </ul>
+      </script>
+
+      <!--全部列表-->
+      <script id="countryList" type="text/template">
+        <div class="full_country_outer">
+          <% for(var tem in countryArray){ %>
+          <a class="target" name="<%=tem%>"></a>
+          <h4><%= tem%></h4>
+          <ul class="full_country_list">
+            <%countryArray[tem].forEach(function(array){ %>
+            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
+            <% })%>
+          </ul>
+          <% }%>
+        </div>
+      </script>
+
+      <!--国籍a-z-->
+      <script id="country_index" type="text/template">
+        <ul>
+          <li><a href="#rm">热门</a></li>
+          <% for(var tem in countryArray){%>
+          <li><a href="#<%=tem%>"><%=tem%></a></li>
+          <%}%>
+        </ul>
+      </script>
+
+    </div>
+    <!--国籍选择结束-->
 		<script src="../js/lib/jquery.js"></script>
 		<script src="../js/lib/vlm.js"></script>
+		<script src="../js/lib/ejs.js"></script>
 		<script src="../js/lib/jquery.alert.js"></script>
 		<script src="../js/country_list.js"></script>
-		<script src="../js/countrytel_list.js"></script>
 		<script type="text/javascript" src="scripts/user-login-register.js"></script>
 </body>
 </html>
