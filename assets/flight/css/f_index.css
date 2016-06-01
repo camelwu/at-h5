@@ -521,22 +521,22 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: relative;
 }
 
-.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon ,.trip_go_ i,.trip_back_ i{
+.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity  span.icon, .trip_go_ span.icon, .trip_back_ span.icon ,.trip_go_ i,.trip_back_ i{
   width: .32rem;
   height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
-  background-position: 35.564% 31.61%;
+  background-position: -2.6999rem -1.522rem;
   margin-top: .04rem;
 }
 
 .trip_back .left span.icon, .trip_back_ span.icon {
   width: .32rem;
   height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
+  background-position: -3.398rem -1.522rem;
   margin-top: .04rem;
-  background-position: 44.564% 31.61%;
 }
 .trip_go .left span.icon , .trip_back .left span.icon{
   position: absolute;
@@ -588,18 +588,16 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .left_info .middle .arrow, .left_info .middle .arrow_word {
   display: block;
   margin: 0 auto;
-  width: 1.888rem;
+  width: 1.688rem;
   height: 0.20rem;
-  background: url(../../images/ui/icon_common.png);
+  background: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 7.5rem 5.13rem;
-  background-position: 5.8% 90.004%;
+  background-size: 7.90rem auto;
+  background-position: -0.482rem -4.44rem;
 }
 
 .left_info .middle .arrow_word {
-  background: url(../../images/ui/change-arrow.png);
-  background-size: 1.88rem auto;
-  background-position: 0 0;
+  background-position: -3.38rem -4.44rem;
 }
 
 .left_info .middle span {
@@ -739,16 +737,13 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .dateWeekCity span.icon, .arrow {
-  display: inline-block;
-  width: .40rem;
-  height: .40rem;
-  background: url(../../images/ui/icon_common.png);
-  background-repeat: no-repeat;
-  background-size: 7.90rem 5.13rem;
-  background-position: -2.66rem -1.42rem;
-  overflow: hidden;
-  position: absolute;
-  top: -.033rem
+  float: left;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -2.6999rem -1.522rem;
+  margin-top: .04rem;
 }
 
 .arrow {
@@ -759,13 +754,9 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   background-position: -.488rem -4.460rem;
   margin: 0 auto;
 }
-
-.dateWeekCity span:nth-child(2) {
-  margin-left: .45rem;
-}
 .no-margin-left{margin-left: 0!important;}
 .tripBack .dateWeekCity span.icon {
-  background-position: -3.35rem -1.45rem;
+  background-position: -3.39rem -1.522rem;
 }
 
 .fix-margin-left {

@@ -87,22 +87,22 @@
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
+<script src="../js/lib/ejs.js"></script>
 <script id="tpl_getTopBox" type="text/template">
 
 </script>
 <script id="tpl_GetSpotOverview" type="text/template">
-	{% for(var i=0;i < tours.length;i++){ %}
-	<strong class="viewTitel">{%=tours[i].tourName%}</strong><li class="viewContent">{%=tours[i].overview%}</li>
-	{% } %}
+	<% for(var i=0;i < tours.length;i++){ %>
+	<strong class="viewTitel"><%- tours[i].tourName %></strong><li class="viewContent"><%- tours[i].overview %></li>
+	<% } %>
 </script>
 <script id="tpl_GetSpotImportantNotes" type="text/template">
-	{% for(var i=0;i < tours.length;i++){ %}
-	<strong class="noteTitel">{%=tours[i].tourName%}</strong><div class="note_content">{%=tours[i].importantNotes%}</div>
-	{% } %}
+	<% for(var i=0;i < tours.length;i++){ %>
+	<strong class="noteTitel"><%- tours[i].tourName %></strong><div class="note_content"><%- tours[i].importantNotes %></div>
+	<% } %>
 </script>
 <script id="tpl_GetTermsConditions" type="text/template">
-	{%=termsConditions%}
+	<%- termsConditions %>
 </script>
 <script>
 	var maxExtensionNight;
@@ -121,29 +121,35 @@
 				var tpl1 =
           '<a class="com_icon go_back" href="javascript:history.go(-1);"></a>'+
 					'<div class="first">'+
-					'{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}'+
+					'<% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %>'+
 					'<img src="{%=pictureURL%}" alt="image">'+
-					'{% }else{ %}'+
-					'<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
+					'<% }else{ %>'+
+					'<a href="<%- imgs[0].imageURL %>" class="swipebox" title="1/<%- (imgl) %>">' +
 					'<img src="../images/loading_def_big.png" alt="image" id="tourLoad">'+
-					'{% for(var i=1;i < imgl;i++){ %}'+
-					'<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
-					'<img src="{%=imgs[i].imageURL%}" alt="image"></a>'+
-					'{% }} %}'+
+					'<% for(var i=1;i < imgl;i++){ %>'+
+					'<a style="display:none;" href="<%- imgs[i].imageURL %>" class="swipebox" title="<%- (i+1) %>/<%- (imgl) %>">' +
+					'<img src="<%- imgs[i].imageURL %>" alt="image"></a>'+
+					'<% }} %>'+
 					'<div class="pd_mb">'+
-					'<div>产品编号：{%=packageRefNo%}</div>'+
+					'<div>产品编号：<%- packageRefNo %></div>'+
 					'</div>'+
-					'{% if(imgl>0){ %}'+
-					'<div style="position:absolute;top:12%;right:15px;font-size: .32rem;color:#ffffff;">{%=(imgl)%}张</div>'+
-					'{% } %}'+
+					'<% if(imgl>0){ %>'+
+					'<div style="position:absolute;top:12%;right:15px;font-size: .32rem;color:#ffffff;"><%- (imgl) %>张</div>'+
+					'<% } %>'+
 					'</div>';
-				//var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' + '<img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' + '<img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
+
 				var tpl2 =
-					'<div>{%=packageName%}</div>'+
+					'<div><%- packageName %></div>'+
 					'<h3>' +
-					'</b>旅行适用时间：<i>{%=departValidFrom.substr(0,10)%}至{%=departValidTo.substr(0,10)%}</i></h3>';
-				var tpl3 = ['<span class="all_num"><i class="frist">' + val.productPrice + '</i><i style="font-size: 0.28rem;">起/人</i>（<b>{%=minPax%}</b>人起订）</span>', '{% if(' + val.status + '=="1"){ %}', '<a href="javascript:go2order();" class="reserve">立即预订</a>', '{% } %}'].join('');
-				var tpl4 = ['{%=inclusiveItem%}'].join('');
+					'</b>旅行适用时间：<i><%- departValidFrom.substr(0,10) %>至<%- departValidTo.substr(0,10) %></i></h3>';
+				var tpl3 =
+					'<span class="all_num"><i class="frist">' +
+					val.productPrice +
+					'</i><i style="font-size: 0.28rem;">起/人</i>（<b><%- minPax %></b>人起订）</span>'+
+					'<% if(' + val.status + '=="1"){ %>'+
+					'<a href="javascript:go2order();" class="reserve">立即预订</a>'+
+					'<% } %>';
+				var tpl4 = '<%- inclusiveItem %>';
 				var tmp = {
 					"Parameters" : {
 						"PackageID" : val.packageID
@@ -157,21 +163,32 @@
 					console.log(json);
 					if (json.success) {
 						var data = json.data;
-						var html_pb = template(tpl1, data);
-						var html_tt = template(tpl2, data);
-						maxExtensionNight = data.maxExtensionNight;
-						var html_pp = template(tpl3, data);
-						var html_det = template(tpl4, data);
-						var tpl_GetSpotOverview = template("tpl_GetSpotOverview", data);
-						var tpl_GetSpotImportantNotes = template("tpl_GetSpotImportantNotes", data);
-						var tpl_GetTermsConditions = template("tpl_GetTermsConditions", data);
+						var html_pb = ejs.render(tpl1, data);
 						$("#packageBox").html(html_pb);
+
+						var html_tt = ejs.render(tpl2, data);
 						$('#tourTime').html(html_tt);
-						$('#tag1_con').html(tpl_GetSpotOverview);
-						$('#pageTag_2').html(tpl_GetSpotImportantNotes);
-						$('#pageTag_3').html(tpl_GetTermsConditions);
+						maxExtensionNight = data.maxExtensionNight;
+
+						var html_pp = ejs.render(tpl3, data);
 						$('#packagePrice').html(html_pp);
+
+						var html_det = ejs.render(tpl4, data);
 						$('#packDetailHt').html(html_det);
+
+						var str1 = $('#tpl_GetSpotOverview').html();
+						var tpl_GetSpotOverview = ejs.render(str1, data);
+						$('#tag1_con').html(tpl_GetSpotOverview);
+
+						var str2 = $('#tpl_GetSpotImportantNotes').html();
+						var tpl_GetSpotImportantNotes = ejs.render(str2, data);
+						$('#pageTag_2').html(tpl_GetSpotImportantNotes);
+
+						var str3 = $('#tpl_GetTermsConditions').html();
+						var tpl_GetTermsConditions = ejs.render(str3, data);
+						$('#pageTag_3').html(tpl_GetTermsConditions);
+
+
 
 						//替换图片
 						$('#tourLoad').load(function(){
