@@ -1144,7 +1144,49 @@ order-data-people  page   end
 .hotelInfo_numb_people .spenumbList b.ico_select{
     background-position: -5.08rem -0.52rem;
 }
-
+/*
+资料输入  end
+数据错误显示页面   begin
+*/
+.amy_error_box{
+    display: none;
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #F7F7F7;
+    z-index: 1000;
+}
+.amy_error_box>div{
+    width: 100%;
+    height:5rem;
+    text-align:center;
+    position: absolute;
+    top: 50%;
+    margin-top:-2.5rem;
+}
+.amy_error_box img.black{
+    width: 3.86rem;
+    height: 2.28rem;
+    display: block;
+    margin: 0 auto;
+}
+.amy_error_box dl dt{
+    font-size: 0.32rem;
+    color: #666;
+    padding: 0.94rem 0 0.5rem;
+}
+.amy_error_box dl dd{
+    font-size: 0.28rem;
+    color: #999;
+}
+.amy_error_box dl dd a{
+    color: #fb7530;
+}
+/*
+数据错误显示页面  end
+*/
 
 
 
