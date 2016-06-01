@@ -40,7 +40,7 @@
 		}
 		vlm.loadJson(apiurl, JSON.stringify(initdata), function(data) {
 			var json = data, tpl_page = '<div id="loadMore">点击查看更多...</div>', tpl_end = '<div id="loadMore">没有更多...</div>';
-			if (json.success && json.success.data) {
+			if (json.success && json.data != null) {
 				var data = json.data, items = [], themes = data.themes, fts = {
 					allowMultiSelect : 0,
 					filterType : 5,
