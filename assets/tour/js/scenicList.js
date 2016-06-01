@@ -39,7 +39,6 @@
 			}
 		}
 		vlm.loadJson(apiurl, JSON.stringify(initdata), function(data) {
-			//tpl_page = '<div id="loadMore">点击查看更多...</div>'
 			var json = data, tpl_page = '', tpl_end = '<div id="loadMore">没有更多...</div>';
 			if (json.success && json.data != null) {
 				console.log(json)
@@ -50,6 +49,12 @@
 					item : [],
 					title : "主题"
 				};
+				//算分页
+				if(data.lists.length<=10){
+					tpl_page = '<div id="loadMore">没有更多内容了</div>';
+				}else{
+					tpl_page = '<div id="loadMore">点击查看更多...</div>';
+				}
 				for (var i = 0; i < themes.length; i++) {
 					items.push({
 						filterText : themes[i].themeName,
