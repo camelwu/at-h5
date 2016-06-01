@@ -964,7 +964,7 @@ a.hotel_detail_pic{
     box-sizing: border-box;
 }
 
-/*国籍选择�?�?*/
+/*国籍选择�?�?*/
 .country_header{
     opacity: 1;
 }
@@ -1064,14 +1064,14 @@ a.hotel_detail_pic{
 
 }
 /*国籍选择结束*/
-/*订单填写  end    map�?�?*/
+/*订单填写  end    map*/
 .hotel_detail_map{
     width: 100%;
     height: 3.6rem;
     margin-top:-0.6rem;
     z-index: 10;
 }
-/*地图详情�?  begin*/
+/*地图详情�?  begin*/
 .hotel_detail_map_goback{
     width: 0.64rem;
     height: 0.64rem;
@@ -1092,8 +1092,47 @@ a.hotel_detail_pic{
     background-position: -3.19rem -0.44rem;
 }
 
-/*地图详情�?  end*/
-
+/*
+地图详情  end
+order-data-people  page   begin
+*/
+.hotelInfo_numb_people .numbList i.child_age_state{
+    width: .34rem;
+    height: .34rem;
+    margin-left: .08rem;
+    margin-top: .06rem;
+    display: inline-block;
+    background-image: url(../../images/ui/icon_common.png);
+    background-repeat: no-repeat;
+    background-position: 54% 31.5%;
+    background-size: 7.9rem 5.13rem;
+    position: absolute;
+}
+.hotelInfo_numb_people .numbList .age_state_box {
+    position: absolute;
+    display: none;
+    width: 4rem;
+    z-index: 1;
+    margin-left: 1.3rem;
+    margin-top: -1.8rem;
+}
+.hotelInfo_numb_people .numbList .age_state_box .state_text {
+    padding: .2rem;
+    margin-top: -1px;
+    background: #474747;
+    font-size: .2rem;
+    border-radius: .1rem;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+.hotelInfo_numb_people .numbList .age_state_box div:last-child {
+    width: 0;
+    height: 0;
+    margin-left: .3rem;
+    border-left: .2rem solid transparent;
+    border-right: .2rem solid transparent;
+    border-top: .2rem solid #474747;
+}
 
 
 
