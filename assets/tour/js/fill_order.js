@@ -18,6 +18,42 @@
 
     //localStorage.Info
     var jsonPackage=JSON.parse(localStorage.info);
+    console.log(jsonPackage)
+    //160601有接送服务的产品有默认的接送时间  时间显示格式重置
+    var dateTime = '';
+    var jsonPackageJie = jsonPackage.CheckInDate;
+    var jsonPackageSong = jsonPackage.CheckOutDate;
+    timeChong(jsonPackageJie)//接 2016-6-5T00:00:00
+    timeChong(jsonPackageSong)//送 2016-6-5T00:00:00
+    function timeChong(strTime){
+        var meetYear = strTime.substring(0,4);
+        var month = '',day = '', hour = "12:00";
+        if(strTime.length == 17){  //2016-6-5T00:00:00
+            month = 0 + strTime.substring(5,6);
+            day = 0 + strTime.substring(7,8);
+        }
+        if(strTime.length == 18){  //2016-10-5T00:00:00   2016-6-15T00:00:00
+            if(jsonPackageJie.substring(6,7) == '-'){//2016-6-15T00:00:00
+                month = 0 + strTime.substring(5,6);
+                day = strTime.substring(7,9);
+            }else{//2016-10-5T00:00:00
+                month = strTime.substring(5,7);
+                day = 0 + strTime.substring(8,9);
+            }
+        }
+        if(strTime.length == 19){ //2016-10-15T00:00:00
+            month = strTime.substring(5,7);
+            day = strTime.substring(8,10);
+        }
+        dateTime = meetYear+'-'+ month +'-'+day+' '+ hour;
+        console.log(dateTime)
+        return dateTime;
+    }
+    $('#content3_CheckInDate').attr('value',timeChong(jsonPackageJie));
+    $('#content4_CheckInDate').attr('value',timeChong(jsonPackageSong));
+
+
+
     function init(){
         var Parmeters=
         {
