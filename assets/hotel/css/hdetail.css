@@ -92,7 +92,7 @@ strong{
   display: block;
   height: 0.6rem;
   line-height: 0.6rem;
-  width: 100%;
+  /*width: 100%;*/
   padding-left: 0.28rem;
   position: relative;
   top:-2.4rem;
@@ -397,7 +397,7 @@ span.money{
 /*房间信息弹层*/
 #popup_title{
   /*height: .34rem;*/
-  padding: .28rem;
+  padding: .28rem .8rem .28rem .28rem;
   color: #333;
   background-color: #F7F7F7;
   border-top-left-radius: .1rem;

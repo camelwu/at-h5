@@ -469,20 +469,20 @@ body {
     font-size: .24rem;
 }
 .check-more-down, .check-more-up{
-    display: inline-block;
-    width: .16rem;
-    height: .16rem;
-    border-bottom: .03rem solid #666;
-    border-left: none;
-    border-right: .03rem solid #666;
-    margin-left: .18rem;
-    position: relative;
-    top:.02rem;
-   -webkit-transform: rotate(45deg) translateY(-50%);
-   -o-transform: rotate(45deg) translateY(-50%);
-   -moz-transform: rotate(45deg) translateY(-50%);
-   -ms-transform: rotate(45deg) translateY(-50%);
-   transform: rotate(45deg) translateY(-50%);
+  display: inline-block;
+  width: .16rem;
+  height: .16rem;
+  border-bottom: .03rem solid #666;
+  border-left: none;
+  border-right: .03rem solid #666;
+  margin-left: .18rem;
+  position: relative;
+  top:.02rem;
+  -webkit-transform: rotate(45deg) translateY(-50%);
+  -o-transform: rotate(45deg) translateY(-50%);
+  -moz-transform: rotate(45deg) translateY(-50%);
+  -ms-transform: rotate(45deg) translateY(-50%);
+  transform: rotate(45deg) translateY(-50%);
 }
 .check-more-up{
   border-top: .03rem solid #666;
@@ -495,7 +495,24 @@ body {
   -ms-transform: rotate(-45deg) translateY(-50%);
   transform: rotate(-45deg) translateY(-50%);
 }
-
+/*.up{*/
+  /*width: .24rem;*/
+  /*height: .24rem;*/
+  /*background: url("../../images/ui.1.0/icon_common.png") -2.24rem -0.67rem no-repeat;*/
+  /*background-size: 7.9rem 7.83rem;*/
+  /*margin-left: .18rem;*/
+  /*position: relative;*/
+  /*top:.02rem;*/
+/*}*/
+/*.down{*/
+  /*width: .24rem;*/
+  /*height: .24rem;*/
+  /*background: url("../../images/ui.1.0/icon_common.png") -2.8rem -0.67rem no-repeat;*/
+  /*background-size: 7.9rem 7.83rem;*/
+  /*margin-left: .18rem;*/
+  /*position: relative;*/
+  /*top:.02rem;*/
+/*}*/
 .roomUl .plassPrice {
     height: 100%;
     line-height: 1.2rem;

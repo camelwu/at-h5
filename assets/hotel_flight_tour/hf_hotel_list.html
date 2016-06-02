@@ -97,8 +97,9 @@
     </script>
     <!--list-->
     <script id="templateList" type="text/template">
-        <% for(var i=0;i<data.hotels.length;i++) { %>
+        <% for(var i=0;i< data.hotels.length;i++) { %>
             <li data-hotelId="<%= data.hotels[i].hotelID %>">
+              <img class="h-choose h_choose" src="../images/ui/choose.png">
                 <div>
                     <img class="img" src="<%= data.hotels[i].hotelPictureURL %>" data-src="../images/loading-hotel.gif" data-noimg="../images/hotelListNo.jpg" alt="">
                     <article class="message">
@@ -120,7 +121,7 @@
                         </div>
                     </article>
                 </div>
-                <i></i>
+                <!--<i></i>-->
             </li>
             <% } %>
     </script>

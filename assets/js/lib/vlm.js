@@ -364,53 +364,41 @@
                         return "周" + reslut;
                     }
                 },
-              getAge:function GetAgeByBrithday(birthday,departDate){
-                var age=-1,today;
-                if(departDate==undefined){
-                  today=new Date();
-                }
-                else {
-                  today = new Date(departDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"));
-                }
-                var todayYear=today.getFullYear();
-                var todayMonth=today.getMonth()+1;
-                var todayDay=today.getDate();
+                getAge: function GetAgeByBrithday(birthday, departDate) {
+                    var age = -1,
+                        today;
+                    if (departDate == undefined) {
+                        today = new Date();
+                    } else {
+                        today = new Date(departDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"));
+                    }
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDay = today.getDate();
 
-                var birthday= new Date(birthday.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"))
-                if(birthday !=null)
-                {
-                  birthdayYear=birthday.getFullYear();
-                  birthdayMonth=birthday.getMonth();
-                  birthdayDay=birthday.getDate();
-                  if(todayYear-birthdayYear<0)
-                  {
-                    alert("出生日期选择错误!");
-                  }
-                  else
-                  {
-                    if(todayMonth*1-birthdayMonth*1<0)
-                    {
-                      age = (todayYear*1-birthdayYear*1)-1;
+                    var birthday = new Date(birthday.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"))
+                    if (birthday != null) {
+                        birthdayYear = birthday.getFullYear();
+                        birthdayMonth = birthday.getMonth();
+                        birthdayDay = birthday.getDate();
+                        if (todayYear - birthdayYear < 0) {
+                            alert("出生日期选择错误!");
+                        } else {
+                            if (todayMonth * 1 - birthdayMonth * 1 < 0) {
+                                age = (todayYear * 1 - birthdayYear * 1) - 1;
+                            } else {
+                                if (todayDay - birthdayDay >= 0) { //alert(thisDay+'-'+brithd+"_ddd");
+                                    age = (todayYear * 1 - birthdayYear * 1);
+                                } else {
+                                    age = (todayYear * 1 - birthdayYear * 1) - 1;
+                                }
+                            }
+                        }
+                        return age * 1;
+                    } else {
+                        return -1;
                     }
-                    else
-                    {
-                      if(todayDay-birthdayDay>=0)
-                      {//alert(thisDay+'-'+brithd+"_ddd");
-                        age = (todayYear*1-birthdayYear*1);
-                      }
-                      else
-                      {
-                        age = (todayYear*1-birthdayYear*1)-1;
-                      }
-                    }
-                  }
-                  return age*1;
-                }
-                else
-                {
-                  return -1;
-                }
-              },
+                },
                 //比较时间串与当前时间的大小
                 compareTime: function (timeStr) {
                     if (timeStr == '' || timeStr == null) {
@@ -1141,7 +1129,7 @@
                     }
                 }, true);
                 return back;
-            }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate,isShowChinaName,isShowContact) {
+            }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate, isShowChinaName, isShowContact) {
                 //if(arguments.length<1){return ;}
                 //var arg = arguments.callee.slice(this);
                 var type = '',
@@ -1170,7 +1158,7 @@
                     type = 'add';
                 }
                 //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");isShowChinaName,isShowContact
-                var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId + ' &from=' + f+t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate+"&isShowChinaName="+isShowChinaName+"&isShowContact="+isShowContact);
+                var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact);
                 document.body.appendChild(choice);
 
                 //choice.location = urls;

@@ -386,21 +386,17 @@ Calender.prototype = {
             out = _CalF.$('.' + this.sClass1, that.input);
         }
         var tal = _CalF.$('#' + this.id2, that.input);
-        //        if (out[0].tagName == 'INPUT') {
-        //            for (i = 0; i < 2; i++) {
-        //                arr.push(sels[i].parentNode.getAttribute("data-day"));
-        //                out[i].value = sels[i].parentNode.getAttribute("data-day");
-        //            }
-        //        } else {
-        //            arr.push(liveDate);
-        //            arr.push(leaveDate);
-        //            out[0].innerHTML = liveDate;
-        //            out[1].innerHTML = leaveDate;
-        //        }
         arr.push(liveDate);
         arr.push(leaveDate);
-        out[0].innerHTML = liveDate;
-        out[1].innerHTML = leaveDate;
+        if (out[0].tagName == 'INPUT') {
+            out[0].value = liveDate;
+            out[1].value = leaveDate;
+        } else {
+
+            out[0].innerHTML = liveDate;
+            out[1].innerHTML = leaveDate;
+        }
+
         console.log(out[0] + ':' + out[1]);
         var live_y = arr[0].split('-')[0];
         var live_m = arr[0].split('-')[1] - 1;
@@ -455,6 +451,7 @@ Calender.prototype = {
         var nowM = date.getMonth();
         var nowD = date.getDate();
         _CalF.bind(this.input, 'click', function () {
+            console.info("click event fire");
             that.createContainer();
             for (var i = 0; i < that.num; i++) {
                 if (i == (that.num - 1)) {

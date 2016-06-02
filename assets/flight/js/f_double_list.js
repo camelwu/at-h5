@@ -514,6 +514,7 @@ var fDoubleList = {
     this.postObj = postObj;
     this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    //this.renderHandler(data4)
   }
 };
 fDoubleList.init();

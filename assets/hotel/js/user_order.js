@@ -321,8 +321,8 @@ uoHisData();
             uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo hotel_user_detail_border">'+
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+
                 '<div class="uo_c3_infor hotel_user_detail_name2">'+
-                '<input type="text" value="" placeholder="姓（如：Li）" class="uo_lastname"  />'+
-                '<input type="text" value="" placeholder="名（如：Shimin）" class="uo_firstname"  />'+
+                '<input type="text" value="" placeholder="姓（如：Zhang）" class="uo_lastname"  />'+
+                '<input type="text" value="" placeholder="名（如：San）" class="uo_firstname"  />'+
                 '</div>'+
                 '</div>';
         }else if(hoPos=='dom'){
@@ -497,8 +497,8 @@ uoHisData();
                 if(hoPos=='inter'){
                     oDiv.innerHTML='<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+
                         '<div class="uo_c3_infor hotel_user_detail_name2">'+
-                        '<input type="text" value="姓（如：Zhang）" class="uo_lastname"  />'+
-                        '<input type="text" value="名（如：San）" class="uo_firstname"  />'+
+                        '<input type="text"  value="" placeholder="姓（如：Zhang）" class="uo_lastname"  />'+
+                        '<input type="text"  value="" placeholder="名（如：San）" class="uo_firstname"  />'+
                         '</div>';
                 }else if(hoPos=='dom'){
                     oDiv.innerHTML='<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+

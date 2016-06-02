@@ -36,7 +36,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .singleTrip, .doubleTrip{
-  border-bottom: 1px solid #DEDEDE;
+  border-bottom: .02rem solid #DEDEDE;
 }
 
 .singleTrip, .doubleTrip , .international_title, .domestic_title{
@@ -54,7 +54,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .light-title {
-  border-bottom: 0.05rem solid #7bc300;
+  border-bottom: 0.06rem solid #7bc300;
   color: #7bc300;
 }
 
@@ -194,9 +194,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin: 0 .28rem;
   border-bottom: 1px solid #e6e6e6;
 }
-.age-range{
-  font-size: .24rem;
+.age-range {
+  font-size: .26rem;
   color: #D1D1D1;
+  letter-spacing: .02rem;
 }
 .pas-num-wrap .minus, .pas-num-wrap .plus {
   display: inline-block;
@@ -204,21 +205,21 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   height: .54rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.9rem 5.13rem;
-  background-position: 41.2% 68%;
+  background-position: -3.05rem -3.132rem;
   position: relative;
   top: .156rem
 }
 
 .pas-num-wrap .plus_grey {
-  background-position: 29.5% 68%
+  background-position: -2.161rem -3.14rem;
 }
 
 .pas-num-wrap .minus {
-  background-position: 17.5% 68%;
+  background-position: -1.29rem -3.132rem;
 }
 
 .pas-num-wrap .minus_grey {
-  background-position: 6.7% 68%
+  background-position: -.508rem -3.132rem;
 }
 
 .adultNumber, .childNumber {
@@ -520,22 +521,22 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: relative;
 }
 
-.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon ,.trip_go_ i,.trip_back_ i{
+.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity  span.icon, .trip_go_ span.icon, .trip_back_ span.icon ,.trip_go_ i,.trip_back_ i{
   width: .32rem;
   height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
-  background-position: 35.564% 31.61%;
+  background-position: -2.6999rem -1.522rem;
   margin-top: .04rem;
 }
 
 .trip_back .left span.icon, .trip_back_ span.icon {
   width: .32rem;
   height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
+  background-position: -3.398rem -1.522rem;
   margin-top: .04rem;
-  background-position: 44.564% 31.61%;
 }
 .trip_go .left span.icon , .trip_back .left span.icon{
   position: absolute;
@@ -548,7 +549,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .trip_go_ i,.trip_back_ i{
   float: right;
-  background-position: 81.964% 49.91%;
+  background-position: -6.236rem -2.41rem;
 }
 .dateWeekCity i{
   width: .32rem;
@@ -587,18 +588,17 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .left_info .middle .arrow, .left_info .middle .arrow_word {
   display: block;
   margin: 0 auto;
-  width: 1.888rem;
+  width: 1.688rem;
   height: 0.20rem;
-  background: url(../../images/ui/icon_common.png);
+  background: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 7.5rem 5.13rem;
-  background-position: 5.8% 90.004%;
+  background-size: 7.90rem auto;
+  background-position: -0.482rem -4.44rem;
+  float: none;
 }
 
 .left_info .middle .arrow_word {
-  background: url(../../images/ui/change-arrow.png);
-  background-size: 1.88rem auto;
-  background-position: 0 0;
+  background-position: -3.38rem -4.44rem;
 }
 
 .left_info .middle span {
@@ -656,7 +656,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .for_bottom .left_small_word {
   margin: 0 1.72rem 0 0;
   height: 1.46rem;
-  border: 1px solid #fff;
+  padding-top: .20rem;
 }
 
 .for_bottom .left_small_word div:nth-child(1) {
@@ -707,7 +707,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .left_small_word p:first-child {
-  margin: .32rem 0 .20rem 0;
+  margin-bottom: .20rem;
 }
 
 /*摘抄hft开始*/
@@ -738,16 +738,13 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .dateWeekCity span.icon, .arrow {
-  display: inline-block;
-  width: .40rem;
-  height: .40rem;
-  background: url(../../images/ui/icon_common.png);
-  background-repeat: no-repeat;
-  background-size: 7.90rem 5.13rem;
-  background-position: -2.66rem -1.42rem;
-  overflow: hidden;
-  position: absolute;
-  top: -.033rem
+  float: left;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -2.6999rem -1.522rem;
+  margin-top: .04rem;
 }
 
 .arrow {
@@ -757,14 +754,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: static;
   background-position: -.488rem -4.460rem;
   margin: 0 auto;
-}
-
-.dateWeekCity span:nth-child(2) {
-  margin-left: .45rem;
+  float: none;
 }
 .no-margin-left{margin-left: 0!important;}
 .tripBack .dateWeekCity span.icon {
-  background-position: -3.35rem -1.45rem;
+  background-position: -3.39rem -1.522rem;
 }
 
 .fix-margin-left {
@@ -966,7 +960,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   border-top: 1px solid #e6e6e6;
 }
 
-.passengers_wrap h4 i, .passengers_wrap .add_icon, .contact_wrap .arrow_down, .contact_wrap h4 i, .contact_wrap .arrow_right, .passengers_wrap .minus_person {
+.passengers_wrap h4 i,.change_tip h4 i, .passengers_wrap .add_icon, .contact_wrap .arrow_down, .contact_wrap h4 i, .contact_wrap .arrow_right, .passengers_wrap .minus_person {
   width: .40rem;
   height: .40rem;
   background: url(../../images/ui.1.0/icon_common.png) no-repeat;
@@ -981,11 +975,12 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   background-position: -3.852rem -.548rem;
 }
 .passengers_wrap .minus_person {
-  background-position: -1.304rem -3.14rem;
+  background-position: -1.278rem -3.09rem;
   width: .52rem;
   height: .52rem;
   left: -.60rem;
   top: .20rem;
+  background-size: 7.78rem auto;
 }
 .passengers_wrap em{
   font-style: normal;
@@ -1253,13 +1248,13 @@ input.name{
 
 .shadow {
   display: none;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .6);
   position: fixed;
   z-index: 99;
+  background: rgba(0, 0, 0, .6);
   left: 0;
+  right: 0;
   top: 0;
+  bottom: 0;
 }
 
 /*国籍选择开始*/
@@ -1278,6 +1273,9 @@ input.name{
   z-index: 1000;
   background-color: #fff;
   display: none;
+  overflow-x: hidden !important;
+  font-size: .28rem;
+  color: #333;
 }
 
 .jto_letter_list li {
@@ -1529,3 +1527,54 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
 }
 .city_index li{margin-bottom: .04rem;}
 .city_index li a{color: #7bc300;text-underline: none}
+.change_tip {
+  width: 92%;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 1000001;
+  left: 4%;
+  top: 32%;
+  -webkit-transition: margin-top 300ms ease;
+  color: #333;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+  display: none;
+  border-bottom-left-radius: .04rem;
+  -webkit-border-bottom-left-radius: .04rem;
+  -moz-border-bottom-left-radius: .04rem;
+  -o-border-bottom-left-radius: .04rem;
+  border-bottom-right-radius: .04rem;
+  -webkit-border-bottom-right-radius: .04rem;
+  -moz-border-bottom-right-radius: .04rem;
+  -o-border-bottom-right-radius: .04rem;
+}
+.change_tip h4{
+  height:.88rem;
+  line-height: .88rem;
+  background: #fcfcfc;
+  padding-left: .28rem;
+  color: #000;
+  border-top-left-radius: .04rem;
+  -webkit-border-top-left-radius: .04rem;
+  -moz-border-top-left-radius: .04rem;
+  -o-border-top-left-radius: .04rem;
+  border-top-right-radius: .04rem;
+  -webkit-border-top-right-radius: .04rem;
+  -moz-border-top-right-radius: .04rem;
+  -o-border-top-right-radius: .04rem;
+}
+.change_tip p{
+  padding: .28rem;
+  color: #999;
+}
+.change_tip h4 i{
+  float: right;
+  width: .32rem;
+  height: .32rem;
+  background-position: -3.81rem -2.41999992rem;
+  margin-top: .23rem;
+  position: static;
+  margin-right: .28rem;
+}

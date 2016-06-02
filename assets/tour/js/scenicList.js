@@ -8,8 +8,8 @@
 			ThemeID : 0,
 			ThemeIDSpecified : 0,
 			PriceSortType : "",
-			PageIndex : 1,
-			PageSize : 10
+			//PageIndex : 1,
+			//PageSize : 10
 		},
 		ForeEndType : 3,
 		Code : "0207"
@@ -39,8 +39,9 @@
 			}
 		}
 		vlm.loadJson(apiurl, JSON.stringify(initdata), function(data) {
-			var json = data, tpl_page = '<div id="loadMore">点击查看更多...</div>', tpl_end = '<div id="loadMore">没有更多...</div>';
-			if (json.success) {
+			var json = data, tpl_page = '', tpl_end = '<div id="loadMore">没有更多...</div>';
+			if (json.success && json.data != null) {
+				console.log(json)
 				var data = json.data, items = [], themes = data.themes, fts = {
 					allowMultiSelect : 0,
 					filterType : 5,
@@ -48,6 +49,12 @@
 					item : [],
 					title : "主题"
 				};
+				//算分页
+				if(data.lists.length<=10){
+					tpl_page = '<div id="loadMore">没有更多内容了</div>';
+				}else{
+					tpl_page = '<div id="loadMore">点击查看更多...</div>';
+				}
 				for (var i = 0; i < themes.length; i++) {
 					items.push({
 						filterText : themes[i].themeName,
@@ -90,9 +97,12 @@
 						$("#loadMore").before(tpl_l);
 					}else{
 						$("#scenicListCont").html(tpl_l + tpl_page);
-						$("#loadMore").click(function() {
-							that(page + 1);
-						});
+						if(data.lists.length>10){
+							$("#loadMore").click(function() {
+								that(page + 1);
+							});
+						}
+
 					}
 					$("#Localtxt").html(tpl_c);
 					vlm.init();
@@ -103,7 +113,8 @@
 					footer.filters.init();
 				}
 			} else {
-				jAlert(json.message, "提示");
+				$('.amy_error_box').show();
+				//jAlert(json.message, "提示");
 			}
 		});
 	}).call(this, 1);

@@ -836,7 +836,7 @@ a.hotel_detail_pic{
 .order_data_box .nav2_center input{
     width: 100%;
     height:0.9rem;
-    color: #7bc300;
+    color: #333;
     line-height:0.9rem;
     font-family: 'Microsoft YaHei',STHeiti,Verdana,sans-serif;
     display: inline-block;
@@ -964,7 +964,7 @@ a.hotel_detail_pic{
     box-sizing: border-box;
 }
 
-/*国籍选择�?�?*/
+/*国籍选择*/
 .country_header{
     opacity: 1;
 }
@@ -1071,7 +1071,7 @@ a.hotel_detail_pic{
     margin-top:-0.6rem;
     z-index: 10;
 }
-/*地图详情�?  begin*/
+/*地图详情 begin*/
 .hotel_detail_map_goback{
     width: 0.64rem;
     height: 0.64rem;
@@ -1136,9 +1136,57 @@ order-data-people  page   begin
 
 /*
 order-data-people  page   end
+资料输入  begin
 */
-
-
+.hotelInfo_numb_people .spenumbList b.noselect{
+    background-position: -4.4rem -0.52rem;
+}
+.hotelInfo_numb_people .spenumbList b.ico_select{
+    background-position: -5.08rem -0.52rem;
+}
+/*
+资料输入  end
+数据错误显示页面   begin
+*/
+.amy_error_box{
+    display: none;
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #F7F7F7;
+    z-index: 1000;
+}
+.amy_error_box>div{
+    width: 100%;
+    height:5rem;
+    text-align:center;
+    position: absolute;
+    top: 50%;
+    margin-top:-2.5rem;
+}
+.amy_error_box img.black{
+    width: 3.86rem;
+    height: 2.28rem;
+    display: block;
+    margin: 0 auto;
+}
+.amy_error_box dl dt{
+    font-size: 0.32rem;
+    color: #666;
+    padding: 0.94rem 0 0.5rem;
+}
+.amy_error_box dl dd{
+    font-size: 0.28rem;
+    color: #999;
+}
+.amy_error_box dl dd a{
+    color: #fb7530;
+}
+/*
+数据错误显示页面  end
+*/
 
 
 

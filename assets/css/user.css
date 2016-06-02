@@ -104,7 +104,7 @@ i, em {
 }
 
 #phone_login, #email_login {
-  margin-top: 1rem;
+  margin-top: 1.8rem;
   padding: 0 .4rem;
 }
 
@@ -244,7 +244,7 @@ i, em {
 
 #phone_register, #email_register {
   margin: 0 .4rem;
-  margin-top: 1rem;
+  margin-top: 1.8rem;
 }
 
 .coun-find > div {
@@ -292,7 +292,6 @@ i, em {
   position: absolute;
   right: 0;
   top: .12rem;
-
 }
 
 .p_86 {
@@ -301,8 +300,8 @@ i, em {
   color: #333;
   margin-top: .32rem;
   border-right: 1px solid #e6e6e6;
-
   position: relative;
+  width: 1.4rem;
 }
 
 .p_86 > span {
@@ -454,7 +453,7 @@ i, em {
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #link_declaration, #fkey_page, #black_page, #link_declaration, #header_phone {
+#link_page, #link_about_us, #link_at, #register_page, #email_register, #fkey_page, #black_page, #email_find, #link_declaration, #header_phone {
   display: none;
 }
 
@@ -1103,6 +1102,10 @@ i, em {
 }
 
 /*国籍选择开始*/
+
+#country_index_wrap{
+  display: none;
+}
 .country_header {
   opacity: 1;
 }
@@ -1120,6 +1123,7 @@ i, em {
   bottom: 0;
   z-index: 1000;
   display: none;
+  background-color: #fff;
 }
 
 .country-cho-wrap-order {
@@ -1157,17 +1161,6 @@ i, em {
   height: .34rem;
 }
 
-.country-list {
-  background-color: #fff;
-}
-
-.country-list li {
-  padding-left: .48rem;
-  height: .68rem;
-  line-height: .68rem;
-  border-bottom: 1px solid #e6e6e6;
-}
-
 .country-hidden {
   z-index: 100;
 }
@@ -1181,21 +1174,12 @@ i, em {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9;
-  background: #f5f4f9;
+  z-index: 1010;
+  background: #fff;
   overflow-y: scroll;
 }
 
-.country-list-searched li.country-list-searched-item {
-  width: 100%;
-  height: .68rem;
-  line-height: .68rem;
-  text-align: left;
-  border-bottom: 1px solid #e6e6e6;
-  padding-left: .48rem;
-}
-
-.city_index {
+.country_index {
   position: fixed;
   top: 2.18rem;
   right: .06rem;
@@ -1203,15 +1187,42 @@ i, em {
   color: #7bc300;
   font-size: 0.2rem;
   text-align: center;
+  z-index: 1000;
 }
 
-.city_index li {
+.country_index li {
   margin-bottom: .04rem;
 }
 
-.city_index li a {
+.country_index li a {
   color: #7bc300;
   text-underline: none
+}
+
+.country-cho-wrap h4 {
+  line-height: 0.68rem;
+  height: 0.68rem;
+  padding-left: 0.28rem;
+  background-color: #F7F7F7;
+  color: #333;
+  font-size: 0.28rem;
+}
+
+.country_hot li, .country-wrap li, .country-list-searched li {
+  line-height: 0.88rem;
+  height: .88rem;
+  padding-left: 0.28rem;
+  border-bottom: 1px solid #e6e6e6;
+  color: #333;
+}
+
+.target {
+  position: relative;
+  top: -.88rem;
+  display: block;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
 }
 
 /*国籍选择结束*/

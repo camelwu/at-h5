@@ -32,14 +32,14 @@
     <h3><span>北京</span><i class="arrowDouble"></i><span>新加坡</span>
     </h3>
   </header>
+  <div class="date-top" id="date_top">
+    <span class="month-day" id="setOffDate">04月29日</span><span class="weekWord">周五</span>
+    <span class="v-line">-</span>
+    <span class="month-day" id="arriveDate">05月04日</span><span class="weekWord">周三</span>
+    <span class="word-tip">(查询日期为出发地日期)</span>
+    <i></i>
+  </div>
   <div class="content addPaddingTop addMarginBottomHigh">
-    <div class="date-top" id="date_top">
-      <span class="month-day" id="setOffDate">04月29日</span><span class="weekWord">周五</span>
-      <span class="v-line">-</span>
-      <span class="month-day" id="arriveDate">05月04日</span><span class="weekWord">周三</span>
-      <span class="word-tip">(查询日期为出发地日期)</span>
-      <i></i>
-    </div>
     <ul class="flight_ul double_ul"></ul>
     <div id="loadMore">点击加载更多信息...</div>
     <P id="no_flight_data">没有找到符合条件的航班!</P>
@@ -88,14 +88,16 @@
           </div>
           <div class="middle">
             <span class="timeCost"><%= parseInt(item["segmentsLeaveTotalTravelTime"] / 60) + 'h' + item["segmentsLeaveTotalTravelTime"] % 60 + 'm' %></span>
-            <%if(item.segmentsLeave.length>1){%>
-            <span class="arrow_word"></span>
-            <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
-            <%}else{%>
-            <span class="arrow"></span>
+            <%if(item.segmentsLeave.length==1){%>
+                <span class="arrow"></span>
+            <%}else if(item.segmentsLeave.length==2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
+            <% }else if(item.segmentsLeave.length>2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsLeave.length %>次</span>
             <% }%>
           </div>
-
         </div>
         <p class="flight_detail">
           <span class="airCropIcon"><img  src="<%= item.segmentsLeave[0].airwayLogo %>" /></span>
@@ -129,11 +131,14 @@
           </div>
           <div class="middle">
             <span class="timeCost"><%= parseInt(item["segmentsReturnTotalTravelTime"] / 60) + 'h' + item["segmentsReturnTotalTravelTime"] % 60 + 'm' %></span>
-            <%if(item.segmentsReturn.length>1){%>
-            <span class="arrow_word"></span>
-            <span class="transferCity"><%= item.segmentsReturn[0].cityNameTo %></span>
-            <%}else{%>
-            <span class="arrow"></span>
+            <%if(item.segmentsReturn.length==1){%>
+                <span class="arrow"></span>
+            <%}else if(item.segmentsReturn.length==2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsReturn[0].cityNameTo %></span>
+            <% }else if(item.segmentsReturn.length>2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsReturn.length %>次</span>
             <% }%>
           </div>
         </div>

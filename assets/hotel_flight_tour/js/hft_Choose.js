@@ -674,6 +674,7 @@ var hftChoose = {
       if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] || originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']) {
         this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwaySetID'];
         this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwayCacheID'];
+        this.initParaObj.selectedHotelID = hftFlightHotelTourInfo['hotelInfo']['hotelID'];
         if (this.type == "2") {
           this.initParaObj.tours = this.tourParaObjHandler(hftFlightHotelTourInfo);
           this.initParaObj.packageID = urlParseObj['packageId'];

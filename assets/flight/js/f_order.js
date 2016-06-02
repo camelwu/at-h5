@@ -97,7 +97,6 @@ var fOrder = {
                         that.addCountryCodeHandler(arguments[0].data)
                    }
     });
-    that.addCountryCodeHandler(country.data)
     return this
   },
   addCountryCodeHandler:function(){
@@ -198,7 +197,7 @@ var fOrder = {
   },
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {},that=this;
+    var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal'),changeTip = document.querySelector('.change_tip');
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -324,36 +323,42 @@ var fOrder = {
             }
           }
         });
-      } else if (target.className == "tot_tips_rmb" || target.className == "money_number" || target.className.indexOf('detail_fare') > -1) {
-        tag = that.getCurrentStyle(shadow).display;
-        if (tag == "block") {
-          shadow.style.display = "none";
-          detailFare.className = "detail_fare open";
-          priceDetailInfo.style.bottom = '-126%';
-        } else {
-          shadow.style.display = "block";
-          detailFare.className = "detail_fare";
-          priceDetailInfo.style.bottom = ".89rem";
-        }
       }
     });
-    //this.addHandler(passengerOuter, 'click', function (e){
-    //  var e = e || window.event, target = e.target || e.srcElement;
-    //    if(target.className == 'minus_person'){
-    //      var tem = target.parentNode.parentNode;
-    //      this.removeChild(tem);
-    //    }
-    //})
-    this.addHandler(document.body, 'click', function (e){
+    this.addHandler(priceTotal, 'click', function (){
+      tag = that.getCurrentStyle(shadow).display;
+      if (tag == "block") {
+        shadow.style.display = "none";
+        detailFare.className = "detail_fare open";
+        priceDetailInfo.style.bottom = '-126%';
+      } else {
+        shadow.style.display = "block";
+        detailFare.className = "detail_fare";
+        priceDetailInfo.style.bottom = ".89rem";
+      }
+    });
+    $("body").children().click(function () {});  //解决iPhone safari中Document事件不触发
+    this.addHandler(document, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
         target.style.display = "none";
         detailFare.className = "detail_fare open";
         priceDetailInfo.style.bottom = '-126%';
+        shadow.style.zIndex ="99";
+        shadow.style.display ="none";
+        changeTip.style.display = "none"
       }else if(target.className.indexOf('country_header')>-1){
         document.querySelector('.country-cho-wrap').style.display ="none";
+      }else if(target.className == "explain"){
+            shadow.style.zIndex ="1000";
+            shadow.style.display ="block";
+            changeTip.style.display = "block"
+      }else if(target.className == "close_explain"){
+            shadow.style.zIndex ="99";
+            shadow.style.display ="none";
+            changeTip.style.display = "none"
       }
-    })
+    });
 
     deletePassager=function(obj){
       $(obj).parent().parent().remove();
@@ -431,7 +436,7 @@ var fOrder = {
   },
 
   init: function () {
-    this.innitData().countrySlider().fadeHandler().eventHandler()
+     this.innitData().countrySlider().fadeHandler().eventHandler()
   }
 };
 fOrder.init();

@@ -40,16 +40,26 @@
       <h4>乘机人<i
         onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
       </h4>
+
       <div id="passenger-list">
         <ul class="passenger_outer" style="display:none;">
           <li>
             <p class="name_infos">
               <i class="minus_person" onclick="javascript:deletePassager(this)"></i>
               <span class="tip_word">姓/名</span>
-              <span class="first_name" data-elementname="lastName">张</span><b>/</b><span class="last_name" data-elementname="firstName">养浩</span>
-              <i class="add_icon passenger" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number itemId" readonly="readonly"  data-elementName="travellerId"></i>
+              <span class="first_name" data-elementname="lastName">张</span><b>/</b><span class="last_name"
+                                                                                         data-elementname="firstName">养浩</span>
+              <i class="add_icon passenger" onclick="javascript:editPassager(this)"><input type="hidden"
+                                                                                           name="input-zone"
+                                                                                           class="passport-number itemId"
+                                                                                           readonly="readonly"
+                                                                                           data-elementName="travellerId"></i>
             </p>
-            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567" readonly="readonly" data-elementname="idNumber"/><span class="sex_value">女</span>
+
+            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567"
+                                                                           readonly="readonly"
+                                                                           data-elementname="idNumber"/><span
+              class="sex_value">女</span>
             </p>
           </li>
         </ul>
@@ -57,11 +67,13 @@
     </div>
     <!--联系人-->
     <div class="contact_wrap" id="contact-table">
-      <h4>联系人<i class="add_icon contact" onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i></h4>
+      <h4>联系人<i class="add_icon contact"
+                onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i></h4>
+
       <p class="input_line clearfix">
-        <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)" data-elementname="lastName" />
+        <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)" data-elementname="lastName"/>
         <span class="s_line fl"></span>
-        <input class="first_name" id="last-name" placeholder="名(如：San)" data-elementname="firstName" />
+        <input class="first_name" id="last-name" placeholder="名(如：San)" data-elementname="firstName"/>
       </p>
 
       <p class="input_line clearfix">
@@ -74,19 +86,24 @@
 
       <p class="input_line email_line"><span class="more_black">E_mail</span><input class="email_value padding_has"
                                                                                     id="email-label"
-                                                                                    placeholder="用于接收通知" data-elementname="email"/></p>
-    </div>
-    <!--价格明细-->
-    <div class="priceDetailInfo"></div>
-    <!--footer-->
-    <div class="bottomPrice">
-      <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span class="money_number"></span><i
-        class="detail_fare open"></i></span>
-      <span class="preserve">立即预定</span>
+                                                                                    placeholder="用于接收通知"
+                                                                                    data-elementname="email"/></p>
     </div>
   </div>
 </div>
+<!--价格明细-->
+<div class="priceDetailInfo"></div>
+<!--footer-->
+<div class="bottomPrice">
+      <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span class="money_number"></span><i
+        class="detail_fare open"></i></span>
+  <span class="preserve">立即预定</span>
+</div>
 <div class="shadow"></div>
+<div class="change_tip">
+  <h4>退改签说明<i class="close_explain"></i></h4>
+  <p class="change_word">退改签规则,已航司为准</p>
+</div>
 </body>
 <script id="template_flight_summary" type="text/template">
   <p class="trip_go_">
@@ -138,12 +155,16 @@
 </script>
 
 <script id="template_country_summary" type="text/template">
-  <div class="country-cho-wrap all_elements">
+  <div class="country-cho-wrap">
     <header class="header">
       <a href="javascript:void(0);" class="header_back country_header">
         <i class="icon_back"></i>
       </a>
-      <h3><div class="cl_search"><input type="text" placeholder="新加坡/XinJiaPo/Singapore/XJP/SGP" id="country-input-zone"><i></i></div> </h3>
+
+      <h3>
+        <div class="cl_search"><input type="text" placeholder="新加坡/XinJiaPo/Singapore/XJP/SGP"
+                                      id="country-input-zone"><i></i></div>
+      </h3>
     </header>
     <ul class="country-list-searched country-list-searched-order"></ul>
     <div class="content">
@@ -151,6 +172,7 @@
         <ul class="inter-list jto_area_code" id="jto_area_code">
           <li>
             <a class="target" name="dq"></a>
+
             <p class="recent_title">当前</p>
             <ul class="hot_code">
               <li class="country_lists" date-country-code="86"><i>中国</i><span>86</span></li>
@@ -158,12 +180,14 @@
           </li>
           <li>
             <a class="target" name="rm"></a>
+
             <p class="recent_title">热门城市</p>
             <ul class="hot_code">
               <% for(var tem in resultArray){%>
               <%resultArray[tem].forEach(function(array){%>
               <%if(array.isHot){%>
-              <li class="country_lists" date-country-code="<%=array.phoneCode%>"><i><%=array.chineseName%></i><span><%=array.phoneCode%></span></li>
+              <li class="country_lists" date-country-code="<%=array.phoneCode%>"><i><%=array.chineseName%></i><span><%=array.phoneCode%></span>
+              </li>
               <% }%>
               <%})%>
               <% }%>
@@ -174,13 +198,15 @@
           <% for(var tem in resultArray){%>
           <li class="country_lists">
             <a class="target" name="<%=tem%>"></a>
+
             <p class="recent_title"><%=tem%></p>
             <ul>
               <%resultArray[tem].forEach(function(array){%>
-              <li class="country_lists" date-country-code="<%=array.phoneCode%>"><i><%=array.chineseName%></i><span><%=array.phoneCode%></span></li>
+              <li class="country_lists" date-country-code="<%=array.phoneCode%>"><i><%=array.chineseName%></i><span><%=array.phoneCode%></span>
+              </li>
               <%})%>
             </ul>
-          <% }%>
+            <% }%>
         </ul>
       </div>
     </div>
@@ -200,33 +226,24 @@
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
-<script type="text/javascript" src="js/doubleListData.js"></script>
-<script type="text/javascript" src="../js/country_list.js"></script>
 <script type="text/javascript" src="js/f_order.js"></script>
 <script type="text/javascript">
   vlm.l_contact();
   localStorage.removeItem("travellerInfo_selected");
   localStorage.removeItem("contact_selected");
-
   sessionStorage.removeItem("choiceAir_select_passenger-list");
   sessionStorage.removeItem("choiceAir_select_contact-table");
-
   function callback() {
     fOrder.countrySlider();
   }
-  function callback2(){
-    var modle=JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
-    for(var key in modle){
-
+  function callback2() {
+    var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+    for (var key in modle) {
       $("#contact-table #first-name").val(modle[key].traveller.firstName);
       $("#contact-table #last-name").val(modle[key].traveller.lastName);
       $("#contact-table #tel-num").val(modle[key].traveller.mobilePhone);
       return;
     }
-
-
-
   }
-
 </script>
 </html>

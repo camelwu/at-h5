@@ -106,11 +106,11 @@
             starJson = {
                 "filterText": star[i].starRatingName,
                 "filterValue": star[i].starRatingValue
-            }
-            starArr.push(starJson)
+            };
+            starArr.push(starJson);
         }
         console.log(starArr);
-        return starArr
+        return starArr;
     }
     /**
      *@desc 预处理数据，将星级信息转换
@@ -218,10 +218,13 @@
                 });
 
                 hotelList.updateMoreStatus(data);
-
+                hotelList.check();
             } else {
                 $.alerts.alert(result.message);
             }
+        },
+        check:function(){
+          $("#hj_jList li:nth-child(1)") .addClass("cur");
         },
         updateMoreStatus: function (data) {
             this.currentPage = data.pageNo;
@@ -253,7 +256,7 @@
                 vlm.loadJson('', JSON.stringify(dataPull), moreDataCallBack);
             });
         }
-    }
+    };
     var dataPull = {
         "parameters": hotelList["parametersStorage"],
         "foreEndType": 2,

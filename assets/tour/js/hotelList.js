@@ -242,40 +242,13 @@ var hotelList = {
 		var hotelUl = document.querySelector('#lsf_list'), that = this;
 		//, nextButton = document.querySelector('.hs-next');
 		var allPic = hotelUl.querySelectorAll('.h-choose');
-		that.eventHandler(hotelUl, 'click', function(event) {
-			var e = event || window.event;
-			var target = e.target || e.srcElement;
-			var lastEle = target, choose;
-			for (var i = 0; i < allPic.length; i++) {
-				allPic[i].style.display = 'none';
-			}
-			while (lastEle.className != "ho_list") {
-				lastEle = lastEle.parentNode;
-			}
-			choose = lastEle.querySelector('.h-choose');
-			choose.style.display = (choose.style.display == 'block') ? 'none' : 'block';
-			var hotelId = lastEle.getAttribute("data-id").toString();
+
+		$('#lsf_list>li').on('click',function(){
+			$(this).addClass('cur').siblings().removeClass('cur');
+			var hotelId = $(this).attr('data-id');
 			document.location.href = 'room-upgrade.html?' + 'hotelID=' + hotelId + '&travelersInput=' + that.bookingFormInfo.travelersInput + '&airportTransferType=' + that.bookingFormInfo.airportTransferType;
-		});
-		/*that.eventHandler(nextButton,'click',function(event){
-		 var e = event || window.event,that = hotelList;
-		 var target = e.target || e.srcElement, allChoosePic = hotelUl.querySelectorAll('.h-choose'),hotelId='';
-		 var tipBox = document.querySelector('#show-result-tip');
-		 for(var i = 0; i<allChoosePic.length;i++ ){
-		 (allChoosePic[i].style.display == 'block')?hotelId=allChoosePic[i].parentNode.getAttribute('data-id'):void(0);
-		 }
-		 if(hotelId) {
-		 document.location.href='room-upgrade.html?'+'hotelID='+hotelId+'&travelersInput='+that.bookingFormInfo.travelersInput+'&airportTransferType='+that.bookingFormInfo.airportTransferType;
-		 }else{
-		 tipBox.innerHTML = '请选择酒店！';
-		 tipBox.style.display = 'block';
-		 that.timer = window.setTimeout(function(){
-		 tipBox.style.display = 'none';
-		 window.clearTimeout(that.timer);
-		 that.timer = null;
-		 },3000);
-		 }
-		 });*/
+		})
+
 		return this;
 	},
 
