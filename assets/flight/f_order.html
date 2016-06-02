@@ -226,8 +226,6 @@
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
-<script type="text/javascript" src="js/doubleListData.js"></script>
-<script type="text/javascript" src="../js/country_list.js"></script>
 <script type="text/javascript" src="js/f_order.js"></script>
 <script type="text/javascript">
   vlm.l_contact();
@@ -235,22 +233,17 @@
   localStorage.removeItem("contact_selected");
   sessionStorage.removeItem("choiceAir_select_passenger-list");
   sessionStorage.removeItem("choiceAir_select_contact-table");
-
   function callback() {
     fOrder.countrySlider();
   }
   function callback2() {
     var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
     for (var key in modle) {
-
       $("#contact-table #first-name").val(modle[key].traveller.firstName);
       $("#contact-table #last-name").val(modle[key].traveller.lastName);
       $("#contact-table #tel-num").val(modle[key].traveller.mobilePhone);
       return;
     }
-
-
   }
-
 </script>
 </html>

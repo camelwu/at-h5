@@ -97,7 +97,6 @@ var fOrder = {
                         that.addCountryCodeHandler(arguments[0].data)
                    }
     });
-    that.addCountryCodeHandler(country.data)
     return this
   },
   addCountryCodeHandler:function(){
@@ -437,7 +436,7 @@ var fOrder = {
   },
 
   init: function () {
-    this.innitData().countrySlider().fadeHandler().eventHandler()
+     this.innitData().countrySlider().fadeHandler().eventHandler()
   }
 };
 fOrder.init();

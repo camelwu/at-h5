@@ -52,7 +52,7 @@ var fIndexModal = {
   },
 
   getHotCityHandler: function () {
-    this.tAjax("", {}, "50100010", 3, this.citySearchHandler);
+    this.tAjax("", {top:40}, "50100010", 3, this.citySearchHandler);
     return this
   },
 
