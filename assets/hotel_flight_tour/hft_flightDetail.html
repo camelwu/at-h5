@@ -44,7 +44,7 @@
                     <div class="dateWeekCity">
                         <span class="icon"></span>
                         <span><%= leaveItem["departDate"].substring(5, 10) %></span><span
-                            class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
+                            class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>
                     </div>
                     <%}%>
                     <div class="timeAirport fixedMargin">
@@ -93,7 +93,7 @@
                     <div class="dateWeekCity">
                         <span class="icon"></span>
                         <span><%= returnItem["departDate"].substring(5, 10) %></span><span
-                            class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
+                            class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>
                     </div>
                     <%}%>
                     <div class="timeAirport fixedMargin">

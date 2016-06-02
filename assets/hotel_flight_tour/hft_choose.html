@@ -54,7 +54,7 @@
                 <li class="tripGo">
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span>
+                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>
                     </div>
                     <div class="timeAirport">
                         <div class="left">
@@ -94,7 +94,7 @@
                 <li class="tripBack">
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span>
+                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>
                     </div>
                     <div class="timeAirport">
                         <div class="left">
