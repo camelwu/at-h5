@@ -178,6 +178,22 @@ body {
 .tripBack .dateWeekCity span.icon {
   background-position: -3.372rem -1.519rem;
 }
+.dateWeekCity .time_minutes {
+  float: right;
+  margin-right: 0;
+  font-size: .20rem;
+  color: #999;
+}
+.dateWeekCity i {
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: 81.964% 49.91%;
+  margin-top: .04rem;
+  float: right;
+}
+
 .addMargin_ {
     margin-top: .40rem;
 }

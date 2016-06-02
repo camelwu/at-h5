@@ -37,7 +37,13 @@
         <div class="top_info">
             <span>出发:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
             <span>返程:<span class="arrive"> <%=hftChoose.returnDay(hftChoose.initParaObj.returnDate)%></span></span>
-            <span class="person_number"><span><%=hftChoose.cacheOtherInfo.adult%></span>成人 <span><%=hftChoose.cacheOtherInfo.child%></span>儿童</span>
+            <span class="person_number">
+              <span><%=hftChoose.cacheOtherInfo.adult%></span>成人
+             <% if(parseInt(hftChoose.cacheOtherInfo.child)>0){%>
+              <span><%=hftChoose.cacheOtherInfo.child%></span>儿童
+             <% }%>
+              <span><%=hftChoose.cacheOtherInfo.roomNumber%></span>房间
+            </span>
             <i></i>
         </div>
         <div class="ticket" data-statm="ticket">
@@ -48,7 +54,7 @@
                 <li class="tripGo">
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span>
+                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>
                     </div>
                     <div class="timeAirport">
                         <div class="left">
@@ -88,7 +94,7 @@
                 <li class="tripBack">
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span>
+                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>
                     </div>
                     <div class="timeAirport">
                         <div class="left">
@@ -166,14 +172,8 @@
                                                             <%}%>
                         </div>
                         <div class="roomName">
-                            <p>
-                                <%= room['roomName'] %>
-                            </p>
-                            <p>
-                                <% if(room['includedBreakfast'] == 1){ %>
-                                    <span>含早</span>
-                                    <% } %>
-                            </p>
+                            <p><%= room['roomName'] %></p>
+                            <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
                         </div>
                     </li>
                     <% }) %>
@@ -218,15 +218,8 @@
                                                 <%}%>
             </div>
             <div class="roomName">
-                <p>
-                    <%= room['roomName'] %>
-                </p>
-
-                <p>
-                    <% if(room['includedBreakfast'] == 1){ %>
-                        <span>含早</span>
-                        <% } %>
-                </p>
+              <p><%= room['roomName'] %></p>
+              <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
             </div>
         </li>
         <% }) %>

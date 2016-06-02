@@ -30,13 +30,12 @@
 
   //页面Dom对象
   var saveDbBtn=$(".addFinish");
-  var selectPassagerBtn=$("#toper .header_finish");
   var closeWindowBtn=$("#toper .closedWin");
   var addPassagerBtn=$(".add_passager");
   var nameDescriptBtn=$("#name_state");
   var nameDescriptPager=$(".fillName_page ");
   var nameCloseDescriptBtn=  $("#fillName_page #closeName");
-  var submitBtn=$("#toper .header_finish");
+  var submitBtn=$("#toper .addPassager_finish");
   var uc_cnName=$(".addAir_page .cnNameUL");
   var ul_contect=$(".addAir_page .ul_contect");
 
@@ -572,8 +571,8 @@
 
     //如果免登陆，查询LocalStorge数据
     else{
-
-      var html = template(tpl_traveler, {data:choiceAir_AddPassagerArray});
+      var json={data:choiceAir_AddPassagerArray};
+      var html = template(tpl_traveler,json) ;
       document.getElementById("allList").innerHTML = html;
       _bindSelectChoice();
 
@@ -630,9 +629,9 @@
         addOrEditPassagePage.show();
       }
       else{
-        for (var key in data) {
-          data[key].PagerType=from;
-          choiceAir_AddPassagerArray.push(data[key])
+        for(var i=0; i<=data.length-1;i++){
+          data[i].PagerType=from;
+          choiceAir_AddPassagerArray.push(data[i])
         }
         passagerListPage.show();
         addOrEditPassagePage.hide();
