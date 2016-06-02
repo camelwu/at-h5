@@ -350,9 +350,8 @@
         };
         /*生成订单详情HTML片段*/
         var _generateHtml=function(type,data){
-
-            var tplD=template("pd_list",data);
-            $("#pd_list").html(tplD)
+            //var tplD=template("pd_list",data);
+            //$("#pd_list").html(tplD)
 
             //机+酒详情tpl
             if(type.id==5){
