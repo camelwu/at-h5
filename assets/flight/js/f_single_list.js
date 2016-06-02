@@ -548,6 +548,7 @@ var fSingleList = {
     this.postObj = postObj;
     this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+   // this.renderHandler(data2)
   }
 };
 fSingleList.init();

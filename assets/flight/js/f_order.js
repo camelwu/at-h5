@@ -198,7 +198,7 @@ var fOrder = {
   },
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal');
+    var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal'),changeTip = document.querySelector('.change_tip');
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -345,8 +345,19 @@ var fOrder = {
         target.style.display = "none";
         detailFare.className = "detail_fare open";
         priceDetailInfo.style.bottom = '-126%';
+        shadow.style.zIndex ="99";
+        shadow.style.display ="none";
+        changeTip.style.display = "none"
       }else if(target.className.indexOf('country_header')>-1){
         document.querySelector('.country-cho-wrap').style.display ="none";
+      }else if(target.className == "explain"){
+            shadow.style.zIndex ="1000";
+            shadow.style.display ="block";
+            changeTip.style.display = "block"
+      }else if(target.className == "close_explain"){
+            shadow.style.zIndex ="99";
+            shadow.style.display ="none";
+            changeTip.style.display = "none"
       }
     });
 

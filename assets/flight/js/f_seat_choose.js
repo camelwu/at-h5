@@ -40,15 +40,26 @@ var fSeatChoose = {
   },
 
   eventHandler: function () {
-    var forBottom = document.querySelector('.for_bottom'), that = fSeatChoose;
-    this.addHandler(forBottom, "click", function (e) {
+    var that = fSeatChoose,shadow = document.querySelector('.shadow'), changeTip = document.querySelector('.change_tip') ;
+    $("body").children().click(function () {});
+    this.addHandler(document, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
-      if (target.className == "explain") {
-        //退改签说明
-      } else if (target.tagName == "BUTTON") {
+      if(target.className == 'shadow'){
+        shadow.style.zIndex ="99";
+        shadow.style.display ="none";
+        changeTip.style.display = "none"
+      }else if(target.tagName == "BUTTON"){
         that.testLogin();
+      }else if(target.className == "explain"){
+        shadow.style.zIndex ="1000";
+        shadow.style.display ="block";
+        changeTip.style.display = "block"
+      }else if(target.className == "close_explain"){
+        shadow.style.zIndex ="99";
+        shadow.style.display ="none";
+        changeTip.style.display = "none"
       }
-    })
+    });
   },
 
   createTags: function () {

@@ -88,14 +88,16 @@
           </div>
           <div class="middle">
             <span class="timeCost"><%= parseInt(item["segmentsLeaveTotalTravelTime"] / 60) + 'h' + item["segmentsLeaveTotalTravelTime"] % 60 + 'm' %></span>
-            <%if(item.segmentsLeave.length>1){%>
-            <span class="arrow_word"></span>
-            <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
-            <%}else{%>
-            <span class="arrow"></span>
+            <%if(item.segmentsLeave.length==1){%>
+                <span class="arrow"></span>
+            <%}else if(item.segmentsLeave.length==2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
+            <% }else if(item.segmentsLeave.length>2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsLeave.length %>次</span>
             <% }%>
           </div>
-
         </div>
         <p class="flight_detail">
           <span class="airCropIcon"><img  src="<%= item.segmentsLeave[0].airwayLogo %>" /></span>
@@ -129,11 +131,14 @@
           </div>
           <div class="middle">
             <span class="timeCost"><%= parseInt(item["segmentsReturnTotalTravelTime"] / 60) + 'h' + item["segmentsReturnTotalTravelTime"] % 60 + 'm' %></span>
-            <%if(item.segmentsReturn.length>1){%>
-            <span class="arrow_word"></span>
-            <span class="transferCity"><%= item.segmentsReturn[0].cityNameTo %></span>
-            <%}else{%>
-            <span class="arrow"></span>
+            <%if(item.segmentsReturn.length==1){%>
+                <span class="arrow"></span>
+            <%}else if(item.segmentsReturn.length==2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsReturn[0].cityNameTo %></span>
+            <% }else if(item.segmentsReturn.length>2){%>
+                <span class="arrow_word"></span>
+                <span class="transferCity"><%= item.segmentsReturn.length %>次</span>
             <% }%>
           </div>
         </div>
