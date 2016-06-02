@@ -109,12 +109,12 @@ function styleChange(id,mytext){
     if(oInp.value==mytext){
         oInp.style.color='#d1d1d1';
     }else{
-        oInp.style.color='#d1d1d1';
+        oInp.style.color='#484848';
     }
     oInp.onfocus=function(){
         if(this.value==mytext){
             this.value='';
-            this.style.color='#d1d1d1';
+            this.style.color='#484848';
         }
     };
     oInp.onblur=function(){
