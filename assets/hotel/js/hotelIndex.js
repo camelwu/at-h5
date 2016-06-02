@@ -25,13 +25,9 @@
         NumAdult: 1,
         NumChild: 0,
         init: function () {
-            console.info("init times");
             this.initSlider();
             this.initEvent();
             this.initData();
-//            alert(window.screen.width);
-//            alert(window.screen.height);
-//            alert(window.navigator.userAgent);
         },
         initSlider: function () {
             //国际国内切换实现滑动效果
