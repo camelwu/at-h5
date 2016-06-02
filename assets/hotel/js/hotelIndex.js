@@ -12,9 +12,9 @@
 }(jQuery));
 
 /**
- *@desc 酒店搜索页  依赖jquery
+ *@desc 酒店搜索页  依赖jquery 
  *@time
- *@author
+ *@author 
  **/
 (function () {
     "use strict";
@@ -25,7 +25,6 @@
         NumAdult: 1,
         NumChild: 0,
         init: function () {
-            console.info("init times");
             this.initSlider();
             this.initEvent();
             this.initData();
