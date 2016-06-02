@@ -741,11 +741,6 @@ header.header .header_more i.location_tip{
 .detail_box ul li table,.detail_box ul li table td{
   width: 100%!important;
 }
-.note_content{
-  text-indent: 0;
-  margin-bottom: 0;
-  font-size: .26rem;color: #000;
-}
 .note_content table,.note_content table td{
   width: 100%!important;
 }
