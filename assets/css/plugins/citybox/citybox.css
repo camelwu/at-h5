@@ -154,6 +154,7 @@
 .citybox_index {
   box-sizing: border-box;
   position: fixed;
+  z-index: 100;
   top: 1.5rem;
   bottom: 2rem;
   right: 0;
