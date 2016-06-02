@@ -672,11 +672,13 @@ var hftChoose = {
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
     this.curData = hftFlightHotelTourInfo;
+    console.log(temObj)
     this.cacheOtherInfo = {
       adult: temObj['AdultNum'],
       child: temObj['ChildNum'],
       cityNameForm: temObj['FromCityNameCN'],
-      cityNameTo: temObj['ToCityNameCN']
+      cityNameTo: temObj['ToCityNameCN'],
+      roomNumber:temObj['RoomInfo'].length
     };
     if (originAirIds && hftFlightHotelTourInfo){
       if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] || originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']) {

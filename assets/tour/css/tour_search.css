@@ -1002,6 +1002,7 @@
 .nav2-centertop input, .nav2-centerbottom input {
   width: 1.80rem;
   color: #333;
+  padding: 0;
 }
 
 section.hotelInfo_numb_room {

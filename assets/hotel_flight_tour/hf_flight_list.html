@@ -246,7 +246,7 @@
           <p class="small_info_tip"><img src="<%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airwayLogo%>" alt=""/><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airCorpName%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeType%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeName%></p>
         </div>
       </div>
-      <b class="hft_icon"></b>
+      <b class="hft_icon  <%= selectedFlight.cacheID == flightInfoListGroup[i].flightInfoList[j].cacheID&&selectedFlight.setID == flightInfoListGroup[i].flightInfoList[j].setID > 2 ? 'cho_gou' : '' %> "></b>
     </li>
     <% } %>
   </ul>

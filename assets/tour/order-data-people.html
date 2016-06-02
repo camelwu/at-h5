@@ -23,60 +23,57 @@
 		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 		<title>输入资料页 - 亚程旅行网</title>
-   		<link href="../styles/reset.css" type="text/css" rel="stylesheet">
+		<link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
-	    <link href="../css/plugins/calendar/calendar1.0.2.css" rel="stylesheet">
-	    <link href="css/tour_search.css" rel="stylesheet">
-      <link href="css/tours.css" rel="stylesheet">
+		<link href="../css/plugins/calendar/calendar1.0.2.css" rel="stylesheet">
+		<link href="css/tour_search.css" rel="stylesheet">
+		<link href="css/tours.css" rel="stylesheet">
+		<link href="css/ht_tour.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="preloader">
 			<div id="status"></div>
 		</div>
-		<div class="all-elements">
+		<div class="all_elements">
 			<!--   顶部   -->
-          <div class="header">
-            <a href="javascript:history.go(-1);" class="header_back"><i class="icon_back"></i></a>
-            <h3>资料输入</h3>
-          </div>
+			<header class="header">
+				<a href="javascript:history.go(-1);" class="header_back"><i class="icon_back"></i></a>
+				<h3>资料输入</h3>
+			</header>
 			<!--   内容   -->
-			<div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
+			<div id="content" class="content">
 				<section class="all_title zy_title">
 					<h3 class="hotel">酒店</h3>
 				</section>
 				<section class="select_date zy_select_date">
 					<div class="content2 zy_content2" id="date-range">
 						<div class="nav2-left">
-							<!--<span class="nav2-lefttop">日期</span>-->
-							<span class="nav2-leftbottom">共 <span id="total_day">3</span> 晚</span>
+							<span class="nav2-leftbottom">共 <span id="total_day"> </span> 晚</span>
 						</div>
 						<div class="nav2-center">
 							<div class="nav2-centertop">
 								<p>
-                  <i>入住</i>
-									<input name="CheckInDate" id="CheckInDate" value="03月11日" class="CheckInDateI" readonly="readonly" >
-									<span id="week_span1">周四</span>
+									<i>入住</i>
+									<input name="CheckInDate" id="CheckInDate" value="" class="CheckInDateI" readonly="readonly" >
+									<span id="week_span1"></span>
 								</p>
 							</div>
 							<div class="nav2-centerbottom">
 								<p>
-                  <i>离店</i>
-									<input name="CheckOutDate" id="CheckOutDate" value="03月12日" class="CheckInDateI" readonly="readonly" >
-									<span id="week_span2">周一</span>
+									<i>离店</i>
+									<input name="CheckOutDate" id="CheckOutDate" value="" class="CheckInDateI" readonly="readonly" >
+									<span id="week_span2"></span>
 								</p>
 							</div>
 						</div>
-						<!--<div class="nav2-centerright">-->
-							<!--<i></i>-->
-						<!--</div>-->
 					</div>
 				</section>
 				<section class="hotelInfo_numb_room">
 					<span class="title">房间</span>
 					<div class="per-price-control room_number" data-type="extraRoom">
 						<span id="room_downb" class="down_btn"></span>
-            <i id="roomNum" class="change_num"></i>
-            <span class="up_btn"></span>
+						<i id="roomNum" class="change_num"></i>
+						<span class="up_btn"></span>
 					</div>
 				</section>
 				<section class="all_title zy_title">
@@ -86,10 +83,11 @@
 
 				</section>
 				<section class="orderBtn zy_orderBtn">
-					<button id="order_btn">预订</button>
+					<button id="order_btn">
+						预订
+					</button>
 				</section>
 			</div>
-			<div class="city-choose-tip" id="show-result-tip"></div>
 		</div>
 
 <script src="../js/lib/d_calendar1.0.2.js"></script>

@@ -92,6 +92,7 @@
     overflow: hidden;
     text-decoration: none;
     text-align: center;
+    line-height: 24px;
 }
 
 .calendar dd a.disabled {
