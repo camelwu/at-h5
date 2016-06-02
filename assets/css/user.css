@@ -1834,6 +1834,16 @@ a.foot-homes, a.foot-users {
   border-bottom: none;
 }
 
+.moreData{
+  display: none;
+  margin-top: .3rem;
+  margin-bottom: .4rem;
+  vertical-align: middle;
+  text-align: center
+
+}
+
+
 /*填写姓名说明页结束*/
 
 

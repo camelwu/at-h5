@@ -9,31 +9,31 @@
   vlm.loadJson("", JSON.stringify(Parameters), countryback);
 
   //在原型链定义distinct
-  Array.prototype.distinct = function () {
-    var sameObj = function (a, b) {
-      var tag = true;
-      if (!a || !b)return false;
-      for (var x in a) {
-        if (!b[x])
-          return false;
-        if (typeof(a[x]) === 'object') {
-          tag = sameObj(a[x], b[x]);
-        } else {
-          if (a[x] !== b[x])
-            return false;
-        }
-      }
-      return tag;
-    };
-    var newArr = [], obj = {};
-    for (var i = 0, len = this.length; i < len; i++) {
-      if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
-        newArr.push(this[i]);
-        obj[typeof(this[i]) + this[i]] = this[i];
-      }
-    }
-    return newArr;
-  };
+  //Array.prototype.distinct = function () {
+  //  var sameObj = function (a, b) {
+  //    var tag = true;
+  //    if (!a || !b)return false;
+  //    for (var x in a) {
+  //      if (!b[x])
+  //        return false;
+  //      if (typeof(a[x]) === 'object') {
+  //        tag = sameObj(a[x], b[x]);
+  //      } else {
+  //        if (a[x] !== b[x])
+  //          return false;
+  //      }
+  //    }
+  //    return tag;
+  //  };
+  //  var newArr = [], obj = {};
+  //  for (var i = 0, len = this.length; i < len; i++) {
+  //    if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+  //      newArr.push(this[i]);
+  //      obj[typeof(this[i]) + this[i]] = this[i];
+  //    }
+  //  }
+  //  return newArr;
+  //};
 
   var countryArray={};
   //创建空数组
@@ -42,7 +42,7 @@
     data.forEach(function (itemValue) {
       array1.push(itemValue.firstPinYin.toUpperCase())
     });
-    array1 = array1.distinct();
+    //array1 = array1.distinct();
     array1 = array1.sort();
     array1.forEach(function (item) {
       result[item] = [];

@@ -4,7 +4,9 @@
   display: none;
 }
 .country_header {
+  z-index: 1100;
   opacity: 1;
+  display: none;
 }
 
 .gj_header {
@@ -74,11 +76,12 @@
   z-index: 1010;
   background: #fff;
   overflow-y: scroll;
+  display: none;
 }
 
 .country_index {
   position: fixed;
-  top: 2.18rem;
+  top: 1.6rem;
   right: .06rem;
   width: 0.6rem;
   color: #7bc300;
@@ -120,6 +123,11 @@
   width: 100%;
   height: 0;
   overflow: hidden;
+}
+
+.tel_code{
+  display: inline-block;
+  margin-left: .2rem;
 }
 
 /*国籍选择结束*/

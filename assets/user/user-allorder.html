@@ -36,6 +36,17 @@
 	</div>
 	<!-- Page Content-->
     <div id="content" class="content ticket_div">
+
+      <ul class="often_user"><input type="hidden" class="travellerId" value="1464855105813"> <input type="hidden"
+                                                                                                    class="sexName"
+                                                                                                    value="男">
+        <li data-card="1">
+          <spn>姓 / 名</spn>
+          <span class="lastName" style="padding-left: 6px">zhou</span>/<span class="firstName">wei</span><i
+          class="per_type" data-id="2">成人</i></li>
+        <li class="passport-num"><span class="passport-card-type">护照</span> <span
+          class="passport-card-number">123</span></li>
+      </ul>
       <!--<div class="order_div flight-div">-->
       <!--<div >-->
 		<!--<b class="icon user-air"></b>-->
@@ -102,6 +113,11 @@
 		<!--</div>-->
 		<!--</div>-->
 	</div>
+  <div class="moreData" style="vertical-align: middle; text-align: center">
+    <span>点击加载更多</span>
+  </div>
+
+
 	<!--    无订单页   -->
     <div id="black_page" class="user_content">
       <div id="noOrder">
@@ -149,36 +165,54 @@
 
     var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
     var deviceID=vlm.Utils.CookieUtil.get("deviceID");
+    var index=1;
 
     var Parameters= {
-      "Parameters": '{"MemberId":"'+memberId+'",DeviceId:"'+deviceID+'"}',
+      "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":5}',
       "ForeEndType": 3,
       "Code": "0062"
     }
-		vlm.loadJson("", JSON.stringify(Parameters), function(data){
-			if(data.success) {
-				if(data.data !=null && data.data.length>0 ) {
-					var html = template("tpl_ticket", data.data);
-					$(".ticket_div").html(html);
-					$(".hotel-div-cancel").on("click", function () {
-						location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
-					})
-					$(".quitbtn").on("click", function () {
-						$(".jpop_box_tic").show();
-					})
-					$('.jpop_box_tic span,.jpop_box_tic a').click(function(){
-						$('.jpop_box_tic').hide();
-					})
-				}
-				else{
-					$("#black_page").show();
-				}
-			}else{
-				alert("网络异常！");
-			}
-			vlm.init();
-		})
+
+
+    var loadingData=function(){
+      vlm.loadJson("", JSON.stringify(Parameters), function(data){
+        if(data.success) {
+          if(data.data !=null && data.data.length>0 ) {
+            $(".moreData").show();
+
+            var html = template("tpl_ticket", data.data);
+            $(".ticket_div").append(html);
+            $(".hotel-div-cancel").on("click", function () {
+              location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
+            })
+            $(".quitbtn").on("click", function () {
+              $(".jpop_box_tic").show();
+            })
+            $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+              $('.jpop_box_tic').hide();
+            })
+          }
+          else{
+            $("#black_page").show();
+          }
+        }else{
+          alert("网络异常！");
+        }
+        vlm.init();
+      })
+
+    }
+
+    loadingData();
+
+
+    $(".moreData").on("click",function(){
+      index++;
+      loadingData();
+    })
 	})
+
+
 
 </script>
 
