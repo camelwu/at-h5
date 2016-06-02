@@ -64,6 +64,10 @@ _CalF = {
  * @constructor
  * @created by wusong
  * @parameter :id[]||'',num:Number,time[timestamp]||timestring,type:h||f||t,fn:callback
+ * 产品有效期
+2. 最早起订日期
+3. 产品最小起订天数
+4. 产品最多预订天数
  * */
 function Calender() {
 	if (!arguments.length)
@@ -73,23 +77,24 @@ function Calender() {
 
 Calender.prototype = {
 	constructor : Calender,
+	_aw : ['日', '一', '二', '三', '四', '五', '六'],
+	_tempweek : ['<dt class="date_title">日</dt>', '<dt class="date_title">一</dt>', '<dt class="date_title">二</dt>', '<dt class="date_title">三</dt>', '<dt class="date_title">四</dt>', '<dt class="date_title">五</dt>', '<dt class="date_title">六</dt>'],
+	_template : ['<dt class="title-date">', '</dt><dd>', '</dd>'],
 	_word : {
 		h : ['入住', '离店'],
 		f : ['去程', '回程'],
-		t : '游玩'
 	},
-	_tempmonth : ['<span class="prevmonth">prevmonth</span>', '<span class="nextmonth">nextmonth</span>'],
-	_tempweek : ['<dt class="date_title">日</dt>', '<dt class="date_title">一</dt>', '<dt class="date_title">二</dt>', '<dt class="date_title">三</dt>', '<dt class="date_title">四</dt>', '<dt class="date_title">五</dt>', '<dt class="date_title">六</dt>'],
-	_template : ['<dt class="title-date">', '</dt><dd>', '</dd>'],
 	initialize : function(options) {
 		this.num = options.num;
 		this.time = options.time;
 		this.type = options.type;
+		this.format = options.format || "yyyy-mm-dd";
+		//TODO用于显示用的日期格式 yyyy-mm-dd,mm-dd
 		this.range = options.range;
 		this.fn = options.fn;
 		this.id = options.id;
 		this.input = document.getElementById("" + this.id);
-		this.output = _CalF.$(options.output);
+		//this.output = _CalF.$(options.output);
 		this.op = 0;
 		if ( typeof options.time === "string") {
 			this.ops = 1;
@@ -177,8 +182,8 @@ Calender.prototype = {
 		titleDate = _CalF.$('.title-date', dateWarp);
 		dd = _CalF.$('dd', dateWarp);
 		for (var j = 0; j < titleDate.length; j++) {
-			console.log(titleDate[j].innerHTML.replace(/年/,"-").replace(/月/, "-") + "01");
-			var tmp = titleDate[j].innerHTML.replace(/年/,"/").replace(/月/, "/") + "01";
+			console.log(titleDate[j].innerHTML.replace(/年/, "-").replace(/月/, "-") + "01");
+			var tmp = titleDate[j].innerHTML.replace(/年/, "/").replace(/月/, "/") + "01";
 			var od = new Date(tmp);
 			year = od.getFullYear();
 			month = od.getMonth() + 1;
@@ -241,6 +246,40 @@ Calender.prototype = {
 			that.header.parentNode.removeChild(that.header);
 		if (!!odiv)
 			odiv.parentNode.removeChild(odiv);
+	},
+	returnWeek : function(arg) {
+		if (arg) {
+			var week, array, index = new Date(arg.replace(/-/g, "/")).getDay();
+			switch (index) {
+			case 0 :
+				week = '周日';
+				break;
+			case 1 :
+				week = '周一';
+				break;
+			case 2 :
+				week = '周二';
+				break;
+			case 3 :
+				week = '周三';
+				break;
+			case 4 :
+				week = '周四';
+				break;
+			case 5 :
+				week = '周五';
+				break;
+			case 6 :
+				week = '周六';
+				break;
+			default :
+				void (0);
+			}
+			array = arg.split('-');
+			array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
+			array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
+			return '<span class="dateNumber">' + array[1] + '月' + array[2] + '日' + '</span>' + ' ' + '<span>' + week + '</span>';
+		}
 	},
 	// A 的事件
 	linkOn : function() {
