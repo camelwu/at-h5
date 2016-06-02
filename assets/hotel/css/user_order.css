@@ -299,7 +299,7 @@ i.right {
     border-bottom: 1px solid #d6d6d6;
     position: fixed;
     left: 0;
-    top: 0;
+    bottom: 0;
 }
 
 .uo_hid_shadow {
