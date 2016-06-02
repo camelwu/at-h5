@@ -64,8 +64,8 @@
             //用于记录用户历史选择
             var hotelStorage12345 = {
                 //"InterDes" : lsf_myweb.getbyid('input1').value,
-                "InterBeginDate": $("#CheckInDate").html(),
-                "InterLeaveDate": $("#CheckOutDate").html(),
+                "InterBeginDate": $("#CheckInDate").val(),
+                "InterLeaveDate": $("#CheckOutDate").val(),
                 "NumRoom": $("#count1").val(),
                 "NumAdult": $("#count2").val(),
                 "NumChild": $("#count3").val(),
@@ -74,8 +74,8 @@
                 "InterBeginDateWeek": $("#week_span1").html(),
                 "InterLeaveDateWeek": $("#week_span2").html(),
                 //"DomDes" : lsf_myweb.getbyid('input2').value,
-                "DomCheckInDate": $("#DomCheckInDate").html(),
-                "DomCheckOutDate": $("#DomCheckOutDate").html(),
+                "DomCheckInDate": $("#DomCheckInDate").val(),
+                "DomCheckOutDate": $("#DomCheckOutDate").val(),
                 //已去掉城市模糊搜索
                 "DomeTotalDay": $("#domeTotalDay").html(),
                 "DomBeginDateWeek": $("#weekSpan3").html(),
@@ -219,8 +219,8 @@
                 $("#count3").val(hotelStorage.NumChild);
                 //如果历史搜索入住日期早于最早入住日期
                 if (new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')) < oDate1) {
-                    checkIn.html(beginDate);
-                    checkOut.html(leaveDate);
+                    checkIn.val(beginDate);
+                    checkOut.val(leaveDate);
                     week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
                     week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
                     $("#total_day").html(1);
@@ -228,8 +228,8 @@
                     interInitDate[leaveDate] = "离店";
 
                 } else {
-                    checkIn.html(hotelStorage.InterBeginDate);
-                    checkOut.html(hotelStorage.InterLeaveDate);
+                    checkIn.val(hotelStorage.InterBeginDate);
+                    checkOut.val(hotelStorage.InterLeaveDate);
                     $("#total_day").html(hotelStorage.InterTotalDay);
                     week_span1.html(hotelStorage.InterBeginDateWeek);
                     week_span2.html(hotelStorage.InterLeaveDateWeek);
@@ -244,8 +244,8 @@
                 $("#count1").val(hotelIndex.NumRoom);
                 $("#count2").val(hotelIndex.NumAdult);
                 $("#count3").val(hotelIndex.NumChild);
-                checkIn.html(beginDate);
-                checkOut.html(leaveDate);
+                checkIn.val(beginDate);
+                checkOut.val(leaveDate);
                 $("#total_day").html(1);
                 week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
                 week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -288,8 +288,8 @@
             if (hotelStorage) {
                 //如果历史搜索入住日期早于最早入住日期
                 if (new Date(hotelStorage.DomCheckInDate.replace(/-/g, '/')) < oDate3) {
-                    DomCheckInDate.html(DomBeginDate);
-                    DomCheckOutDate.html(DomLeaveDate);
+                    DomCheckInDate.val(DomBeginDate);
+                    DomCheckOutDate.val(DomLeaveDate);
                     week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
                     week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
                     $("#total_day").html(1);
@@ -297,8 +297,8 @@
                     domInitDate[DomLeaveDate] = "离店";
 
                 } else {
-                    DomCheckInDate.html(hotelStorage.DomCheckInDate);
-                    DomCheckOutDate.html(hotelStorage.DomCheckOutDate);
+                    DomCheckInDate.val(hotelStorage.DomCheckInDate);
+                    DomCheckOutDate.val(hotelStorage.DomCheckOutDate);
                     $("#total_day").html(hotelStorage.DomeTotalDay);
                     week_span3.html(hotelStorage.DomBeginDateWeek);
                     week_span4.html(hotelStorage.DomLeaveDateWeek);
@@ -306,8 +306,8 @@
                     domInitDate[hotelStorage.DomLeaveDate] = "离店";
                 }
             } else {
-                DomCheckInDate.html(DomBeginDate);
-                DomCheckOutDate.html(DomLeaveDate);
+                DomCheckInDate.val(DomBeginDate);
+                DomCheckOutDate.val(DomLeaveDate);
                 $("#total_day").html(1);
                 week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
                 week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));

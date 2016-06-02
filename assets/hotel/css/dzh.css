@@ -134,11 +134,11 @@ i.i_address {
 }
 
 .hotel_time_center_start {
-    width: 42%;
+    width: 41%;
     /*height: .8rem;*/
     line-height: .8rem;
     float: left;
-    /*margin-top: .1rem;*/
+    margin-top: .1rem;
 }
 
 .hotel_roomTime {
@@ -149,23 +149,21 @@ i.i_address {
 }
 
 .hotel_time_center_end {
-    width: 42%;
+    width: 41%;
     line-height: .8rem;
     float: right;
-    /*margin-top: .1rem;*/
+    margin-top: .1rem;
 }
 
-.hotel_time_center_start div,
-.hotel_time_center_end div {
-  color:#333;
-  /*float: left;*/
-  /*height: .8rem;*/
-  /*width: 2.12rem;*/
-  font-size: .4rem;
-  font-weight: 600;
-  margin-top: .6rem;
-  margin-right: .12rem;
-  display: inline-block;
+.hotel_time_center_start input,
+.hotel_time_center_end input {
+  padding:.1rem 0 0 0 ;
+    float: left;
+    width: 2.12rem;
+    font-size: .4rem;
+    font-weight: 600;
+    margin-top: .6rem;
+    margin-right: .12rem;
 }
 
 .hotel_time_right {
@@ -176,7 +174,7 @@ i.i_address {
 
 .hotel_week {
     display: block;
-    padding-top: .6rem;
+    padding-top: .49rem;
     font-size: .2rem;
     color: #333;
 }
@@ -373,7 +371,7 @@ i.i_address {
     width: .56rem;
     height: .56rem;
     position: absolute;
-    background: url("../../images/ui.1.0/icon_common.png") -3.02rem -3.124rem no-repeat;
+    background: url("../../images/ui.1.0/icon_common.png") -3.061rem -3.124rem no-repeat;
     background-size: 7.9rem 7.83rem;
 }
 
