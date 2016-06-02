@@ -13,11 +13,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
     <meta name="Keywords" content="亚程旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
-	<title>个人中心选择乘机人 - 亚程旅行网</title>
-	<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
-	<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
-  <!-- <link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css"> -->
-  <link href="../css/choiceAir.css"	rel="stylesheet" type="text/css">
+    <title>个人中心选择乘机人 - 亚程旅行网</title>
+    <link href="../styles/reset.css"		rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
+    <link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
+    <link href="../css/choiceAir.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
   <!-- 遮罩层-->
@@ -173,55 +173,90 @@
     <div class="header country_header">
       <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
       <div class="cl_search">
-        <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+        <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
         <i class="icon_common"></i>
       </div>
     </div>
     <!--国籍弹窗开始-->
     <ul class="country-list-searched"></ul>
     <!--国籍弹窗结束-->
-
     <div class="content">
-      <div class="country-wrap" id="country-wrap">
-      </div>
+      <div id="country-wrap-hot"></div>
+      <div class="country-wrap" id="country-wrap"></div>
     </div>
+    <!--热门-->
+    <script id="countryList_hot" type="text/template">
+      <h4><a name="rm" class="target"></a>热门</h4>
+      <ul class="country_hot">
+        <% for(var i=0; i< arrCountry.length; i++){ %>
+        <% if(arrCountry[i].isHot == 1) { %>
+        <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
+        <% } %>
+        <% } %>
+      </ul>
+    </script>
+    <!--全部列表-->
+    <script id="countryList" type="text/template">
+      <div class="full_country_outer">
+        <% for(var tem in countryArray){ %>
+        <a class="target" name="<%=tem%>"></a>
+        <h4><%= tem%></h4>
+        <ul class="full_country_list">
+          <%countryArray[tem].forEach(function(array){ %>
+          <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
+          <% })%>
+        </ul>
+        <% }%>
+      </div>
+    </script>
+    <!--国籍a-z-->
+    <script id="country_index" type="text/template">
+      <ul>
+        <li><a href="#rm">热门</a></li>
+        <% for(var tem in countryArray){%>
+        <li><a href="#<%=tem%>"><%=tem%></a></li>
+        <%}%>
+      </ul>
+    </script>
   </div>
+  <!--右侧a-z-->
+  <div class="country_index" id="country_index_wrap"></div>
   <!--国籍选择结束-->
 
   <!-- 填写姓名说明页-->
   <div class="fillName_page all_elements" id="fillName_page">
-  <div class="header">
+    <div class="header">
       <div id="closeName" class="header_quit"><i class="icon_back"></i></div>
-    <h3>填写姓名说明</h3>
-  </div>
+      <h3>填写姓名说明</h3>
+    </div>
     <div class="content">
       <!-- 中文姓名-->
-    <ol class="ch_account" id="ch_account">
+      <ul class="ch_account" id="ch_account">
         <li>1. 姓名要与所持证件的姓名一致</li>
         <li>2. 中文姓名
-      <ul class="name_ul">
+          <ul class="name_ul">
             <li>
               <p>若持护照乘机，必须确认护照上有中文姓名</p>
               <p class="example_floor_down">生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”</p>
               <div class="name_example">
                 <span>中文姓名</span><span>王ben</span>
-          </div>
-        </li>
-        <li>
+              </div>
+            </li>
+            <li>
               <p class="example_floor">姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”</p>
               <div class="name_example">
                 <span>中文姓名</span><span>汉族然买买提</span>
-          </div>
-        </li>
+              </div>
+            </li>
             <li><p class="example_floor">香港、台湾、澳门的护照不支持国内航班，请改用其他证件。</p></li>
+          </ul>
+        </li>
       </ul>
-    </li>
-    </ol>
-    <!-- 英文姓名-->
-    <ol class="ch_account" id="en_account">
+      <!-- 英文姓名-->
+      <ul class="ch_account" id="en_account">
         <li>1. 必须用英文字母填写，并确保与所持证件的姓名一致</li>
         <li>2. 中文姓名
-        <ul class="name_ul">
+          <ul class="name_ul">
             <li>
               <p class="example_floor_down">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming</p>
               <div class="name_example2">
@@ -233,12 +268,12 @@
                   <span>Given name</span>
                   <span>Kongming</span>
                 </p>
-            </div>
-          </li>
-        </ul>
-      </li>
+              </div>
+            </li>
+          </ul>
+        </li>
         <li>3. 英文姓名
-        <ul class="name_ul">
+          <ul class="name_ul">
             <li>
               <p class="example_floor_down">若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
                 例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad</p>
@@ -251,13 +286,13 @@
                   <span>Given nam</span>
                   <span>joerad</span>
                 </p>
-            </div>
-          </li>
-        </ul>
-        <ul class="name_ul">
+              </div>
+            </li>
+          </ul>
+          <ul class="name_ul">
             <li>
               <p class="example_floor_down">姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
-            在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
+                在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
                 jame M C</p>
               <div class="name_example2">
                 <p>
@@ -268,25 +303,24 @@
                   <span>Given nam</span>
                   <span>jame M C</span>
                 </p>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ol>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
-  </div>
-  <!--填写姓名说明页结束-->
 
   <script src="../js/lib/jquery.js"></script>
   <script src="../js/lib/jquery.alert.js"></script>
   <script src="../js/lib/vlm.js"></script>
+  <script src="../js/lib/ejs.js"></script>
   <script src="../js/lib/plugins.js"></script>
   <script src="../js/lib/template.js"></script>
   <script src="../js/plugins/scroller/scroller1.1.js"></script>
   <script src="../js/country_list.js"></script>
-  <script src="../js/countrytel_list.js"></script>
   <script src="scripts/user-choiceAir.js"></script>
-  <script src="../js/require.js" data-main="../js/user.js"></script>
+
   <!--国内航班不需要护照过期提示-->
    <script>
          $(function(){

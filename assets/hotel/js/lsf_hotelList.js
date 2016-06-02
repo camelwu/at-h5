@@ -324,10 +324,13 @@ function styleChange(id, mytext) {
             //back button
             $(".header").on("click", ".header_back", function (event) {
                 //清空缓存记录
-                window.sessionStorage.removeItem("asiaHlHistory");
-                window.history.go(-1);
+                // window.sessionStorage.removeItem("asiaHlHistory");
+                var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+                console.log(myAsiaHlHistory);
+                if (myAsiaHlHistory.hlSort) {
+                    window.sessionStorage.removeItem("asiaHlHistory");
+                }
             });
-
         };
         init();
         openClick(fo_ra, rank);
