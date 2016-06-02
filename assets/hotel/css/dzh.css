@@ -157,7 +157,7 @@ i.i_address {
 
 .hotel_time_center_start input,
 .hotel_time_center_end input {
-  padding:.1rem 0 0 0 ;
+    padding: .1rem 0 0 0;
     float: left;
     width: 2.12rem;
     font-size: .4rem;
@@ -345,8 +345,8 @@ i.i_address {
     width: 100%;
     height: .98rem;
     /*background: #18415d;*/
-    position: fixed;
-    bottom: 0;
+    /*    position: fixed;*/
+    /*    bottom: 0;*/
     text-align: center;
     z-index: 98;
 }

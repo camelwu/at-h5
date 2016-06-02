@@ -163,6 +163,7 @@ function styleChange(id, mytext) {
     //}
     //checked();
     //submit();
+
     //贾燕云的js
     function h_l_s() {
         var rli = [],
@@ -183,6 +184,10 @@ function styleChange(id, mytext) {
         var fo_lo = _("fo_lo");
         var s_but = _("s_but");
         var l_but = _("l_but");
+        var s_cancelBtn = _("cancelBtn");
+        var s_clearBtn = _("clearBtn");
+        var l_cancelBtn = _("l_cancelBtn");
+        var l_clearBtn = _("l_clearBtn");
 
         function show(obj) {
             mb = document.getElementById("r-mb");
@@ -337,6 +342,8 @@ function styleChange(id, mytext) {
         openClick(fo_sc, screen);
         openClick(fo_lo, location);
         closeClick(s_but, screen);
+        closeClick(s_cancelBtn, screen);
+        closeClick(l_cancelBtn, location);
         closeClick(l_but, location);
         /*   排序筛选   */
         function selectRank() {
@@ -1044,7 +1051,20 @@ function styleChange(id, mytext) {
             url_json.pageIndex = 1;
             M(url_json);
             //alert(hl_star_str+'---'+hl_type_str);
-        }
+        };
+        if (oSrc.getAttribute("id") == "clearBtn") {
+            var array = [];
+            array = document.getElementById("h-type").childNodes;
+            for (var i = 1; i < array.length; i++) {
+                array[i].className = "s-li";
+            }
+            array = document.getElementById("h-level").childNodes;
+            for (var i = 1; i < array.length; i++) {
+                array[i].className = "s-li";
+            }
+            document.getElementById("h-type").firstElementChild.className = "s-li1";
+            document.getElementById("h-level").firstElementChild.className = "s-li1";
+        };
     });
     //位置按钮里面的城市实现筛选交互
     lsf_myweb.bind(oBody, 'click', function (ev) {
@@ -1077,7 +1097,24 @@ function styleChange(id, mytext) {
             //页码重置
             url_json.pageIndex = 1;
             M(url_json);
-        }
+        };
+        if (oSrc.getAttribute("id") == 'l_clearBtn') {
+            var oUl = document.getElementById("l-ul");
+            var liFirst = lsf_myweb.getbyclass(oUl, 'l-liFirst')[0];
+            var aLi = lsf_myweb.getbyclass(oUl, 'l-li');
+            var aOk = {};
+            for (var i = 1; i < aLi.length; i++) {
+                aOk[i] = true;
+            }
+
+            lsf_myweb.removeClass(liFirst, 'l-li3');
+            for (var i = 1; i < aLi.length; i++) {
+                lsf_myweb.removeClass(aLi[i], 'l-li2')
+            }
+            for (var i = 1; i < aLi.length; i++) {
+                aOk[i] = true;
+            }
+        };
     });
     //获取酒店详情
     function getDetail(data) {
