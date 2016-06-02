@@ -1,94 +1,99 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="green">
-		<meta name="Keywords" content="亚程旅行网">
-		<meta name="Description" content="境外专业旅行服务提供机构">
-		<meta name="screen-orientation" content="portrait">
-		<meta name="x5-orientation" content="portrait">
-		<meta name="full-screen" content="yes">
-		<meta name="x5-fullscreen" content="true">
-		<title>酒+景景点列表页 - 亚程旅行网</title>
-		<link href="../styles/reset.css" rel="stylesheet">
-		<link href="../styles/tips.css"	rel="stylesheet">
-		<link href="../plugins/footer/footer.css" rel="stylesheet">
-		<link href="css/ht_tour.css" rel="stylesheet">
-	</head>
-	<body>
-		<div id="preloader">
-			<div id="status"></div>
-		</div>
-		<div class="all_elements">
-			<!--   顶部   -->
-			<header class="header">
-				<a href="javascript:history.go(-1);" class="header_back"><i class="icon_back"> </i></a>
-				<h3>酒+景</h3>
-				<a class="header_more" href="../scenic/scenic_city.html?citycode=1&amp;callback=tour/scenic_list.html" class="location-wrap">
-					<span id="Localtxt" class="location-txt"> 新加坡</span>
-					<i class="location_tip"></i>
-				</a>
-			</header>
-			<!--   内容   -->
-			<div class="content">
-				<ul id="scenicListCont" class="scenic_list_cont"></ul>
-				<!--<ul class="scenic-list-cont">-->
-				<!--<li class="s-li">-->
-				<!--<a href="javascript:;">-->
-				<!--<div class="sce-img-box">-->
-				<!--<img src="images/water-cubic.jpg" alt="" class="sce-img"/ >-->
-				<!--</div>-->
-				<!--<div class="sce-detail">-->
-				<!--<p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>-->
-				<!--<div class="sce-det-fare">-->
-				<!--<span class="sale-fare"><i>168</i> 元起/人</span>-->
-				<!--<span class="old-fare">268元起/人</span>-->
-				<!--</div>-->
-				<!--</div>-->
-				<!--</a>-->
-				<!--</li>-->
-				<!--</ul>-->
-			</div>
-			<!--   底部   -->
-			<!-- 错误的空白处理-->
-			<div class="amy_error_box">
-				<div>
-					<img class="black" src="../images/error/blank.png">
-					<dl>
-						<dt>没有找到相关信息，请重新查询</dt>
-						<dd>点击，<a href="javascript:history.go(-1);">返回上一页</a></dd>
-					</dl>
-				</div>
-			</div>
-		</div>
-		<script src="../js/lib/jquery.js"></script>
-		<script src="../js/lib/jquery.alert.js"></script>
-		<script src="../js/lib/vlm.js"></script>
-		<script src="../js/lib/ejs.js"></script>
-		<script src="../js/lib/lazyLoad.js"></script>
-		<script src="../plugins/footer/foot.js"></script>
-		<script id="tpl_Localtxt" type="text/template">
-			<%=destCity%>
-		</script>
-		<script id="tpl_SearchAvailableToursAttractions" type="text/template">
-			<% for(var i=0;i<lists.length;i++){ %>
-			<li>
-			<a href="packages_detail.html?packageID=<%=lists[i].packageID%>&productPrice=<%=lists[i].leadinPrice%>&status=1">
-			<div class="sce_img_box">
-			<img src="<%=lists[i].pictureURL%>" alt="景点图片">
-			</div>
-			<div class="sce_detail">
-			<p><%=lists[i].packageName%></p>
-			<div class="sce_det_fare">
-			￥<i><%=lists[i].leadinPrice%></i> 起/人
-			</div>
-			</div>
-			</a>
-			</li>
-			<% } %>
-		</script>
-		<script src="js/scenicList.js"></script>
-	</body>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚程旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>酒+景景点列表页 - 亚程旅行网</title>
+    <link href="../styles/reset.css" rel="stylesheet">
+    <link href="../styles/tips.css" rel="stylesheet">
+    <link href="../css/plugins/footer/footer.css" rel="stylesheet">
+    <link href="css/ht_tour.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <div class="all_elements">
+        <!--   顶部   -->
+        <header class="header">
+            <a href="javascript:history.go(-1);" class="header_back"><i class="icon_back"> </i></a>
+            <h3>酒+景</h3>
+            <a class="header_more" href="../scenic/scenic_city.html?citycode=1&amp;callback=tour/scenic_list.html" class="location-wrap">
+                <span id="Localtxt" class="location-txt"> 新加坡</span>
+                <i class="location_tip"></i>
+            </a>
+        </header>
+        <!--   内容   -->
+        <div class="content">
+            <ul id="scenicListCont" class="scenic_list_cont"></ul>
+            <!--<ul class="scenic-list-cont">-->
+            <!--<li class="s-li">-->
+            <!--<a href="javascript:;">-->
+            <!--<div class="sce-img-box">-->
+            <!--<img src="images/water-cubic.jpg" alt="" class="sce-img"/ >-->
+            <!--</div>-->
+            <!--<div class="sce-detail">-->
+            <!--<p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>-->
+            <!--<div class="sce-det-fare">-->
+            <!--<span class="sale-fare"><i>168</i> 元起/人</span>-->
+            <!--<span class="old-fare">268元起/人</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--</ul>-->
+        </div>
+        <!--   底部   -->
+        <!-- 错误的空白处理-->
+        <div class="amy_error_box">
+            <div>
+                <img class="black" src="../images/error/blank.png">
+                <dl>
+                    <dt>没有找到相关信息，请重新查询</dt>
+                    <dd>点击，<a href="javascript:history.go(-1);">返回上一页</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/ejs.js"></script>
+    <script src="../js/lib/lazyLoad.js"></script>
+    <script src="../js/plugins/footer/foot.js"></script>
+    <script id="tpl_Localtxt" type="text/template">
+        <%=destCity%>
+    </script>
+    <script id="tpl_SearchAvailableToursAttractions" type="text/template">
+        <% for(var i=0;i<lists.length;i++){ %>
+            <li>
+                <a href="packages_detail.html?packageID=<%=lists[i].packageID%>&productPrice=<%=lists[i].leadinPrice%>&status=1">
+                    <div class="sce_img_box">
+                        <img src="<%=lists[i].pictureURL%>" alt="景点图片">
+                    </div>
+                    <div class="sce_detail">
+                        <p>
+                            <%=lists[i].packageName%>
+                        </p>
+                        <div class="sce_det_fare">
+                            ￥<i><%=lists[i].leadinPrice%></i> 起/人
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <% } %>
+    </script>
+    <script src="js/scenicList.js"></script>
+</body>
+
 </html>

@@ -147,22 +147,22 @@ function styleChange(id, mytext) {
 //
 //})();
 (function () {
-    function checked() {
-        $("#fo_lo").on("click", function () {
-            $("#l_but").addClass("s-but-checked");
-            $("#s_but1").addClass("s-but-checked");
-            console.log("111");
-        });
-    }
-
-    function submit() {
-        $("#l_but").on("click", function () {
-            $("#l_but").removeClass("s-but-checked");
-            $("#s_but1").removeClass("s-but-checked");
-        });
-    }
-    checked();
-    submit();
+    //function checked() {
+    //    $("#fo_lo").on("click", function () {
+    //        $("#l_but").addClass("s-but-checked");
+    //        $("#s_but1").addClass("s-but-checked");
+    //        console.log("111");
+    //    });
+    //}
+    //
+    //function submit() {
+    //    $("#l_but").on("click", function () {
+    //        $("#l_but").removeClass("s-but-checked");
+    //        $("#s_but1").removeClass("s-but-checked");
+    //    });
+    //}
+    //checked();
+    //submit();
     //贾燕云的js
     function h_l_s() {
         var rli = [],

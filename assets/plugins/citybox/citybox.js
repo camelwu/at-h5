@@ -143,14 +143,14 @@
         vlm.loadJson("",JSON.stringify(h_inCityListData),Method["h_inCityListDataCallback"]);
       },
       /**
-      * 酒 国际 通信
-      */
+       * 酒 国际 通信
+       */
       h_out:function(){
-      var h_outHotCityListData ={"Parameters":"","ForeEndType":3,"Code":"10100012"};
-      var h_outCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100014"};
-      vlm.loadJson("",JSON.stringify(h_outHotCityListData),Method["h_outHotCityListDataCallback"]);
-      vlm.loadJson("",JSON.stringify(h_outCityListData),Method["h_outCityListDataCallback"]);
-    }
+        var h_outHotCityListData ={"Parameters":"","ForeEndType":3,"Code":"10100012"};
+        var h_outCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100014"};
+        vlm.loadJson("",JSON.stringify(h_outHotCityListData),Method["h_outHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(h_outCityListData),Method["h_outCityListDataCallback"]);
+      }
     }
 
 
@@ -538,10 +538,10 @@
         return newObj;
       },
       /**
-      * 酒 国内 热门城市 数据转化
-      * @param data
-      * @returns {Array}
-      */
+       * 酒 国内 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
       h_inHotCity:function(data){
         //data数据处理转化
         var obj = {};
@@ -682,8 +682,8 @@
        * @param dom
        * @param data
        * @param i
-         * @returns {string}
-         */
+       * @returns {string}
+       */
       ht_desSearchSuggest:function(dom,data,i){
         var cityCode = data[i].cityCode.toLowerCase();
         var cityName = data[i].cityName.toLowerCase();
@@ -909,7 +909,7 @@
       /**
        *
        * @param data
-         */
+       */
       pub_Exec:function(data){
         if(data.returnAttr!=""){
           $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
@@ -1058,18 +1058,21 @@
      * 显示城市列表 并 隐藏城市搜索列表
      */
     showCityBox:function(){
-      $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").css("display","block");
-      $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").css("display","none");
-      $(".citybox_search_suggestBG").css("display","none");
+      $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").show();
+      $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").hide();
+      $(".citybox_search_suggestBG").hide();
+      $(".citybox_search_container").show();
+      $(".citybox_search_container").addClass("current");
       $(document).scrollTop(0);
     },
     /**
      * 隐藏城市列表 并 显示城市搜索列表
      */
     hideCityBox:function(){
-      $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").css("display","none");
-      $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").css("display","block");
-      $(".citybox_search_suggestBG").css("display","block");
+      $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").hide();
+      $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").show();
+      $(".citybox_search_suggestBG").show();
+      $("#js_citybox_searchactive_input").focus();
       $(document).scrollTop(0);
       VM("citybox_suggest_list");
     },
@@ -1077,8 +1080,9 @@
      * 隐藏城市列表 和 城市搜索列表
      */
     hideAllCityBox:function(){
-      $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").css("display","none");
-      $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").css("display","none");
+      $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").hide();
+      $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").hide();
+      $(".citybox_search_container").hide();
     },
     /**
      * 返回城市数据
@@ -1237,7 +1241,7 @@
     /**
      * 景 热门城市
      * @param json
-       */
+     */
     t_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
@@ -1252,7 +1256,7 @@
     /**
      * 景 城市列表
      * @param json
-       */
+     */
     t_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
@@ -1267,7 +1271,7 @@
     /**
      * 酒+景 热门城市
      * @param json
-       */
+     */
     ht_desHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
@@ -1282,7 +1286,7 @@
     /**
      * 酒+景 城市列表
      * @param json
-       */
+     */
     ht_desCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
@@ -1866,4 +1870,5 @@
   webkit.VM.Load = VM;
   webkit.VM.Method = Method;
   webkit.VM.Config = config;
+  Method["hideAllCityBox"]();
 })();
