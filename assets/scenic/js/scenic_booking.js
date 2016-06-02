@@ -176,7 +176,7 @@
         Adapter.initPickUP();
         Adapter.priceDetail();
         Adapter.bindPickupSearchInput();
-
+        Adapter.researchBookingPackage({});
 
       },
       initPickUP:function(){
@@ -222,6 +222,10 @@
             }
 
           }
+        });
+
+        $(".booking_footer_bookingbtn").click(function(e){
+          Adapter.validateBookingPackage();
         });
       },
       initAddPackage:function(){
@@ -521,6 +525,120 @@
           $(document).scrollTop(0);
           Method["callbackPickup"](pickupInfosData);
         });
+      },
+      validate:function(param){
+        var reg_en = /[^a-zA-Z]+/g;
+        var rules = [],tips = [],type = "",data = "";
+        type = param.type;
+        data = param.data.trim();
+        rules = param.rules.split("|");
+        tips = param.tips.split("|");
+
+        if(type == "tourweek"){
+          var len = $(".js_booking_package_date").length;
+          for (var i = 0;i<len;i++){
+            var tmp1 = $("#js_booking_package_date"+i+"").attr("data-tourfrequency");
+            var tmp2 = $("#js_booking_package_date"+i+"").attr("data-value");
+            tmp2 = T.Command().callCommand("formatDate",{date:tmp2,format:"d"});
+            if(!(tmp1.indexOf(tmp2) > -1)){
+              //console.log(T.Command().callCommand("getWeekDay",tmp2));
+              jAlert(T.Command().callCommand("getWeekDay",tmp2)+tips[0], "提示");
+              return false;
+            }
+
+          }
+        }
+
+        if(type == "text"){
+          for (var i = 0;i<rules.length;i++){
+            if(rules[i] == "required" && !vlm.Utils.validate.isNoEmpty(data)){
+              jAlert(tips[i], "提示");
+              return false;
+            }
+            if(rules[i] == "en" && data.match(reg_en)){
+              jAlert(tips[i], "提示");
+              return false;
+            }
+          }
+        }
+
+        if(type == "phone"){
+          for (var i = 0;i<rules.length;i++){
+            if(rules[i] == "required" && !vlm.Utils.validate.isNoEmpty(data)){
+              jAlert(tips[i], "提示");
+              return false;
+            }
+            if(rules[i] == "phone" && !vlm.Utils.validate.mobileNo(data)){
+              jAlert(tips[i], "提示");
+              return false;
+            }
+          }
+        }
+
+        if(type == "email"){
+          for (var i = 0;i<rules.length;i++){
+            if(rules[i] == "required" && !vlm.Utils.validate.isNoEmpty(data)){
+                jAlert(tips[i], "提示");
+                return false;
+            }
+            if(rules[i] == "email" && !vlm.Utils.validate.email(data)){
+                jAlert(tips[i], "提示");
+                return false;
+            }
+          }
+        }
+
+        return true;
+
+      },
+      validateBookingPackage:function(){
+
+
+
+
+
+        if(!T.Command().execCommand({command:"validate", param:{type:"tourweek",data:"",rules:"",tips:"不开放,请重新选择日期"}})){
+          return false;
+        }
+
+        var ticketLastName = $("#ticketLastName").val();
+        if(!T.Command().execCommand({command:"validate", param:{type:"text",data:ticketLastName,rules:"required|en",tips:"取票人信息姓不能为空|请您输入英文的取票人姓名"}})){
+          return false;
+        }
+
+        var ticketFirstName = $("#ticketFirstName").val();
+        if(!T.Command().execCommand({command:"validate", param:{type:"text",data:ticketFirstName,rules:"required|en",tips:"取票人信息名不能为空|请您输入英文的取票人姓名"}})){
+          return false;
+        }
+
+        var contackLastName = $("#contackLastName").val();
+        if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contackLastName,rules:"required|en",tips:"联系人信息姓不能为空|请您输入英文的联系人姓名"}})){
+          return false;
+        }
+
+        var contactFirstName = $("#contactFirstName").val();
+        if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contactFirstName,rules:"required|en",tips:"联系人信息名不能为空|请您输入英文的联系人姓名"}})){
+          return false;
+        }
+
+        var phone = $(".booking_package_linkman_inputphone").val();
+        if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,rules:"required|phone",tips:"联系电话不能为空|联系电话格式不正确"}})){
+          return false;
+        }
+        var email = $(".booking_package_linkman_inputemail").val();
+        if(!T.Command().execCommand({command:"validate", param:{type:"email",data:email,rules:"required|email",tips:"邮箱不能为空|请输入正确邮箱格式"}})){
+          return false;
+        }
+      },
+      researchBookingPackage:function(){
+        var adultCount = 0,childCount = 0;
+
+        //成人数量
+        adultCount = parseInt($(".js_booking_package_pre_adult_num").html());
+        //儿童数量
+        childCount = parseInt($(".js_booking_package_pre_child_num").html());
+        console.log(recalSearchPrice);
+
       }
 
 

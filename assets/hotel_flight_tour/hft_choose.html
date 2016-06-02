@@ -37,7 +37,13 @@
         <div class="top_info">
             <span>出发:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
             <span>返程:<span class="arrive"> <%=hftChoose.returnDay(hftChoose.initParaObj.returnDate)%></span></span>
-            <span class="person_number"><span><%=hftChoose.cacheOtherInfo.adult%></span>成人 <span><%=hftChoose.cacheOtherInfo.child%></span>儿童</span>
+            <span class="person_number">
+              <span><%=hftChoose.cacheOtherInfo.adult%></span>成人
+             <% if(parseInt(hftChoose.cacheOtherInfo.child)>0){%>
+              <span><%=hftChoose.cacheOtherInfo.child%></span>儿童
+             <% }%>
+              <span><%=hftChoose.cacheOtherInfo.roomNumber%></span>房间
+            </span>
             <i></i>
         </div>
         <div class="ticket" data-statm="ticket">
@@ -61,7 +67,7 @@
                             <%if(!flightInfo["transferListLeave"]){%>
                                 <div class="arrow"></div>
                                 <%}else{%>
-                                    <div class="toArrowWord"></div>
+                                    <div class="arrowWord"></div>
                                     <%if(flightInfo["transferListLeave"].length < 2){%>
                                         <div class="transferCity">
                                             <%= flightInfo["transferListLeave"][0] %>
@@ -81,7 +87,7 @@
                         </div>
                     </div>
                     <p class="flightDetailInfo">
-                        <img src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" style="width:0.3rem;"><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
+                        <span><img src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
                     </p>
                 </li>
                 <p class="flightDetailArrow"><i></i></p>
@@ -102,7 +108,7 @@
                             <%if(!flightInfo["transferListReturn"]){%>
                                 <div class="arrow"></div>
                                 <%}else{%>
-                                    <div class="toArrowWord"></div>
+                                    <div class="arrowWord"></div>
                                     <%if(flightInfo["transferListReturn"].length < 2){%>
                                         <div class="transferCity">
                                             <%= flightInfo["transferListReturn"][0] %>
@@ -122,7 +128,7 @@
                         </div>
                     </div>
                     <p class="flightDetailInfo">
-                        <img src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" style="width:0.3rem;"><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
+                        <span><img src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
                     </p>
                 </li>
             </ul>
@@ -169,7 +175,6 @@
                             <p>
                                 <%= room['roomName'] %>
                             </p>
-
                             <p>
                                 <% if(room['includedBreakfast'] == 1){ %>
                                     <span>含早</span>

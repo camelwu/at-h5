@@ -74,12 +74,16 @@ i,em{
 }
 .index_hotspot .img_box{
     height: 4rem;
+    width: 100%;
     background:url(../../images/loading_def_big.png);
     background-size:100% 100%;
     overflow: hidden;
 }
 .index_hotspot .img_box img{
     height: 100%;
+    width: 100%;
+    background:url(../../images/loading_def_big.png);
+    background-size:100% 100%;
 }
 .index_hotspot  .hp-block{
     height: 0.72rem;

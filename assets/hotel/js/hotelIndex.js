@@ -25,13 +25,9 @@
         NumAdult: 1,
         NumChild: 0,
         init: function () {
-            console.info("init times");
             this.initSlider();
             this.initEvent();
             this.initData();
-//            alert(window.screen.width);
-//            alert(window.screen.height);
-//            alert(window.navigator.userAgent);
         },
         initSlider: function () {
             //国际国内切换实现滑动效果
@@ -133,8 +129,8 @@
                         return true;
                     }
                 } else { //国内
-                    jAlert("敬请期待国内酒店搜索！", "");
-                    return false;
+                    // jAlert("敬请期待国内酒店搜索！", "");
+                    // return false;
                     hotelIndex.saveHistory();
                     localStorage.setItem('hoPos', 'dom');
                     return true;
@@ -202,7 +198,7 @@
                 week_span2 = $('#week_span2'),
                 oDate = new Date(),
                 year = oDate.getFullYear(),
-                month = oDate.getMonth() + 1,
+                month = oDate.getMonth(),
                 day = oDate.getDate(),
                 interInitDate = {},
                 domInitDate = {};
@@ -210,8 +206,8 @@
             var oDate1 = new Date(year, month, day + 2); //默认入住时间T+2
             var oDate2 = new Date(year, month, day + 3);
 
-            var beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + oDate1.getMonth() + '-' + oDate1.getDate(), 'Ymd');
-            var leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + oDate2.getMonth() + '-' + oDate2.getDate(), 'Ymd');
+            var beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd');
+            var leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
 
             //默认入住离店时间
             //获取历史搜索数据
@@ -222,6 +218,7 @@
                 $("#count2").val(hotelStorage.NumAdult);
                 $("#count3").val(hotelStorage.NumChild);
                 //如果历史搜索入住日期早于最早入住日期
+                console.info(new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')));
                 if (new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')) < oDate1) {
                     checkIn.val(beginDate);
                     checkOut.val(leaveDate);
@@ -285,8 +282,8 @@
             var DomCheckOutDate = $('#DomCheckOutDate');
             var oDate3 = new Date(year, month, day + 2);
             var oDate4 = new Date(year, month, day + 3);
-            var DomBeginDate = vlm.Utils.format_date(oDate3.getFullYear() + '-' + oDate3.getMonth() + '-' + oDate3.getDate(), 'Ymd');
-            var DomLeaveDate = vlm.Utils.format_date(oDate4.getFullYear() + '-' + oDate4.getMonth() + '-' + oDate4.getDate(), 'Ymd');
+            var DomBeginDate = vlm.Utils.format_date(oDate3.getFullYear() + '-' + (oDate3.getMonth() + 1) + '-' + oDate3.getDate(), 'Ymd');
+            var DomLeaveDate = vlm.Utils.format_date(oDate4.getFullYear() + '-' + (oDate4.getMonth() + 1) + '-' + oDate4.getDate(), 'Ymd');
             var week_span3 = $('#weekSpan3');
             var week_span4 = $('#weekSpan4');
             if (hotelStorage) {
@@ -306,8 +303,8 @@
                     $("#total_day").html(hotelStorage.DomeTotalDay);
                     week_span3.html(hotelStorage.DomBeginDateWeek);
                     week_span4.html(hotelStorage.DomLeaveDateWeek);
-                    domInitDate[hotelStorage.DomBeginDate] = "入住";
-                    domInitDate[hotelStorage.DomLeaveDate] = "离店";
+                    domInitDate[hotelStorage.DomCheckInDate] = "入住";
+                    domInitDate[hotelStorage.DomCheckOutDate] = "离店";
                 }
             } else {
                 DomCheckInDate.val(DomBeginDate);
@@ -319,8 +316,6 @@
                 domInitDate[DomLeaveDate] = "离店";
             }
 
-            domInitDate[beginDate] = "入住";
-            domInitDate[leaveDate] = "离店";
             //初始化日期
             hotelIndex.initCalendar(interInitDate, domInitDate);
         }

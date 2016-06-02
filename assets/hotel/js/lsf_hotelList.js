@@ -147,22 +147,22 @@ function styleChange(id, mytext) {
 //
 //})();
 (function () {
-    function checked() {
-        $("#fo_lo").on("click", function () {
-            $("#l_but").addClass("s-but-checked");
-            $("#s_but1").addClass("s-but-checked");
-            console.log("111");
-        });
-    }
-
-    function submit() {
-        $("#l_but").on("click", function () {
-            $("#l_but").removeClass("s-but-checked");
-            $("#s_but1").removeClass("s-but-checked");
-        });
-    }
-    checked();
-    submit();
+    //function checked() {
+    //    $("#fo_lo").on("click", function () {
+    //        $("#l_but").addClass("s-but-checked");
+    //        $("#s_but1").addClass("s-but-checked");
+    //        console.log("111");
+    //    });
+    //}
+    //
+    //function submit() {
+    //    $("#l_but").on("click", function () {
+    //        $("#l_but").removeClass("s-but-checked");
+    //        $("#s_but1").removeClass("s-but-checked");
+    //    });
+    //}
+    //checked();
+    //submit();
     //贾燕云的js
     function h_l_s() {
         var rli = [],
@@ -324,10 +324,13 @@ function styleChange(id, mytext) {
             //back button
             $(".header").on("click", ".header_back", function (event) {
                 //清空缓存记录
-                window.sessionStorage.removeItem("asiaHlHistory");
-                window.history.go(-1);
+                // window.sessionStorage.removeItem("asiaHlHistory");
+                var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+                console.log(myAsiaHlHistory);
+                if (myAsiaHlHistory.hlSort) {
+                    window.sessionStorage.removeItem("asiaHlHistory");
+                }
             });
-
         };
         init();
         openClick(fo_ra, rank);
@@ -519,15 +522,19 @@ function styleChange(id, mytext) {
                 "ForeEndType": 3
             };
         } else if (hoPos = 'dom') {
-            for (var i = 0; i < hl_cityListInfo.length; i++) {
-                if (json.DomCityName == hl_cityListInfo[i].cityNameCN) {
-                    json.DomCityName = hl_cityListInfo[i].cityNameEN;
-                    json.CountryISOCode = hl_cityListInfo[i].countryISOCode;
-                    break;
+            var pattern = /^([\u4e00-\u9fa5])*$/
+                //中文,需要匹配
+            if (pattern.test(json.DomCityName)) {
+                for (var i = 0; i < hl_cityListInfo.length; i++) {
+                    if (json.DomCityName == hl_cityListInfo[i].cityNameCN) {
+                        json.DomCityName = hl_cityListInfo[i].cityNameEN;
+                        json.CountryISOCode = hl_cityListInfo[i].countryISOCode;
+                        break;
+                    }
                 }
             }
             var data = {
-                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"" + json.CountryISOCode + "\",\"CityName\":\"" + json.DomCityName + "\",\"CheckInDate\":\"" + json.DomCheckInDate + "T00:00:00\",\"CheckOutDate\":\"" + json.DomCheckOutDate + "T00:00:00\",\"NumRoom\":\"\",\"NumAdult\":\"\",\"NumChild\":\"\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":\"" + json.pageIndex + "\",\"PageSize\":\"" + json.pageSize + "\",\"sorttype\":\"" + json.rank + "\",\"Category\":\"" + json.Category + "\",\"StarRating\":\"" + json.StarRating + "\",\"LocationList\":\"" + json.LocationList + "\"}",
+                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"ACX98110SG\",\"CountryISOCode\":\"CN\",\"CityName\":\"" + json.DomCityName + "\",\"CheckInDate\":\"" + json.DomCheckInDate + "T00:00:00\",\"CheckOutDate\":\"" + json.DomCheckOutDate + "T00:00:00\",\"NumRoom\":\"1\",\"NumAdult\":\"1\",\"NumChild\":\"0\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":\"" + json.pageIndex + "\",\"PageSize\":\"" + json.pageSize + "\",\"sorttype\":\"" + json.rank + "\",\"Category\":\"" + json.Category + "\",\"StarRating\":\"" + json.StarRating + "\",\"LocationList\":\"" + json.LocationList + "\"}",
                 "Code": "0007",
                 "ForeEndType": 3
             };

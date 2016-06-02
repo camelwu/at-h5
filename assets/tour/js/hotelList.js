@@ -306,13 +306,6 @@ var hotelList = {
 };
 hotelList.init();
 
-
-
-
-
-
-
-
 //把url字符串变成json
 function url2json(url) {
 	if (!url)
@@ -562,5 +555,4 @@ function url2json(url) {
 	}
 	h_l_s();
 	//页面没有展示前页面展示的页面
-
 })();

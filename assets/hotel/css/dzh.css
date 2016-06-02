@@ -62,11 +62,11 @@ div#h-Tab .off {
 }
 
 .hotel_destination_right {
-  display: inline-block;
-  width: 70%;
-  font-size: .32rem;
-  font-weight: 500;
-  background-color: #fff;
+    display: inline-block;
+    width: 70%;
+    font-size: .32rem;
+    font-weight: 500;
+    background-color: #fff;
 }
 
 .hotel_destination_right span {
@@ -157,8 +157,9 @@ i.i_address {
 
 .hotel_time_center_start input,
 .hotel_time_center_end input {
+  padding:.1rem 0 0 0 ;
     float: left;
-    width: 2.18rem;
+    width: 2.12rem;
     font-size: .4rem;
     font-weight: 600;
     margin-top: .6rem;
@@ -219,9 +220,9 @@ i.i_address {
     width: .36rem;
     height: .36rem;
     position: absolute;
-    right: 1.9rem;
-    top: 0.1rem;
-  text-align: center;
+    right: 1.92rem;
+    top: 0.08rem;
+    text-align: center;
 }
 
 .hotel_roomNum_add {
@@ -281,17 +282,17 @@ i.i_address {
     height: .36rem;
     text-align: center;
     position: absolute;
-    right: 1rem;
-    top: .34rem;
+    right: 1.02rem;
+    top: .32rem;
 }
 
 .hotel_people_right_child input {
     width: .36rem;
     height: .36rem;
-  text-align: center;
+    text-align: center;
     position: absolute;
-    right: 1rem;
-    top: 1.36rem;
+    right: 1.02rem;
+    top: 1.34rem;
 }
 
 .hotel_people_right_adult_add {
@@ -370,12 +371,12 @@ i.i_address {
     width: .56rem;
     height: .56rem;
     position: absolute;
-    background: url("../../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat;
+    background: url("../../images/ui.1.0/icon_common.png") -3.05rem -3.124rem no-repeat;
     background-size: 7.9rem 7.83rem;
 }
 
 .add.disable {
-    background-position: -2.178rem -3.124rem;
+    background-position: -2.17rem -3.124rem;
 }
 
 .minus {
@@ -420,5 +421,4 @@ i.i_address {
     font-size: .32rem;
     font-weight: 700;
     color: #ffb413;
-    margin: .3rem auto;
 }

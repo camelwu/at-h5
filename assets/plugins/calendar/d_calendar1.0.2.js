@@ -472,6 +472,7 @@ Calender.prototype = {
             event = event || window.event;
             var target = event.target || event.srcElement;
             if (target.className.indexOf("header_back") > -1 || target.className.indexOf("icon_back") > -1) {
+                that.op >= 1 ? that.op = 0 : null;
                 that.removeDate();
             }
         });
