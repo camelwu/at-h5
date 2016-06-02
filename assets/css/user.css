@@ -301,7 +301,7 @@ i, em {
   margin-top: .32rem;
   border-right: 1px solid #e6e6e6;
   position: relative;
-  width: 1.4rem;
+  max-width: 1.55rem;
 }
 
 .p_86 > span {
@@ -1107,7 +1107,9 @@ i, em {
   display: none;
 }
 .country_header {
+  z-index: 1100;
   opacity: 1;
+  display: none;
 }
 
 .gj_header {
@@ -1177,11 +1179,12 @@ i, em {
   z-index: 1010;
   background: #fff;
   overflow-y: scroll;
+  display: none;
 }
 
 .country_index {
   position: fixed;
-  top: 2.18rem;
+  top: 1.6rem;
   right: .06rem;
   width: 0.6rem;
   color: #7bc300;
@@ -1223,6 +1226,11 @@ i, em {
   width: 100%;
   height: 0;
   overflow: hidden;
+}
+
+.tel_code{
+  display: inline-block;
+  margin-left: .2rem;
 }
 
 /*国籍选择结束*/
