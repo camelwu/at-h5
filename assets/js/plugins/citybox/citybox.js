@@ -1060,9 +1060,10 @@
     showCityBox:function(){
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").show();
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").hide();
-      $(".citybox_search_suggestBG").hide();
-      $(".citybox_search_container").show();
-      $(".citybox_search_container").addClass("current");
+      //$(".citybox_search_suggestBG").hide();
+      $("#citybox_search_container").show();
+      $("#citybox_search_container").removeClass("citybox_search_container");
+      $("#citybox_search_container").addClass("citybox_search_container");
       $(document).scrollTop(0);
     },
     /**
