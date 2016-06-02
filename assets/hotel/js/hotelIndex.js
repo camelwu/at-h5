@@ -130,6 +130,8 @@
                         return true;
                     }
                 } else { //国内
+                    jAlert("敬请期待国内酒店搜索！", "");
+                    return false;
                     hotelIndex.saveHistory();
                     localStorage.setItem('hoPos', 'dom');
                     return true;
