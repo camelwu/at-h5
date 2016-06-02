@@ -1273,6 +1273,9 @@ input.name{
   z-index: 1000;
   background-color: #fff;
   display: none;
+  overflow-x: hidden !important;
+  font-size: .28rem;
+  color: #333;
 }
 
 .jto_letter_list li {
