@@ -129,6 +129,7 @@ i.right {
 
 .hotel_user_detail_border {
     border-bottom: 1px solid #dedede;
+    margin-bottom: -0.02rem;
 }
 
 .hotel_user_detail_name2 input {
@@ -261,7 +262,7 @@ i.right {
     background-position: -5.56rem -3.33rem;
     position: absolute;
     top: .4rem;
-    right: 0rem;
+    right: 0.1rem;
 }
 
 
