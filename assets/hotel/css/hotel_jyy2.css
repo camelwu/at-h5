@@ -130,7 +130,6 @@ ul,li{
   margin-bottom: .98rem;
   text-align: center;
   height: .6rem;
-  /*line-height: .8rem;*/
 }
 /*footer开始*/
 .hl-bottom{
@@ -141,7 +140,7 @@ ul,li{
   text-align: center;
   color:white;
   z-index: 999999;
-  display: flex;
+  /*display: flex;*/
 }
 /*.icons{*/
   /*background-image: url(../../images/ui.1.0/icon_common.png);*/
@@ -152,6 +151,8 @@ ul,li{
 .fo-div{
   text-align: center;
   width: 33.3333%;
+  height: 100%;
+  float: left;
   color: white;
   overflow:hidden;
   position: relative;
