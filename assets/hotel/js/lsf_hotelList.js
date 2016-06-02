@@ -647,7 +647,7 @@ function styleChange(id, mytext) {
             } else {
                 document.getElementById("loadMore").style.display = "none";
                 var oLi = document.createElement('li');
-                oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询。</p><a href="index.html" class="hotelConSorry2">点击野蛮 进入搜索页</a></div>';
+                oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询。</p><a href="index.html" class="hotelConSorry2">点击页面 进入搜索页</a></div>';
                 oLi.className = 'hotelConNo';
                 oUl.style.width = '100%';
                 oUl.style.height = '100%';
