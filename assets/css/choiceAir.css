@@ -549,34 +549,8 @@ i, em {
   z-index: 100;
 }
 
-/*国籍模糊搜索*/
-.country-list-searched {
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: .88rem;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9;
-  background: #f5f4f9;
-  overflow-y: scroll;
-}
+/*---*/
 
-.country-list-searched li.country-list-searched-item {
-  width: 100%;
-  height: .68rem;
-  line-height: .68rem;
-  text-align: left;
-  border-bottom: 1px solid #e6e6e6;
-  padding-left: .48rem;
-
-}
-.con_text_tips{
-  padding: .3rem .3rem;
-  color: #999;
-  margin-bottom: 0;
-}
 .traveler_contect {
   background-color: #fff;
   margin-bottom: .32rem;
@@ -619,7 +593,6 @@ i, em {
   height: .96rem;
   margin-left: .32rem;
 }
-
-/*国籍选择结束*/
+/*--*/
 
 

@@ -11,11 +11,12 @@ ul,li{
   height: auto;
   z-index: 2;
   overflow: auto;
+  margin-top: .88rem;
   transform: translate3d(0, 0, 0);
 }
 .hotel_lists{
   width: 100%;
-  margin-top: 0.88rem;
+  /*margin-top: 0.88rem;*/
   list-style-type: none;
   background: #fff;
   border-top: 1px solid #dddddd;
@@ -117,6 +118,7 @@ ul,li{
   background-color: #ffb412;
   margin-right: .04rem;
   padding: .04rem;
+  position: absolute;right:.2rem;
   position: absolute;right:.2rem;
 
 }
@@ -259,11 +261,12 @@ ul,li{
   margin:.4rem;
 }
 .s-ul{
-  margin:.2rem .4rem;
+  margin:.2rem 0 0 .4rem;
+  padding:0 .4rem .4rem 0
   list-style-type: none;
   overflow: hidden;
-  /*border-bottom: 1px solid #d0d0d3;*/
-  padding-bottom: .36rem;
+  border-bottom: 1px solid #dedede;
+  /*padding-bottom: .36rem;*/
 }
 .s-li{
   float: left;
@@ -292,15 +295,33 @@ ul,li{
 
 }
 .s-but{
-  /* width: 94%; */
-  height: 1rem;
-  text-align: center;
-  line-height: 1rem;
-  color: white;
-  /* border-radius: .2rem; */
-  background-color: #7bc300;
-
+  height: 0.89rem;
+  line-height: 0.89rem;
+  background: #f7f7f7;
+  position: relative;
 }
+.s-but .cancel {
+  left: 0;
+}
+
+.s-but .cancel, .s-but .sure {
+  position: absolute;
+  width: 1.5rem;
+}
+.s-but p {
+  top: 0;
+  text-align: center;
+  color: #999;
+}
+.s-but .clears {
+  margin: 0 1.5rem;
+}
+.s-but .sure {
+  right: 0;
+  color: #7bc300;
+}
+
+
 .s-submit{
 width: 94%;
 height: 1rem;
@@ -349,9 +370,10 @@ opacity: 1;
   list-style-type: none;
 }
 .l-li{
-  width: 100%;height:1rem;
+  height:1rem;
   border-bottom: 1px solid #d0d0d3;
   overflow:hidden;
+  padding-left: .2rem;
 }
 #l-liTem {
   display:none;
@@ -369,6 +391,7 @@ opacity: 1;
   background: url(../../images/ui.1.0/icon_common.png)  -4.41rem -0.54rem;
   background-size: 7.9rem 7.83rem;
   margin-top:.3rem;
+  margin-right: .4rem;
 }
 .l-icon1{
   float: right;
@@ -378,6 +401,7 @@ opacity: 1;
   background: url(../../images/ui.1.0/icon_common.png)  -4.41rem -0.54rem;
   background-size: 7.9rem 7.83rem;
   margin-top:.3rem;
+  margin-right: .4rem;
 }
 .l-li2 .l-icon1{
   float: right;
@@ -410,16 +434,25 @@ opacity: 1;
 /*加载更多样式*/
 .hotelConNo{
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
 }
 .hotelConNo img{
-  width: 2rem;
-  height: 2rem;
-  margin:40% 39% 0;
+  width: 3.82rem;
+  height: 2.28rem;
+  display: block;
+  margin: 40% auto 0;
 }
 .hotelConSorry1{
-  margin: .3rem 1.4rem 0 2rem
+  margin: .94rem 1.2rem 0;
+  color: #666;
+  font-size: .32rem;
+  text-align: center;
+  display: block;
 }
 .hotelConSorry2{
-  margin:0.1rem 1.4rem .08rem 2rem
+  margin: .5rem 1.6rem;
+  color: #999;
+  font-size: .28rem;
+  text-align: center;
+  display: block;
 }

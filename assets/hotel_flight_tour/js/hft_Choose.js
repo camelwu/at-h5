@@ -450,6 +450,8 @@ var hftChoose = {
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
       that.curData = resultData;
+      console.log(resultData)
+      console.log(that.curData)
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
       that.createTags(resultData).createPriceEle().addEvent();
@@ -663,14 +665,14 @@ var hftChoose = {
     this.initParaObj = paraObj;
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
-    this.curData = hftFlightHotelTourInfo;
+    this.curData = hftFlightHotelTourInfo;/*问题点*/
     this.cacheOtherInfo = {
       adult: temObj['AdultNum'],
       child: temObj['ChildNum'],
       cityNameForm: temObj['FromCityNameCN'],
       cityNameTo: temObj['ToCityNameCN']
     };
-    if (originAirIds && hftFlightHotelTourInfo) {
+    if (originAirIds && hftFlightHotelTourInfo){
       if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] || originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']) {
         this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwaySetID'];
         this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwayCacheID'];

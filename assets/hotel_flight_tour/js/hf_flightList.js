@@ -4,7 +4,6 @@ var oldFlightInfo;
 var filterSign = false;
 var flight_list = {
     requestUrl:"",
-    //requestUrl:"http://10.6.11.28:1337/api/GetServiceApiResult",
     getById:function(obj){
         return document.getElementById(obj);
     },
