@@ -33,8 +33,9 @@
   var selectPassagerBtn=$("#toper .header_finish");
   var closeWindowBtn=$("#toper .closedWin");
   var addPassagerBtn=$(".add_passager");
-  var nameDescriptBtn=$(".user_must");
+  var nameDescriptBtn=$("#name_state");
   var nameDescriptPager=$(".fillName_page ");
+  var nameCloseDescriptBtn=  $("#fillName_page #closeName");
   var submitBtn=$("#toper .header_finish");
   var uc_cnName=$(".addAir_page .cnNameUL");
   var ul_contect=$(".addAir_page .ul_contect");
@@ -89,6 +90,10 @@
     nameDescriptBtn.on("click",function(){
       nameDescriptPager.show();
     });
+    nameCloseDescriptBtn.on("click",function(){
+      nameDescriptPager.hide();
+    });
+
     closeWindowBtn.on("click",function(){
       if (window.opener) {
         window.close();
@@ -587,18 +592,35 @@
 
     }
   };
+  var truncateCardInfo=function(){
+    var cardId= $(".postCard").attr("data-code");
+    if(editIDKey!=null){
+        var modle=passagerArray[editIDKey];
+        var cardList=modle.listTravellerIdInfo;
+        addOrEditPassagePage.find(".cardNumber").val("");
+        addOrEditPassagePage.find(".cardDateLimit").val("");
+        addOrEditPassagePage.find(".cardCountry").html("中国");
+        addOrEditPassagePage.find(".cardCountry").attr("data-code","CN")
 
+         for(var index in cardList){
+           if(cardList[index].idType==cardId){
+             addOrEditPassagePage.find(".cardNumber").val(cardList[index].idNumber);
+             addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
+             addOrEditPassagePage.find(".cardCountry").html(cardList[index].idCountryName);
+             addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry)
+             return;
+           }
+         }
+    }
+  }
   /*页面初始化方法*/
   var _initPage=function(){
 
     //新增常旅
-    var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
-    var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
-    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu"});
-    //编辑常旅
-    var myDate4 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
-    var myDate5 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
-    var myDate6 = new Scroller({id: "cardType", type:"card",cont:"eee3",callback:null});
+     new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
+     new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
+     new Scroller({id: "postCard", type:"card",cont:"uuu","callback":truncateCardInfo});
+
 
     //免登陆，如果缓存没有数据，自己显示添加页面
     if(memberId==undefined){
