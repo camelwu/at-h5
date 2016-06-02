@@ -592,51 +592,127 @@
 
       },
       validateBookingPackage:function(){
+        var adultCount = 0,childCount = 0,ChildArray = [],childTmp = 0;
+
+        var param = {
+          "Parameters" : {
+            "PackageID" : ExtendData.PackageID,
+          },
+          "ForeEndType" : 3,
+          "Code" : "0092"
+        }
 
 
+        //成人数量
+        adultCount = parseInt($(".js_booking_package_pre_adult_num").html());
+        //验证是否有成人package
+        if(isNaN(adultCount)||adultCount == 0){
+          adultCount = 0;
+        }
+        recalSearchPrice.Parameters.Adult = adultCount;
+        param.Parameters.Adult = adultCount;
+
+        //儿童数量
+        childCount = parseInt($(".js_booking_package_pre_child_num").html());
+        //验证是否有儿童package
+        if(isNaN(childCount) || childCount == 0){
+          childCount = 0;
+          ChildArray = [];
+          delete recalSearchPrice.Parameters.Child;
+        }else{
+          for (var i = 0; i < childCount; i++) {
+            childTmp = $(".js_booking_package_pre_childlist").find("input").eq(i).val();
+            //验证儿童年龄input是否为空
+            if(!T.Command().execCommand({command:"validate", param:{type:"text",data:childTmp,rules:"required",tips:"儿童年龄不能为空"}})){
+              return false;
+            }
+            //验证儿童年龄范围
+            if(childTmp > ExtendData.DetailData.data.childAgeMax || childTmp < ExtendData.DetailData.data.childAgeMin){
+              jAlert("请输入正确的儿童年龄范围", "提示");
+              return false;
+            }
+            ChildArray.push(childTmp);
+          }
+          //查询价格参数对象
+          recalSearchPrice.Parameters.Child = ChildArray;
+          //创建订单参数对象
+          param.Parameters.Child = ChildArray;
+        }
+
+        //判断人数
+        var totalP=0;
+        if(ExtendData.onlyForAdult){//只限制成人
+          if(adultCount < ExtendData.minPax){
+            jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+            return false;
+          }
+          if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
+            jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+            return false;
+          }
+        }else{//限制成人和儿童
+          if(ExtendData.minPaxType == 1){//限制成人和儿童
+            totalP = parseInt(adultCount) + parseInt(childCount);
+            if(totalP < ExtendData.minPax){
+              jAlert("限定最小人数为"+ExtendData.minPax+"起订", "提示");
+              return false;
+            }
+            if(totalP > ExtendData.maxPax && ExtendData.maxPax != -1){
+              jAlert("限定最大人数为"+ExtendData.maxPax+"起订", "提示");
+              return false;
+            }
+          }else{//只限制成人
+            if(adultCount < ExtendData.minPax){
+              jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+              return false;
+            }
+            if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
+              jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+              return false;
+            }
+          }
+        }
 
 
-
+        console.log(recalSearchPrice);
+        //验证景点的日期是否开放
         if(!T.Command().execCommand({command:"validate", param:{type:"tourweek",data:"",rules:"",tips:"不开放,请重新选择日期"}})){
           return false;
         }
-
+        //验证取票人信息
         var ticketLastName = $("#ticketLastName").val();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:ticketLastName,rules:"required|en",tips:"取票人信息姓不能为空|请您输入英文的取票人姓名"}})){
           return false;
         }
 
+        //验证取票人信息
         var ticketFirstName = $("#ticketFirstName").val();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:ticketFirstName,rules:"required|en",tips:"取票人信息名不能为空|请您输入英文的取票人姓名"}})){
           return false;
         }
-
+        //验证联系人信息
         var contackLastName = $("#contackLastName").val();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contackLastName,rules:"required|en",tips:"联系人信息姓不能为空|请您输入英文的联系人姓名"}})){
           return false;
         }
-
+        //验证联系人信息
         var contactFirstName = $("#contactFirstName").val();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contactFirstName,rules:"required|en",tips:"联系人信息名不能为空|请您输入英文的联系人姓名"}})){
           return false;
         }
-
+        //验证联系人信息
         var phone = $(".booking_package_linkman_inputphone").val();
         if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,rules:"required|phone",tips:"联系电话不能为空|联系电话格式不正确"}})){
           return false;
         }
+        //验证联系人信息
         var email = $(".booking_package_linkman_inputemail").val();
         if(!T.Command().execCommand({command:"validate", param:{type:"email",data:email,rules:"required|email",tips:"邮箱不能为空|请输入正确邮箱格式"}})){
           return false;
         }
       },
       researchBookingPackage:function(){
-        var adultCount = 0,childCount = 0;
 
-        //成人数量
-        adultCount = parseInt($(".js_booking_package_pre_adult_num").html());
-        //儿童数量
-        childCount = parseInt($(".js_booking_package_pre_child_num").html());
         console.log(recalSearchPrice);
 
       }
