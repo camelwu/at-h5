@@ -1106,6 +1106,7 @@
       show2 = 0;
       $("#preloader").show();
       Method["showCityBox"]();
+      VM("citybox_location");//当前城市
       VM("citybox_history");//显示历史纪录
       AjaxAdapter().callAjaxAdapter(globalType);
     },
@@ -1486,28 +1487,29 @@
      * @param data
      */
     cityboxLocation:function(dom,data){
-      dom.innerHTML = "";
-      var citybox_content_title = document.createElement("div");
-      citybox_content_title.setAttribute("class","citybox_content_title");
-      citybox_content_title.setAttribute("id","js_location");
-      citybox_content_title.innerHTML = "当前";
-      dom.appendChild(citybox_content_title);
-
-      var citybox_content_itemtitle_div = document.createElement("div");
-      citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-      citybox_content_itemtitle_div.innerHTML = "北京";
-
-      var citybox_content_item_li = document.createElement("li");
-      citybox_content_item_li.setAttribute("class","citybox_content_item selected");
-      citybox_content_item_li.setAttribute("data-code","200");
-      citybox_content_item_li.setAttribute("data-name","北京");
-      citybox_content_item_li.setAttribute("data-letter","bj");
-      citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
-
-      var citybox_content_container_ul = document.createElement("ul");
-      citybox_content_container_ul.setAttribute("class","citybox_content_container");
-      citybox_content_container_ul.appendChild(citybox_content_item_li);
-      dom.appendChild(citybox_content_container_ul);
+      $(dom).hide();
+      //dom.innerHTML = "";
+      //var citybox_content_title = document.createElement("div");
+      //citybox_content_title.setAttribute("class","citybox_content_title");
+      //citybox_content_title.setAttribute("id","js_location");
+      //citybox_content_title.innerHTML = "当前";
+      //dom.appendChild(citybox_content_title);
+      //
+      //var citybox_content_itemtitle_div = document.createElement("div");
+      //citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
+      //citybox_content_itemtitle_div.innerHTML = "北京";
+      //
+      //var citybox_content_item_li = document.createElement("li");
+      //citybox_content_item_li.setAttribute("class","citybox_content_item selected");
+      //citybox_content_item_li.setAttribute("data-code","200");
+      //citybox_content_item_li.setAttribute("data-name","北京");
+      //citybox_content_item_li.setAttribute("data-letter","bj");
+      //citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
+      //
+      //var citybox_content_container_ul = document.createElement("ul");
+      //citybox_content_container_ul.setAttribute("class","citybox_content_container");
+      //citybox_content_container_ul.appendChild(citybox_content_item_li);
+      //dom.appendChild(citybox_content_container_ul);
     },
     /**
      * 城市历史记录
@@ -1781,19 +1783,19 @@
     cityboxLetterIndex:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
-      var citybox_summary_item_litop1 = document.createElement("li");
-      citybox_summary_item_litop1.setAttribute("class","citybox_summary_item");
-      citybox_summary_item_litop1.setAttribute("data-key","location");
-      citybox_summary_item_litop1.innerHTML = "当前";
-      citybox_summary_item_litop1.onclick = function(){
-        var key = this.getAttribute("data-key");
-        var a = $("#js_"+key);
-        if (a.length != 0) {
-          i = a.offset().top - scrollTopPx;
-        }
-        $(window).scrollTop(i);
-      }
-      dom.appendChild(citybox_summary_item_litop1);
+      //var citybox_summary_item_litop1 = document.createElement("li");
+      //citybox_summary_item_litop1.setAttribute("class","citybox_summary_item");
+      //citybox_summary_item_litop1.setAttribute("data-key","location");
+      //citybox_summary_item_litop1.innerHTML = "当前";
+      //citybox_summary_item_litop1.onclick = function(){
+      //  var key = this.getAttribute("data-key");
+      //  var a = $("#js_"+key);
+      //  if (a.length != 0) {
+      //    i = a.offset().top - scrollTopPx;
+      //  }
+      //  $(window).scrollTop(i);
+      //}
+      //dom.appendChild(citybox_summary_item_litop1);
 
       var citybox_summary_item_litop2 = document.createElement("li");
       citybox_summary_item_litop2.setAttribute("class","citybox_summary_item");
