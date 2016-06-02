@@ -660,10 +660,19 @@ header.header .header_more i.location_tip{
   color: white;
   height: 0.7rem;
   line-height: 0.7rem;
-  font-size: 0.2rem;
   background: url(../../images/ui/detail_banner_bg.png);
   background-size: 7.5rem 0.76rem;
   background-position: left bottom;
+  font-size: 0.24rem;
+}
+.pic_box div.first .number{
+  height: 0.7rem;
+  line-height: 0.7rem;
+  position:absolute;
+  bottom:0;
+  right:0.3rem;
+  color:#ffffff;
+  font-size: 0.24rem;
 }
 .pd_mb div:nth-child(1){
   word-break: break-all;
@@ -713,6 +722,7 @@ header.header .header_more i.location_tip{
 .page_title h4{margin:0 .2rem;padding:0;}
 .page_title h4 i{float:right;}
 .detail_box{
+  font-size: .3rem;
   background:#fff;overflow:hidden;padding:0.32rem .2rem 1.5rem;line-height:.44rem;;
 }
 .detail_box strong{
@@ -726,7 +736,7 @@ header.header .header_more i.location_tip{
   line-height: 0.5rem;
   color: #000;
   list-style: disc inside;
-  font-size: .26rem;
+
 }
 .detail_box ul li table,.detail_box ul li table td{
   width: 100%!important;
@@ -762,10 +772,11 @@ header.header .header_more i.location_tip{
 }
 .package_reserve span.all_num i{
   color:#fb7530;
-  font-size:.36rem;
+  font-size:.32rem;
 }
 .package_reserve span.all_num i.frist:before{
-  content:'\00A5';font-size:.36rem;
+  content:'\00A5';
+  font-size:.32rem;
 }
 .package_reserve span.separate_num{
   height:.42rem;line-height:.36rem;font-size:.24rem;color:#aaa;text-decoration:line-through;
