@@ -671,7 +671,7 @@ var hftChoose = {
     this.initParaObj = paraObj;
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
-    this.curData = hftFlightHotelTourInfo;/*问题点*/
+    this.curData = hftFlightHotelTourInfo;
     this.cacheOtherInfo = {
       adult: temObj['AdultNum'],
       child: temObj['ChildNum'],
@@ -680,15 +680,17 @@ var hftChoose = {
     };
     if (originAirIds && hftFlightHotelTourInfo){
       if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] || originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']) {
-        this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwaySetID'];
-        this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwayCacheID'];
         this.initParaObj.selectedHotelID = hftFlightHotelTourInfo['hotelInfo']['hotelID'];
         if (this.type == "2") {
+          this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwaySetID'];
+          this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwayCacheID'];
           this.initParaObj.tours = this.tourParaObjHandler(hftFlightHotelTourInfo);
           this.initParaObj.packageID = urlParseObj['packageId'];
           this.getNewPricePara.packageID = this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "60100006", 3, this.renderHandler_f);
         } else if (this.type == "1") {
+          this.initParaObj.airwaySetID = hftFlightHotelTourInfo['airwaySetID'];
+          this.initParaObj.airwayCacheID = hftFlightHotelTourInfo['airwayCacheID'];
           delete this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
         }
