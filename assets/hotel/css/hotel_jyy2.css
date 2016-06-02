@@ -261,11 +261,12 @@ ul,li{
   margin:.4rem;
 }
 .s-ul{
-  margin:.2rem .4rem;
+  margin:.2rem 0 0 .4rem;
+  padding:0 .4rem .4rem 0
   list-style-type: none;
   overflow: hidden;
-  /*border-bottom: 1px solid #d0d0d3;*/
-  padding-bottom: .36rem;
+  border-bottom: 1px solid #dedede;
+  /*padding-bottom: .36rem;*/
 }
 .s-li{
   float: left;
@@ -294,15 +295,33 @@ ul,li{
 
 }
 .s-but{
-  /* width: 94%; */
-  height: 1rem;
-  text-align: center;
-  line-height: 1rem;
-  color: white;
-  /* border-radius: .2rem; */
-  background-color: #7bc300;
-
+  height: 0.89rem;
+  line-height: 0.89rem;
+  background: #f7f7f7;
+  position: relative;
 }
+.s-but .cancel {
+  left: 0;
+}
+
+.s-but .cancel, .s-but .sure {
+  position: absolute;
+  width: 1.5rem;
+}
+.s-but p {
+  top: 0;
+  text-align: center;
+  color: #999;
+}
+.s-but .clears {
+  margin: 0 1.5rem;
+}
+.s-but .sure {
+  right: 0;
+  color: #7bc300;
+}
+
+
 .s-submit{
 width: 94%;
 height: 1rem;
