@@ -220,9 +220,7 @@ var fIndexModal = {
     };
     if (data.type == "international") {
       internationalHistory.unshift(data);
-      console.log(internationalHistory)
       internationalHistory = internationalHistory.distinct();
-      console.log(internationalHistory)
       if (internationalHistory.length > 3) {
         internationalHistory = internationalHistory.slice(0, 3)
       }
@@ -306,12 +304,13 @@ var fIndexModal = {
         var mb = String(valueStr).toLowerCase();
         allCityData.forEach(function (array) {
           if (array.cityCode) {
-            if (array.cityNameEn.toLowerCase().indexOf(valueStr) > -1 || array.cityNameCN.toLowerCase().indexOf(valueStr) > -1 || array.cityCode.toLowerCase().indexOf(valueStr) > -1 || array.countryName.toLowerCase().indexOf(valueStr) > -1 || array.hyKeyWord.toLowerCase().indexOf(valueStr) > -1 || array.pingYin.toLowerCase().indexOf(valueStr) > -1) {
+            if (array.cityNameCN.toLowerCase().indexOf(mb) > -1 || array.cityNameEn.toLowerCase().indexOf(mb) > -1 || array.hyKeyWord.toLowerCase().indexOf(mb) > -1 || array.cityCode.toLowerCase().indexOf(mb) > -1 || array.pingYin.toLowerCase().indexOf(mb) > -1 || array.countryName.toLowerCase().indexOf(mb) > -1) {
               searchResult.push(array);
             }
           }
         });
       }
+      console.log(searchResult)
       searchResult = searchResult.distinct();
       if (!searchResult.length) {
         resultStr += '<li>无搜索结果</li>';
