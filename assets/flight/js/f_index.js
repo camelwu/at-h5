@@ -304,13 +304,17 @@ var fIndexModal = {
         var mb = String(valueStr).toLowerCase();
         allCityData.forEach(function (array) {
           if (array.cityCode) {
-            if (array.cityNameCN.toLowerCase().indexOf(mb) > -1 || array.cityNameEn.toLowerCase().indexOf(mb) > -1 || array.hyKeyWord.toLowerCase().indexOf(mb) > -1 || array.cityCode.toLowerCase().indexOf(mb) > -1 || array.pingYin.toLowerCase().indexOf(mb) > -1 || array.countryName.toLowerCase().indexOf(mb) > -1) {
+            if (array.cityNameCN.toLowerCase().indexOf(mb) > -1 ||
+                array.cityNameEn.toLowerCase().indexOf(mb) > -1 ||
+                 array.hyKeyWord.toLowerCase().indexOf(mb) > -1 ||
+                  array.cityCode.toLowerCase().indexOf(mb) > -1 ||
+                   array.pingYin.toLowerCase().indexOf(mb) > -1 ||
+              array.countryName.toLowerCase().indexOf(mb) > -1) {
               searchResult.push(array);
             }
           }
         });
-      }
-      console.log(searchResult)
+      };
       searchResult = searchResult.distinct();
       if (!searchResult.length) {
         resultStr += '<li>无搜索结果</li>';

@@ -157,6 +157,7 @@ i.i_address {
 
 .hotel_time_center_start input,
 .hotel_time_center_end input {
+  padding:.1rem 0 0 0 ;
     float: left;
     width: 2.12rem;
     font-size: .4rem;

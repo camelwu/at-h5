@@ -149,19 +149,23 @@ body {
     margin-right: .16rem;
 }
 
-.dateWeekCity span.icon, .arrow {
-    display: inline-block;
-    width: .40rem;
-    height: .40rem;
-    background: url(../../images/ui/icon_common.png);
-    background-repeat: no-repeat;
-    background-size: 7.90rem 5.13rem;
-    background-position: -2.66rem -1.42rem;
-    overflow: hidden;
-    position: absolute;
-    top: -.033rem
+.tripGo, .tripBack {
+  width: 100%
 }
-
+.dateWeekCity span.icon, .arrow {
+  width: .34rem;
+  height: .34rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -2.6999rem -1.522rem;
+  margin-top: .04rem;
+}
+.tripGo .icon,.tripBack .icon {
+  float: left;
+}
+.tripBack .icon{
+  background-position: -2.6999rem -1.522rem;
+}
 .arrow {
     display: block;
     width: 1.68rem;
@@ -171,18 +175,9 @@ body {
     margin: 0 auto;
 }
 
-.dateWeekCity span:nth-child(2) {
-    margin-left: .45rem;
-}
-
 .tripBack .dateWeekCity span.icon {
-    background-position: -3.35rem -1.45rem;
+  background-position: -3.372rem -1.519rem;
 }
-
-.tripGo, .tripBack {
-    width: 100%
-}
-
 .addMargin_ {
     margin-top: .40rem;
 }
@@ -223,7 +218,9 @@ body {
     display: inline-block;
     margin: 0 .08rem;
 }
-
+.flightDetailInfo span:nth-child(2):before{
+    display: none;
+}
 .flightDetailInfo span:first-child:before {
     content: "";
     display: none;
@@ -233,7 +230,13 @@ body {
     font-size: .2rem;
     color: #999;
 }
-
+.flightDetailInfo span:first-child{
+  width: .32rem;
+  height: .32rem;
+  float: left;
+  margin-right: .10rem;
+}
+.flightDetailInfo img{width:100%}
 .flightDetailArrow {
     width: 100%;
     height: .32rem;
@@ -306,13 +309,15 @@ body {
 }
 
 .timeAirport .middle .toArrowWord {
-    display: block;
-    margin: 0.04rem auto 0.04rem;
-    width: 1.888rem;
-    height: 0.24rem;
-    background: url(../../images/ui/change-arrow.png);
-    background-size: 1.88rem auto;
-    background-repeat: no-repeat;
+  display: block;
+  margin: 0 auto;
+  width: 1.688rem;
+  height: 0.20rem;
+  background: url(../../images/ui.1.0/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -3.38rem -4.44rem;/*.left_info .middle .arrow_word {-0.482rem -4.44rem background-position: -3.38rem -4.44rem;*/
+
 }
 
 .timeAirport .middle .transferCity {
