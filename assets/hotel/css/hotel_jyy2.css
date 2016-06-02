@@ -11,11 +11,12 @@ ul,li{
   height: auto;
   z-index: 2;
   overflow: auto;
+  margin-top: .88rem;
   transform: translate3d(0, 0, 0);
 }
 .hotel_lists{
   width: 100%;
-  margin-top: 0.88rem;
+  /*margin-top: 0.88rem;*/
   list-style-type: none;
   background: #fff;
   border-top: 1px solid #dddddd;
@@ -424,10 +425,12 @@ opacity: 1;
   color: #666;
   font-size: .32rem;
   text-align: center;
+  display: block;
 }
 .hotelConSorry2{
   margin: .5rem 1.6rem;
   color: #999;
   font-size: .28rem;
   text-align: center;
+  display: block;
 }
