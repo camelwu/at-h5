@@ -81,7 +81,7 @@
                 "DomBeginDateWeek": $("#weekSpan3").html(),
                 "DomLeaveDateWeek": $("#weekSpan4").html()
             };
-            localStorage.setItem('hotelStorage12345', JSON.stringify(hotelStorage12345));
+            sessionStorage.setItem('hotelStorage12345', JSON.stringify(hotelStorage12345));
         },
         //初始化国际 国内日期
         /**
@@ -139,7 +139,7 @@
             //返回按钮
             $(".header_back").click(function () {
                 //清楚搜索记录
-                localStorage.removeItem("hotelStorage12345");
+                sessionStorage.removeItem("hotelStorage12345");
                 history.go(-1);
             });
 
@@ -211,7 +211,7 @@
 
             //默认入住离店时间
             //获取历史搜索数据
-            var hotelStorage = JSON.parse(localStorage.getItem("hotelStorage12345"));
+            var hotelStorage = JSON.parse(sessionStorage.getItem("hotelStorage12345"));
             //国际
             if (hotelStorage) {
                 $("#count1").val(hotelStorage.NumRoom);
