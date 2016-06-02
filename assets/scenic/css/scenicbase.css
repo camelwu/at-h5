@@ -1090,6 +1090,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   float: right;
   height: .9rem;
   width: .5rem;
+  margin-right: .5rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
   background-position: -1rem -0.3rem;
