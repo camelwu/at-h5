@@ -225,7 +225,6 @@ body {
     content: "";
     display: none;
 }
-
 .flightDetailInfo > span {
     font-size: .2rem;
     color: #999;
@@ -308,7 +307,7 @@ body {
     font-size: .20rem;
 }
 
-.timeAirport .middle .toArrowWord {
+.timeAirport .middle .arrowWord,.timeAirport .middle .arrow{
   display: block;
   margin: 0 auto;
   width: 1.688rem;
@@ -316,10 +315,11 @@ body {
   background: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
   background-size: 7.90rem auto;
-  background-position: -3.38rem -4.44rem;/*.left_info .middle .arrow_word {-0.482rem -4.44rem background-position: -3.38rem -4.44rem;*/
-
+  background-position: -3.38rem -4.44rem;
 }
-
+.timeAirport .middle .arrow{
+  background-position: -.488rem -4.460rem;
+}
 .timeAirport .middle .transferCity {
     position: relative;
     text-align: center;
