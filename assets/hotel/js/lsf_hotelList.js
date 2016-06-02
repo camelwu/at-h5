@@ -321,6 +321,13 @@ function styleChange(id, mytext) {
              for(var r=0;r < lli.length;r++){
              lli[r].addEventListener("click",selectLocation);
              }*/
+            //back button
+            $(".header").on("click", ".header_back", function (event) {
+                //清空缓存记录
+                window.sessionStorage.removeItem("asiaHlHistory");
+                window.history.go(-1);
+            });
+
         };
         init();
         openClick(fo_ra, rank);
