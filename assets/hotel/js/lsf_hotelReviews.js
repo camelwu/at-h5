@@ -48,9 +48,10 @@ var lsf_myweb = {
 };
 (function() {
   var goBack = document.getElementById('hr_back'),url = window.location.href,HotelID = lsf_myweb.url2json(url).HotelID, Rating = new Number(lsf_myweb.url2json(url).TAAvgRating);
-  goBack.onclick = function() {
-    window.history.go(-1);
-  };
+  //goBack.onclick = function() {
+  //  window.history.go(-1);
+  //};
+
   $(document).ready(function() {
     window.addEventListener('load', function() {
       FastClick.attach(document.body);
