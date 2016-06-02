@@ -257,8 +257,16 @@
 
                     //   选择目的地
                     var changeCity = function(){
-                        var city = $('#hotPlace')[0].children;
+                        var city = $('#hotPlace li');
                         for(var i=0; i < city.length; i++){
+                            //触摸变色
+                            var ali = city[i];
+                            ali.addEventListener('touchstart',fn,false);
+                            function fn(event) {
+                                var event = event || window.event;
+                                $(this).addClass('cur')
+                            }
+
                             city[i].onclick = function(){
                                 for(var j=0; j < city.length; j++){
                                     city[j].className = "";
