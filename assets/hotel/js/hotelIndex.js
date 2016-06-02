@@ -12,9 +12,9 @@
 }(jQuery));
 
 /**
- *@desc 酒店搜索页  依赖jquery
+ *@desc 酒店搜索页  依赖jquery 
  *@time
- *@author
+ *@author 
  **/
 (function () {
     "use strict";
@@ -29,6 +29,9 @@
             this.initSlider();
             this.initEvent();
             this.initData();
+//            alert(window.screen.width);
+//            alert(window.screen.height);
+//            alert(window.navigator.userAgent);
         },
         initSlider: function () {
             //国际国内切换实现滑动效果
