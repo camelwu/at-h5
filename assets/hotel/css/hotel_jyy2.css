@@ -130,7 +130,7 @@ ul,li{
   margin-bottom: .98rem;
   text-align: center;
   height: .6rem;
-  line-height: .8rem;
+  /*line-height: .8rem;*/
 }
 /*footer开始*/
 .hl-bottom{
