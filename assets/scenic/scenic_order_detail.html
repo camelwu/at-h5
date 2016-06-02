@@ -146,16 +146,16 @@
             <div class="booking_package_linkman_title">
               <i class="booking_package_i"></i>
               <h3 class="booking_package_h3">取票人信息</h3>
-              <a onclick="vlm.f_choice('tanktick','t','traver','',false,false,null,null,null,'myCallBack');">
+              <a onclick="vlm.f_choice('ticket','t','traver','',false,false,null,null,null,'myCallBack');">
               <i class="booking_package_addpre_i"></i>
               </a>
             </div>
-            <div id="tanktick" class="booking_package_linkman_contact">
+            <div id="ticket" class="booking_package_linkman_contact">
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="姓:(如:Li)" data-elementName="lastName" value="">
+                <input type="text" id="ticketLastName" class="booking_package_linkman_input" placeholder="姓:(如:Li)" data-elementName="lastName" value="">
               </div>
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="firstName" value="">
+                <input type="text" id="ticketFirstName" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="firstName" value="">
               </div>
             </div>
             <div class="countries-wrap booking_package_linkman_contact">
@@ -174,10 +174,10 @@
             </div>
             <div class="booking_package_linkman_contact">
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="姓:(如:Li)" data-elementName="lastName" value="">
+                <input type="text" id="contackLastName" class="booking_package_linkman_input" placeholder="姓:(如:Li)" data-elementName="lastName" value="">
               </div>
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="firstName" value="">
+                <input type="text" id="contactFirstName" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="firstName" value="">
               </div>
 
             </div>
@@ -299,19 +299,54 @@
     <div class="header country_header">
       <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
       <div class="cl_search">
-        <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+        <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
         <i class="icon_common"></i>
       </div>
     </div>
     <!--国籍弹窗开始-->
     <ul class="country-list-searched"></ul>
     <!--国籍弹窗结束-->
-
     <div class="content">
-      <div class="country-wrap" id="country-wrap">
-      </div>
+      <div id="country-wrap-hot"></div>
+      <div class="country-wrap" id="country-wrap"></div>
     </div>
+    <!--热门-->
+    <script id="countryList_hot" type="text/template">
+      <h4><a name="rm" class="target"></a>热门</h4>
+      <ul class="country_hot">
+        <% for(var i=0; i< arrCountry.length; i++){ %>
+        <% if(arrCountry[i].isHot == 1) { %>
+        <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
+        <% } %>
+        <% } %>
+      </ul>
+    </script>
+    <!--全部列表-->
+    <script id="countryList" type="text/template">
+      <div class="full_country_outer">
+        <% for(var tem in countryArray){ %>
+        <a class="target" name="<%=tem%>"></a>
+        <h4><%= tem%></h4>
+        <ul class="full_country_list">
+          <%countryArray[tem].forEach(function(array){ %>
+          <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
+          <% })%>
+        </ul>
+        <% }%>
+      </div>
+    </script>
+    <!--国籍a-z-->
+    <script id="country_index" type="text/template">
+      <ul>
+        <li><a href="#rm">热门</a></li>
+        <% for(var tem in countryArray){%>
+        <li><a href="#<%=tem%>"><%=tem%></a></li>
+        <%}%>
+      </ul>
+    </script>
   </div>
+  <!--右侧a-z-->
+  <div class="country_index" id="country_index_wrap"></div>
   <!--国籍选择结束-->
   <script type="text/template" id="tpl_BookingPackage">
     <!--景点包信息-->
@@ -346,7 +381,7 @@
           <i class="booking_package_i"></i>
           <h3 class="booking_package_h3"><%=lists.DetailData.data.tours[i].tourName %></h3>
         </div>
-        <div id="js_booking_package_date<%=i%>" class="booking_package_date js_booking_package_date" data-defaultdate="<%=lists.DefaultDate%>" data-value="<%=lists.DetailData.data.defaultDepartStartDate%>">
+        <div id="js_booking_package_date<%=i%>" class="booking_package_date js_booking_package_date" data-tourfrequency="<%=lists.DetailData.data.tours[i].tourFrequency.join('|') %>" data-defaultdate="<%=lists.DefaultDate%>" data-value="<%=lists.DetailData.data.defaultDepartStartDate%>">
           <p id="js_booking_package_date_p<%=i%>" class="booking_package_date_p js_booking_package_date_p"><%=T.Command().callCommand("formatDate",{date:lists.DetailData.data.defaultDepartStartDate,format:"MM月dd日"})%></p>
           <i class="booking_package_date_i js_booking_package_date_i"></i>
         </div>
