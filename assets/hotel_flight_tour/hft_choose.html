@@ -172,14 +172,8 @@
                                                             <%}%>
                         </div>
                         <div class="roomName">
-                            <p>
-                                <%= room['roomName'] %>
-                            </p>
-                            <p>
-                                <% if(room['includedBreakfast'] == 1){ %>
-                                    <span>含早</span>
-                                    <% } %>
-                            </p>
+                            <p><%= room['roomName'] %></p>
+                            <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
                         </div>
                     </li>
                     <% }) %>
@@ -224,15 +218,8 @@
                                                 <%}%>
             </div>
             <div class="roomName">
-                <p>
-                    <%= room['roomName'] %>
-                </p>
-
-                <p>
-                    <% if(room['includedBreakfast'] == 1){ %>
-                        <span>含早</span>
-                        <% } %>
-                </p>
+              <p><%= room['roomName'] %></p>
+              <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
             </div>
         </li>
         <% }) %>
