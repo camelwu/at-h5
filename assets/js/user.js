@@ -478,7 +478,7 @@
     {
       $('#uptra_page .phone_pre').html('+86');
     }else{
-      $('#uptra_page .phone_pre').html('+'+telCode.TelCode);
+      $('#uptra_page .phone_pre').html('+'+telCode.phoneCode);
     }
     $('#uptra_page .country-btn').eq(0).attr('data-code',travJson.data[index].listTravellerIdInfo[0].idCountry);
     //证件生日有效期缓存函数
