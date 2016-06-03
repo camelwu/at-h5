@@ -1814,7 +1814,7 @@
         if (a.length != 0) {
           i = a.offset().top - scrollTopPx;
         }
-        $(window).scrollTop(i);
+        $(".citybox_search_container").scrollTop(i);
       }
       dom.appendChild(citybox_summary_item_litop2);
 
@@ -1828,7 +1828,7 @@
         if (a.length != 0) {
           i = a.offset().top - scrollTopPx;
         }
-        $(window).scrollTop(i);
+        $(".citybox_search_container").scrollTop(i);
       }
       dom.appendChild(citybox_summary_item_litop3);
 
@@ -1844,7 +1844,8 @@
           if (a.length != 0) {
             i = a.offset().top - scrollTopPx;
           }
-          $(window).scrollTop(i);
+          $(".citybox_search_container").scrollTop(i);
+
         }
         fragment.appendChild(citybox_summary_item_li);
       }
