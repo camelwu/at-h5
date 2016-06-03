@@ -1,3 +1,5 @@
+"use strict";
+
 var fIndexModal = {
 
   addHandler: function (target, eventType, handle) {
@@ -586,7 +588,9 @@ var fIndexModal = {
       singleWrap.style.display = "block";
       doubleWrap.style.display = "none";
     } else {
-      defaultDate[1] = data.returnDate;
+      if(data.returnDate){
+        defaultDate[1] = data.returnDate
+      }
       tripTitles[0].className = "singleTrip grey-title";
       tripTitles[1].className = "doubleTrip light-title";
       singleWrap.style.display = "none";

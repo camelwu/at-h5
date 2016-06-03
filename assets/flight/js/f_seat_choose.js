@@ -1,3 +1,5 @@
+"use strict";
+
 var fSeatChoose = {
 
   addHandler: function (target, eventType, handle) {
