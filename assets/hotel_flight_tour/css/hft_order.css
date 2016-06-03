@@ -219,7 +219,7 @@ input {
   margin-right: .15rem;
   vertical-align: top;
   margin-top: .05rem;
-  background-color: #ffb413;
+  background-color: #7bc300;
   display: inline-block;
 }
 
@@ -253,25 +253,27 @@ li.order_tlist2 {
 }
 
 .tra_delete {
+  width: .52rem;
+  height: .52rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-position: -1.23rem -2.97rem;
   position: absolute;
   left: .28rem;
-  top: .32rem;
-  width: .4rem;
-  height: .4rem;
-  background: url(../../images/hotel_flight_tour/icon_payment.png) no-repeat;
-  background-position: -3.96rem -.42rem;
-  background-size: 6.6rem 1.4rem;
+  top: .3rem;
+  margin-top: -0rem;
+  background-size: 7.5rem auto;
 }
 
 .add_traveller {
+  width: .40rem;
+  height: .40rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
   position: absolute;
+  top: 50%;
+  margin-top: -.20rem;
   right: .28rem;
-  top: .16rem;
-  width: .33rem;
-  height: .33rem;
-  background: url(../../images/hotel_flight_tour/icon_payment.png) no-repeat;
-  background-position: -4.66rem -.44rem;
-  background-size: 6.6rem 1.4rem;
+  background-position: -6.78rem -3.22rem;
 }
 
 .traveller_wrap {
@@ -436,7 +438,7 @@ li.order_tlist2 {
 }
 
 .num_tip {
-  width: .6rem;
+  width: .4rem;
   height: .98rem;
   padding-top: .4rem;
 }
@@ -445,7 +447,7 @@ li.order_tlist2 {
   height: .98rem;
   line-height: .98rem;
   width: 50%;
-  background-color: #FDB330;
+  background-color: #7bc300;
   text-align: center;
   color: white;
   font-size: .36rem;
@@ -495,102 +497,6 @@ li.order_tlist2 {
 
 /*明细结束*/
 
-/*国籍选择开始*/
-.country_header {
-  opacity: 1;
-}
-
-.gj_header {
-  z-index: 9999;
-  visibility: hidden;
-}
-
-.country-cho-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  display: none;
-}
-
-.country-cho-wrap-order {
-  position: absolute;
-  z-index: 1000;
-}
-
-.cl_search {
-  height: .6rem;
-  width: 100%;
-  padding-left: 1.04rem;
-  padding-right: .28rem;
-  margin-top: .16rem;
-  position: relative;
-  left: 0;
-  top: 0;
-  overflow: visible;
-}
-
-.cl_search input {
-  width: 100%;
-  height: 100%;
-  border-radius: .3rem;
-  padding-left: .48rem;
-  background-color: #e6e6e6;
-}
-
-.cl_search i {
-  position: absolute;
-  left: 1.2rem;
-  top: .13rem;
-  background-position: -2.28rem -1.64rem;
-  background-size: 5.8rem 3.6rem;
-  width: .34rem;
-  height: .34rem;
-}
-
-.country-list {
-  background-color: #fff;
-}
-
-.country-list li {
-  padding-left: .48rem;
-  height: .68rem;
-  line-height: .68rem;
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.country-hidden {
-  z-index: 100;
-}
-
-/*国籍模糊搜索*/
-.country-list-searched {
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: .88rem;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9;
-  background: #f5f4f9;
-  overflow-y: scroll;
-}
-
-.country-list-searched li.country-list-searched-item {
-  width: 100%;
-  height: .68rem;
-  line-height: .68rem;
-  text-align: left;
-  border-bottom: 1px solid #e6e6e6;
-  padding-left: .48rem;
-
-}
-
-/*国籍选择结束*/
-
 /*订单详情已支付*/
 .tel_tip {
   position: absolute;
@@ -635,7 +541,7 @@ li.order_tlist2 {
   font-size: .32rem;
   background-color: #fff;
   text-align: center;
-  color: #ffb413;
+  color: #7bc300;
 }
 
 .hft_paid i {
@@ -752,7 +658,7 @@ li.order_tlist2 {
 
 .jpop_box_tic dd a {
   float: right;
-  background: #ffb413;
+  background: #7bc300;
 }
 
 .jpop_box_tic dd span {

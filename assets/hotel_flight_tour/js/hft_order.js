@@ -113,14 +113,12 @@
     });
 
     if(freetype == 2){
-
       //景点详情
       var tourstr=$('#orderTour').html();
       var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
       $('#hftTourTab').html(tourdet);
 
     }else if(freetype == 1){
-alert(1);
       $('.tour_section').remove();
 
     }else{
@@ -186,17 +184,22 @@ alert(1);
           var sceWrap=hftFlightHotelTourInfo.tours[i];
           var scenic={};
           scenic.tourID=sceWrap.tourID;
-          scenic.travelDate=sceWrap.travelDates[0];
-          var sceArr=[];
-          for(var j=0; j<sceWrap.tourSessions.length; j++)
-          {
-            var session={};
-            if( sceWrap.tourSessions[j].isSelected == 1){
-              session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+          scenic.travelDate =null;
+          scenic.tourSession=null;
+
+          if(sceWrap.tourType!=1){
+            scenic.travelDate=sceWrap.travelDates[0];
+            var sceArr=[];
+            for(var j=0; j<sceWrap.tourSessions.length; j++)
+            {
+              var session={};
+              if( sceWrap.tourSessions[j].isSelected == 1){
+                session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+              }
+              sceArr.push(session);
             }
-            sceArr.push(session);
+            scenic.tourSession=sceArr[0].tourSession;
           }
-          scenic.tourSession=sceArr[0].tourSession;
           tours.push(scenic);
         }
         Parmeters.Parameters.tours=tours;
