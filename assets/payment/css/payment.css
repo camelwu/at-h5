@@ -175,14 +175,15 @@ i {
   background-repeat: round;
 
 }
-
+.content.pay_detail_order{
+  padding-bottom: 1.6rem;
+}
 .p-ul2 {
   width: 100%;
   padding: 0 .28rem;
   border-bottom: 1px solid #dedede;
   background: #fff;
   margin-top: .28rem;
-  margin-bottom: 1.6rem;
 }
 
 .p-ul2 li {
@@ -202,7 +203,8 @@ i {
   border: none;
 }
 
-.p-ul2 li div:last-child {
+.p-ul2 li div.safe_code {
+  width: 4rem;
 }
 
 .second-div {
@@ -251,7 +253,6 @@ i {
 
 .p-but {
   height: 1rem;
-  margin-top: 1rem;
   background-color: #7bc300;
   text-align: center;
   color: white;
