@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = 44;
+  var show1 = 0,show2 = 0,scrollTopPx = 44,cityboxHistoryScrollTop = 0;
   var globalType = "";
   var returnType = "";
   var returnAttr = "";
@@ -1064,6 +1064,7 @@
       $("#citybox_search_container").show();
       $("#citybox_search_container").removeClass("citybox_search_container");
       $("#citybox_search_container").addClass("citybox_search_container");
+      cityboxHistoryScrollTop = $(document).scrollTop();
       $(document).scrollTop(0);
     },
     /**
@@ -1084,6 +1085,7 @@
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").hide();
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").hide();
       $(".citybox_search_container").hide();
+      $(document).scrollTop(cityboxHistoryScrollTop);
     },
     /**
      * 返回城市数据
