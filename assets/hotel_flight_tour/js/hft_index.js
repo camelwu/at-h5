@@ -453,9 +453,7 @@ var htf_search = {
   addbed : function() {
     var addBed = document.getElementsByClassName('com_icon noselect');
     var addNum = document.getElementsByClassName("cut_up_cont child_number");
-    console.log(addNum);
-    var addBedHTML = addNum[0].innerHTML;
-    console.log(addBedHTML);
+    var addBedHTML = addNum[1].innerHTML;
     for (var j = 0; j < addBed.length; j++) {
       {( function(index) {
         if(addBedHTML<2){
