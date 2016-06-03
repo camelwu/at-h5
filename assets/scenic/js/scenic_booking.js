@@ -4,7 +4,9 @@
 (function(){
   var webkit = this || (0, eval)('this');
   var val = vlm.parseUrlPara(window.location.href);
-  var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax,MaxPax,OnlyForAdult,MinPaxType, DetailData, SearchPriceData, globaldata, ExtendData, pickupInfosData, StartDate, EndDate, recalSearchPrice;
+  var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax,MaxPax,
+    OnlyForAdult,MinPaxType, DetailData, SearchPriceData,OrderParam,
+    globaldata, ExtendData, pickupInfosData, StartDate, EndDate, recalSearchPrice;
 
   /**
    *     监听某个节点属性是否改变
@@ -176,7 +178,6 @@
         Adapter.initPickUP();
         Adapter.priceDetail();
         Adapter.bindPickupSearchInput();
-        Adapter.researchBookingPackage({});
 
       },
       initPickUP:function(){
@@ -596,7 +597,7 @@
           TourArray = [],TourObj = {}, TravelDate = "", TourSession = "", TourCount = 0, TourID = 0,
           Travelers = [],NationalityCode = "",CountryCode = "",Salutation = "";
 
-        var param = {
+        OrderParam = {
           "Parameters" : {
             "PackageID" : ExtendData.PackageID,
           },
@@ -612,7 +613,7 @@
           adultCount = 0;
         }
         recalSearchPrice.Parameters.Adult = adultCount;
-        param.Parameters.Adult = adultCount;
+        OrderParam.Parameters.Adult = adultCount;
 
         //儿童数量
         childCount = parseInt($(".js_booking_package_pre_child_num").html());
@@ -638,7 +639,7 @@
           //查询价格参数对象
           recalSearchPrice.Parameters.Child = ChildArray;
           //创建订单参数对象
-          param.Parameters.Child = ChildArray;
+          OrderParam.Parameters.Child = ChildArray;
         }
 
         //判断人数
@@ -698,7 +699,7 @@
 
             TourArray.push(TourObj);
           }
-          param.Parameters.Tours = TourArray;
+          OrderParam.Parameters.Tours = TourArray;
         }
 
 
@@ -729,7 +730,7 @@
           "LastName" : ticketFirstName,
           "NationalityCode" : NationalityCode
         });
-        param.Parameters.Travelers = Travelers;
+        OrderParam.Parameters.Travelers = Travelers;
         //验证联系人信息
         var contackLastName = $("#contackLastName").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contackLastName,rules:"required|en",tips:"联系人信息姓不能为空|请您输入英文的联系人姓名"}})){
@@ -757,7 +758,7 @@
           return false;
         }
         //联系人信息
-        param.Parameters.ContactDetails = {
+        OrderParam.Parameters.ContactDetails = {
           "Salutation" : Salutation,
           "FirstName" : contackLastName,
           "LastName" : contactFirstName,
@@ -782,16 +783,13 @@
             "PickupID" : PickupID,
             "PickupPoint" : PickupName
           };
-          param.Parameters.PickupPoint = PickupPoint;
+          OrderParam.Parameters.PickupPoint = PickupPoint;
         }
 
-
-        console.log(param);
-
-      },
-      researchBookingPackage:function(){
-
-        console.log(recalSearchPrice);
+        window.OrderParam = OrderParam;
+        //console.log(OrderParam);
+        //重新计算价格
+        AjaxAdapter().callAjaxAdapter("researchBookingPackage",recalSearchPrice);
 
       }
 
@@ -872,6 +870,13 @@
           vlm.loadJson("",JSON.stringify(param),Method["callbackPickup"]);
         }
 
+      },
+      researchBookingPackage:function(SearchPrice){
+          $("<div id=\"preloadertmp\"><div id=\"statustmp\"><p class=\"center-text\"></p></div></div>").appendTo("body").show();
+          vlm.loadJson("",JSON.stringify(SearchPrice),Method["callbackReSearchPrice"],"","",true);
+      },
+      createBookingPackage:function(Order){
+          vlm.loadJson(vlm.apiWithDeviceID,JSON.stringify(Order),Method["callbackCreateBookingPackage"],"","",true);
       }
     }
 
@@ -1018,6 +1023,41 @@
         jAlert(json.message, "提示");
       }
     },
+    callbackReSearchPrice:function(data){
+      var relTotalPrice = 0,json = data, len = 0;
+      //console.log(json);
+      if (json.success) {
+        len = json.data.prices.length;
+        for (var i = 0;i<json.data.prices.length;i++){
+          relTotalPrice += parseInt(json.data.prices[i].totalAmount);
+        }
+
+        console.log(OrderParam);
+        OrderParam.Parameters.track={"deviceID":vlm.getDeviceID(),"browserType":""};
+        OrderParam.Parameters.ChargeDetails = {
+          "CurrencyCode" : "CNY",
+          "TotalPrice" : relTotalPrice
+        };
+        AjaxAdapter().callAjaxAdapter("createBookingPackage",OrderParam);
+      } else {
+        console.log(json);
+        jAlert(json.message, "提示");
+      }
+    },
+    callbackCreateBookingPackage:function(data){
+      var json = data;
+      if (json.success) {
+        var bookingRefNo = json.data.bookingRefNo;
+        if (bookingRefNo != undefined && bookingRefNo != "") {
+          window.location.href = "../payment/payment.html?bookingRefNo=" + bookingRefNo+"&type=Scenic";
+        }
+      }else {
+        console.log(json);
+        jAlert(json.message, "提示");
+        $("#preloadertmp").remove();
+      }
+
+    },
     callbackPickup:function(data){
       var tplString="",outString =""
       var json = data;
@@ -1114,7 +1154,6 @@
 
     T.Command().callCommand("addPackage",{id:"#js_booking_footer_pop_item_r"});
   });
-
 
   /**
    * 加载详情

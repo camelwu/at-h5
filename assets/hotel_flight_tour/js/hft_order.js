@@ -120,7 +120,7 @@
       $('#hftTourTab').html(tourdet);
 
     }else if(freetype == 1){
-
+alert(1);
       $('.tour_section').remove();
 
     }else{

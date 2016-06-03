@@ -173,8 +173,8 @@ input{
   padding: .15rem 0;
 }
 section[class^="hotelInfo_numb"] .per_price_control span {
-  width: .54rem;
-  height:.54rem;
+  width: .56rem;
+  height:.56rem;
   float: left;
   background-image: url(../../images/ui/icon_common.png);
   background-repeat: no-repeat;
