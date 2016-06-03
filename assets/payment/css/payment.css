@@ -262,6 +262,7 @@ i {
   position: fixed;
   left: 0;
   bottom: 0;
+  display: none;
 }
 
 /*鏀粯椤电粨鏉�*/

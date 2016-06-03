@@ -99,6 +99,10 @@
       obj.chinum=traChildnum;
       return obj;
     }
+
+
+
+
     travelDet();
     var hft_peotot=travelDet();
     window.localStorage.hft_peotot=(hft_peotot.adunum+hft_peotot.chinum);
@@ -109,18 +113,16 @@
     $(document).on('click','.add_traveller',function(){
       $("#status").show().fadeOut();
       $("#preloader").show().delay(400).fadeOut("medium");
-      vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false);
+      vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false,"callback");
     });
 
     if(freetype == 2){
-
       //景点详情
       var tourstr=$('#orderTour').html();
       var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
       $('#hftTourTab').html(tourdet);
 
     }else if(freetype == 1){
-alert(1);
       $('.tour_section').remove();
 
     }else{
@@ -186,17 +188,22 @@ alert(1);
           var sceWrap=hftFlightHotelTourInfo.tours[i];
           var scenic={};
           scenic.tourID=sceWrap.tourID;
-          scenic.travelDate=sceWrap.travelDates[0];
-          var sceArr=[];
-          for(var j=0; j<sceWrap.tourSessions.length; j++)
-          {
-            var session={};
-            if( sceWrap.tourSessions[j].isSelected == 1){
-              session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+          scenic.travelDate =null;
+          scenic.tourSession=null;
+
+          if(sceWrap.tourType!=1){
+            scenic.travelDate=sceWrap.travelDates[0];
+            var sceArr=[];
+            for(var j=0; j<sceWrap.tourSessions.length; j++)
+            {
+              var session={};
+              if( sceWrap.tourSessions[j].isSelected == 1){
+                session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+              }
+              sceArr.push(session);
             }
-            sceArr.push(session);
+            scenic.tourSession=sceArr[0].tourSession;
           }
-          scenic.tourSession=sceArr[0].tourSession;
           tours.push(scenic);
         }
         Parmeters.Parameters.tours=tours;
@@ -288,6 +295,7 @@ alert(1);
     if(json.success)
     {
       if( freetype == 2 ){
+
         window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
       }else{
         window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";

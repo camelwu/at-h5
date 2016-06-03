@@ -153,24 +153,44 @@
             });
 
             //加 减按钮
+            /*
+             *@desc 成人数与房间数联动   成人数必须大于等于房间数 房间数小于成人数时 成人数方可减
+             *
+             */
             $("#content1").on("click", ".add", function (event) {
                 var target = $(event.target);
+                if (target.hasClass('disable')) {
+                    return;
+                }
                 var inputEle = target.siblings("input");
                 var minusEle = target.siblings(".minus");
                 var maxValue = parseInt(inputEle.attr("data-max"));
                 var inputValue = inputEle.val();
                 var atferValue = parseInt(inputValue) + 1;
-                inputEle.val(atferValue <= maxValue ? atferValue : inputValue);
 
-                if (atferValue < maxValue && !minusEle.hasClass('able')) {
-                    minusEle.addClass("able");
-                }
+                inputEle.val(atferValue <= maxValue ? atferValue : inputValue);
+                var roomNemEle = $("#count1");
+                var roomValue = parseInt(roomNemEle.val());
+                var adultNumEle = $("#count2");
+                var adultValue = parseInt(adultNumEle.val());
+
                 if (atferValue >= maxValue) {
                     target.addClass("disable");
+                }
+                if (target.hasClass("hotel_people_right_adult_add") && atferValue <= roomValue) {
+                    minusEle.removeClass("able").addClass("disable");
+                } else if (atferValue < maxValue && !minusEle.hasClass('able')) {
+                    minusEle.removeClass("disable").addClass("able");
+                }
+                if (target.hasClass("hotel_roomNum_add") && atferValue > adultValue) {
+                    $("#ho_i7").trigger("click");
                 }
             });
             $("#content1").on("click", ".minus", function (event) {
                 var target = $(event.target);
+                if (target.hasClass('disable')) {
+                    return;
+                }
                 var inputEle = target.siblings("input");
                 var addEle = target.siblings(".add");
                 var minValue = parseInt(inputEle.attr("data-min"));
@@ -178,15 +198,25 @@
                 var inputValue = inputEle.val();
                 var atferValue = parseInt(inputValue) - 1;
                 inputEle.val(atferValue >= minValue ? atferValue : inputValue);
-
+                var roomNemEle = $("#count1");
+                var roomValue = parseInt(roomNemEle.val());
+                var adultNumEle = $("#count2");
+                var adultValue = parseInt(adultNumEle.val());
                 if (atferValue > minValue && !target.hasClass('able')) {
-                    minusEle.addClass("able");
-                }
-                if (atferValue <= minValue) {
-                    target.removeClass('able');
+                    target.removeClass('disable').addClass("able");
+                } else if (atferValue <= minValue) {
+                    target.removeClass('able').addClass("disable");
                 }
                 if (atferValue < maxValue) {
-                    addEle.removeClass('disable');
+                    addEle.removeClass('disable').addClass("able");
+                } else {
+                    addEle.removeClass('able').addClass("disable");
+                }
+                if (target.hasClass("hotel_roomNum_reduce") && atferValue < adultValue) {
+                    $(".hotel_people_right_adult_minus").removeClass('disable').addClass("able");
+                }
+                if (target.hasClass("hotel_people_right_adult_minus") && atferValue <= roomValue) {
+                    target.removeClass("able").addClass("disable");
                 }
             });
         },
