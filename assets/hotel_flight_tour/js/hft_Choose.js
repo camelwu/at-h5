@@ -37,16 +37,16 @@ var hftChoose = {
   },
 
   testLogin: function () {
-   /* if (vlm.checkLogin('hftChoose.testLogin')) {*/
-      var storage = window.sessionStorage, that = hftChoose;
-      that.createOrderPara.memberID = window.localStorage.getItem('memberid');
-      storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
-      that.timer0 = setTimeout(function () {
-        window.clearTimeout(that.timer0);
-        that.timer0 = null;
-        window.location.href = that.type == 2 ? "../hotel_flight_tour/hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "../hotel_flight_tour/hft_order.html?type=" + that.type;
-      }, 500);
-  /*  }*/
+    /* if (vlm.checkLogin('hftChoose.testLogin')) {*/
+    var storage = window.sessionStorage, that = hftChoose;
+    that.createOrderPara.memberID = window.localStorage.getItem('memberid');
+    storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
+    that.timer0 = setTimeout(function () {
+      window.clearTimeout(that.timer0);
+      that.timer0 = null;
+      window.location.href = that.type == 2 ? "../hotel_flight_tour/hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "../hotel_flight_tour/hft_order.html?type=" + that.type;
+    }, 500);
+    /*  }*/
   },
   getCurrentStyle: function (node) {
     var style = null;
@@ -362,12 +362,12 @@ var hftChoose = {
         "setID": that.curData.flightInfo.setID,
         "cacheID": that.curData.flightInfo.cacheID,
         "hotelID": that.curData.hotelInfo.hotelID,
-        "roomID": that.roomPriceInfo.roomID,
+        "roomID": that.selectedRoomId,
         "roomDetails": that.initParaObj.roomDetails,
         "currencyCode": "CNY",
         "totalPrice": that.roomPriceInfo.totalAmount,
         "memberID": "",
-        "priceRoomInfo": that.roomPriceInfo,
+        "priceRoomInfo":that.selectedRoom,
         "track": {
           "browserType": "",
           "deviceID": vlm.getDeviceID()
@@ -411,6 +411,7 @@ var hftChoose = {
       if (target.tagName == "BUTTON") {
         var allButton = this.querySelectorAll('button');
         temRoomId = target.parentNode.parentNode.getAttribute('data-room-id');
+        that.selectedRoomId = temRoomId;
         that.createPriceEle(temRoomId);
         for (var i = 0; i < allButton.length; i++) {
           allButton[i].innerHTML = allButton[i] == target ? "已选择" : "选择";
@@ -446,18 +447,33 @@ var hftChoose = {
     }
 
   },
-
+  selectedRoomHandler:function(){
+    var data = arguments[0], that = this;
+    this.curData = data;
+    if(that.urlParseObj.selectedRoomId){
+      that.selectedRoomId = that.urlParseObj.selectedRoomId;
+      data.hotelInfo.rooms.forEach(function(item, array){
+        if(item.roomID == that.selectedRoomId){
+          that.selectedRoom = item;
+          return false
+        }
+      })
+    }else{
+      that.selectedRoom = data.hotelInfo.rooms[0];
+      that.selectedRoomId = data.hotelInfo.rooms[0].roomID
+    }
+    return this
+  },
   renderHandler: function () {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
-      that.curData = resultData;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
-      that.createTags(resultData).createPriceEle().addEvent();
-      $("#status").fadeOut();
+      that.selectedRoomHandler(resultData).createTags(resultData).createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
+      $("#status").fadeOut(resultData);
       $("#preloader").delay(400).fadeOut("medium");
     } else {
       that.noResult();
@@ -471,10 +487,10 @@ var hftChoose = {
       tourTem = that.curData.tours;
       if(tourChosenInfo){
         tourTem.forEach(function(arrayItem){
-                if(arrayItem['tourID'] == tourChosenInfo["tourId"]){
-                  arrayItem['selectTravelDate'] = tourChosenInfo["chosenDate"];
-                }
-      })
+          if(arrayItem['tourID'] == tourChosenInfo["tourId"]){
+            arrayItem['selectTravelDate'] = tourChosenInfo["chosenDate"];
+          }
+        })
       }
       that.curData.tours = tourTem;
       that.roomPriceInfo = result.data.prices;
@@ -500,39 +516,36 @@ var hftChoose = {
     }
   },
 
-   noResult:function(){
-     $("#status").fadeOut();
-     $("#preloader").delay(400).fadeOut("medium");
-     var backFun = function () {
-       var backEle = document.querySelector('.header_back');
-       that.addHandler(backEle, 'click', function () {
-         window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
-       });
-     }, tempStrc="", outputStrc="", that = hftChoose;
-     tempStrc = $("#template_no_result").html();
-     outputStrc = ejs.render(tempStrc, {});
-     $(".all_elements").eq(0).html(outputStrc);
-     backFun();
-   },
+  noResult:function(){
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
+    var backFun = function () {
+      var backEle = document.querySelector('.header_back');
+      that.addHandler(backEle, 'click', function () {
+        window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
+      });
+    }, tempStrc="", outputStrc="", that = hftChoose;
+    tempStrc = $("#template_no_result").html();
+    outputStrc = ejs.render(tempStrc, {});
+    $(".all_elements").eq(0).html(outputStrc);
+    backFun();
+  },
 
-   createPriceEle: function () {
-    var selectedRoomId = "", priceRoom = null, that = hftChoose, temEle = null, str = '';
+  createPriceEle: function () {
+    var selectedRoomId = arguments[0], priceRoom = arguments[1]||null, that = hftChoose, temEle = null, str = '';
     var priceE = document.querySelector('.priceTotal span'), priceOuter = document.querySelector('.priceDetailInfo');
     var priceTemp = ' <p>成人<span class="price-num-price">￥<span></span></span></p><p>儿童<span class="price-num-price">￥<span></span></span></p>';
-    selectedRoomId = this.urlParseObj["selectedRoomId"] || arguments[0];
     temEle = that.curData.hotelInfo.rooms;
-    if (selectedRoomId) {
-      temEle.forEach(function (arr, item) {
+    if (!priceRoom) {
+      temEle.forEach(function (arr, item){
         if (arr['roomID'] == selectedRoomId) {
           priceRoom = arr;
-          return;
+          return false;
         }
       })
-    } else {
-      priceRoom = temEle[0];
     }
     that.roomPriceInfo = priceRoom;
-    priceRoom.prices.forEach(function (a, ii) {
+    priceRoom.prices.forEach(function (a, ii){
       if (a['category'] == 1) {
         str += '<p>成人<span class="price-num-price">￥<span>' + a['amount'] + 'X' + a['quantity'] + '</span></span></p>';
       } else if (a['category'] == 2) {
