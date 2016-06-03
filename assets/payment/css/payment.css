@@ -602,6 +602,7 @@ i {
 }
 
 .phone_pre {
+  max-width:.8rem;
   vertical-align: top;
   margin-top: -2px;
 }

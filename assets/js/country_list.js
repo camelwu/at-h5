@@ -137,7 +137,7 @@ var arrCountry = localStorage.arrCountry;
 
           if (valueStr) {
             for (var i = 0; i < arrCountry.length; i++) {
-              if (arrCountry[i]['chineseName'].indexOf(valueStr)>-1||arrCountry[i]['englishName'].indexOf(valueStr)>-1) {
+              if (arrCountry[i]['chineseName'].toLowerCase().indexOf(valueStr)>-1||arrCountry[i]['englishName'].toLowerCase().indexOf(valueStr)>-1 ||arrCountry[i]['nationalityCode'].toLowerCase().indexOf(valueStr)>-1 ||arrCountry[i]['simplePinYin'].toLowerCase().indexOf(valueStr)>-1 ||arrCountry[i]['fullPinYin'].toLowerCase().indexOf(valueStr)>-1) {
                 searchResult.push(arrCountry[i]);
               }
             }
