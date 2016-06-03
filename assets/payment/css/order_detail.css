@@ -677,6 +677,7 @@ li.order_tlist2 {
 
 #order_detail {
   margin-bottom: .4rem;
+  overflow-x: hidden;
 }
 
 .hft_pri_details {
