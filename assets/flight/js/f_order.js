@@ -375,10 +375,9 @@ var fOrder = {
     }
     editPassager=function(obj){
       var id=$(obj).find("input").eq(0).val();
-
       var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
       var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-      vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+      vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
     }
 
   },

@@ -82,10 +82,7 @@
       passagerListPage.hide();
       addOrEditPassagePage.show();
     });
-    addPassagerBackBtn.on("click",function(){
-      passagerListPage.show();
-      addOrEditPassagePage.hide();
-    });
+
     nameDescriptBtn.on("click",function(){
       nameDescriptPager.show();
     });
@@ -99,6 +96,15 @@
       } else {
         ifrCilent.parentNode.removeChild(ifrCilent);
       };
+    });
+    addPassagerBackBtn.on("click",function(){
+      if(travId=="null") {
+        passagerListPage.show();
+        addOrEditPassagePage.hide();
+      }
+      else{
+        closeWindowBtn.click();
+      }
     });
     submitBtn.on("click",function(){
       var selectPassagerList= $(".list-traveler .choiced")
@@ -124,6 +130,14 @@
       if(flag) {
         _getPassagerList();
       }
+      else{
+        return;
+      }
+
+      if(travId!="null" ) {
+        submitBtn.click();
+      }
+
     })
 
     $(".sex_cho_wrap span").on("click",function(){
@@ -264,12 +278,21 @@
   }
 
   var _clearDate=function(){
+    selectAdultNum=0;
+    selectChildNum=0;
     currentOperationType="new";
     editIDKey=null;
     addOrEditPassagePage.find("input").val("");
 
-    $(".addAir_page .cardDateLimit").attr("data-cache","1990年-1月-1日");
-    $(".addAir_page .cardDateLimit").val("1990年1月9号");
+    var newDate,year,month,day
+    newDate = new Date();
+    newDate.setMonth(newDate.getMonth()+6);
+    year=newDate.getFullYear();
+    month=newDate.getMonth()+1;
+    day=newDate.getDate();
+
+    $(".addAir_page .cardDateLimit").attr("data-cache",  year+"年-"+month+"月-"+day+"日");
+    $(".addAir_page .cardDateLimit").val(year+"年"+month+"月"+day+"号");
 
     $(".addAir_page .birthDay").attr("data-cache","1990年-1月-1日");
     $(".addAir_page .birthDay").val("1990年1月9号");
@@ -312,22 +335,24 @@
     //免登陆
     else{
       //编辑状态，移除数组元素，为了更数据
-      if(editIDKey !=null) {
+      if(currentOperationType=="edit") {
         choiceAir_AddPassagerArray.forEach(function (info) {
           if (info.traveller.travellerId == editIDKey) {
-            choiceAir_AddPassagerArray.pop()
+            info=modle;
+            return;
           }
         })
       }
-
-      if(currentOperationType=="new"){
+      else{
         modle.traveller.travellerId=new Date().getTime();
+        choiceAir_AddPassagerArray.push(modle);
       }
-      choiceAir_AddPassagerArray.push(modle);
+
+
       sessionStorage.setItem('choiceAir_AddPassagerArray',JSON.stringify(choiceAir_AddPassagerArray));
       passagerListPage.show();
       addOrEditPassagePage.hide();
-      _getPassagerList();
+      //_getPassagerList();
     }
     _clearDate();
     return true;
@@ -437,7 +462,7 @@
 
   //绑定选择事件
   var _bindSelectChoice=function(){
-    _clearDate();
+    //_clearDate();
     $(".user_choice").on("click",function(){
 
       if(isMulSelect){
@@ -500,6 +525,7 @@
     $(".user_edit").on("click",function(){
       currentOperationType="edit";
       editIDKey=$(this).attr('data-id');
+      console.log(editIDKey);
       _model2UI(passagerArray[editIDKey]);
 
       _setTitleTip();
@@ -562,11 +588,18 @@
 
             }
           }
+          if(travId!="null"){
+            currentOperationType="edit";
+            editIDKey=travId;
+            _model2UI(passagerArray[editIDKey]);
+            passagerListPage.hide();
+            addOrEditPassagePage.show();
+            return;
+          }
           vlm.init();
         }
       });
-      passagerListPage.show();
-      addOrEditPassagePage.hide();
+
     }
 
     //如果免登陆，查询LocalStorge数据
@@ -574,13 +607,15 @@
       var json={data:choiceAir_AddPassagerArray};
       var html = template(tpl_traveler,json) ;
       document.getElementById("allList").innerHTML = html;
-      _bindSelectChoice();
+
 
       choiceAir_AddPassagerArray.forEach(function(info){
         passagerArray[info.traveller.travellerId] = info;
       })
       var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
-      if(selectPassagerList !=null){
+
+      _bindSelectChoice();
+      if(currentOperationType=="new" && selectPassagerList !=null){
         for(var key in selectPassagerList){
           if(selectPassagerList[key].PagerType==from) {
             $(".list-traveler .user_choice[data-id="+key+"]").click();
@@ -590,6 +625,7 @@
       }
 
     }
+
   };
   var truncateCardInfo=function(){
     var cardId= $(".postCard").attr("data-code");
@@ -615,9 +651,8 @@
   /*页面初始化方法*/
   var _initPage=function(){
 
-    //新增常旅
-     new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
      new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
+     new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
      new Scroller({id: "postCard", type:"card",cont:"uuu","callback":truncateCardInfo});
 
 
@@ -646,8 +681,25 @@
 
     _getPassagerList();
     _bindEvent();
-    titleTip.html("选择"+titleType);
-    addPassagerTitle.html("新增"+titleType)
+
+    if(memberId==undefined && travId!="null"){
+      currentOperationType="edit";
+      editIDKey=travId;
+      _model2UI(passagerArray[editIDKey]);
+      passagerListPage.hide();
+      addOrEditPassagePage.show();
+      return;
+    }
+
+    addPassagerTitle.html("新增"+titleType);
+    var dataCache=JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
+    if(dataCache==null){
+      titleTip.html("选择"+titleType);
+    }
+    else{
+      _setTitleTip();
+    }
+
     //_setTitleTip();
   };
   /*接口*/
