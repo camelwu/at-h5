@@ -1111,6 +1111,7 @@ order-data-people  page   begin
     background-position: 54% 31.5%;
     background-size: 7.9rem 5.13rem;
     position: absolute;
+    display: none;
 }
 .hotelInfo_numb_people .numbList .age_state_box {
     position: absolute;
