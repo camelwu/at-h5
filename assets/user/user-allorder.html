@@ -80,25 +80,19 @@
     (function(){
       var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
       var deviceID=vlm.Utils.CookieUtil.get("deviceID");
-      var index= 1,   Parameters;
+      var pageIndex,pageSize,Parameters,cacheData;
 
-
-
-      var index;
-      var cacheData;
-      // pageshow => 清空cacheData
-      // 加载更多 => 合并到cacheData
-
+      //兼容ios gohistory 不刷新数据源问题
       window.addEventListener('pageshow',function () {
         cacheData = [];
-        index = 1;
-        pageSize=2;
+        pageIndex = 1;
+        pageSize=5;
         loadingData();
       }, false);
 
       var loadingData = function(){
          Parameters= {
-          "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":'+pageSize+'}',
+          "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+pageIndex+',"PageSize":'+pageSize+'}',
           "ForeEndType": 3,
           "Code": "0062"
         }
@@ -142,7 +136,7 @@
 
       })
       $(".moreData").on("click",function(){
-        index++;
+        pageIndex++;
         loadingData();
       })
     })();
@@ -159,7 +153,7 @@
           <b class="icon_allorder user_hotel2"></b>
           <div class="order_title">酒店</div>
 			<div class="if_pay">已取消</div>
-          <div class="order_Amount">￥{%=bookingAmount%}</div>
+          <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       </div>
       <div class="all_order_tab">
@@ -183,7 +177,7 @@
         <b class="icon_allorder user_air"></b>
         <div class="order_title">机票</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <!--<p class="info_title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
@@ -205,7 +199,7 @@
         <b class="icon_allorder user_hotel1"></b>
         <div class="order_title">酒店</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -225,7 +219,7 @@
         <b class="icon_allorder user_hoteltour"></b>
         <div class="order_title">酒+景</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -245,7 +239,7 @@
         <b class="icon_allorder user_spot"></b>
         <div class="order_title">景点</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -265,7 +259,7 @@
         <b class="icon_allorder user_fligthotle"></b>
         <div class="order_title">机+酒</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -285,7 +279,7 @@
         <b class="icon_allorder user_fligthotletour"></b>
         <div class="order_title">机+酒+景</div>
         <div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
       </div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
