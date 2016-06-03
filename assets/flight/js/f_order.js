@@ -1,3 +1,5 @@
+"use strict";
+
 var fOrder = {
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {

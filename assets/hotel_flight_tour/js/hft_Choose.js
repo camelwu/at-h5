@@ -242,7 +242,6 @@ var hftChoose = {
     });
     this.addHandler(changeFlight, 'click', function () {
       var tempTours = that.curData.tours, hftChangeFlightPara = {}, toursArray = [];
-      console.log(that.curData)
       hftChangeFlightPara = {
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
@@ -363,10 +362,10 @@ var hftChoose = {
         "setID": that.curData.flightInfo.setID,
         "cacheID": that.curData.flightInfo.cacheID,
         "hotelID": that.curData.hotelInfo.hotelID,
-        "roomID": that['roomPriceInfo']['roomID'],
+        "roomID": that.roomPriceInfo.roomID,
         "roomDetails": that.initParaObj.roomDetails,
         "currencyCode": "CNY",
-        "totalPrice": that['roomPriceInfo']['totalAmount'],
+        "totalPrice": that.roomPriceInfo.totalAmount,
         "memberID": "",
         "priceRoomInfo": that.roomPriceInfo,
         "track": {
@@ -450,14 +449,11 @@ var hftChoose = {
 
   renderHandler: function () {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
-    console.log(resultJSON)
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
       that.curData = resultData;
-      console.log(resultData)
-      console.log(that.curData)
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
       that.createTags(resultData).createPriceEle().addEvent();
@@ -471,7 +467,6 @@ var hftChoose = {
   renderHandler_: function () {
     var result = arguments[0], that = hftChoose;
     if (result.code == 200 && result.success == 1) {
-      console.log(result)
       var priceNum = result.data.totalAmount, tourTem = [],tourChosenInfo = JSON.parse(window.sessionStorage.getItem('tourChosenInfo'));
       tourTem = that.curData.tours;
       if(tourChosenInfo){
@@ -672,7 +667,6 @@ var hftChoose = {
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
     this.curData = hftFlightHotelTourInfo;
-    console.log(temObj)
     this.cacheOtherInfo = {
       adult: temObj['AdultNum'],
       child: temObj['ChildNum'],

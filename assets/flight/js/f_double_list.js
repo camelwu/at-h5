@@ -1,3 +1,5 @@
+"use strict";
+
 var fDoubleList = {
 
   addHandler: function (target, eventType, handle) {
@@ -64,6 +66,7 @@ var fDoubleList = {
 
   renderHandler: function () {
     var result = arguments[0], that = fDoubleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
+    that.fadeHandler();
     if (result.success && result.code == "200") {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
@@ -105,6 +108,7 @@ var fDoubleList = {
         that.postObj.departDate = dateSource[0];
         that.postObj.returnDate = dateSource[1];
         that.pageHandler();
+        that.fadeHandler('show');
         that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     });
@@ -275,8 +279,6 @@ var fDoubleList = {
         tempArray.push(temObj);
       });
     }
-    console.log(data)
-    console.log(tempArray)
     if (this.postObj.internationalOrDomestic == "international") {
       f_data = {
         Sort: {
