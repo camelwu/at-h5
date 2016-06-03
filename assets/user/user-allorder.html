@@ -151,23 +151,27 @@
 
 		})
 
-
     var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
     var deviceID=vlm.Utils.CookieUtil.get("deviceID");
     var index=1;
 
     var Parameters= {
-      "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":5}',
+      "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":2}',
       "ForeEndType": 3,
       "Code": "0062"
     }
 
 
     var loadingData=function(){
+      debugger;
       vlm.loadJson("", JSON.stringify(Parameters), function(data){
+        $(".moreData").hide();
         if(data.success) {
           if(data.data !=null && data.data.length>0 ) {
-            $(".moreData").show();
+
+            if(data.data.length==2) {
+              $(".moreData").show();
+            }
 
             var html = template("tpl_ticket", data.data);
             $(".ticket_div").append(html);
@@ -191,9 +195,7 @@
       })
 
     }
-
     loadingData();
-
 
     $(".moreData").on("click",function(){
       index++;
