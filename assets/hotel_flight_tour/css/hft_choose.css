@@ -446,7 +446,7 @@ body {
     position: relative;
     border-bottom: 1px solid #e6e6e6;
 }
-
+.tourOuter li {height:auto!important;}
 .roomUl li:first-child {
     border-top: solid 1px rgba(0, 0, 0, 0.1);
 }
