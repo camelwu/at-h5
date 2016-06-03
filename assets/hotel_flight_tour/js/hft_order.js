@@ -291,6 +291,7 @@
     if(json.success)
     {
       if( freetype == 2 ){
+
         window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
       }else{
         window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
