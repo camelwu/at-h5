@@ -975,12 +975,12 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   background-position: -3.852rem -.548rem;
 }
 .passengers_wrap .minus_person {
-  background-position: -1.278rem -3.09rem;
+  background-position: -1.278rem -3.0523rem;
   width: .52rem;
   height: .52rem;
   left: -.60rem;
   top: .20rem;
-  background-size: 7.78rem auto;
+  background-size: 7.72rem auto;
 }
 .passengers_wrap em{
   font-style: normal;
@@ -1067,6 +1067,7 @@ input.name{
 .contact_wrap {
   background: #FFFFFF;
   border-bottom: 1px solid #e6e6e6;
+  margin-bottom: .89rem;
 }
 
 .contact_wrap .glay_word {

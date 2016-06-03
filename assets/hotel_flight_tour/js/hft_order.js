@@ -27,22 +27,6 @@
   //初始化
   function init() {
 
-    if(freetype == 2){
-
-      //景点详情
-      var tourstr=$('#orderTour').html();
-      var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
-      $('#hftTourTab').html(tourdet);
-
-    }else if(freetype == 1){
-
-      $('.tour_section').remove();
-
-    }else{
-
-      jAlert('资源选择页url:type=undefined');
-    }
-
     //机票详情
     var flightstr=$('#orderFlight').html();
     var flightdet = ejs.render(flightstr , hftFlightHotelTourInfo)
@@ -127,6 +111,22 @@
       $("#preloader").show().delay(400).fadeOut("medium");
       vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false);
     });
+
+    if(freetype == 2){
+
+      //景点详情
+      var tourstr=$('#orderTour').html();
+      var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
+      $('#hftTourTab').html(tourdet);
+
+    }else if(freetype == 1){
+
+      $('.tour_section').remove();
+
+    }else{
+
+      jAlert('资源选择页url:type=undefined');
+    }
 
   }
   init();
