@@ -99,6 +99,7 @@ var fOrder = {
     });
     return this
   },
+
   addCountryCodeHandler:function(){
     var dataArray =arguments[0], tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
     outer.className = "country-cho-wrap all_elements";
@@ -195,6 +196,7 @@ var fOrder = {
     }
 
   },
+
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
     var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal'),changeTip = document.querySelector('.change_tip');
@@ -245,7 +247,6 @@ var fOrder = {
           contactInfo = JSON.parse(window['localStorage']['contact_selected']);
         } else {
           contactInfo = {
-            contactNumber: "",
             countryNumber: "",
             email: "",
             firstName: "",
@@ -263,7 +264,6 @@ var fOrder = {
           jAlert('请完善联系人信息!', '提示');
           return;
         }
-
         if (contactInfoCache.mobilePhone == "") {
           jAlert('请输入手机号!', '提示');
           return;
@@ -271,7 +271,6 @@ var fOrder = {
           jAlert('请输入正确格式手机号!', '提示');
           return;
         }
-
         if (contactInfoCache.email == "") {
           jAlert('请输入邮箱!', '提示');
           return;
@@ -284,7 +283,7 @@ var fOrder = {
         }
         window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
         postPara.contactDetail = contactInfo;
-        /*this.fadeHandler("show");*/
+        that.fadeHandler("show");
         that.postPara = postPara;
         that.tAjax(vlm.apiWithDeviceID, that.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
@@ -375,10 +374,9 @@ var fOrder = {
     }
     editPassager=function(obj){
       var id=$(obj).find("input").eq(0).val();
-
       var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
       var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-      vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+      vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
     }
 
   },
@@ -403,12 +401,10 @@ var fOrder = {
     moneyNumber.innerHTML = data.priceTotal;
     return this;
   },
+
   isInternationalTrip:function(){
     var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
-    if(data.data.internationalOrDomestic == "international"){
-      return false;
-    }
-    return true;
+    return !data.data.internationalOrDomestic == "international"
   },
 
   innitData: function () {

@@ -23,7 +23,7 @@ i, em {
 
 .login_header {
   height: .86rem;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -104,7 +104,7 @@ i, em {
 }
 
 #phone_login, #email_login {
-  margin-top: 1.8rem;
+  margin-top: 1rem;
   padding: 0 .4rem;
 }
 
@@ -244,7 +244,7 @@ i, em {
 
 #phone_register, #email_register {
   margin: 0 .4rem;
-  margin-top: 1.8rem;
+  margin-top: 1rem;
 }
 
 .coun-find > div {

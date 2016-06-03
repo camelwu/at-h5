@@ -182,7 +182,7 @@
       initPickUP:function(){
         if(ExtendData.requiredPickupPoint){
           $("#js_booking_package_pickup").show();
-          Adapter.bindPickupSelect();
+          //Adapter.bindPickupSelect();
           //Method["callbackPickup"](pickupInfosData);
         }else{
           $("#js_booking_package_pickup").hide();
@@ -592,7 +592,9 @@
 
       },
       validateBookingPackage:function(){
-        var adultCount = 0,childCount = 0,ChildArray = [],childTmp = 0;
+        var adultCount = 0,childCount = 0,ChildArray = [],childTmp = 0,
+          TourArray = [],TourObj = {}, TravelDate = "", TourSession = "", TourCount = 0, TourID = 0,
+          Travelers = [],NationalityCode = "",CountryCode = "",Salutation = "";
 
         var param = {
           "Parameters" : {
@@ -674,42 +676,118 @@
         }
 
 
-        console.log(recalSearchPrice);
+
+
         //验证景点的日期是否开放
         if(!T.Command().execCommand({command:"validate", param:{type:"tourweek",data:"",rules:"",tips:"不开放,请重新选择日期"}})){
           return false;
         }
+        //创建订单参数 景点信息
+        TourCount = $(".booking_package_tours").length;
+        if (TourCount > 0) {
+          for (var i = 0; i < TourCount; i++) {
+            TourID = $("#js_booking_package_date"+i+"").attr("data-tourid");
+            TravelDate = $("#js_booking_package_date"+i+"").attr("data-value");
+            TourSession = $("#js_booking_package_fullday_ul"+i+"").find(".current").attr("data-key");
+
+            TourObj = {
+              "TourID" : TourID,
+              "TravelDate" : TravelDate,
+              "TourSession" : TourSession
+            };
+
+            TourArray.push(TourObj);
+          }
+          param.Parameters.Tours = TourArray;
+        }
+
+
+        //前缀
+        Salutation = "Mr";
         //验证取票人信息
-        var ticketLastName = $("#ticketLastName").val();
+        var ticketLastName = $("#ticketLastName").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:ticketLastName,rules:"required|en",tips:"取票人信息姓不能为空|请您输入英文的取票人姓名"}})){
           return false;
         }
 
         //验证取票人信息
-        var ticketFirstName = $("#ticketFirstName").val();
+        var ticketFirstName = $("#ticketFirstName").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:ticketFirstName,rules:"required|en",tips:"取票人信息名不能为空|请您输入英文的取票人姓名"}})){
           return false;
         }
+        //取国籍信息
+        NationalityCode = $(".country-btn").attr("data-code");
+        if(!T.Command().execCommand({command:"validate", param:{type:"text",data:NationalityCode,rules:"required",tips:"国籍信息不能为空"}})){
+          return false;
+        }
+
+        //游客信息
+        Travelers.push({
+          "TravelerType" : "Adult",
+          "Salutation" : Salutation,
+          "FirstName" : ticketLastName,
+          "LastName" : ticketFirstName,
+          "NationalityCode" : NationalityCode
+        });
+        param.Parameters.Travelers = Travelers;
         //验证联系人信息
-        var contackLastName = $("#contackLastName").val();
+        var contackLastName = $("#contackLastName").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contackLastName,rules:"required|en",tips:"联系人信息姓不能为空|请您输入英文的联系人姓名"}})){
           return false;
         }
         //验证联系人信息
-        var contactFirstName = $("#contactFirstName").val();
+        var contactFirstName = $("#contactFirstName").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:contactFirstName,rules:"required|en",tips:"联系人信息名不能为空|请您输入英文的联系人姓名"}})){
           return false;
         }
+        //取区号信息
+        CountryCode = $("#booking_package_linkman_phoneselect").attr("data-tel-code");
+        if(!T.Command().execCommand({command:"validate", param:{type:"text",data:CountryCode,rules:"required",tips:"电话区号信息不能为空"}})){
+          return false;
+        }
+
         //验证联系人信息
-        var phone = $(".booking_package_linkman_inputphone").val();
+        var phone = $(".booking_package_linkman_inputphone").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,rules:"required|phone",tips:"联系电话不能为空|联系电话格式不正确"}})){
           return false;
         }
         //验证联系人信息
-        var email = $(".booking_package_linkman_inputemail").val();
+        var email = $(".booking_package_linkman_inputemail").val().trim();
         if(!T.Command().execCommand({command:"validate", param:{type:"email",data:email,rules:"required|email",tips:"邮箱不能为空|请输入正确邮箱格式"}})){
           return false;
         }
+        //联系人信息
+        param.Parameters.ContactDetails = {
+          "Salutation" : Salutation,
+          "FirstName" : contackLastName,
+          "LastName" : contactFirstName,
+          "Email" : email,
+          "MemberID":localStorage.memberid==undefined?"":localStorage.memberid,
+          "ContactNo" : {
+            "CountryCode" : CountryCode,
+            "PhoneNo" : phone
+          }
+        };
+
+        //接送服务信息
+        var Pickup = "", PickupName = "",PickupID = "",PickupPoint = {};
+        Pickup = $(".js_booking_package_pickup_select").length;
+        if(Pickup > 0){
+          PickupID = $(".js_booking_package_pickup_select").attr("data-key");
+          if(!T.Command().execCommand({command:"validate", param:{type:"text",data:PickupID,rules:"required",tips:"接送信息不能为空"}})){
+            return false;
+          }
+          PickupName =  $(".js_booking_package_pickup_select").html().trim();
+          PickupPoint ={
+            "PickupID" : PickupID,
+            "PickupPoint" : PickupName
+          };
+          param.Parameters.PickupPoint = PickupPoint;
+        }
+
+
+        console.log(param);
+
       },
       researchBookingPackage:function(){
 
