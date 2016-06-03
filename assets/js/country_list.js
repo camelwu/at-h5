@@ -148,7 +148,7 @@ var arrCountry = localStorage.arrCountry;
               if(str == 'code' ){
                 //手机区号
                 for (var j = 0; j < searchResult.length; j++) {
-                  resultStr += '<li class="country-list-searched-item" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'" ><em>'+searchResult[j].chineseName +'</em><span class="tel_code" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'">'+searchResult[j].phoneCode+'</span></li>';
+                  resultStr += '<li class="country-list-searched-item" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'" ><em data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'">'+searchResult[j].chineseName +'</em><span class="tel_code" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'">'+searchResult[j].phoneCode+'</span></li>';
                 }
               }else{
                 //国籍

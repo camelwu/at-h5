@@ -601,10 +601,12 @@ i {
   width: 1.5rem;
 }
 
-.phone_pre {
+.p-ul2 li span.phone_pre {
   max-width:.8rem;
   vertical-align: top;
   margin-top: -2px;
+  height: .96rem;
+  overflow: hidden;
 }
 
 .s-xiala3 {
