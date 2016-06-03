@@ -345,19 +345,7 @@
     <!--模板酒店结束-->
 
     <!--模板景点开始-->
-    <script id="orderTour" type="text/template">
-      <ul class="tour_wrap">
-        <% for(var i=0; i< tours.length; i++){ %>
-        <li>
-          <p class="mb_ten"><i class="orange_line"></i><%=tours[i].tourName%></p>
-          <% if(tours[i].tourType!=1 ){ %>
-          <% var date=tours[i].selectTravelDate.substring(5,10).replace('-','月')+'日 '%>
-          <p><%=date+tours[i].tourSessions[0].tourSessionName%></p>
-          <% }%>
-        </li>
-        <% } %>
-      </ul>
-    </script>
+    <script id="orderTour" type="text/template"></script>
     <!--模板景点结束-->
 
     <!--模板明细开始-->
@@ -387,6 +375,15 @@
         debugger;
         var num=$("#orderTraveller ul:visible").length;
         $(".adu_choose").html(num);
+
+        var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_orderTraveller"));
+        for (var key in modle) {
+          $(".contact_link_wrap .hft_con_lastname").val(modle[key].traveller.firstName);
+          $(".contact_link_wrap .hft_con_firstname").val(modle[key].traveller.lastName);
+          $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
+          $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
+        }
+
       }
         //删除出行人
         function delPassager(obj) {
@@ -405,9 +402,9 @@
 
         // 编辑出行人
         function editPassager(obj) {
-            var id = $(obj).find("input").eq(0).val();
-             var m=JSON.parse(window.localStorage.hft_peotot);
-             vlm.f_choice('passenger-list','f','traver','',true,true,hft_peotot.adunum,JSON.hft_peotot.chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,true, true)
+             var id = $(obj).find("input").eq(0).val();
+             var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
+             vlm.f_choice('orderTraveller','f','traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false)
         }
 
     </script>
