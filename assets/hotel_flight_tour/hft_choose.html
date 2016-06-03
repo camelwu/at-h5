@@ -252,10 +252,8 @@
             %>
                 <li data-tour-id="<%=tour['tourID']%>">
                     <h3 class="tour-list-title"><%= tour.tourName %></h3>
-
-                    <p class="choose-tour-date"><span data-date="<%= selectTravelDate%>"><%= hftChoose.returnDay(selectTravelDate)%></span><i></i>
+                       <p class="choose-tour-date"><span data-date="<%= selectTravelDate%>"><%= hftChoose.returnDay(selectTravelDate)%></span><i></i>
                     </p>
-
                     <div class="after-noon">
                       <%if(tour["tourSessions"]){ %>
                         <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
