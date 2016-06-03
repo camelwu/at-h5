@@ -114,11 +114,11 @@
 </script>
 <!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
-    <li class="jpr"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<!--<i class="arrow"></i>--></li>
+    <li class="jpr" id="h_reviews"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<i class="arrow"></i></li>
     <li><%=hotelNameLocale%></li>
 </script>
 <script id="jhf_star" type="text/template">
-    <li><%=starRating%>星级<% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span><i class="arrow"></i>--></li>
+    <li id="h_star"><%=starRating%>星级<% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span>--><i class="arrow"></i></li>
 </script>
 <!--房间列表页-->
 <script id="jhf_room" type="text/template">

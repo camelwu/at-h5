@@ -496,10 +496,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .airCropIcon {
-  width: .40rem;
-  height: .40rem;
+  width: .32rem;
+  height: .32rem;
   float: left;
   margin-right: .10rem;
+  margin-top: .04rem;
 }
 
 .flight_detail .airCropIcon:before, .flight_detail .airCropName:before {
@@ -790,6 +791,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .flightDetailInfo {
   margin: .28rem 0 .08rem 0;
   color: #999999;
+  height: .40rem;
+  line-height: .40rem;
 }
 
 .flightDetailInfo span:before {
@@ -1572,8 +1575,8 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
 }
 .change_tip h4 i{
   float: right;
-  width: .32rem;
-  height: .32rem;
+  width: .34rem;
+  height: .34rem;
   background-position: -3.81rem -2.41999992rem;
   margin-top: .23rem;
   position: static;
