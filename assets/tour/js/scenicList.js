@@ -119,7 +119,10 @@
 		});
 	}).call(this, 1);
 })();
-
+//城市列表
+$("#ht_des").click(function(){
+	VM.Load("ht_des");
+});
 //城市返回记录已访问过
 $('#city-back-tip').click(function() {
 	var cityvisited = window.location.search;
