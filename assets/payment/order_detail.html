@@ -9,6 +9,7 @@
   <meta name="x5-orientation" content="portrait">
   <meta name="x5-fullscreen" content="true">
   <meta name="x5-page-mode" content="app">
+  <meta name="format-detection" content="telephone=no" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="green">
   <meta name="Keywords" content="亚程旅行网">
@@ -630,7 +631,7 @@
                   <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
                 </div>
               </div>
-              <% for(var i=0; i<flightInfo.segmentsLeave.length; i++){ %>
+              <% for(var i=0; i< flightInfo.segmentsLeave.length; i++){ %>
               <div class="fli_list">
                 <div class="time-arrow-time" style="overflow: hidden">
                   <div class="city-time-left">
@@ -660,19 +661,19 @@
 
               <!--返程-->
               <li class="fli_cont fli_cont1 fli_retrun">
-                <div class="fli_infp">
-                  <div class="fli_cir_left">
+                <div class="fli_infp clearfix">
+                  <div class="fli_cir_left fl">
                     <i class="back_tip"></i>
                     <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%></span>
                     <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
                     <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
                   </div>
-                  <div class="fli_cir_right">
+                  <div class="fli_cir_right fr">
                     <i></i>
                     <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
                   </div>
                 </div>
-                <% for(var i=0; i<flightInfo.segmentsReturn.length; i++){ %>
+                <% for(var i=0; i< flightInfo.segmentsReturn.length; i++){ %>
                 <div class="fli_list">
                     <div class="time-arrow-time clearfix">
                       <div class="city-time-left">

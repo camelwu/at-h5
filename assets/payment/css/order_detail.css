@@ -986,7 +986,9 @@ li.order_tlist2 {
   border-top: 1px solid #e6e6e6;
   border-bottom: 0px solid #e6e6e6;
 }
-
+.fli_list{
+  padding: 0 .28rem;
+}
 /*.time-arrow-time >div{*/
 /*float: left;*/
 /*}*/
