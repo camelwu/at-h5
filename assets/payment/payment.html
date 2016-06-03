@@ -118,14 +118,12 @@
 
             </li>
             <li class="fill-tel">
-                <div>持卡人手机号</div>
-                <div>
-                  <span  class="tel-btn phone"  value="CN" data-code="86" style=" vertical-align: top; margin-top:-2px">+86</span>
+              <div>持卡人手机号</div>
+                <div class="con_phone fl">
+                  <span  class="phone_pre"  value="CN" data-code="86">+86</span>
                   <b class="s-xiala3"></b>
-
-                  <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
                 </div>
-
+                <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
             </li>
             <li>
                 <div>账单城市</div>
@@ -156,8 +154,7 @@
 <!--信用卡信息-->
 
 
-<!--国籍选择开始-->
-<div class="all_elements country-cho-wrap">
+  <!--国籍选择开始-->
   <div class="header country_header">
     <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
     <div class="cl_search">
@@ -165,53 +162,83 @@
       <i class="icon_common"></i>
     </div>
   </div>
-
-  <div class="content">
-    <div id="country-wrap-hot"></div>
-    <div class="country-wrap" id="country-wrap"></div>
-  </div>
-  <!--热门-->
-  <script id="countryList_hot" type="text/template">
-    <h4><a name="rm" class="target"></a>热门</h4>
-    <ul class="country_hot">
-      <% for(var i=0; i< arrCountry.length; i++){ %>
-      <% if(arrCountry[i].isHot == 1) { %>
-      <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
-      <% } %>
-      <% } %>
-    </ul>
-  </script>
-  <!--全部列表-->
-  <script id="countryList" type="text/template">
-    <div class="full_country_outer">
-      <% for(var tem in countryArray){ %>
-      <a class="target" name="<%=tem%>"></a>
-      <h4><%= tem%></h4>
-      <ul class="full_country_list">
-        <%countryArray[tem].forEach(function(array){ %>
-        <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
-        <% })%>
-      </ul>
-      <% }%>
+  <div class="all_elements country-cho-wrap">
+    <div class="content">
+      <div id="country-wrap-hot"></div>
+      <div class="country-wrap" id="country-wrap"></div>
     </div>
-  </script>
-  <!--国籍a-z-->
-  <script id="country_index" type="text/template">
-    <ul>
-      <li><a href="#rm">热门</a></li>
-      <% for(var tem in countryArray){%>
-      <li><a href="#<%=tem%>"><%=tem%></a></li>
-      <%}%>
-    </ul>
-  </script>
-</div>
-<!--右侧a-z-->
-<div class="country_index" id="country_index_wrap"></div>
-<!--国籍弹窗开始-->
-<ul class="country-list-searched"></ul>
-<!--国籍弹窗结束-->
+    <!--热门国籍-->
+    <script id="countryList_hot" type="text/template">
+      <h4><a name="rm" class="target"></a>热门</h4>
+      <ul class="country_hot">
+        <% for(var i=0; i< arrCountry.length; i++){ %>
+        <% if(arrCountry[i].isHot == 1) { %>
+        <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
+        <% } %>
+        <% } %>
+      </ul>
+    </script>
 
-<!--国籍选择结束-->
+    <!--国籍全部列表-->
+    <script id="countryList" type="text/template">
+      <div class="full_country_outer">
+        <% for(var tem in countryArray){ %>
+        <a class="target" name="<%=tem%>"></a>
+        <h4><%= tem%></h4>
+        <ul class="full_country_list">
+          <%countryArray[tem].forEach(function(array){ %>
+          <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
+          <% })%>
+        </ul>
+        <% }%>
+      </div>
+    </script>
+
+    <!--热门手机区号-->
+    <script id="countryList_hot_tel" type="text/template">
+      <h4><a name="rm" class="target"></a>热门</h4>
+      <ul class="country_hot">
+        <% for(var i=0; i< arrCountry.length; i++){ %>
+        <% if(arrCountry[i].isHot == 1) { %>
+        <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
+        <% } %>
+        <% } %>
+      </ul>
+    </script>
+
+    <!--手机区号全部列表-->
+    <script id="countryListTel" type="text/template">
+      <div class="full_country_outer">
+        <% for(var tem in countryArray){ %>
+        <a class="target" name="<%=tem%>"></a>
+        <h4><%= tem%></h4>
+        <ul class="full_country_list">
+          <%countryArray[tem].forEach(function(array){ %>
+          <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
+          <% })%>
+        </ul>
+        <% }%>
+      </div>
+    </script>
+
+    <!--国籍a-z-->
+    <script id="country_index" type="text/template">
+      <ul>
+        <li><a href="#rm">热门</a></li>
+        <% for(var tem in countryArray){%>
+        <li><a href="#<%=tem%>"><%=tem%></a></li>
+        <%}%>
+      </ul>
+    </script>
+
+  </div>
+  <!--右侧a-z-->
+  <div class="country_index" id="country_index_wrap"></div>
+
+  <!--国籍弹窗开始-->
+  <ul class="country-list-searched"></ul>
+
+  <!--国籍选择结束-->
 
 <!--tpl模板文件-->
 <script id="tpl_flighthotel_detail" type="text/template">

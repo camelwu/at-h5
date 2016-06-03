@@ -35,80 +35,14 @@
       <h3 id="title_aboutus">全部订单</h3>
 	</div>
 	<!-- Page Content-->
-    <div id="content" class="content ticket_div">
-      <!--<div class="order_div flight-div">-->
-      <!--<div >-->
-		<!--<b class="icon user-air"></b>-->
-      <!--<div class="order_title">机票</div>-->
-		<!--<div class="if_pay">未支付</div>-->
-		<!--</div>-->
-		<!--<div>-->
-      <!--<p class="info_title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
-      <!--<ul class="air_date">-->
-		<!--<li>出行日期：10-22 18:00至21:05</li>-->
-		<!--<li>返回日期：10-22 18:00至21:05</li>-->
-		<!--</ul>-->
-		<!--</div>-->
-		<!--<div style="border-top: 1px solid #dedede;">-->
-		<!--<a href="../flight/pay_detail.html" class="paybtn button-yellow">立即支付</a>-->
-		<!--<div class="quitbtn">取消订单</div>-->
-		<!--</div>-->
-		<!--</div>-->
-      <!--<div class="order_div scenic_div">-->
-      <!--<div >-->
-      <!--<b class="icon user_spot"></b>-->
-      <!--<div class="order_title">景点</div>-->
-		<!--<div class="if_pay">已支付</div>-->
-		<!--</div>-->
-		<!--<div>-->
-      <!--<p class="info_title">崇礼得乐滑雪周日全日票【成人票】2张+崇礼温泉门票 2张</p>-->
-      <!--<ul class="air_date">-->
-		<!--<li>有效期至：2015-12-30</li>-->
-		<!--</ul>-->
-		<!--</div>-->
-		<!--<div style="border-top: 1px solid #dedede;">-->
-		<!--<div class="quitbtn">退票</div>-->
-		<!--</div>-->
-		<!--</div>-->
-      <!--<div class="order_div hotel-div">-->
-      <!--<div >-->
-		<!--<b class="icon user-hotel1"></b>-->
-      <!--<div class="order_title">酒店</div>-->
-		<!--<div class="if_pay">已完成</div>-->
-		<!--</div>-->
-		<!--<div>-->
-      <!--<p class="info_title">东京东急涩谷卓越大酒店</p>-->
-      <!--<ul class="air_date">-->
-		<!--<li>11-25至11-26 共1晚</li>-->
-		<!--<li style="font-size: 1.2rem">房型：经济大床房 房间数：2件</li>-->
-		<!--</ul>-->
-		<!--</div>-->
-		<!--<div style="border-top: 1px solid #dedede;">-->
-		<!--<div class="quitbtn"><a href="user-amendInfo.html#userremark">评价</a></div>-->
-		<!--</div>-->
-		<!--</div>-->
-      <!--<div class="order_div hotel-div-cancel" style="color: #999999">-->
-      <!--<div >-->
-		<!--<b class="icon user-hotel2"></b>-->
-      <!--<div class="order_title">酒店</div>-->
-		<!--<div class="if_pay">已取消</div>-->
-		<!--</div>-->
-		<!--<div>-->
-      <!--<p class="info_title">东京东急涩谷卓越大酒店</p>-->
-      <!--<ul class="air_date">-->
-		<!--<li>11-25至11-26 共1晚</li>-->
-		<!--<li style="font-size: 1.2rem">房型：经济大床房 房间数：2件</li>-->
-		<!--</ul>-->
-		<!--</div>-->
-		<!--</div>-->
-	</div>
+  <div id="content" class="content ticket_div"></div>
   <div class="moreData" style="vertical-align: middle; text-align: center">
     <span>点击加载更多</span>
   </div>
 
 
 	<!--    无订单页   -->
-    <div id="black_page" class="user_content">
+    <div id="black_page" class="user_content" style="display: none">
       <div id="noOrder">
         <div class="black_con">
           <div class="bu_icon order"></div>
@@ -146,30 +80,31 @@
     (function(){
       var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
       var deviceID=vlm.Utils.CookieUtil.get("deviceID");
-      var index=1;
+      var pageIndex,pageSize,Parameters,cacheData;
 
-      var Parameters= {
-        "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":5}',
-        "ForeEndType": 3,
-        "Code": "0062"
-      }
-
-      var index;
-      var cacheData;
-      // pageshow => 清空cacheData
-      // 加载更多 => 合并到cacheData
-
+      //兼容ios gohistory 不刷新数据源问题
       window.addEventListener('pageshow',function () {
         cacheData = [];
-        index = 1;
+        pageIndex = 1;
+        pageSize=5;
         loadingData();
       }, false);
 
       var loadingData = function(){
+         Parameters= {
+          "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+pageIndex+',"PageSize":'+pageSize+'}',
+          "ForeEndType": 3,
+          "Code": "0062"
+        }
         vlm.loadJson("", JSON.stringify(Parameters), function(data){
           if(data.success) {
             if(data.data !=null && data.data.length>0 ) {
-              $(".moreData").show();
+              if(data.data.length==pageSize) {
+                  $(".moreData").show();
+              }
+              else{
+                  $(".moreData").hide();
+              }
 
               cacheData = cacheData.concat(data.data);
 
@@ -186,7 +121,7 @@
               })
             }
             else{
-              $("#black_page").show();
+              $(".user_content").show();
             }
           }else{
             alert("网络异常！");
@@ -201,7 +136,7 @@
 
       })
       $(".moreData").on("click",function(){
-        index++;
+        pageIndex++;
         loadingData();
       })
     })();
@@ -218,7 +153,7 @@
           <b class="icon_allorder user_hotel2"></b>
           <div class="order_title">酒店</div>
 			<div class="if_pay">已取消</div>
-          <div class="order_Amount">￥{%=bookingAmount%}</div>
+          <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       </div>
       <div class="all_order_tab">
@@ -242,7 +177,7 @@
         <b class="icon_allorder user_air"></b>
         <div class="order_title">机票</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <!--<p class="info_title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
@@ -264,7 +199,7 @@
         <b class="icon_allorder user_hotel1"></b>
         <div class="order_title">酒店</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -284,7 +219,7 @@
         <b class="icon_allorder user_hoteltour"></b>
         <div class="order_title">酒+景</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -304,7 +239,7 @@
         <b class="icon_allorder user_spot"></b>
         <div class="order_title">景点</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -324,7 +259,7 @@
         <b class="icon_allorder user_fligthotle"></b>
         <div class="order_title">机+酒</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
 		</div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
@@ -344,7 +279,7 @@
         <b class="icon_allorder user_fligthotletour"></b>
         <div class="order_title">机+酒+景</div>
         <div class="if_pay">{%=getCN[paymentStatus]%}</div>
-        <div class="order_Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">{%=currency%}{%=bookingAmount%}</div>
       </div>
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>

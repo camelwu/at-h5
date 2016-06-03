@@ -303,6 +303,10 @@ i, em {
   max-width: 1.55rem;
 }
 
+#content{
+  overflow-x: hidden;
+}
+
 .p_86 > span {
   display: inline-block;
   vertical-align: top;

@@ -279,45 +279,49 @@
 
     <!--模板机票开始-->
     <script id="orderFlight" type="text/template">
-        <ul class="flight_cir_wrap">
-            <li class="fli_cont clearfix">
-                <div class="fli_cir_left fl">
-                    <i class="go_tip"></i>
-                    <% var d1= new Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
-                        <span class="fli_go_date"><%=flightInfo.flightLeaveStartDate.substring(5,10)%></span>
-                        <span><%='周'+arr1[d1.getDay()]%></span>
-                        <span class="flight_terminal"><%=flightInfo.segmentsLeave[0].airportNameFrom+flightInfo.segmentsLeave[0].termDepart+'-'+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].airportNameTo+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].termArrive%></span>
-                </div>
-                <div class="fli_cir_right fr clearfix">
-                    <i class="fl"></i>
-                    <span class="dl"><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
-                </div>
-            </li>
-            <li class="fli_cont clearfix">
-                <div class="fli_cir_left fl">
-                    <i class="back_tip"></i>
-                    <% var d1= new Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
-                        <span class="fli_back_date"><%=flightInfo.flightReturnStartDate.substring(5,10)%></span>
-                        <span><%='周'+arr1[d1.getDay()]%></span>
-                        <span class="flight_terminal"><%=flightInfo.segmentsReturn[0].airportNameFrom+flightInfo.segmentsReturn[0].termDepart+'-'+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].airportNameTo+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].termArrive%></span>
-                </div>
-                <div class="fli_cir_right fr clearfix">
-                    <i class="fl"></i>
-                    <span class="fl"><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
-                </div>
-            </li>
-            <li class="cabin_level">
-                <% if(flightInfo.cabinClass == 0) { %>
-                    <span><%='经济舱'%></span>
-                    <% }else if(flightInfo.cabinClass == 1){ %>
-                        <span><%='头等舱'%></span>
-                        <% }else if(flightInfo.cabinClass == 2){ %>
-                            <span><%='商务舱'%></span>
-                            <% }else if(flightInfo.cabinClass == 3){ %>
-                                <span><%='超级经济舱'%></span>
-                                <% } %>
-            </li>
-        </ul>
+      <ul class="flight_cir_wrap">
+        <li class="fli_cont clearfix">
+          <div class="fli_cir_left fl">
+            <i class="go_tip"></i>
+            <% var d1= new
+            Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六'];
+            d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
+            <span class="fli_go_date"><%=flightInfo.flightLeaveStartDate.substring(5,10)%></span>
+            <span><%='周'+arr1[d1.getDay()]%></span>
+            <span class="flight_terminal"><%=flightInfo.segmentsLeave[0].airportNameFrom+flightInfo.segmentsLeave[0].termDepart+'-'+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].airportNameTo+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].termArrive%></span>
+          </div>
+          <div class="fli_cir_right fr clearfix">
+            <i class="fl"></i>
+            <span class="dl"><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+          </div>
+        </li>
+        <li class="fli_cont clearfix">
+          <div class="fli_cir_left fl">
+            <i class="back_tip"></i>
+            <% var d1= new
+            Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六'];
+            d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
+            <span class="fli_back_date"><%=flightInfo.flightReturnStartDate.substring(5,10)%></span>
+            <span><%='周'+arr1[d1.getDay()]%></span>
+            <span class="flight_terminal"><%=flightInfo.segmentsReturn[0].airportNameFrom+flightInfo.segmentsReturn[0].termDepart+'-'+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].airportNameTo+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].termArrive%></span>
+          </div>
+          <div class="fli_cir_right fr clearfix">
+            <i class="fl"></i>
+            <span class="fl"><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+          </div>
+        </li>
+        <li class="cabin_level">
+          <% if(flightInfo.cabinClass == 0) { %>
+          <span><%='经济舱'%></span>
+          <% }else if(flightInfo.cabinClass == 1){ %>
+          <span><%='头等舱'%></span>
+          <% }else if(flightInfo.cabinClass == 2){ %>
+          <span><%='商务舱'%></span>
+          <% }else if(flightInfo.cabinClass == 3){ %>
+          <span><%='超级经济舱'%></span>
+          <% } %>
+        </li>
+      </ul>
     </script>
     <!--模板机票结束-->
 

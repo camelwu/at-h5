@@ -139,7 +139,7 @@ var fOrder = {
     var searchHandler=function(){
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
-      var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+      var searchResult_ = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
       Array.prototype.distinct=function(){
         var sameObj=function(a,b){
           var tag = true;
@@ -167,29 +167,28 @@ var fOrder = {
       };
       if(reg.test(valueStr)){
         var mb = String(valueStr).toLowerCase();
-        for(var p = 0; p < dataArray.length; p++){
-              if(dataArray[p].chineseName.indexOf(mb)>-1||
-                 dataArray[p].englishName.indexOf(mb)>-1||
-                  dataArray[p].nativeName.indexOf(mb)>-1||
-             dataArray[p].nationalityCode.indexOf(mb)>-1||
-                  dataArray[p].fullPinYin.indexOf(mb)>-1||
-                dataArray[p].simplePinYin.indexOf(mb)>-1){
-                searchResult.push(dataArray[p]);
-              }
-        }
+        dataArray.forEach(function (array) {
+          if(array.chineseName.toLowerCase().indexOf(mb)>-1||
+            array.englishName.toLowerCase().indexOf(mb)>-1||
+            array.nativeName.toLowerCase().indexOf(mb)>-1||
+            array.nationalityCode.toLowerCase().indexOf(mb)>-1||
+            array.fullPinYin.toLowerCase().indexOf(mb)>-1||
+            array.simplePinYin.toLowerCase().indexOf(mb)>-1){
+            searchResult_.push(array);
+          }
+        });
       }
-      searchResult = searchResult.distinct();
-      if(!searchResult.length){
+      searchResult_ = searchResult_.distinct();
+      console.log(searchResult_)
+      if(!searchResult_.length){
         resultStr +='<li>无搜索结果</li>';
-        cityListSearched.style.display = 'none';
       }else{
-        for(var l = 0;l<searchResult.length;l++){
-          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].phoneCode+'"><i>'+searchResult[l].chineseName+'</i><span>'+searchResult[l].phoneCode+'</span></li>'
+        for(var l = 0;l<searchResult_.length;l++){
+          resultStr += '<li class="country_lists" date-country-code="'+searchResult_[l].phoneCode+'"><i>'+searchResult_[l].chineseName+'</i><span>'+searchResult_[l].phoneCode+'</span></li>'
         }
-        cityListSearched.innerHTML = resultStr;
-        cityListSearched.style.display = 'block';
       }
-
+      cityListSearched.innerHTML = resultStr;
+      cityListSearched.style.display = 'block';
     };
     if(cityInputZone.addEventListener){
       cityInputZone.addEventListener('input',searchHandler,false)

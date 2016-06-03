@@ -38,7 +38,7 @@
       <li class="mes mes2"></li>
       <li class="map" id="map"></li>
     </ul>
-    <ul class="ul2" style="margin-top: -1.6rem;">
+    <ul class="ul2" style="padding:0rem 0 0.001rem">
       <!--<li class="score"><b>4.3</b> 分 <strong>385</strong>人点评&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;</li>-->
       <!--<li class="star">-->
         <!--<span>3星级</span>-->
@@ -131,13 +131,16 @@
 </script>
 <!--点评  评分-->
 <script id="message" type="text/template">
-  <li class="score"><b><%= hotelReviewCount %></b> 分 <strong><%= hotelReviewScore %></strong>人点评<!--<i class="arrow"></i>--></li>
+  <% console.log(typeof hotelReviewScore) %>
+  <% if(hotelReviewCount!=0 || hotelReviewScore!=0){ %>
+  <li class="score"><% if(hotelReviewCount!=0){ %><b><%= hotelReviewCount %></b> 分 <% } %><% if(hotelReviewScore!=0){ %><strong><%= hotelReviewScore %></strong>人点评<% } %><i class="arrow"></i></li>
+  <% } %>
   <li class="star">
     <span><%= starRating %></span>
     <!--<span class="park"></span>-->
     <!--<span class="car"></span>-->
     <!--<span class="detail">酒店详情</span>-->
-    <!--<i class="arrow"></i>-->
+    <i class="arrow"></i>
   </li>
 </script>
 

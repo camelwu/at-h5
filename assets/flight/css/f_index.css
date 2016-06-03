@@ -1280,6 +1280,7 @@ input.name{
   overflow-x: hidden !important;
   font-size: .28rem;
   color: #333;
+  overflow-y: scroll;
 }
 
 .jto_letter_list li {
