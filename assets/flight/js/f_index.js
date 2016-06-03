@@ -320,14 +320,13 @@ var fIndexModal = {
       searchResult = searchResult.distinct();
       if (!searchResult.length) {
         resultStr += '<li>无搜索结果</li>';
-        cityListSearched.style.display = 'none';
       } else {
         for (var l = 0; l < searchResult.length; l++) {
           resultStr += '<li class="city_list" data-city-code="' + searchResult[l].cityCode + '">' + searchResult[l].cityNameCN + '</li></li>'
         }
-        cityListSearched.innerHTML = resultStr;
-        cityListSearched.style.display = 'block';
       }
+      cityListSearched.innerHTML = resultStr;
+      cityListSearched.style.display = 'block';
     };
     if (cityInputZone.addEventListener) {
       cityInputZone.addEventListener('input', searchHandler, false)
