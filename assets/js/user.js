@@ -537,7 +537,7 @@
     //console.log(oldsex);
     oldcName=countryName.innerHTML = travJson.data[index].traveller.countryName;
     var idCountry=travJson.data[index].listTravellerIdInfo[0].idCountry;
-    oldsendName=getCountryName(idCountry).CountryName;
+    oldsendName=getCountryName(idCountry).chineseName;
     $('#country-name').html(oldsendName);
     if (travJson.data[index].traveller.sexCode == "Mr") {
       man2.className = "per_man sex_act";
@@ -558,7 +558,7 @@
         }
       }
       //证件类型、发证国家、国籍、性别
-      //console.log(oldsendName +":"+ $('#country-name').html());
+      console.log(oldsendName +":"+ $('#countryName').html());
       if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ){
         jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
         return;
