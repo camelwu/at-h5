@@ -27,12 +27,12 @@ i{font-style: normal;
 }
 .total_start{
   display: inline-block;
-  padding-top: .4rem;
+  padding-top: .36rem;
 }
 .total_start li{
-  width: .3rem;
-  height: .3rem;
-  line-height: .2rem;
+  width: .39rem;
+  height: .36rem;
+  margin-right: .12rem;
 }
 .score{
   font-size: .24rem;
