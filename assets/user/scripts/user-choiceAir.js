@@ -694,6 +694,7 @@
 
     addPassagerTitle.html("新增"+titleType);
     var dataCache=JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
+    _setTitleTip();
     if(dataCache==null){
       titleTip.html("选择"+titleType);
     }
