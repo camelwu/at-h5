@@ -137,7 +137,7 @@ var arrCountry = localStorage.arrCountry;
 
           if (valueStr) {
             for (var i = 0; i < arrCountry.length; i++) {
-              if (arrCountry[i]['chineseName'].indexOf(valueStr)>-1||arrCountry[i]['englishName'].indexOf(valueStr)>-1) {
+              if (arrCountry[i]['chineseName'].toLowerCase().indexOf(valueStr)>-1||arrCountry[i]['englishName'].toLowerCase().indexOf(valueStr)>-1 ||arrCountry[i]['nationalityCode'].toLowerCase().indexOf(valueStr)>-1 ||arrCountry[i]['simplePinYin'].toLowerCase().indexOf(valueStr)>-1 ||arrCountry[i]['fullPinYin'].toLowerCase().indexOf(valueStr)>-1) {
                 searchResult.push(arrCountry[i]);
               }
             }
@@ -148,7 +148,7 @@ var arrCountry = localStorage.arrCountry;
               if(str == 'code' ){
                 //手机区号
                 for (var j = 0; j < searchResult.length; j++) {
-                  resultStr += '<li class="country-list-searched-item" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'" ><em>'+searchResult[j].chineseName +'</em><span class="tel_code" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'">'+searchResult[j].phoneCode+'</span></li>';
+                  resultStr += '<li class="country-list-searched-item" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'" ><em data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'">'+searchResult[j].chineseName +'</em><span class="tel_code" data-tel-code="'+searchResult[j].phoneCode+'" data-code="'+searchResult[j].countryCode+'">'+searchResult[j].phoneCode+'</span></li>';
                 }
               }else{
                 //国籍
