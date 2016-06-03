@@ -658,7 +658,7 @@ function styleChange(id, mytext) {
             } else {
                 document.getElementById("loadMore").style.display = "none";
                 var oLi = document.createElement('li');
-                oLi.innerHTML = '<div><img src="../images/loading_def_small.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+                oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
                 oLi.className = 'hotelConNo';
                 oUl.style.width = '100%';
                 oUl.style.height = '100%';
