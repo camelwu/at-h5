@@ -791,6 +791,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .flightDetailInfo {
   margin: .28rem 0 .08rem 0;
   color: #999999;
+  height: .40rem;
+  line-height: .40rem;
 }
 
 .flightDetailInfo span:before {
