@@ -244,28 +244,26 @@
 <script id="template_tour" type="text/template">
     <div class="tour">
         <div class="tourListHeader">
-            <span>景点</span><span class="letter-space">(<%= tours.length %>)</span>
+            <span>景点</span><!--<span class="letter-space">(<%= tours.length %>)</span>-->
         </div>
         <ul class="tourOuter">
-            <% tours.forEach(function(tour, item){
-            var selectTravelDate = tour["selectTravelDate"];
-            %>
+            <% tours.forEach(function(tour, item){%>
                 <li data-tour-id="<%=tour['tourID']%>">
                     <h3 class="tour-list-title"><%= tour.tourName %></h3>
-
-                    <p class="choose-tour-date"><span data-date="<%= selectTravelDate%>"><%= hftChoose.returnDay(selectTravelDate)%></span><i></i>
-                    </p>
-
-                    <div class="after-noon">
-                      <%if(tour["tourSessions"]){ %>
-                        <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-                        <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
-                          <%=
-                          tourSession["tourSessionName"] %>
-                        </button>
-                        <% }) %>
-                      <% } %>
-                    </div>
+                  <% if(tour.tourType!=1){%>
+                  <p class="choose-tour-date"><span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span><i></i>
+                  </p>
+                  <div class="after-noon">
+                    <%if(tour["tourSessions"]){ %>
+                    <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
+                    <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
+                      <%=
+                      tourSession["tourSessionName"] %>
+                    </button>
+                    <% }) %>
+                    <% } %>
+                  </div>
+                  <% }%>
                 </li>
                 <% }) %>
         </ul>

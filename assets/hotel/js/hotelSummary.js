@@ -1,5 +1,5 @@
 window.onload = function() {
-	var hotelMessage = window.localStorage.getItem('hotelDetailData'), hotelCode = JSON.parse(hotelMessage).data.data[0].hotelGenInfo.hotelCode, data = {
+	var val = vlm.parseUrlPara(window.location.href),hotelMessage = window.localStorage.getItem('hotelDetailData'), hotelCode = val.HotelID?val.HotelID:JSON.parse(hotelMessage).data.data[0].hotelGenInfo.hotelCode, data = {
 		"Parameters" : "{\"HotelID\":" + hotelCode + ",\"CultureName\":\"ZH-CN\" }",
 		"ForeEndType" : 3,
 		"Code" : "0009"

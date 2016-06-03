@@ -199,7 +199,7 @@ var fOrder = {
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal'),changeTip = document.querySelector('.change_tip');
+    var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal'),changeTip = document.querySelector('.change_tip'), passengerOuter = null;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -222,7 +222,8 @@ var fOrder = {
     this.addHandler(bottomPrice, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement, contactInfo = {}, selectTravellerList = window['localStorage']['travellerInfo_selected'];
       if (target.className == "preserve") {
-        if (!window['localStorage']['travellerInfo_selected']) {
+        passengerOuter = document.querySelectorAll('.passenger_outer');
+        if (!window['localStorage']['travellerInfo_selected']||passengerOuter.length -1 != parseInt(searchInfo.numofAdult)+parseInt(searchInfo.numofChild)) {
           jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         } else {
@@ -360,7 +361,7 @@ var fOrder = {
     });
 
     deletePassager=function(obj){
-      $(obj).parent().parent().remove();
+      $(obj).parent().parent().parent().remove();
 
       var id=$(obj).parent().find(".itemId").val();
       var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));

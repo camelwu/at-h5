@@ -384,9 +384,9 @@
             console.log(hotelDetail.myData);
             if (result.success == true) {
                 hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
-                data = hotelDetail.myData[0];
-                var locatdata = localStorage.getItem("hotelStorage12345").ToCity;
-                console.log(locatdata);
+                //data = hotelDetail.myData[0];
+                // var locatdata = sessionStorage.getItem("hotelStorage12345").ToCity;
+                // console.log(locatdata);
             } else {
                 alert(result.message);
                 return;

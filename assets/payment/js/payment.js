@@ -44,6 +44,7 @@
                       if(paymentMode=="CreditCard"){
                           $(".paymentype-session").hide();
                           $(".credit-session").show();
+                          $(".p-but").show();
                       }else{
                              _paymentEvent();
                       }
@@ -54,6 +55,7 @@
               $(".credit-session .icon_back").on("click",function(){
                   $(".paymentype-session").show();
                   $(".credit-session").hide();
+                  $(".p-but").hide();
 
               })
               //800电话按钮

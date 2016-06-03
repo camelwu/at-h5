@@ -25,6 +25,15 @@ i{font-style: normal;
   font-size: .4rem;
   color: #7bc300;
 }
+.total_start{
+  display: inline-block;
+  padding-top: .36rem;
+}
+.total_start li{
+  width: .39rem;
+  height: .36rem;
+  margin-right: .12rem;
+}
 .score{
   font-size: .24rem;
   color: #666;
