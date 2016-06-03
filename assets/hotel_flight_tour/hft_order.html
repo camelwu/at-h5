@@ -345,7 +345,19 @@
     <!--模板酒店结束-->
 
     <!--模板景点开始-->
-    <script id="orderTour" type="text/template"></script>
+    <script id="orderTour" type="text/template">
+      <ul class="tour_wrap">
+        <% for(var i=0; i< tours.length; i++){ %>
+        <li>
+          <p class="mb_ten"><i class="orange_line"></i><%=tours[i].tourName%></p>
+          <% if(tours[i].tourType!=1 ){ %>
+          <% var date=tours[i].selectTravelDate.substring(5,10).replace('-','月')+'日 '%>
+          <p><%=date+tours[i].tourSessions[0].tourSessionName%></p>
+          <% }%>
+        </li>
+        <% } %>
+      </ul>
+    </script>
     <!--模板景点结束-->
 
     <!--模板明细开始-->
