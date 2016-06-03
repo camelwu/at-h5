@@ -82,6 +82,8 @@
                         selectTime = new Date(selectTime).getTime();
                         if(nowTime > selectTime){
                             $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
+                        }else{
+                          $(".cardExpiryDate").css("color","#000000");
                         }
                     }
                 });
