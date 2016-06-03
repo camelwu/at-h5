@@ -100,25 +100,25 @@ input {
 }
 
 .fli_cir_left .go_tip {
+  width: .34rem;
+  height: .34rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -2.6999rem -1.522rem;
   display: inline-block;
   vertical-align: top;
   margin-top: -2px;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -2.22rem -1.33rem;
-  background-size: 6.6rem 4.55rem;
-  width: .32rem;
-  height: .32rem;
 }
 
 .fli_cir_left .back_tip {
+  width: .34rem;
+  height: .34rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -3.372rem -1.519rem;
   display: inline-block;
   vertical-align: top;
   margin-top: -2px;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -2.8rem -1.33rem;
-  background-size: 6.6rem 4.55rem;
-  width: .32rem;
-  height: .32rem;
 }
 
 .fli_cir_right i {
