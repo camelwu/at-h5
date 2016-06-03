@@ -109,8 +109,7 @@
                   $(".moreData").show();
               }
               else{
-                  $(".moreData").html("没有更多数据了");
-                  $(".moreData").show();
+                  $(".moreData").hide();
               }
 
               cacheData = cacheData.concat(data.data);
@@ -128,9 +127,7 @@
               })
             }
             else{
-              $(".moreData").html("没有更多数据了");
-              $(".moreData").unbind();
-              $(".moreData").show();
+              $(".user_content").show();
             }
           }else{
             alert("网络异常！");
