@@ -180,6 +180,7 @@
       //点击
       var  targetEle = null;
       var searchEle=null;
+      $("body").children().click(function () {});
       document.onclick=function(e){
 
         var e = e || window.event, target = e.target|| e.srcElement;
