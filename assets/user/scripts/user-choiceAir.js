@@ -481,6 +481,7 @@
         }
         if(age>=12){
           if(selectAdultNum+step>numofAdult || selectChildNum>numofChlid ){
+
             jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"儿童");
             return;
           }
@@ -704,8 +705,6 @@
   };
   /*接口*/
   return{
-
-
     InitPage:_initPage()
   }
 })()
