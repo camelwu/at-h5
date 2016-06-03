@@ -194,11 +194,11 @@ var lsf_myweb = {
           var str0 = '';
           for (var i = 0; i < 5; i++) {
             if ((i + 1) <= star) {
-              str0 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.33rem -0.59rem;background-size: 5.12rem 1.41rem;"></li>';
+              str0 += '<li class="fl" style="background:url(../images/ui.1.0/big_start1.png) 0rem 0rem;background-size: 0.39rem 0.36rem;"></li>';
             } else if (star > i && star < (i + 1)) {
-              str0 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.05rem -0.59rem;background-size: 5.12rem 1.41rem;"></li>';
+              str0 += '<li class="fl" style="background:url(../images/ui.1.0/big_start2.png) 0rem 0rem;background-size: 0.39rem 0.36rem;"></li>';
             } else {
-              str0 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.33rem -0.32rem;background-size: 5.12rem 1.41rem;"></li>';
+              str0 += '<li class="fl" style="background:url(../images/ui.1.0/big_start3.png) 0rem 0rem;background-size: 0.39rem 0.36rem;"></li>';
             }
           }
         lsf_myweb.getbyid('total_start').innerHTML += str0;
