@@ -775,7 +775,7 @@
 
         //接送服务信息
         var Pickup = "", PickupName = "",PickupID = "",PickupPoint = {};
-        Pickup = ExtendDat.requiredPickupPoint;
+        Pickup = ExtendData.requiredPickupPoint;
         if(Pickup){
           PickupID = $(".js_booking_package_pickup_select").attr("data-key");
           if(!T.Command().execCommand({command:"validate", param:{type:"text",data:PickupID,rules:"required",tips:"接送信息不能为空"}})){
