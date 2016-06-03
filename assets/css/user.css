@@ -115,8 +115,12 @@ i, em {
   position: relative;
 }
 
+.tel_code_wrap{
+  padding-top: .32rem;
+}
+
 .login_phone {
-  margin-top: .34rem;
+  margin-top: .04rem;
   vertical-align: top;
   background-size: 8.48rem 4.8rem;
   background-position: -5.3rem -.2rem;
@@ -140,13 +144,6 @@ i, em {
   padding-left: .4rem;
   height: 1rem;
   color: #333;
-  font-size: .28rem;
-}
-
-.login_input .in_phone {
-  display: inline-block;
-  padding-top: .06rem;
-  width: 50%;
   font-size: .28rem;
 }
 
@@ -240,6 +237,9 @@ i, em {
 
 #phone {
   width: 65%;
+  height: .5rem;
+  display: inline-block;
+  font-size: .28rem;
 }
 
 #phone_register, #email_register {
@@ -298,7 +298,6 @@ i, em {
   display: inline-block;
   vertical-align: top;
   color: #333;
-  margin-top: .32rem;
   border-right: 1px solid #e6e6e6;
   position: relative;
   max-width: 1.55rem;
@@ -307,7 +306,7 @@ i, em {
 .p_86 > span {
   display: inline-block;
   vertical-align: top;
-  margin: .06rem .7rem 0 .2rem;
+  margin: .04rem .7rem 0 .2rem;
 }
 
 .open_arw.int_tel {

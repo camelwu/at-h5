@@ -179,7 +179,6 @@
 
       //点击
       var  targetEle = null;
-      var searchEle=null;
       $("body").children().click(function () {});
       document.onclick=function(e){
 
@@ -207,7 +206,7 @@
             $('#uptra_page').css('visibility','hidden');
 
 
-        }else if(target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == 'country_list' || target.className == "country-list-searched-item" || target.parentNode.className == 'country-list-searched-item' || target.className == "p_86 tel-btn" || target.parentNode.className == "country_list_hot"){
+        }else if(target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == 'country_list' || target.className == "country-list-searched-item" || target.parentNode.className == 'country-list-searched-item' || target.parentNode.className == "country_list_hot"){
           //展示列表消失
           setTimeout(function(){
             oDiv.style.display='none';
