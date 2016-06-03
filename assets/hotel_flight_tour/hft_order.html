@@ -129,9 +129,9 @@
                         <i class="tra_delete" onclick="delPassager(this);"></i>
                         <div class="traveller_wrap">
                             <span><em class="card_tra_type">姓/名</em><b class="travel_last" data-elementName="lastName">BAI</b>/<b class="travel_first" data-elementName="firstName">LISA</b></span>
-                            <span><em class="card_tra_type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel_sex" data-sex="Ms">女</b></span>
+                            <span><em class="card_tra_type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel_sex" data-sex="Ms" data-elementName="sexName">女</b></span>
                         </div>
-                        <em class="edit_tips" data-id="" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport_number" readonly="readonly"  data-elementName="travellerId"></em>
+                        <em class="edit_tips" data-id="" onclick="javascript:editPassager(this)"><input type="hidden" class="itemId" name="input-zone" class="passport_number" readonly="readonly"  data-elementName="travellerId"></em>
                     </li>
                 </ul>
                 </div>
@@ -371,6 +371,11 @@
       sessionStorage.removeItem("choiceAir_select_passenger-list");
       sessionStorage.removeItem("choiceAir_select_contact-table");
 
+      function callback(){
+        debugger;
+        var num=$("#orderTraveller ul:visible").length;
+        $(".adu_choose").html(num);
+      }
         //删除出行人
         function delPassager(obj) {
           $(obj).parent().parent().remove();
@@ -389,10 +394,8 @@
         // 编辑出行人
         function editPassager(obj) {
             var id = $(obj).find("input").eq(0).val();
-            localStorage.contactedit = 1;
-            var numofAdult = window.localStorage.adunum;
-            var numofChild = window.localStorage.chinum;
-            vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
+             var m=JSON.parse(window.localStorage.hft_peotot);
+             vlm.f_choice('passenger-list','f','traver','',true,true,hft_peotot.adunum,JSON.hft_peotot.chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,true, true)
         }
 
     </script>

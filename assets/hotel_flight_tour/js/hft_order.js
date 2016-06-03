@@ -99,6 +99,10 @@
       obj.chinum=traChildnum;
       return obj;
     }
+
+
+
+
     travelDet();
     var hft_peotot=travelDet();
     window.localStorage.hft_peotot=(hft_peotot.adunum+hft_peotot.chinum);
@@ -109,7 +113,7 @@
     $(document).on('click','.add_traveller',function(){
       $("#status").show().fadeOut();
       $("#preloader").show().delay(400).fadeOut("medium");
-      vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false);
+      vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false,"callback");
     });
 
     if(freetype == 2){

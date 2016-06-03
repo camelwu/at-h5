@@ -361,7 +361,7 @@ var fOrder = {
     });
 
     deletePassager=function(obj){
-      $(obj).parent().parent().remove();
+      $(obj).parent().parent().parent().remove();
 
       var id=$(obj).parent().find(".itemId").val();
       var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
