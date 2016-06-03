@@ -599,7 +599,7 @@
   clearValue('#realName');
 
   //个人信息修改页生日
-  var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
+  new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
 })();
 

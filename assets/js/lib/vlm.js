@@ -9,7 +9,7 @@
 
 (function (e, t) {
     var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111  10.7.2.119
-        var _api = "http://10.7.2.119/api/GetServiceApiResult",
+        var _api = "http://10.7.2.111/api/GetServiceApiResult",
             _apiWithDeviceID = "http://10.7.2.111/apiWihtDeviceID/GetServiceApiResult",
             lStorage = window.localStorage,
             sStorage = window.sessionStorage,
@@ -370,13 +370,13 @@
                   today=new Date();
                 }
                 else {
-                  today = new Date(departDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"));
+                  today = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
                 }
                 var todayYear=today.getFullYear();
                 var todayMonth=today.getMonth()+1;
                 var todayDay=today.getDate();
 
-                var birthday= new Date(birthday.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"))
+                var birthday= new Date(birthday.replace('-', "/").replace('-', "/").replace('T', " "))
                 if(birthday !=null)
                 {
                   birthdayYear=birthday.getFullYear();
