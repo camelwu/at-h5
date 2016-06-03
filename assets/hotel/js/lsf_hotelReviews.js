@@ -146,7 +146,7 @@ var lsf_myweb = {
             } else if (star > j && star < (j + 1)) {
               str3 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.05rem -0.59rem;background-size: 5.12rem 1.41rem;"></li>';
             } else {
-              str3 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.33rem -0.32rem;background-size: 5.12rem 1.41rem;"></li>';
+              str3 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.33rem -0.308rem;background-size: 5.12rem 1.41rem;"></li>';
             }
           }
           str2 += '<div class="reBox hotel_grade_content_box">' + '<div class="clearfix lsf_reTitle hotel_grade_content_box_first">' + '<h2 class="fl">' + comments[i].title + '</h2>' + '<ol class="clearfix fr lsf_reSta hotel_grade_content_box_ol">' + str3 + '</ol>' + '</div>' + '<p class="clearfix comments hotel_grade_content_box_comments"><span class="com_cont">' + maxWord(comments[i].comments) + '</span></p>' + '<em class="fr drop_down"><i></i></em>' + '<div class="lsf_reUser hotel_grade_content_box_User">' + '<span class="reu_span1"><b class="fl">' + comments[i].reviewerName + '</b><i class="fl hr_city">' + comments[i].countryName + '</i></span>' + '<span class="reu_span2"><em class="fr">' + comments[i].createdDate.substring(0, comments[i].createdDate.indexOf('T')) + '</em></span>' + '</div>' + '</div>';
@@ -176,7 +176,7 @@ var lsf_myweb = {
             } else if (star > j && star < (j + 1)) {
               str3 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.05rem -0.59rem;background-size: 5.12rem 1.41rem;"></li>';
             } else {
-              str3 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.33rem -0.32rem;background-size: 5.12rem 1.41rem;"></li>';
+              str3 += '<li class="fl" style="background:url(../images/ui/jd-icon.png) -0.33rem -0.308rem;background-size: 5.12rem 1.41rem;"></li>';
             }
           }
           str2 += '<div class="reBox hotel_grade_content_box">' + '<div class="clearfix lsf_reTitle hotel_grade_content_box_first">' + '<h2 class="fl">' + comments[i].title + '</h2>' + '<ol class="clearfix fr lsf_reSta hotel_grade_content_box_ol">' + str3 + '</ol>' + '</div>' + '<p class="clearfix comments hotel_grade_content_box_comments"><span class="com_cont">' + maxWord(comments[i].comments) + '</span></p>'  + '<em class="fr drop_down"><i></i></em>' + '<div class="lsf_reUser hotel_grade_content_box_User">' + '<span class="clearfix reu_span1"><b class="fl">' + comments[i].reviewerName + '</b><i class="fl">' + comments[i].countryName + '</i></span>' + '<span class="clearfix reu_span2"><em class="fr">' + comments[i].createdDate.substring(0, comments[i].createdDate.indexOf('T')) + '</em></span>' + '</div>' + '</div>';
