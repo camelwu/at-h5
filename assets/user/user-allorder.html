@@ -138,72 +138,73 @@
   <script src="../js/lib/vlm.js"></script>
   <script src="../js/lib/template.js"></script>
   <script>
+    var getCN = {
+      "Paid": "已支付",
+      "Pending":"待支付"
+    };
 
-	var getCN = {
-		"Paid": "已支付",
-		"Pending":"待支付"
-	};
+    (function(){
+      var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
+      var deviceID=vlm.Utils.CookieUtil.get("deviceID");
+      var index=1;
 
-	$(document).ready(function(){
+      var Parameters= {
+        "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":5}',
+        "ForeEndType": 3,
+        "Code": "0062"
+      }
 
-		$(".buyOrder").on("click",function(){
-			location.href="../index.html"
+      var index;
+      var cacheData;
+      // pageshow => 清空cacheData
+      // 加载更多 => 合并到cacheData
 
-		})
+      window.addEventListener('pageshow',function () {
+        cacheData = [];
+        index = 1;
+        loadingData();
+      }, false);
 
-    var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
-    var deviceID=vlm.Utils.CookieUtil.get("deviceID");
-    var index=1;
-
-    var Parameters= {
-      "Parameters": '{"MemberId":"'+memberId+'","DeviceId":"'+deviceID+'","PageIndex":'+index+',"PageSize":2}',
-      "ForeEndType": 3,
-      "Code": "0062"
-    }
-
-    var loadingData=function(){
-      debugger;
-      vlm.loadJson("", JSON.stringify(Parameters), function(data){
-        $(".moreData").hide();
-        if(data.success) {
-          if(data.data !=null && data.data.length>0 ) {
-
-            if(data.data.length==2) {
+      var loadingData = function(){
+        vlm.loadJson("", JSON.stringify(Parameters), function(data){
+          if(data.success) {
+            if(data.data !=null && data.data.length>0 ) {
               $(".moreData").show();
+
+              cacheData = cacheData.concat(data.data);
+
+              var html = template("tpl_ticket", cacheData);
+              $(".ticket_div").html(html);
+              $(".hotel-div-cancel").on("click", function () {
+                location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
+              })
+              $(".quitbtn").on("click", function () {
+                $(".jpop_box_tic").show();
+              })
+              $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+                $('.jpop_box_tic').hide();
+              })
             }
+            else{
+              $("#black_page").show();
+            }
+          }else{
+            alert("网络异常！");
+          }
+          vlm.init();
+        })
 
-            var html = template("tpl_ticket", data.data);
-            $(".ticket_div").append(html);
-            $(".hotel-div-cancel").on("click", function () {
-              location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
-            })
-            $(".quitbtn").on("click", function () {
-              $(".jpop_box_tic").show();
-            })
-            $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
-              $('.jpop_box_tic').hide();
-            })
-          }
-          else{
-            $("#black_page").show();
-          }
-        }else{
-          alert("网络异常！");
-        }
-        vlm.init();
+      }
+
+      $(".buyOrder").on("click",function(){
+        location.href="../index.html"
+
       })
-
-    }
-    loadingData();
-
-    $(".moreData").on("click",function(){
-      index++;
-      loadingData();
-    })
-	})
-
-
-
+      $(".moreData").on("click",function(){
+        index++;
+        loadingData();
+      })
+    })();
 </script>
 
   <!--模板-->
