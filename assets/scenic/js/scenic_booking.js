@@ -6,7 +6,7 @@
   var val = vlm.parseUrlPara(window.location.href);
   var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax,MaxPax,
     OnlyForAdult,MinPaxType, DetailData, SearchPriceData,OrderParam,
-    globaldata, ExtendData, pickupInfosData, StartDate, EndDate, recalSearchPrice;
+    globaldata, ExtendData, pickupInfosData, StartDate, EndDate, recalSearchPrice,historyScrollTop = 0;
 
   /**
    *     监听某个节点属性是否改变
@@ -500,6 +500,7 @@
         $(".js_pickup_pop_search_input").bind("keyup , input propertychange",function(e){
           //第一次初始化
           $(document).scrollTop(0);
+
           var tplString = "", outString = "",new_list=[],tmp_list = pickupInfosData.data.pickupInfos;
           var e = e || window.event,
             tar = e.target || e.srcElement,
@@ -518,12 +519,14 @@
         });
 
         $("#js_pickup_pop_header_goback").click(function(e){
+          $(document).scrollTop(historyScrollTop);
           $(".pickup_pop").hide();
+
         });
 
         $(".js_booking_package_pickup_select").click(function(e){
           $(".pickup_pop").show();
-          $(document).scrollTop(0);
+          historyScrollTop = $(document).scrollTop();
           Method["callbackPickup"](pickupInfosData);
         });
       },
