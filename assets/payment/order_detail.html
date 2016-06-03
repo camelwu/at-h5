@@ -633,7 +633,7 @@
               </div>
               <% for(var i=0; i< flightInfo.segmentsLeave.length; i++){ %>
               <div class="fli_list">
-                <div class="time-arrow-time" style="overflow: hidden">
+                <div class="time-arrow-time clearfix">
                   <div class="city-time-left">
                     <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].departDate,'hm')%></div>
                     <p class="port-name"><%=flightInfo.segmentsLeave[i].airportNameFrom%><%=flightInfo.segmentsLeave[i].termDepart%></p>

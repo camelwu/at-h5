@@ -992,6 +992,9 @@ li.order_tlist2 {
 /*.time-arrow-time >div{*/
 /*float: left;*/
 /*}*/
+.time-arrow-time{
+  overflow: visible;
+}
 .time-arrow-time .city-time-left {
   float: left;
   width: 35%;
