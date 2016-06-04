@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = $(".citybox_header")[0].offsetHeight != 0?$(".citybox_header")[0].offsetHeight:44,cityboxHistoryScrollTop = 0;
+  var show1 = 0,show2 = 0,scrollTopPx = $("html").css("font-size").replace("px","")*.88,cityboxHistoryScrollTop = 0;
   var globalType = "";
   var returnType = "";
   var returnAttr = "";
@@ -1841,8 +1841,6 @@
         citybox_summary_item_li.onclick = function(){
           var key = this.getAttribute("data-key");
           var a = $("#js_index_" + key);
-
-
 
           if (a.length != 0) {
             i = a.offset().top - scrollTopPx + $(".citybox_search_container").scrollTop();
