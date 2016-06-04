@@ -855,7 +855,7 @@ function styleChange(id, mytext) {
         console.log(json);
         //console.log(1);
         //alert(arr.Success);
-          noWIfi(json.status);
+          noWIfi();
         if (json.success) {
             //console.log(json.Data);
             var data = json.data[0];
@@ -883,9 +883,9 @@ function styleChange(id, mytext) {
         }
 
     }
-    function noWIfi(status){
-          var timeout=1; // 1秒超时
-          if(status == 'timeout'){
+    function noWIfi(){
+      if(window.navigator.onLine==true){
+        vlm.init();
         document.getElementById("loadMore").style.display = "none";
         var oLi = document.createElement('li');
         oLi.innerHTML = '<div id = "nowifi"><img src="../images/error/nowifi.png" /><p class="hotelnowifi1">无法连接网络，请保持网络畅通</p><p class="hotelnowifi2">点击页面重新加载</p></div>';
