@@ -23,6 +23,8 @@ Scroller.prototype = {
     _template: {
         dateTime: ['date', 'h', 'm'],
         card: ['<span data-code="1">护照</span>', '<span data-code="2">身份证</span>'],
+        cardInte: ['<span data-code="1">护照</span>'],
+        cardDom: ['<span data-code="2">身份证</span>'],
         date: ['年', '月', '日'],
         time: ['<span>上午</span>', '<span>下午</span>'],
         comp: ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
@@ -198,6 +200,14 @@ Scroller.prototype = {
                 switch (t) {
                     case 'card':
                         var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp1'].join('');
+                        Creatwaprer(str);
+                        break;
+                    case 'cardInte':
+                        var str = that._template['comp'].join('') + that._template['cardInte'].join('') + that._template['comp1'].join('');
+                        Creatwaprer(str);
+                        break;
+                    case 'cardDom':
+                        var str = that._template['comp'].join('') + that._template['cardDom'].join('') + that._template['comp1'].join('');
                         Creatwaprer(str);
                         break;
                     case 'seat':

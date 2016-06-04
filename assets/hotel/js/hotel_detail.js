@@ -715,7 +715,7 @@
             //   document.body.removeChild(hotelDetail.$Id('infoAll'))
             //   hotelDetail.$Id('r-mb').style.display = 'none';
             //};
-            var title = arg.isabd ? arg.roomName + '(含早)' : arg.roomName + ' (无早)';
+            var title = arg.isabd ? arg.roomName + '(含早)' : arg.roomName + '&nbsp(无早)';
             jLayer(modalStr, title);
         },
 
@@ -806,9 +806,9 @@
                 var error_url = images[i].getAttribute('data-error');
                 (function (i, re_url) {
                     loadImage(re_url, error_url, i, function (i) {
-                        images[i].setAttribute('src', re_url);
+                      if(re_url) images[i].setAttribute('src', re_url);
                     }, function () {
-                        images[i].setAttribute('src', error_url);
+                      if(error_url) images[i].setAttribute('src', error_url);
                     });
                 })(i, re_url)
             }

@@ -68,7 +68,7 @@
                                 <div class="arrow"></div>
                                 <%}else{%>
                                     <div class="arrowWord"></div>
-                                    <%if(flightInfo["transferListLeave"].length < 2){%>
+                                    <%if(flightInfo["transferListLeave"].length == 1){%>
                                         <div class="transferCity">
                                             <%= flightInfo["transferListLeave"][0] %>
                                         </div>
@@ -109,15 +109,12 @@
                                 <div class="arrow"></div>
                                 <%}else{%>
                                     <div class="arrowWord"></div>
-                                    <%if(flightInfo["transferListReturn"].length < 2){%>
-                                        <div class="transferCity">
-                                            <%= flightInfo["transferListReturn"][0] %>
-                                        </div>
-                                        <%}else{%>
-                                            <div class="transferCity">
-                                                <%= flightInfo["transferListReturn"].length %>次</div>
-                                            <%}%>
-                                                <%}%>
+                                    <%if(flightInfo["transferListReturn"].length == 1){%>
+                                        <div class="transferCity"><%= flightInfo["transferListReturn"][0] %></div>
+                                      <%}else{%>
+                                            <div class="transferCity"><%= flightInfo["transferListReturn"].length %>次</div>
+                                          <%}%>
+                                   <%}%>
                         </div>
                         <div class="right">
                             <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>

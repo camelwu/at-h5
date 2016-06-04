@@ -100,6 +100,7 @@ var flight_list = {
             hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
             window.location.href = 'hft_choose.html' + window.location.search;
           });
+          $('.flight_company ul li').eq(0).addClass('cur');
         }else{
           that.noResult();
         }
@@ -195,6 +196,7 @@ var flight_list = {
       footer.filters.init();
     };
     this.tAjax("", oldFlightInfo, "50100002", "3", flightListBack);
+
   },
     noResult :function(){
         var ele = document.createElement('div'), eventEle, flight_hotel_no_result;

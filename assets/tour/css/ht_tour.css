@@ -157,15 +157,15 @@ section[class^="hotelInfo_numb"] .numbList:last-child {
 }
 section[class^="hotelInfo_numb"] .numbList span.n_tit {
   float: left;
-  height: .88rem;
-  line-height: .88rem;
+  height: .6rem;
+  line-height: .6rem;
   text-indent: .16rem;
 }
-section[class^="hotelInfo_numb"] .numbList span.child_age {
+section[class^="hotelInfo_numb"] .numbList span.child-age {
   position: relative;
   font-size: .28rem;
   color: rgb(153,153,153);
-  top: .26rem;
+  top: .1rem;
 }
 .child_age_state{
   position: absolute;

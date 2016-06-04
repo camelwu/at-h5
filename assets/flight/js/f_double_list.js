@@ -21,7 +21,7 @@ var fDoubleList = {
     this.addHandler(target, eventType, handle);
   },
 
-  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
     var that = this, dataObj =
     {
       Parameters: data,
@@ -29,11 +29,7 @@ var fDoubleList = {
       Code: Code
     };
     questUrl = questUrl ? questUrl : "";
-    if (loadMoreSign) {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
-    } else {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-    }
+    vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
   },
 
   eventHandler: function () {
@@ -59,7 +55,7 @@ var fDoubleList = {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fDoubleList;
     tempString = $("#template_flight_double_list").html();
-    outputString = this.postObj.isClearAll == 1 ? ejs.render(tempString, data) : $(".flight_ul").eq(0).html() + ejs.render(tempString, data);
+    outputString = ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -75,9 +71,9 @@ var fDoubleList = {
         that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.first == true ? that.filterHandler(result.data.airCorpCodeList) : "";
+        that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler() : "";
         that.first = false;
-        that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+        that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
     } else {
       no_result.style.display = "block";
@@ -171,8 +167,7 @@ var fDoubleList = {
       this.postObj.pageNo++;
       loadMore.innerHTML = "正在加载...";
       storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: this.postObj}));
-      this.postObj.isClearAll = 0;
-      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+      this.pageHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
 
@@ -207,14 +202,13 @@ var fDoubleList = {
 
   pageHandler: function (url) {
     var newUrl = url, that = fDoubleList;
-    that.postObj.pageSize = Number(that.postObj.pageSize) > 10 ? Number(that.postObj.pageSize) : Number(that.postObj.pageNo) * 10;
+    that.postObj.pageSize =10*(parseInt(that.postObj.pageSize/10+1));
     that.postObj.pageNo = 1;
-    that.postObj.isClearAll = 1;
+    return that;
   },
 
   filerCallBack: function () {
     var transferData = arguments, that = fDoubleList;
-    that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
       if (arguments[1].id == "Tax") {
         that.fadeHandler('show');

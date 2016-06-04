@@ -350,6 +350,7 @@
       newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
     }
 
+
     newDate.setMonth(newDate.getMonth()+6);
     year=newDate.getFullYear();
     month=newDate.getMonth()+1;
@@ -745,9 +746,10 @@
 
      new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
      new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
-     new Scroller({id: "postCard", type:"card",cont:"uuu","callback":truncateCardInfo});
+     var cardType=isNeedPassport==true? "cardInte":"card"
+     new Scroller({id: "postCard", type:cardType,cont:"uuu","callback":truncateCardInfo});
 
-
+    _clearDate();
     //免登陆，如果缓存没有数据，自己显示添加页面
     if(memberId==undefined){
       var data=JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));

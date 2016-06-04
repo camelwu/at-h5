@@ -12,9 +12,9 @@
 }(jQuery));
 
 /**
- *@desc 酒店搜索页  依赖jquery 
+ *@desc 酒店搜索页  依赖jquery
  *@time
- *@author 
+ *@author
  **/
 (function () {
     "use strict";
@@ -193,6 +193,10 @@
                 }
                 if (target.hasClass("hotel_roomNum_add") && atferValue > adultValue) {
                     $("#ho_i7").trigger("click");
+                }
+
+                if (target.hasClass("hotel_roomNum_add") && atferValue == adultValue) {
+                    $(".hotel_people_right_adult_minus").removeClass('able').addClass("disable");
                 }
             });
             $("#content1").on("click", ".minus", function (event) {

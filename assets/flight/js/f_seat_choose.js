@@ -21,7 +21,7 @@ var fSeatChoose = {
     this.addHandler(target, eventType, handle);
   },
 
-  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
     var that = this, dataObj =
     {
       Parameters: data,
@@ -29,11 +29,7 @@ var fSeatChoose = {
       Code: Code
     };
     questUrl = questUrl ? questUrl : "";
-    if (loadMoreSign) {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
-    } else {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-    }
+    vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
   },
 
   getMinutes: function (arg1, arg2) {
@@ -63,7 +59,6 @@ var fSeatChoose = {
       }
     });
   },
-
   createTags: function () {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fSeatChoose;

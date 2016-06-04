@@ -1109,8 +1109,9 @@ section.hotelInfo_numb_room .title {
 .zy_price_control, .hotelInfo_numb_people .childAge {
   float: right;
   width: 1.6rem;
-  height: 0.56rem;
+  height: 0.5rem;
   position: relative;
+  right: 0.1rem;
 }
 
 .hotelInfo_numb_people .childAge {
@@ -1121,13 +1122,24 @@ section.hotelInfo_numb_room .title {
   width: 60%;
 }
 
-.zy_price_control span, .hotelInfo_numb_people .childAge span {
-  width: 0.54rem;
-  height: 0.54rem;
-  background: url(../../images/ui/icons1.png) no-repeat 1px 2px;
-  background-size: 6.4rem auto;
+.zy_price_control span{
+  width: 0.6rem;
+  height: 0.6rem;
+  background: url(../../images/ui/icons1.png) no-repeat -2.67rem -0.57rem;
+  background-size:8rem 2.4rem;
   position: absolute;
   top: 0;
+}
+.zy_price_control span.down_btn{
+  background-position: -4.62rem -0.57rem;
+}
+
+.zy_price_control span.down_btn.cur{
+  background-position:-3.98rem -0.57rem;
+}
+
+.zy_price_control span.up_btn.cur{
+  background-position:-3.29rem -0.57rem;
 }
 
 .hotelInfo_numb_people .spenumbList {
