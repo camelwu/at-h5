@@ -47,9 +47,33 @@
   var addPassagerBackBtn=$(".addAir_page .header_quit");
   var addPassagerTitle=$(".add_passager .newTitle");
 
+  //var tpl_traveler = ['{% var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2;  for(var i=0,len=data.length;i<len;i++){ alert(data.length); var dd=data[i];%}',
+  //  '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
+  //  '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
+  //  '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
+  //  '<ul class="often_user">',
+  //  '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
+  //  '<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
+  //  '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">' +
+  //  '{%=dd.traveller.firstName%}</span>',
+  //  '{%  if(age<2){ %}'+
+  //  '<i class="per_type" data-id="0">婴儿</i></li>'+
+  //  '{% } else if(age>=2 && age<12){ %}'+
+  //  '<i class="per_type" data-id="1">儿童</i></li>'+
+  //  '{% } else if(age>=12){ %}'+
+  //  '<i class="per_type" data-id="2">成人</i></li>',
+  //  '{% } for(var i=0; i<=dd.listTravellerIdInfo.length-1;i++){  %}',
+  //  '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[i].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[i].idNumber%}</span></li>',
+  //  '{% } else{ %}' +
+  //  '<li class="passport-num"><span class="passport-card-type">请补全{%=vlm.arr_t[dd.listTravellerIdInfo[i].idType]%}信息</span></li>',
+  //  '{% }} %}',
+  //  '</ul>',
+  //  '</li>',
+  //  '{% } %}'].join('');
+
   //常旅列表
-  var tpl_traveler = ['{%  for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
-    '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
+  var tpl_traveler = ['{%  var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2; for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
+    '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); %}'+
     '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
     '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
     '<ul class="often_user">',
@@ -63,12 +87,41 @@
     '<i class="per_type" data-id="1">儿童</i></li>'+
     '{% } else if(age>=12){ %}'+
     '<i class="per_type" data-id="2">成人</i></li>',
-    '{% } if(dd.listTravellerIdInfo.length>0){ %}',
-    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
-    '{% } %}',
+    '{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ if(dd.listTravellerIdInfo[j].idType==1){ %}',
+    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
+    '{% } else if(dd.listTravellerIdInfo[j].idType==2 && defaultShowCardType==1){ %}',
+    '<li class="passport-num"><span class="passport-card-type" style="color: #999;">请补全护照信息</span></li>',
+    '{% } else{ %}',
+    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
+    '{% }} %}',
     '</ul>',
     '</li>',
     '{% } %}'].join('');
+
+
+  ////常旅列表
+  //var tpl_traveler = ['{%  for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
+  //  '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
+  //  '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
+  //  '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
+  //  '<ul class="often_user">',
+  //  '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
+  //  '<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
+  //  '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">' +
+  //  '{%=dd.traveller.firstName%}</span>',
+  //  '{%  if(age<2){ %}'+
+  //  '<i class="per_type" data-id="0">婴儿</i></li>'+
+  //  '{% } else if(age>=2 && age<12){ %}'+
+  //  '<i class="per_type" data-id="1">儿童</i></li>'+
+  //  '{% } else if(age>=12){ %}'+
+  //  '<i class="per_type" data-id="2">成人</i></li>',
+  //  '{% } if(dd.listTravellerIdInfo.length>0){ %}',
+  //  '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
+  //  '{%  } %}',
+  //  '</ul>',
+  //  '</li>',
+  //  '{% } %}'].join('');
+
 
   //页面事件绑定
   var _bindEvent=function(){
@@ -401,6 +454,7 @@
         }
         param.push(o);
       }
+
       localStorage.setItem('travellerInfo_selected',JSON.stringify(param));
       sessionStorage.setItem('choiceAir_select_'+elementId,JSON.stringify(selectedPassagerArray));
     }
@@ -430,6 +484,9 @@
       var children=htmlObj.children().eq(0);
 
       for (var key in selectedPassagerArray) {
+        for (var i = 0; i <= selectedPassagerArray[key].listTravellerIdInfo.length - 1; i++) {
+          selectedPassagerArray[key].listTravellerIdInfo[i].idName = vlm.arr_t[selectedPassagerArray[key].listTravellerIdInfo[i].idType];
+        }
         var cloneObj=children.clone(true);
         cloneObj.show();
         elementList=$(cloneObj).find("[data-elementname]");
@@ -438,7 +495,7 @@
           var obj = elementList[i],
             attribute = elementList[i].attributes["data-elementname"].value,
             val = passagerArray[key].traveller[attribute];
-          if (val == undefined) {
+          if (val == undefined || val=="") {
             val=passagerArray[key].listTravellerIdInfo[0][attribute];
           }
           if (obj.tagName == "INPUT") {

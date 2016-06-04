@@ -38,7 +38,7 @@
     <!--乘机人-->
     <div class="passengers_wrap">
       <h4>乘机人<i
-        onclick="vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
+        onclick="vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
       </h4>
 
       <div id="passenger-list">
@@ -56,7 +56,7 @@
                                                                                            data-elementName="travellerId"></i>
             </p>
 
-            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567"
+            <p class="passport_sex"><span class="tip_word" data-elementname="idName">护照</span><input class="passportValue" placeholder="1234567"
                                                                            readonly="readonly"
                                                                            data-elementname="idNumber"/><span
               class="sex_value" data-elementname="sexName"></span>
@@ -68,7 +68,7 @@
     <!--联系人-->
     <div class="contact_wrap" id="contact-table">
       <h4>联系人<i class="add_icon contact"
-                onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i></h4>
+                onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,null)"></i></h4>
 
       <p class="input_line clearfix">
         <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)" data-elementname="lastName"/>

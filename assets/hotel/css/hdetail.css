@@ -395,6 +395,9 @@ span.money{
   right: 0;
 }
 /*房间信息弹层*/
+#popup_container{
+  width: 100%;
+}
 #popup_title{
   /*height: .34rem;*/
   padding: .28rem .8rem .28rem .28rem;
@@ -425,7 +428,6 @@ span.money{
 }
 #popup_more {
   max-height: 7.4rem;
-  min-width: 90%;
   line-height: .4rem;
   color: #484848;
   overflow-y: scroll;
@@ -461,12 +463,6 @@ span.money{
   margin-left: .5rem;
   color: #484848;
   margin-bottom: 0;
-}
-#popup_more {
-  max-height: 6.8rem;
-  min-width: 3rem;
-  color: #484848;
-  overflow-y: scroll;
 }
 /*房间内容弹层*/
 .ro-info li:last-child{
