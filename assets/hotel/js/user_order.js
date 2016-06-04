@@ -361,12 +361,14 @@ uoHisData();
 
         //手机号和邮箱实现历史记忆功能
         var uo_c3_tele = document.getElementById('uo_c3_tele');
-        var uo_c3_email = document.getElementById('uo_c3_email');
         if (fake_data.GuestContactNo && fake_data.GuestContactNo != '') {
             uo_c3_tele.value = fake_data.GuestContactNo;
         }
-        if (fake_data.GuestEmail && fake_data.GuestEmail != '') {
-            uo_c3_email.value = fake_data.GuestEmail;
+        if (hoPos == 'inter') {
+            var uo_c3_email = document.getElementById('uo_c3_email');
+            if (fake_data.GuestEmail && fake_data.GuestEmail != '') {
+              uo_c3_email.value = fake_data.GuestEmail;
+            }
         }
     }
     uoHisFillIn();

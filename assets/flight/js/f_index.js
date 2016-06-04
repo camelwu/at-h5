@@ -362,7 +362,7 @@ var fIndexModal = {
         doubleWrap.style.display = "block";
         document.querySelector('.dateInfo').className = "dateInfo white";
       } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
-        var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
+        var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "", temType="";
         oSpan.style.transition = '0.7s all ease';
         oSpan.style.webkitTransition = '0.7s all ease';
         that.deg += 180;
@@ -373,10 +373,13 @@ var fIndexModal = {
         });
         tem = cityName[0].innerHTML;
         temCode = cityName[0].getAttribute('data-code');
+        temType = cityName[0].getAttribute('data-city-type');
         cityName[0].innerHTML = cityName[1].innerHTML;
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
+        cityName[0].setAttribute('data-city-type', cityName[1].getAttribute('data-city-type'));
         cityName[1].innerHTML = tem;
         cityName[1].setAttribute('data-code', temCode);
+        cityName[1].setAttribute('data-city-type', temType);
         $(".citySearch").each(function () {
           $(this).fadeIn("700")
         });
