@@ -124,7 +124,6 @@
 
     //保存事件
     saveDbBtn.on("click",function(){
-      debugger;
       var flag=_saveDb();
       if(flag) {
         _getPassagerList();
@@ -237,7 +236,6 @@
           break;
         }
       }
-      debugger;
       modle.traveller.idName=$(".addAir_page .cnName").val();
       modle.traveller.lastName=$(".addAir_page .lastName").val();
       modle.traveller.firstName=$(".addAir_page .firstName").val();
@@ -277,7 +275,6 @@
     $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
     $(".addAir_page .phone_pre").html(model.traveller.mobilePhoneAreaCode);
 
-    debugger;
     $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2");
     $(".addAir_page .sex_cho_wrap .icon_h[data-code='"+model.traveller.sexCode+"']").removeClass("traveler_sex2").addClass("traveler_sex1")
 
