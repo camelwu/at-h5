@@ -290,7 +290,13 @@
     addOrEditPassagePage.find("input").val("");
 
     var newDate,year,month,day
-    newDate = new Date();
+    if(departDate==null || departDate=="null"){
+      newDate = new Date();
+    }
+    else{
+      newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+    }
+
     newDate.setMonth(newDate.getMonth()+6);
     year=newDate.getFullYear();
     month=newDate.getMonth()+1;
@@ -653,12 +659,30 @@
              addOrEditPassagePage.find(".cardNumber").val(cardList[index].idNumber);
              addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
              addOrEditPassagePage.find(".cardCountry").html(cardList[index].idCountryName);
-             addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry)
+             addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry);
              return;
+           }
+           else{
+             var newDate,year,month,day
+             if(departDate==null || departDate=="null"){
+               newDate = new Date();
+             }
+             else{
+               newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+             }
+
+             newDate.setMonth(newDate.getMonth()+6);
+             year=newDate.getFullYear();
+             month=newDate.getMonth()+1;
+             day=newDate.getDate();
+
+             $(".addAir_page .cardDateLimit").attr("data-cache",  year+"年-"+month+"月-"+day+"日");
+             $(".addAir_page .cardDateLimit").val(year+"年"+month+"月"+day+"号");
            }
          }
     }
   }
+
   /*页面初始化方法*/
   var _initPage=function(){
 
@@ -699,6 +723,7 @@
       _model2UI(passagerArray[editIDKey]);
       passagerListPage.hide();
       addOrEditPassagePage.show();
+      _setTitleTip();
       return;
     }
 
@@ -719,5 +744,6 @@
   return{
     InitPage:_initPage()
   }
+
 })()
 
