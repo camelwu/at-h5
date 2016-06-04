@@ -72,7 +72,7 @@
 					<span class="title">房间</span>
 					<div class="per-price-control room_number" data-type="extraRoom">
 						<span id="room_downb" class="down_btn"></span>
-						<i id="roomNum" class="change_num"></i>
+						<i id="roomNum" class="change_num">1</i>
 						<span class="up_btn"></span>
 					</div>
 				</section>
@@ -90,23 +90,21 @@
 			</div>
 		</div>
 
-<script src="../js/lib/d_calendar1.0.2.js"></script>
 <script src="../js/lib/jquery.js"></script>
-<script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
-<script src="../js/lib/custom.js"></script>
-<!--<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>-->
+<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
 <script src="js/dateFixed_.js"></script>
 <script id="tpl_GetTour" type="text/template">
+{% var start = defaultDepartStartDate.substring(0, 10).replace(/-/g, "/"),dd = new Date(start);dd.setDate(dd.getDate()+1); var week = day_ary[dd.getDay()]; start = dd.getFullYear()+"-"+(dd.getMonth()+1)+"-"+dd.getDate(); %}
 {% for(var i=0;i < tours.length;i++){ %}
 <div class="nav2-tour tour-out-div" id="content{%= i %}" data-tour-id="{%= tours[i].tourID %}">
     <div><i></i>{%= tours[i].tourName %}</div>
     <!-- 日期部分-->
     <div>
-        <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= day_start %}" class="content3_CheckInDate" readonly="readonly">
-        <span id="content0_week_span1" class="week-tour"></span>
+        <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= start %}" class="content3_CheckInDate" readonly="readonly">
+        <span id="content0_week_span1" class="week-tour">{%= week %}</span>
         <i></i>
     </div>
     <!-- 判断时间部分-->
@@ -153,6 +151,7 @@
 {% } %}
 </script>
     <script>
+    function old_function(){
       var day_Num, day_start, calendar_end, day_weekday, day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
       var noon = [];
       (function () {
@@ -1038,7 +1037,7 @@ alert(arg.start+',,'+arg.end);
           this.initDate();
         }
       };
-      //儿童年龄纯数字
+}      //儿童年龄纯数字
       function setAge(obj) {
         obj.value = obj.value.replace(/\D/ig, '');
       }
