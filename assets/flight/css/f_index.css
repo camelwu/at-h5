@@ -1262,12 +1262,6 @@ input.name{
 }
 
 /*国籍选择开始*/
-
-.country_header {
-  opacity: 1;
-  display: none;
-}
-
 .country-cho-wrap {
   position: fixed;
   top: 0;

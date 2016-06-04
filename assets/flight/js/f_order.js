@@ -179,7 +179,6 @@ var fOrder = {
         });
       }
       searchResult_ = searchResult_.distinct();
-      console.log(searchResult_)
       if(!searchResult_.length){
         resultStr +='<li>无搜索结果</li>';
       }else{
@@ -348,7 +347,7 @@ var fOrder = {
         shadow.style.zIndex ="99";
         shadow.style.display ="none";
         changeTip.style.display = "none"
-      }else if(target.className.indexOf('country_header')>-1){
+      }else if(target.className.indexOf('country_header')>-1||target.parentNode.className.indexOf('country_header')>-1){
         document.querySelector('.country-cho-wrap').style.display ="none";
       }else if(target.className == "explain"){
             shadow.style.zIndex ="1000";
