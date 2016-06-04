@@ -1017,31 +1017,38 @@ section.hotelInfo_numb_room {
 
 section.hotelInfo_numb_room .room_number {
   width: 1.6rem;
-  height: 0.5rem;
+  height: 0.6rem;
   position: absolute;
   right: 0.25rem;
   top: 50%;
-  margin-top: -0.25rem;
+  margin-top: -0.3rem;
 }
 
 section.hotelInfo_numb_room .room_number span {
-  width: 0.54rem;
-  height: 0.54rem;
+  width: 0.6rem;
+  height: 0.6rem;
   background: url(../../images/ui/icons1.png) no-repeat;
-  background-position: 1px 2px;
-  background-size: 6.4rem auto;
+  background-size: 8rem 2.4rem;
+  position: absolute;
+  top: 0;
 }
 
 section.hotelInfo_numb_room span.down_btn {
-  position: absolute;
   left: 0;
-  top: 0;
+  background-position:-4.62rem -0.57rem;
 }
 
 section.hotelInfo_numb_room span.up_btn {
-  position: absolute;
   right: 0;
-  top: 0;
+  background-position:-2.67rem -0.57rem;
+}
+
+section.hotelInfo_numb_room span.down_btn.cur {
+  background-position:-3.98rem -0.57rem;
+}
+
+section.hotelInfo_numb_room span.up_btn.cur {
+  background-position:-3.29rem -0.57rem;
 }
 
 section.hotelInfo_numb_room i.change_num {
