@@ -79,7 +79,6 @@ var fOrder = {
     };
     questUrl = questUrl ? questUrl : "";
     vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-
   },
 
   getCurrentStyle: function (node) {

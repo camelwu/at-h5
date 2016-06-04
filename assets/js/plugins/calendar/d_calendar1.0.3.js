@@ -116,12 +116,15 @@
             this.id = options.id; // input的ID    初始化元素idid
             this.num = options.num || 13; //显示数量
             this.sClass1 = options.sClass1;
-            this.id2 = options.id2;
             this.callback = options.callback;
             this.time = options.time || {}; //已有时间  默认选中时间   默认时间必须是大于今天日期
             this.disableDate = options.disableDate || []; //默认不可用的日期
+            this.disableDateAfterLength = options.disableDateAfterLength; // 选中一个日期后，后延多少天内日期可选，其他时间不可选   int 
+            this.minDuration = options.minDuration; //日期选择的最小间隔  如果是3天 那么选中的第一个日期的第二天不可选；
+            this.ableDateRange = options.ableDateRange; //初始化可选择日期时间段，配合num参数使用
             this.prefix = options.prefix || "calendar";
             this.op = 0; //已操作次数
+            this.theLastAbleDay = options.theLastAbleDay;
             this.checkInTimeOptId = options.checkInTimeOptId;
             this.checkOutTimeOptId = options.checkOutTimeOptId;
             this.input = _CalF.$('#' + this.id); // 获取INPUT元素
@@ -158,7 +161,7 @@
                 header.className = this.prefix + '_header';
                 header.innerHTML = '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><h3>选择日期</h3>';
                 calendarWrap.appendChild(header);
-                if (this.selectTime === 2) {
+                if (this.selectTime === 2 && this.type === "flight") {
                     var tiperWrap = document.createElement("div");
                     tiperWrap.className = "calendar_tiper";
                     tiperWrap.innerHTML = this._flightTemptiper;
@@ -219,32 +222,51 @@
                 m = month < 10 ? '0' + month : month;
                 d = i < 10 ? '0' + i : i;
 
-                if (tims[year + '-' + m + '-' + d]) {
-                    if (i == nowdate && month == nowmonth + 1) {
-                        pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span></a>';
+                if (this.ableDateRange) {
+                    rangeStartDate = this.ableDateRange.rangeStartDate;
+                    rangeEndDate = this.ableDateRange.rangeEndDate;
+                    rangeStartDateDay = new Date(rangeStartDate.replace(/-/g, "/")).getDate();
+                    rangeEndDateDay = new Date(rangeEndDate.replace(/-/g, "/")).getDate();
+
+                    if (i <= rangeEndDateDay && i >= rangeStartDateDay) {
+                        if (tims[year + '-' + m + '-' + d]) {
+                            ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                        } else {
+                            ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                        }
                     } else {
-                        pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
+                        ddHtml.push('<a class="disabled">' + i + '</a>');
                     }
                 } else {
-                    if (i == nowdate && month == nowmonth + 1) {
-                        pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
-                    } else {
-                        if (month == nowmonth + 1 && i < nowdate) {
-                            pstr = '<a class="live disabled">' + i + '</a>';
-                        } else if (disableDate.length > 0) {
-                            for (var j = 0; j < disableDate.length; j++) {
-                                if (disableDate[j] === year + "-" + m + "-" + d) {
-                                    pstr = '<a class="live disabled">' + i + '</a>';
-                                    break;
-                                } else {
-                                    pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
-                                }
-                            }
+                    if (tims[year + '-' + m + '-' + d]) {
+                        if (i == nowdate && month == nowmonth + 1) {
+                            pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span></a>';
                         } else {
-                            pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                            pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
+                        }
+                    } else {
+                        if (i == nowdate && month == nowmonth + 1) {
+                            pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
+                        } else {
+                            if (month == nowmonth + 1 && i < nowdate) {
+                                pstr = '<a class="live disabled">' + i + '</a>';
+                            } else if (disableDate.length > 0) {
+                                for (var j = 0; j < disableDate.length; j++) {
+                                    if (disableDate[j] === year + "-" + m + "-" + d) {
+                                        pstr = '<a class="live disabled">' + i + '</a>';
+                                        break;
+                                    } else {
+                                        pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                                    }
+                                }
+                            } else {
+                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                            }
                         }
                     }
                 }
+
+
                 ddHtml.push(pstr);
             }
 
@@ -260,7 +282,7 @@
         },
         drawLastDate: function (odate) { // 参数 odate 为日期对象格式
             var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [],
-                textNode;
+                textNode, m, d;
             var nowDate = new Date(),
                 nowyear = nowDate.getFullYear(),
                 nowmonth = nowDate.getMonth(),
@@ -292,13 +314,34 @@
                 ddHtml.push('<a>&nbsp;</a>');
             }
             // 循环显示日期
+            var theLastAbleDayDate = this.theLastAbleDay ? this.theLastAbleDay.getDate() : nowdate;
+            var rangeStartDate, rangeEndDate, rangeStartDateDay, rangeEndDateDay;
             for (i = 1; i <= days; i++) {
-                if (i <= nowdate) {
-                    ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                m = month < 10 ? '0' + month : month;
+                d = i < 10 ? '0' + i : i;
+                if (this.ableDateRange) {
+                    rangeStartDate = this.ableDateRange.rangeStartDate;
+                    rangeEndDate = this.ableDateRange.rangeEndDate;
+                    rangeStartDateDay = new Date(rangeStartDate.replace(/-/g, "/")).getDate();
+                    rangeEndDateDay = new Date(rangeEndDate.replace(/-/g, "/")).getDate();
+                    if (i <= rangeEndDateDay && i >= rangeStartDateDay) {
+                        if (tims[year + '-' + m + '-' + d]) {
+                            ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                        } else {
+                            ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                        }
+                    } else {
+                        ddHtml.push('<a class="disabled">' + i + '</a>');
+                    }
                 } else {
-                    ddHtml.push('<a class="disabled">' + i + '</a>');
+                    if (i <= theLastAbleDayDate) {
+                        ddHtml.push('<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>');
+                    } else {
+                        ddHtml.push('<a class="disabled">' + i + '</a>');
+                    }
                 }
             }
+
             dd.innerHTML = ddHtml.join('');
 
             // 添加
@@ -472,6 +515,37 @@
             }
         },
         /**
+         *@desc 设置日期不可选择  从startDate 一直endDate不可选  如果没有endDate 一直到结束不可选
+         ×@param  startDate  2016-06-24   endDate   option
+         **/
+        disableDateFrom: function (startDate, endDate) {
+            var dayDate = $("#date-rangeDate").find("a[data-day]");
+            var startIndex = null;
+            var endIndex = null;
+            var temp, tempDate, startDateValue, endDateValue;
+            //TODO 此处循环效率低   可待优化
+            dayDate.each(function (index, ele) {
+                temp = $(ele).attr("data-day");
+                tempDate = new Date(temp.replace(/-/g, "/"));
+                if (startDate === temp) {
+                    startIndex = index;
+                }
+                if (!endDate) {
+                    if (startIndex && index > startIndex) {
+                        $(ele).addClass("disabled");
+                    } else {
+                        $(ele).removeClass("disabled");
+                    }
+                } else {
+                    startDateValue = new Date(startDate.replace(/-/g, "/"));
+                    endDateValue = new Date(endDate.replace(/-/g, "/"));
+                    if (tempDate >= startDateValue && tempDate <= endDateValue) {
+                        $(ele).addClass("disabled");
+                    }
+                }
+            });
+        },
+        /**
          *每次点击结束，将选择结果进行处理
          **/
         linkOver: function (target) {
@@ -498,6 +572,25 @@
 
             //重置选中状态
             this.resetSelected();
+            //选择第一个日期后，如果存在disableDateAfterLength
+            if (this.result.length === 1 && this.disableDateAfterLength) {
+                //disableDateStart 参数指定某个日期后的日期不可选
+                var firstSelect = this.result[0].replace(/-/g, "/");
+                var firstSelectDate = new Date(firstSelect);
+                var validSelectEndDate = new Date(firstSelectDate.getFullYear(), firstSelectDate.getMonth(), firstSelectDate.getDate() + this.disableDateAfterLength);
+                this.disableDateFrom(vlm.Utils.format_date(validSelectEndDate.getFullYear() + '-' + (validSelectEndDate.getMonth() + 1) + '-' + validSelectEndDate.getDate(), 'Ymd'));
+            };
+            if (this.result.length === 1 && this.minDuration) {
+                var firstSelect = this.result[0].replace(/-/g, "/");
+                var firstSelectDate = new Date(firstSelect);
+                var disableDateStart = new Date(firstSelectDate.getFullYear(), firstSelectDate.getMonth(), firstSelectDate.getDate() + 1);
+                var disableDateEnd = new Date(firstSelectDate.getFullYear(), firstSelectDate.getMonth(), firstSelectDate.getDate() + (this.minDuration - 2));
+                //做日期格式转换   需要2016-06-13这样的格式
+                disableDateStart = vlm.Utils.format_date(disableDateStart.getFullYear() + '-' + (disableDateStart.getMonth() + 1) + '-' + disableDateStart.getDate(), 'Ymd');
+                disableDateEnd = vlm.Utils.format_date(disableDateEnd.getFullYear() + '-' + (disableDateEnd.getMonth() + 1) + '-' + disableDateEnd.getDate(), 'Ymd');
+                this.disableDateFrom(disableDateStart, disableDateEnd);
+            };
+
             //显示选中日期到页面顶端
             this.showSelected();
         },
@@ -619,7 +712,6 @@
                     } else {
                         var idate = new Date(nowY, nowM + i, 01);
                         that.drawDate(idate);
-
                     }
                 }
                 //事件绑定
