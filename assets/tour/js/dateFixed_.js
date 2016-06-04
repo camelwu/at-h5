@@ -116,6 +116,19 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
 
                     totalDayEle.html(new Date(data[1].replace(/-/g, "/")).getDate() - new Date(data[0].replace(/-/g, "/")).getDate());
                     //修改日期后重新初始化景点日历
+                    var rangesDate = $("#date-range").attr("data-selectedTime") ? $("#date-range").attr("data-selectedTime") : vlm.Utils.format_date(day_start, "Ymd") + "," + vlm.Utils.format_date(day_end, "Ymd");
+                    rangesDate = rangesDate.split(",");
+
+                    //景点的默认选中日期为开始日期+1天
+                    var firstDate = new Date(rangesDate[0].replace(/-/g, '/'));
+                    var defaultDate = new Date(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate() + 1);
+                    var defaultSelectedDate = defaultDate.getFullYear() + "-" + (defaultDate.getMonth() + 1) + "-" + defaultDate.getDate();
+                    $("#tourTime").find("input").each(function (index, ele) {
+                        $(ele).val(defaultSelectedDate);
+                    });
+                    $("#tourTime").find(".week-tour").each(function (index, ele) {
+                        $(ele).html(vlm.Utils.getWeek(defaultSelectedDate));
+                    });
                     initTourCalendar();
                 }
             });
@@ -127,72 +140,267 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             $("#order_btn").submit(function () {
                 sendInfo();
             });
-            // 加按钮
-            $(".up_btn").on("click", function (event) {
-                var target = $(event.target);
-                // cur 可用高亮
-                if (!target.hasClass('cur')) {
-                    return;
-                }
-                var inputEle = target.siblings("i");
-                var minusEle = target.siblings(".down_btn");
-                var maxValue = parseInt(inputEle.attr("data-max")) ? parseInt(inputEle.attr("data-max")) : 3;
-                var inputValue = inputEle.val();
-                var atferValue = parseInt(inputValue) + 1;
+        },
+        //房间加减事件
+        tagAndEvent = function () {
+            initRooms();
+            if (localStorage.getItem('init') != '1') {
+                dateHandler.init();
+            }
 
-                inputEle.val(atferValue <= maxValue ? atferValue : inputValue);
-                var roomNemEle = $("#count1");
-                var roomValue = parseInt(roomNemEle.val());
-                var adultNumEle = $("#count2");
-                var adultValue = parseInt(adultNumEle.val());
+            function toUp(m, n, n_1) {
+                var _type = n.parentNode.getAttribute("data-type");
+                var str = '',
+                    temAll = 0,
+                    roomEle = '';
+                n.onclick = function () {
+                    roomEle = n.parentNode.parentNode.parentNode;
+                    if (_type == "extraChild") {
+                        str = m.innerHTML;
+                        str = Number(str);
+                        str = str + 1;
+                        temAll = Number(roomEle.querySelector('.adult-people-number').innerHTML) + str;
+                        if (temAll > roomMaxNum) {
+                            jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
+                            return;
+                            // n.style.backgroundPosition = '-.48rem .04rem';
+                        } else if (str > 2) {
+                            jAlert('单个房间儿童数不能超过2人!', '提示');
+                            return;
+                        } else {
+                            m.innerHTML = str;
+                        }
+                        extraChild(n.parentNode.parentNode, str);
+                    } else if (_type == "extraRoom") {
+                        str = m.innerHTML;
+                        str = Number(str);
+                        str = str + 1;
+                        if (str > 5) {
+                            jAlert('最多选择5个房间!', '提示');
+                        } else {
+                            m.innerHTML = str;
+                            extraRoom(n.parentNode.parentNode, str);
+                        }
+                    } else if (_type == "adult") {
+                        var adultdown = n.parentNode.getElementsByClassName('down_btn')[0];
+                        adultdown.style.backgroundPosition = '-.48rem .04rem';
+                        if (onlyForAdult) {
+                            str = m.innerHTML;
+                            str = Number(str);
+                            str = str + 1;
+                            temAll = str;
+                            if (temAll > roomMaxNum) {
+                                jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
+                                return;
+                                // n.style.backgroundPosition = '-.48rem .04rem';
+                            } else if (temAll > 3) {
+                                jAlert('单个房间成人数不能超过3人!', '提示');
+                                return;
+                            } else {
+                                m.innerHTML = str;
+                            }
+                        } else {
+                            str = m.innerHTML;
+                            str = Number(str);
+                            str = str + 1;
+                            temAll = Number(roomEle.querySelector('.child-number').innerHTML) + str;
+                            if (temAll > roomMaxNum) {
+                                jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
+                                return;
+                                //n.style.backgroundPosition = '-.48rem .04rem';
+                            } else if (str > 3) {
+                                jAlert('单个房间成人数不能超过3人!', '提示');
+                                return;
+                            } else {
+                                m.innerHTML = str;
+                            }
+                            var parent = n.parentNode.parentNode.parentNode;
+                            var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
+                            changeChildTemp(parent, str, ChildNum);
+                        }
+                    }
+                };
+            }
 
-                if (atferValue >= maxValue) {
-                    target.addClass("disable");
+            function toDown(m, n) {
+                var _type = n.parentNode.getAttribute("data-type");
+                n.onclick = function () {
+                    var str = m.innerHTML;
+                    str = Number(str);
+                    if (n.id == 'room_downb') {
+                        if (str <= 1) {
+                            m.innerHTML = 1;
+                        } else {
+                            str = str - 1;
+                            m.innerHTML = str;
+                        }
+                        str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
+                    } else if (n.id == 'adult-down') {
+                        if (str <= 1) {
+                            m.innerHTML = 1;
+                        } else {
+                            str = str - 1;
+                            m.innerHTML = str;
+                        }
+                        str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
+                        var parent = n.parentNode.parentNode.parentNode;
+                        var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
+                        changeChildTemp(parent, str, ChildNum);
+                    } else {
+                        if (str <= 0) {
+                            m.innerHTML = 0;
+                        } else {
+                            str = str - 1;
+                            m.innerHTML = str;
+                        }
+                        str == 0 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
+                    }
+                    _type == "extraChild" && extraChild(n.parentNode.parentNode, str);
+                    _type == "extraRoom" && extraRoom(n.parentNode.parentNode, str);
+                };
+            }
+
+            //  实现加减
+            function add_subtract() {
+                var oNum = document.getElementsByClassName('change_num'),
+                    _plus_btn = document.getElementsByClassName('up_btn'),
+                    _cut_down_btn = document.getElementsByClassName('down_btn');
+                for (var i = 0; i < oNum.length; i++) {
+                    toUp(oNum[i], _plus_btn[i], _cut_down_btn[i]);
+                    toDown(oNum[i], _cut_down_btn[i]);
+                    var str = parseInt(oNum[i].innerHTML);
+                    if (i == 0) {
+                        str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem';
+                    } else {
+                        str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem';
+                    }
                 }
-                if (target.hasClass("hotel_people_right_adult_add") && atferValue <= roomValue) {
-                    minusEle.removeClass("able").addClass("disable");
-                } else if (atferValue < maxValue && !minusEle.hasClass('able')) {
-                    minusEle.removeClass("disable").addClass("able");
+                addbed();
+            }
+
+            function addbed() {
+                var addBed = document.getElementsByClassName('icon noselect');
+                for (var j = 0; j < addBed.length; j++) {
+                    {
+                        (function (index) {
+                            addBed[j].onclick = function () {
+                                var c_name = addBed[index].className;
+                                if (c_name == 'icon noselect') {
+                                    this.className = 'icon noselect ico_select';
+                                } else {
+                                    this.className = 'icon noselect';
+                                }
+                            };
+                        }(j));
+                    }
                 }
-                if (target.hasClass("hotel_roomNum_add") && atferValue > adultValue) {
-                    $("#ho_i7").trigger("click");
-                }
-            });
-            // 减按钮
-            $(".down_btn").on("click", function (event) {
-                var target = $(event.target);
-                // cur 可用高亮
-                if (!target.hasClass('cur')) {
-                    return;
-                }
-                var inputEle = target.siblings("i");
-                var addEle = target.siblings(".up_btn");
-                var minValue = parseInt(inputEle.attr("data-min"));
-                var maxValue = parseInt(inputEle.attr("data-max")) ? parseInt(inputEle.attr("data-max")) : 3;
-                var inputValue = inputEle.val();
-                var atferValue = parseInt(inputValue) - 1;
-                inputEle.val(atferValue >= minValue ? atferValue : inputValue);
-                var roomNemEle = $("#count1");
-                var roomValue = parseInt(roomNemEle.val());
-                var adultNumEle = $("#count2");
-                var adultValue = parseInt(adultNumEle.val());
-                if (atferValue > minValue && !target.hasClass('able')) {
-                    target.removeClass('disable').addClass("able");
-                } else if (atferValue <= minValue) {
-                    target.removeClass('able').addClass("disable");
-                }
-                if (atferValue < maxValue) {
-                    addEle.removeClass('disable').addClass("able");
+            }
+
+            add_subtract();
+            //   加减儿童
+            function extraChild(dom, numb) {
+                var _bedBox = dom.parentNode.getElementsByClassName('extraChild'),
+                    _html = '';
+                var adultPeople = parseInt(dom.parentNode.getElementsByClassName('adult-people-number')[0].innerHTML);
+                if (numb == 0 && _bedBox.length == 1) {
+                    _bedBox[0].style.display = 'none';
                 } else {
-                    addEle.removeClass('able').addClass("disable");
+                    var _listHtml;
+                    _bedBox[0].style.display = 'block';
+                    _listHtml = extraChildTemp(numb, adultPeople);
+                    //'';
+                    /*for (var i = 1; i <= numb; i++) {
+                     _listHtml += extraChildTemp(i);
+                     }*/
+                    if (_bedBox.length == 0) {
+                        _html = '<div class="extraChild">';
+                        domAfter(dom, _html + _listHtml + '</div>');
+                        _listHtml = extraChildTemp(numb, adultPeople);
+                    } else {
+                        _bedBox[0].innerHTML = _listHtml;
+                        _listHtml = extraChildTemp(numb, adultPeople);
+                    }
                 }
-                if (target.hasClass("hotel_roomNum_reduce") && atferValue < adultValue) {
-                    $(".hotel_people_right_adult_minus").removeClass('disable').addClass("able");
+                add_subtract();
+            }
+
+            //    加减房间
+            function extraRoom(dom, numb) {
+                var roomBox_first = dom.parentNode.childNodes[7];
+                var roomBox = document.getElementsByClassName('hotelInfo_numb_people');
+                var _html = '';
+                if (numb < roomBox.length) {
+                    roomBox_first.parentNode.removeChild(roomBox[roomBox.length - 1]);
+                } else if (numb == roomBox.length) {
+                    return;
+                } else {
+                    var section = document.createElement("section");
+                    section.className = "hotelInfo_numb_people";
+                    for (var i = 1; i <= numb; i++) {
+                        _html = extraRoomTemp(i);
+                        var rb_l = roomBox.length;
+                        var lastIndex = rb_l - 1;
+                        section.innerHTML = _html;
+                        roomBox_first.parentNode.insertBefore(section, roomBox[lastIndex].nextElementSibling);
+                    }
                 }
-                if (target.hasClass("hotel_people_right_adult_minus") && atferValue <= roomValue) {
-                    target.removeClass("able").addClass("disable");
+                add_subtract();
+            }
+
+            function extraChildTemp(i, n) {
+                if (n == 1) {
+                    if (i == 2) {
+                        return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
+                    } else {
+                        return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
+                    }
+                } else if (i == 1) {
+                    return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
+                } else if (i == 2) {
+                    return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
                 }
-            });
+                addbed();
+            }
+
+            //    儿童信息随成人信息更变
+            function changeChildTemp(box, n, i) {
+                var listStr = box.querySelector('.extraChild');
+                if (n == 1) {
+                    if (i == 2) {
+                        listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
+                    } else {
+                        listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
+                    }
+                } else if (i == 1) {
+                    listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
+                } else if (i == 2) {
+                    listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
+                }
+                addbed();
+            }
+
+            function extraRoomTemp(i) {
+                if (onlyForAdult) {
+                    return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="up_btn"></span></div>' + '</div>';
+                } else {
+                    return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="up_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>' + '</div>';
+                }
+            }
+
+            function domAfter(dom, html) {
+                var next = dom.nextSibling;
+                if (next != null) {
+                    while (next.tagName == undefined) {
+                        if (next.nextSibling != null) {
+                            next = next.nextSibling;
+                        } else {
+                            next = null;
+                            break;
+                        }
+                    }
+                }
+                next != null ? next.parentNode.insertBefore(el(html), next) : dom.parentNode.appendChild(el(html));
+            }
         },
         // 房间
         initRoom = function () {
@@ -269,6 +477,8 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             // 日历date-range
             initHotelCalendar();
             // loadend
+            //事件绑定
+            tagAndEvent();
             //vlm.init();
             if (localStorage.getItem('init') != '1') {
                 localStorage.setItem('init', 1);
@@ -618,267 +828,10 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         };
 
     var tagAndEvent = function () {
-        initRooms();
-        if (localStorage.getItem('init') != '1') {
-            dateHandler.init();
-        }
 
-        function toUp(m, n, n_1) {
-            var _type = n.parentNode.getAttribute("data-type");
-            var str = '',
-                temAll = 0,
-                roomEle = '';
-            n.onclick = function () {
-                roomEle = n.parentNode.parentNode.parentNode;
-                if (_type == "extraChild") {
-                    str = m.innerHTML;
-                    str = Number(str);
-                    str = str + 1;
-                    temAll = Number(roomEle.querySelector('.adult-people-number').innerHTML) + str;
-                    if (temAll > roomMaxNum) {
-                        jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
-                        return;
-                        // n.style.backgroundPosition = '-.48rem .04rem';
-                    } else if (str > 2) {
-                        jAlert('单个房间儿童数不能超过2人!', '提示');
-                        return;
-                    } else {
-                        m.innerHTML = str;
-                    }
-                    extraChild(n.parentNode.parentNode, str);
-                } else if (_type == "extraRoom") {
-                    str = m.innerHTML;
-                    str = Number(str);
-                    str = str + 1;
-                    if (str > 5) {
-                        jAlert('最多选择5个房间!', '提示');
-                    } else {
-                        m.innerHTML = str;
-                        extraRoom(n.parentNode.parentNode, str);
-                    }
-                } else if (_type == "adult") {
-                    var adultdown = n.parentNode.getElementsByClassName('down_btn')[0];
-                    adultdown.style.backgroundPosition = '-.48rem .04rem';
-                    if (onlyForAdult) {
-                        str = m.innerHTML;
-                        str = Number(str);
-                        str = str + 1;
-                        temAll = str;
-                        if (temAll > roomMaxNum) {
-                            jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
-                            return;
-                            // n.style.backgroundPosition = '-.48rem .04rem';
-                        } else if (temAll > 3) {
-                            jAlert('单个房间成人数不能超过3人!', '提示');
-                            return;
-                        } else {
-                            m.innerHTML = str;
-                        }
-                    } else {
-                        str = m.innerHTML;
-                        str = Number(str);
-                        str = str + 1;
-                        temAll = Number(roomEle.querySelector('.child-number').innerHTML) + str;
-                        if (temAll > roomMaxNum) {
-                            jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
-                            return;
-                            //n.style.backgroundPosition = '-.48rem .04rem';
-                        } else if (str > 3) {
-                            jAlert('单个房间成人数不能超过3人!', '提示');
-                            return;
-                        } else {
-                            m.innerHTML = str;
-                        }
-                        var parent = n.parentNode.parentNode.parentNode;
-                        var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
-                        changeChildTemp(parent, str, ChildNum);
-                    }
-                }
-            };
-        }
-
-        function toDown(m, n) {
-            var _type = n.parentNode.getAttribute("data-type");
-            n.onclick = function () {
-                var str = m.innerHTML;
-                str = Number(str);
-                if (n.id == 'room_downb') {
-                    if (str <= 1) {
-                        m.innerHTML = 1;
-                    } else {
-                        str = str - 1;
-                        m.innerHTML = str;
-                    }
-                    str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
-                } else if (n.id == 'adult-down') {
-                    if (str <= 1) {
-                        m.innerHTML = 1;
-                    } else {
-                        str = str - 1;
-                        m.innerHTML = str;
-                    }
-                    str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
-                    var parent = n.parentNode.parentNode.parentNode;
-                    var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
-                    changeChildTemp(parent, str, ChildNum);
-                } else {
-                    if (str <= 0) {
-                        m.innerHTML = 0;
-                    } else {
-                        str = str - 1;
-                        m.innerHTML = str;
-                    }
-                    str == 0 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
-                }
-                _type == "extraChild" && extraChild(n.parentNode.parentNode, str);
-                _type == "extraRoom" && extraRoom(n.parentNode.parentNode, str);
-            };
-        }
-
-        //  实现加减
-        function add_subtract() {
-            var oNum = document.getElementsByClassName('change_num'),
-                _plus_btn = document.getElementsByClassName('up_btn'),
-                _cut_down_btn = document.getElementsByClassName('down_btn');
-            for (var i = 0; i < oNum.length; i++) {
-                toUp(oNum[i], _plus_btn[i], _cut_down_btn[i]);
-                toDown(oNum[i], _cut_down_btn[i]);
-                var str = parseInt(oNum[i].innerHTML);
-                if (i == 0) {
-                    str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem';
-                } else {
-                    str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem';
-                }
-            }
-            addbed();
-        }
-
-        function addbed() {
-            var addBed = document.getElementsByClassName('icon noselect');
-            for (var j = 0; j < addBed.length; j++) {
-                {
-                    (function (index) {
-                        addBed[j].onclick = function () {
-                            var c_name = addBed[index].className;
-                            if (c_name == 'icon noselect') {
-                                this.className = 'icon noselect ico_select';
-                            } else {
-                                this.className = 'icon noselect';
-                            }
-                        };
-                    }(j));
-                }
-            }
-        }
-
-        add_subtract();
-        //   加减儿童
-        function extraChild(dom, numb) {
-            var _bedBox = dom.parentNode.getElementsByClassName('extraChild'),
-                _html = '';
-            var adultPeople = parseInt(dom.parentNode.getElementsByClassName('adult-people-number')[0].innerHTML);
-            if (numb == 0 && _bedBox.length == 1) {
-                _bedBox[0].style.display = 'none';
-            } else {
-                var _listHtml;
-                _bedBox[0].style.display = 'block';
-                _listHtml = extraChildTemp(numb, adultPeople);
-                //'';
-                /*for (var i = 1; i <= numb; i++) {
-                 _listHtml += extraChildTemp(i);
-                 }*/
-                if (_bedBox.length == 0) {
-                    _html = '<div class="extraChild">';
-                    domAfter(dom, _html + _listHtml + '</div>');
-                    _listHtml = extraChildTemp(numb, adultPeople);
-                } else {
-                    _bedBox[0].innerHTML = _listHtml;
-                    _listHtml = extraChildTemp(numb, adultPeople);
-                }
-            }
-            add_subtract();
-        }
-
-        //    加减房间
-        function extraRoom(dom, numb) {
-            var roomBox_first = dom.parentNode.childNodes[7];
-            var roomBox = document.getElementsByClassName('hotelInfo_numb_people');
-            var _html = '';
-            if (numb < roomBox.length) {
-                roomBox_first.parentNode.removeChild(roomBox[roomBox.length - 1]);
-            } else if (numb == roomBox.length) {
-                return;
-            } else {
-                var section = document.createElement("section");
-                section.className = "hotelInfo_numb_people";
-                for (var i = 1; i <= numb; i++) {
-                    _html = extraRoomTemp(i);
-                    var rb_l = roomBox.length;
-                    var lastIndex = rb_l - 1;
-                    section.innerHTML = _html;
-                    roomBox_first.parentNode.insertBefore(section, roomBox[lastIndex].nextElementSibling);
-                }
-            }
-            add_subtract();
-        }
-
-        function extraChildTemp(i, n) {
-            if (n == 1) {
-                if (i == 2) {
-                    return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
-                } else {
-                    return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
-                }
-            } else if (i == 1) {
-                return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
-            } else if (i == 2) {
-                return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
-            }
-            addbed();
-        }
-
-        //    儿童信息随成人信息更变
-        function changeChildTemp(box, n, i) {
-            var listStr = box.querySelector('.extraChild');
-            if (n == 1) {
-                if (i == 2) {
-                    listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
-                } else {
-                    listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
-                }
-            } else if (i == 1) {
-                listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
-            } else if (i == 2) {
-                listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
-            }
-            addbed();
-        }
-
-        function extraRoomTemp(i) {
-            if (onlyForAdult) {
-                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="up_btn"></span></div>' + '</div>';
-            } else {
-                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="up_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>' + '</div>';
-            }
-        }
-
-        function domAfter(dom, html) {
-            var next = dom.nextSibling;
-            if (next != null) {
-                while (next.tagName == undefined) {
-                    if (next.nextSibling != null) {
-                        next = next.nextSibling;
-                    } else {
-                        next = null;
-                        break;
-                    }
-                }
-            }
-            next != null ? next.parentNode.insertBefore(el(html), next) : dom.parentNode.appendChild(el(html));
-        }
 
     };
-
+    //getSpot();
 }).call(this);
 
 /* 不再启用的扩展 ，author：heyong
