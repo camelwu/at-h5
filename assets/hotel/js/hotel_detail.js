@@ -806,9 +806,9 @@
                 var error_url = images[i].getAttribute('data-error');
                 (function (i, re_url) {
                     loadImage(re_url, error_url, i, function (i) {
-                        images[i].setAttribute('src', re_url);
+                      if(re_url) images[i].setAttribute('src', re_url);
                     }, function () {
-                        images[i].setAttribute('src', error_url);
+                      if(error_url) images[i].setAttribute('src', error_url);
                     });
                 })(i, re_url)
             }
