@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<head lang="zh-cn">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚程旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
     <title>海岛游</title>
-    <link href="../styles/framework.css" rel="stylesheet"/>
-    <link href="../styles/style.css" rel="stylesheet"/>
+    <link href="../styles/reset.css" rel="stylesheet"/>
+    <link href="../styles/tips.css" rel="stylesheet"/>
     <link href="css/activity.css" rel="stylesheet"/>
+    <script src="../js/lib/logRecord.js"></script>
 </head>
 <body>
 <div id="preloader" style="">
     <div id="status">
-        
     </div>
 </div>
 
-<div class="is_box">
+<div class="snap-content is_box">
     <img class="is_banner" src="../images/activity/banner1.jpg" alt="">
     <img class="is_banner" src="../images/activity/banner2.jpg" alt="">
     <img class="is_banner" src="../images/activity/banner3.gif" alt="">
-    <ul class="is_list" id="act-list"></ul>
+    <ul class="is_list" id="act-list"> </ul>
     <img class="is_banner" src="../images/activity/isfooter.gif" alt="">
 </div>
-
 
 <script id="tpl_seoul" type="text/template">
     <li>
@@ -39,12 +48,6 @@
 <script src="../js/lib/template.js"></script>
 <script>
     (function() {
-
-        $(document).ready(function() {
-            window.addEventListener('load', function() {
-//                    FastClick.attach(document.body);
-            }, false);
-        });
         var data = [
             {
                 "ProductName":"兰卡威 4天3晚 环岛自由行+市区半日游",
@@ -266,12 +269,8 @@
             'HT':"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1"
         };
         var url=linkurl[ProductType];
-
         window.location.href= url;
     }
 </script>
-
-
-
 </body>
 </html>
