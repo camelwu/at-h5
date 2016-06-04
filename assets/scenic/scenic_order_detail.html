@@ -17,6 +17,7 @@
     <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../styles/tips.css"	rel="stylesheet">
     <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
+    <link href="../css/country_list.css"	rel="stylesheet" type="text/css">
     <link href="css/scenicbase.css" type="text/css" rel="stylesheet" media="all">
 	</head>
 	<body>
@@ -158,7 +159,7 @@
                 <input type="text" id="ticketFirstName" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="firstName" value="">
               </div>
             </div>
-            <div class="countries-wrap booking_package_linkman_contact">
+            <div id="booking_package_linkman_contact" class="countries-wrap">
               <p class="booking_package_countries_title">国籍</p>
               <span  class="country-btn" data-code="CN" data-tel-code="86">中国</span>
                 <i class="booking_package_linkman_i"></i>
@@ -295,22 +296,19 @@
   </section>
   <!--弹层 接送酒店-->
   <!--国籍选择开始-->
-  <div class="all_elements country-cho-wrap">
-    <div class="header country_header">
-      <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
-      <div class="cl_search">
-        <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
-        <i class="icon_common"></i>
-      </div>
+  <div class="header country_header">
+    <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
+    <div class="cl_search">
+      <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
+      <i class="icon_common"></i>
     </div>
-    <!--国籍弹窗开始-->
-    <ul class="country-list-searched"></ul>
-    <!--国籍弹窗结束-->
+  </div>
+  <div class="all_elements country-cho-wrap">
     <div class="content">
       <div id="country-wrap-hot"></div>
       <div class="country-wrap" id="country-wrap"></div>
     </div>
-    <!--热门-->
+    <!--热门国籍-->
     <script id="countryList_hot" type="text/template">
       <h4><a name="rm" class="target"></a>热门</h4>
       <ul class="country_hot">
@@ -321,7 +319,8 @@
         <% } %>
       </ul>
     </script>
-    <!--全部列表-->
+
+    <!--国籍全部列表-->
     <script id="countryList" type="text/template">
       <div class="full_country_outer">
         <% for(var tem in countryArray){ %>
@@ -335,6 +334,34 @@
         <% }%>
       </div>
     </script>
+
+    <!--热门手机区号-->
+    <script id="countryList_hot_tel" type="text/template">
+      <h4><a name="rm" class="target"></a>热门</h4>
+      <ul class="country_hot">
+        <% for(var i=0; i< arrCountry.length; i++){ %>
+        <% if(arrCountry[i].isHot == 1) { %>
+        <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
+        <% } %>
+        <% } %>
+      </ul>
+    </script>
+
+    <!--手机区号全部列表-->
+    <script id="countryListTel" type="text/template">
+      <div class="full_country_outer">
+        <% for(var tem in countryArray){ %>
+        <a class="target" name="<%=tem%>"></a>
+        <h4><%= tem%></h4>
+        <ul class="full_country_list">
+          <%countryArray[tem].forEach(function(array){ %>
+          <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
+          <% })%>
+        </ul>
+        <% }%>
+      </div>
+    </script>
+
     <!--国籍a-z-->
     <script id="country_index" type="text/template">
       <ul>
@@ -344,9 +371,14 @@
         <%}%>
       </ul>
     </script>
+
   </div>
   <!--右侧a-z-->
   <div class="country_index" id="country_index_wrap"></div>
+
+  <!--国籍弹窗开始-->
+  <ul class="country-list-searched"></ul>
+
   <!--国籍选择结束-->
   <script type="text/template" id="tpl_BookingPackage">
     <!--景点包信息-->
