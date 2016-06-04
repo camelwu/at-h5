@@ -380,7 +380,7 @@ var fIndexModal = {
         cityName[0].innerHTML = cityName[1].innerHTML;
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[1].innerHTML = tem;
-        cityName[0].setAttribute('data-code', temCode);
+        cityName[1].setAttribute('data-code', temCode);
         $(".citySearch").each(function () {
           $(this).fadeIn("700")
         });
