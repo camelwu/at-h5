@@ -59,7 +59,6 @@ var fSeatChoose = {
       }
     });
   },
-
   createTags: function () {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fSeatChoose;
