@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = $(".citybox_header")[0].offsetHeight != 0?$(".citybox_header")[0].offsetHeight:44,cityboxHistoryScrollTop = 0;
+  var show1 = 0,show2 = 0,scrollTopPx = 0.88,cityboxHistoryScrollTop = 0;
   var globalType = "";
   var returnType = "";
   var returnAttr = "";
@@ -1812,7 +1812,7 @@
         var key = this.getAttribute("data-key");
         var a = $("#js_"+key);
         if (a.length != 0) {
-          i = a.offset().top - scrollTopPx + $(".citybox_search_container").scrollTop();
+          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_search_container").scrollTop();
         }
         $(".citybox_search_container").scrollTop(i);
       }
@@ -1826,7 +1826,7 @@
         var key = this.getAttribute("data-key");
         var a = $("#js_"+key);
         if (a.length != 0) {
-          i = a.offset().top - scrollTopPx + $(".citybox_search_container").scrollTop();
+          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_search_container").scrollTop();
         }
         $(".citybox_search_container").scrollTop(i);
       }
@@ -1842,10 +1842,9 @@
           var key = this.getAttribute("data-key");
           var a = $("#js_index_" + key);
 
-
-
           if (a.length != 0) {
-            i = a.offset().top - scrollTopPx + $(".citybox_search_container").scrollTop();
+            i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_search_container").scrollTop();
+            //console.log($("html").css("font-size") +","+a.offset().top+","+$(".citybox_search_container").scrollTop());
           }
           $(".citybox_search_container").scrollTop(i);
 

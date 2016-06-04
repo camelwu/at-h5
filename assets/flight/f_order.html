@@ -38,7 +38,7 @@
     <!--乘机人-->
     <div class="passengers_wrap">
       <h4>乘机人<i
-        onclick="vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
+        onclick="vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
       </h4>
 
       <div id="passenger-list">
@@ -56,7 +56,7 @@
                                                                                            data-elementName="travellerId"></i>
             </p>
 
-            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567"
+            <p class="passport_sex"><span class="tip_word" data-elementname="idName">护照</span><input class="passportValue" placeholder="1234567"
                                                                            readonly="readonly"
                                                                            data-elementname="idNumber"/><span
               class="sex_value" data-elementname="sexName"></span>
@@ -68,7 +68,7 @@
     <!--联系人-->
     <div class="contact_wrap" id="contact-table">
       <h4>联系人<i class="add_icon contact"
-                onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i></h4>
+                onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,null)"></i></h4>
 
       <p class="input_line clearfix">
         <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)" data-elementname="lastName"/>
@@ -95,9 +95,14 @@
 <div class="priceDetailInfo"></div>
 <!--footer-->
 <div class="bottomPrice">
-      <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span class="money_number"></span><i
-        class="detail_fare open"></i></span>
-  <span class="preserve">立即预定</span>
+  <div class="priceTotal_wrap">
+    <div>
+      <span class="total_word">总额:<b>1473</b><i></i></span>
+      <span class="totalPersonNumber"><b>1</b>人总价</span>
+    </div>
+
+  </div>
+  <div class="preserve">立即预订</div>
 </div>
 <div class="shadow"></div>
 <div class="change_tip">
@@ -107,8 +112,12 @@
 </body>
 <script id="template_flight_summary" type="text/template">
   <p class="trip_go_">
+    <% if(flightInfo.segmentsReturn){ %>
     <span class="icon"></span>
     <span class="addUp"><%= flightInfo.flightLeaveStartDate.substring(5, 10) %></span>
+    <% }else{%>
+    <span><%= flightInfo.flightLeaveStartDate.substring(5, 10) %></span>
+    <%}%>
     <span class="week_value addUp"><%= fOrder.setWeekItems(flightInfo.flightLeaveStartDate) %></span>
     <span class="cityName"><%= flightInfo.segmentsLeave[0]["airportNameFrom"] %><%=flightInfo.segmentsLeave[0]["termDepart"] %></span>
     <span class="addUp">-</span>
@@ -143,14 +152,14 @@
 </script>
 <script id="template_flight_price" type="text/template">
   <p>成人单价<span
-    class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %>x<%= flightInfo.numofAdult %></span></span></p>
   <p>成人税费<span
-    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %>x<%= flightInfo.numofAdult %></span></span></p>
   <%if(parseInt(flightInfo.numofChild)>0){ %>
   <p>儿童单价<span
-    class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHI %>x<%= flightInfo.numofChild %></span></span></p>
   <p>儿童税费<span
-    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHI %>x<%= flightInfo.numofChild %></span></span></p>
   <%} %>
 </script>
 

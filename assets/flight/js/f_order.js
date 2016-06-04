@@ -199,8 +199,8 @@ var fOrder = {
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {},priceTotal = document.querySelector('.priceTotal'),changeTip = document.querySelector('.change_tip'), passengerOuter = null;
-    var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
+    var postPara = {}, temObject = {},priceTotalWrap = document.querySelector('.priceTotal_wrap'),changeTip = document.querySelector('.change_tip'), passengerOuter = null;
+    var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", iArrow = document.querySelector('.total_word i');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
     postPara.wapOrder = {};
@@ -325,15 +325,15 @@ var fOrder = {
         });
       }
     });
-    this.addHandler(priceTotal, 'click', function (){
+    this.addHandler(priceTotalWrap, 'click', function (){
       tag = that.getCurrentStyle(shadow).display;
       if (tag == "block") {
         shadow.style.display = "none";
-        detailFare.className = "detail_fare open";
+        iArrow.className = "";
         priceDetailInfo.style.bottom = '-126%';
       } else {
         shadow.style.display = "block";
-        detailFare.className = "detail_fare";
+        iArrow.className = "toDown";
         priceDetailInfo.style.bottom = ".89rem";
       }
     });
@@ -342,7 +342,7 @@ var fOrder = {
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
         target.style.display = "none";
-        detailFare.className = "detail_fare open";
+        iArrow.className = "";
         priceDetailInfo.style.bottom = '-126%';
         shadow.style.zIndex ="99";
         shadow.style.display ="none";
@@ -379,7 +379,7 @@ editPassager:function(obj){
   var id=$(obj).find("input").eq(0).val();
   var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
   var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-  vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
+  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
 },
 
   createTags: function () {
@@ -395,11 +395,13 @@ editPassager:function(obj){
   },
 
   priceTags: function () {
-    var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.money_number');
+    var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.total_word b'), personNum = document.querySelector('.totalPersonNumber b');
     tempString1 = $("#template_flight_price").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
     $(".priceDetailInfo").eq(0).html(outputString1);
-    moneyNumber.innerHTML = data.priceTotal;
+    console.log(data)
+    moneyNumber.innerHTML = "￥"+data.priceTotal;
+    personNum.innerHTML = parseInt(data.numofAdult)+parseInt(data.numofChild);
     return this;
   },
 

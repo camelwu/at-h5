@@ -687,7 +687,7 @@
           return false;
         }
         //创建订单参数 景点信息
-        TourCount = $(".booking_package_tours").length;
+        TourCount = $(".js_booking_package_tours").length;
         if (TourCount > 0) {
           for (var i = 0; i < TourCount; i++) {
             TourID = $("#js_booking_package_date"+i+"").attr("data-tourid");
@@ -876,6 +876,7 @@
       },
       researchBookingPackage:function(SearchPrice){
           $("<div id=\"preloadertmp\"><div id=\"statustmp\"><p class=\"center-text\"></p></div></div>").appendTo("body").show();
+          $(".all-elements").hide();
           vlm.loadJson("",JSON.stringify(SearchPrice),Method["callbackReSearchPrice"],"","",true);
       },
       createBookingPackage:function(Order){
@@ -1057,6 +1058,7 @@
       }else {
         console.log(json);
         jAlert(json.message, "提示");
+        $(".all-elements").show();
         $("#preloadertmp").remove();
       }
 
