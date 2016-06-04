@@ -99,5 +99,63 @@ margin-bottom: 5px;
 <b>Closest matching address:</b>
 <div id="address"></div>
 </div>
+
+
+
+
+
+<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+<script>
+  (function(){"use strict";
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+              function(position){
+                document.getElementById("currentCity").innerHTML = remote_ip_info['province'];
+                //alert(position.coords.latitude+','+position.coords.longitude);
+                sessionStorage.setItem("province",remote_ip_info['province']);
+              }
+              ,function(err){
+                console.log(err.code+"\n"+err.message);
+              }
+      );
+    }else{//use ip||form sina api
+      document.getElementById("currentCity").innerHTML = remote_ip_info['province'];//alert(remote_ip_info['city']);
+    }
+
+    function success(position){
+      var mapcanvas = document.createElement('div');
+      mapcanvas.id = 'mapcanvas';
+      mapcanvas.style.height = '400px';
+      mapcanvas.style.width = '560px';
+      getElem("map_canvas").appendChild(mapcanvas);
+      var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      var myOptions = {
+        zoom: 15,
+        center: latlng,
+        mapTypeControl: false,
+        navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("mapcanvas"),myOptions);
+      var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title:"u here!"
+      });
+    }
+    // var watchPositionId = navigator.geolocation.watchPosition(success_callback,error_callback,options);
+    // navigator.geolocation.clearWatch(watchPositionId );
+  }());
+</script>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
