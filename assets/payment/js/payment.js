@@ -14,9 +14,7 @@
         /*支付类型*/
         var paymentType={
             "Visa":{id:1,name:"Visa信用卡"},
-
             "Master":{id:20,name:"万事达信用卡"},
-
             "Paypal":{id:21,name:"万事达信用卡"},
             "UnionPayCNY":{id:28,name:"万事达信用卡"},
             "AliPayCNY":{id:27,name:"万事达信用卡"},
@@ -84,6 +82,8 @@
                         selectTime = new Date(selectTime).getTime();
                         if(nowTime > selectTime){
                             $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
+                        }else{
+                          $(".cardExpiryDate").css("color","#000000");
                         }
                     }
                 });
@@ -416,7 +416,7 @@
                         totalPrice+=data.data.chargeDetails[i].totalAmount;
                     }
                 }
-                data.data.totalPrice=totalPrice;
+                data.data.totalFlightPrice=totalPrice;
                 data.data.numofAdult=numofAdult;
                 data.data.numofChild=numofChild;
                 var html = template("tpl_scenic_detail", data.data);

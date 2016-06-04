@@ -452,19 +452,27 @@ var htf_search = {
   //  加床按钮
   addbed : function() {
     var addBed = document.getElementsByClassName('com_icon noselect');
-    for (var j = 0; j < addBed.length; j++) { {( function(index) {
-      addBed[j].onclick = function() {
-        var c_name = addBed[index].className;
-        if (c_name == 'com_icon noselect') {
-          this.className = 'com_icon noselect ico_select';
-        } else {
-          this.className = 'com_icon noselect';
+    var addNum = document.getElementsByClassName("cut_up_cont child_number");
+    var addBedHTML = addNum[1].innerHTML;
+    for (var j = 0; j < addBed.length; j++) {
+      {( function(index) {
+        if(addBedHTML<2){
+            addBed[j].onclick = function() {
+            var c_name = addBed[index].className;
+            if (c_name == 'com_icon noselect') {
+              this.className = 'com_icon noselect ico_select';
+            } else {
+              this.className = 'com_icon noselect';
+            }
+            }
+        } else{
+          addBed.className = 'com_icon noselect ico_select';
         }
-      };
     }(j));
     }
     }
   },
+
   //  实现加减
   add_subtract : function() {
     var content_box = document.getElementsByClassName('content_box');

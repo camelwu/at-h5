@@ -1,3 +1,5 @@
+"use strict";
+
 var fSingleList = {
 
   addHandler: function (target, eventType, handle) {
@@ -33,9 +35,47 @@ var fSingleList = {
       vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
     }
   },
-
+  dateChangeHandler:function(){
+    var searchZone = document.querySelector('.searchZone'), that = this;
+    this.addHandler(searchZone, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement, temDate = "", lineMaxDate = "", newUrl = "";
+      var tem = "", plusOne = "", minusOne = "", monthNum = "", dateNum = "";
+      temDate = document.querySelector('#setOffDateSingle').getAttribute('date-full-value');
+      if (target.className == "previousDay") {
+        lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+        tem = new Date(temDate.replace(/-/g, "/"));
+        minusOne = new Date(tem.setDate(tem.getDate() - 1));
+        monthNum = (minusOne.getMonth() + 1) < 10 ? "0" + parseInt((minusOne.getMonth() + 1)) : minusOne.getMonth() + 1;
+        dateNum = (minusOne.getDate()) < 10 ? "0" + parseInt(minusOne.getDate()) : minusOne.getDate();
+        minusOne = minusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
+        if (new Date(minusOne.replace(/-/g, "/") + ' 23:59:59') >= new Date()){
+          that.fadeHandler('show');
+          that.postObj.isClearAll = 1;
+          that.postObj.departDate = minusOne;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        }
+      } else if (target.className == "nextDay") {
+        alert(2)
+        lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+        tem = new Date(temDate.replace(/-/g, "/"));
+        plusOne = new Date(tem.setDate(tem.getDate() + 1));
+        monthNum = (plusOne.getMonth() + 1) < 10 ? "0" + parseInt((plusOne.getMonth() + 1)) : plusOne.getMonth() + 1;
+        dateNum = (plusOne.getDate()) < 10 ? "0" + parseInt(plusOne.getDate()) : plusOne.getDate();
+        plusOne = plusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
+        if (new Date(plusOne.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(plusOne.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
+          that.fadeHandler('show');
+          that.postObj.isClearAll = 1;
+          that.postObj.departDate = plusOne;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        }
+      }
+    });
+    return this
+  },
   eventHandler: function () {
-    var content = document.querySelector('.content'), searchZone = document.querySelector('.searchZone'), lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage;
+    var content = document.querySelector('.content'), lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage;
     for (var i = 0, len = lis.length; i < len; i++) {
       this.addHandler(lis[i], 'click', function () {
         var setId = this.getAttribute('data-set-id');
@@ -49,38 +89,6 @@ var fSingleList = {
         window.location.href = "f_seat_choose.html";
       })
     }
-    this.addHandler(searchZone, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement, temDate = "", lineMaxDate = "", newUrl = "";
-      var tem = "", plusOne = "", minusOne = "", monthNum = "", dateNum = "";
-      temDate = document.querySelector('#setOffDateSingle').getAttribute('date-full-value');
-      if (target.className == "previousDay") {
-        lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
-        tem = new Date(temDate.replace(/-/g, "/"));
-        minusOne = new Date(tem.setDate(tem.getDate() - 1));
-        monthNum = (minusOne.getMonth() + 1) < 10 ? "0" + parseInt((minusOne.getMonth() + 1)) : minusOne.getMonth() + 1;
-        dateNum = (minusOne.getDate()) < 10 ? "0" + parseInt(minusOne.getDate()) : minusOne.getDate();
-        minusOne = minusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
-        if (new Date(minusOne.replace(/-/g, "/") + ' 23:59:59') >= new Date()) {
-          that.postObj.isClearAll = 1;
-          that.postObj.departDate = minusOne;
-          that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        }
-      } else if (target.className == "nextDay") {
-        lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
-        tem = new Date(temDate.replace(/-/g, "/"));
-        plusOne = new Date(tem.setDate(tem.getDate() + 1));
-        monthNum = (plusOne.getMonth() + 1) < 10 ? "0" + parseInt((plusOne.getMonth() + 1)) : plusOne.getMonth() + 1;
-        dateNum = (plusOne.getDate()) < 10 ? "0" + parseInt(plusOne.getDate()) : plusOne.getDate();
-        plusOne = plusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
-        if (new Date(plusOne.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(plusOne.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
-          that.postObj.isClearAll = 1;
-          that.postObj.departDate = plusOne;
-          that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        }
-      }
-    });
     return this;
   },
 
@@ -95,7 +103,7 @@ var fSingleList = {
 
   renderHandler: function () {
     var result = arguments[0], that = fSingleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
-    console.log(result);
+    that.fadeHandler();
     if (result.success && result.code == "200") {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
@@ -127,6 +135,7 @@ var fSingleList = {
       checkInTimeOptId: 'setOffDateSingle',
       callback: function () {
         var dateSource = arguments[0], that = fSingleList;
+        that.fadeHandler('show');
         fIndexInfoObj.data.departDate = dateSource[0];
         storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
         that.postObj.departDate = dateSource[0];
@@ -547,7 +556,7 @@ var fSingleList = {
     var postObj = this.parseUrlHandler(window.location.href, true);
     this.postObj = postObj;
     this.first = true;
-    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    this.titleInit().dateChangeHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
    // this.renderHandler(data2)
   }
 };

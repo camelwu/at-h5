@@ -175,9 +175,11 @@ i {
   background-repeat: round;
 
 }
-.content.pay_detail_order{
+
+.content.pay_detail_order {
   padding-bottom: 1.6rem;
 }
+
 .p-ul2 {
   width: 100%;
   padding: 0 .28rem;
@@ -231,7 +233,9 @@ i {
 }
 
 .MobilePhone {
-  width: 90px;
+  width: 2.5rem;
+  padding-top: .26rem;
+  vertical-align: top;
 }
 
 .p-ul2 li span.phone i {
@@ -358,16 +362,16 @@ i {
   height: 0.96rem;
   border-bottom: 1px solid #e9e9e9;;
   position: relative;
-  margin-left:.28rem;
+  margin-left: .28rem;
 }
 
 .p-ul1 li:last-child {
   padding-left: .28rem;
-  margin-left:0;
+  margin-left: 0;
   border-bottom: 2px solid #e9e9e9;;
 }
 
-.p-ul1 li:last-child .p-icon5{
+.p-ul1 li:last-child .p-icon5 {
   right: .28rem;
 }
 
@@ -593,6 +597,18 @@ i {
 
 }
 
+.p-ul2 div.con_phone{
+  width: 1.5rem;
+}
+
+.p-ul2 li span.phone_pre {
+  max-width:.8rem;
+  vertical-align: top;
+  margin-top: -2px;
+  height: .96rem;
+  overflow: hidden;
+}
+
 .s-xiala3 {
   display: inline-block;
   vertical-align: top;
@@ -802,26 +818,30 @@ i {
   background: #dfdfdf;
 }
 
-.order-price .cnyPrice{
+.order-price .cnyPrice {
   color: #999;
 }
-.p-price .cnyPrice{
+
+.p-price .cnyPrice {
   color: #999;
   font-size: 0.28rem;
   font-weight: 500;
 
 }
-.p-price .p-price-descript{
+
+.p-price .p-price-descript {
   color: #7bc300;
   padding: 0.3rem .28rem;
 }
-.p-price2{
+
+.p-price2 {
   width: 100%;
   height: 1.8rem;
   padding: 1px;
   background-color: #F7F7F7;
   font-weight: 500;
 }
+
 .p-p2 {
   margin-left: 15px;
   font-size: 0.36rem;

@@ -294,6 +294,7 @@
         AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
         //console.log(ExtendData);
       }else{
+        jAlert(json.message, "提示");
         console.log(json);
       }
     },
@@ -328,6 +329,7 @@
             }
         });
       }else {
+        jAlert(json.message, "提示");
         console.log(json);
       }
     }

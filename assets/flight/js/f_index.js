@@ -1,3 +1,5 @@
+"use strict";
+
 var fIndexModal = {
 
   addHandler: function (target, eventType, handle) {
@@ -318,14 +320,13 @@ var fIndexModal = {
       searchResult = searchResult.distinct();
       if (!searchResult.length) {
         resultStr += '<li>无搜索结果</li>';
-        cityListSearched.style.display = 'none';
       } else {
         for (var l = 0; l < searchResult.length; l++) {
           resultStr += '<li class="city_list" data-city-code="' + searchResult[l].cityCode + '">' + searchResult[l].cityNameCN + '</li></li>'
         }
-        cityListSearched.innerHTML = resultStr;
-        cityListSearched.style.display = 'block';
       }
+      cityListSearched.innerHTML = resultStr;
+      cityListSearched.style.display = 'block';
     };
     if (cityInputZone.addEventListener) {
       cityInputZone.addEventListener('input', searchHandler, false)
@@ -586,7 +587,9 @@ var fIndexModal = {
       singleWrap.style.display = "block";
       doubleWrap.style.display = "none";
     } else {
-      defaultDate[1] = data.returnDate;
+      if(data.returnDate){
+        defaultDate[1] = data.returnDate
+      }
       tripTitles[0].className = "singleTrip grey-title";
       tripTitles[1].className = "doubleTrip light-title";
       singleWrap.style.display = "none";

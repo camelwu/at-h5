@@ -15,7 +15,7 @@ define(['jquery',"ejs","vlm"],function (){
 
 
   var bindEvent=function(){
-    var hft_flightDetail=$(".fht_hd"),fare_tip= $('.fare_tip'),hft_pri_details=$(".hft_pri_details")
+    var hft_flightDetail=$(".fht_hd"),fare_tip= $('.fare_tip').parent(),hft_pri_details=$(".hft_pri_details")
     //hft_flightDetail.on("click",function(){
     //  window.location.href="hft_flightDetail.html";
     //})

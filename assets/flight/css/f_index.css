@@ -1262,12 +1262,6 @@ input.name{
 }
 
 /*国籍选择开始*/
-
-.country_header {
-  opacity: 1;
-  display: none;
-}
-
 .country-cho-wrap {
   position: fixed;
   top: 0;
@@ -1280,6 +1274,7 @@ input.name{
   overflow-x: hidden !important;
   font-size: .28rem;
   color: #333;
+  overflow-y: scroll;
 }
 
 .jto_letter_list li {

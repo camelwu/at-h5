@@ -203,19 +203,11 @@
     <% hotelInfo["rooms"].forEach(function(room, item){%>
         <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
             <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
-                <%if(hftChoose['urlParseObj']['selectedRoomId']){%>
-                    <%if(room['roomID']==hftChoose['urlParseObj']['selectedRoomId']){%>
+                    <%if(room['roomID']==hftChoose['selectedRoomId']){%>
                         <button class="hasChooseButton">已选择</button>
                         <% }else{%>
                             <button class="noChooseButton">选择</button>
-                            <% }%>
-                                <% }else{%>
-                                    <% if(item==0){%>
-                                        <button class="hasChooseButton">已选择</button>
-                                        <%}else{%>
-                                            <button class="noChooseButton">选择</button>
-                                            <% }%>
-                                                <%}%>
+                         <% }%>
             </div>
             <div class="roomName">
               <p><%= room['roomName'] %></p>
@@ -305,6 +297,5 @@
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
-<script type="text/javascript" src="js/hft_Choose.js"></script>
-
+<script type="text/javascript" src="js/hft_choose.js"></script>
 </html>

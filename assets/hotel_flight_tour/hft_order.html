@@ -229,7 +229,7 @@
         <ul class="country_hot">
           <% for(var i=0; i< arrCountry.length; i++){ %>
           <% if(arrCountry[i].isHot == 1) { %>
-          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
+          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
           <% } %>
           <% } %>
         </ul>
@@ -243,7 +243,7 @@
           <h4><%= tem%></h4>
           <ul class="full_country_list">
             <%countryArray[tem].forEach(function(array){ %>
-            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
+            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
             <% })%>
           </ul>
           <% }%>
@@ -279,45 +279,49 @@
 
     <!--模板机票开始-->
     <script id="orderFlight" type="text/template">
-        <ul class="flight_cir_wrap">
-            <li class="fli_cont clearfix">
-                <div class="fli_cir_left fl">
-                    <i class="go_tip"></i>
-                    <% var d1= new Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
-                        <span class="fli_go_date"><%=flightInfo.flightLeaveStartDate.substring(5,10)%></span>
-                        <span><%='周'+arr1[d1.getDay()]%></span>
-                        <span class="flight_terminal"><%=flightInfo.segmentsLeave[0].airportNameFrom+flightInfo.segmentsLeave[0].termDepart+'-'+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].airportNameTo+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].termArrive%></span>
-                </div>
-                <div class="fli_cir_right fr clearfix">
-                    <i class="fl"></i>
-                    <span class="dl"><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
-                </div>
-            </li>
-            <li class="fli_cont clearfix">
-                <div class="fli_cir_left fl">
-                    <i class="back_tip"></i>
-                    <% var d1= new Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
-                        <span class="fli_back_date"><%=flightInfo.flightReturnStartDate.substring(5,10)%></span>
-                        <span><%='周'+arr1[d1.getDay()]%></span>
-                        <span class="flight_terminal"><%=flightInfo.segmentsReturn[0].airportNameFrom+flightInfo.segmentsReturn[0].termDepart+'-'+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].airportNameTo+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].termArrive%></span>
-                </div>
-                <div class="fli_cir_right fr clearfix">
-                    <i class="fl"></i>
-                    <span class="fl"><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
-                </div>
-            </li>
-            <li class="cabin_level">
-                <% if(flightInfo.cabinClass == 0) { %>
-                    <span><%='经济舱'%></span>
-                    <% }else if(flightInfo.cabinClass == 1){ %>
-                        <span><%='头等舱'%></span>
-                        <% }else if(flightInfo.cabinClass == 2){ %>
-                            <span><%='商务舱'%></span>
-                            <% }else if(flightInfo.cabinClass == 3){ %>
-                                <span><%='超级经济舱'%></span>
-                                <% } %>
-            </li>
-        </ul>
+      <ul class="flight_cir_wrap">
+        <li class="fli_cont clearfix">
+          <div class="fli_cir_left fl">
+            <i class="go_tip"></i>
+            <% var d1= new
+            Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六'];
+            d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
+            <span class="fli_go_date"><%=flightInfo.flightLeaveStartDate.substring(5,10)%></span>
+            <span><%='周'+arr1[d1.getDay()]%></span>
+            <span class="flight_terminal"><%=flightInfo.segmentsLeave[0].airportNameFrom+flightInfo.segmentsLeave[0].termDepart+'-'+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].airportNameTo+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].termArrive%></span>
+          </div>
+          <div class="fli_cir_right fr clearfix">
+            <i class="fl"></i>
+            <span class="dl"><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+          </div>
+        </li>
+        <li class="fli_cont clearfix">
+          <div class="fli_cir_left fl">
+            <i class="back_tip"></i>
+            <% var d1= new
+            Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六'];
+            d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
+            <span class="fli_back_date"><%=flightInfo.flightReturnStartDate.substring(5,10)%></span>
+            <span><%='周'+arr1[d1.getDay()]%></span>
+            <span class="flight_terminal"><%=flightInfo.segmentsReturn[0].airportNameFrom+flightInfo.segmentsReturn[0].termDepart+'-'+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].airportNameTo+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].termArrive%></span>
+          </div>
+          <div class="fli_cir_right fr clearfix">
+            <i class="fl"></i>
+            <span class="fl"><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+          </div>
+        </li>
+        <li class="cabin_level">
+          <% if(flightInfo.cabinClass == 0) { %>
+          <span><%='经济舱'%></span>
+          <% }else if(flightInfo.cabinClass == 1){ %>
+          <span><%='头等舱'%></span>
+          <% }else if(flightInfo.cabinClass == 2){ %>
+          <span><%='商务舱'%></span>
+          <% }else if(flightInfo.cabinClass == 3){ %>
+          <span><%='超级经济舱'%></span>
+          <% } %>
+        </li>
+      </ul>
     </script>
     <!--模板机票结束-->
 
@@ -345,19 +349,7 @@
     <!--模板酒店结束-->
 
     <!--模板景点开始-->
-    <script id="orderTour" type="text/template">
-      <ul class="tour_wrap">
-        <% for(var i=0; i< tours.length; i++){ %>
-        <li>
-          <p class="mb_ten"><i class="orange_line"></i><%=tours[i].tourName%></p>
-          <% if(tours[i].tourType!=1 ){ %>
-          <% var date=tours[i].selectTravelDate.substring(5,10).replace('-','月')+'日 '%>
-          <p><%=date+tours[i].tourSessions[0].tourSessionName%></p>
-          <% }%>
-        </li>
-        <% } %>
-      </ul>
-    </script>
+    <script id="orderTour" type="text/template"></script>
     <!--模板景点结束-->
 
     <!--模板明细开始-->
@@ -380,12 +372,21 @@
     <script>
       localStorage.removeItem("travellerInfo_selected");
       localStorage.removeItem("contact_selected");
-      sessionStorage.removeItem("choiceAir_select_passenger-list");
-      sessionStorage.removeItem("choiceAir_select_contact-table");
+      sessionStorage.removeItem("choiceAir_select_orderTraveller");
+      sessionStorage.removeItem("choiceAir_select_ticket");
 
       function callback(){
         var num=$("#orderTraveller ul:visible").length;
         $(".adu_choose").html(num);
+
+        var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_orderTraveller"));
+        for (var key in modle) {
+          $(".contact_link_wrap .hft_con_lastname").val(modle[key].traveller.firstName);
+          $(".contact_link_wrap .hft_con_firstname").val(modle[key].traveller.lastName);
+          $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
+          $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
+        }
+
       }
         //删除出行人
         function delPassager(obj) {
@@ -404,9 +405,9 @@
 
         // 编辑出行人
         function editPassager(obj) {
-            var id = $(obj).find("input").eq(0).val();
-             var m=JSON.parse(window.localStorage.hft_peotot);
-             vlm.f_choice('passenger-list','f','traver','',true,true,hft_peotot.adunum,JSON.hft_peotot.chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,true, true)
+             var id = $(obj).find("input").eq(0).val();
+             var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
+             vlm.f_choice('orderTraveller','f','traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false)
         }
 
     </script>

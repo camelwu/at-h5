@@ -1,3 +1,5 @@
+"use strict";
+
 var fOrder = {
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
@@ -137,7 +139,7 @@ var fOrder = {
     var searchHandler=function(){
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
-      var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+      var searchResult_ = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
       Array.prototype.distinct=function(){
         var sameObj=function(a,b){
           var tag = true;
@@ -165,29 +167,27 @@ var fOrder = {
       };
       if(reg.test(valueStr)){
         var mb = String(valueStr).toLowerCase();
-        for(var p = 0; p < dataArray.length; p++){
-              if(dataArray[p].chineseName.indexOf(mb)>-1||
-                 dataArray[p].englishName.indexOf(mb)>-1||
-                  dataArray[p].nativeName.indexOf(mb)>-1||
-             dataArray[p].nationalityCode.indexOf(mb)>-1||
-                  dataArray[p].fullPinYin.indexOf(mb)>-1||
-                dataArray[p].simplePinYin.indexOf(mb)>-1){
-                searchResult.push(dataArray[p]);
-              }
-        }
+        dataArray.forEach(function (array) {
+          if(array.chineseName.toLowerCase().indexOf(mb)>-1||
+            array.englishName.toLowerCase().indexOf(mb)>-1||
+            array.nativeName.toLowerCase().indexOf(mb)>-1||
+            array.nationalityCode.toLowerCase().indexOf(mb)>-1||
+            array.fullPinYin.toLowerCase().indexOf(mb)>-1||
+            array.simplePinYin.toLowerCase().indexOf(mb)>-1){
+            searchResult_.push(array);
+          }
+        });
       }
-      searchResult = searchResult.distinct();
-      if(!searchResult.length){
+      searchResult_ = searchResult_.distinct();
+      if(!searchResult_.length){
         resultStr +='<li>无搜索结果</li>';
-        cityListSearched.style.display = 'none';
       }else{
-        for(var l = 0;l<searchResult.length;l++){
-          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].phoneCode+'"><i>'+searchResult[l].chineseName+'</i><span>'+searchResult[l].phoneCode+'</span></li>'
+        for(var l = 0;l<searchResult_.length;l++){
+          resultStr += '<li class="country_lists" date-country-code="'+searchResult_[l].phoneCode+'"><i>'+searchResult_[l].chineseName+'</i><span>'+searchResult_[l].phoneCode+'</span></li>'
         }
-        cityListSearched.innerHTML = resultStr;
-        cityListSearched.style.display = 'block';
       }
-
+      cityListSearched.innerHTML = resultStr;
+      cityListSearched.style.display = 'block';
     };
     if(cityInputZone.addEventListener){
       cityInputZone.addEventListener('input',searchHandler,false)
@@ -347,7 +347,7 @@ var fOrder = {
         shadow.style.zIndex ="99";
         shadow.style.display ="none";
         changeTip.style.display = "none"
-      }else if(target.className.indexOf('country_header')>-1){
+      }else if(target.className.indexOf('country_header')>-1||target.parentNode.className.indexOf('country_header')>-1){
         document.querySelector('.country-cho-wrap').style.display ="none";
       }else if(target.className == "explain"){
             shadow.style.zIndex ="1000";
@@ -360,27 +360,27 @@ var fOrder = {
       }
     });
 
-    deletePassager=function(obj){
-      $(obj).parent().parent().parent().remove();
-
-      var id=$(obj).parent().find(".itemId").val();
-      var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
-      var temp={};
-      for(var key in list){
-        if(key !=id){
-          temp[key]=list[key];
-        }
-      }
-      sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
-    }
-    editPassager=function(obj){
-      var id=$(obj).find("input").eq(0).val();
-      var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
-      var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-      vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
-    }
-
   },
+  deletePassager:function(obj){
+  $(obj).parent().parent().parent().remove();
+
+  var id=$(obj).parent().find(".itemId").val();
+  var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+  var temp={};
+  for(var key in list){
+    if(key !=id){
+      temp[key]=list[key];
+    }
+  }
+  sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
+},
+
+editPassager:function(obj){
+  var id=$(obj).find("input").eq(0).val();
+  var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
+  var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
+  vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
+},
 
   createTags: function () {
     var data = arguments[0];
