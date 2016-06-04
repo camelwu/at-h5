@@ -891,14 +891,16 @@
            </ul>
          </div>
      </div>
-    <% tours.forEach(function(info){ %>
+    <% var i=0; tours.forEach(function(info){ %>
       <div class="tour-item line">
         <div class="title"><i></i><%=info.tourName%></div>
         <div class="item">
+          <% if(tours[i].hasOwnProperty("travelDate")){ %>
           <ul class="col">
             <li>游玩时间：</li>
             <li><%=vlm.Utils.format_date(info.travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%> <%=TourTimer[tours[0].tourSession]%></li>
           </ul>
+          <% i++ ;} %>
           <ul class="col">
             <li>成人票：</li>
             <li><%=numAdult%>张；儿童票<%=numchild%>张</li>

@@ -54,7 +54,7 @@ var fIndexModal = {
   },
 
   getHotCityHandler: function () {
-    this.tAjax("", {top:40}, "50100010", 3, this.citySearchHandler);
+    this.tAjax("", {top:40}, "30100005", 3, this.citySearchHandler);
     return this
   },
 
@@ -62,12 +62,19 @@ var fIndexModal = {
     var dataObj = arguments[0], place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'), countryListSearched = document.querySelector('.country-list-searched'), that = fIndexModal;
     var city_outer = document.querySelector('.city_outer'), tempString1 = "", outputString1 = "", resultArray = {}, internationalArray = {}, domesticArray = {}, array1 = [], array2 = [];
     var internationalTitle = document.querySelector('.international_title'), domesticTitle = document.querySelector('.domestic_title');
+    that.hotDometicCity = [];
+    that.hotInterCity = [];
     if(!dataObj.success){
       jAlert(dataObj.message, '提示');
       return false;
     }
-    that.hotInterCity = dataObj.data.hotCitysInternational;
-    that.hotDometicCity = dataObj.data.hotCitysCN;
+    dataObj.data.cities.forEach(function(array){
+             if(array.countryCode == "CN"){
+               that.hotDometicCity.push(array);
+             }else{
+               that.hotInterCity.push(array);
+             }
+    });
     Array.prototype.distinct = function () {
       var sameObj = function (a, b) {
         var tag = true;
@@ -373,7 +380,7 @@ var fIndexModal = {
         cityName[0].innerHTML = cityName[1].innerHTML;
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[1].innerHTML = tem;
-        cityName[0].setAttribute('data-code', temCode);
+        cityName[1].setAttribute('data-code', temCode);
         $(".citySearch").each(function () {
           $(this).fadeIn("700")
         });

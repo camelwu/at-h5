@@ -131,7 +131,7 @@
         <ul class="hot_list">
             <%hotCity.forEach(function(array, index){%>
                 <li class="city_list <%= fIndexModal.cityEle.getAttribute('data-code')==array.cityCode?'cur' : '' %>" data-city-code="<%=array.cityCode%>">
-                    <%=array.cityNormalName%>
+                    <%=array.cityChineseName%>
                 </li>
                 <% })%>
         </ul>
