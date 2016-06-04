@@ -550,6 +550,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .trip_go_ i,.trip_back_ i{
   float: right;
+  margin-right: .10rem;
   background-position: -6.236rem -2.41rem;
 }
 .dateWeekCity i{
@@ -906,10 +907,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .trip_go_ span, .trip_back_ span{
   float: left;
 }
-.trip_go_ span.addUp, .trip_back_ span.addUp{margin-left: .16rem}
-
+.trip_go_ span.addUp, .trip_back_ span.addUp{
+  margin-left:.16rem
+}
 .trip_go_ span.cityName, .trip_back_ span.cityName {
-  width: 1.48rem;
+  max-width: 1.48rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1140,40 +1142,68 @@ input.name{
   font-size: .28rem;
   position: fixed;
   background-color: #fff;
-  height: .98rem;
-  line-height: .98rem;
+  height: 1.12rem;
+  line-height: 1.12rem;
   bottom: 0;
   border-top: 1px solid #dedede;
   z-index: 105;
+  overflow: hidden;
 }
-
-.priceTotal {
-  margin-left: .56rem;
+.bottomPrice .priceTotal_wrap,.bottomPrice  .preserve{
+  float: left;
+  width:50%;
+  height: 100%;
 }
+/*开始*/
+.priceTotal_wrap{
+  text-align: center;
 
-.bottomPrice {
+}
+.priceTotal_wrap>div{
+  display: inline-block;
+  margin: 0 auto;
+}
+/*结束*/
+.total_word,.totalPersonNumber{
+  display: block;
   width: 100%;
+  line-height: .22rem;
+  margin-top: .28rem;
+  text-align: center;
   font-size: .28rem;
-  position: fixed;
-  background-color: #fff;
-  height: .89rem;
-  line-height: .89rem;
-  bottom: 0;
-  border-top: 1px solid #dedede;
-  z-index: 105
+}
+.totalPersonNumber{
+  font-size: .20rem;
+  color: #999999;
+  margin-top:.18rem;
+  text-align: left;
+}
+.totalPersonNumber b{font-weight: normal}
+.total_word b{color: #FF5B13}
+.total_word i{
+  float: right;
+  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
+  background-size: .24rem .14rem;
+  width: .24rem;
+  height: .15rem;
+  margin-left: .20rem;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  position: relative;
+  top: .24rem;
+}
+.total_word i.toDown{
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
 }
 
 .preserve {
-  display: inline-block;
-  height: 100%;
-  padding: 0 0;
   background: #7bc300;
   color: #FFFFFF;
   text-align: center;
   font-size: .36rem;
-  position: absolute;
-  right: 0;
-  width: 50%;
 }
 
 .addMarginBottom {
@@ -1189,37 +1219,6 @@ input.name{
   font-size: .32rem;
   color: #ff5b13;
   margin-right: .2rem;
-}
-
-.priceTotal .detail_fare {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: .42rem;
-  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
-  background-size: .24rem .14rem;
-  width: .32rem;
-  height: .2rem;
-  transition: 0.3s all ease;
-}
-
-.priceTotal .detail_fare {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: .356rem;
-  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
-  background-size: .24rem .14rem;
-  width: .32rem;
-  height: .2rem;
-  transition: 0.3s all ease;
-}
-
-.priceTotal .detail_fare.open {
-  margin-top: .42rem;
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform-origin: 40% 25%;
-  -webkit-transform-origin: 40% 25%;
-  transition: 0.3s all ease;
 }
 
 .priceTotal {
@@ -1540,29 +1539,16 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
   box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
   display: none;
-  border-bottom-left-radius: .04rem;
-  -webkit-border-bottom-left-radius: .04rem;
-  -moz-border-bottom-left-radius: .04rem;
-  -o-border-bottom-left-radius: .04rem;
-  border-bottom-right-radius: .04rem;
-  -webkit-border-bottom-right-radius: .04rem;
-  -moz-border-bottom-right-radius: .04rem;
-  -o-border-bottom-right-radius: .04rem;
+  border-radius: .08rem;
+  -webkit-border-radius: .08rem;
+  overflow: hidden;
 }
 .change_tip h4{
   height:.88rem;
   line-height: .88rem;
   background: #fcfcfc;
   padding-left: .28rem;
-  color: #000;
-  border-top-left-radius: .04rem;
-  -webkit-border-top-left-radius: .04rem;
-  -moz-border-top-left-radius: .04rem;
-  -o-border-top-left-radius: .04rem;
-  border-top-right-radius: .04rem;
-  -webkit-border-top-right-radius: .04rem;
-  -moz-border-top-right-radius: .04rem;
-  -o-border-top-right-radius: .04rem;
+  color:rgb(51,51,51);
 }
 .change_tip p{
   padding: .28rem;
