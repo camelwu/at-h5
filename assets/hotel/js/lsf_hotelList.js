@@ -658,8 +658,9 @@ function styleChange(id, mytext) {
             } else {
                 document.getElementById("loadMore").style.display = "none";
                 var oLi = document.createElement('li');
-                oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+                oLi.innerHTML = '<div id = "conno"><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
                 oLi.className = 'hotelConNo';
+                oLi.style.display = "block";
                 oUl.style.width = '100%';
                 oUl.style.height = '100%';
                 oUl.appendChild(oLi);
@@ -854,6 +855,7 @@ function styleChange(id, mytext) {
         console.log(json);
         //console.log(1);
         //alert(arr.Success);
+          noWIfi(json.status);
         if (json.success) {
             //console.log(json.Data);
             var data = json.data[0];
@@ -881,7 +883,19 @@ function styleChange(id, mytext) {
         }
 
     }
-
+    function noWIfi(status){
+          var timeout=1; // 1秒超时
+          if(status == 'timeout'){
+        document.getElementById("loadMore").style.display = "none";
+        var oLi = document.createElement('li');
+        oLi.innerHTML = '<div id = "nowifi"><img src="../images/error/nowifi.png" /><p class="hotelnowifi1">无法连接网络，请保持网络畅通</p><p class="hotelnowifi2">点击页面重新加载</p></div>';
+        oLi.className = 'nowifi';
+        oLi.style.display = "block";
+        oUl.style.width = '100%';
+        oUl.style.height = '100%';
+        oUl.appendChild(oLi);
+      }
+  }
     //推荐排序里面的点击事件（交互）
     lsf_myweb.bind(oBody, 'click', function (ev) {
         var oEvent = ev || event;
