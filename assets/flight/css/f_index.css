@@ -910,6 +910,9 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .trip_go_ span.addUp, .trip_back_ span.addUp{
   margin-left:.16rem
 }
+.trip_go_ span.addUp_t, .trip_back_ span.addUp_t{
+  margin:0 .16rem
+}
 .trip_go_ span.cityName, .trip_back_ span.cityName {
   max-width: 1.48rem;
   white-space: nowrap;

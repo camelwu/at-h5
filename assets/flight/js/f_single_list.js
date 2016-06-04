@@ -21,7 +21,7 @@ var fSingleList = {
     this.addHandler(target, eventType, handle);
   },
 
-  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
     var that = this, dataObj =
     {
       Parameters: data,
@@ -29,11 +29,7 @@ var fSingleList = {
       Code: Code
     };
     questUrl = questUrl ? questUrl : "";
-    if (loadMoreSign) {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
-    } else {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-    }
+    vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
   },
   dateChangeHandler:function(){
     var searchZone = document.querySelector('.searchZone'), that = this;
@@ -96,7 +92,7 @@ var fSingleList = {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fSingleList;
     tempString = $("#template_flight_single_list").html();
-    outputString = this.postObj.isClearAll == 1 ? ejs.render(tempString, data) : $(".flight_ul").eq(0).html() + ejs.render(tempString, data);
+    outputString = ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -112,9 +108,9 @@ var fSingleList = {
         that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.first == true ? that.filterHandler(result.data.airCorpCodeList) : "";
+        that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler() : "";
         that.first = false;
-        that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+        that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
     } else {
       no_result.style.display = "block";
@@ -150,7 +146,7 @@ var fSingleList = {
 
   loadMoreHandler: function () {
     var loadMore = document.querySelector("#loadMore"), that = fSingleList;
-    if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
+    if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
       loadMore.innerHTML = "点击查看更多...";
@@ -167,10 +163,9 @@ var fSingleList = {
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
       this.postObj.pageNo++;
-      this.postObj.isClearAll = 0;
       loadMore.innerHTML = "正在加载...";
       storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: this.postObj}));
-      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+      this.pageHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
 
@@ -242,16 +237,14 @@ var fSingleList = {
 
   pageHandler: function (url) {
     var newUrl = url, that = fSingleList;
-    that.postObj.pageSize = Number(that.postObj.pageSize) > 10 ? Number(that.postObj.pageSize) : Number(that.postObj.pageNo) * 10;
+    that.postObj.pageSize =10*(parseInt(that.postObj.pageSize/10+1));
     that.postObj.pageNo = 1;
-    that.postObj.isClearAll = 1;
-    return newUrl;
+    return that;
   },
 
   filerCallBack: function () {
     console.log(arguments);
     var transferData = arguments, that = fSingleList;
-    that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
       if (arguments[1].id == "Tax") {
         that.fadeHandler('show')
@@ -557,7 +550,6 @@ var fSingleList = {
     this.postObj = postObj;
     this.first = true;
     this.titleInit().dateChangeHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
-   // this.renderHandler(data2)
   }
 };
 fSingleList.init();

@@ -21,7 +21,7 @@ var fIndexModal = {
     this.addHandler(target, eventType, handle);
   },
 
-  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
     var that = this, dataObj =
     {
       Parameters: data,
@@ -29,11 +29,7 @@ var fIndexModal = {
       Code: Code
     };
     questUrl = questUrl ? questUrl : "";
-    if (loadMoreSign) {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
-    } else {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-    }
+    vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
   },
 
   getCityType: function (arg) {
