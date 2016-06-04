@@ -378,8 +378,8 @@ uoHisData();
         styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Zhang）');
         styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：San）');
     } else if (hoPos == 'dom') {
-        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：张）');
-        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：三）');
+        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
+        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
     }
     //$('#uo_c3_tele').bind('focus',function(){
     //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
@@ -616,11 +616,11 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-                if (aUo_lastname[i].value == '姓（如：张）') {
+                if (aUo_lastname[i].value == '姓（如：李）') {
                     jAlert('请输入姓');
                     return;
                 }
-                if (aUo_firstname[i].value == '名（如：三）') {
+                if (aUo_firstname[i].value == '名（如：世民）') {
                     jAlert('请输入名');
                     return;
                 }
