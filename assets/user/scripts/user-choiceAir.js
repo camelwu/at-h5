@@ -47,8 +47,6 @@
   var addPassagerBackBtn=$(".addAir_page .header_quit");
   var addPassagerTitle=$(".add_passager .newTitle");
 
-
-
   //常旅列表
   var tpl_traveler = ['{%  for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
     '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
@@ -146,6 +144,7 @@
       $(this).find("b").removeClass("traveler_sex2").addClass("traveler_sex1");
     })
   };
+
   var _validate=function(){
 
     if(uc_cnName.is(':visible')){
@@ -258,6 +257,7 @@
       return modle;
     }
   }
+
   var _model2UI=function(model){
     $(".addAir_page .cnName").val(model.traveller.idName);
     $(".addAir_page .lastName").val(model.traveller.lastName);
@@ -275,6 +275,11 @@
     $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
     $(".addAir_page .phone_pre").html(model.traveller.mobilePhoneAreaCode);
 
+    $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2");
+    $(".addAir_page .sex_cho_wrap .icon_h[data-code='"+model.traveller.sexCode+"']").removeClass("traveler_sex2").addClass("traveler_sex1")
+
+
+
   }
 
   var _clearDate=function(){
@@ -285,7 +290,13 @@
     addOrEditPassagePage.find("input").val("");
 
     var newDate,year,month,day
-    newDate = new Date();
+    if(departDate==null || departDate=="null"){
+      newDate = new Date();
+    }
+    else{
+      newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+    }
+
     newDate.setMonth(newDate.getMonth()+6);
     year=newDate.getFullYear();
     month=newDate.getMonth()+1;
@@ -549,6 +560,7 @@
 
     $(".addAir_page .bussinessTitle").html(titleType);
   };
+
   var _setSelectPessageTip=function(){
     if(numofChlid>0) {
       titleTip.html("已选：成人" + selectAdultNum + "/" + numofAdult + "  儿童" + selectChildNum + "/" + numofChlid + "")
@@ -595,7 +607,10 @@
             _model2UI(passagerArray[editIDKey]);
             passagerListPage.hide();
             addOrEditPassagePage.show();
-            return;
+          }else
+          {
+            passagerListPage.show();
+            addOrEditPassagePage.hide();
           }
           vlm.init();
         }
@@ -628,6 +643,7 @@
     }
 
   };
+
   var truncateCardInfo=function(){
     var cardId= $(".postCard").attr("data-code");
     if(editIDKey!=null){
@@ -643,12 +659,30 @@
              addOrEditPassagePage.find(".cardNumber").val(cardList[index].idNumber);
              addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
              addOrEditPassagePage.find(".cardCountry").html(cardList[index].idCountryName);
-             addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry)
+             addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry);
              return;
+           }
+           else{
+             var newDate,year,month,day
+             if(departDate==null || departDate=="null"){
+               newDate = new Date();
+             }
+             else{
+               newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+             }
+
+             newDate.setMonth(newDate.getMonth()+6);
+             year=newDate.getFullYear();
+             month=newDate.getMonth()+1;
+             day=newDate.getDate();
+
+             $(".addAir_page .cardDateLimit").attr("data-cache",  year+"年-"+month+"月-"+day+"日");
+             $(".addAir_page .cardDateLimit").val(year+"年"+month+"月"+day+"号");
            }
          }
     }
   }
+
   /*页面初始化方法*/
   var _initPage=function(){
 
@@ -689,6 +723,7 @@
       _model2UI(passagerArray[editIDKey]);
       passagerListPage.hide();
       addOrEditPassagePage.show();
+      _setTitleTip();
       return;
     }
 
@@ -704,9 +739,11 @@
 
     //_setTitleTip();
   };
+
   /*接口*/
   return{
     InitPage:_initPage()
   }
+
 })()
 
