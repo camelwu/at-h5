@@ -1,1065 +1,10796 @@
-var internationalCities =[
-    {"cityId":"2","cityNameEn":"Singapore","cityNameCN":"新加坡","cityCode":"SIN","countryName":"Singapore","countryIsoCode":"SG","hyKeyWord":"xjp","pingYin":"xinjiapo"},
-    {"cityId":"11","cityNameEn":"Bangkok","cityNameCN":"曼谷","cityCode":"BKK","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"mg","pingYin":"mangu"},
-    {"cityId":"150","cityNameEn":"Phuket","cityNameCN":"普吉岛","cityCode":"HKT","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"pjd","pingYin":"pujidao"},
-    {"cityId":"151","cityNameEn":"Pattaya","cityNameCN":"芭堤雅","cityCode":"PYX","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bty","pingYin":"badiya"},
-    {"cityId":"282","cityNameEn":"Hong Kong","cityNameCN":"香港","cityCode":"HKG","countryName":"Hong Kong","countryIsoCode":"HK","hyKeyWord":"xg","pingYin":"xianggang"},
-    {"cityId":"283","cityNameEn":"Dubai","cityNameCN":"迪拜","cityCode":"DXB","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"db","pingYin":"dibai"},
-    {"cityId":"284","cityNameEn":"Al Ain","cityNameCN":"阿莱茵","cityCode":"AAN","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"aly","pingYin":"alaiyin"},
-    {"cityId":"285","cityNameEn":"Abu Dhabi","cityNameCN":"阿布扎比","cityCode":"AUH","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"abzb","pingYin":"abuzhabi"},
-    {"cityId":"286","cityNameEn":"Fujairah","cityNameCN":"富查伊拉","cityCode":"FJR","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"fcyl","pingYin":"fuchayila"},
-    {"cityId":"287","cityNameEn":"Ajman","cityNameCN":"阿吉曼","cityCode":"UA1","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"ajm","pingYin":"ajiman"},
-    {"cityId":"288","cityNameEn":"Sharjah","cityNameCN":"沙迦","cityCode":"SHJ","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"sj","pingYin":"shajia"},
-    {"cityId":"289","cityNameEn":"Ras Al Khaimah","cityNameCN":"哈伊马角","cityCode":"RKT","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"hymj","pingYin":"hayimajiao"},
-    {"cityId":"290","cityNameEn":"Krabi","cityNameCN":"甲米","cityCode":"KBV","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"jm","pingYin":"jiami"},
-    {"cityId":"292","cityNameEn":"Cha Am","cityNameCN":"差安","cityCode":"TH2","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ca","pingYin":"chaan"},
-    {"cityId":"293","cityNameEn":"Hua Hin","cityNameCN":"华欣","cityCode":"HHQ","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"hx","pingYin":"huaxin"},
-    {"cityId":"294","cityNameEn":"Chiang Mai","cityNameCN":"清迈","cityCode":"CNX","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"qm","pingYin":"qingmai"},
-    {"cityId":"295","cityNameEn":"Chiang Rai","cityNameCN":"清莱","cityCode":"CEI","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ql","pingYin":"qinglai"},
-    {"cityId":"296","cityNameEn":"Kanchanaburi","cityNameCN":"北碧府","cityCode":"TH6","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bb","pingYin":"beibifu"},
-    {"cityId":"297","cityNameEn":"Koh Samed","cityNameCN":"沙美岛","cityCode":"T12","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sm","pingYin":"shameidao"},
-    {"cityId":"313","cityNameEn":"Sydney","cityNameCN":"悉尼","cityCode":"SYD","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"xn","pingYin":"xini"},
-    {"cityId":"314","cityNameEn":"Melbourne","cityNameCN":"墨尔本","cityCode":"MEL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"meb","pingYin":"moerben"},
-    {"cityId":"315","cityNameEn":"Perth","cityNameCN":"珀斯","cityCode":"PER","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ps","pingYin":"posi"},
-    {"cityId":"316","cityNameEn":"Brisbane","cityNameCN":"布里斯班","cityCode":"BNE","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"blsb","pingYin":"bulisiban"},
-    {"cityId":"317","cityNameEn":"Gold Coast","cityNameCN":"黄金海岸","cityCode":"OOL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"hjha","pingYin":"huangjinhaian"},
-    {"cityId":"318","cityNameEn":"Adelaide","cityNameCN":"阿德莱德","cityCode":"ADL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"adld","pingYin":"adelaide"},
-    {"cityId":"319","cityNameEn":"Canberra","cityNameCN":"堪培拉","cityCode":"CBR","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kpl","pingYin":"kanpeila"},
-    {"cityId":"323","cityNameEn":"Bintan","cityNameCN":"民丹岛","cityCode":"ID6","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mdd","pingYin":"mindandao"},
-    {"cityId":"324","cityNameEn":"Batam","cityNameCN":"巴淡岛","cityCode":"BTH","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bdd","pingYin":"badandao"},
-    {"cityId":"327","cityNameEn":"Cebu","cityNameCN":"宿务","cityCode":"CEB","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sw","pingYin":"suwu"},
-    {"cityId":"328","cityNameEn":"Boracay","cityNameCN":"长滩岛","cityCode":"PH5","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ctd","pingYin":"changtandao"},
-    {"cityId":"329","cityNameEn":"Bohol","cityNameCN":"薄荷岛","cityCode":"PH4","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bhd","pingYin":"bohedao"},
-    {"cityId":"331","cityNameEn":"Manila","cityNameCN":"马尼拉","cityCode":"MNL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mnl","pingYin":"manila"},
-    {"cityId":"332","cityNameEn":"Bukit Tinggi","cityNameCN":"武吉丁宜","cityCode":"MY1","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"wjdy","pingYin":"wujidingyi"},
-    {"cityId":"333","cityNameEn":"Cameron Highlands","cityNameCN":"金马伦高地","cityCode":"MY2","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jmlgd","pingYin":"jinmalungaodi"},
-    {"cityId":"334","cityNameEn":"Desaru","cityNameCN":"迪沙鲁","cityCode":"M21","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"dsl","pingYin":"dishalu"},
-    {"cityId":"335","cityNameEn":"Genting","cityNameCN":"云顶","cityCode":"GT1","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"yd","pingYin":"yunding"},
-    {"cityId":"336","cityNameEn":"Ipoh","cityNameCN":"怡保","cityCode":"IPH","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"yb","pingYin":"yibao"},
-    {"cityId":"337","cityNameEn":"Johor Bahru","cityNameCN":"柔佛巴鲁","cityCode":"JHB","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"rfbl","pingYin":"roufobalu"},
-    {"cityId":"338","cityNameEn":"Kuala Lumpur","cityNameCN":"吉隆坡","cityCode":"KUL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jlp","pingYin":"jilongpo"},
-    {"cityId":"339","cityNameEn":"Kuala Terengganu","cityNameCN":"瓜拉丁加奴","cityCode":"TGG","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gldjn","pingYin":"gualadingjianu"},
-    {"cityId":"340","cityNameEn":"Kuantan","cityNameCN":"关丹","cityCode":"KUA","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gd","pingYin":"guandan"},
-    {"cityId":"341","cityNameEn":"Langkawi","cityNameCN":"兰卡威","cityCode":"LGK","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lkw","pingYin":"lankawei"},
-    {"cityId":"342","cityNameEn":"Malacca","cityNameCN":"马六甲","cityCode":"MY3","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"mlj","pingYin":"maliujia"},
-    {"cityId":"343","cityNameEn":"Pangkor Island","cityNameCN":"邦咯岛","cityCode":"PKG","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bkd","pingYin":"bangkadao"},
-    {"cityId":"344","cityNameEn":"Penang","cityNameCN":"槟城","cityCode":"PEN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bc","pingYin":"bincheng"},
-    {"cityId":"345","cityNameEn":"Port Dickson","cityNameCN":"波德申","cityCode":"MY5","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bds","pingYin":"bodeshen"},
-    {"cityId":"346","cityNameEn":"Tioman Island","cityNameCN":"刁曼岛","cityCode":"TOD","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"dmd","pingYin":"diaomandao"},
-    {"cityId":"347","cityNameEn":"Sabah","cityNameCN":"沙巴","cityCode":"MY6","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sb","pingYin":"shaba"},
-    {"cityId":"348","cityNameEn":"Sarawak","cityNameCN":"砂拉越","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sly","pingYin":"shalayue"},
-    {"cityId":"349","cityNameEn":"Ho Chi Minh","cityNameCN":"胡志明市","cityCode":"SGN","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hzms","pingYin":"huzhimingshi"},
-    {"cityId":"350","cityNameEn":"Hanoi","cityNameCN":"河内","cityCode":"HAN","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hn","pingYin":"henei"},
-    {"cityId":"353","cityNameEn":"Hai Phong","cityNameCN":"海防","cityCode":"HPH","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hf","pingYin":"haifang"},
-    {"cityId":"354","cityNameEn":"Auckland","cityNameCN":"奥克兰","cityCode":"AKL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"akl","pingYin":"aokelan"},
-    {"cityId":"355","cityNameEn":"Wellington","cityNameCN":"惠灵顿","cityCode":"WLG","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hld","pingYin":"huilingdun"},
-    {"cityId":"356","cityNameEn":"Christchurch","cityNameCN":"基督城","cityCode":"CHC","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"jdc","pingYin":"jiducheng"},
-    {"cityId":"357","cityNameEn":"Queenstown","cityNameCN":"皇后镇","cityCode":"ZQN","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hhz","pingYin":"huanghouzhen"},
-    {"cityId":"358","cityNameEn":"Rotorua","cityNameCN":"罗托鲁亚","cityCode":"ROT","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"ltlw","pingYin":"luotuoluya"},
-    {"cityId":"541","cityNameEn":"Bacolod","cityNameCN":"巴科洛德","cityCode":"BCD","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bkld","pingYin":"bakeluode"},
-    {"cityId":"542","cityNameEn":"Baguio","cityNameCN":"碧瑶","cityCode":"BAG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"by","pingYin":"biyao"},
-    {"cityId":"543","cityNameEn":"Batangas","cityNameCN":"八打雁","cityCode":"PH3","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bdy","pingYin":"badayan"},
-    {"cityId":"544","cityNameEn":"Cagayan De Oro","cityNameCN":"卡加延德奥罗","cityCode":"CGY","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kjydal","pingYin":"kajiayandeaoluo"},
-    {"cityId":"545","cityNameEn":"Cavite","cityNameCN":"甲米地省","cityCode":"PH6","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"jmds","pingYin":"jiamidisheng"},
-    {"cityId":"546","cityNameEn":"Davao","cityNameCN":"达沃","cityCode":"DVO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dw","pingYin":"dawo"},
-    {"cityId":"547","cityNameEn":"Dumaguete","cityNameCN":"杜马格特市","cityCode":"DGT","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dmgt","pingYin":"dongmageteshi"},
-    {"cityId":"548","cityNameEn":"El Nido","cityNameCN":"爱妮岛","cityCode":"ENI","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"and","pingYin":"ainidao"},
-    {"cityId":"549","cityNameEn":"Iloilo","cityNameCN":"怡朗","cityCode":"ILO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"yl","pingYin":"yilang"},
-    {"cityId":"550","cityNameEn":"Laguna","cityNameCN":"拉古纳","cityCode":"LAG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lgn","pingYin":"laguna"},
-    {"cityId":"551","cityNameEn":"Laoag","cityNameCN":"拉瓦格","cityCode":"LAO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lwg","pingYin":"lawage"},
-    {"cityId":"552","cityNameEn":"La Union","cityNameCN":"拉乌尼翁","cityCode":"PH9","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lwnw","pingYin":"lawuniweng"},
-    {"cityId":"553","cityNameEn":"Makati","cityNameCN":"马卡提","cityCode":"P13","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mkd","pingYin":"makati"},
-    {"cityId":"554","cityNameEn":"Mindoro","cityNameCN":"民都洛","cityCode":"P54","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mdl","pingYin":"minduluo"},
-    {"cityId":"555","cityNameEn":"Ortigas","cityNameCN":"奥提加斯","cityCode":"P20","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"atjs","pingYin":"aotijiasi"},
-    {"cityId":"556","cityNameEn":"Pagsanjan","cityNameCN":"百胜滩","cityCode":"P15","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bst","pingYin":"baishengtan"},
-    {"cityId":"557","cityNameEn":"Palawan","cityNameCN":"巴拉望","cityCode":"P17","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"blw","pingYin":"balawang"},
-    {"cityId":"558","cityNameEn":"Pampanga","cityNameCN":"邦板牙","cityCode":"P18","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bby","pingYin":"bangbanya"},
-    {"cityId":"559","cityNameEn":"Pangasinan","cityNameCN":"邦阿西楠省","cityCode":"P19","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"baxn","pingYin":"bangaxinansheng"},
-    {"cityId":"560","cityNameEn":"Puerto Galera","cityNameCN":"波多格尼拉","cityCode":"P21","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bedgnl","pingYin":"boduogenila"},
-    {"cityId":"561","cityNameEn":"Quezon City","cityNameCN":"奎松城","cityCode":"P22","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kss","pingYin":"kuisongcheng"},
-    {"cityId":"562","cityNameEn":"Subic","cityNameCN":"苏比克","cityCode":"SFS","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sbk","pingYin":"subike"},
-    {"cityId":"563","cityNameEn":"Tagaytay","cityNameCN":"大雅台","cityCode":"P32","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dyt","pingYin":"dayatai"},
-    {"cityId":"564","cityNameEn":"Tarlac","cityNameCN":"塔拉克","cityCode":"P27","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"tlk","pingYin":"talake"},
-    {"cityId":"569","cityNameEn":"Box Hill","cityNameCN":"博士山","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"bss","pingYin":"boshishan"},
-    {"cityId":"570","cityNameEn":"Geelong","cityNameCN":"吉朗","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jl","pingYin":"jilang"},
-    {"cityId":"571","cityNameEn":"Lorne","cityNameCN":"洛恩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"le","pingYin":"luoen"},
-    {"cityId":"572","cityNameEn":"Phillip Island","cityNameCN":"菲利普岛","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"flpd","pingYin":"feilipudao"},
-    {"cityId":"573","cityNameEn":"St.Kilda","cityNameCN":"圣基尔达","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"sjed","pingYin":"shengjierda"},
-    {"cityId":"574","cityNameEn":"Yarra Valley","cityNameCN":"雅拉谷","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ylg","pingYin":"yalagu"},
-    {"cityId":"576","cityNameEn":"Trinity Beach","cityNameCN":"三圣海滩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ssht","pingYin":"sanshenghaitan"},
-    {"cityId":"577","cityNameEn":"Mooloolaba","cityNameCN":"穆卢拉巴","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"mulb","pingYin":"mululaba"},
-    {"cityId":"578","cityNameEn":"Noosa","cityNameCN":"努莎","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ns","pingYin":"nusha"},
-    {"cityId":"579","cityNameEn":"Palm Cove","cityNameCN":"棕榈湾","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"zlw","pingYin":"zonglvwan"},
-    {"cityId":"580","cityNameEn":"Port Douglas","cityNameCN":"德格拉斯港","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dglsg","pingYin":"degelasigang"},
-    {"cityId":"581","cityNameEn":"Whitsundays","cityNameCN":"圣灵群岛","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"slqd","pingYin":"shenglingqundao"},
-    {"cityId":"582","cityNameEn":"Airlie Beach","cityNameCN":"艾尔利海滩","cityCode":"WSY","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"aelht","pingYin":"aierlihaitan"},
-    {"cityId":"583","cityNameEn":"Daydream Island","cityNameCN":"白日梦岛","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"brmd","pingYin":"bairimengdao"},
-    {"cityId":"584","cityNameEn":"Sunshine Coast","cityNameCN":"阳光海岸","cityCode":"MCY","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"yghy","pingYin":"yangguanghaian"},
-    {"cityId":"585","cityNameEn":"Townsville","cityNameCN":"汤斯维尔","cityCode":"TSV","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"tswe","pingYin":"tangsiweier"},
-    {"cityId":"586","cityNameEn":"Cairns","cityNameCN":"凯恩斯","cityCode":"CNS","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kes","pingYin":"kaiensi"},
-    {"cityId":"587","cityNameEn":"Ayers Rock","cityNameCN":"艾尔斯山","cityCode":"AYQ","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"aess","pingYin":"aiersishan"},
-    {"cityId":"588","cityNameEn":"Darwin","cityNameCN":"达尔文","cityCode":"DRW","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dew","pingYin":"daerwen"},
-    {"cityId":"589","cityNameEn":"Alice Springs","cityNameCN":"艾丽斯斯普林斯","cityCode":"ASP","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"alsspls","pingYin":"ailisisipulinsi"},
-    {"cityId":"590","cityNameEn":"Kakadu","cityNameCN":"卡卡杜","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kkd","pingYin":"kakadu"},
-    {"cityId":"591","cityNameEn":"Jabiru","cityNameCN":"贾比鲁","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jbl","pingYin":"jiabilu"},
-    {"cityId":"592","cityNameEn":"Kings Canyon","cityNameCN":"帝王谷","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dwg","pingYin":"diwanggu"},
-    {"cityId":"594","cityNameEn":"Broome","cityNameCN":"布鲁姆","cityCode":"BME","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"blm","pingYin":"bulumu"},
-    {"cityId":"595","cityNameEn":"Busselton","cityNameCN":"巴瑟尔顿","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"bsed","pingYin":"baseerdun"},
-    {"cityId":"596","cityNameEn":"Fremantle","cityNameCN":"弗里曼特尔","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"flmte","pingYin":"fulimanteer"},
-    {"cityId":"597","cityNameEn":"Geraldton","cityNameCN":"杰拉尔顿","cityCode":"GET","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jled","pingYin":"jielaerdun"},
-    {"cityId":"598","cityNameEn":"Kalgoorlie","cityNameCN":"卡尔古利","cityCode":"KGI","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kegl","pingYin":"kaerguli"},
-    {"cityId":"599","cityNameEn":"Karratha","cityNameCN":"卡拉沙","cityCode":"KTA","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kls","pingYin":"kalasha"},
-    {"cityId":"600","cityNameEn":"Kununurra","cityNameCN":"库努纳拉","cityCode":"KNX","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"knnl","pingYin":"kununala"},
-    {"cityId":"601","cityNameEn":"Margaret River","cityNameCN":"西澳玛格瑞特河","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"xamgrth","pingYin":"xiaomageruitehe"},
-    {"cityId":"602","cityNameEn":"Scarborough Beach","cityNameCN":"斯卡波罗海滩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"skblht","pingYin":"sikaboluohaitan"},
-    {"cityId":"603","cityNameEn":"Taipei","cityNameCN":"台北","cityCode":"TPE","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"tb","pingYin":"taibei"},
-    {"cityId":"604","cityNameEn":"Sapporo","cityNameCN":"札幌","cityCode":"SPK","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"zh","pingYin":"zhahuang"},
-    {"cityId":"605","cityNameEn":"New Chitose Airport","cityNameCN":"新千岁机场","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xqsjc","pingYin":"xinqiansuijichang"},
-    {"cityId":"606","cityNameEn":"Hakodate","cityNameCN":"函馆","cityCode":"HKD","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"hg","pingYin":"hanguan"},
-    {"cityId":"607","cityNameEn":"Sendai","cityNameCN":"仙台","cityCode":"SDJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xt","pingYin":"xiantai"},
-    {"cityId":"608","cityNameEn":"Nikko","cityNameCN":"日光","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"rg","pingYin":"riguang"},
-    {"cityId":"609","cityNameEn":"Niigata","cityNameCN":"新泻","cityCode":"KIJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xh","pingYin":"xinxie"},
-    {"cityId":"610","cityNameEn":"Tasmania","cityNameCN":"塔斯马尼亚","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"tsmny","pingYin":"tasimaniya"},
-    {"cityId":"611","cityNameEn":"Tokyo","cityNameCN":"东京","cityCode":"TYO","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"dj","pingYin":"dongjing"},
-    {"cityId":"612","cityNameEn":"Launceston","cityNameCN":"朗瑟士敦","cityCode":"LST","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"lssd","pingYin":"langsesidun"},
-    {"cityId":"613","cityNameEn":"Bowral","cityNameCN":"鲍勒尔","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ble","pingYin":"baoleer"},
-    {"cityId":"614","cityNameEn":"Dunsbarough","cityNameCN":"戴士柏","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dsb","pingYin":"daishibai"},
-    {"cityId":"615","cityNameEn":"Katherine","cityNameCN":"凯瑟琳","cityCode":"KTR","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ksl","pingYin":"kaiselin"},
-    {"cityId":"616","cityNameEn":"Newman","cityNameCN":"纽曼","cityCode":"ZNE","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"nm","pingYin":"niuman"},
-    {"cityId":"617","cityNameEn":"Jindabyne","cityNameCN":"金德拜恩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jdbe","pingYin":"jindebaien"},
-    {"cityId":"618","cityNameEn":"Port Stephens","cityNameCN":"史蒂芬港","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"sdfg","pingYin":"shidifengang"},
-    {"cityId":"619","cityNameEn":"Seoul","cityNameCN":"首尔","cityCode":"SEL","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"se","pingYin":"shouer"},
-    {"cityId":"620","cityNameEn":"Narita Airport","cityNameCN":"成田机场","cityCode":"NRT","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"ctjc","pingYin":"chengtianjichang"},
-    {"cityId":"621","cityNameEn":"Makuhari Messe","cityNameCN":"幕张国际展览","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"mzgjzlg","pingYin":"muzhangguojizhanlan"},
-    {"cityId":"622","cityNameEn":"Mount Fuji","cityNameCN":"富士山","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"fss","pingYin":"fushishan"},
-    {"cityId":"623","cityNameEn":"Hakone","cityNameCN":"箱根","cityCode":"J01","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xg","pingYin":"xianggen"},
-    {"cityId":"624","cityNameEn":"Atami","cityNameCN":"热海","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"rh","pingYin":"rehai"},
-    {"cityId":"625","cityNameEn":"Shizuoka","cityNameCN":"静冈县","cityCode":"FSZ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"jgx","pingYin":"jinggangxian"},
-    {"cityId":"626","cityNameEn":"Hamamatsu","cityNameCN":"滨松","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"bs","pingYin":"binsong"},
-    {"cityId":"627","cityNameEn":"Nagoya","cityNameCN":"名古屋","cityCode":"NGO","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"mgw","pingYin":"mingguwu"},
-    {"cityId":"628","cityNameEn":"Takayama","cityNameCN":"高山","cityCode":"JP3","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"gs","pingYin":"gaoshan"},
-    {"cityId":"629","cityNameEn":"Gifu","cityNameCN":"岐阜县","cityCode":"QGU","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"qfx","pingYin":"qifuxian"},
-    {"cityId":"630","cityNameEn":"Toyama","cityNameCN":"富山","cityCode":"TOY","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"fs","pingYin":"fushan"},
-    {"cityId":"631","cityNameEn":"Kanazawa","cityNameCN":"金泽","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"jz","pingYin":"jinze"},
-    {"cityId":"632","cityNameEn":"Kyoto","cityNameCN":"京都","cityCode":"UKY","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"jd","pingYin":"jingdong"},
-    {"cityId":"633","cityNameEn":"Osaka","cityNameCN":"大阪","cityCode":"OSA","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"db","pingYin":"daban"},
-    {"cityId":"634","cityNameEn":"Kobe","cityNameCN":"神户","cityCode":"UKB","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"sh","pingYin":"shenhu"},
-    {"cityId":"635","cityNameEn":"Okayama","cityNameCN":"冈山","cityCode":"OKJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"gs","pingYin":"gangshan"},
-    {"cityId":"636","cityNameEn":"Kurashiki","cityNameCN":"仓敷","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"cf","pingYin":"cangfu"},
-    {"cityId":"637","cityNameEn":"Fukuoka","cityNameCN":"福冈","cityCode":"FUK","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"fg","pingYin":"fugang"},
-    {"cityId":"638","cityNameEn":"Kagoshima","cityNameCN":"鹿儿岛","cityCode":"KOJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"led","pingYin":"luerdao"},
-    {"cityId":"639","cityNameEn":"Busan","cityNameCN":"釜山","cityCode":"PUS","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"fs","pingYin":"fushan"},
-    {"cityId":"640","cityNameEn":"Daegu","cityNameCN":"大邱","cityCode":"TAE","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"dq","pingYin":"daqiu"},
-    {"cityId":"641","cityNameEn":"Gyeongju","cityNameCN":"庆州","cityCode":"USN","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"qz","pingYin":"qingzhou"},
-    {"cityId":"642","cityNameEn":"Jeju-Do","cityNameCN":"济州岛","cityCode":"CJU","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"jzd","pingYin":"jizhoudao"},
-    {"cityId":"648","cityNameEn":"Redang Island","cityNameCN":"热浪岛","cityCode":"RDN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"rld","pingYin":"relangdao"},
-    {"cityId":"652","cityNameEn":"Yangon","cityNameCN":"仰光","cityCode":"RGN","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"yg","pingYin":"yangguang"},
-    {"cityId":"660","cityNameEn":"Cairo","cityNameCN":"开罗","cityCode":"CAI","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"kl","pingYin":"kailuo"},
-    {"cityId":"661","cityNameEn":"Alexandria","cityNameCN":"亚历山大","cityCode":"ALY","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"ylsd","pingYin":"yalishanda"},
-    {"cityId":"662","cityNameEn":"Sharm El Sheikh","cityNameCN":"沙姆沙伊赫","cityCode":"SSH","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"smsyh","pingYin":"shamushayihe"},
-    {"cityId":"663","cityNameEn":"Aswan","cityNameCN":"阿斯旺","cityCode":"ASW","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"asw","pingYin":"asiwang"},
-    {"cityId":"664","cityNameEn":"Luxor","cityNameCN":"路克索","cityCode":"LXR","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"lks","pingYin":"lukesuo"},
-    {"cityId":"665","cityNameEn":"Hurghada","cityNameCN":"胡尔格达","cityCode":"HRG","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"hegd","pingYin":"huergeda"},
-    {"cityId":"666","cityNameEn":"Manama","cityNameCN":"麦纳麦","cityCode":"BAH","countryName":"Bahrain","countryIsoCode":"BH","hyKeyWord":"mnm","pingYin":"mainamai"},
-    {"cityId":"667","cityNameEn":"Limassol","cityNameCN":"利马索尔","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"lmse","pingYin":"limasuoer"},
-    {"cityId":"668","cityNameEn":"Paphos","cityNameCN":"帕福斯","cityCode":"PFO","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"pfs","pingYin":"pafusi"},
-    {"cityId":"669","cityNameEn":"Larnaca","cityNameCN":"拉纳卡","cityCode":"LCA","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"lnk","pingYin":"lanaka"},
-    {"cityId":"670","cityNameEn":"Ayia Napa","cityNameCN":"阿依纳帕","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"aynp","pingYin":"ayinapa"},
-    {"cityId":"671","cityNameEn":"Tehran","cityNameCN":"德黑兰","cityCode":"THR","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"dhl","pingYin":"deheilan"},
-    {"cityId":"672","cityNameEn":"Isfahan","cityNameCN":"伊斯法罕","cityCode":"IFN","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"ysfh","pingYin":"yisifahan"},
-    {"cityId":"673","cityNameEn":"Shiraz","cityNameCN":"设拉子","cityCode":"SYZ","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"slz","pingYin":"shelazi"},
-    {"cityId":"674","cityNameEn":"Mashed","cityNameCN":"马什哈德","cityCode":"NULL","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"mshd","pingYin":"maishihade"},
-    {"cityId":"675","cityNameEn":"Bandar Abass","cityNameCN":"阿巴斯港","cityCode":"NULL","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"absg","pingYin":"abasigang"},
-    {"cityId":"676","cityNameEn":"Amman","cityNameCN":"安曼","cityCode":"AMM","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"am","pingYin":"anman"},
-    {"cityId":"677","cityNameEn":"Petra","cityNameCN":"佩特拉","cityCode":"JO1","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"ptl","pingYin":"peitela"},
-    {"cityId":"678","cityNameEn":"Aqaba","cityNameCN":"亚喀巴","cityCode":"AQJ","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"ykb","pingYin":"yakaba"},
-    {"cityId":"679","cityNameEn":"Dead Sea","cityNameCN":"死海","cityCode":"NULL","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"sh","pingYin":"sihai"},
-    {"cityId":"680","cityNameEn":"Beirut","cityNameCN":"贝鲁特","cityCode":"BEY","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"blt","pingYin":"beilute"},
-    {"cityId":"681","cityNameEn":"Bekaa","cityNameCN":"贝卡","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"bk","pingYin":"beika"},
-    {"cityId":"682","cityNameEn":"Jounieh","cityNameCN":"朱尼耶","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"zny","pingYin":"zhuniye"},
-    {"cityId":"683","cityNameEn":"Chouf","cityNameCN":"乔福","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"qf","pingYin":"qiaofu"},
-    {"cityId":"684","cityNameEn":"North Lebanon","cityNameCN":"黎巴嫩北部","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"blbn","pingYin":"libanenbeibu"},
-    {"cityId":"685","cityNameEn":"Broumana","cityNameCN":"Broumana","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"blmn","pingYin":"Broumana"},
-    {"cityId":"686","cityNameEn":"Faraya","cityNameCN":"Faraya","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"fly","pingYin":"Faraya"},
-    {"cityId":"687","cityNameEn":"Muscat","cityNameCN":"马斯喀特","cityCode":"MCT","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"mskt","pingYin":"masikate"},
-    {"cityId":"688","cityNameEn":"Barka","cityNameCN":"巴尔卡","cityCode":"OM1","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"bek","pingYin":"baerka"},
-    {"cityId":"689","cityNameEn":"Nizwa","cityNameCN":"尼兹瓦","cityCode":"OM2","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"nzw","pingYin":"niziwa"},
-    {"cityId":"690","cityNameEn":"Sur","cityNameCN":"萨尔","cityCode":"OM4","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"se","pingYin":"saer"},
-    {"cityId":"691","cityNameEn":"Sohar","cityNameCN":"苏哈尔","cityCode":"OM3","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"she","pingYin":"suhaer"},
-    {"cityId":"692","cityNameEn":"Salalah","cityNameCN":"塞拉莱","cityCode":"SLL","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"sll","pingYin":"sailalai"},
-    {"cityId":"693","cityNameEn":"Khasab","cityNameCN":"海塞卜","cityCode":"KHS","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"hsb","pingYin":"haisaibu"},
-    {"cityId":"694","cityNameEn":"Ibra","cityNameCN":"依博拉","cityCode":"NULL","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"ybl","pingYin":"yibola"},
-    {"cityId":"695","cityNameEn":"Islamabad","cityNameCN":"伊斯兰堡","cityCode":"ISB","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"yslb","pingYin":"yisilanbao"},
-    {"cityId":"696","cityNameEn":"Lahore","cityNameCN":"拉合尔","cityCode":"LHE","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"lhe","pingYin":"laheer"},
-    {"cityId":"697","cityNameEn":"Karachi","cityNameCN":"卡拉奇","cityCode":"KHI","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"klq","pingYin":"kalaqi"},
-    {"cityId":"698","cityNameEn":"Gilgit","cityNameCN":"吉尔吉特","cityCode":"GIL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"jejt","pingYin":"jierjite"},
-    {"cityId":"699","cityNameEn":"Swat","cityNameCN":"斯瓦特","cityCode":"NULL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"swt","pingYin":"siwate"},
-    {"cityId":"700","cityNameEn":"Faisalabad","cityNameCN":"费萨拉巴德","cityCode":"LYP","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"fslbd","pingYin":"feisalabade"},
-    {"cityId":"701","cityNameEn":"Quetta","cityNameCN":"奎达","cityCode":"UET","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"kd","pingYin":"kuida"},
-    {"cityId":"702","cityNameEn":"Rawalpindi","cityNameCN":"拉瓦尔品第","cityCode":"NULL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"lwepd","pingYin":"lawaerpindi"},
-    {"cityId":"704","cityNameEn":"Doha","cityNameCN":"多哈","cityCode":"DOH","countryName":"Qatar","countryIsoCode":"QA","hyKeyWord":"dh","pingYin":"duoha"},
-    {"cityId":"705","cityNameEn":"Riyadh","cityNameCN":"利雅得","cityCode":"RUH","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"lyd","pingYin":"liyade"},
-    {"cityId":"706","cityNameEn":"Makkah","cityNameCN":"麦加","cityCode":"NULL","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"mj","pingYin":"maijia"},
-    {"cityId":"707","cityNameEn":"Madinah","cityNameCN":"麦地那","cityCode":"MED","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"mdn","pingYin":"maidina"},
-    {"cityId":"708","cityNameEn":"Jeddah","cityNameCN":"吉达","cityCode":"JED","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"jd","pingYin":"jida"},
-    {"cityId":"709","cityNameEn":"Al Khobar","cityNameCN":"阿而科巴而","cityCode":"SA1","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"aekbe","pingYin":"aerkebaer"},
-    {"cityId":"710","cityNameEn":"Damascus","cityNameCN":"大马士革","cityCode":"DAM","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"dmsg","pingYin":"damashige"},
-    {"cityId":"711","cityNameEn":"Aleppo","cityNameCN":"阿勒颇","cityCode":"ALP","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"alp","pingYin":"alepo"},
-    {"cityId":"712","cityNameEn":"Tartous","cityNameCN":"塔尔图斯","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"tets","pingYin":"taertusi"},
-    {"cityId":"713","cityNameEn":"Homs","cityNameCN":"霍姆斯","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"hms","pingYin":"huomusi"},
-    {"cityId":"714","cityNameEn":"Lattakia","cityNameCN":"拉塔基亚","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"ltjy","pingYin":"latajiya"},
-    {"cityId":"715","cityNameEn":"Palmyra","cityNameCN":"帕密拉","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"pml","pingYin":"pamila"},
-    {"cityId":"716","cityNameEn":"Deir Ezzor","cityNameCN":"代尔祖尔","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"deze","pingYin":"daierzuer"},
-    {"cityId":"717","cityNameEn":"Hama","cityNameCN":"哈马","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"hm","pingYin":"hama"},
-    {"cityId":"718","cityNameEn":"Istanbul","cityNameCN":"伊斯坦布尔","cityCode":"IST","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"ystbe","pingYin":"yisitanbuer"},
-    {"cityId":"719","cityNameEn":"Bursa","cityNameCN":"布尔萨","cityCode":"YEI","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"bes","pingYin":"buersa"},
-    {"cityId":"720","cityNameEn":"Yalova","cityNameCN":"亚洛瓦","cityCode":"TR5","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"ylw","pingYin":"yaluowa"},
-    {"cityId":"721","cityNameEn":"Abant & Bolu","cityNameCN":"Abant ＆伯禄","cityCode":"TR1","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"bl","pingYin":"Abant＆bolu"},
-    {"cityId":"722","cityNameEn":"Izmir","cityNameCN":"伊兹密尔","cityCode":"IZM","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"yzme","pingYin":"yizimier"},
-    {"cityId":"723","cityNameEn":"Ankara","cityNameCN":"安卡拉","cityCode":"ANK","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"akl","pingYin":"ankala"},
-    {"cityId":"724","cityNameEn":"Antalya","cityNameCN":"安塔利亚","cityCode":"AYT","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"atly","pingYin":"antaliya"},
-    {"cityId":"725","cityNameEn":"Bodrum","cityNameCN":"博德鲁姆","cityCode":"BXN","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"bdlm","pingYin":"bodelumu"},
-    {"cityId":"726","cityNameEn":"Cappadocia","cityNameCN":"卡帕多西亚","cityCode":"TR3","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"kpdqy","pingYin":"kapaduoxiya"},
-    {"cityId":"727","cityNameEn":"Konya","cityNameCN":"科尼亚","cityCode":"KYA","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"kny","pingYin":"keniya"},
-    {"cityId":"728","cityNameEn":"Mersin","cityNameCN":"梅尔辛","cityCode":"TR4","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"mex","pingYin":"meierxin"},
-    {"cityId":"729","cityNameEn":"Afyon","cityNameCN":"阿菲永","cityCode":"NULL","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"afy","pingYin":"afeiyong"},
-    {"cityId":"730","cityNameEn":"Black Sea","cityNameCN":"黑海","cityCode":"TR2","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"hh","pingYin":"heihai"},
-    {"cityId":"731","cityNameEn":"Nairobi","cityNameCN":"内罗毕","cityCode":"NBO","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"nlb","pingYin":"neiluobi"},
-    {"cityId":"732","cityNameEn":"Mombasa North Coast","cityNameCN":"蒙巴萨北部海岸","cityCode":"NULL","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"mbsb","pingYin":"mengbasabeibuhaian"},
-    {"cityId":"733","cityNameEn":"Mombasa South Coast","cityNameCN":"蒙巴萨南岸","cityCode":"NULL","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"mbsn","pingYin":"mengbasananan"},
-    {"cityId":"734","cityNameEn":"Koh Samui","cityNameCN":"苏梅岛","cityCode":"USM","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sm","pingYin":"sumeidao"},
-    {"cityId":"735","cityNameEn":"Trat","cityNameCN":"达叻府","cityCode":"TDX","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"dl","pingYin":"dalefu"},
-    {"cityId":"736","cityNameEn":"Mae Hong Son","cityNameCN":"夜丰颂","cityCode":"HGN","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"yfs","pingYin":"yefengsong"},
-    {"cityId":"738","cityNameEn":"Marrakesh","cityNameCN":"马拉喀什","cityCode":"NULL","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"mlks","pingYin":"malakashi"},
-    {"cityId":"739","cityNameEn":"Fes","cityNameCN":"非斯","cityCode":"NULL","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"fs","pingYin":"feisi"},
-    {"cityId":"740","cityNameEn":"Ouarzazate","cityNameCN":"瓦尔扎扎特","cityCode":"OZZ","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"wezzt","pingYin":"waerzhazhate"},
-    {"cityId":"741","cityNameEn":"Casablanca","cityNameCN":"卡萨布兰卡","cityCode":"CAS","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"ksblk","pingYin":"kasabulanka"},
-    {"cityId":"742","cityNameEn":"Erfoud","cityNameCN":"艾尔芙","cityCode":"NULL","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"aef","pingYin":"aierfu"},
-    {"cityId":"743","cityNameEn":"Praslin","cityNameCN":"普拉兰岛","cityCode":"PRI","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"pll","pingYin":"pulalandao"},
-    {"cityId":"744","cityNameEn":"Mahe","cityNameCN":"马埃岛","cityCode":"SEZ","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"ma","pingYin":"maaidao"},
-    {"cityId":"745","cityNameEn":"La Digue","cityNameCN":"拉迪格","cityCode":"SC1","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"ldg","pingYin":"ladige"},
-    {"cityId":"746","cityNameEn":"Denis Island","cityNameCN":"丹尼斯岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"dns","pingYin":"dannisidao"},
-    {"cityId":"747","cityNameEn":"Sainte Anne","cityNameCN":"圣安妮","cityCode":"SC2","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"san","pingYin":"shenganni"},
-    {"cityId":"748","cityNameEn":"Johannesburg","cityNameCN":"约翰内斯堡","cityCode":"JNB","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"yhnsb","pingYin":"yuehanneisibao"},
-    {"cityId":"749","cityNameEn":"Durban","cityNameCN":"德班","cityCode":"DUR","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"db","pingYin":"deban"},
-    {"cityId":"750","cityNameEn":"Sun City","cityNameCN":"太阳城","cityCode":"NTY","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"tyc","pingYin":"taiyangcheng"},
-    {"cityId":"751","cityNameEn":"Cape Town","cityNameCN":"开普敦","cityCode":"CPT","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"kpd","pingYin":"kaipudun"},
-    {"cityId":"752","cityNameEn":"Pretoria","cityNameCN":"比勒陀利亚","cityCode":"NULL","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"bltly","pingYin":"biletuoliya"},
-    {"cityId":"753","cityNameEn":"Khao Yai","cityNameCN":"考艾","cityCode":"TH8","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ka","pingYin":"kaoai"},
-    {"cityId":"754","cityNameEn":"Trang","cityNameCN":"董里府","cityCode":"TST","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"dl","pingYin":"donglifu"},
-    {"cityId":"755","cityNameEn":"Ayutthaya","cityNameCN":"大城","cityCode":"TH1","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"dc","pingYin":"dacheng"},
-    {"cityId":"756","cityNameEn":"Khao Lak","cityNameCN":"蔻立","cityCode":"TH7","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"kl","pingYin":"kouli"},
-    {"cityId":"773","cityNameEn":"Agat","cityNameCN":"亚加港","cityCode":"NULL","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"yjg","pingYin":"yajiagang"},
-    {"cityId":"774","cityNameEn":"Fiji","cityNameCN":"斐济","cityCode":"NULL","countryName":"Finland","countryIsoCode":"FI","hyKeyWord":"fj","pingYin":"feiji"},
-    {"cityId":"775","cityNameEn":"Surin","cityNameCN":"苏林","cityCode":"T26","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sl","pingYin":"sulin"},
-    {"cityId":"776","cityNameEn":"Tak","cityNameCN":"达府","cityCode":"T27","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"df","pingYin":"dafu"},
-    {"cityId":"777","cityNameEn":"Khon Kaen","cityNameCN":"孔敬","cityCode":"KKC","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"kj","pingYin":"kongjing"},
-    {"cityId":"778","cityNameEn":"Chumphon","cityNameCN":"春蓬","cityCode":"TH4","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"cp","pingYin":"chunpeng"},
-    {"cityId":"779","cityNameEn":"Sukhothai","cityNameCN":"素可泰","cityCode":"THS","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"skt","pingYin":"suketai"},
-    {"cityId":"780","cityNameEn":"Hat Yai","cityNameCN":"合艾","cityCode":"HDY","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ha","pingYin":"heai"},
-    {"cityId":"781","cityNameEn":"Phitsanuloke","cityNameCN":"彭世洛","cityCode":"T20","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"psl","pingYin":"pengshiluo"},
-    {"cityId":"782","cityNameEn":"Nong Khai","cityNameCN":"廊开府","cityCode":"T15","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lk","pingYin":"langkaifu"},
-    {"cityId":"783","cityNameEn":"Ranong","cityNameCN":"拉廊","cityCode":"UNN","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ll","pingYin":"lalang"},
-    {"cityId":"784","cityNameEn":"Koh Tao","cityNameCN":"涛岛","cityCode":"T13","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"gd","pingYin":"taodao"},
-    {"cityId":"785","cityNameEn":"Loei","cityNameCN":"黎府","cityCode":"LOE","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lf","pingYin":"lifu"},
-    {"cityId":"786","cityNameEn":"Petchaboon","cityNameCN":"碧差汶","cityCode":"T17","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bcw","pingYin":"bichawen"},
-    {"cityId":"787","cityNameEn":"Lampang","cityNameCN":"南邦","cityCode":"LPT","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nb","pingYin":"nanbang"},
-    {"cityId":"788","cityNameEn":"Nakhon Pathom","cityNameCN":"佛统府","cityCode":"T29","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ft","pingYin":"fotongfu"},
-    {"cityId":"789","cityNameEn":"Chacheongsao","cityNameCN":"北柳府","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bl","pingYin":"beiliufu"},
-    {"cityId":"790","cityNameEn":"Satun","cityNameCN":"沙敦","cityCode":"T24","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sd","pingYin":"shadun"},
-    {"cityId":"791","cityNameEn":"Phrae","cityNameCN":"帕府","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"pf","pingYin":"pafu"},
-    {"cityId":"792","cityNameEn":"Nakhon Si Thammarat","cityNameCN":"洛坤","cityCode":"NST","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lk","pingYin":"luokun"},
-    {"cityId":"793","cityNameEn":"Macau","cityNameCN":"澳门","cityCode":"MFM","countryName":"Macau","countryIsoCode":"MO","hyKeyWord":"am","pingYin":"aomen"},
-    {"cityId":"794","cityNameEn":"Peshawar","cityNameCN":"白沙瓦","cityCode":"PEW","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"bsw","pingYin":"baishawa"},
-    {"cityId":"795","cityNameEn":"Agadir","cityNameCN":"阿加迪尔","cityCode":"AGA","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"ajde","pingYin":"ajiadier"},
-    {"cityId":"796","cityNameEn":"Mauritius","cityNameCN":"毛里求斯","cityCode":"MRU","countryName":"Mauritius","countryIsoCode":"MU","hyKeyWord":"mlqs","pingYin":"maoliqiusi"},
-    {"cityId":"797","cityNameEn":"Rabat","cityNameCN":"拉巴特","cityCode":"RBA","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"lbt","pingYin":"labate"},
-    {"cityId":"842","cityNameEn":"Bosra","cityNameCN":"波斯拉","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"bsl","pingYin":"bosila"},
-    {"cityId":"902","cityNameEn":"Yokohama","cityNameCN":"横滨","cityCode":"YOK","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"hb","pingYin":"hengbin"},
-    {"cityId":"967","cityNameEn":"Bago City","cityNameCN":"巴戈市","cityCode":"PH1","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bgs","pingYin":"bageshi"},
-    {"cityId":"968","cityNameEn":"Bandar Seri Begawan","cityNameCN":"斯里巴加湾市","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"slbjws","pingYin":"silibajiawanshi"},
-    {"cityId":"969","cityNameEn":"Jerudong Park Area","cityNameCN":"水晶公园","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"sjgy","pingYin":"shuijinggongyuan"},
-    {"cityId":"970","cityNameEn":"Incheon","cityNameCN":"仁川","cityCode":"ICN","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"rc","pingYin":"renchuan"},
-    {"cityId":"971","cityNameEn":"Ulsan","cityNameCN":"蔚山","cityCode":"USN","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"ws","pingYin":"weishan"},
-    {"cityId":"972","cityNameEn":"Daejeon","cityNameCN":"大田","cityCode":"KR1","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"dt","pingYin":"datian"},
-    {"cityId":"973","cityNameEn":"Ilsan","cityNameCN":"一山","cityCode":"NULL","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"ys","pingYin":"yishan"},
-    {"cityId":"975","cityNameEn":"Colombo","cityNameCN":"科伦坡","cityCode":"CMB","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"klp","pingYin":"kelunpo"},
-    {"cityId":"976","cityNameEn":"Kaohsiung","cityNameCN":"高雄","cityCode":"KHH","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"gx","pingYin":"gaoxiong"},
-    {"cityId":"977","cityNameEn":"Taichung","cityNameCN":"台中","cityCode":"RMQ","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"tz","pingYin":"taizhong"},
-    {"cityId":"978","cityNameEn":"Hualien","cityNameCN":"花莲","cityCode":"HUN","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"hl","pingYin":"hualian"},
-    {"cityId":"979","cityNameEn":"Tainan","cityNameCN":"台南","cityCode":"TNN","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"tn","pingYin":"tainan"},
-    {"cityId":"980","cityNameEn":"Chiayi","cityNameCN":"嘉义","cityCode":"CYI","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"jy","pingYin":"jiayi"},
-    {"cityId":"981","cityNameEn":"Taoyuan","cityNameCN":"桃园","cityCode":"TAO","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ty","pingYin":"taoyuan"},
-    {"cityId":"982","cityNameEn":"Hsinchu","cityNameCN":"新竹","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"xz","pingYin":"xinzhu"},
-    {"cityId":"983","cityNameEn":"Chungli","cityNameCN":"中坜","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"zl","pingYin":"zhongli"},
-    {"cityId":"984","cityNameEn":"Butuan","cityNameCN":"雾瑞","cityCode":"BXU","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"wr","pingYin":"wurui"},
-    {"cityId":"985","cityNameEn":"Zamboanga","cityNameCN":"三宝颜","cityCode":"ZAM","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sby","pingYin":"sanbaoyan"},
-    {"cityId":"986","cityNameEn":"Cotabato","cityNameCN":"哥打巴托","cityCode":"CBO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"gdbt","pingYin":"gedabatuo"},
-    {"cityId":"987","cityNameEn":"Tacloban","cityNameCN":"塔克洛班","cityCode":"TAC","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"tklb","pingYin":"takeluoban"},
-    {"cityId":"988","cityNameEn":"Dapitan","cityNameCN":"达比丹","cityCode":"PH7","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dbd","pingYin":"dabidan"},
-    {"cityId":"989","cityNameEn":"Dipolog","cityNameCN":"第波罗","cityCode":"DPL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dbl","pingYin":"diboluo"},
-    {"cityId":"997","cityNameEn":"Negombo","cityNameCN":"尼干布","cityCode":"SL6","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ngb","pingYin":"niganbu"},
-    {"cityId":"998","cityNameEn":"Bentota","cityNameCN":"班托塔","cityCode":"BJT","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"btt","pingYin":"bantuota"},
-    {"cityId":"999","cityNameEn":"Mt. Lavinia","cityNameCN":"芒特拉维尼亚","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"mtlwny","pingYin":"mangtelaweiniya"},
-    {"cityId":"1000","cityNameEn":"Katunayake, Airport","cityNameCN":"卡图纳耶克，机场","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ktnykjc","pingYin":"katunayekejichang"},
-    {"cityId":"1002","cityNameEn":"Kalutara","cityNameCN":"卡卢特勒","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"kltl","pingYin":"kalutele"},
-    {"cityId":"1003","cityNameEn":"Beruwela","cityNameCN":"巴鲁维拉","cityCode":"SL5","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"blwl","pingYin":"baluweila"},
-    {"cityId":"1004","cityNameEn":"Wadduwa","cityNameCN":"瓦都瓦","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"wdw","pingYin":"waduwa"},
-    {"cityId":"1005","cityNameEn":"Galle","cityNameCN":"加勒","cityCode":"KCT","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"jl","pingYin":"jiale"},
-    {"cityId":"1006","cityNameEn":"Kandy","cityNameCN":"康堤","cityCode":"KDW","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"kd","pingYin":"kangdi"},
-    {"cityId":"1007","cityNameEn":"Pahang","cityNameCN":"彭亨","cityCode":"M24","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ph","pingYin":"pengheng"},
-    {"cityId":"1008","cityNameEn":"Miaoli Canton","cityNameCN":"苗栗","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ml","pingYin":"mioali"},
-    {"cityId":"1009","cityNameEn":"Penghu","cityNameCN":"澎湖","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ph","pingYin":"penghu"},
-    {"cityId":"1010","cityNameEn":"Keelung","cityNameCN":"基隆","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"jl","pingYin":"jilong"},
-    {"cityId":"1011","cityNameEn":"TaiTung","cityNameCN":"台东","cityCode":"TTT","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"td","pingYin":"taidong"},
-    {"cityId":"1020","cityNameEn":"Phnom Penh","cityNameCN":"金边","cityCode":"PNH","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"jb","pingYin":"jinbian"},
-    {"cityId":"1021","cityNameEn":"Siem Reap","cityNameCN":"暹粒","cityCode":"REP","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"xl","pingYin":"xianli"},
-    {"cityId":"1023","cityNameEn":"Vientiane","cityNameCN":"万象","cityCode":"VTE","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"wx","pingYin":"wanxiang"},
-    {"cityId":"1024","cityNameEn":"Luang Prabang","cityNameCN":"琅勃拉邦","cityCode":"LPQ","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"lblb","pingYin":"langbolabang"},
-    {"cityId":"1025","cityNameEn":"Saigon","cityNameCN":"西贡","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"xg","pingYin":"xigong"},
-    {"cityId":"1027","cityNameEn":"Hue","cityNameCN":"顺化","cityCode":"HUI","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sh","pingYin":"shunhua"},
-    {"cityId":"1031","cityNameEn":"Hoi An","cityNameCN":"惠安","cityCode":"VN5","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"ha","pingYin":"huian"},
-    {"cityId":"1032","cityNameEn":"Phan Thiet","cityNameCN":"藩切","cityCode":"VN6","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"fq","pingYin":"fanqie"},
-    {"cityId":"1033","cityNameEn":"Hiroshima","cityNameCN":"广岛","cityCode":"HIJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"gd","pingYin":"guangdao"},
-    {"cityId":"1034","cityNameEn":"Agra","cityNameCN":"阿格拉","cityCode":"AGR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"agl","pingYin":"agela"},
-    {"cityId":"1035","cityNameEn":"Srinagar","cityNameCN":"斯利那加","cityCode":"SXR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"slnj","pingYin":"silinajia"},
-    {"cityId":"1038","cityNameEn":"Wattala","cityNameCN":"Wattala","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"wtl","pingYin":"Wattala"},
-    {"cityId":"1039","cityNameEn":"Dambulla","cityNameCN":"丹布勒","cityCode":"SL4","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"dbl","pingYin":"danbule"},
-    {"cityId":"1040","cityNameEn":"Nuwara Eliya","cityNameCN":"努瓦拉埃利亞","cityCode":"SL1","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"nwlaly","pingYin":"nuwalaailiya"},
-    {"cityId":"1041","cityNameEn":"Habarana","cityNameCN":"哈巴拉娜","cityCode":"SL3","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"hbln","pingYin":"habalana"},
-    {"cityId":"1042","cityNameEn":"Giritale","cityNameCN":"吉利托","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"glt","pingYin":"jilituo"},
-    {"cityId":"1043","cityNameEn":"Anuradhapura","cityNameCN":"阿努拉德普勒","cityCode":"ACJ","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"anldpl","pingYin":"anuladepule"},
-    {"cityId":"1044","cityNameEn":"Sigiriya","cityNameCN":"西吉利亚","cityCode":"GIU","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"xjly","pingYin":"xijiliya"},
-    {"cityId":"1047","cityNameEn":"Hikkaduwa","cityNameCN":"希卡杜瓦","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"xkdw","pingYin":"xikaduwa"},
-    {"cityId":"1063","cityNameEn":"Bangalore","cityNameCN":"班加罗尔","cityCode":"BLR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"bjle","pingYin":"banjialuoer"},
-    {"cityId":"1064","cityNameEn":"Bikaner","cityNameCN":"比卡内尔","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"bkne","pingYin":"bikaneier"},
-    {"cityId":"1065","cityNameEn":"Calcutta","cityNameCN":"加尔各答","cityCode":"CCU","countryName":"India","countryIsoCode":"IN","hyKeyWord":"jegd","pingYin":"jiaergeda"},
-    {"cityId":"1066","cityNameEn":"Chennai","cityNameCN":"金奈","cityCode":"MAA","countryName":"India","countryIsoCode":"IN","hyKeyWord":"jn","pingYin":"jinnai"},
-    {"cityId":"1067","cityNameEn":"Cochin","cityNameCN":"科钦","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"kk","pingYin":"keqin"},
-    {"cityId":"1068","cityNameEn":"Goa","cityNameCN":"果阿","cityCode":"GOI","countryName":"India","countryIsoCode":"IN","hyKeyWord":"ga","pingYin":"guoa"},
-    {"cityId":"1069","cityNameEn":"Hyderabad","cityNameCN":"海德拉巴","cityCode":"HYD","countryName":"India","countryIsoCode":"IN","hyKeyWord":"hdlb","pingYin":"haidelaba"},
-    {"cityId":"1070","cityNameEn":"Jaipur","cityNameCN":"斋浦尔","cityCode":"JAI","countryName":"India","countryIsoCode":"IN","hyKeyWord":"zpe","pingYin":"zhaipuer"},
-    {"cityId":"1071","cityNameEn":"Shimla","cityNameCN":"西姆拉","cityCode":"SLV","countryName":"India","countryIsoCode":"IN","hyKeyWord":"xml","pingYin":"ximula"},
-    {"cityId":"1072","cityNameEn":"Mumbai","cityNameCN":"孟买","cityCode":"BOM","countryName":"India","countryIsoCode":"IN","hyKeyWord":"mm","pingYin":"mengmai"},
-    {"cityId":"1073","cityNameEn":"New Delhi","cityNameCN":"新德里","cityCode":"DEL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"xdl","pingYin":"xindeli"},
-    {"cityId":"1074","cityNameEn":"Pune","cityNameCN":"浦那","cityCode":"PNQ","countryName":"India","countryIsoCode":"IN","hyKeyWord":"pn","pingYin":"puna"},
-    {"cityId":"1075","cityNameEn":"Shirdi","cityNameCN":"舍尔第","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"sed","pingYin":"sheerdi"},
-    {"cityId":"1076","cityNameEn":"Udaipur","cityNameCN":"乌代布尔","cityCode":"UDR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"wdbe","pingYin":"wudaibuer"},
-    {"cityId":"1077","cityNameEn":"Varanasi","cityNameCN":"瓦拉纳西","cityCode":"VNS","countryName":"India","countryIsoCode":"IN","hyKeyWord":"wlnx","pingYin":"walanaxi"},
-    {"cityId":"1082","cityNameEn":"Halong","cityNameCN":"下龙湾","cityCode":"VN4","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"xlw","pingYin":"xialongwan"},
-    {"cityId":"1084","cityNameEn":"Kosgoda","cityNameCN":"可诗果达","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ksgd","pingYin":"keshiguoda"},
-    {"cityId":"1085","cityNameEn":"Can Tho","cityNameCN":"芹苴","cityCode":"VN1","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"qj","pingYin":"qinju"},
-    {"cityId":"1086","cityNameEn":"Sapa","cityNameCN":"沙巴","cityCode":"VN7","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sb","pingYin":"shaba"},
-    {"cityId":"1106","cityNameEn":"Chau Doc","cityNameCN":"朱笃","cityCode":"VN2","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"zd","pingYin":"zhudu"},
-    {"cityId":"1108","cityNameEn":"Aurangabad","cityNameCN":"奥兰加巴德","cityCode":"IXU","countryName":"India","countryIsoCode":"IN","hyKeyWord":"aljbd","pingYin":"aolanjiabade"},
-    {"cityId":"1110","cityNameEn":"Tamuning","cityNameCN":"塔穆宁","cityCode":"GUM","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"tmn","pingYin":"tamuning"},
-    {"cityId":"1111","cityNameEn":"Tumon Bay","cityNameCN":"杜梦湾","cityCode":"GU2","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"dmw","pingYin":"dumengwan"},
-    {"cityId":"1112","cityNameEn":"Yona","cityNameCN":"尤纳","cityCode":"NULL","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"yn","pingYin":"youna"},
-    {"cityId":"1114","cityNameEn":"Bhubaneshwar","cityNameCN":"布巴尼斯瓦尔","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"bbnswe","pingYin":"bubanisiwaer"},
-    {"cityId":"1181","cityNameEn":"Selangor","cityNameCN":"雪兰莪","cityCode":"MY9","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"xle","pingYin":"xuelane"},
-    {"cityId":"1183","cityNameEn":"Kedah","cityNameCN":"吉打州","cityCode":"M22","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jdz","pingYin":"jidazhou"},
-    {"cityId":"1187","cityNameEn":"Putrajaya","cityNameCN":"布城","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bc","pingYin":"bucheng"},
-    {"cityId":"1188","cityNameEn":"Kota Kinabalu","cityNameCN":"亚庇市","cityCode":"BKI","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"yb","pingYin":"yabishi"},
-    {"cityId":"1189","cityNameEn":"Bali","cityNameCN":"巴厘岛","cityCode":"DPS","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bld","pingYin":"balidao"},
-    {"cityId":"1190","cityNameEn":"Jakarta","cityNameCN":"雅加达","cityCode":"JKT","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"yjd","pingYin":"yajiada"},
-    {"cityId":"1191","cityNameEn":"Suva","cityNameCN":"苏瓦","cityCode":"SUV","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"sw","pingYin":"suwa"},
-    {"cityId":"1192","cityNameEn":"Denarau","cityNameCN":"丹娜劳","cityCode":"NULL","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"dnl","pingYin":"dannalao"},
-    {"cityId":"1193","cityNameEn":"Nadi","cityNameCN":"纳迪","cityCode":"NAN","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"nd","pingYin":"nadi"},
-    {"cityId":"1194","cityNameEn":"Sigatoka","cityNameCN":"辛加东卡","cityCode":"NULL","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"xjdk","pingYin":"xinjiadongka"},
-    {"cityId":"1195","cityNameEn":"Vomo","cityNameCN":"Vomo","cityCode":"NULL","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"wm","pingYin":"Vomo"},
-    {"cityId":"1197","cityNameEn":"Crete","cityNameCN":"克里特岛","cityCode":"HER","countryName":"Greece","countryIsoCode":"GR","hyKeyWord":"kltd","pingYin":"kelitedao"},
-    {"cityId":"1198","cityNameEn":"Brugge","cityNameCN":"布鲁日","cityCode":"ZGJ","countryName":"Belgium","countryIsoCode":"BE","hyKeyWord":"blr","pingYin":"buluri"},
-    {"cityId":"1199","cityNameEn":"Brussels","cityNameCN":"布鲁塞尔","cityCode":"BRU","countryName":"Belgium","countryIsoCode":"BE","hyKeyWord":"blse","pingYin":"bulusaidong"},
-    {"cityId":"1200","cityNameEn":"Namur","cityNameCN":"那慕尔","cityCode":"QNM","countryName":"Belgium","countryIsoCode":"BE","hyKeyWord":"nme","pingYin":"namudong"},
-    {"cityId":"1201","cityNameEn":"Montreal","cityNameCN":"蒙特利尔","cityCode":"YMQ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"mtle","pingYin":"mengtelier"},
-    {"cityId":"1202","cityNameEn":"Ottawa","cityNameCN":"渥太华","cityCode":"YOW","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"wth","pingYin":"wotaihua"},
-    {"cityId":"1203","cityNameEn":"Quebec","cityNameCN":"魁北克","cityCode":"YQB","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"kbk","pingYin":"kuibeike"},
-    {"cityId":"1204","cityNameEn":"Toronto","cityNameCN":"多伦多","cityCode":"YTO","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"dld","pingYin":"duolunduo"},
-    {"cityId":"1205","cityNameEn":"Vancouver","cityNameCN":"温哥华","cityCode":"YVR","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"wgh","pingYin":"wengehua"},
-    {"cityId":"1206","cityNameEn":"Cannes","cityNameCN":"戛纳","cityCode":"CEQ","countryName":"France","countryIsoCode":"FR","hyKeyWord":"gn","pingYin":"gana"},
-    {"cityId":"1207","cityNameEn":"Lyon","cityNameCN":"里昂","cityCode":"LYS","countryName":"France","countryIsoCode":"FR","hyKeyWord":"la","pingYin":"liang"},
-    {"cityId":"1208","cityNameEn":"Marseille","cityNameCN":"马赛","cityCode":"MRS","countryName":"France","countryIsoCode":"FR","hyKeyWord":"ms","pingYin":"masai"},
-    {"cityId":"1209","cityNameEn":"Nice","cityNameCN":"尼斯","cityCode":"NCE","countryName":"France","countryIsoCode":"FR","hyKeyWord":"ns","pingYin":"nisi"},
-    {"cityId":"1210","cityNameEn":"Paris","cityNameCN":"巴黎","cityCode":"PAR","countryName":"France","countryIsoCode":"FR","hyKeyWord":"bl","pingYin":"bali"},
-    {"cityId":"1211","cityNameEn":"Florence","cityNameCN":"佛罗伦萨","cityCode":"FLR","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"flls","pingYin":"foluolunsa"},
-    {"cityId":"1212","cityNameEn":"Milan","cityNameCN":"米兰","cityCode":"MIL","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"ml","pingYin":"milan"},
-    {"cityId":"1213","cityNameEn":"Rome","cityNameCN":"罗马","cityCode":"ROM","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"lm","pingYin":"luoma"},
-    {"cityId":"1214","cityNameEn":"Venice","cityNameCN":"威尼斯","cityCode":"VCE","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"wns","pingYin":"weinisi"},
-    {"cityId":"1215","cityNameEn":"Amsterdam","cityNameCN":"阿姆斯特丹","cityCode":"AMS","countryName":"Netherlands","countryIsoCode":"NL","hyKeyWord":"amstd","pingYin":"amusitedan"},
-    {"cityId":"1216","cityNameEn":"Rotterdam","cityNameCN":"鹿特丹","cityCode":"RTM","countryName":"Netherlands","countryIsoCode":"NL","hyKeyWord":"ltd","pingYin":"lutedan"},
-    {"cityId":"1217","cityNameEn":"Barcelona","cityNameCN":"巴塞罗那","cityCode":"BCN","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"bsln","pingYin":"basailuona"},
-    {"cityId":"1218","cityNameEn":"Madrid","cityNameCN":"马德里","cityCode":"MAD","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"mdl","pingYin":"madeli"},
-    {"cityId":"1219","cityNameEn":"Mallorca","cityNameCN":"马略卡岛","cityCode":"PMI","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"mlk","pingYin":"maluekadao"},
-    {"cityId":"1220","cityNameEn":"Palma De Mallorca","cityNameCN":"帕尔马","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"pem","pingYin":"paerma"},
-    {"cityId":"1221","cityNameEn":"Berne","cityNameCN":"伯尔尼","cityCode":"BRN","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"ben","pingYin":"boerni"},
-    {"cityId":"1222","cityNameEn":"Geneva","cityNameCN":"日内瓦","cityCode":"GVA","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"rnw","pingYin":"rineiwa"},
-    {"cityId":"1223","cityNameEn":"Lausanne","cityNameCN":"洛桑","cityCode":"QLS","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"ls","pingYin":"luosang"},
-    {"cityId":"1224","cityNameEn":"Lucerne","cityNameCN":"卢塞恩州","cityCode":"QLJ","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"lse","pingYin":"lusaienzhou"},
-    {"cityId":"1225","cityNameEn":"Montreux","cityNameCN":"蒙特勒","cityCode":"GV1","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"mtl","pingYin":"mengtele"},
-    {"cityId":"1226","cityNameEn":"Zurich","cityNameCN":"苏黎世","cityCode":"ZRH","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"sls","pingYin":"sulishi"},
-    {"cityId":"1227","cityNameEn":"Birmingham","cityNameCN":"伯明翰","cityCode":"BHX","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"bmh","pingYin":"bominghan"},
-    {"cityId":"1228","cityNameEn":"Liverpool","cityNameCN":"利物浦","cityCode":"LPL","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"lwp","pingYin":"liwupu"},
-    {"cityId":"1229","cityNameEn":"London","cityNameCN":"伦敦","cityCode":"LON","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"ld","pingYin":"lundun"},
-    {"cityId":"1230","cityNameEn":"Manchester","cityNameCN":"曼彻斯特","cityCode":"MAN","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"mcst","pingYin":"manchesite"},
-    {"cityId":"1231","cityNameEn":"Anaheim","cityNameCN":"安纳海姆","cityCode":"SNA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"anhm","pingYin":"anahaimu"},
-    {"cityId":"1232","cityNameEn":"Austin","cityNameCN":"奥斯汀","cityCode":"AUS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ast","pingYin":"aositing"},
-    {"cityId":"1233","cityNameEn":"Chicago","cityNameCN":"芝加哥","cityCode":"CHI","countryName":"United States","countryIsoCode":"US","hyKeyWord":"zjg","pingYin":"zhijiage"},
-    {"cityId":"1235","cityNameEn":"Honolulu","cityNameCN":"檀香山","cityCode":"HNL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"txs","pingYin":"tanxiangsan"},
-    {"cityId":"1236","cityNameEn":"Las Vegas","cityNameCN":"拉斯维加斯","cityCode":"LAS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"lswjs","pingYin":"lasiweijiasi"},
-    {"cityId":"1237","cityNameEn":"Los Angeles","cityNameCN":"洛杉矶","cityCode":"LAX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"lsj","pingYin":"luoshanji"},
-    {"cityId":"1238","cityNameEn":"Miami","cityNameCN":"迈阿密","cityCode":"MIA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"mam","pingYin":"maiami"},
-    {"cityId":"1239","cityNameEn":"New York","cityNameCN":"纽约","cityCode":"NYC","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ny","pingYin":"niuyue"},
-    {"cityId":"1240","cityNameEn":"San Diego","cityNameCN":"圣地亚哥","cityCode":"SAN","countryName":"United States","countryIsoCode":"US","hyKeyWord":"sdyg","pingYin":"shengdiyage"},
-    {"cityId":"1241","cityNameEn":"San Francisco","cityNameCN":"旧金山","cityCode":"SFO","countryName":"United States","countryIsoCode":"US","hyKeyWord":"jjs","pingYin":"jiujinshan"},
-    {"cityId":"1242","cityNameEn":"Washington","cityNameCN":"华盛顿","cityCode":"WAS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"hsd","pingYin":"huashengdun"},
-    {"cityId":"1243","cityNameEn":"Samut Songkram","cityNameCN":"夜功府","cityCode":"T23","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"yg","pingYin":"yegongfu"},
-    {"cityId":"1244","cityNameEn":"Gwadar","cityNameCN":"瓜达尔","cityCode":"GWD","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"gde","pingYin":"guadaer"},
-    {"cityId":"1245","cityNameEn":"Multan","cityNameCN":"木尔坦","cityCode":"MUX","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"met","pingYin":"muertan"},
-    {"cityId":"1246","cityNameEn":"Sialkot","cityNameCN":"锡亚尔科特","cityCode":"NULL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"xyekt","pingYin":"xiyaerkete"},
-    {"cityId":"1247","cityNameEn":"Athens","cityNameCN":"雅典","cityCode":"ATH","countryName":"Greece","countryIsoCode":"GR","hyKeyWord":"yd","pingYin":"yadian"},
-    {"cityId":"1248","cityNameEn":"Graz","cityNameCN":"格拉茨","cityCode":"GRZ","countryName":"Austria","countryIsoCode":"AT","hyKeyWord":"glc","pingYin":"gelaci"},
-    {"cityId":"1249","cityNameEn":"Vienna","cityNameCN":"维也纳","cityCode":"VIE","countryName":"Austria","countryIsoCode":"AT","hyKeyWord":"wyn","pingYin":"weiyena"},
-    {"cityId":"1250","cityNameEn":"Calgary","cityNameCN":"卡尔加里","cityCode":"YYC","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"kejl","pingYin":"kaerjiali"},
-    {"cityId":"1251","cityNameEn":"Halifax","cityNameCN":"哈利法克斯","cityCode":"YHZ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"hlfks","pingYin":"halifakesi"},
-    {"cityId":"1252","cityNameEn":"Whistler","cityNameCN":"惠斯勒","cityCode":"YWS","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"hsl","pingYin":"huisile"},
-    {"cityId":"1253","cityNameEn":"Cologne","cityNameCN":"科隆","cityCode":"CGN","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"kl","pingYin":"kelong"},
-    {"cityId":"1254","cityNameEn":"Dusseldorf","cityNameCN":"杜塞尔多夫","cityCode":"DUS","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"dsedf","pingYin":"dongsaierduofu"},
-    {"cityId":"1255","cityNameEn":"Frankfurt","cityNameCN":"法兰克福","cityCode":"FRA","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"flkf","pingYin":"falankefu"},
-    {"cityId":"1256","cityNameEn":"Munich","cityNameCN":"慕尼黑","cityCode":"MUC","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"mnh","pingYin":"munihei"},
-    {"cityId":"1257","cityNameEn":"Basel","cityNameCN":"巴塞尔","cityCode":"BSL","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"bse","pingYin":"basaier"},
-    {"cityId":"1258","cityNameEn":"Atlanta","cityNameCN":"亚特兰大","cityCode":"ATL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ytld","pingYin":"yatelanda"},
-    {"cityId":"1259","cityNameEn":"Boston","cityNameCN":"波士顿","cityCode":"BOS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"bsd","pingYin":"boshidun"},
-    {"cityId":"1260","cityNameEn":"Houston","cityNameCN":"休斯顿","cityCode":"HOU","countryName":"United States","countryIsoCode":"US","hyKeyWord":"xsd","pingYin":"xiusidun"},
-    {"cityId":"1261","cityNameEn":"New Orleans","cityNameCN":"新奥尔良","cityCode":"MSY","countryName":"United States","countryIsoCode":"US","hyKeyWord":"xael","pingYin":"xinaoerliang"},
-    {"cityId":"1262","cityNameEn":"Philadelphia","cityNameCN":"费城","cityCode":"PHL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"fc","pingYin":"feicheng"},
-    {"cityId":"1263","cityNameEn":"Salt Lake City","cityNameCN":"盐湖城","cityCode":"SLC","countryName":"United States","countryIsoCode":"US","hyKeyWord":"yhc","pingYin":"yanhucheng"},
-    {"cityId":"1264","cityNameEn":"San Jose","cityNameCN":"圣何西","cityCode":"SJC","countryName":"United States","countryIsoCode":"US","hyKeyWord":"shx","pingYin":"shenghexi"},
-    {"cityId":"1265","cityNameEn":"Seattle","cityNameCN":"西雅图","cityCode":"SEA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"xyt","pingYin":"xiyatu"},
-    {"cityId":"1266","cityNameEn":"Dallas","cityNameCN":"达拉斯","cityCode":"DFW","countryName":"United States","countryIsoCode":"US","hyKeyWord":"dls","pingYin":"dalasi"},
-    {"cityId":"1267","cityNameEn":"Berlin","cityNameCN":"柏林","cityCode":"BER","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"bl","pingYin":"bolin"},
-    {"cityId":"1268","cityNameEn":"Uthaithani","cityNameCN":"乌泰他尼","cityCode":"T28","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wttn","pingYin":"wutaitani"},
-    {"cityId":"1269","cityNameEn":"Kamphaengpet","cityNameCN":"甘烹碧府","cityCode":"TH5","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"gpb","pingYin":"ganpengbifu"},
-    {"cityId":"1270","cityNameEn":"Maputo","cityNameCN":"马普托","cityCode":"MPM","countryName":"Mozambique","countryIsoCode":"MZ","hyKeyWord":"mpt","pingYin":"maputuo"},
-    {"cityId":"1271","cityNameEn":"Arusha","cityNameCN":"阿鲁沙","cityCode":"NULL","countryName":"Tanzania","countryIsoCode":"TZ","hyKeyWord":"als","pingYin":"alusha"},
-    {"cityId":"1272","cityNameEn":"Dar Es Salaam","cityNameCN":"达累斯萨拉姆","cityCode":"DAR","countryName":"Tanzania","countryIsoCode":"TZ","hyKeyWord":"dlsslm","pingYin":"daleisisalamu"},
-    {"cityId":"1273","cityNameEn":"Zanzibar","cityNameCN":"桑给巴尔","cityCode":"ZNZ","countryName":"Tanzania","countryIsoCode":"TZ","hyKeyWord":"sjbe","pingYin":"sanggeibaer"},
-    {"cityId":"1274","cityNameEn":"Bazaruto Island","cityNameCN":"巴扎鲁托岛","cityCode":"BZB","countryName":"Mozambique","countryIsoCode":"MZ","hyKeyWord":"bzltd","pingYin":"bazhalutuodao"},
-    {"cityId":"1275","cityNameEn":"Kathmandu","cityNameCN":"加德满都","cityCode":"KTM","countryName":"Nepal","countryIsoCode":"NP","hyKeyWord":"jdmd","pingYin":"jiademandu"},
-    {"cityId":"1276","cityNameEn":"Algiers","cityNameCN":"阿尔及尔","cityCode":"ALG","countryName":"Algeria","countryIsoCode":"DZ","hyKeyWord":"aeje","pingYin":"aerjier"},
-    {"cityId":"1277","cityNameEn":"Oran","cityNameCN":"奥兰","cityCode":"ORN","countryName":"Algeria","countryIsoCode":"DZ","hyKeyWord":"al","pingYin":"aolan"},
-    {"cityId":"1278","cityNameEn":"Gaborone","cityNameCN":"哈博罗内","cityCode":"GBE","countryName":"Botswana","countryIsoCode":"BW","hyKeyWord":"hbln","pingYin":"haboluonei"},
-    {"cityId":"1279","cityNameEn":"Accra","cityNameCN":"阿克拉","cityCode":"ACC","countryName":"Ghana","countryIsoCode":"GH","hyKeyWord":"klk","pingYin":"akela"},
-    {"cityId":"1281","cityNameEn":"Maseru","cityNameCN":"马塞卢","cityCode":"MSU","countryName":"Lesotho","countryIsoCode":"LS","hyKeyWord":"msl","pingYin":"masailu"},
-    {"cityId":"1282","cityNameEn":"Blantyre","cityNameCN":"布兰太尔","cityCode":"BLZ","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"blte","pingYin":"bulantaier"},
-    {"cityId":"1283","cityNameEn":"Lilongwe","cityNameCN":"利隆圭","cityCode":"LLW","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"llg","pingYin":"lilonggui"},
-    {"cityId":"1284","cityNameEn":"Mangochi","cityNameCN":"曼戈切","cityCode":"NULL","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"mgq","pingYin":"mangeqie"},
-    {"cityId":"1285","cityNameEn":"Mzuzu","cityNameCN":"姆祖祖","cityCode":"ZZU","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"mzz","pingYin":"muzuzu"},
-    {"cityId":"1286","cityNameEn":"Salima","cityNameCN":"萨利马","cityCode":"NULL","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"slm","pingYin":"salima"},
-    {"cityId":"1287","cityNameEn":"Zomba","cityNameCN":"松巴","cityCode":"NULL","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"sb","pingYin":"songba"},
-    {"cityId":"1288","cityNameEn":"Windhoek","cityNameCN":"温得和克","cityCode":"WDH","countryName":"Namibia","countryIsoCode":"NA","hyKeyWord":"wdhk","pingYin":"wendeheke"},
-    {"cityId":"1289","cityNameEn":"Ezulwini","cityNameCN":"埃祖维尼","cityCode":"NULL","countryName":"Swaziland","countryIsoCode":"SZ","hyKeyWord":"ezwn","pingYin":"aizuweini"},
-    {"cityId":"1290","cityNameEn":"Houmt Souk","cityNameCN":"豪姆特苏克","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"wmsk","pingYin":"haomutesuke"},
-    {"cityId":"1291","cityNameEn":"Hammamet","cityNameCN":"哈马马特","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"hmmt","pingYin":"hamamate"},
-    {"cityId":"1293","cityNameEn":"Monastir","cityNameCN":"莫纳斯提尔","cityCode":"MIR","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"mnste","pingYin":"monasitier"},
-    {"cityId":"1294","cityNameEn":"Sousse","cityNameCN":"苏斯","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"ss","pingYin":"susi"},
-    {"cityId":"1295","cityNameEn":"Tunis","cityNameCN":"突尼斯","cityCode":"TUN","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"tns","pingYin":"tunisi"},
-    {"cityId":"1296","cityNameEn":"Sfax","cityNameCN":"斯法克斯","cityCode":"SFA","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"sfks","pingYin":"sifakesi"},
-    {"cityId":"1297","cityNameEn":"Tunis Carthage Cedex","cityNameCN":"突尼斯迦太基Cedex","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"tnsjtj","pingYin":"tunisijiataijiCedex"},
-    {"cityId":"1298","cityNameEn":"Tozeur","cityNameCN":"托泽尔","cityCode":"TOE","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"tze","pingYin":"tuozeer"},
-    {"cityId":"1299","cityNameEn":"Gammarth","cityNameCN":"Gammarth","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"NULL","pingYin":"Gammarth"},
-    {"cityId":"1300","cityNameEn":"La Marsa","cityNameCN":"拉港","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"lg","pingYin":"lagang"},
-    {"cityId":"1301","cityNameEn":"Kampala","cityNameCN":"坎帕拉","cityCode":"NULL","countryName":"Uganda","countryIsoCode":"UG","hyKeyWord":"kpl","pingYin":"kanpala"},
-    {"cityId":"1302","cityNameEn":"Lusaka","cityNameCN":"卢萨卡","cityCode":"LUN","countryName":"Zambia","countryIsoCode":"ZM","hyKeyWord":"lsk","pingYin":"lusaka"},
-    {"cityId":"1303","cityNameEn":"Livingstone","cityNameCN":"利文斯通","cityCode":"LVI","countryName":"Zambia","countryIsoCode":"ZM","hyKeyWord":"lwst","pingYin":"liwensitong"},
-    {"cityId":"1304","cityNameEn":"Kadoma","cityNameCN":"卡多马","cityCode":"NULL","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"kdm","pingYin":"kaduoma"},
-    {"cityId":"1305","cityNameEn":"Bulawayo","cityNameCN":"布拉瓦约","cityCode":"BUQ","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"blwy","pingYin":"bulawayue"},
-    {"cityId":"1306","cityNameEn":"Mutare","cityNameCN":"穆塔雷","cityCode":"NULL","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"mtl","pingYin":"mutalei"},
-    {"cityId":"1307","cityNameEn":"Harare","cityNameCN":"哈拉雷","cityCode":"HRE","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"hll","pingYin":"halalei"},
-    {"cityId":"1308","cityNameEn":"Sa Kaeo","cityNameCN":"沙缴","cityCode":"T25","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sj","pingYin":"shajiao"},
-    {"cityId":"1309","cityNameEn":"Orlando","cityNameCN":"奥兰多","cityCode":"ORL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ald","pingYin":"aolanduo"},
-    {"cityId":"1310","cityNameEn":"San Antonio","cityNameCN":"圣安东尼奥","cityCode":"SAT","countryName":"United States","countryIsoCode":"US","hyKeyWord":"sadna","pingYin":"shengandongniao"},
-    {"cityId":"1312","cityNameEn":"Denver","cityNameCN":"丹佛","cityCode":"DEN","countryName":"United States","countryIsoCode":"US","hyKeyWord":"df","pingYin":"danfo"},
-    {"cityId":"1313","cityNameEn":"Daytona Beach","cityNameCN":"代托纳比奇","cityCode":"DAB","countryName":"United States","countryIsoCode":"US","hyKeyWord":"dtnbq","pingYin":"daituonabiqi"},
-    {"cityId":"1314","cityNameEn":"Tampa","cityNameCN":"坦帕","cityCode":"TPA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"tp","pingYin":"tanpa"},
-    {"cityId":"1315","cityNameEn":"Phoenix","cityNameCN":"菲尼克斯","cityCode":"PHX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"fnks","pingYin":"feinikesi"},
-    {"cityId":"1316","cityNameEn":"Memphis","cityNameCN":"孟菲斯","cityCode":"MEM","countryName":"United States","countryIsoCode":"US","hyKeyWord":"mfs","pingYin":"mengfeisi"},
-    {"cityId":"1317","cityNameEn":"Edmonton","cityNameCN":"埃德蒙顿市","cityCode":"YEA","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"admd","pingYin":"aidemengdunshi"},
-    {"cityId":"1318","cityNameEn":"Niagara Falls","cityNameCN":"尼亚加拉瀑布市","cityCode":"YYZ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"nyjlpb","pingYin":"niyajialapubushi"},
-    {"cityId":"1319","cityNameEn":"Victoria","cityNameCN":"维多利亚","cityCode":"YYJ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"wdly","pingYin":"weiduoliya"},
-    {"cityId":"1320","cityNameEn":"Valencia","cityNameCN":"瓦伦西瓦","cityCode":"VLC","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"wlxy","pingYin":"walunxiwa"},
-    {"cityId":"1321","cityNameEn":"Seville","cityNameCN":"塞维利亚","cityCode":"SVQ","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"swly","pingYin":"saiweiliya"},
-    {"cityId":"1322","cityNameEn":"Costa Brava","cityNameCN":"布拉瓦海岸","cityCode":"GRO","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"blwha","pingYin":"bulawahaian"},
-    {"cityId":"1323","cityNameEn":"Stockholm","cityNameCN":"斯德哥尔摩","cityCode":"STO","countryName":"Sweden","countryIsoCode":"SE","hyKeyWord":"sdgem","pingYin":"sidegeermo"},
-    {"cityId":"1324","cityNameEn":"Gothenburg","cityNameCN":"哥德堡","cityCode":"GOT","countryName":"Sweden","countryIsoCode":"SE","hyKeyWord":"gdb","pingYin":"gedebao"},
-    {"cityId":"1325","cityNameEn":"Malmo","cityNameCN":"马尔默","cityCode":"MMA","countryName":"Sweden","countryIsoCode":"SE","hyKeyWord":"mem","pingYin":"maermo"},
-    {"cityId":"1326","cityNameEn":"Edinburgh","cityNameCN":"爱丁堡","cityCode":"EDI","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"adb","pingYin":"aidingbao"},
-    {"cityId":"1327","cityNameEn":"Lisbon","cityNameCN":"里斯本","cityCode":"LIS","countryName":"Portugal","countryIsoCode":"PT","hyKeyWord":"lsb","pingYin":"lisiben"},
-    {"cityId":"1328","cityNameEn":"Porto","cityNameCN":"波尔图","cityCode":"OPO","countryName":"Portugal","countryIsoCode":"PT","hyKeyWord":"bet","pingYin":"boertu"},
-    {"cityId":"1329","cityNameEn":"Algarve","cityNameCN":"阿尔加维","cityCode":"FAO","countryName":"Portugal","countryIsoCode":"PT","hyKeyWord":"aejw","pingYin":"aerjiawei"},
-    {"cityId":"1330","cityNameEn":"Prague","cityNameCN":"布拉格","cityCode":"PRG","countryName":"Czech Republic","countryIsoCode":"CZ","hyKeyWord":"blg","pingYin":"bulage"},
-    {"cityId":"1331","cityNameEn":"Karlovy Vary","cityNameCN":"卡罗维发利","cityCode":"KLV","countryName":"Czech Republic","countryIsoCode":"CZ","hyKeyWord":"klwfl","pingYin":"kaluoweifali"},
-    {"cityId":"1332","cityNameEn":"Hamburg","cityNameCN":"汉堡","cityCode":"HAM","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"hb","pingYin":"hanbao"},
-    {"cityId":"1333","cityNameEn":"Budapest","cityNameCN":"布达佩斯","cityCode":"BUD","countryName":"Hungary","countryIsoCode":"HU","hyKeyWord":"bdps","pingYin":"budapeisi"},
-    {"cityId":"1334","cityNameEn":"Dublin","cityNameCN":"都柏林","cityCode":"DUB","countryName":"Ireland","countryIsoCode":"IE","hyKeyWord":"dbl","pingYin":"dubolin"},
-    {"cityId":"1335","cityNameEn":"Malaga","cityNameCN":"马拉加","cityCode":"AGP","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"mlj","pingYin":"malajia"},
-    {"cityId":"1336","cityNameEn":"Tenerife","cityNameCN":"特内里费岛","cityCode":"TCI","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"tnlf","pingYin":"teneilifeidao"},
-    {"cityId":"1337","cityNameEn":"Seremban","cityNameCN":"芙蓉","cityCode":"MY8","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"fr","pingYin":"furong"},
-    {"cityId":"1338","cityNameEn":"Protaras","cityNameCN":"布达拉斯","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"bdls","pingYin":"budalasi"},
-    {"cityId":"1339","cityNameEn":"Mexico City","cityNameCN":"墨西哥城","cityCode":"MEX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mxgc","pingYin":"moxigecheng"},
-    {"cityId":"1340","cityNameEn":"Cancun","cityNameCN":"坎昆","cityCode":"CUN","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"kk","pingYin":"kankun"},
-    {"cityId":"1341","cityNameEn":"Puerto Vallarta","cityNameCN":"巴亚尔塔港","cityCode":"PVR","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"byetg","pingYin":"bayaertagang"},
-    {"cityId":"1342","cityNameEn":"Acapulco","cityNameCN":"阿卡普尔科","cityCode":"ACA","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"akpek","pingYin":"akapuerke"},
-    {"cityId":"1343","cityNameEn":"Los Cabos","cityNameCN":"洛斯卡沃斯","cityCode":"SJD","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"lskws","pingYin":"luosikawosi"},
-    {"cityId":"1344","cityNameEn":"Rio De Janeiro","cityNameCN":"里约热内卢","cityCode":"RIO","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"lyrnl","pingYin":"liyuereneilu"},
-    {"cityId":"1345","cityNameEn":"Sao Paulo","cityNameCN":"圣保罗","cityCode":"SAO","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"sbl","pingYin":"shengbaoluo"},
-    {"cityId":"1346","cityNameEn":"Curitiba","cityNameCN":"库里蒂巴","cityCode":"CWB","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"kltb","pingYin":"kulidiba"},
-    {"cityId":"1347","cityNameEn":"Salvador","cityNameCN":"萨尔瓦多","cityCode":"SSA","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"sewd","pingYin":"saerwaduo"},
-    {"cityId":"1348","cityNameEn":"Iguassu Falls","cityNameCN":"伊瓜苏瀑布","cityCode":"IGU","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"fsdygs","pingYin":"yiguasupubu"},
-    {"cityId":"1349","cityNameEn":"Moscow","cityNameCN":"莫斯科","cityCode":"MOW","countryName":"Russia","countryIsoCode":"RU","hyKeyWord":"msk","pingYin":"mosike"},
-    {"cityId":"1350","cityNameEn":"Saint Petersburg","cityNameCN":"圣彼得堡","cityCode":"LED","countryName":"Russia","countryIsoCode":"RU","hyKeyWord":"sbdb","pingYin":"shengbidebao"},
-    {"cityId":"1351","cityNameEn":"Buenos Aires","cityNameCN":"布宜诺斯艾利斯","cityCode":"BUE","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"bynsals","pingYin":"buyinuosiailisi"},
-    {"cityId":"1352","cityNameEn":"Copenhagen","cityNameCN":"哥本哈根","cityCode":"CPH","countryName":"Denmark","countryIsoCode":"DK","hyKeyWord":"gbhg","pingYin":"gebenhagen"},
-    {"cityId":"1353","cityNameEn":"Belo Horizonte","cityNameCN":"贝洛奥里藏特","cityCode":"BHZ","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"blalzt","pingYin":"beiluoaolizangte"},
-    {"cityId":"1355","cityNameEn":"Hobart","cityNameCN":"霍巴特","cityCode":"HBA","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"hbt","pingYin":"huobate"},
-    {"cityId":"1360","cityNameEn":"Sihanouk Ville","cityNameCN":"西哈努克","cityCode":"KH1","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"xhnk","pingYin":"xihanuke"},
-    {"cityId":"1361","cityNameEn":"Siargao","cityNameCN":"锡亚高岛","cityCode":"P26","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xyg","pingYin":"xiyagaodao"},
-    {"cityId":"1362","cityNameEn":"Newark","cityNameCN":"纽瓦克","cityCode":"EWR","countryName":"United States","countryIsoCode":"US","hyKeyWord":" nwk","pingYin":"niuwake"},
-    {"cityId":"1366","cityNameEn":"Jerusalem","cityNameCN":"耶路撒冷","cityCode":"JRS","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"ylsl","pingYin":"yelusaleng"},
-    {"cityId":"1367","cityNameEn":"Tel Aviv","cityNameCN":"特拉维夫","cityCode":"TLV","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"tlwf","pingYin":"telaweifu"},
-    {"cityId":"1368","cityNameEn":"Eilat","cityNameCN":"埃拉特","cityCode":"ETH","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"atl","pingYin":"ailate"},
-    {"cityId":"1369","cityNameEn":"Haifa","cityNameCN":"海法","cityCode":"HFA","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"hf","pingYin":"haifa"},
-    {"cityId":"1371","cityNameEn":"Mitspeh Ramon","cityNameCN":"米特尔什罗门","cityCode":"MIP","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"mceslm","pingYin":"miteershiluomen"},
-    {"cityId":"1372","cityNameEn":"tiberias","cityNameCN":"提比利亚","cityCode":"TIB","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"tbly","pingYin":"tibiliya"},
-    {"cityId":"1373","cityNameEn":"Neve Ilan","cityNameCN":"奈维宜兰","cityCode":"NEV","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"nfyl","pingYin":"naiweiyilan"},
-    {"cityId":"1374","cityNameEn":"Nicosia","cityNameCN":"尼科西亚","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"nkxy","pingYin":"nikexiya"},
-    {"cityId":"1375","cityNameEn":"Polis","cityNameCN":"波利斯","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"bls","pingYin":"bolisi"},
-    {"cityId":"1376","cityNameEn":"Masbate","cityNameCN":"马斯巴特","cityCode":"MBT","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"msbt","pingYin":"masibate"},
-    {"cityId":"1377","cityNameEn":"Samar","cityNameCN":"萨马岛","cityCode":"P25","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sm","pingYin":"samadao"},
-    {"cityId":"1378","cityNameEn":"Shaviyani Atoll","cityNameCN":"沙维雅尼环礁","cityCode":"SHV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"swyn","pingYin":"shaweiyanihuanjiao"},
-    {"cityId":"1379","cityNameEn":"Haa Alif Atoll","cityNameCN":"哈阿里夫环礁","cityCode":"HAL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"halfhj","pingYin":"haalifuhuanjiao"},
-    {"cityId":"1380","cityNameEn":"Haa Dhaalu Atoll","cityNameCN":"南蒂拉杜马蒂环礁","cityCode":"HDL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ndldmdhj","pingYin":"nandiladumadihuanjiao"},
-    {"cityId":"1382","cityNameEn":"Noonu Atoll","cityNameCN":"诺鲁环礁","cityCode":"NU","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"nlhj","pingYin":"nuoluhuanjiao"},
-    {"cityId":"1383","cityNameEn":"Raa Atoll","cityNameCN":"拉加环礁","cityCode":"RAA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ljhj","pingYin":"lajiahuanjiao"},
-    {"cityId":"1384","cityNameEn":"Baa Atoll","cityNameCN":"芭环礁","cityCode":"BAA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"bhj","pingYin":"bahuanjiao"},
-    {"cityId":"1385","cityNameEn":"Lhaviyani Atoll","cityNameCN":"拉薇雅尼环礁","cityCode":"LHV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"lwynhj","pingYin":"laweiyanihuanjiao"},
-    {"cityId":"1386","cityNameEn":"Male","cityNameCN":"马累","cityCode":"MLE","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ml","pingYin":"malei"},
-    {"cityId":"1387","cityNameEn":"Maldives Resorts","cityNameCN":"马尔代夫度假村","cityCode":"AA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"medfdjc","pingYin":"madongdaifudongjiacun"},
-    {"cityId":"1388","cityNameEn":"Alif Dhaalu (South Ari) Atoll","cityNameCN":"南阿里","cityCode":"ADH","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"nal","pingYin":"nanali"},
-    {"cityId":"1389","cityNameEn":"Vaavu Atoll","cityNameCN":"费利杜环礁","cityCode":"VAV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"fldhj","pingYin":"feiliduhuanjiao"},
-    {"cityId":"1390","cityNameEn":"Meemu Atoll","cityNameCN":"美慕环礁","cityCode":"MEM","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"mmhj","pingYin":"meimuhuanjiao"},
-    {"cityId":"1391","cityNameEn":"Faafu Atoll","cityNameCN":"Faafu环礁","cityCode":"FAF","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"Faafu","pingYin":"Faafuhuanjiao"},
-    {"cityId":"1392","cityNameEn":"Dhaalu Atoll","cityNameCN":"杜哈鲁环礁","cityCode":"DAL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"dhlhj","pingYin":"duhaluhuanjiao"},
-    {"cityId":"1393","cityNameEn":"Thaa Atoll","cityNameCN":"塔环礁","cityCode":"THA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"thj","pingYin":"tahuanjiao"},
-    {"cityId":"1394","cityNameEn":"Laamu Atoll","cityNameCN":"拉穆环礁","cityCode":"LMU","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"lmhj","pingYin":"lamuhuanjiao"},
-    {"cityId":"1395","cityNameEn":"Gaaf Alif Atoll","cityNameCN":"Gaaf Alif环礁","cityCode":"GAL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"Gaaf Alif","pingYin":"GaafAlifhuanjiao"},
-    {"cityId":"1396","cityNameEn":"Gaaf Dhaalu Atoll","cityNameCN":"Gaaf Dhaalu环礁","cityCode":"GDL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"Gaaf Dhaalu","pingYin":"GaafDhaaluhuanjiao"},
-    {"cityId":"1397","cityNameEn":"Gnaviyani","cityNameCN":"福阿穆拉库","cityCode":"GNV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"famlk","pingYin":"fuamulaku"},
-    {"cityId":"1398","cityNameEn":"Seenu","cityNameCN":"阿杜","cityCode":"SNU","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ad","pingYin":"adu"},
-    {"cityId":"1416","cityNameEn":"Nakuru","cityNameCN":"纳库鲁","cityCode":"NULL","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"nkl","pingYin":"nakulu"},
-    {"cityId":"1418","cityNameEn":"Dalat","cityNameCN":"大叻","cityCode":"DLI","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"dl","pingYin":"dale"},
-    {"cityId":"1419","cityNameEn":"Nha Trang","cityNameCN":"芽庄","cityCode":"NHA","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"yz","pingYin":"yazhuang"},
-    {"cityId":"1420","cityNameEn":"Brunei","cityNameCN":"文莱","cityCode":"BWN","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"wl","pingYin":"wenlai"},
-    {"cityId":"1421","cityNameEn":"Djibouti","cityNameCN":"吉布提","cityCode":"JIB","countryName":"Djibouti","countryIsoCode":"DJ","hyKeyWord":"jbt","pingYin":"jibuti"},
-    {"cityId":"1422","cityNameEn":"Yazd","cityNameCN":"亚兹德","cityCode":"AZD","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"yzd","pingYin":"yazide"},
-    {"cityId":"1424","cityNameEn":"Baden Baden","cityNameCN":"巴登巴登","cityCode":"FKB","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"bdbd","pingYin":"badengbadeng"},
-    {"cityId":"1425","cityNameEn":"Cat Ba","cityNameCN":"吉婆岛","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"jpd","pingYin":"jipodao"},
-    {"cityId":"1426","cityNameEn":"Phu Quoc","cityNameCN":"富国","cityCode":"PQC","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"fg","pingYin":"fuguo"},
-    {"cityId":"1427","cityNameEn":"Quy Nhon","cityNameCN":"归仁","cityCode":"VN9","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"gr","pingYin":"guiren"},
-    {"cityId":"1428","cityNameEn":"Vung Tau","cityNameCN":"头顿","cityCode":"VN8","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"td","pingYin":"toudun"},
-    {"cityId":"1432","cityNameEn":"Kuwait City","cityNameCN":"科威特市","cityCode":"KWI","countryName":"Kuwait","countryIsoCode":"KW","hyKeyWord":"kwt","pingYin":"keweiteshi"},
-    {"cityId":"1437","cityNameEn":"Tangalle","cityNameCN":"唐加勒","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"NULL","pingYin":"tangjiale"},
-    {"cityId":"1438","cityNameEn":"Hatton","cityNameCN":"哈通","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ht","pingYin":"hatong"},
-    {"cityId":"1440","cityNameEn":"Rathgama","cityNameCN":"Rathgama","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"NULL","pingYin":"Rathgama"},
-    {"cityId":"1441","cityNameEn":"Pagudpud","cityNameCN":"帕古普","cityCode":"P16","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"pgp","pingYin":"pagupu"},
-    {"cityId":"1443","cityNameEn":"Guimaras","cityNameCN":"吉马拉斯","cityCode":"PH8","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"jmls","pingYin":"jimalasi"},
-    {"cityId":"1444","cityNameEn":"Legazpi","cityNameCN":"莱加斯皮","cityCode":"LGP","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lysb","pingYin":"laijiasipi"},
-    {"cityId":"1445","cityNameEn":"Hanwella","cityNameCN":"Hanwella","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"hwl","pingYin":"Hanwella"},
-    {"cityId":"1446","cityNameEn":"Iluketiya","cityNameCN":"Iluketiya","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"NULL","pingYin":"Iluketiya"},
-    {"cityId":"1447","cityNameEn":"Diyatalawa","cityNameCN":"迪亚塔拉瓦","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"dytlw","pingYin":"diyatalawa"},
-    {"cityId":"1449","cityNameEn":"Thalpe","cityNameCN":"陶尔佩","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"tep","pingYin":"taoerpei"},
-    {"cityId":"1451","cityNameEn":"Yala","cityNameCN":"雅拉","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"yl","pingYin":"yala"},
-    {"cityId":"1452","cityNameEn":"Balapitiya","cityNameCN":"巴拉碧提雅","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"blbty","pingYin":"balabitiya"},
-    {"cityId":"1453","cityNameEn":"Koggala","cityNameCN":"科格勒","cityCode":"KCT","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"kgl","pingYin":"kegele"},
-    {"cityId":"1454","cityNameEn":"Bandung","cityNameCN":"万隆","cityCode":"BDO","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wl","pingYin":"wanlong"},
-    {"cityId":"1455","cityNameEn":"Gurgaon","cityNameCN":"古尔冈市","cityCode":"IN1","countryName":"India","countryIsoCode":"IN","hyKeyWord":"geg","pingYin":"gudonggangshi"},
-    {"cityId":"1456","cityNameEn":"Umm Al Quwain","cityNameCN":"乌姆盖万","cityCode":"UA2","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"wmgw","pingYin":"wumugaiwan"},
-    {"cityId":"1457","cityNameEn":"Rizal","cityNameCN":"黎刹","cityCode":"P23","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ls","pingYin":"lisha"},
-    {"cityId":"1458","cityNameEn":"Chanthaburi","cityNameCN":"尖竹汶府","cityCode":"TH3","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"jzw","pingYin":"jianzhuwenfu"},
-    {"cityId":"1459","cityNameEn":"Ahmedabad","cityNameCN":"艾哈默达巴德","cityCode":"AMD","countryName":"India","countryIsoCode":"IN","hyKeyWord":"ahmdbd","pingYin":"aihamodabade"},
-    {"cityId":"1460","cityNameEn":"Koh Chang","cityNameCN":"象岛","cityCode":"TH9","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"xd","pingYin":"xiangdao"},
-    {"cityId":"1461","cityNameEn":"Surabaya","cityNameCN":"泗水","cityCode":"SUB","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"ss","pingYin":"sishui"},
-    {"cityId":"1462","cityNameEn":"Krakow","cityNameCN":"克拉科夫","cityCode":"KRK","countryName":"Poland","countryIsoCode":"PL","hyKeyWord":"klkf","pingYin":"kelakefu"},
-    {"cityId":"1463","cityNameEn":"Warsaw","cityNameCN":"华沙","cityCode":"WAW","countryName":"Poland","countryIsoCode":"PL","hyKeyWord":"hs","pingYin":"huasha"},
-    {"cityId":"1464","cityNameEn":"Jacksonville","cityNameCN":"杰克逊维尔","cityCode":"JAX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"jkxwe","pingYin":"jiekexunweier"},
-    {"cityId":"1465","cityNameEn":"Helsinki","cityNameCN":"赫尔辛基","cityCode":"HEL","countryName":"Finland","countryIsoCode":"FI","hyKeyWord":"hexj","pingYin":"heerxinji"},
-    {"cityId":"1466","cityNameEn":"Lapland","cityNameCN":"拉普兰","cityCode":"LPP","countryName":"Finland","countryIsoCode":"FI","hyKeyWord":"lpl","pingYin":"lapulan"},
-    {"cityId":"1467","cityNameEn":"Aalesund","cityNameCN":"奥勒松","cityCode":"AES","countryName":"Norway","countryIsoCode":"NO","hyKeyWord":"als","pingYin":"aolesong"},
-    {"cityId":"1468","cityNameEn":"Oslo","cityNameCN":"奥斯陆","cityCode":"OSL","countryName":"Norway","countryIsoCode":"NO","hyKeyWord":"asl","pingYin":"aosilu"},
-    {"cityId":"1469","cityNameEn":"Maldives Cruises","cityNameCN":"马尔代夫克鲁斯","cityCode":"NULL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"medfkls","pingYin":"madongdaifukelusi"},
-    {"cityId":"1470","cityNameEn":"Delhi","cityNameCN":"德里","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"dl","pingYin":"deli"},
-    {"cityId":"1472","cityNameEn":"Vigan","cityNameCN":"维甘","cityCode":"P28","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"wg","pingYin":"weigan"},
-    {"cityId":"1473","cityNameEn":"Pranburi","cityNameCN":"班布里","cityCode":"T21","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bbl","pingYin":"banbuli"},
-    {"cityId":"1474","cityNameEn":"Koh Phangan","cityNameCN":"帕岸岛","cityCode":"T11","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"pa","pingYin":"paandao"},
-    {"cityId":"1475","cityNameEn":"Phang-Nga","cityNameCN":"攀牙","cityCode":"T18","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"py","pingYin":"panya"},
-    {"cityId":"1476","cityNameEn":"Rayong","cityNameCN":"罗勇","cityCode":"T22","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ly","pingYin":"luoyong"},
-    {"cityId":"1477","cityNameEn":"Champasak","cityNameCN":"占巴塞","cityCode":"NULL","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"zbs","pingYin":"zhanbasai"},
-    {"cityId":"1478","cityNameEn":"Vang Vieng","cityNameCN":"万荣","cityCode":"LA1","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"wr","pingYin":"wanrong"},
-    {"cityId":"1479","cityNameEn":"Xiengkhouang","cityNameCN":"川圹","cityCode":"XKH","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"ck","pingYin":"chuankuang"},
-    {"cityId":"1480","cityNameEn":"Bicol","cityNameCN":"比可半岛","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bkb","pingYin":"bikebandao"},
-    {"cityId":"1481","cityNameEn":"Lombok","cityNameCN":"龙目岛","cityCode":"LOP","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lmd","pingYin":"longmudao"},
-    {"cityId":"1482","cityNameEn":"Camiguin","cityNameCN":"卡米金省","cityCode":"CGM","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kmj","pingYin":"kamijinsheng"},
-    {"cityId":"1484","cityNameEn":"Batanes","cityNameCN":"巴坦群岛","cityCode":"PH2","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bt","pingYin":"batanqundao"},
-    {"cityId":"1485","cityNameEn":"Nueva Ecija","cityNameCN":"甲万那端","cityCode":"P59","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"jwnd","pingYin":"jiawannaduan"},
-    {"cityId":"1487","cityNameEn":"Gadong","cityNameCN":"加东","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"jd","pingYin":"jiadong"},
-    {"cityId":"1488","cityNameEn":"Kiulap","cityNameCN":"Kiulap","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"NULL","pingYin":"Kiulap"},
-    {"cityId":"1489","cityNameEn":"Kuala Belait","cityNameCN":"马来弈","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"mly","pingYin":"mailaiyi"},
-    {"cityId":"1490","cityNameEn":"Airport / Stadium","cityNameCN":"机场/体育场","cityCode":"BN1","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"jc/tyc","pingYin":"jichang/tiyuchang"},
-    {"cityId":"1491","cityNameEn":"Jerudong","cityNameCN":"哲鲁东","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"NULL","pingYin":"zheludong"},
-    {"cityId":"1492","cityNameEn":"Yogyakarta","cityNameCN":"日惹","cityCode":"JOG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"rr","pingYin":"rire"},
-    {"cityId":"1493","cityNameEn":"Solo","cityNameCN":"梭罗","cityCode":"SOC","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"sl","pingYin":"suoluo"},
-    {"cityId":"1494","cityNameEn":"Kenting","cityNameCN":"垦丁","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"kd","pingYin":"kending"},
-    {"cityId":"1496","cityNameEn":"Indore","cityNameCN":"印多尔","cityCode":"IDR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"yde","pingYin":"yinduoer"},
-    {"cityId":"1497","cityNameEn":"Kovalam","cityNameCN":"科瓦兰","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"kwl","pingYin":"kewalan"},
-    {"cityId":"1498","cityNameEn":"Ranthambhore","cityNameCN":"伦滕波尔","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"ltbe","pingYin":"luntengboer"},
-    {"cityId":"1499","cityNameEn":"Khajuraho","cityNameCN":"克久拉霍","cityCode":"HJR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"kjlh","pingYin":"kejiulahuo"},
-    {"cityId":"1500","cityNameEn":"West Coast","cityNameCN":"西海岸","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"xha","pingYin":"xihaian"},
-    {"cityId":"1501","cityNameEn":"Canterbury","cityNameCN":"坎特伯雷","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"ktbl","pingYin":"kanteboli"},
-    {"cityId":"1502","cityNameEn":"Nelson","cityNameCN":"尼尔森","cityCode":"NSN","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"nes","pingYin":"niersen"},
-    {"cityId":"1503","cityNameEn":"Paihia","cityNameCN":"派希亚","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"pxy","pingYin":"paixiya"},
-    {"cityId":"1504","cityNameEn":"Rakiaia Gorge","cityNameCN":"拉凯亚峡谷","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"lkyxg","pingYin":"lakaiyaxiagu"},
-    {"cityId":"1505","cityNameEn":"Wanaka","cityNameCN":"瓦纳卡","cityCode":"WKA","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"wnk","pingYin":"wanaka"},
-    {"cityId":"1540","cityNameEn":"Wagga Wagga","cityNameCN":"沃加沃加","cityCode":"WGA","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"wjwj","pingYin":"wojiawojia"},
-    {"cityId":"1541","cityNameEn":"Lugano","cityNameCN":"卢加诺","cityCode":"LUG","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"ljn","pingYin":"lujianuo"},
-    {"cityId":"1542","cityNameEn":"Marburg","cityNameCN":"马尔堡","cityCode":"NULL","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"meb","pingYin":"maerbao"},
-    {"cityId":"1543","cityNameEn":"Toulouse","cityNameCN":"图卢兹","cityCode":"TLS","countryName":"France","countryIsoCode":"FR","hyKeyWord":"tls","pingYin":"tuluzi"},
-    {"cityId":"1544","cityNameEn":"Phi Phi Island","cityNameCN":"皮皮岛","cityCode":"T19","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ppd","pingYin":"pipidao"},
-    {"cityId":"1545","cityNameEn":"Koh Lanta","cityNameCN":"兰达岛","cityCode":"T10","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ld","pingYin":"landadao"},
-    {"cityId":"1546","cityNameEn":"Lanta Island","cityNameCN":"兰达群岛","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ldqd","pingYin":"landaqundao"},
-    {"cityId":"1547","cityNameEn":"Visakhapatnam","cityNameCN":"维沙卡帕特南","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"wskpnt","pingYin":"weishakapatenan"},
-    {"cityId":"1548","cityNameEn":"Muntinlupa","cityNameCN":"蒙廷卢帕","cityCode":"P36","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mtlp","pingYin":"mengtinglupa"},
-    {"cityId":"1549","cityNameEn":"Pasig","cityNameCN":"帕西格","cityCode":"P34","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"pxg","pingYin":"paxige"},
-    {"cityId":"1550","cityNameEn":"Clark, Pampanga","cityNameCN":"克拉克，邦板牙","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"klk","pingYin":"kelake，bangbanya"},
-    {"cityId":"1551","cityNameEn":"Medan","cityNameCN":"棉兰","cityCode":"MES","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"ml","pingYin":"mianlan"},
-    {"cityId":"1552","cityNameEn":"Manado","cityNameCN":"美娜多","cityCode":"MDC","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mnd","pingYin":"meinaduo"},
-    {"cityId":"1553","cityNameEn":"Jayapura, Papua Indonesia","cityNameCN":"查亚普拉，印度尼西亚巴布亚","cityCode":"DJJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"cypl","pingYin":"chayapula，yindongnixiyababuya"},
-    {"cityId":"1554","cityNameEn":"Manokwari","cityNameCN":"马诺夸里","cityCode":"ID7","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mnkl","pingYin":"manuokuali"},
-    {"cityId":"1555","cityNameEn":"Tarakan East Kalimantan","cityNameCN":"塔拉坎东加里曼丹","cityCode":"TRK","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tlkdjlmd","pingYin":"talakandongjialimandan"},
-    {"cityId":"1556","cityNameEn":"Banjarmasin","cityNameCN":"马辰","cityCode":"BDJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mc","pingYin":"machen"},
-    {"cityId":"1557","cityNameEn":"Samarinda","cityNameCN":"三马林达","cityCode":"SRI","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"smld","pingYin":"sanmalinda"},
-    {"cityId":"1558","cityNameEn":"Semarang","cityNameCN":"三宝珑","cityCode":"SRG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"sbl","pingYin":"sanbaolong"},
-    {"cityId":"1559","cityNameEn":"Palu","cityNameCN":"帕卢","cityCode":"PLW","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"pl","pingYin":"palu，zhongsulaweixi"},
-    {"cityId":"1560","cityNameEn":"Reno","cityNameCN":"里诺","cityCode":"RNO","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ln","pingYin":"linuo"},
-    {"cityId":"1561","cityNameEn":"Portland","cityNameCN":"波特兰","cityCode":"PDX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"btl","pingYin":"botelan"},
-    {"cityId":"1562","cityNameEn":"Colorado","cityNameCN":"科罗拉多","cityCode":"COS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"klld","pingYin":"keluoladuo"},
-    {"cityId":"1563","cityNameEn":"Grand Junction","cityNameCN":"大章克申","cityCode":"GJT","countryName":"United States","countryIsoCode":"US","hyKeyWord":"dzks","pingYin":"dazhangkeshen"},
-    {"cityId":"1564","cityNameEn":"Vail","cityNameCN":"韦尔","cityCode":"EGE","countryName":"United States","countryIsoCode":"US","hyKeyWord":"we","pingYin":"weier"},
-    {"cityId":"1565","cityNameEn":"Strasbourg","cityNameCN":"斯特拉斯堡","cityCode":"SXB","countryName":"France","countryIsoCode":"FR","hyKeyWord":"stlsb","pingYin":"sitelasibao"},
-    {"cityId":"1566","cityNameEn":"Avignon","cityNameCN":"阿维尼翁","cityCode":"AVN","countryName":"France","countryIsoCode":"FR","hyKeyWord":"awnw","pingYin":"aweiniweng"},
-    {"cityId":"1567","cityNameEn":"Naples","cityNameCN":"那不勒斯","cityCode":"NAP","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"nbls","pingYin":"nabulesi"},
-    {"cityId":"1568","cityNameEn":"Verona","cityNameCN":"维罗纳","cityCode":"VRN","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"wln","pingYin":"weiluona"},
-    {"cityId":"1569","cityNameEn":"Pisa","cityNameCN":"比萨","cityCode":"PSA","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"bs","pingYin":"bisa"},
-    {"cityId":"1570","cityNameEn":"Bologna","cityNameCN":"博洛尼亚","cityCode":"BLQ","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"blny","pingYin":"boluoniya"},
-    {"cityId":"1571","cityNameEn":"Stuttgart","cityNameCN":"斯图加特","cityCode":"STR","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"stjt","pingYin":"situjiate"},
-    {"cityId":"1572","cityNameEn":"Nuremberg","cityNameCN":"纽伦堡","cityCode":"NUE","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"nlb","pingYin":"niulunbao"},
-    {"cityId":"1573","cityNameEn":"Hannover","cityNameCN":"汉诺威","cityCode":"HAJ","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"hnw","pingYin":"hannuowei"},
-    {"cityId":"1574","cityNameEn":"Santiago De Compostela","cityNameCN":"圣地亚哥-德孔波斯特拉","cityCode":"SCQ","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"sdygdkbstl","pingYin":"shengdiyage-dekongbositela"},
-    {"cityId":"1575","cityNameEn":"Bilbao","cityNameCN":"毕尔巴鄂","cityCode":"BIO","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"bebe","pingYin":"bierbae"},
-    {"cityId":"1576","cityNameEn":"San Juan","cityNameCN":"圣胡安","cityCode":"SJU","countryName":"Puerto Rico","countryIsoCode":"PR","hyKeyWord":"sha","pingYin":"shenghuan"},
-    {"cityId":"1577","cityNameEn":"Punta Cana","cityNameCN":"蓬塔卡纳","cityCode":"PUJ","countryName":"Dominican Republic","countryIsoCode":"DO","hyKeyWord":"ptkn","pingYin":"pengtakana"},
-    {"cityId":"1578","cityNameEn":"Santo Domingo","cityNameCN":"圣多明各","cityCode":"SDQ","countryName":"Dominican Republic","countryIsoCode":"DO","hyKeyWord":"sdmg","pingYin":"shengduomingge"},
-    {"cityId":"1579","cityNameEn":"Puerto Plata","cityNameCN":"普拉塔港","cityCode":"POP","countryName":"Dominican Republic","countryIsoCode":"DO","hyKeyWord":"pltg","pingYin":"pulatagang"},
-    {"cityId":"1580","cityNameEn":"San Jose","cityNameCN":"圣何塞","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"shs","pingYin":"shenghesai"},
-    {"cityId":"1581","cityNameEn":"Guanacaste","cityNameCN":"瓜纳卡斯特","cityCode":"LIR","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"gnkst","pingYin":"guanakasite"},
-    {"cityId":"1582","cityNameEn":"Alajuela","cityNameCN":"阿拉胡埃拉","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"alhal","pingYin":"alahuaila"},
-    {"cityId":"1583","cityNameEn":"Jaco","cityNameCN":"雅科","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"yk","pingYin":"yake"},
-    {"cityId":"1584","cityNameEn":"Puntarenas","cityNameCN":"蓬塔雷纳斯省","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"pdlns","pingYin":"pengtaleinasisheng"},
-    {"cityId":"1585","cityNameEn":"Perhentian Island","cityNameCN":"停泊岛","cityCode":"MY4","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"tbd","pingYin":"tingbodao"},
-    {"cityId":"1586","cityNameEn":"Lucena","cityNameCN":"卢塞纳","cityCode":"P12","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lsn","pingYin":"lusaina"},
-    {"cityId":"1587","cityNameEn":"Misamis Occidental","cityNameCN":"西米萨米斯省","cityCode":"P14","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xmsms","pingYin":"ximisamisisheng"},
-    {"cityId":"1588","cityNameEn":"Pakse","cityNameCN":"巴色","cityCode":"PKZ","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"bs","pingYin":"base"},
-    {"cityId":"1590","cityNameEn":"SunMoon Lake","cityNameCN":"日月潭","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ryt","pingYin":"riyuetan"},
-    {"cityId":"1591","cityNameEn":"Negros Occidental","cityNameCN":"西内格罗省","cityCode":"P29","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xngl","pingYin":"xineigeluosheng"},
-    {"cityId":"1592","cityNameEn":"Bariloche","cityNameCN":"巴里洛切 ","cityCode":"BRC","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"bllq","pingYin":"baliluoqie"},
-    {"cityId":"1593","cityNameEn":"Mendoza","cityNameCN":"门多萨","cityCode":"MDZ","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"mds","pingYin":"menduosa"},
-    {"cityId":"1595","cityNameEn":"Cordoba","cityNameCN":"科尔多瓦","cityCode":"COR","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"kedw","pingYin":"keerduowa"},
-    {"cityId":"1596","cityNameEn":"Oaxaca","cityNameCN":"瓦哈卡","cityCode":"OAX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"whk","pingYin":"wahaka"},
-    {"cityId":"1597","cityNameEn":"Puebla","cityNameCN":"普埃布拉","cityCode":"PBC","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"pabl","pingYin":"puaibula"},
-    {"cityId":"1598","cityNameEn":"Queretaro","cityNameCN":"克雷塔罗","cityCode":"QRO","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"kltl","pingYin":"keleitaluo"},
-    {"cityId":"1599","cityNameEn":"Riviera Maya","cityNameCN":"马雅里维拉","cityCode":"NULL","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"lylml","pingYin":"mayaliweila"},
-    {"cityId":"1600","cityNameEn":"Veracruz","cityNameCN":"韦拉克鲁斯州","cityCode":"VER","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"wlkls","pingYin":"weilakelusi"},
-    {"cityId":"1601","cityNameEn":"Morelia","cityNameCN":"莫雷利亚","cityCode":"MLM","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mlly","pingYin":"moleiliya"},
-    {"cityId":"1602","cityNameEn":"Monterrey","cityNameCN":"蒙特雷","cityCode":"MTY","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mtl","pingYin":"mengtelei"},
-    {"cityId":"1603","cityNameEn":"Merida","cityNameCN":"梅里达","cityCode":"MID","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mld","pingYin":"meilida"},
-    {"cityId":"1604","cityNameEn":"Mazatlan","cityNameCN":"马萨特兰","cityCode":"MZT","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mstl","pingYin":"masatelan"},
-    {"cityId":"1605","cityNameEn":"Manzanillo","cityNameCN":"曼萨尼约","cityCode":"ZLO","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"msnl","pingYin":"mansaniyue"},
-    {"cityId":"1606","cityNameEn":"Ixtapa","cityNameCN":"印坦巴","cityCode":"ZIH","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"ytb","pingYin":"yintanba"},
-    {"cityId":"1607","cityNameEn":"Huatulco","cityNameCN":"哈杜克","cityCode":"HUX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"hdek","pingYin":"haduke"},
-    {"cityId":"1608","cityNameEn":"Guanajuato","cityNameCN":"瓜纳华托","cityCode":"BJX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"gnht","pingYin":"guanahuatuo"},
-    {"cityId":"1609","cityNameEn":"Guadalajara","cityNameCN":"瓜达拉哈拉","cityCode":"GDL","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"gdlhl","pingYin":"guadalahala"},
-    {"cityId":"1610","cityNameEn":"Panama city","cityNameCN":"巴拿马市","cityCode":"PTY","countryName":"Panama","countryIsoCode":"PA","hyKeyWord":"bnm","pingYin":"banamashi"},
-    {"cityId":"1611","cityNameEn":"Romblon","cityNameCN":"朗布隆","cityCode":"TBH","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lbl","pingYin":"langbulong"},
-    {"cityId":"1612","cityNameEn":"Playa del Carmen","cityNameCN":"卡门海滩","cityCode":"NULL","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"km","pingYin":"kamenhaitan"},
-    {"cityId":"1613","cityNameEn":"Cozumel","cityNameCN":"科苏梅尔岛","cityCode":"CZM","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"ksme","pingYin":"kesumeier"},
-    {"cityId":"1614","cityNameEn":"Newcastle","cityNameCN":"纽卡斯尔","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"nkse","pingYin":"niukasier"},
-    {"cityId":"1615","cityNameEn":"Palembang","cityNameCN":"巨港","cityCode":"PLM","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"jg","pingYin":"jugang"},
-    {"cityId":"1617","cityNameEn":"Alleppey","cityNameCN":"阿勒皮","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"alp","pingYin":"alepi"},
-    {"cityId":"1618","cityNameEn":"Marinduque","cityNameCN":"马林杜克省","cityCode":"MRQ","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mldk","pingYin":"malindukesheng"},
-    {"cityId":"1619","cityNameEn":"Madaba","cityNameCN":"马达巴","cityCode":"NULL","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"mdb","pingYin":"madaba"},
-    {"cityId":"1621","cityNameEn":"Surigao","cityNameCN":"苏里高","cityCode":"SUG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"slg","pingYin":"suligao"},
-    {"cityId":"1622","cityNameEn":"Naga","cityNameCN":"那伽","cityCode":"WNP","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ng","pingYin":"naga"},
-    {"cityId":"1624","cityNameEn":"Dunedin","cityNameCN":"达尼丁","cityCode":"DUD","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"dnd","pingYin":"daniding"},
-    {"cityId":"1625","cityNameEn":"Hamner Springs","cityNameCN":"汉默泉","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hmq","pingYin":"hanmoquan"},
-    {"cityId":"1626","cityNameEn":"Invercargill","cityNameCN":"因弗卡吉尔","cityCode":"IVC","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"yfkje","pingYin":"yinfukajier"},
-    {"cityId":"1628","cityNameEn":"Napier","cityNameCN":"内皮尔","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"npe","pingYin":"neipier"},
-    {"cityId":"1629","cityNameEn":"Taupo","cityNameCN":"陶波","cityCode":"TUO","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"tb","pingYin":"taobo"},
-    {"cityId":"1630","cityNameEn":"Hamilton","cityNameCN":"哈密尔顿","cityCode":"HLZ","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hmed","pingYin":"hamierdun"},
-    {"cityId":"1631","cityNameEn":"Bay of Islands","cityNameCN":"岛屿湾","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"dyw","pingYin":"daoyuwan"},
-    {"cityId":"1632","cityNameEn":"Kaikoura","cityNameCN":"凯库拉","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"kkl","pingYin":"kaikula"},
-    {"cityId":"1633","cityNameEn":"Palmerston North","cityNameCN":"北帕墨斯顿","cityCode":"PMR","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"bpmsd","pingYin":"beipamosidun"},
-    {"cityId":"1634","cityNameEn":"New Plymouth","cityNameCN":"新普利茅斯","cityCode":"NPL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"xplms","pingYin":"xinpulimaosi"},
-    {"cityId":"1635","cityNameEn":"Gisbourne","cityNameCN":"吉斯本","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"jsb","pingYin":"jisiben"},
-    {"cityId":"1636","cityNameEn":"Whangarei","cityNameCN":"旺格雷","cityCode":"WRE","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"wgl","pingYin":"wanggelei"},
-    {"cityId":"1637","cityNameEn":"Picton","cityNameCN":"皮克顿","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"pkd","pingYin":"pikedun"},
-    {"cityId":"1638","cityNameEn":"Hokitika","cityNameCN":"霍基芾卡","cityCode":"HKK","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hjfk","pingYin":"huojifeika"},
-    {"cityId":"1639","cityNameEn":"Udon Thani","cityNameCN":"乌隆","cityCode":"UTH","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wl","pingYin":"wulong"},
-    {"cityId":"1640","cityNameEn":"Bataan","cityNameCN":"巴丹半岛","cityCode":"P31","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bdbd","pingYin":"badanbandao"},
-    {"cityId":"1641","cityNameEn":"General Santos","cityNameCN":"桑托斯将军城","cityCode":"GES","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"stsjjc","pingYin":"sangtuosijiangjuncheng"},
-    {"cityId":"1642","cityNameEn":"Cerf Island","cityNameCN":"塞尔夫岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"sef","pingYin":"saierfudao"},
-    {"cityId":"1643","cityNameEn":"Ubon Ratchathani","cityNameCN":"乌汶府","cityCode":"UBP","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wwf","pingYin":"wuwenfu"},
-    {"cityId":"1644","cityNameEn":"San Juan","cityNameCN":"圣胡安","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sha","pingYin":"shenghuan"},
-    {"cityId":"1645","cityNameEn":"Desroche Island","cityNameCN":"迪斯洛契斯岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"dslqs","pingYin":"disiluoqisidao"},
-    {"cityId":"1646","cityNameEn":"Cousine Island","cityNameCN":"塞舌尔表姐妹岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"ssebjm","pingYin":"saisheerbiaojiemeidao"},
-    {"cityId":"1647","cityNameEn":"Klang","cityNameCN":"巴生","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bs","pingYin":"basheng"},
-    {"cityId":"1662","cityNameEn":"Phu Yen","cityNameCN":"富安","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"xh","pingYin":"fuan"},
-    {"cityId":"1686","cityNameEn":"Tanjung Karang","cityNameCN":"丹绒卡朗","cityCode":"NULL","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"drkl","pingYin":"danrongkalang"},
-    {"cityId":"1688","cityNameEn":"Makassar","cityNameCN":"望加锡","cityCode":"UPG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wjx","pingYin":"wangjiaxi"},
-    {"cityId":"1689","cityNameEn":"Puncak","cityNameCN":"亚峰","cityCode":"ID4","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"yf","pingYin":"yafeng"},
-    {"cityId":"1690","cityNameEn":"Anyer","cityNameCN":"阿涅洛尔","cityCode":"ID1","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"anle","pingYin":"anieluoer"},
-    {"cityId":"1693","cityNameEn":"Chonburi","cityNameCN":"春武里","cityCode":"QHI","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"cwl","pingYin":"chunwuli"},
-    {"cityId":"1717","cityNameEn":"Kendari","cityNameCN":"肯达里","cityCode":"KDI","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"kdl","pingYin":"kendali"},
-    {"cityId":"1718","cityNameEn":"Genting Highlands","cityNameCN":"云顶高原","cityCode":"GTB","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ydgy","pingYin":"yundinggaoyuan"},
-    {"cityId":"1719","cityNameEn":"Ambon","cityNameCN":"安汶","cityCode":"AMQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"aw","pingYin":"anwen"},
-    {"cityId":"1740","cityNameEn":"Johor","cityNameCN":"柔佛","cityCode":"M13","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"rf","pingYin":"roufo"},
-    {"cityId":"1741","cityNameEn":"Kuching","cityNameCN":"古晋","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gj","pingYin":"gujin"},
-    {"cityId":"1742","cityNameEn":"Sepang","cityNameCN":"雪邦","cityCode":"M20","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"xb","pingYin":"xuebang"},
-    {"cityId":"1744","cityNameEn":"Corregidor","cityNameCN":"格律希岛 ","cityCode":"RPL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"glx","pingYin":"gelvxidao"},
-    {"cityId":"1749","cityNameEn":"Calapan","cityNameCN":"卡拉潘","cityCode":"P45","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"klp","pingYin":"kalapan"},
-    {"cityId":"1751","cityNameEn":"Nakhon Ratchasima","cityNameCN":"呵叻府","cityCode":"NAK","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"hlf","pingYin":"helefu"},
-    {"cityId":"1753","cityNameEn":"Siquijor","cityNameCN":"锡基霍尔","cityCode":"SIQ","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xjhe","pingYin":"xijihuoer"},
-    {"cityId":"1757","cityNameEn":"Dong Hoi","cityNameCN":"洞海","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"dh","pingYin":"donghai"},
-    {"cityId":"1758","cityNameEn":"Ninh Binh","cityNameCN":"宁平","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"np","pingYin":"ningping"},
-    {"cityId":"1759","cityNameEn":"Inle Lake","cityNameCN":"茵莱湖","cityCode":"MM7","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"ylh","pingYin":"yinlaihu"},
-    {"cityId":"1760","cityNameEn":"Ratchaburi","cityNameCN":"叻丕府","cityCode":"T34","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lpf","pingYin":"lepifu"},
-    {"cityId":"1762","cityNameEn":"Mandalay","cityNameCN":"曼德勒","cityCode":"MDL","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mdl","pingYin":"mandele"},
-    {"cityId":"1763","cityNameEn":"Rach Gia","cityNameCN":"迪石","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"ds","pingYin":"dishi"},
-    {"cityId":"1765","cityNameEn":"Leyte, Southern","cityNameCN":"莱特岛","cityCode":"P40","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ltd","pingYin":"laitedao"},
-    {"cityId":"1772","cityNameEn":"Hai Duong","cityNameCN":"海阳","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hy","pingYin":"haiyang"},
-    {"cityId":"1773","cityNameEn":"Albay","cityNameCN":"阿尔拜","cityCode":"P38","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"aeb","pingYin":"aerbai"},
-    {"cityId":"1774","cityNameEn":"Camarines Sur","cityNameCN":"南甘马磷(尼斯)省","cityCode":"P43","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ngml","pingYin":"nanganmalin(nisi)sheng"},
-    {"cityId":"1777","cityNameEn":"Kawthoung","cityNameCN":"高当","cityCode":"MM8","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"gd","pingYin":"gaodang"},
-    {"cityId":"1778","cityNameEn":"Alabang","cityNameCN":"阿拉邦","cityCode":"P37","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"alb","pingYin":"alabang"},
-    {"cityId":"1779","cityNameEn":"The Fort, Taguig","cityNameCN":"达义堡","cityCode":"P33","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dy","pingYin":"dayibao"},
-    {"cityId":"1780","cityNameEn":"Bagan","cityNameCN":"蒲甘","cityCode":"BPE","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"pg","pingYin":"pugan"},
-    {"cityId":"1781","cityNameEn":"Balikpapan","cityNameCN":"巴厘巴板","cityCode":"BPN","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"blbb","pingYin":"balibaban"},
-    {"cityId":"1784","cityNameEn":"Bogor","cityNameCN":"茂物","cityCode":"BOG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mw","pingYin":"maowu"},
-    {"cityId":"1785","cityNameEn":"Purwokerto","cityNameCN":"普禾加多","cityCode":"PWL","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"phjd","pingYin":"puhejiaduo"},
-    {"cityId":"1786","cityNameEn":"Pekanbaru","cityNameCN":"北干巴鲁","cityCode":"PKU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bgbl","pingYin":"beiganbalu"},
-    {"cityId":"1787","cityNameEn":"Labuan","cityNameCN":"纳闽","cityCode":"LBU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"nm","pingYin":"namin"},
-    {"cityId":"1788","cityNameEn":"Sorong","cityNameCN":"索荣","cityCode":"SOQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"sr","pingYin":"suorong"},
-    {"cityId":"1791","cityNameEn":"Buriram","cityNameCN":"武里南","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wln","pingYin":"wulinan"},
-    {"cityId":"1792","cityNameEn":"Koh Kood","cityNameCN":"阁骨岛","cityCode":"T31","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"gd","pingYin":"gegudao"},
-    {"cityId":"1794","cityNameEn":"Bangka","cityNameCN":"邦加","cityCode":"ID8","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bj","pingYin":"bangjia"},
-    {"cityId":"1843","cityNameEn":"Roxas City","cityNameCN":"罗哈斯市","cityCode":"RXS","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lhs","pingYin":"luohasishi"},
-    {"cityId":"1844","cityNameEn":"Malang","cityNameCN":"玛琅","cityCode":"MLG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"ml","pingYin":"malang"},
-    {"cityId":"1846","cityNameEn":"Nonthaburi","cityNameCN":"暖武里府","cityCode":"T30","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nwl","pingYin":"nuanwulifu"},
-    {"cityId":"1847","cityNameEn":"Caticlan, Aklan","cityNameCN":"卡地克兰，阿卡兰","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kdkl","pingYin":"kadikelan"},
-    {"cityId":"1848","cityNameEn":"Kalibo, Aklan","cityNameCN":"卡利波，阿卡兰","cityCode":"P39","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"klb","pingYin":"kalibo"},
-    {"cityId":"1849","cityNameEn":"Pleiku - Gia Lai","cityNameCN":"波来古- 嘉莱","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"blg","pingYin":"bolaigu-jialai"},
-    {"cityId":"1850","cityNameEn":"Quezon Province","cityNameCN":"奎松省","cityCode":"P65","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ks","pingYin":"kuisongsheng"},
-    {"cityId":"1857","cityNameEn":"Sandakan","cityNameCN":"山打根","cityCode":"SDK","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sdg","pingYin":"shandagen"},
-    {"cityId":"1859","cityNameEn":"Koh Mak","cityNameCN":"苏梅麦","cityCode":"T32","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"smm","pingYin":"sumeimai"},
-    {"cityId":"1860","cityNameEn":"Nakhon Nayok","cityNameCN":"那空那育","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nkny","pingYin":"nakongnayu"},
-    {"cityId":"1862","cityNameEn":"Kota Bharu","cityNameCN":"哥打巴鲁","cityCode":"KBR","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gdbl","pingYin":"gedabalu"},
-    {"cityId":"1864","cityNameEn":"Saraburi","cityNameCN":"沙拉武里","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"slbl","pingYin":"shalawuli"},
-    {"cityId":"1865","cityNameEn":"Suphanburi","cityNameCN":"素攀武里","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"spwl","pingYin":"supanwuli"},
-    {"cityId":"1866","cityNameEn":"Prachin Buri","cityNameCN":"巴真武里","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bzwl","pingYin":"bazhenwuli"},
-    {"cityId":"1867","cityNameEn":"Pyin Oo Lwin","cityNameCN":"眉谬","cityCode":"MM5","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mm","pingYin":"meimiu"},
-    {"cityId":"1868","cityNameEn":"Ngapali","cityNameCN":"额不里","cityCode":"MM2","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nbl","pingYin":"dongbuli"},
-    {"cityId":"1869","cityNameEn":"Nay Pyi Daw","cityNameCN":"内比都","cityCode":"NULL","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nbd","pingYin":"neibidu"},
-    {"cityId":"1870","cityNameEn":"Ngwe Saung","cityNameCN":"维桑","cityCode":"MM3","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"ws","pingYin":"weisang"},
-    {"cityId":"1871","cityNameEn":"Nay Pyi Taw","cityNameCN":"奈比多","cityCode":"MM1","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nbd","pingYin":"naibiduo"},
-    {"cityId":"1872","cityNameEn":"Pasuruan","cityNameCN":"巴苏鲁安","cityCode":"I10","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bsla","pingYin":"basuluan"},
-    {"cityId":"1876","cityNameEn":"Con Dao Island","cityNameCN":"昆仑岛","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"kld","pingYin":"kunlundao"},
-    {"cityId":"1877","cityNameEn":"Bulacan","cityNameCN":"布拉干省     ","cityCode":"P46","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"blg","pingYin":"bulagansheng"},
-    {"cityId":"1880","cityNameEn":"Ilocos Norte","cityNameCN":"北伊罗戈","cityCode":"P10","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bylg","pingYin":"beiyiluoge"},
-    {"cityId":"1883","cityNameEn":"Toungoo","cityNameCN":"东吁","cityCode":"MM6","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"tg","pingYin":"dongyu"},
-    {"cityId":"1884","cityNameEn":"Kelantan","cityNameCN":"吉兰丹","cityCode":"M23","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jld","pingYin":"jilandan"},
-    {"cityId":"1885","cityNameEn":"Nyaung Shwe","cityNameCN":"娘瑞","cityCode":"MM4","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nr","pingYin":"niangrui"},
-    {"cityId":"1886","cityNameEn":"Pyu","cityNameCN":"骠省","cityCode":"MM9","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"bs","pingYin":"biaosheng"},
-    {"cityId":"1887","cityNameEn":"Phan Rang – Cham Tower","cityNameCN":"藩朗 - 湛塔","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"fl","pingYin":"fanlang-zhanta"},
-    {"cityId":"1888","cityNameEn":"Alor setar","cityNameCN":"亚罗士打","cityCode":"AOR","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ylsd","pingYin":"yaluoshida"},
-    {"cityId":"1941","cityNameEn":"Cirebon","cityNameCN":"井里汶","cityCode":"CBN","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"jlw","pingYin":"jingliwen"},
-    {"cityId":"3957","cityNameEn":"Bengkulu","cityNameCN":"朋古鲁","cityCode":"BKS","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"pgl","pingYin":"penggulu"},
-    {"cityId":"3958","cityNameEn":"Berau","cityNameCN":"伯劳","cityCode":"BEJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bl","pingYin":"bolao"},
-    {"cityId":"3959","cityNameEn":"Biak","cityNameCN":"比亚克","cityCode":"BIK","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"byk","pingYin":"biyake"},
-    {"cityId":"3960","cityNameEn":"Bima","cityNameCN":"比马","cityCode":"BMU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bm","pingYin":"bima"},
-    {"cityId":"3961","cityNameEn":"Datadawai","cityNameCN":"达塔达瓦伊","cityCode":"DTD","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"dtdwy","pingYin":"datadawayi"},
-    {"cityId":"3962","cityNameEn":"Ende","cityNameCN":"英德","cityCode":"ENE","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"yd","pingYin":"yingde"},
-    {"cityId":"3963","cityNameEn":"Fak Fak","cityNameCN":"法克法克","cityCode":"FKQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"fkfk","pingYin":"fakefake"},
-    {"cityId":"3964","cityNameEn":"Gorontalo","cityNameCN":"哥伦打洛","cityCode":"GTO","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"gldl","pingYin":"gelundaluo"},
-    {"cityId":"3965","cityNameEn":"Jambi","cityNameCN":"占碑","cityCode":"DJB","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"zb","pingYin":"zhanbei"},
-    {"cityId":"3966","cityNameEn":"Kaimana","cityNameCN":"凯马纳","cityCode":"KNG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"kmn","pingYin":"kaimana"},
-    {"cityId":"3967","cityNameEn":"Ketapang","cityNameCN":"吉打榜","cityCode":"KTG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"jdb","pingYin":"jidabang"},
-    {"cityId":"3968","cityNameEn":"Kupang","cityNameCN":"古邦","cityCode":"KOE","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"gb","pingYin":"gubang"},
-    {"cityId":"3969","cityNameEn":"Labuan Bajo","cityNameCN":"纳闽巴霍","cityCode":"LBJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"nmbh","pingYin":"naminbahuo"},
-    {"cityId":"3970","cityNameEn":"Langgur","cityNameCN":"朗格","cityCode":"LUV","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lg","pingYin":"langge"},
-    {"cityId":"3971","cityNameEn":"Long Apung","cityNameCN":"  伦阿彭","cityCode":"LPU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lap","pingYin":"lunapeng"},
-    {"cityId":"3972","cityNameEn":"Long Bawan","cityNameCN":"  隆巴旺","cityCode":"LBW","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lbw","pingYin":"longbawang"},
-    {"cityId":"3973","cityNameEn":"Mataram","cityNameCN":"马塔兰","cityCode":"NULL","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mtl","pingYin":"matalan"},
-    {"cityId":"3974","cityNameEn":"Maumere","cityNameCN":"玛米尔","cityCode":"MOF","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mme","pingYin":"mamier"},
-    {"cityId":"3975","cityNameEn":"Merauke","cityNameCN":"马老奇","cityCode":"MKQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mlq","pingYin":"malaoqi"},
-    {"cityId":"3976","cityNameEn":"Naha","cityNameCN":"那覇","cityCode":"NAH","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"nb","pingYin":"naba"},
-    {"cityId":"3977","cityNameEn":"Nunukan","cityNameCN":"奴奴干城","cityCode":"NNX","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"nngc","pingYin":"nunugancheng"},
-    {"cityId":"3978","cityNameEn":"Padang","cityNameCN":"巴东","cityCode":"PDG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bd","pingYin":"badong"},
-    {"cityId":"3979","cityNameEn":"Pangkalanbun","cityNameCN":"庞卡兰邦","cityCode":"PKN","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"pklb","pingYin":"pangkalanbang"},
-    {"cityId":"3980","cityNameEn":"Pangkalpinang","cityNameCN":"槟港","cityCode":"PGK","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bl","pingYin":"bingang"},
-    {"cityId":"3981","cityNameEn":"Putussibau","cityNameCN":"乌阿普","cityCode":"PSU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wap","pingYin":"wuapu"},
-    {"cityId":"3982","cityNameEn":"Sintang","cityNameCN":"  新当","cityCode":"SQG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"xd","pingYin":"xindang"},
-    {"cityId":"3983","cityNameEn":"Tambolaka","cityNameCN":"坦波拉卡","cityCode":"TMC","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tblk","pingYin":"tanbolaka"},
-    {"cityId":"3984","cityNameEn":"Tanjung Pandan","cityNameCN":"丹绒香兰","cityCode":"TJQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tjxl","pingYin":"danrongxianglan"},
-    {"cityId":"3985","cityNameEn":"Tembagapura","cityNameCN":"特姆巴加普拉","cityCode":"TIM","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tmbjpl","pingYin":"temubajiapula"},
-    {"cityId":"3986","cityNameEn":"Ternate","cityNameCN":"特尔纳特","cityCode":"TTE","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tent","pingYin":"teernate"},
-    {"cityId":"3987","cityNameEn":"Ujung Pandang","cityNameCN":"乌戎潘当","cityCode":"I11","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wrpd","pingYin":"wurongpandang"},
-    {"cityId":"3988","cityNameEn":"Waingapu","cityNameCN":"瓦英阿普  ","cityCode":"WGP","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wyap","pingYin":"wayingapu"},
-    {"cityId":"4187","cityNameEn":"Bakalalan","cityNameCN":"巴卡拉兰","cityCode":"BKM","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bkll","pingYin":"bakalalan"},
-    {"cityId":"4188","cityNameEn":"Bario","cityNameCN":"巴里奥","cityCode":"BBN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bla","pingYin":"baliao"},
-    {"cityId":"4189","cityNameEn":"Belaga","cityNameCN":"贝拉加","cityCode":"BLG","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bjl","pingYin":"beilajia"},
-    {"cityId":"4190","cityNameEn":"Bintulu","cityNameCN":"民都鲁","cityCode":"BTU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bdl","pingYin":"mindulu"},
-    {"cityId":"4191","cityNameEn":"Kudat","cityNameCN":"古达","cityCode":"KUD","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gd","pingYin":"guda"},
-    {"cityId":"4192","cityNameEn":"Lahad Datu","cityNameCN":"拿笃","cityCode":"LDU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"nd","pingYin":"nadu"},
-    {"cityId":"4193","cityNameEn":"Lawas","cityNameCN":"老越","cityCode":"LWY","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ly","pingYin":"laoyue"},
-    {"cityId":"4194","cityNameEn":"Limbang","cityNameCN":"林梦","cityCode":"LMN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lm","pingYin":"linmeng"},
-    {"cityId":"4195","cityNameEn":"Long Akah","cityNameCN":"宋卡","cityCode":"LKH","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sk","pingYin":"songka"},
-    {"cityId":"4196","cityNameEn":"Long Banga","cityNameCN":"隆邦加","cityCode":"LBP","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lbj","pingYin":"longbangjia"},
-    {"cityId":"4197","cityNameEn":"Long Lellang","cityNameCN":"隆乐浪","cityCode":"LGL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lll","pingYin":"longlelang"},
-    {"cityId":"4198","cityNameEn":"Long Seridan","cityNameCN":"隆塞里丹","cityCode":"ODN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lsld","pingYin":"longsailidan"},
-    {"cityId":"4199","cityNameEn":"Marudi","cityNameCN":"马卢地","cityCode":"MUR","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"mld","pingYin":"maludi"},
-    {"cityId":"4200","cityNameEn":"Miri","cityNameCN":"美里","cityCode":"MYY","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ml","pingYin":"meili"},
-    {"cityId":"4201","cityNameEn":"Mukah","cityNameCN":"木胶","cityCode":"MKM","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"mj","pingYin":"mujiao"},
-    {"cityId":"4202","cityNameEn":"Mulu","cityNameCN":"姆鲁","cityCode":"MZV","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ml","pingYin":"mulu"},
-    {"cityId":"4203","cityNameEn":"Sibu","cityNameCN":"诗巫","cityCode":"SBW","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sw","pingYin":"shiwu"},
-    {"cityId":"4204","cityNameEn":"Tawau","cityNameCN":"斗湖","cityCode":"TWU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"dh","pingYin":"donghu"},
-    {"cityId":"4317","cityNameEn":"Bassein","cityNameCN":"勃生","cityCode":"BSX","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"bs","pingYin":"bosheng"},
-    {"cityId":"4318","cityNameEn":"Bhamo","cityNameCN":"八莫","cityCode":"BMO","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"bm","pingYin":"bamo"},
-    {"cityId":"4319","cityNameEn":"Dawei","cityNameCN":"土瓦","cityCode":"TVY","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"tw","pingYin":"tuwa"},
-    {"cityId":"4320","cityNameEn":"Heho","cityNameCN":"河湖","cityCode":"HEH","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"hh","pingYin":"hehu"},
-    {"cityId":"4321","cityNameEn":"Kalemyo","cityNameCN":"格礼","cityCode":"KMV","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"gl","pingYin":"geli"},
-    {"cityId":"4322","cityNameEn":"Keng Tung","cityNameCN":"景栋","cityCode":"KET","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"jd","pingYin":"jingdong"},
-    {"cityId":"4323","cityNameEn":"Khamti","cityNameCN":"卡姆迪","cityCode":"KHM","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"kmd","pingYin":"kamudi"},
-    {"cityId":"4324","cityNameEn":"Kyaukpyu","cityNameCN":"皎漂","cityCode":"KYP","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"jp","pingYin":"jiaopiao"},
-    {"cityId":"4325","cityNameEn":"Lashio","cityNameCN":"腊戌","cityCode":"LSH","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"lx","pingYin":"laxu"},
-    {"cityId":"4326","cityNameEn":"Loikaw","cityNameCN":"垒固","cityCode":"LIW","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"lg","pingYin":"leigu"},
-    {"cityId":"4327","cityNameEn":"Magway","cityNameCN":"马圭","cityCode":"MWQ","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mg","pingYin":"magui"},
-    {"cityId":"4328","cityNameEn":"Mawlamyine","cityNameCN":"毛淡棉","cityCode":"MNU","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mdm","pingYin":"maodanmian"},
-    {"cityId":"4329","cityNameEn":"Mong Hsat","cityNameCN":"孟萨","cityCode":"MOG","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"NULL","pingYin":"mengsa"},
-    {"cityId":"4330","cityNameEn":"Myeik","cityNameCN":"丹老","cityCode":"MGZ","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"dl","pingYin":"danlao"},
-    {"cityId":"4331","cityNameEn":"Myitkyina","cityNameCN":"密支那","cityCode":"MYT","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mzn","pingYin":"mizhina"},
-    {"cityId":"4332","cityNameEn":"Pakokku","cityNameCN":"木各贝","cityCode":"PKK","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mgb","pingYin":"mugebei"},
-    {"cityId":"4333","cityNameEn":"Putao","cityNameCN":"葡萄","cityCode":"PBU","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"pt","pingYin":"putao"},
-    {"cityId":"4334","cityNameEn":"Sittwe","cityNameCN":"实兑","cityCode":"AKY","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"sd","pingYin":"shidui"},
-    {"cityId":"4335","cityNameEn":"Tachilek","cityNameCN":"大其力","cityCode":"THL","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"dql","pingYin":"daqili"},
-    {"cityId":"4336","cityNameEn":"Thandwe","cityNameCN":"山多威","cityCode":"SNW","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"adw","pingYin":"shanduowei"},
-    {"cityId":"4615","cityNameEn":"Basco","cityNameCN":"巴斯科","cityCode":"BSO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bsk","pingYin":"basike"},
-    {"cityId":"4616","cityNameEn":"Busuanga","cityNameCN":"布桑加","cityCode":"USU","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bsj","pingYin":"busangjia"},
-    {"cityId":"4617","cityNameEn":"Jolo","cityNameCN":"瑚洛 ","cityCode":"JOL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"hl","pingYin":"huluo"},
-    {"cityId":"4618","cityNameEn":"Legaspi","cityNameCN":"黎牙实比","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lysb","pingYin":"liyashibi"},
-    {"cityId":"4619","cityNameEn":"Tawitawi","cityNameCN":"塔威塔威","cityCode":"TWT","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"twtw","pingYin":"taweitawei"},
-    {"cityId":"4620","cityNameEn":"Taytay Sandoval","cityNameCN":"泰泰桑多瓦尔","cityCode":"RZP","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ttsdwe","pingYin":"taitaisangdongwaer"},
-    {"cityId":"4621","cityNameEn":"Tuguegarao","cityNameCN":"土格加劳","cityCode":"TUG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"tgjl","pingYin":"tugejialao"},
-    {"cityId":"4622","cityNameEn":"Virac","cityNameCN":"比拉克","cityCode":"VRC","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"blk","pingYin":"bilake"},
-    {"cityId":"4979","cityNameEn":"Nakhon Phanom","cityNameCN":"那空拍侬","cityCode":"KOP","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nkpn","pingYin":"nakongpainong"},
-    {"cityId":"4980","cityNameEn":"Nan","cityNameCN":"南府","cityCode":"NNT","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nf","pingYin":"nanfu"},
-    {"cityId":"4981","cityNameEn":"Narathiwat","cityNameCN":"那拉提瓦","cityCode":"NAW","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nltw","pingYin":"nalatiwa"},
-    {"cityId":"4982","cityNameEn":"Roi Et","cityNameCN":"黎逸府","cityCode":"ROI","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ly","pingYin":"liyifu"},
-    {"cityId":"4983","cityNameEn":"Sakon Nakhon","cityNameCN":"沙功那空","cityCode":"SNO","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sgnk","pingYin":"shagongnakong"},
-    {"cityId":"4984","cityNameEn":"Utapao","cityNameCN":"乌塔堡","cityCode":"UTP","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wtb","pingYin":"wutabao"},
-    {"cityId":"5774","cityNameEn":"Ban Me Thuot","cityNameCN":"邦美蜀市","cityCode":"BMV","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"bmss","pingYin":"bangmeishushi"},
-    {"cityId":"5775","cityNameEn":"Ca Mau","cityNameCN":"金甌","cityCode":"CAH","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"jo","pingYin":"jinou"},
-    {"cityId":"5777","cityNameEn":"Dien Bien Phu","cityNameCN":"奠边府","cityCode":"DIN","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"dbf","pingYin":"dianbianfu"},
-    {"cityId":"5778","cityNameEn":"Bien Hoa","cityNameCN":"归仁的","cityCode":"UIH","countryName":"Vietnam","hyKeyWord":"grd","pingYin":"guirende"},
-    {"cityId":"5779","cityNameEn":"Tamky","cityNameCN":"三岐","cityCode":"VCL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sq","pingYin":"sanqi"},
-    {"cityId":"5780","cityNameEn":"Tuyhoa","cityNameCN":"绥和","cityCode":"TBB","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sh","pingYin":"suihe"},
-    {"cityId":"5781","cityNameEn":"Vinh City","cityNameCN":"荣市","cityCode":"VII","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"rs","pingYin":"rongshi"},
-    {"cityId":"5804","cityNameEn":"Klaten","cityNameCN":"克拉登","cityCode":"KLT","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"kld","pingYin":"keladeng"},
-    {"cityId":"5810","cityNameEn":"Preah Vihear","cityNameCN":"柏威夏省","cityCode":"NULL","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"bwx","pingYin":"baiweixia"},
-    {"cityId":"5812","cityNameEn":"Vinh Phuc","cityNameCN":"永福","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"yf","pingYin":"yongfu"},
-    {"cityId":"5813","cityNameEn":"Bontang","cityNameCN":"邦坦","cityCode":"BTG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bt","pingYin":"bangtan"},
-    {"cityId":"5814","cityNameEn":"Baler","cityNameCN":"巴勒尔      ","cityCode":"BQA","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ble","pingYin":"baleer"},
-    {"cityId":"5816","cityNameEn":"Binh Duong","cityNameCN":"平阳","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"py","pingYin":"pingyang"},
-    {"cityId":"5817","cityNameEn":"Sorsogon","cityNameCN":"索索贡","cityCode":"PP2","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ssg","pingYin":"suosuogong"},
-    {"cityId":"5818","cityNameEn":"Marikina","cityNameCN":"马利金纳","cityCode":"P30","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"nljn","pingYin":"malijinna"},
-    {"cityId":"5821","cityNameEn":"Jember","cityNameCN":"任抹","cityCode":"ID9","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"rm","pingYin":"renmo"}
-];
-var domesticCities =[
-    {"cityId":"8","cityNameEn":"Shanghai","cityNameCN":"上海","cityCode":"SHA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sh","pingYin":"shanghai"},
-    {"cityId":"10","cityNameEn":"Beijing","cityNameCN":"北京","cityCode":"BJS","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bj","pingYin":"beijing"},
-    {"cityId":"146","cityNameEn":"Guangzhou","cityNameCN":"广州","cityCode":"CAN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gz","pingYin":"guangzhou"},
-    {"cityId":"147","cityNameEn":"Shenzhen","cityNameCN":"深圳","cityCode":"SZX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sz","pingYin":"shenzhen"},
-    {"cityId":"148","cityNameEn":"Xian","cityNameCN":"西安","cityCode":"SIA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xa","pingYin":"xian"},
-    {"cityId":"149","cityNameEn":"Suzhou","cityNameCN":"苏州","cityCode":"SZV","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sz","pingYin":"suzhou"},
-    {"cityId":"233","cityNameEn":"Hangzhou","cityNameCN":"杭州","cityCode":"HGH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hz","pingYin":"hangzhou"},
-    {"cityId":"234","cityNameEn":"Kunming","cityNameCN":"昆明","cityCode":"KMG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"km","pingYin":"kunming"},
-    {"cityId":"235","cityNameEn":"Guilin","cityNameCN":"桂林","cityCode":"KWL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gl","pingYin":"guilin"},
-    {"cityId":"236","cityNameEn":"Sanya","cityNameCN":"三亚","cityCode":"SYX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sy","pingYin":"sanya"},
-    {"cityId":"237","cityNameEn":"Beihai","cityNameCN":"北海市","cityCode":"BHY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bh","pingYin":"beihaishi"},
-    {"cityId":"238","cityNameEn":"Boao","cityNameCN":"博鳌","cityCode":"CH1","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ba","pingYin":"boao"},
-    {"cityId":"239","cityNameEn":"Changchun","cityNameCN":"长春","cityCode":"CGQ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cc","pingYin":"changchun"},
-    {"cityId":"240","cityNameEn":"Changsha","cityNameCN":"长沙","cityCode":"CSX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cs","pingYin":"changsha"},
-    {"cityId":"241","cityNameEn":"Chaozhou","cityNameCN":"潮州","cityCode":"CH2","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cz","pingYin":"chaozhou"},
-    {"cityId":"242","cityNameEn":"Chengdu","cityNameCN":"成都","cityCode":"CTU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cd","pingYin":"chengdu"},
-    {"cityId":"243","cityNameEn":"Chongqing","cityNameCN":"重庆","cityCode":"CKG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cq","pingYin":"chongqing"},
-    {"cityId":"244","cityNameEn":"Dali","cityNameCN":"大理","cityCode":"DLU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dl","pingYin":"dali"},
-    {"cityId":"245","cityNameEn":"Dalian","cityNameCN":"大连","cityCode":"DLC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dl","pingYin":"dalian"},
-    {"cityId":"246","cityNameEn":"Dongguan","cityNameCN":"东莞","cityCode":"DGM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dg","pingYin":"dongguan"},
-    {"cityId":"247","cityNameEn":"Dunhuang","cityNameCN":"敦煌","cityCode":"DNH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dh","pingYin":"dunhuang"},
-    {"cityId":"248","cityNameEn":"Fuzhou","cityNameCN":"福州","cityCode":"FOC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"fz","pingYin":"fuzhou"},
-    {"cityId":"249","cityNameEn":"Foshan","cityNameCN":"佛山","cityCode":"FUO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"fs","pingYin":"foshan"},
-    {"cityId":"250","cityNameEn":"Guiyang","cityNameCN":"贵阳","cityCode":"KWE","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gy","pingYin":"guiyang"},
-    {"cityId":"251","cityNameEn":"Haikou","cityNameCN":"海口","cityCode":"HAK","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hk","pingYin":"haikou"},
-    {"cityId":"252","cityNameEn":"Harbin","cityNameCN":"哈尔滨","cityCode":"HRB","countryName":"China","countryIsoCode":"CN","hyKeyWord":"heb","pingYin":"haerbin"},
-    {"cityId":"253","cityNameEn":"Hefei","cityNameCN":"合肥","cityCode":"HFE","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hf","pingYin":"hefei"},
-    {"cityId":"254","cityNameEn":"Huangshan","cityNameCN":"黄山","cityCode":"CH4","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hs","pingYin":"huangshan"},
-    {"cityId":"255","cityNameEn":"JiNan","cityNameCN":"济南","cityCode":"TNA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jn","pingYin":"jinan"},
-    {"cityId":"256","cityNameEn":"Lanzhou","cityNameCN":"兰州","cityCode":"LHW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"lanzhou"},
-    {"cityId":"257","cityNameEn":"Lhasa","cityNameCN":"拉萨","cityCode":"LXA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ls","pingYin":"lasa"},
-    {"cityId":"258","cityNameEn":"Lijiang","cityNameCN":"丽江","cityCode":"LJG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lj","pingYin":"lijiang"},
-    {"cityId":"259","cityNameEn":"Kunshan","cityNameCN":"昆山","cityCode":"CH9","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ks","pingYin":"kunshan"},
-    {"cityId":"260","cityNameEn":"Nanjing","cityNameCN":"南京","cityCode":"NKG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nj","pingYin":"nanjing"},
-    {"cityId":"261","cityNameEn":"Nanning","cityNameCN":"南宁","cityCode":"NNG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nn","pingYin":"nanning"},
-    {"cityId":"262","cityNameEn":"Ningbo","cityNameCN":"宁波","cityCode":"NGB","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nb","pingYin":"ningbo"},
-    {"cityId":"263","cityNameEn":"Nanchang","cityNameCN":"南昌","cityCode":"KHN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nc","pingYin":"nanchang"},
-    {"cityId":"264","cityNameEn":"Qingdao","cityNameCN":"青岛","cityCode":"TAO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qd","pingYin":"qingdao"},
-    {"cityId":"265","cityNameEn":"Qinhuangdao","cityNameCN":"秦皇岛","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qhd","pingYin":"qinhuangdao"},
-    {"cityId":"267","cityNameEn":"Shantou","cityNameCN":"汕头","cityCode":"SWA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"st","pingYin":"shantou"},
-    {"cityId":"268","cityNameEn":"Shenyang","cityNameCN":"沈阳","cityCode":"SHE","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sy","pingYin":"shenyang"},
-    {"cityId":"269","cityNameEn":"Shijiazhuang","cityNameCN":"石家庄","cityCode":"SJW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sjz","pingYin":"shijiazhuang"},
-    {"cityId":"270","cityNameEn":"Taishan","cityNameCN":"泰山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ts","pingYin":"taishan"},
-    {"cityId":"271","cityNameEn":"Tianjin","cityNameCN":"天津","cityCode":"TSN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tj","pingYin":"tianjin"},
-    {"cityId":"272","cityNameEn":"Tulufan","cityNameCN":"吐鲁番","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tlf","pingYin":"tulufan"},
-    {"cityId":"273","cityNameEn":"Urumqi","cityNameCN":"乌鲁木齐","cityCode":"URC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wlmq","pingYin":"wulumuqi"},
-    {"cityId":"274","cityNameEn":"Wuhan","cityNameCN":"武汉","cityCode":"WUH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wh","pingYin":"wuhan"},
-    {"cityId":"275","cityNameEn":"Wuxi","cityNameCN":"无锡","cityCode":"WUX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wx","pingYin":"wuxi"},
-    {"cityId":"276","cityNameEn":"Xiamen","cityNameCN":"厦门","cityCode":"XMN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xm","pingYin":"xiamen"},
-    {"cityId":"278","cityNameEn":"Zhaoqing","cityNameCN":"肇庆","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zq","pingYin":"zhaoqing"},
-    {"cityId":"279","cityNameEn":"Zhuhai","cityNameCN":"珠海","cityCode":"ZUH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zh","pingYin":"zhuhai"},
-    {"cityId":"280","cityNameEn":"Zhongshan","cityNameCN":"中山","cityCode":"ZGN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zs","pingYin":"zhongshan"},
-    {"cityId":"281","cityNameEn":"Zhengzhou","cityNameCN":"郑州","cityCode":"CGO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zz","pingYin":"zhengzhou"},
-    {"cityId":"566","cityNameEn":"Jiuzhaigou","cityNameCN":"九寨沟","cityCode":"CH8","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jzg","pingYin":"jiuzhaigou"},
-    {"cityId":"568","cityNameEn":"Shangri-La","cityNameCN":"香格里拉","cityCode":"C15","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xgll","pingYin":"xianggelila"},
-    {"cityId":"843","cityNameEn":"Wenzhou","cityNameCN":"温州","cityCode":"WNZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wz","pingYin":"wenzhou"},
-    {"cityId":"1001","cityNameEn":"JiangMen","cityNameCN":"江门","cityCode":"CH6","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jm","pingYin":"jiangmen"},
-    {"cityId":"1182","cityNameEn":"Yiwu","cityNameCN":"义乌","cityCode":"YIW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yw","pingYin":"yiwu"},
-    {"cityId":"1356","cityNameEn":"Changzhou","cityNameCN":"常州","cityCode":"CZX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cz","pingYin":"changzhou"},
-    {"cityId":"1357","cityNameEn":"Baotou","cityNameCN":"包头","cityCode":"BAV","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bt","pingYin":"baotou"},
-    {"cityId":"1358","cityNameEn":"Huhhot","cityNameCN":"呼和浩特","cityCode":"CH5","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hhht","pingYin":"huhehaote"},
-    {"cityId":"1359","cityNameEn":"JiaShan","cityNameCN":"嘉善","cityCode":"CH7","countryName":"China","countryIsoCode":"CN","hyKeyWord":"js","pingYin":"jiashan"},
-    {"cityId":"1442","cityNameEn":"Taiyuan","cityNameCN":"太原","cityCode":"TYN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ty","pingYin":"taiyuan"},
-    {"cityId":"1589","cityNameEn":"Changshu","cityNameCN":"常熟","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cs","pingYin":"changshu"},
-    {"cityId":"1616","cityNameEn":"Zhanjiang","cityNameCN":"湛江","cityCode":"ZHA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zj","pingYin":"zhanjiang"},
-    {"cityId":"1623","cityNameEn":"Yantai  ","cityNameCN":"烟台","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yt","pingYin":"yantai"},
-    {"cityId":"1951","cityNameEn":"Anshan","cityNameCN":"鞍山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"as","pingYin":"anshan"},
-    {"cityId":"3393","cityNameEn":"Aksu","cityNameCN":"阿克苏","cityCode":"AKU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"aks","pingYin":"akesu"},
-    {"cityId":"3394","cityNameEn":"Altay","cityNameCN":"阿勒泰","cityCode":"AAT","countryName":"China","countryIsoCode":"CN","hyKeyWord":"alt","pingYin":"aletai"},
-    {"cityId":"3395","cityNameEn":"An Shun","cityNameCN":"安顺","cityCode":"AVA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"as","pingYin":"anshun"},
-    {"cityId":"3396","cityNameEn":"Ankang","cityNameCN":"安康","cityCode":"AKA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ak","pingYin":"ankang"},
-    {"cityId":"3397","cityNameEn":"Bangda","cityNameCN":"邦达","cityCode":"BPX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bd","pingYin":"bangda"},
-    {"cityId":"3398","cityNameEn":"Chifeng","cityNameCN":"赤峰","cityCode":"CIF","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cf","pingYin":"chifeng"},
-    {"cityId":"3399","cityNameEn":"Dandong","cityNameCN":"丹东","cityCode":"DDG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dd","pingYin":"dandong"},
-    {"cityId":"3400","cityNameEn":"Datong","cityNameCN":"大同","cityCode":"DAT","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dt","pingYin":"datong"},
-    {"cityId":"3401","cityNameEn":"Daxian","cityNameCN":"达县","cityCode":"DAX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dx","pingYin":"daxian"},
-    {"cityId":"3402","cityNameEn":"Dayong","cityNameCN":"大用镇","cityCode":"DYG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dy","pingYin":"dayongzhen"},
-    {"cityId":"3403","cityNameEn":"Diqing","cityNameCN":"迪庆","cityCode":"DIG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dq","pingYin":"diqing"},
-    {"cityId":"3404","cityNameEn":"Dongying","cityNameCN":"东营","cityCode":"DOY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dy","pingYin":"dongying"},
-    {"cityId":"3405","cityNameEn":"Enshi","cityNameCN":"恩施","cityCode":"ENH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"es","pingYin":"enshi"},
-    {"cityId":"3406","cityNameEn":"Ganzhou","cityNameCN":"赣州","cityCode":"KOW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gz","pingYin":"ganzhou"},
-    {"cityId":"3407","cityNameEn":"Golmud","cityNameCN":"格尔木","cityCode":"GOQ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gem","pingYin":"geermu"},
-    {"cityId":"3408","cityNameEn":"Hailar","cityNameCN":"海拉尔","cityCode":"HLD","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hle","pingYin":"hailaer"},
-    {"cityId":"3409","cityNameEn":"Hanzhong","cityNameCN":"汉中","cityCode":"HZG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hz","pingYin":"hanzhong"},
-    {"cityId":"3410","cityNameEn":"Heihe","cityNameCN":"黑河","cityCode":"HEK","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hh","pingYin":"heihe"},
-    {"cityId":"3411","cityNameEn":"Hohhot","cityNameCN":"呼和浩特","cityCode":"HET","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hhht","pingYin":"huhehaote"},
-    {"cityId":"3412","cityNameEn":"Hotan","cityNameCN":"和田","cityCode":"HTN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ht","pingYin":"hetian"},
-    {"cityId":"3413","cityNameEn":"Huizhou","cityNameCN":"惠州","cityCode":"HUZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hz","pingYin":"huizhou"},
-    {"cityId":"3414","cityNameEn":"Humen","cityNameCN":"虎门","cityCode":"ZTI","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hm","pingYin":"humen"},
-    {"cityId":"3415","cityNameEn":"Ji An","cityNameCN":"集安市","cityCode":"JGS","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ja","pingYin":"jianshi"},
-    {"cityId":"3416","cityNameEn":"Quzhou","cityNameCN":"衢州","cityCode":"JUZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qz","pingYin":"quzhou"},
-    {"cityId":"3417","cityNameEn":"Karamay","cityNameCN":"克拉玛依","cityCode":"KRY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"klmy","pingYin":"kelamayi"},
-    {"cityId":"3418","cityNameEn":"Kashi","cityNameCN":"喀什","cityCode":"KHG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ks","pingYin":"kashi"},
-    {"cityId":"3419","cityNameEn":"Korla","cityNameCN":"库尔勒","cityCode":"KRL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"kel","pingYin":"kuerle"},
-    {"cityId":"3420","cityNameEn":"Kuqa","cityNameCN":"库车","cityCode":"KCA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"kc","pingYin":"kuche"},
-    {"cityId":"3421","cityNameEn":"Lianyungang","cityNameCN":"连云港","cityCode":"LYG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lyg","pingYin":"lianyungang"},
-    {"cityId":"3422","cityNameEn":"Lin Zhi","cityNameCN":"林芝","cityCode":"LZY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"linzhi"},
-    {"cityId":"3423","cityNameEn":"Lincang","cityNameCN":"临沧","cityCode":"LNJ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lc","pingYin":"lincang"},
-    {"cityId":"3424","cityNameEn":"Linyi","cityNameCN":"临沂","cityCode":"LYI","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ly","pingYin":"linyi"},
-    {"cityId":"3425","cityNameEn":"Liping City","cityNameCN":"黎平","cityCode":"HZH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lp","pingYin":"liping"},
-    {"cityId":"3426","cityNameEn":"Liuzhou","cityNameCN":"柳州","cityCode":"LZH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"liuzhou"},
-    {"cityId":"3427","cityNameEn":"Longyan","cityNameCN":"龙岩","cityCode":"LCX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ly","pingYin":"longyan"},
-    {"cityId":"3428","cityNameEn":"Luoyang","cityNameCN":"洛阳","cityCode":"LYA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ly","pingYin":"luoyang"},
-    {"cityId":"3429","cityNameEn":"Luxi","cityNameCN":"鲁西","cityCode":"LUM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lx","pingYin":"luxi"},
-    {"cityId":"3430","cityNameEn":"Luzhou","cityNameCN":"泸州","cityCode":"LZO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"luzhou"},
-    {"cityId":"3431","cityNameEn":"Manzhouli","cityNameCN":"满洲里","cityCode":"NZH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mzl","pingYin":"manzhouli"},
-    {"cityId":"3432","cityNameEn":"Meixian","cityNameCN":"梅县","cityCode":"MXZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mx","pingYin":"meixian"},
-    {"cityId":"3433","cityNameEn":"Mian Yang","cityNameCN":"绵阳","cityCode":"MIG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"my","pingYin":"mianyang"},
-    {"cityId":"3434","cityNameEn":"Mudanjiang","cityNameCN":"牡丹江","cityCode":"MDG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mdj","pingYin":"mudanjiang"},
-    {"cityId":"3435","cityNameEn":"Nantong","cityNameCN":"南通","cityCode":"NTG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nt","pingYin":"nantong"},
-    {"cityId":"3436","cityNameEn":"Nanyang","cityNameCN":"南阳","cityCode":"NNY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ny","pingYin":"nanyang"},
-    {"cityId":"3437","cityNameEn":"Pan Zhi Hua","cityNameCN":"攀枝花","cityCode":"PZI","countryName":"China","countryIsoCode":"CN","hyKeyWord":"pzh","pingYin":"panzhihua"},
-    {"cityId":"3438","cityNameEn":"Qiemo","cityNameCN":"且末县","cityCode":"IQM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qm","pingYin":"qiemoxian"},
-    {"cityId":"3439","cityNameEn":"Qiqihar","cityNameCN":"齐齐哈尔","cityCode":"NDG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qqhe","pingYin":"qiqihaer"},
-    {"cityId":"3440","cityNameEn":"Simao","cityNameCN":"思茅","cityCode":"SYM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sm","pingYin":"simao"},
-    {"cityId":"3442","cityNameEn":"Tacheng","cityNameCN":"塔城","cityCode":"TCG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tc","pingYin":"tacheng"},
-    {"cityId":"3443","cityNameEn":"Tongliao","cityNameCN":"通辽","cityCode":"TGO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tl","pingYin":"tongliao"},
-    {"cityId":"3444","cityNameEn":"Tongren","cityNameCN":"铜仁","cityCode":"TEN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tr","pingYin":"tongren"},
-    {"cityId":"3445","cityNameEn":"Tunxi","cityNameCN":"屯溪","cityCode":"TXN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tx","pingYin":"tunxi"},
-    {"cityId":"3446","cityNameEn":"Ulanhot","cityNameCN":"乌兰浩特","cityCode":"HLH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wlht","pingYin":"wulanhaote"},
-    {"cityId":"3447","cityNameEn":"Wanxian","cityNameCN":"万县","cityCode":"WXN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wx","pingYin":"wanxian"},
-    {"cityId":"3448","cityNameEn":"Weifang","cityNameCN":"潍坊","cityCode":"WEF","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wf","pingYin":"weifang"},
-    {"cityId":"3449","cityNameEn":"Weihai","cityNameCN":"威海","cityCode":"WEH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wh","pingYin":"weihai"},
-    {"cityId":"3450","cityNameEn":"Wenshan","cityNameCN":"文山","cityCode":"WNH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ws","pingYin":"wenshan"},
-    {"cityId":"3451","cityNameEn":"Wuyishan","cityNameCN":"武夷山","cityCode":"WUS","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wys","pingYin":"wuyishan"},
-    {"cityId":"3452","cityNameEn":"Ping Yao","cityNameCN":"西安","cityCode":"PYO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xa","pingYin":"xian"},
-    {"cityId":"3453","cityNameEn":"Xichang","cityNameCN":"西昌","cityCode":"XIC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xc","pingYin":"xichang"},
-    {"cityId":"3454","cityNameEn":"Xilinhot","cityNameCN":"锡林浩特","cityCode":"XIL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xlht","pingYin":"xilinhaote"},
-    {"cityId":"3455","cityNameEn":"Xingyi","cityNameCN":"兴义","cityCode":"ACX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xy","pingYin":"xingyi"},
-    {"cityId":"3456","cityNameEn":"Xining","cityNameCN":"西宁","cityCode":"XNN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xn","pingYin":"xining"},
-    {"cityId":"3458","cityNameEn":"Xuzhou","cityNameCN":"徐州","cityCode":"XUZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xz","pingYin":"xuzhou"},
-    {"cityId":"3459","cityNameEn":"Yancheng","cityNameCN":"盐城","cityCode":"YNZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yancheng"},
-    {"cityId":"3460","cityNameEn":"Yibin","cityNameCN":"宜宾","cityCode":"YBP","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yb","pingYin":"yibin"},
-    {"cityId":"3461","cityNameEn":"Yichang","cityNameCN":"宜昌","cityCode":"YIH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yichang"},
-    {"cityId":"3462","cityNameEn":"Yinchuan","cityNameCN":"银川","cityCode":"INC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yinchuan"},
-    {"cityId":"3463","cityNameEn":"Yining","cityNameCN":"伊宁","cityCode":"YIN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yn","pingYin":"yining"},
-    {"cityId":"3464","cityNameEn":"Yulin","cityNameCN":"榆林","cityCode":"UYN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yl","pingYin":"yulin"},
-    {"cityId":"3465","cityNameEn":"Yun Cheng","cityNameCN":"运城","cityCode":"YCU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yuncheng"},
-    {"cityId":"3466","cityNameEn":"Zhaotong","cityNameCN":"昭通","cityCode":"ZAT","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zt","pingYin":"zhaotong"},
-    {"cityId":"5862","cityNameEn":"Anyang","cityNameCN":"安阳","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ay","pingYin":"anyang"},
-    {"cityId":"5866","cityNameEn":"Tangshan","cityNameCN":"唐山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ts","pingYin":"tangshan"},
-    {"cityId":"5867","cityNameEn":"Jianyang","cityNameCN":"建阳","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jy","pingYin":"jianyang"},
-    {"cityId":"5868","cityNameEn":"Meishan","cityNameCN":"眉山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ms","pingYin":"meishan"},
-    {"cityId":"5998","cityNameEn":"Jinghong","cityNameCN":"景洪","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jh","pingYin":"jinghong"},
-    {"cityId":"6016","cityNameEn":"Maanshan","cityNameCN":"马鞍山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mas","pingYin":"maanshan"},
-    {"cityId":"6017","cityNameEn":"Shaoxing","cityNameCN":"绍兴","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sx","pingYin":"shaoxing"},
-    {"cityId":"6019","cityNameEn":"Wuhu","cityNameCN":"芜湖","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wh","pingYin":"wuhu"},
-    {"cityId":"6020","cityNameEn":"Xiangyang","cityNameCN":"襄阳","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xy","pingYin":"xiangyang"},
-    {"cityId":"6021","cityNameEn":"Yangjiang","cityNameCN":"阳江","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yj","pingYin":"yangjiang"},
-    {"cityId":"6022","cityNameEn":"Yangzhou","cityNameCN":"扬州","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yz","pingYin":"yangzhou"},
-    {"cityId":"6023","cityNameEn":"Zhangzhou","cityNameCN":"漳州","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zz","pingYin":"zhangzhou"},
-    {"cityId":"6024","cityNameEn":"Zhenjiang","cityNameCN":"镇江","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zj","pingYin":"zhenjiang"},
-    {"cityId":"6373","cityNameEn":"Changbaishan","cityNameCN":"长白山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cbs","pingYin":"changbaishan"},
-    {"cityId":"6376","cityNameEn":"Chaohu","cityNameCN":"巢湖","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ch","pingYin":"chaohu"},
-    {"cityId":"6455","cityNameEn":"Leshan","cityNameCN":"乐山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ls","pingYin":"leshan"},
-    {"cityId":"6474","cityNameEn":"Dujiangyan","cityNameCN":"都江堰","cityCode":"CTU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"djy","pingYin":"dongjiangyan"},
-    {"cityId":"6475","cityNameEn":"Panjin","cityNameCN":"盘锦","cityCode":"JNZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"pj","pingYin":"panjin"},
-    {"cityId":"6476","cityNameEn":"Putian","cityNameCN":"莆田","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"pt","pingYin":"putian"},
-    {"cityId":"7145","cityNameEn":"Jixian","cityNameCN":"蓟县","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jx","pingYin":"jixian"},
-    {"cityId":"7267","cityNameEn":"Liaoning","cityNameCN":"辽宁","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ln","pingYin":"liaoning"}
-];
+/*var internationalCities =[
+ {"cityId":"2","cityNameEn":"Singapore","cityNameCN":"新加坡","cityCode":"SIN","countryName":"Singapore","countryIsoCode":"SG","hyKeyWord":"xjp","pingYin":"xinjiapo"},
+ {"cityId":"11","cityNameEn":"Bangkok","cityNameCN":"曼谷","cityCode":"BKK","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"mg","pingYin":"mangu"},
+ {"cityId":"150","cityNameEn":"Phuket","cityNameCN":"普吉岛","cityCode":"HKT","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"pjd","pingYin":"pujidao"},
+ {"cityId":"151","cityNameEn":"Pattaya","cityNameCN":"芭堤雅","cityCode":"PYX","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bty","pingYin":"badiya"},
+ {"cityId":"282","cityNameEn":"Hong Kong","cityNameCN":"香港","cityCode":"HKG","countryName":"Hong Kong","countryIsoCode":"HK","hyKeyWord":"xg","pingYin":"xianggang"},
+ {"cityId":"283","cityNameEn":"Dubai","cityNameCN":"迪拜","cityCode":"DXB","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"db","pingYin":"dibai"},
+ {"cityId":"284","cityNameEn":"Al Ain","cityNameCN":"阿莱茵","cityCode":"AAN","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"aly","pingYin":"alaiyin"},
+ {"cityId":"285","cityNameEn":"Abu Dhabi","cityNameCN":"阿布扎比","cityCode":"AUH","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"abzb","pingYin":"abuzhabi"},
+ {"cityId":"286","cityNameEn":"Fujairah","cityNameCN":"富查伊拉","cityCode":"FJR","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"fcyl","pingYin":"fuchayila"},
+ {"cityId":"287","cityNameEn":"Ajman","cityNameCN":"阿吉曼","cityCode":"UA1","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"ajm","pingYin":"ajiman"},
+ {"cityId":"288","cityNameEn":"Sharjah","cityNameCN":"沙迦","cityCode":"SHJ","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"sj","pingYin":"shajia"},
+ {"cityId":"289","cityNameEn":"Ras Al Khaimah","cityNameCN":"哈伊马角","cityCode":"RKT","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"hymj","pingYin":"hayimajiao"},
+ {"cityId":"290","cityNameEn":"Krabi","cityNameCN":"甲米","cityCode":"KBV","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"jm","pingYin":"jiami"},
+ {"cityId":"292","cityNameEn":"Cha Am","cityNameCN":"差安","cityCode":"TH2","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ca","pingYin":"chaan"},
+ {"cityId":"293","cityNameEn":"Hua Hin","cityNameCN":"华欣","cityCode":"HHQ","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"hx","pingYin":"huaxin"},
+ {"cityId":"294","cityNameEn":"Chiang Mai","cityNameCN":"清迈","cityCode":"CNX","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"qm","pingYin":"qingmai"},
+ {"cityId":"295","cityNameEn":"Chiang Rai","cityNameCN":"清莱","cityCode":"CEI","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ql","pingYin":"qinglai"},
+ {"cityId":"296","cityNameEn":"Kanchanaburi","cityNameCN":"北碧府","cityCode":"TH6","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bb","pingYin":"beibifu"},
+ {"cityId":"297","cityNameEn":"Koh Samed","cityNameCN":"沙美岛","cityCode":"T12","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sm","pingYin":"shameidao"},
+ {"cityId":"313","cityNameEn":"Sydney","cityNameCN":"悉尼","cityCode":"SYD","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"xn","pingYin":"xini"},
+ {"cityId":"314","cityNameEn":"Melbourne","cityNameCN":"墨尔本","cityCode":"MEL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"meb","pingYin":"moerben"},
+ {"cityId":"315","cityNameEn":"Perth","cityNameCN":"珀斯","cityCode":"PER","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ps","pingYin":"posi"},
+ {"cityId":"316","cityNameEn":"Brisbane","cityNameCN":"布里斯班","cityCode":"BNE","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"blsb","pingYin":"bulisiban"},
+ {"cityId":"317","cityNameEn":"Gold Coast","cityNameCN":"黄金海岸","cityCode":"OOL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"hjha","pingYin":"huangjinhaian"},
+ {"cityId":"318","cityNameEn":"Adelaide","cityNameCN":"阿德莱德","cityCode":"ADL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"adld","pingYin":"adelaide"},
+ {"cityId":"319","cityNameEn":"Canberra","cityNameCN":"堪培拉","cityCode":"CBR","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kpl","pingYin":"kanpeila"},
+ {"cityId":"323","cityNameEn":"Bintan","cityNameCN":"民丹岛","cityCode":"ID6","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mdd","pingYin":"mindandao"},
+ {"cityId":"324","cityNameEn":"Batam","cityNameCN":"巴淡岛","cityCode":"BTH","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bdd","pingYin":"badandao"},
+ {"cityId":"327","cityNameEn":"Cebu","cityNameCN":"宿务","cityCode":"CEB","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sw","pingYin":"suwu"},
+ {"cityId":"328","cityNameEn":"Boracay","cityNameCN":"长滩岛","cityCode":"PH5","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ctd","pingYin":"changtandao"},
+ {"cityId":"329","cityNameEn":"Bohol","cityNameCN":"薄荷岛","cityCode":"PH4","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bhd","pingYin":"bohedao"},
+ {"cityId":"331","cityNameEn":"Manila","cityNameCN":"马尼拉","cityCode":"MNL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mnl","pingYin":"manila"},
+ {"cityId":"332","cityNameEn":"Bukit Tinggi","cityNameCN":"武吉丁宜","cityCode":"MY1","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"wjdy","pingYin":"wujidingyi"},
+ {"cityId":"333","cityNameEn":"Cameron Highlands","cityNameCN":"金马伦高地","cityCode":"MY2","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jmlgd","pingYin":"jinmalungaodi"},
+ {"cityId":"334","cityNameEn":"Desaru","cityNameCN":"迪沙鲁","cityCode":"M21","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"dsl","pingYin":"dishalu"},
+ {"cityId":"335","cityNameEn":"Genting","cityNameCN":"云顶","cityCode":"GT1","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"yd","pingYin":"yunding"},
+ {"cityId":"336","cityNameEn":"Ipoh","cityNameCN":"怡保","cityCode":"IPH","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"yb","pingYin":"yibao"},
+ {"cityId":"337","cityNameEn":"Johor Bahru","cityNameCN":"柔佛巴鲁","cityCode":"JHB","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"rfbl","pingYin":"roufobalu"},
+ {"cityId":"338","cityNameEn":"Kuala Lumpur","cityNameCN":"吉隆坡","cityCode":"KUL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jlp","pingYin":"jilongpo"},
+ {"cityId":"339","cityNameEn":"Kuala Terengganu","cityNameCN":"瓜拉丁加奴","cityCode":"TGG","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gldjn","pingYin":"gualadingjianu"},
+ {"cityId":"340","cityNameEn":"Kuantan","cityNameCN":"关丹","cityCode":"KUA","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gd","pingYin":"guandan"},
+ {"cityId":"341","cityNameEn":"Langkawi","cityNameCN":"兰卡威","cityCode":"LGK","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lkw","pingYin":"lankawei"},
+ {"cityId":"342","cityNameEn":"Malacca","cityNameCN":"马六甲","cityCode":"MY3","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"mlj","pingYin":"maliujia"},
+ {"cityId":"343","cityNameEn":"Pangkor Island","cityNameCN":"邦咯岛","cityCode":"PKG","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bkd","pingYin":"bangkadao"},
+ {"cityId":"344","cityNameEn":"Penang","cityNameCN":"槟城","cityCode":"PEN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bc","pingYin":"bincheng"},
+ {"cityId":"345","cityNameEn":"Port Dickson","cityNameCN":"波德申","cityCode":"MY5","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bds","pingYin":"bodeshen"},
+ {"cityId":"346","cityNameEn":"Tioman Island","cityNameCN":"刁曼岛","cityCode":"TOD","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"dmd","pingYin":"diaomandao"},
+ {"cityId":"347","cityNameEn":"Sabah","cityNameCN":"沙巴","cityCode":"MY6","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sb","pingYin":"shaba"},
+ {"cityId":"348","cityNameEn":"Sarawak","cityNameCN":"砂拉越","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sly","pingYin":"shalayue"},
+ {"cityId":"349","cityNameEn":"Ho Chi Minh","cityNameCN":"胡志明市","cityCode":"SGN","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hzms","pingYin":"huzhimingshi"},
+ {"cityId":"350","cityNameEn":"Hanoi","cityNameCN":"河内","cityCode":"HAN","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hn","pingYin":"henei"},
+ {"cityId":"353","cityNameEn":"Hai Phong","cityNameCN":"海防","cityCode":"HPH","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hf","pingYin":"haifang"},
+ {"cityId":"354","cityNameEn":"Auckland","cityNameCN":"奥克兰","cityCode":"AKL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"akl","pingYin":"aokelan"},
+ {"cityId":"355","cityNameEn":"Wellington","cityNameCN":"惠灵顿","cityCode":"WLG","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hld","pingYin":"huilingdun"},
+ {"cityId":"356","cityNameEn":"Christchurch","cityNameCN":"基督城","cityCode":"CHC","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"jdc","pingYin":"jiducheng"},
+ {"cityId":"357","cityNameEn":"Queenstown","cityNameCN":"皇后镇","cityCode":"ZQN","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hhz","pingYin":"huanghouzhen"},
+ {"cityId":"358","cityNameEn":"Rotorua","cityNameCN":"罗托鲁亚","cityCode":"ROT","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"ltlw","pingYin":"luotuoluya"},
+ {"cityId":"541","cityNameEn":"Bacolod","cityNameCN":"巴科洛德","cityCode":"BCD","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bkld","pingYin":"bakeluode"},
+ {"cityId":"542","cityNameEn":"Baguio","cityNameCN":"碧瑶","cityCode":"BAG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"by","pingYin":"biyao"},
+ {"cityId":"543","cityNameEn":"Batangas","cityNameCN":"八打雁","cityCode":"PH3","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bdy","pingYin":"badayan"},
+ {"cityId":"544","cityNameEn":"Cagayan De Oro","cityNameCN":"卡加延德奥罗","cityCode":"CGY","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kjydal","pingYin":"kajiayandeaoluo"},
+ {"cityId":"545","cityNameEn":"Cavite","cityNameCN":"甲米地省","cityCode":"PH6","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"jmds","pingYin":"jiamidisheng"},
+ {"cityId":"546","cityNameEn":"Davao","cityNameCN":"达沃","cityCode":"DVO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dw","pingYin":"dawo"},
+ {"cityId":"547","cityNameEn":"Dumaguete","cityNameCN":"杜马格特市","cityCode":"DGT","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dmgt","pingYin":"dongmageteshi"},
+ {"cityId":"548","cityNameEn":"El Nido","cityNameCN":"爱妮岛","cityCode":"ENI","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"and","pingYin":"ainidao"},
+ {"cityId":"549","cityNameEn":"Iloilo","cityNameCN":"怡朗","cityCode":"ILO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"yl","pingYin":"yilang"},
+ {"cityId":"550","cityNameEn":"Laguna","cityNameCN":"拉古纳","cityCode":"LAG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lgn","pingYin":"laguna"},
+ {"cityId":"551","cityNameEn":"Laoag","cityNameCN":"拉瓦格","cityCode":"LAO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lwg","pingYin":"lawage"},
+ {"cityId":"552","cityNameEn":"La Union","cityNameCN":"拉乌尼翁","cityCode":"PH9","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lwnw","pingYin":"lawuniweng"},
+ {"cityId":"553","cityNameEn":"Makati","cityNameCN":"马卡提","cityCode":"P13","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mkd","pingYin":"makati"},
+ {"cityId":"554","cityNameEn":"Mindoro","cityNameCN":"民都洛","cityCode":"P54","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mdl","pingYin":"minduluo"},
+ {"cityId":"555","cityNameEn":"Ortigas","cityNameCN":"奥提加斯","cityCode":"P20","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"atjs","pingYin":"aotijiasi"},
+ {"cityId":"556","cityNameEn":"Pagsanjan","cityNameCN":"百胜滩","cityCode":"P15","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bst","pingYin":"baishengtan"},
+ {"cityId":"557","cityNameEn":"Palawan","cityNameCN":"巴拉望","cityCode":"P17","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"blw","pingYin":"balawang"},
+ {"cityId":"558","cityNameEn":"Pampanga","cityNameCN":"邦板牙","cityCode":"P18","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bby","pingYin":"bangbanya"},
+ {"cityId":"559","cityNameEn":"Pangasinan","cityNameCN":"邦阿西楠省","cityCode":"P19","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"baxn","pingYin":"bangaxinansheng"},
+ {"cityId":"560","cityNameEn":"Puerto Galera","cityNameCN":"波多格尼拉","cityCode":"P21","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bedgnl","pingYin":"boduogenila"},
+ {"cityId":"561","cityNameEn":"Quezon City","cityNameCN":"奎松城","cityCode":"P22","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kss","pingYin":"kuisongcheng"},
+ {"cityId":"562","cityNameEn":"Subic","cityNameCN":"苏比克","cityCode":"SFS","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sbk","pingYin":"subike"},
+ {"cityId":"563","cityNameEn":"Tagaytay","cityNameCN":"大雅台","cityCode":"P32","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dyt","pingYin":"dayatai"},
+ {"cityId":"564","cityNameEn":"Tarlac","cityNameCN":"塔拉克","cityCode":"P27","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"tlk","pingYin":"talake"},
+ {"cityId":"569","cityNameEn":"Box Hill","cityNameCN":"博士山","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"bss","pingYin":"boshishan"},
+ {"cityId":"570","cityNameEn":"Geelong","cityNameCN":"吉朗","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jl","pingYin":"jilang"},
+ {"cityId":"571","cityNameEn":"Lorne","cityNameCN":"洛恩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"le","pingYin":"luoen"},
+ {"cityId":"572","cityNameEn":"Phillip Island","cityNameCN":"菲利普岛","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"flpd","pingYin":"feilipudao"},
+ {"cityId":"573","cityNameEn":"St.Kilda","cityNameCN":"圣基尔达","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"sjed","pingYin":"shengjierda"},
+ {"cityId":"574","cityNameEn":"Yarra Valley","cityNameCN":"雅拉谷","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ylg","pingYin":"yalagu"},
+ {"cityId":"576","cityNameEn":"Trinity Beach","cityNameCN":"三圣海滩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ssht","pingYin":"sanshenghaitan"},
+ {"cityId":"577","cityNameEn":"Mooloolaba","cityNameCN":"穆卢拉巴","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"mulb","pingYin":"mululaba"},
+ {"cityId":"578","cityNameEn":"Noosa","cityNameCN":"努莎","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ns","pingYin":"nusha"},
+ {"cityId":"579","cityNameEn":"Palm Cove","cityNameCN":"棕榈湾","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"zlw","pingYin":"zonglvwan"},
+ {"cityId":"580","cityNameEn":"Port Douglas","cityNameCN":"德格拉斯港","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dglsg","pingYin":"degelasigang"},
+ {"cityId":"581","cityNameEn":"Whitsundays","cityNameCN":"圣灵群岛","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"slqd","pingYin":"shenglingqundao"},
+ {"cityId":"582","cityNameEn":"Airlie Beach","cityNameCN":"艾尔利海滩","cityCode":"WSY","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"aelht","pingYin":"aierlihaitan"},
+ {"cityId":"583","cityNameEn":"Daydream Island","cityNameCN":"白日梦岛","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"brmd","pingYin":"bairimengdao"},
+ {"cityId":"584","cityNameEn":"Sunshine Coast","cityNameCN":"阳光海岸","cityCode":"MCY","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"yghy","pingYin":"yangguanghaian"},
+ {"cityId":"585","cityNameEn":"Townsville","cityNameCN":"汤斯维尔","cityCode":"TSV","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"tswe","pingYin":"tangsiweier"},
+ {"cityId":"586","cityNameEn":"Cairns","cityNameCN":"凯恩斯","cityCode":"CNS","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kes","pingYin":"kaiensi"},
+ {"cityId":"587","cityNameEn":"Ayers Rock","cityNameCN":"艾尔斯山","cityCode":"AYQ","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"aess","pingYin":"aiersishan"},
+ {"cityId":"588","cityNameEn":"Darwin","cityNameCN":"达尔文","cityCode":"DRW","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dew","pingYin":"daerwen"},
+ {"cityId":"589","cityNameEn":"Alice Springs","cityNameCN":"艾丽斯斯普林斯","cityCode":"ASP","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"alsspls","pingYin":"ailisisipulinsi"},
+ {"cityId":"590","cityNameEn":"Kakadu","cityNameCN":"卡卡杜","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kkd","pingYin":"kakadu"},
+ {"cityId":"591","cityNameEn":"Jabiru","cityNameCN":"贾比鲁","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jbl","pingYin":"jiabilu"},
+ {"cityId":"592","cityNameEn":"Kings Canyon","cityNameCN":"帝王谷","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dwg","pingYin":"diwanggu"},
+ {"cityId":"594","cityNameEn":"Broome","cityNameCN":"布鲁姆","cityCode":"BME","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"blm","pingYin":"bulumu"},
+ {"cityId":"595","cityNameEn":"Busselton","cityNameCN":"巴瑟尔顿","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"bsed","pingYin":"baseerdun"},
+ {"cityId":"596","cityNameEn":"Fremantle","cityNameCN":"弗里曼特尔","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"flmte","pingYin":"fulimanteer"},
+ {"cityId":"597","cityNameEn":"Geraldton","cityNameCN":"杰拉尔顿","cityCode":"GET","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jled","pingYin":"jielaerdun"},
+ {"cityId":"598","cityNameEn":"Kalgoorlie","cityNameCN":"卡尔古利","cityCode":"KGI","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kegl","pingYin":"kaerguli"},
+ {"cityId":"599","cityNameEn":"Karratha","cityNameCN":"卡拉沙","cityCode":"KTA","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kls","pingYin":"kalasha"},
+ {"cityId":"600","cityNameEn":"Kununurra","cityNameCN":"库努纳拉","cityCode":"KNX","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"knnl","pingYin":"kununala"},
+ {"cityId":"601","cityNameEn":"Margaret River","cityNameCN":"西澳玛格瑞特河","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"xamgrth","pingYin":"xiaomageruitehe"},
+ {"cityId":"602","cityNameEn":"Scarborough Beach","cityNameCN":"斯卡波罗海滩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"skblht","pingYin":"sikaboluohaitan"},
+ {"cityId":"603","cityNameEn":"Taipei","cityNameCN":"台北","cityCode":"TPE","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"tb","pingYin":"taibei"},
+ {"cityId":"604","cityNameEn":"Sapporo","cityNameCN":"札幌","cityCode":"SPK","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"zh","pingYin":"zhahuang"},
+ {"cityId":"605","cityNameEn":"New Chitose Airport","cityNameCN":"新千岁机场","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xqsjc","pingYin":"xinqiansuijichang"},
+ {"cityId":"606","cityNameEn":"Hakodate","cityNameCN":"函馆","cityCode":"HKD","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"hg","pingYin":"hanguan"},
+ {"cityId":"607","cityNameEn":"Sendai","cityNameCN":"仙台","cityCode":"SDJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xt","pingYin":"xiantai"},
+ {"cityId":"608","cityNameEn":"Nikko","cityNameCN":"日光","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"rg","pingYin":"riguang"},
+ {"cityId":"609","cityNameEn":"Niigata","cityNameCN":"新泻","cityCode":"KIJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xh","pingYin":"xinxie"},
+ {"cityId":"610","cityNameEn":"Tasmania","cityNameCN":"塔斯马尼亚","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"tsmny","pingYin":"tasimaniya"},
+ {"cityId":"611","cityNameEn":"Tokyo","cityNameCN":"东京","cityCode":"TYO","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"dj","pingYin":"dongjing"},
+ {"cityId":"612","cityNameEn":"Launceston","cityNameCN":"朗瑟士敦","cityCode":"LST","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"lssd","pingYin":"langsesidun"},
+ {"cityId":"613","cityNameEn":"Bowral","cityNameCN":"鲍勒尔","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ble","pingYin":"baoleer"},
+ {"cityId":"614","cityNameEn":"Dunsbarough","cityNameCN":"戴士柏","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"dsb","pingYin":"daishibai"},
+ {"cityId":"615","cityNameEn":"Katherine","cityNameCN":"凯瑟琳","cityCode":"KTR","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"ksl","pingYin":"kaiselin"},
+ {"cityId":"616","cityNameEn":"Newman","cityNameCN":"纽曼","cityCode":"ZNE","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"nm","pingYin":"niuman"},
+ {"cityId":"617","cityNameEn":"Jindabyne","cityNameCN":"金德拜恩","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"jdbe","pingYin":"jindebaien"},
+ {"cityId":"618","cityNameEn":"Port Stephens","cityNameCN":"史蒂芬港","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"sdfg","pingYin":"shidifengang"},
+ {"cityId":"619","cityNameEn":"Seoul","cityNameCN":"首尔","cityCode":"SEL","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"se","pingYin":"shouer"},
+ {"cityId":"620","cityNameEn":"Narita Airport","cityNameCN":"成田机场","cityCode":"NRT","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"ctjc","pingYin":"chengtianjichang"},
+ {"cityId":"621","cityNameEn":"Makuhari Messe","cityNameCN":"幕张国际展览","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"mzgjzlg","pingYin":"muzhangguojizhanlan"},
+ {"cityId":"622","cityNameEn":"Mount Fuji","cityNameCN":"富士山","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"fss","pingYin":"fushishan"},
+ {"cityId":"623","cityNameEn":"Hakone","cityNameCN":"箱根","cityCode":"J01","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"xg","pingYin":"xianggen"},
+ {"cityId":"624","cityNameEn":"Atami","cityNameCN":"热海","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"rh","pingYin":"rehai"},
+ {"cityId":"625","cityNameEn":"Shizuoka","cityNameCN":"静冈县","cityCode":"FSZ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"jgx","pingYin":"jinggangxian"},
+ {"cityId":"626","cityNameEn":"Hamamatsu","cityNameCN":"滨松","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"bs","pingYin":"binsong"},
+ {"cityId":"627","cityNameEn":"Nagoya","cityNameCN":"名古屋","cityCode":"NGO","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"mgw","pingYin":"mingguwu"},
+ {"cityId":"628","cityNameEn":"Takayama","cityNameCN":"高山","cityCode":"JP3","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"gs","pingYin":"gaoshan"},
+ {"cityId":"629","cityNameEn":"Gifu","cityNameCN":"岐阜县","cityCode":"QGU","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"qfx","pingYin":"qifuxian"},
+ {"cityId":"630","cityNameEn":"Toyama","cityNameCN":"富山","cityCode":"TOY","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"fs","pingYin":"fushan"},
+ {"cityId":"631","cityNameEn":"Kanazawa","cityNameCN":"金泽","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"jz","pingYin":"jinze"},
+ {"cityId":"632","cityNameEn":"Kyoto","cityNameCN":"京都","cityCode":"UKY","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"jd","pingYin":"jingdong"},
+ {"cityId":"633","cityNameEn":"Osaka","cityNameCN":"大阪","cityCode":"OSA","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"db","pingYin":"daban"},
+ {"cityId":"634","cityNameEn":"Kobe","cityNameCN":"神户","cityCode":"UKB","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"sh","pingYin":"shenhu"},
+ {"cityId":"635","cityNameEn":"Okayama","cityNameCN":"冈山","cityCode":"OKJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"gs","pingYin":"gangshan"},
+ {"cityId":"636","cityNameEn":"Kurashiki","cityNameCN":"仓敷","cityCode":"NULL","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"cf","pingYin":"cangfu"},
+ {"cityId":"637","cityNameEn":"Fukuoka","cityNameCN":"福冈","cityCode":"FUK","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"fg","pingYin":"fugang"},
+ {"cityId":"638","cityNameEn":"Kagoshima","cityNameCN":"鹿儿岛","cityCode":"KOJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"led","pingYin":"luerdao"},
+ {"cityId":"639","cityNameEn":"Busan","cityNameCN":"釜山","cityCode":"PUS","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"fs","pingYin":"fushan"},
+ {"cityId":"640","cityNameEn":"Daegu","cityNameCN":"大邱","cityCode":"TAE","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"dq","pingYin":"daqiu"},
+ {"cityId":"641","cityNameEn":"Gyeongju","cityNameCN":"庆州","cityCode":"USN","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"qz","pingYin":"qingzhou"},
+ {"cityId":"642","cityNameEn":"Jeju-Do","cityNameCN":"济州岛","cityCode":"CJU","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"jzd","pingYin":"jizhoudao"},
+ {"cityId":"648","cityNameEn":"Redang Island","cityNameCN":"热浪岛","cityCode":"RDN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"rld","pingYin":"relangdao"},
+ {"cityId":"652","cityNameEn":"Yangon","cityNameCN":"仰光","cityCode":"RGN","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"yg","pingYin":"yangguang"},
+ {"cityId":"660","cityNameEn":"Cairo","cityNameCN":"开罗","cityCode":"CAI","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"kl","pingYin":"kailuo"},
+ {"cityId":"661","cityNameEn":"Alexandria","cityNameCN":"亚历山大","cityCode":"ALY","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"ylsd","pingYin":"yalishanda"},
+ {"cityId":"662","cityNameEn":"Sharm El Sheikh","cityNameCN":"沙姆沙伊赫","cityCode":"SSH","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"smsyh","pingYin":"shamushayihe"},
+ {"cityId":"663","cityNameEn":"Aswan","cityNameCN":"阿斯旺","cityCode":"ASW","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"asw","pingYin":"asiwang"},
+ {"cityId":"664","cityNameEn":"Luxor","cityNameCN":"路克索","cityCode":"LXR","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"lks","pingYin":"lukesuo"},
+ {"cityId":"665","cityNameEn":"Hurghada","cityNameCN":"胡尔格达","cityCode":"HRG","countryName":"Egypt","countryIsoCode":"EG","hyKeyWord":"hegd","pingYin":"huergeda"},
+ {"cityId":"666","cityNameEn":"Manama","cityNameCN":"麦纳麦","cityCode":"BAH","countryName":"Bahrain","countryIsoCode":"BH","hyKeyWord":"mnm","pingYin":"mainamai"},
+ {"cityId":"667","cityNameEn":"Limassol","cityNameCN":"利马索尔","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"lmse","pingYin":"limasuoer"},
+ {"cityId":"668","cityNameEn":"Paphos","cityNameCN":"帕福斯","cityCode":"PFO","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"pfs","pingYin":"pafusi"},
+ {"cityId":"669","cityNameEn":"Larnaca","cityNameCN":"拉纳卡","cityCode":"LCA","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"lnk","pingYin":"lanaka"},
+ {"cityId":"670","cityNameEn":"Ayia Napa","cityNameCN":"阿依纳帕","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"aynp","pingYin":"ayinapa"},
+ {"cityId":"671","cityNameEn":"Tehran","cityNameCN":"德黑兰","cityCode":"THR","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"dhl","pingYin":"deheilan"},
+ {"cityId":"672","cityNameEn":"Isfahan","cityNameCN":"伊斯法罕","cityCode":"IFN","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"ysfh","pingYin":"yisifahan"},
+ {"cityId":"673","cityNameEn":"Shiraz","cityNameCN":"设拉子","cityCode":"SYZ","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"slz","pingYin":"shelazi"},
+ {"cityId":"674","cityNameEn":"Mashed","cityNameCN":"马什哈德","cityCode":"NULL","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"mshd","pingYin":"maishihade"},
+ {"cityId":"675","cityNameEn":"Bandar Abass","cityNameCN":"阿巴斯港","cityCode":"NULL","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"absg","pingYin":"abasigang"},
+ {"cityId":"676","cityNameEn":"Amman","cityNameCN":"安曼","cityCode":"AMM","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"am","pingYin":"anman"},
+ {"cityId":"677","cityNameEn":"Petra","cityNameCN":"佩特拉","cityCode":"JO1","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"ptl","pingYin":"peitela"},
+ {"cityId":"678","cityNameEn":"Aqaba","cityNameCN":"亚喀巴","cityCode":"AQJ","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"ykb","pingYin":"yakaba"},
+ {"cityId":"679","cityNameEn":"Dead Sea","cityNameCN":"死海","cityCode":"NULL","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"sh","pingYin":"sihai"},
+ {"cityId":"680","cityNameEn":"Beirut","cityNameCN":"贝鲁特","cityCode":"BEY","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"blt","pingYin":"beilute"},
+ {"cityId":"681","cityNameEn":"Bekaa","cityNameCN":"贝卡","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"bk","pingYin":"beika"},
+ {"cityId":"682","cityNameEn":"Jounieh","cityNameCN":"朱尼耶","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"zny","pingYin":"zhuniye"},
+ {"cityId":"683","cityNameEn":"Chouf","cityNameCN":"乔福","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"qf","pingYin":"qiaofu"},
+ {"cityId":"684","cityNameEn":"North Lebanon","cityNameCN":"黎巴嫩北部","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"blbn","pingYin":"libanenbeibu"},
+ {"cityId":"685","cityNameEn":"Broumana","cityNameCN":"Broumana","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"blmn","pingYin":"Broumana"},
+ {"cityId":"686","cityNameEn":"Faraya","cityNameCN":"Faraya","cityCode":"NULL","countryName":"Lebanon","countryIsoCode":"LB","hyKeyWord":"fly","pingYin":"Faraya"},
+ {"cityId":"687","cityNameEn":"Muscat","cityNameCN":"马斯喀特","cityCode":"MCT","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"mskt","pingYin":"masikate"},
+ {"cityId":"688","cityNameEn":"Barka","cityNameCN":"巴尔卡","cityCode":"OM1","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"bek","pingYin":"baerka"},
+ {"cityId":"689","cityNameEn":"Nizwa","cityNameCN":"尼兹瓦","cityCode":"OM2","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"nzw","pingYin":"niziwa"},
+ {"cityId":"690","cityNameEn":"Sur","cityNameCN":"萨尔","cityCode":"OM4","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"se","pingYin":"saer"},
+ {"cityId":"691","cityNameEn":"Sohar","cityNameCN":"苏哈尔","cityCode":"OM3","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"she","pingYin":"suhaer"},
+ {"cityId":"692","cityNameEn":"Salalah","cityNameCN":"塞拉莱","cityCode":"SLL","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"sll","pingYin":"sailalai"},
+ {"cityId":"693","cityNameEn":"Khasab","cityNameCN":"海塞卜","cityCode":"KHS","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"hsb","pingYin":"haisaibu"},
+ {"cityId":"694","cityNameEn":"Ibra","cityNameCN":"依博拉","cityCode":"NULL","countryName":"Oman","countryIsoCode":"OM","hyKeyWord":"ybl","pingYin":"yibola"},
+ {"cityId":"695","cityNameEn":"Islamabad","cityNameCN":"伊斯兰堡","cityCode":"ISB","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"yslb","pingYin":"yisilanbao"},
+ {"cityId":"696","cityNameEn":"Lahore","cityNameCN":"拉合尔","cityCode":"LHE","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"lhe","pingYin":"laheer"},
+ {"cityId":"697","cityNameEn":"Karachi","cityNameCN":"卡拉奇","cityCode":"KHI","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"klq","pingYin":"kalaqi"},
+ {"cityId":"698","cityNameEn":"Gilgit","cityNameCN":"吉尔吉特","cityCode":"GIL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"jejt","pingYin":"jierjite"},
+ {"cityId":"699","cityNameEn":"Swat","cityNameCN":"斯瓦特","cityCode":"NULL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"swt","pingYin":"siwate"},
+ {"cityId":"700","cityNameEn":"Faisalabad","cityNameCN":"费萨拉巴德","cityCode":"LYP","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"fslbd","pingYin":"feisalabade"},
+ {"cityId":"701","cityNameEn":"Quetta","cityNameCN":"奎达","cityCode":"UET","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"kd","pingYin":"kuida"},
+ {"cityId":"702","cityNameEn":"Rawalpindi","cityNameCN":"拉瓦尔品第","cityCode":"NULL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"lwepd","pingYin":"lawaerpindi"},
+ {"cityId":"704","cityNameEn":"Doha","cityNameCN":"多哈","cityCode":"DOH","countryName":"Qatar","countryIsoCode":"QA","hyKeyWord":"dh","pingYin":"duoha"},
+ {"cityId":"705","cityNameEn":"Riyadh","cityNameCN":"利雅得","cityCode":"RUH","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"lyd","pingYin":"liyade"},
+ {"cityId":"706","cityNameEn":"Makkah","cityNameCN":"麦加","cityCode":"NULL","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"mj","pingYin":"maijia"},
+ {"cityId":"707","cityNameEn":"Madinah","cityNameCN":"麦地那","cityCode":"MED","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"mdn","pingYin":"maidina"},
+ {"cityId":"708","cityNameEn":"Jeddah","cityNameCN":"吉达","cityCode":"JED","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"jd","pingYin":"jida"},
+ {"cityId":"709","cityNameEn":"Al Khobar","cityNameCN":"阿而科巴而","cityCode":"SA1","countryName":"Saudi Arabia","countryIsoCode":"SA","hyKeyWord":"aekbe","pingYin":"aerkebaer"},
+ {"cityId":"710","cityNameEn":"Damascus","cityNameCN":"大马士革","cityCode":"DAM","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"dmsg","pingYin":"damashige"},
+ {"cityId":"711","cityNameEn":"Aleppo","cityNameCN":"阿勒颇","cityCode":"ALP","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"alp","pingYin":"alepo"},
+ {"cityId":"712","cityNameEn":"Tartous","cityNameCN":"塔尔图斯","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"tets","pingYin":"taertusi"},
+ {"cityId":"713","cityNameEn":"Homs","cityNameCN":"霍姆斯","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"hms","pingYin":"huomusi"},
+ {"cityId":"714","cityNameEn":"Lattakia","cityNameCN":"拉塔基亚","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"ltjy","pingYin":"latajiya"},
+ {"cityId":"715","cityNameEn":"Palmyra","cityNameCN":"帕密拉","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"pml","pingYin":"pamila"},
+ {"cityId":"716","cityNameEn":"Deir Ezzor","cityNameCN":"代尔祖尔","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"deze","pingYin":"daierzuer"},
+ {"cityId":"717","cityNameEn":"Hama","cityNameCN":"哈马","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"hm","pingYin":"hama"},
+ {"cityId":"718","cityNameEn":"Istanbul","cityNameCN":"伊斯坦布尔","cityCode":"IST","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"ystbe","pingYin":"yisitanbuer"},
+ {"cityId":"719","cityNameEn":"Bursa","cityNameCN":"布尔萨","cityCode":"YEI","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"bes","pingYin":"buersa"},
+ {"cityId":"720","cityNameEn":"Yalova","cityNameCN":"亚洛瓦","cityCode":"TR5","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"ylw","pingYin":"yaluowa"},
+ {"cityId":"721","cityNameEn":"Abant & Bolu","cityNameCN":"Abant ＆伯禄","cityCode":"TR1","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"bl","pingYin":"Abant＆bolu"},
+ {"cityId":"722","cityNameEn":"Izmir","cityNameCN":"伊兹密尔","cityCode":"IZM","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"yzme","pingYin":"yizimier"},
+ {"cityId":"723","cityNameEn":"Ankara","cityNameCN":"安卡拉","cityCode":"ANK","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"akl","pingYin":"ankala"},
+ {"cityId":"724","cityNameEn":"Antalya","cityNameCN":"安塔利亚","cityCode":"AYT","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"atly","pingYin":"antaliya"},
+ {"cityId":"725","cityNameEn":"Bodrum","cityNameCN":"博德鲁姆","cityCode":"BXN","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"bdlm","pingYin":"bodelumu"},
+ {"cityId":"726","cityNameEn":"Cappadocia","cityNameCN":"卡帕多西亚","cityCode":"TR3","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"kpdqy","pingYin":"kapaduoxiya"},
+ {"cityId":"727","cityNameEn":"Konya","cityNameCN":"科尼亚","cityCode":"KYA","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"kny","pingYin":"keniya"},
+ {"cityId":"728","cityNameEn":"Mersin","cityNameCN":"梅尔辛","cityCode":"TR4","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"mex","pingYin":"meierxin"},
+ {"cityId":"729","cityNameEn":"Afyon","cityNameCN":"阿菲永","cityCode":"NULL","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"afy","pingYin":"afeiyong"},
+ {"cityId":"730","cityNameEn":"Black Sea","cityNameCN":"黑海","cityCode":"TR2","countryName":"Turkey","countryIsoCode":"TR","hyKeyWord":"hh","pingYin":"heihai"},
+ {"cityId":"731","cityNameEn":"Nairobi","cityNameCN":"内罗毕","cityCode":"NBO","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"nlb","pingYin":"neiluobi"},
+ {"cityId":"732","cityNameEn":"Mombasa North Coast","cityNameCN":"蒙巴萨北部海岸","cityCode":"NULL","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"mbsb","pingYin":"mengbasabeibuhaian"},
+ {"cityId":"733","cityNameEn":"Mombasa South Coast","cityNameCN":"蒙巴萨南岸","cityCode":"NULL","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"mbsn","pingYin":"mengbasananan"},
+ {"cityId":"734","cityNameEn":"Koh Samui","cityNameCN":"苏梅岛","cityCode":"USM","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sm","pingYin":"sumeidao"},
+ {"cityId":"735","cityNameEn":"Trat","cityNameCN":"达叻府","cityCode":"TDX","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"dl","pingYin":"dalefu"},
+ {"cityId":"736","cityNameEn":"Mae Hong Son","cityNameCN":"夜丰颂","cityCode":"HGN","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"yfs","pingYin":"yefengsong"},
+ {"cityId":"738","cityNameEn":"Marrakesh","cityNameCN":"马拉喀什","cityCode":"NULL","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"mlks","pingYin":"malakashi"},
+ {"cityId":"739","cityNameEn":"Fes","cityNameCN":"非斯","cityCode":"NULL","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"fs","pingYin":"feisi"},
+ {"cityId":"740","cityNameEn":"Ouarzazate","cityNameCN":"瓦尔扎扎特","cityCode":"OZZ","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"wezzt","pingYin":"waerzhazhate"},
+ {"cityId":"741","cityNameEn":"Casablanca","cityNameCN":"卡萨布兰卡","cityCode":"CAS","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"ksblk","pingYin":"kasabulanka"},
+ {"cityId":"742","cityNameEn":"Erfoud","cityNameCN":"艾尔芙","cityCode":"NULL","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"aef","pingYin":"aierfu"},
+ {"cityId":"743","cityNameEn":"Praslin","cityNameCN":"普拉兰岛","cityCode":"PRI","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"pll","pingYin":"pulalandao"},
+ {"cityId":"744","cityNameEn":"Mahe","cityNameCN":"马埃岛","cityCode":"SEZ","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"ma","pingYin":"maaidao"},
+ {"cityId":"745","cityNameEn":"La Digue","cityNameCN":"拉迪格","cityCode":"SC1","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"ldg","pingYin":"ladige"},
+ {"cityId":"746","cityNameEn":"Denis Island","cityNameCN":"丹尼斯岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"dns","pingYin":"dannisidao"},
+ {"cityId":"747","cityNameEn":"Sainte Anne","cityNameCN":"圣安妮","cityCode":"SC2","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"san","pingYin":"shenganni"},
+ {"cityId":"748","cityNameEn":"Johannesburg","cityNameCN":"约翰内斯堡","cityCode":"JNB","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"yhnsb","pingYin":"yuehanneisibao"},
+ {"cityId":"749","cityNameEn":"Durban","cityNameCN":"德班","cityCode":"DUR","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"db","pingYin":"deban"},
+ {"cityId":"750","cityNameEn":"Sun City","cityNameCN":"太阳城","cityCode":"NTY","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"tyc","pingYin":"taiyangcheng"},
+ {"cityId":"751","cityNameEn":"Cape Town","cityNameCN":"开普敦","cityCode":"CPT","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"kpd","pingYin":"kaipudun"},
+ {"cityId":"752","cityNameEn":"Pretoria","cityNameCN":"比勒陀利亚","cityCode":"NULL","countryName":"South Africa","countryIsoCode":"ZA","hyKeyWord":"bltly","pingYin":"biletuoliya"},
+ {"cityId":"753","cityNameEn":"Khao Yai","cityNameCN":"考艾","cityCode":"TH8","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ka","pingYin":"kaoai"},
+ {"cityId":"754","cityNameEn":"Trang","cityNameCN":"董里府","cityCode":"TST","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"dl","pingYin":"donglifu"},
+ {"cityId":"755","cityNameEn":"Ayutthaya","cityNameCN":"大城","cityCode":"TH1","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"dc","pingYin":"dacheng"},
+ {"cityId":"756","cityNameEn":"Khao Lak","cityNameCN":"蔻立","cityCode":"TH7","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"kl","pingYin":"kouli"},
+ {"cityId":"773","cityNameEn":"Agat","cityNameCN":"亚加港","cityCode":"NULL","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"yjg","pingYin":"yajiagang"},
+ {"cityId":"774","cityNameEn":"Fiji","cityNameCN":"斐济","cityCode":"NULL","countryName":"Finland","countryIsoCode":"FI","hyKeyWord":"fj","pingYin":"feiji"},
+ {"cityId":"775","cityNameEn":"Surin","cityNameCN":"苏林","cityCode":"T26","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sl","pingYin":"sulin"},
+ {"cityId":"776","cityNameEn":"Tak","cityNameCN":"达府","cityCode":"T27","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"df","pingYin":"dafu"},
+ {"cityId":"777","cityNameEn":"Khon Kaen","cityNameCN":"孔敬","cityCode":"KKC","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"kj","pingYin":"kongjing"},
+ {"cityId":"778","cityNameEn":"Chumphon","cityNameCN":"春蓬","cityCode":"TH4","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"cp","pingYin":"chunpeng"},
+ {"cityId":"779","cityNameEn":"Sukhothai","cityNameCN":"素可泰","cityCode":"THS","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"skt","pingYin":"suketai"},
+ {"cityId":"780","cityNameEn":"Hat Yai","cityNameCN":"合艾","cityCode":"HDY","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ha","pingYin":"heai"},
+ {"cityId":"781","cityNameEn":"Phitsanuloke","cityNameCN":"彭世洛","cityCode":"T20","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"psl","pingYin":"pengshiluo"},
+ {"cityId":"782","cityNameEn":"Nong Khai","cityNameCN":"廊开府","cityCode":"T15","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lk","pingYin":"langkaifu"},
+ {"cityId":"783","cityNameEn":"Ranong","cityNameCN":"拉廊","cityCode":"UNN","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ll","pingYin":"lalang"},
+ {"cityId":"784","cityNameEn":"Koh Tao","cityNameCN":"涛岛","cityCode":"T13","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"gd","pingYin":"taodao"},
+ {"cityId":"785","cityNameEn":"Loei","cityNameCN":"黎府","cityCode":"LOE","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lf","pingYin":"lifu"},
+ {"cityId":"786","cityNameEn":"Petchaboon","cityNameCN":"碧差汶","cityCode":"T17","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bcw","pingYin":"bichawen"},
+ {"cityId":"787","cityNameEn":"Lampang","cityNameCN":"南邦","cityCode":"LPT","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nb","pingYin":"nanbang"},
+ {"cityId":"788","cityNameEn":"Nakhon Pathom","cityNameCN":"佛统府","cityCode":"T29","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ft","pingYin":"fotongfu"},
+ {"cityId":"789","cityNameEn":"Chacheongsao","cityNameCN":"北柳府","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bl","pingYin":"beiliufu"},
+ {"cityId":"790","cityNameEn":"Satun","cityNameCN":"沙敦","cityCode":"T24","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sd","pingYin":"shadun"},
+ {"cityId":"791","cityNameEn":"Phrae","cityNameCN":"帕府","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"pf","pingYin":"pafu"},
+ {"cityId":"792","cityNameEn":"Nakhon Si Thammarat","cityNameCN":"洛坤","cityCode":"NST","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lk","pingYin":"luokun"},
+ {"cityId":"793","cityNameEn":"Macau","cityNameCN":"澳门","cityCode":"MFM","countryName":"Macau","countryIsoCode":"MO","hyKeyWord":"am","pingYin":"aomen"},
+ {"cityId":"794","cityNameEn":"Peshawar","cityNameCN":"白沙瓦","cityCode":"PEW","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"bsw","pingYin":"baishawa"},
+ {"cityId":"795","cityNameEn":"Agadir","cityNameCN":"阿加迪尔","cityCode":"AGA","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"ajde","pingYin":"ajiadier"},
+ {"cityId":"796","cityNameEn":"Mauritius","cityNameCN":"毛里求斯","cityCode":"MRU","countryName":"Mauritius","countryIsoCode":"MU","hyKeyWord":"mlqs","pingYin":"maoliqiusi"},
+ {"cityId":"797","cityNameEn":"Rabat","cityNameCN":"拉巴特","cityCode":"RBA","countryName":"Morocco","countryIsoCode":"MA","hyKeyWord":"lbt","pingYin":"labate"},
+ {"cityId":"842","cityNameEn":"Bosra","cityNameCN":"波斯拉","cityCode":"NULL","countryName":"Syria","countryIsoCode":"SY","hyKeyWord":"bsl","pingYin":"bosila"},
+ {"cityId":"902","cityNameEn":"Yokohama","cityNameCN":"横滨","cityCode":"YOK","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"hb","pingYin":"hengbin"},
+ {"cityId":"967","cityNameEn":"Bago City","cityNameCN":"巴戈市","cityCode":"PH1","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bgs","pingYin":"bageshi"},
+ {"cityId":"968","cityNameEn":"Bandar Seri Begawan","cityNameCN":"斯里巴加湾市","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"slbjws","pingYin":"silibajiawanshi"},
+ {"cityId":"969","cityNameEn":"Jerudong Park Area","cityNameCN":"水晶公园","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"sjgy","pingYin":"shuijinggongyuan"},
+ {"cityId":"970","cityNameEn":"Incheon","cityNameCN":"仁川","cityCode":"ICN","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"rc","pingYin":"renchuan"},
+ {"cityId":"971","cityNameEn":"Ulsan","cityNameCN":"蔚山","cityCode":"USN","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"ws","pingYin":"weishan"},
+ {"cityId":"972","cityNameEn":"Daejeon","cityNameCN":"大田","cityCode":"KR1","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"dt","pingYin":"datian"},
+ {"cityId":"973","cityNameEn":"Ilsan","cityNameCN":"一山","cityCode":"NULL","countryName":"Korea, South","countryIsoCode":"KR","hyKeyWord":"ys","pingYin":"yishan"},
+ {"cityId":"975","cityNameEn":"Colombo","cityNameCN":"科伦坡","cityCode":"CMB","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"klp","pingYin":"kelunpo"},
+ {"cityId":"976","cityNameEn":"Kaohsiung","cityNameCN":"高雄","cityCode":"KHH","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"gx","pingYin":"gaoxiong"},
+ {"cityId":"977","cityNameEn":"Taichung","cityNameCN":"台中","cityCode":"RMQ","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"tz","pingYin":"taizhong"},
+ {"cityId":"978","cityNameEn":"Hualien","cityNameCN":"花莲","cityCode":"HUN","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"hl","pingYin":"hualian"},
+ {"cityId":"979","cityNameEn":"Tainan","cityNameCN":"台南","cityCode":"TNN","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"tn","pingYin":"tainan"},
+ {"cityId":"980","cityNameEn":"Chiayi","cityNameCN":"嘉义","cityCode":"CYI","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"jy","pingYin":"jiayi"},
+ {"cityId":"981","cityNameEn":"Taoyuan","cityNameCN":"桃园","cityCode":"TAO","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ty","pingYin":"taoyuan"},
+ {"cityId":"982","cityNameEn":"Hsinchu","cityNameCN":"新竹","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"xz","pingYin":"xinzhu"},
+ {"cityId":"983","cityNameEn":"Chungli","cityNameCN":"中坜","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"zl","pingYin":"zhongli"},
+ {"cityId":"984","cityNameEn":"Butuan","cityNameCN":"雾瑞","cityCode":"BXU","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"wr","pingYin":"wurui"},
+ {"cityId":"985","cityNameEn":"Zamboanga","cityNameCN":"三宝颜","cityCode":"ZAM","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sby","pingYin":"sanbaoyan"},
+ {"cityId":"986","cityNameEn":"Cotabato","cityNameCN":"哥打巴托","cityCode":"CBO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"gdbt","pingYin":"gedabatuo"},
+ {"cityId":"987","cityNameEn":"Tacloban","cityNameCN":"塔克洛班","cityCode":"TAC","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"tklb","pingYin":"takeluoban"},
+ {"cityId":"988","cityNameEn":"Dapitan","cityNameCN":"达比丹","cityCode":"PH7","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dbd","pingYin":"dabidan"},
+ {"cityId":"989","cityNameEn":"Dipolog","cityNameCN":"第波罗","cityCode":"DPL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dbl","pingYin":"diboluo"},
+ {"cityId":"997","cityNameEn":"Negombo","cityNameCN":"尼干布","cityCode":"SL6","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ngb","pingYin":"niganbu"},
+ {"cityId":"998","cityNameEn":"Bentota","cityNameCN":"班托塔","cityCode":"BJT","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"btt","pingYin":"bantuota"},
+ {"cityId":"999","cityNameEn":"Mt. Lavinia","cityNameCN":"芒特拉维尼亚","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"mtlwny","pingYin":"mangtelaweiniya"},
+ {"cityId":"1000","cityNameEn":"Katunayake, Airport","cityNameCN":"卡图纳耶克，机场","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ktnykjc","pingYin":"katunayekejichang"},
+ {"cityId":"1002","cityNameEn":"Kalutara","cityNameCN":"卡卢特勒","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"kltl","pingYin":"kalutele"},
+ {"cityId":"1003","cityNameEn":"Beruwela","cityNameCN":"巴鲁维拉","cityCode":"SL5","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"blwl","pingYin":"baluweila"},
+ {"cityId":"1004","cityNameEn":"Wadduwa","cityNameCN":"瓦都瓦","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"wdw","pingYin":"waduwa"},
+ {"cityId":"1005","cityNameEn":"Galle","cityNameCN":"加勒","cityCode":"KCT","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"jl","pingYin":"jiale"},
+ {"cityId":"1006","cityNameEn":"Kandy","cityNameCN":"康堤","cityCode":"KDW","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"kd","pingYin":"kangdi"},
+ {"cityId":"1007","cityNameEn":"Pahang","cityNameCN":"彭亨","cityCode":"M24","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ph","pingYin":"pengheng"},
+ {"cityId":"1008","cityNameEn":"Miaoli Canton","cityNameCN":"苗栗","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ml","pingYin":"mioali"},
+ {"cityId":"1009","cityNameEn":"Penghu","cityNameCN":"澎湖","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ph","pingYin":"penghu"},
+ {"cityId":"1010","cityNameEn":"Keelung","cityNameCN":"基隆","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"jl","pingYin":"jilong"},
+ {"cityId":"1011","cityNameEn":"TaiTung","cityNameCN":"台东","cityCode":"TTT","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"td","pingYin":"taidong"},
+ {"cityId":"1020","cityNameEn":"Phnom Penh","cityNameCN":"金边","cityCode":"PNH","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"jb","pingYin":"jinbian"},
+ {"cityId":"1021","cityNameEn":"Siem Reap","cityNameCN":"暹粒","cityCode":"REP","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"xl","pingYin":"xianli"},
+ {"cityId":"1023","cityNameEn":"Vientiane","cityNameCN":"万象","cityCode":"VTE","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"wx","pingYin":"wanxiang"},
+ {"cityId":"1024","cityNameEn":"Luang Prabang","cityNameCN":"琅勃拉邦","cityCode":"LPQ","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"lblb","pingYin":"langbolabang"},
+ {"cityId":"1025","cityNameEn":"Saigon","cityNameCN":"西贡","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"xg","pingYin":"xigong"},
+ {"cityId":"1027","cityNameEn":"Hue","cityNameCN":"顺化","cityCode":"HUI","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sh","pingYin":"shunhua"},
+ {"cityId":"1031","cityNameEn":"Hoi An","cityNameCN":"惠安","cityCode":"VN5","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"ha","pingYin":"huian"},
+ {"cityId":"1032","cityNameEn":"Phan Thiet","cityNameCN":"藩切","cityCode":"VN6","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"fq","pingYin":"fanqie"},
+ {"cityId":"1033","cityNameEn":"Hiroshima","cityNameCN":"广岛","cityCode":"HIJ","countryName":"Japan","countryIsoCode":"JP","hyKeyWord":"gd","pingYin":"guangdao"},
+ {"cityId":"1034","cityNameEn":"Agra","cityNameCN":"阿格拉","cityCode":"AGR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"agl","pingYin":"agela"},
+ {"cityId":"1035","cityNameEn":"Srinagar","cityNameCN":"斯利那加","cityCode":"SXR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"slnj","pingYin":"silinajia"},
+ {"cityId":"1038","cityNameEn":"Wattala","cityNameCN":"Wattala","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"wtl","pingYin":"Wattala"},
+ {"cityId":"1039","cityNameEn":"Dambulla","cityNameCN":"丹布勒","cityCode":"SL4","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"dbl","pingYin":"danbule"},
+ {"cityId":"1040","cityNameEn":"Nuwara Eliya","cityNameCN":"努瓦拉埃利亞","cityCode":"SL1","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"nwlaly","pingYin":"nuwalaailiya"},
+ {"cityId":"1041","cityNameEn":"Habarana","cityNameCN":"哈巴拉娜","cityCode":"SL3","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"hbln","pingYin":"habalana"},
+ {"cityId":"1042","cityNameEn":"Giritale","cityNameCN":"吉利托","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"glt","pingYin":"jilituo"},
+ {"cityId":"1043","cityNameEn":"Anuradhapura","cityNameCN":"阿努拉德普勒","cityCode":"ACJ","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"anldpl","pingYin":"anuladepule"},
+ {"cityId":"1044","cityNameEn":"Sigiriya","cityNameCN":"西吉利亚","cityCode":"GIU","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"xjly","pingYin":"xijiliya"},
+ {"cityId":"1047","cityNameEn":"Hikkaduwa","cityNameCN":"希卡杜瓦","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"xkdw","pingYin":"xikaduwa"},
+ {"cityId":"1063","cityNameEn":"Bangalore","cityNameCN":"班加罗尔","cityCode":"BLR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"bjle","pingYin":"banjialuoer"},
+ {"cityId":"1064","cityNameEn":"Bikaner","cityNameCN":"比卡内尔","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"bkne","pingYin":"bikaneier"},
+ {"cityId":"1065","cityNameEn":"Calcutta","cityNameCN":"加尔各答","cityCode":"CCU","countryName":"India","countryIsoCode":"IN","hyKeyWord":"jegd","pingYin":"jiaergeda"},
+ {"cityId":"1066","cityNameEn":"Chennai","cityNameCN":"金奈","cityCode":"MAA","countryName":"India","countryIsoCode":"IN","hyKeyWord":"jn","pingYin":"jinnai"},
+ {"cityId":"1067","cityNameEn":"Cochin","cityNameCN":"科钦","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"kk","pingYin":"keqin"},
+ {"cityId":"1068","cityNameEn":"Goa","cityNameCN":"果阿","cityCode":"GOI","countryName":"India","countryIsoCode":"IN","hyKeyWord":"ga","pingYin":"guoa"},
+ {"cityId":"1069","cityNameEn":"Hyderabad","cityNameCN":"海德拉巴","cityCode":"HYD","countryName":"India","countryIsoCode":"IN","hyKeyWord":"hdlb","pingYin":"haidelaba"},
+ {"cityId":"1070","cityNameEn":"Jaipur","cityNameCN":"斋浦尔","cityCode":"JAI","countryName":"India","countryIsoCode":"IN","hyKeyWord":"zpe","pingYin":"zhaipuer"},
+ {"cityId":"1071","cityNameEn":"Shimla","cityNameCN":"西姆拉","cityCode":"SLV","countryName":"India","countryIsoCode":"IN","hyKeyWord":"xml","pingYin":"ximula"},
+ {"cityId":"1072","cityNameEn":"Mumbai","cityNameCN":"孟买","cityCode":"BOM","countryName":"India","countryIsoCode":"IN","hyKeyWord":"mm","pingYin":"mengmai"},
+ {"cityId":"1073","cityNameEn":"New Delhi","cityNameCN":"新德里","cityCode":"DEL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"xdl","pingYin":"xindeli"},
+ {"cityId":"1074","cityNameEn":"Pune","cityNameCN":"浦那","cityCode":"PNQ","countryName":"India","countryIsoCode":"IN","hyKeyWord":"pn","pingYin":"puna"},
+ {"cityId":"1075","cityNameEn":"Shirdi","cityNameCN":"舍尔第","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"sed","pingYin":"sheerdi"},
+ {"cityId":"1076","cityNameEn":"Udaipur","cityNameCN":"乌代布尔","cityCode":"UDR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"wdbe","pingYin":"wudaibuer"},
+ {"cityId":"1077","cityNameEn":"Varanasi","cityNameCN":"瓦拉纳西","cityCode":"VNS","countryName":"India","countryIsoCode":"IN","hyKeyWord":"wlnx","pingYin":"walanaxi"},
+ {"cityId":"1082","cityNameEn":"Halong","cityNameCN":"下龙湾","cityCode":"VN4","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"xlw","pingYin":"xialongwan"},
+ {"cityId":"1084","cityNameEn":"Kosgoda","cityNameCN":"可诗果达","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ksgd","pingYin":"keshiguoda"},
+ {"cityId":"1085","cityNameEn":"Can Tho","cityNameCN":"芹苴","cityCode":"VN1","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"qj","pingYin":"qinju"},
+ {"cityId":"1086","cityNameEn":"Sapa","cityNameCN":"沙巴","cityCode":"VN7","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sb","pingYin":"shaba"},
+ {"cityId":"1106","cityNameEn":"Chau Doc","cityNameCN":"朱笃","cityCode":"VN2","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"zd","pingYin":"zhudu"},
+ {"cityId":"1108","cityNameEn":"Aurangabad","cityNameCN":"奥兰加巴德","cityCode":"IXU","countryName":"India","countryIsoCode":"IN","hyKeyWord":"aljbd","pingYin":"aolanjiabade"},
+ {"cityId":"1110","cityNameEn":"Tamuning","cityNameCN":"塔穆宁","cityCode":"GUM","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"tmn","pingYin":"tamuning"},
+ {"cityId":"1111","cityNameEn":"Tumon Bay","cityNameCN":"杜梦湾","cityCode":"GU2","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"dmw","pingYin":"dumengwan"},
+ {"cityId":"1112","cityNameEn":"Yona","cityNameCN":"尤纳","cityCode":"NULL","countryName":"Guam","countryIsoCode":"GU","hyKeyWord":"yn","pingYin":"youna"},
+ {"cityId":"1114","cityNameEn":"Bhubaneshwar","cityNameCN":"布巴尼斯瓦尔","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"bbnswe","pingYin":"bubanisiwaer"},
+ {"cityId":"1181","cityNameEn":"Selangor","cityNameCN":"雪兰莪","cityCode":"MY9","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"xle","pingYin":"xuelane"},
+ {"cityId":"1183","cityNameEn":"Kedah","cityNameCN":"吉打州","cityCode":"M22","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jdz","pingYin":"jidazhou"},
+ {"cityId":"1187","cityNameEn":"Putrajaya","cityNameCN":"布城","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bc","pingYin":"bucheng"},
+ {"cityId":"1188","cityNameEn":"Kota Kinabalu","cityNameCN":"亚庇市","cityCode":"BKI","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"yb","pingYin":"yabishi"},
+ {"cityId":"1189","cityNameEn":"Bali","cityNameCN":"巴厘岛","cityCode":"DPS","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bld","pingYin":"balidao"},
+ {"cityId":"1190","cityNameEn":"Jakarta","cityNameCN":"雅加达","cityCode":"JKT","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"yjd","pingYin":"yajiada"},
+ {"cityId":"1191","cityNameEn":"Suva","cityNameCN":"苏瓦","cityCode":"SUV","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"sw","pingYin":"suwa"},
+ {"cityId":"1192","cityNameEn":"Denarau","cityNameCN":"丹娜劳","cityCode":"NULL","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"dnl","pingYin":"dannalao"},
+ {"cityId":"1193","cityNameEn":"Nadi","cityNameCN":"纳迪","cityCode":"NAN","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"nd","pingYin":"nadi"},
+ {"cityId":"1194","cityNameEn":"Sigatoka","cityNameCN":"辛加东卡","cityCode":"NULL","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"xjdk","pingYin":"xinjiadongka"},
+ {"cityId":"1195","cityNameEn":"Vomo","cityNameCN":"Vomo","cityCode":"NULL","countryName":"Fiji","countryIsoCode":"FJ","hyKeyWord":"wm","pingYin":"Vomo"},
+ {"cityId":"1197","cityNameEn":"Crete","cityNameCN":"克里特岛","cityCode":"HER","countryName":"Greece","countryIsoCode":"GR","hyKeyWord":"kltd","pingYin":"kelitedao"},
+ {"cityId":"1198","cityNameEn":"Brugge","cityNameCN":"布鲁日","cityCode":"ZGJ","countryName":"Belgium","countryIsoCode":"BE","hyKeyWord":"blr","pingYin":"buluri"},
+ {"cityId":"1199","cityNameEn":"Brussels","cityNameCN":"布鲁塞尔","cityCode":"BRU","countryName":"Belgium","countryIsoCode":"BE","hyKeyWord":"blse","pingYin":"bulusaidong"},
+ {"cityId":"1200","cityNameEn":"Namur","cityNameCN":"那慕尔","cityCode":"QNM","countryName":"Belgium","countryIsoCode":"BE","hyKeyWord":"nme","pingYin":"namudong"},
+ {"cityId":"1201","cityNameEn":"Montreal","cityNameCN":"蒙特利尔","cityCode":"YMQ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"mtle","pingYin":"mengtelier"},
+ {"cityId":"1202","cityNameEn":"Ottawa","cityNameCN":"渥太华","cityCode":"YOW","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"wth","pingYin":"wotaihua"},
+ {"cityId":"1203","cityNameEn":"Quebec","cityNameCN":"魁北克","cityCode":"YQB","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"kbk","pingYin":"kuibeike"},
+ {"cityId":"1204","cityNameEn":"Toronto","cityNameCN":"多伦多","cityCode":"YTO","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"dld","pingYin":"duolunduo"},
+ {"cityId":"1205","cityNameEn":"Vancouver","cityNameCN":"温哥华","cityCode":"YVR","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"wgh","pingYin":"wengehua"},
+ {"cityId":"1206","cityNameEn":"Cannes","cityNameCN":"戛纳","cityCode":"CEQ","countryName":"France","countryIsoCode":"FR","hyKeyWord":"gn","pingYin":"gana"},
+ {"cityId":"1207","cityNameEn":"Lyon","cityNameCN":"里昂","cityCode":"LYS","countryName":"France","countryIsoCode":"FR","hyKeyWord":"la","pingYin":"liang"},
+ {"cityId":"1208","cityNameEn":"Marseille","cityNameCN":"马赛","cityCode":"MRS","countryName":"France","countryIsoCode":"FR","hyKeyWord":"ms","pingYin":"masai"},
+ {"cityId":"1209","cityNameEn":"Nice","cityNameCN":"尼斯","cityCode":"NCE","countryName":"France","countryIsoCode":"FR","hyKeyWord":"ns","pingYin":"nisi"},
+ {"cityId":"1210","cityNameEn":"Paris","cityNameCN":"巴黎","cityCode":"PAR","countryName":"France","countryIsoCode":"FR","hyKeyWord":"bl","pingYin":"bali"},
+ {"cityId":"1211","cityNameEn":"Florence","cityNameCN":"佛罗伦萨","cityCode":"FLR","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"flls","pingYin":"foluolunsa"},
+ {"cityId":"1212","cityNameEn":"Milan","cityNameCN":"米兰","cityCode":"MIL","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"ml","pingYin":"milan"},
+ {"cityId":"1213","cityNameEn":"Rome","cityNameCN":"罗马","cityCode":"ROM","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"lm","pingYin":"luoma"},
+ {"cityId":"1214","cityNameEn":"Venice","cityNameCN":"威尼斯","cityCode":"VCE","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"wns","pingYin":"weinisi"},
+ {"cityId":"1215","cityNameEn":"Amsterdam","cityNameCN":"阿姆斯特丹","cityCode":"AMS","countryName":"Netherlands","countryIsoCode":"NL","hyKeyWord":"amstd","pingYin":"amusitedan"},
+ {"cityId":"1216","cityNameEn":"Rotterdam","cityNameCN":"鹿特丹","cityCode":"RTM","countryName":"Netherlands","countryIsoCode":"NL","hyKeyWord":"ltd","pingYin":"lutedan"},
+ {"cityId":"1217","cityNameEn":"Barcelona","cityNameCN":"巴塞罗那","cityCode":"BCN","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"bsln","pingYin":"basailuona"},
+ {"cityId":"1218","cityNameEn":"Madrid","cityNameCN":"马德里","cityCode":"MAD","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"mdl","pingYin":"madeli"},
+ {"cityId":"1219","cityNameEn":"Mallorca","cityNameCN":"马略卡岛","cityCode":"PMI","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"mlk","pingYin":"maluekadao"},
+ {"cityId":"1220","cityNameEn":"Palma De Mallorca","cityNameCN":"帕尔马","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"pem","pingYin":"paerma"},
+ {"cityId":"1221","cityNameEn":"Berne","cityNameCN":"伯尔尼","cityCode":"BRN","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"ben","pingYin":"boerni"},
+ {"cityId":"1222","cityNameEn":"Geneva","cityNameCN":"日内瓦","cityCode":"GVA","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"rnw","pingYin":"rineiwa"},
+ {"cityId":"1223","cityNameEn":"Lausanne","cityNameCN":"洛桑","cityCode":"QLS","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"ls","pingYin":"luosang"},
+ {"cityId":"1224","cityNameEn":"Lucerne","cityNameCN":"卢塞恩州","cityCode":"QLJ","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"lse","pingYin":"lusaienzhou"},
+ {"cityId":"1225","cityNameEn":"Montreux","cityNameCN":"蒙特勒","cityCode":"GV1","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"mtl","pingYin":"mengtele"},
+ {"cityId":"1226","cityNameEn":"Zurich","cityNameCN":"苏黎世","cityCode":"ZRH","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"sls","pingYin":"sulishi"},
+ {"cityId":"1227","cityNameEn":"Birmingham","cityNameCN":"伯明翰","cityCode":"BHX","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"bmh","pingYin":"bominghan"},
+ {"cityId":"1228","cityNameEn":"Liverpool","cityNameCN":"利物浦","cityCode":"LPL","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"lwp","pingYin":"liwupu"},
+ {"cityId":"1229","cityNameEn":"London","cityNameCN":"伦敦","cityCode":"LON","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"ld","pingYin":"lundun"},
+ {"cityId":"1230","cityNameEn":"Manchester","cityNameCN":"曼彻斯特","cityCode":"MAN","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"mcst","pingYin":"manchesite"},
+ {"cityId":"1231","cityNameEn":"Anaheim","cityNameCN":"安纳海姆","cityCode":"SNA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"anhm","pingYin":"anahaimu"},
+ {"cityId":"1232","cityNameEn":"Austin","cityNameCN":"奥斯汀","cityCode":"AUS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ast","pingYin":"aositing"},
+ {"cityId":"1233","cityNameEn":"Chicago","cityNameCN":"芝加哥","cityCode":"CHI","countryName":"United States","countryIsoCode":"US","hyKeyWord":"zjg","pingYin":"zhijiage"},
+ {"cityId":"1235","cityNameEn":"Honolulu","cityNameCN":"檀香山","cityCode":"HNL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"txs","pingYin":"tanxiangsan"},
+ {"cityId":"1236","cityNameEn":"Las Vegas","cityNameCN":"拉斯维加斯","cityCode":"LAS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"lswjs","pingYin":"lasiweijiasi"},
+ {"cityId":"1237","cityNameEn":"Los Angeles","cityNameCN":"洛杉矶","cityCode":"LAX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"lsj","pingYin":"luoshanji"},
+ {"cityId":"1238","cityNameEn":"Miami","cityNameCN":"迈阿密","cityCode":"MIA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"mam","pingYin":"maiami"},
+ {"cityId":"1239","cityNameEn":"New York","cityNameCN":"纽约","cityCode":"NYC","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ny","pingYin":"niuyue"},
+ {"cityId":"1240","cityNameEn":"San Diego","cityNameCN":"圣地亚哥","cityCode":"SAN","countryName":"United States","countryIsoCode":"US","hyKeyWord":"sdyg","pingYin":"shengdiyage"},
+ {"cityId":"1241","cityNameEn":"San Francisco","cityNameCN":"旧金山","cityCode":"SFO","countryName":"United States","countryIsoCode":"US","hyKeyWord":"jjs","pingYin":"jiujinshan"},
+ {"cityId":"1242","cityNameEn":"Washington","cityNameCN":"华盛顿","cityCode":"WAS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"hsd","pingYin":"huashengdun"},
+ {"cityId":"1243","cityNameEn":"Samut Songkram","cityNameCN":"夜功府","cityCode":"T23","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"yg","pingYin":"yegongfu"},
+ {"cityId":"1244","cityNameEn":"Gwadar","cityNameCN":"瓜达尔","cityCode":"GWD","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"gde","pingYin":"guadaer"},
+ {"cityId":"1245","cityNameEn":"Multan","cityNameCN":"木尔坦","cityCode":"MUX","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"met","pingYin":"muertan"},
+ {"cityId":"1246","cityNameEn":"Sialkot","cityNameCN":"锡亚尔科特","cityCode":"NULL","countryName":"Pakistan","countryIsoCode":"PK","hyKeyWord":"xyekt","pingYin":"xiyaerkete"},
+ {"cityId":"1247","cityNameEn":"Athens","cityNameCN":"雅典","cityCode":"ATH","countryName":"Greece","countryIsoCode":"GR","hyKeyWord":"yd","pingYin":"yadian"},
+ {"cityId":"1248","cityNameEn":"Graz","cityNameCN":"格拉茨","cityCode":"GRZ","countryName":"Austria","countryIsoCode":"AT","hyKeyWord":"glc","pingYin":"gelaci"},
+ {"cityId":"1249","cityNameEn":"Vienna","cityNameCN":"维也纳","cityCode":"VIE","countryName":"Austria","countryIsoCode":"AT","hyKeyWord":"wyn","pingYin":"weiyena"},
+ {"cityId":"1250","cityNameEn":"Calgary","cityNameCN":"卡尔加里","cityCode":"YYC","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"kejl","pingYin":"kaerjiali"},
+ {"cityId":"1251","cityNameEn":"Halifax","cityNameCN":"哈利法克斯","cityCode":"YHZ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"hlfks","pingYin":"halifakesi"},
+ {"cityId":"1252","cityNameEn":"Whistler","cityNameCN":"惠斯勒","cityCode":"YWS","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"hsl","pingYin":"huisile"},
+ {"cityId":"1253","cityNameEn":"Cologne","cityNameCN":"科隆","cityCode":"CGN","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"kl","pingYin":"kelong"},
+ {"cityId":"1254","cityNameEn":"Dusseldorf","cityNameCN":"杜塞尔多夫","cityCode":"DUS","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"dsedf","pingYin":"dongsaierduofu"},
+ {"cityId":"1255","cityNameEn":"Frankfurt","cityNameCN":"法兰克福","cityCode":"FRA","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"flkf","pingYin":"falankefu"},
+ {"cityId":"1256","cityNameEn":"Munich","cityNameCN":"慕尼黑","cityCode":"MUC","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"mnh","pingYin":"munihei"},
+ {"cityId":"1257","cityNameEn":"Basel","cityNameCN":"巴塞尔","cityCode":"BSL","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"bse","pingYin":"basaier"},
+ {"cityId":"1258","cityNameEn":"Atlanta","cityNameCN":"亚特兰大","cityCode":"ATL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ytld","pingYin":"yatelanda"},
+ {"cityId":"1259","cityNameEn":"Boston","cityNameCN":"波士顿","cityCode":"BOS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"bsd","pingYin":"boshidun"},
+ {"cityId":"1260","cityNameEn":"Houston","cityNameCN":"休斯顿","cityCode":"HOU","countryName":"United States","countryIsoCode":"US","hyKeyWord":"xsd","pingYin":"xiusidun"},
+ {"cityId":"1261","cityNameEn":"New Orleans","cityNameCN":"新奥尔良","cityCode":"MSY","countryName":"United States","countryIsoCode":"US","hyKeyWord":"xael","pingYin":"xinaoerliang"},
+ {"cityId":"1262","cityNameEn":"Philadelphia","cityNameCN":"费城","cityCode":"PHL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"fc","pingYin":"feicheng"},
+ {"cityId":"1263","cityNameEn":"Salt Lake City","cityNameCN":"盐湖城","cityCode":"SLC","countryName":"United States","countryIsoCode":"US","hyKeyWord":"yhc","pingYin":"yanhucheng"},
+ {"cityId":"1264","cityNameEn":"San Jose","cityNameCN":"圣何西","cityCode":"SJC","countryName":"United States","countryIsoCode":"US","hyKeyWord":"shx","pingYin":"shenghexi"},
+ {"cityId":"1265","cityNameEn":"Seattle","cityNameCN":"西雅图","cityCode":"SEA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"xyt","pingYin":"xiyatu"},
+ {"cityId":"1266","cityNameEn":"Dallas","cityNameCN":"达拉斯","cityCode":"DFW","countryName":"United States","countryIsoCode":"US","hyKeyWord":"dls","pingYin":"dalasi"},
+ {"cityId":"1267","cityNameEn":"Berlin","cityNameCN":"柏林","cityCode":"BER","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"bl","pingYin":"bolin"},
+ {"cityId":"1268","cityNameEn":"Uthaithani","cityNameCN":"乌泰他尼","cityCode":"T28","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wttn","pingYin":"wutaitani"},
+ {"cityId":"1269","cityNameEn":"Kamphaengpet","cityNameCN":"甘烹碧府","cityCode":"TH5","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"gpb","pingYin":"ganpengbifu"},
+ {"cityId":"1270","cityNameEn":"Maputo","cityNameCN":"马普托","cityCode":"MPM","countryName":"Mozambique","countryIsoCode":"MZ","hyKeyWord":"mpt","pingYin":"maputuo"},
+ {"cityId":"1271","cityNameEn":"Arusha","cityNameCN":"阿鲁沙","cityCode":"NULL","countryName":"Tanzania","countryIsoCode":"TZ","hyKeyWord":"als","pingYin":"alusha"},
+ {"cityId":"1272","cityNameEn":"Dar Es Salaam","cityNameCN":"达累斯萨拉姆","cityCode":"DAR","countryName":"Tanzania","countryIsoCode":"TZ","hyKeyWord":"dlsslm","pingYin":"daleisisalamu"},
+ {"cityId":"1273","cityNameEn":"Zanzibar","cityNameCN":"桑给巴尔","cityCode":"ZNZ","countryName":"Tanzania","countryIsoCode":"TZ","hyKeyWord":"sjbe","pingYin":"sanggeibaer"},
+ {"cityId":"1274","cityNameEn":"Bazaruto Island","cityNameCN":"巴扎鲁托岛","cityCode":"BZB","countryName":"Mozambique","countryIsoCode":"MZ","hyKeyWord":"bzltd","pingYin":"bazhalutuodao"},
+ {"cityId":"1275","cityNameEn":"Kathmandu","cityNameCN":"加德满都","cityCode":"KTM","countryName":"Nepal","countryIsoCode":"NP","hyKeyWord":"jdmd","pingYin":"jiademandu"},
+ {"cityId":"1276","cityNameEn":"Algiers","cityNameCN":"阿尔及尔","cityCode":"ALG","countryName":"Algeria","countryIsoCode":"DZ","hyKeyWord":"aeje","pingYin":"aerjier"},
+ {"cityId":"1277","cityNameEn":"Oran","cityNameCN":"奥兰","cityCode":"ORN","countryName":"Algeria","countryIsoCode":"DZ","hyKeyWord":"al","pingYin":"aolan"},
+ {"cityId":"1278","cityNameEn":"Gaborone","cityNameCN":"哈博罗内","cityCode":"GBE","countryName":"Botswana","countryIsoCode":"BW","hyKeyWord":"hbln","pingYin":"haboluonei"},
+ {"cityId":"1279","cityNameEn":"Accra","cityNameCN":"阿克拉","cityCode":"ACC","countryName":"Ghana","countryIsoCode":"GH","hyKeyWord":"klk","pingYin":"akela"},
+ {"cityId":"1281","cityNameEn":"Maseru","cityNameCN":"马塞卢","cityCode":"MSU","countryName":"Lesotho","countryIsoCode":"LS","hyKeyWord":"msl","pingYin":"masailu"},
+ {"cityId":"1282","cityNameEn":"Blantyre","cityNameCN":"布兰太尔","cityCode":"BLZ","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"blte","pingYin":"bulantaier"},
+ {"cityId":"1283","cityNameEn":"Lilongwe","cityNameCN":"利隆圭","cityCode":"LLW","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"llg","pingYin":"lilonggui"},
+ {"cityId":"1284","cityNameEn":"Mangochi","cityNameCN":"曼戈切","cityCode":"NULL","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"mgq","pingYin":"mangeqie"},
+ {"cityId":"1285","cityNameEn":"Mzuzu","cityNameCN":"姆祖祖","cityCode":"ZZU","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"mzz","pingYin":"muzuzu"},
+ {"cityId":"1286","cityNameEn":"Salima","cityNameCN":"萨利马","cityCode":"NULL","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"slm","pingYin":"salima"},
+ {"cityId":"1287","cityNameEn":"Zomba","cityNameCN":"松巴","cityCode":"NULL","countryName":"Malawi","countryIsoCode":"MW","hyKeyWord":"sb","pingYin":"songba"},
+ {"cityId":"1288","cityNameEn":"Windhoek","cityNameCN":"温得和克","cityCode":"WDH","countryName":"Namibia","countryIsoCode":"NA","hyKeyWord":"wdhk","pingYin":"wendeheke"},
+ {"cityId":"1289","cityNameEn":"Ezulwini","cityNameCN":"埃祖维尼","cityCode":"NULL","countryName":"Swaziland","countryIsoCode":"SZ","hyKeyWord":"ezwn","pingYin":"aizuweini"},
+ {"cityId":"1290","cityNameEn":"Houmt Souk","cityNameCN":"豪姆特苏克","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"wmsk","pingYin":"haomutesuke"},
+ {"cityId":"1291","cityNameEn":"Hammamet","cityNameCN":"哈马马特","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"hmmt","pingYin":"hamamate"},
+ {"cityId":"1293","cityNameEn":"Monastir","cityNameCN":"莫纳斯提尔","cityCode":"MIR","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"mnste","pingYin":"monasitier"},
+ {"cityId":"1294","cityNameEn":"Sousse","cityNameCN":"苏斯","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"ss","pingYin":"susi"},
+ {"cityId":"1295","cityNameEn":"Tunis","cityNameCN":"突尼斯","cityCode":"TUN","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"tns","pingYin":"tunisi"},
+ {"cityId":"1296","cityNameEn":"Sfax","cityNameCN":"斯法克斯","cityCode":"SFA","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"sfks","pingYin":"sifakesi"},
+ {"cityId":"1297","cityNameEn":"Tunis Carthage Cedex","cityNameCN":"突尼斯迦太基Cedex","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"tnsjtj","pingYin":"tunisijiataijiCedex"},
+ {"cityId":"1298","cityNameEn":"Tozeur","cityNameCN":"托泽尔","cityCode":"TOE","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"tze","pingYin":"tuozeer"},
+ {"cityId":"1299","cityNameEn":"Gammarth","cityNameCN":"Gammarth","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"NULL","pingYin":"Gammarth"},
+ {"cityId":"1300","cityNameEn":"La Marsa","cityNameCN":"拉港","cityCode":"NULL","countryName":"Tunisia","countryIsoCode":"TN","hyKeyWord":"lg","pingYin":"lagang"},
+ {"cityId":"1301","cityNameEn":"Kampala","cityNameCN":"坎帕拉","cityCode":"NULL","countryName":"Uganda","countryIsoCode":"UG","hyKeyWord":"kpl","pingYin":"kanpala"},
+ {"cityId":"1302","cityNameEn":"Lusaka","cityNameCN":"卢萨卡","cityCode":"LUN","countryName":"Zambia","countryIsoCode":"ZM","hyKeyWord":"lsk","pingYin":"lusaka"},
+ {"cityId":"1303","cityNameEn":"Livingstone","cityNameCN":"利文斯通","cityCode":"LVI","countryName":"Zambia","countryIsoCode":"ZM","hyKeyWord":"lwst","pingYin":"liwensitong"},
+ {"cityId":"1304","cityNameEn":"Kadoma","cityNameCN":"卡多马","cityCode":"NULL","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"kdm","pingYin":"kaduoma"},
+ {"cityId":"1305","cityNameEn":"Bulawayo","cityNameCN":"布拉瓦约","cityCode":"BUQ","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"blwy","pingYin":"bulawayue"},
+ {"cityId":"1306","cityNameEn":"Mutare","cityNameCN":"穆塔雷","cityCode":"NULL","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"mtl","pingYin":"mutalei"},
+ {"cityId":"1307","cityNameEn":"Harare","cityNameCN":"哈拉雷","cityCode":"HRE","countryName":"Zimbabwe","countryIsoCode":"ZW","hyKeyWord":"hll","pingYin":"halalei"},
+ {"cityId":"1308","cityNameEn":"Sa Kaeo","cityNameCN":"沙缴","cityCode":"T25","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sj","pingYin":"shajiao"},
+ {"cityId":"1309","cityNameEn":"Orlando","cityNameCN":"奥兰多","cityCode":"ORL","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ald","pingYin":"aolanduo"},
+ {"cityId":"1310","cityNameEn":"San Antonio","cityNameCN":"圣安东尼奥","cityCode":"SAT","countryName":"United States","countryIsoCode":"US","hyKeyWord":"sadna","pingYin":"shengandongniao"},
+ {"cityId":"1312","cityNameEn":"Denver","cityNameCN":"丹佛","cityCode":"DEN","countryName":"United States","countryIsoCode":"US","hyKeyWord":"df","pingYin":"danfo"},
+ {"cityId":"1313","cityNameEn":"Daytona Beach","cityNameCN":"代托纳比奇","cityCode":"DAB","countryName":"United States","countryIsoCode":"US","hyKeyWord":"dtnbq","pingYin":"daituonabiqi"},
+ {"cityId":"1314","cityNameEn":"Tampa","cityNameCN":"坦帕","cityCode":"TPA","countryName":"United States","countryIsoCode":"US","hyKeyWord":"tp","pingYin":"tanpa"},
+ {"cityId":"1315","cityNameEn":"Phoenix","cityNameCN":"菲尼克斯","cityCode":"PHX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"fnks","pingYin":"feinikesi"},
+ {"cityId":"1316","cityNameEn":"Memphis","cityNameCN":"孟菲斯","cityCode":"MEM","countryName":"United States","countryIsoCode":"US","hyKeyWord":"mfs","pingYin":"mengfeisi"},
+ {"cityId":"1317","cityNameEn":"Edmonton","cityNameCN":"埃德蒙顿市","cityCode":"YEA","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"admd","pingYin":"aidemengdunshi"},
+ {"cityId":"1318","cityNameEn":"Niagara Falls","cityNameCN":"尼亚加拉瀑布市","cityCode":"YYZ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"nyjlpb","pingYin":"niyajialapubushi"},
+ {"cityId":"1319","cityNameEn":"Victoria","cityNameCN":"维多利亚","cityCode":"YYJ","countryName":"Canada","countryIsoCode":"CA","hyKeyWord":"wdly","pingYin":"weiduoliya"},
+ {"cityId":"1320","cityNameEn":"Valencia","cityNameCN":"瓦伦西瓦","cityCode":"VLC","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"wlxy","pingYin":"walunxiwa"},
+ {"cityId":"1321","cityNameEn":"Seville","cityNameCN":"塞维利亚","cityCode":"SVQ","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"swly","pingYin":"saiweiliya"},
+ {"cityId":"1322","cityNameEn":"Costa Brava","cityNameCN":"布拉瓦海岸","cityCode":"GRO","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"blwha","pingYin":"bulawahaian"},
+ {"cityId":"1323","cityNameEn":"Stockholm","cityNameCN":"斯德哥尔摩","cityCode":"STO","countryName":"Sweden","countryIsoCode":"SE","hyKeyWord":"sdgem","pingYin":"sidegeermo"},
+ {"cityId":"1324","cityNameEn":"Gothenburg","cityNameCN":"哥德堡","cityCode":"GOT","countryName":"Sweden","countryIsoCode":"SE","hyKeyWord":"gdb","pingYin":"gedebao"},
+ {"cityId":"1325","cityNameEn":"Malmo","cityNameCN":"马尔默","cityCode":"MMA","countryName":"Sweden","countryIsoCode":"SE","hyKeyWord":"mem","pingYin":"maermo"},
+ {"cityId":"1326","cityNameEn":"Edinburgh","cityNameCN":"爱丁堡","cityCode":"EDI","countryName":"United Kingdom","countryIsoCode":"GB","hyKeyWord":"adb","pingYin":"aidingbao"},
+ {"cityId":"1327","cityNameEn":"Lisbon","cityNameCN":"里斯本","cityCode":"LIS","countryName":"Portugal","countryIsoCode":"PT","hyKeyWord":"lsb","pingYin":"lisiben"},
+ {"cityId":"1328","cityNameEn":"Porto","cityNameCN":"波尔图","cityCode":"OPO","countryName":"Portugal","countryIsoCode":"PT","hyKeyWord":"bet","pingYin":"boertu"},
+ {"cityId":"1329","cityNameEn":"Algarve","cityNameCN":"阿尔加维","cityCode":"FAO","countryName":"Portugal","countryIsoCode":"PT","hyKeyWord":"aejw","pingYin":"aerjiawei"},
+ {"cityId":"1330","cityNameEn":"Prague","cityNameCN":"布拉格","cityCode":"PRG","countryName":"Czech Republic","countryIsoCode":"CZ","hyKeyWord":"blg","pingYin":"bulage"},
+ {"cityId":"1331","cityNameEn":"Karlovy Vary","cityNameCN":"卡罗维发利","cityCode":"KLV","countryName":"Czech Republic","countryIsoCode":"CZ","hyKeyWord":"klwfl","pingYin":"kaluoweifali"},
+ {"cityId":"1332","cityNameEn":"Hamburg","cityNameCN":"汉堡","cityCode":"HAM","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"hb","pingYin":"hanbao"},
+ {"cityId":"1333","cityNameEn":"Budapest","cityNameCN":"布达佩斯","cityCode":"BUD","countryName":"Hungary","countryIsoCode":"HU","hyKeyWord":"bdps","pingYin":"budapeisi"},
+ {"cityId":"1334","cityNameEn":"Dublin","cityNameCN":"都柏林","cityCode":"DUB","countryName":"Ireland","countryIsoCode":"IE","hyKeyWord":"dbl","pingYin":"dubolin"},
+ {"cityId":"1335","cityNameEn":"Malaga","cityNameCN":"马拉加","cityCode":"AGP","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"mlj","pingYin":"malajia"},
+ {"cityId":"1336","cityNameEn":"Tenerife","cityNameCN":"特内里费岛","cityCode":"TCI","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"tnlf","pingYin":"teneilifeidao"},
+ {"cityId":"1337","cityNameEn":"Seremban","cityNameCN":"芙蓉","cityCode":"MY8","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"fr","pingYin":"furong"},
+ {"cityId":"1338","cityNameEn":"Protaras","cityNameCN":"布达拉斯","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"bdls","pingYin":"budalasi"},
+ {"cityId":"1339","cityNameEn":"Mexico City","cityNameCN":"墨西哥城","cityCode":"MEX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mxgc","pingYin":"moxigecheng"},
+ {"cityId":"1340","cityNameEn":"Cancun","cityNameCN":"坎昆","cityCode":"CUN","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"kk","pingYin":"kankun"},
+ {"cityId":"1341","cityNameEn":"Puerto Vallarta","cityNameCN":"巴亚尔塔港","cityCode":"PVR","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"byetg","pingYin":"bayaertagang"},
+ {"cityId":"1342","cityNameEn":"Acapulco","cityNameCN":"阿卡普尔科","cityCode":"ACA","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"akpek","pingYin":"akapuerke"},
+ {"cityId":"1343","cityNameEn":"Los Cabos","cityNameCN":"洛斯卡沃斯","cityCode":"SJD","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"lskws","pingYin":"luosikawosi"},
+ {"cityId":"1344","cityNameEn":"Rio De Janeiro","cityNameCN":"里约热内卢","cityCode":"RIO","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"lyrnl","pingYin":"liyuereneilu"},
+ {"cityId":"1345","cityNameEn":"Sao Paulo","cityNameCN":"圣保罗","cityCode":"SAO","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"sbl","pingYin":"shengbaoluo"},
+ {"cityId":"1346","cityNameEn":"Curitiba","cityNameCN":"库里蒂巴","cityCode":"CWB","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"kltb","pingYin":"kulidiba"},
+ {"cityId":"1347","cityNameEn":"Salvador","cityNameCN":"萨尔瓦多","cityCode":"SSA","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"sewd","pingYin":"saerwaduo"},
+ {"cityId":"1348","cityNameEn":"Iguassu Falls","cityNameCN":"伊瓜苏瀑布","cityCode":"IGU","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"fsdygs","pingYin":"yiguasupubu"},
+ {"cityId":"1349","cityNameEn":"Moscow","cityNameCN":"莫斯科","cityCode":"MOW","countryName":"Russia","countryIsoCode":"RU","hyKeyWord":"msk","pingYin":"mosike"},
+ {"cityId":"1350","cityNameEn":"Saint Petersburg","cityNameCN":"圣彼得堡","cityCode":"LED","countryName":"Russia","countryIsoCode":"RU","hyKeyWord":"sbdb","pingYin":"shengbidebao"},
+ {"cityId":"1351","cityNameEn":"Buenos Aires","cityNameCN":"布宜诺斯艾利斯","cityCode":"BUE","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"bynsals","pingYin":"buyinuosiailisi"},
+ {"cityId":"1352","cityNameEn":"Copenhagen","cityNameCN":"哥本哈根","cityCode":"CPH","countryName":"Denmark","countryIsoCode":"DK","hyKeyWord":"gbhg","pingYin":"gebenhagen"},
+ {"cityId":"1353","cityNameEn":"Belo Horizonte","cityNameCN":"贝洛奥里藏特","cityCode":"BHZ","countryName":"Brazil","countryIsoCode":"BR","hyKeyWord":"blalzt","pingYin":"beiluoaolizangte"},
+ {"cityId":"1355","cityNameEn":"Hobart","cityNameCN":"霍巴特","cityCode":"HBA","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"hbt","pingYin":"huobate"},
+ {"cityId":"1360","cityNameEn":"Sihanouk Ville","cityNameCN":"西哈努克","cityCode":"KH1","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"xhnk","pingYin":"xihanuke"},
+ {"cityId":"1361","cityNameEn":"Siargao","cityNameCN":"锡亚高岛","cityCode":"P26","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xyg","pingYin":"xiyagaodao"},
+ {"cityId":"1362","cityNameEn":"Newark","cityNameCN":"纽瓦克","cityCode":"EWR","countryName":"United States","countryIsoCode":"US","hyKeyWord":" nwk","pingYin":"niuwake"},
+ {"cityId":"1366","cityNameEn":"Jerusalem","cityNameCN":"耶路撒冷","cityCode":"JRS","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"ylsl","pingYin":"yelusaleng"},
+ {"cityId":"1367","cityNameEn":"Tel Aviv","cityNameCN":"特拉维夫","cityCode":"TLV","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"tlwf","pingYin":"telaweifu"},
+ {"cityId":"1368","cityNameEn":"Eilat","cityNameCN":"埃拉特","cityCode":"ETH","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"atl","pingYin":"ailate"},
+ {"cityId":"1369","cityNameEn":"Haifa","cityNameCN":"海法","cityCode":"HFA","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"hf","pingYin":"haifa"},
+ {"cityId":"1371","cityNameEn":"Mitspeh Ramon","cityNameCN":"米特尔什罗门","cityCode":"MIP","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"mceslm","pingYin":"miteershiluomen"},
+ {"cityId":"1372","cityNameEn":"tiberias","cityNameCN":"提比利亚","cityCode":"TIB","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"tbly","pingYin":"tibiliya"},
+ {"cityId":"1373","cityNameEn":"Neve Ilan","cityNameCN":"奈维宜兰","cityCode":"NEV","countryName":"Israel","countryIsoCode":"IL","hyKeyWord":"nfyl","pingYin":"naiweiyilan"},
+ {"cityId":"1374","cityNameEn":"Nicosia","cityNameCN":"尼科西亚","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"nkxy","pingYin":"nikexiya"},
+ {"cityId":"1375","cityNameEn":"Polis","cityNameCN":"波利斯","cityCode":"NULL","countryName":"Cyprus","countryIsoCode":"CY","hyKeyWord":"bls","pingYin":"bolisi"},
+ {"cityId":"1376","cityNameEn":"Masbate","cityNameCN":"马斯巴特","cityCode":"MBT","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"msbt","pingYin":"masibate"},
+ {"cityId":"1377","cityNameEn":"Samar","cityNameCN":"萨马岛","cityCode":"P25","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sm","pingYin":"samadao"},
+ {"cityId":"1378","cityNameEn":"Shaviyani Atoll","cityNameCN":"沙维雅尼环礁","cityCode":"SHV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"swyn","pingYin":"shaweiyanihuanjiao"},
+ {"cityId":"1379","cityNameEn":"Haa Alif Atoll","cityNameCN":"哈阿里夫环礁","cityCode":"HAL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"halfhj","pingYin":"haalifuhuanjiao"},
+ {"cityId":"1380","cityNameEn":"Haa Dhaalu Atoll","cityNameCN":"南蒂拉杜马蒂环礁","cityCode":"HDL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ndldmdhj","pingYin":"nandiladumadihuanjiao"},
+ {"cityId":"1382","cityNameEn":"Noonu Atoll","cityNameCN":"诺鲁环礁","cityCode":"NU","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"nlhj","pingYin":"nuoluhuanjiao"},
+ {"cityId":"1383","cityNameEn":"Raa Atoll","cityNameCN":"拉加环礁","cityCode":"RAA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ljhj","pingYin":"lajiahuanjiao"},
+ {"cityId":"1384","cityNameEn":"Baa Atoll","cityNameCN":"芭环礁","cityCode":"BAA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"bhj","pingYin":"bahuanjiao"},
+ {"cityId":"1385","cityNameEn":"Lhaviyani Atoll","cityNameCN":"拉薇雅尼环礁","cityCode":"LHV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"lwynhj","pingYin":"laweiyanihuanjiao"},
+ {"cityId":"1386","cityNameEn":"Male","cityNameCN":"马累","cityCode":"MLE","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ml","pingYin":"malei"},
+ {"cityId":"1387","cityNameEn":"Maldives Resorts","cityNameCN":"马尔代夫度假村","cityCode":"AA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"medfdjc","pingYin":"madongdaifudongjiacun"},
+ {"cityId":"1388","cityNameEn":"Alif Dhaalu (South Ari) Atoll","cityNameCN":"南阿里","cityCode":"ADH","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"nal","pingYin":"nanali"},
+ {"cityId":"1389","cityNameEn":"Vaavu Atoll","cityNameCN":"费利杜环礁","cityCode":"VAV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"fldhj","pingYin":"feiliduhuanjiao"},
+ {"cityId":"1390","cityNameEn":"Meemu Atoll","cityNameCN":"美慕环礁","cityCode":"MEM","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"mmhj","pingYin":"meimuhuanjiao"},
+ {"cityId":"1391","cityNameEn":"Faafu Atoll","cityNameCN":"Faafu环礁","cityCode":"FAF","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"Faafu","pingYin":"Faafuhuanjiao"},
+ {"cityId":"1392","cityNameEn":"Dhaalu Atoll","cityNameCN":"杜哈鲁环礁","cityCode":"DAL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"dhlhj","pingYin":"duhaluhuanjiao"},
+ {"cityId":"1393","cityNameEn":"Thaa Atoll","cityNameCN":"塔环礁","cityCode":"THA","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"thj","pingYin":"tahuanjiao"},
+ {"cityId":"1394","cityNameEn":"Laamu Atoll","cityNameCN":"拉穆环礁","cityCode":"LMU","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"lmhj","pingYin":"lamuhuanjiao"},
+ {"cityId":"1395","cityNameEn":"Gaaf Alif Atoll","cityNameCN":"Gaaf Alif环礁","cityCode":"GAL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"Gaaf Alif","pingYin":"GaafAlifhuanjiao"},
+ {"cityId":"1396","cityNameEn":"Gaaf Dhaalu Atoll","cityNameCN":"Gaaf Dhaalu环礁","cityCode":"GDL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"Gaaf Dhaalu","pingYin":"GaafDhaaluhuanjiao"},
+ {"cityId":"1397","cityNameEn":"Gnaviyani","cityNameCN":"福阿穆拉库","cityCode":"GNV","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"famlk","pingYin":"fuamulaku"},
+ {"cityId":"1398","cityNameEn":"Seenu","cityNameCN":"阿杜","cityCode":"SNU","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"ad","pingYin":"adu"},
+ {"cityId":"1416","cityNameEn":"Nakuru","cityNameCN":"纳库鲁","cityCode":"NULL","countryName":"Kenya","countryIsoCode":"KE","hyKeyWord":"nkl","pingYin":"nakulu"},
+ {"cityId":"1418","cityNameEn":"Dalat","cityNameCN":"大叻","cityCode":"DLI","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"dl","pingYin":"dale"},
+ {"cityId":"1419","cityNameEn":"Nha Trang","cityNameCN":"芽庄","cityCode":"NHA","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"yz","pingYin":"yazhuang"},
+ {"cityId":"1420","cityNameEn":"Brunei","cityNameCN":"文莱","cityCode":"BWN","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"wl","pingYin":"wenlai"},
+ {"cityId":"1421","cityNameEn":"Djibouti","cityNameCN":"吉布提","cityCode":"JIB","countryName":"Djibouti","countryIsoCode":"DJ","hyKeyWord":"jbt","pingYin":"jibuti"},
+ {"cityId":"1422","cityNameEn":"Yazd","cityNameCN":"亚兹德","cityCode":"AZD","countryName":"Iran","countryIsoCode":"IR","hyKeyWord":"yzd","pingYin":"yazide"},
+ {"cityId":"1424","cityNameEn":"Baden Baden","cityNameCN":"巴登巴登","cityCode":"FKB","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"bdbd","pingYin":"badengbadeng"},
+ {"cityId":"1425","cityNameEn":"Cat Ba","cityNameCN":"吉婆岛","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"jpd","pingYin":"jipodao"},
+ {"cityId":"1426","cityNameEn":"Phu Quoc","cityNameCN":"富国","cityCode":"PQC","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"fg","pingYin":"fuguo"},
+ {"cityId":"1427","cityNameEn":"Quy Nhon","cityNameCN":"归仁","cityCode":"VN9","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"gr","pingYin":"guiren"},
+ {"cityId":"1428","cityNameEn":"Vung Tau","cityNameCN":"头顿","cityCode":"VN8","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"td","pingYin":"toudun"},
+ {"cityId":"1432","cityNameEn":"Kuwait City","cityNameCN":"科威特市","cityCode":"KWI","countryName":"Kuwait","countryIsoCode":"KW","hyKeyWord":"kwt","pingYin":"keweiteshi"},
+ {"cityId":"1437","cityNameEn":"Tangalle","cityNameCN":"唐加勒","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"NULL","pingYin":"tangjiale"},
+ {"cityId":"1438","cityNameEn":"Hatton","cityNameCN":"哈通","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"ht","pingYin":"hatong"},
+ {"cityId":"1440","cityNameEn":"Rathgama","cityNameCN":"Rathgama","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"NULL","pingYin":"Rathgama"},
+ {"cityId":"1441","cityNameEn":"Pagudpud","cityNameCN":"帕古普","cityCode":"P16","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"pgp","pingYin":"pagupu"},
+ {"cityId":"1443","cityNameEn":"Guimaras","cityNameCN":"吉马拉斯","cityCode":"PH8","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"jmls","pingYin":"jimalasi"},
+ {"cityId":"1444","cityNameEn":"Legazpi","cityNameCN":"莱加斯皮","cityCode":"LGP","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lysb","pingYin":"laijiasipi"},
+ {"cityId":"1445","cityNameEn":"Hanwella","cityNameCN":"Hanwella","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"hwl","pingYin":"Hanwella"},
+ {"cityId":"1446","cityNameEn":"Iluketiya","cityNameCN":"Iluketiya","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"NULL","pingYin":"Iluketiya"},
+ {"cityId":"1447","cityNameEn":"Diyatalawa","cityNameCN":"迪亚塔拉瓦","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"dytlw","pingYin":"diyatalawa"},
+ {"cityId":"1449","cityNameEn":"Thalpe","cityNameCN":"陶尔佩","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"tep","pingYin":"taoerpei"},
+ {"cityId":"1451","cityNameEn":"Yala","cityNameCN":"雅拉","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"yl","pingYin":"yala"},
+ {"cityId":"1452","cityNameEn":"Balapitiya","cityNameCN":"巴拉碧提雅","cityCode":"NULL","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"blbty","pingYin":"balabitiya"},
+ {"cityId":"1453","cityNameEn":"Koggala","cityNameCN":"科格勒","cityCode":"KCT","countryName":"Sri Lanka","countryIsoCode":"LK","hyKeyWord":"kgl","pingYin":"kegele"},
+ {"cityId":"1454","cityNameEn":"Bandung","cityNameCN":"万隆","cityCode":"BDO","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wl","pingYin":"wanlong"},
+ {"cityId":"1455","cityNameEn":"Gurgaon","cityNameCN":"古尔冈市","cityCode":"IN1","countryName":"India","countryIsoCode":"IN","hyKeyWord":"geg","pingYin":"gudonggangshi"},
+ {"cityId":"1456","cityNameEn":"Umm Al Quwain","cityNameCN":"乌姆盖万","cityCode":"UA2","countryName":"United Arab Emirates","countryIsoCode":"AE","hyKeyWord":"wmgw","pingYin":"wumugaiwan"},
+ {"cityId":"1457","cityNameEn":"Rizal","cityNameCN":"黎刹","cityCode":"P23","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ls","pingYin":"lisha"},
+ {"cityId":"1458","cityNameEn":"Chanthaburi","cityNameCN":"尖竹汶府","cityCode":"TH3","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"jzw","pingYin":"jianzhuwenfu"},
+ {"cityId":"1459","cityNameEn":"Ahmedabad","cityNameCN":"艾哈默达巴德","cityCode":"AMD","countryName":"India","countryIsoCode":"IN","hyKeyWord":"ahmdbd","pingYin":"aihamodabade"},
+ {"cityId":"1460","cityNameEn":"Koh Chang","cityNameCN":"象岛","cityCode":"TH9","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"xd","pingYin":"xiangdao"},
+ {"cityId":"1461","cityNameEn":"Surabaya","cityNameCN":"泗水","cityCode":"SUB","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"ss","pingYin":"sishui"},
+ {"cityId":"1462","cityNameEn":"Krakow","cityNameCN":"克拉科夫","cityCode":"KRK","countryName":"Poland","countryIsoCode":"PL","hyKeyWord":"klkf","pingYin":"kelakefu"},
+ {"cityId":"1463","cityNameEn":"Warsaw","cityNameCN":"华沙","cityCode":"WAW","countryName":"Poland","countryIsoCode":"PL","hyKeyWord":"hs","pingYin":"huasha"},
+ {"cityId":"1464","cityNameEn":"Jacksonville","cityNameCN":"杰克逊维尔","cityCode":"JAX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"jkxwe","pingYin":"jiekexunweier"},
+ {"cityId":"1465","cityNameEn":"Helsinki","cityNameCN":"赫尔辛基","cityCode":"HEL","countryName":"Finland","countryIsoCode":"FI","hyKeyWord":"hexj","pingYin":"heerxinji"},
+ {"cityId":"1466","cityNameEn":"Lapland","cityNameCN":"拉普兰","cityCode":"LPP","countryName":"Finland","countryIsoCode":"FI","hyKeyWord":"lpl","pingYin":"lapulan"},
+ {"cityId":"1467","cityNameEn":"Aalesund","cityNameCN":"奥勒松","cityCode":"AES","countryName":"Norway","countryIsoCode":"NO","hyKeyWord":"als","pingYin":"aolesong"},
+ {"cityId":"1468","cityNameEn":"Oslo","cityNameCN":"奥斯陆","cityCode":"OSL","countryName":"Norway","countryIsoCode":"NO","hyKeyWord":"asl","pingYin":"aosilu"},
+ {"cityId":"1469","cityNameEn":"Maldives Cruises","cityNameCN":"马尔代夫克鲁斯","cityCode":"NULL","countryName":"Maldives","countryIsoCode":"MV","hyKeyWord":"medfkls","pingYin":"madongdaifukelusi"},
+ {"cityId":"1470","cityNameEn":"Delhi","cityNameCN":"德里","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"dl","pingYin":"deli"},
+ {"cityId":"1472","cityNameEn":"Vigan","cityNameCN":"维甘","cityCode":"P28","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"wg","pingYin":"weigan"},
+ {"cityId":"1473","cityNameEn":"Pranburi","cityNameCN":"班布里","cityCode":"T21","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bbl","pingYin":"banbuli"},
+ {"cityId":"1474","cityNameEn":"Koh Phangan","cityNameCN":"帕岸岛","cityCode":"T11","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"pa","pingYin":"paandao"},
+ {"cityId":"1475","cityNameEn":"Phang-Nga","cityNameCN":"攀牙","cityCode":"T18","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"py","pingYin":"panya"},
+ {"cityId":"1476","cityNameEn":"Rayong","cityNameCN":"罗勇","cityCode":"T22","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ly","pingYin":"luoyong"},
+ {"cityId":"1477","cityNameEn":"Champasak","cityNameCN":"占巴塞","cityCode":"NULL","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"zbs","pingYin":"zhanbasai"},
+ {"cityId":"1478","cityNameEn":"Vang Vieng","cityNameCN":"万荣","cityCode":"LA1","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"wr","pingYin":"wanrong"},
+ {"cityId":"1479","cityNameEn":"Xiengkhouang","cityNameCN":"川圹","cityCode":"XKH","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"ck","pingYin":"chuankuang"},
+ {"cityId":"1480","cityNameEn":"Bicol","cityNameCN":"比可半岛","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bkb","pingYin":"bikebandao"},
+ {"cityId":"1481","cityNameEn":"Lombok","cityNameCN":"龙目岛","cityCode":"LOP","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lmd","pingYin":"longmudao"},
+ {"cityId":"1482","cityNameEn":"Camiguin","cityNameCN":"卡米金省","cityCode":"CGM","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kmj","pingYin":"kamijinsheng"},
+ {"cityId":"1484","cityNameEn":"Batanes","cityNameCN":"巴坦群岛","cityCode":"PH2","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bt","pingYin":"batanqundao"},
+ {"cityId":"1485","cityNameEn":"Nueva Ecija","cityNameCN":"甲万那端","cityCode":"P59","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"jwnd","pingYin":"jiawannaduan"},
+ {"cityId":"1487","cityNameEn":"Gadong","cityNameCN":"加东","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"jd","pingYin":"jiadong"},
+ {"cityId":"1488","cityNameEn":"Kiulap","cityNameCN":"Kiulap","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"NULL","pingYin":"Kiulap"},
+ {"cityId":"1489","cityNameEn":"Kuala Belait","cityNameCN":"马来弈","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"mly","pingYin":"mailaiyi"},
+ {"cityId":"1490","cityNameEn":"Airport / Stadium","cityNameCN":"机场/体育场","cityCode":"BN1","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"jc/tyc","pingYin":"jichang/tiyuchang"},
+ {"cityId":"1491","cityNameEn":"Jerudong","cityNameCN":"哲鲁东","cityCode":"NULL","countryName":"Brunei","countryIsoCode":"BN","hyKeyWord":"NULL","pingYin":"zheludong"},
+ {"cityId":"1492","cityNameEn":"Yogyakarta","cityNameCN":"日惹","cityCode":"JOG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"rr","pingYin":"rire"},
+ {"cityId":"1493","cityNameEn":"Solo","cityNameCN":"梭罗","cityCode":"SOC","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"sl","pingYin":"suoluo"},
+ {"cityId":"1494","cityNameEn":"Kenting","cityNameCN":"垦丁","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"kd","pingYin":"kending"},
+ {"cityId":"1496","cityNameEn":"Indore","cityNameCN":"印多尔","cityCode":"IDR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"yde","pingYin":"yinduoer"},
+ {"cityId":"1497","cityNameEn":"Kovalam","cityNameCN":"科瓦兰","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"kwl","pingYin":"kewalan"},
+ {"cityId":"1498","cityNameEn":"Ranthambhore","cityNameCN":"伦滕波尔","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"ltbe","pingYin":"luntengboer"},
+ {"cityId":"1499","cityNameEn":"Khajuraho","cityNameCN":"克久拉霍","cityCode":"HJR","countryName":"India","countryIsoCode":"IN","hyKeyWord":"kjlh","pingYin":"kejiulahuo"},
+ {"cityId":"1500","cityNameEn":"West Coast","cityNameCN":"西海岸","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"xha","pingYin":"xihaian"},
+ {"cityId":"1501","cityNameEn":"Canterbury","cityNameCN":"坎特伯雷","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"ktbl","pingYin":"kanteboli"},
+ {"cityId":"1502","cityNameEn":"Nelson","cityNameCN":"尼尔森","cityCode":"NSN","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"nes","pingYin":"niersen"},
+ {"cityId":"1503","cityNameEn":"Paihia","cityNameCN":"派希亚","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"pxy","pingYin":"paixiya"},
+ {"cityId":"1504","cityNameEn":"Rakiaia Gorge","cityNameCN":"拉凯亚峡谷","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"lkyxg","pingYin":"lakaiyaxiagu"},
+ {"cityId":"1505","cityNameEn":"Wanaka","cityNameCN":"瓦纳卡","cityCode":"WKA","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"wnk","pingYin":"wanaka"},
+ {"cityId":"1540","cityNameEn":"Wagga Wagga","cityNameCN":"沃加沃加","cityCode":"WGA","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"wjwj","pingYin":"wojiawojia"},
+ {"cityId":"1541","cityNameEn":"Lugano","cityNameCN":"卢加诺","cityCode":"LUG","countryName":"Switzerland","countryIsoCode":"CH","hyKeyWord":"ljn","pingYin":"lujianuo"},
+ {"cityId":"1542","cityNameEn":"Marburg","cityNameCN":"马尔堡","cityCode":"NULL","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"meb","pingYin":"maerbao"},
+ {"cityId":"1543","cityNameEn":"Toulouse","cityNameCN":"图卢兹","cityCode":"TLS","countryName":"France","countryIsoCode":"FR","hyKeyWord":"tls","pingYin":"tuluzi"},
+ {"cityId":"1544","cityNameEn":"Phi Phi Island","cityNameCN":"皮皮岛","cityCode":"T19","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ppd","pingYin":"pipidao"},
+ {"cityId":"1545","cityNameEn":"Koh Lanta","cityNameCN":"兰达岛","cityCode":"T10","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ld","pingYin":"landadao"},
+ {"cityId":"1546","cityNameEn":"Lanta Island","cityNameCN":"兰达群岛","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ldqd","pingYin":"landaqundao"},
+ {"cityId":"1547","cityNameEn":"Visakhapatnam","cityNameCN":"维沙卡帕特南","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"wskpnt","pingYin":"weishakapatenan"},
+ {"cityId":"1548","cityNameEn":"Muntinlupa","cityNameCN":"蒙廷卢帕","cityCode":"P36","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mtlp","pingYin":"mengtinglupa"},
+ {"cityId":"1549","cityNameEn":"Pasig","cityNameCN":"帕西格","cityCode":"P34","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"pxg","pingYin":"paxige"},
+ {"cityId":"1550","cityNameEn":"Clark, Pampanga","cityNameCN":"克拉克，邦板牙","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"klk","pingYin":"kelake，bangbanya"},
+ {"cityId":"1551","cityNameEn":"Medan","cityNameCN":"棉兰","cityCode":"MES","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"ml","pingYin":"mianlan"},
+ {"cityId":"1552","cityNameEn":"Manado","cityNameCN":"美娜多","cityCode":"MDC","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mnd","pingYin":"meinaduo"},
+ {"cityId":"1553","cityNameEn":"Jayapura, Papua Indonesia","cityNameCN":"查亚普拉，印度尼西亚巴布亚","cityCode":"DJJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"cypl","pingYin":"chayapula，yindongnixiyababuya"},
+ {"cityId":"1554","cityNameEn":"Manokwari","cityNameCN":"马诺夸里","cityCode":"ID7","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mnkl","pingYin":"manuokuali"},
+ {"cityId":"1555","cityNameEn":"Tarakan East Kalimantan","cityNameCN":"塔拉坎东加里曼丹","cityCode":"TRK","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tlkdjlmd","pingYin":"talakandongjialimandan"},
+ {"cityId":"1556","cityNameEn":"Banjarmasin","cityNameCN":"马辰","cityCode":"BDJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mc","pingYin":"machen"},
+ {"cityId":"1557","cityNameEn":"Samarinda","cityNameCN":"三马林达","cityCode":"SRI","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"smld","pingYin":"sanmalinda"},
+ {"cityId":"1558","cityNameEn":"Semarang","cityNameCN":"三宝珑","cityCode":"SRG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"sbl","pingYin":"sanbaolong"},
+ {"cityId":"1559","cityNameEn":"Palu","cityNameCN":"帕卢","cityCode":"PLW","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"pl","pingYin":"palu，zhongsulaweixi"},
+ {"cityId":"1560","cityNameEn":"Reno","cityNameCN":"里诺","cityCode":"RNO","countryName":"United States","countryIsoCode":"US","hyKeyWord":"ln","pingYin":"linuo"},
+ {"cityId":"1561","cityNameEn":"Portland","cityNameCN":"波特兰","cityCode":"PDX","countryName":"United States","countryIsoCode":"US","hyKeyWord":"btl","pingYin":"botelan"},
+ {"cityId":"1562","cityNameEn":"Colorado","cityNameCN":"科罗拉多","cityCode":"COS","countryName":"United States","countryIsoCode":"US","hyKeyWord":"klld","pingYin":"keluoladuo"},
+ {"cityId":"1563","cityNameEn":"Grand Junction","cityNameCN":"大章克申","cityCode":"GJT","countryName":"United States","countryIsoCode":"US","hyKeyWord":"dzks","pingYin":"dazhangkeshen"},
+ {"cityId":"1564","cityNameEn":"Vail","cityNameCN":"韦尔","cityCode":"EGE","countryName":"United States","countryIsoCode":"US","hyKeyWord":"we","pingYin":"weier"},
+ {"cityId":"1565","cityNameEn":"Strasbourg","cityNameCN":"斯特拉斯堡","cityCode":"SXB","countryName":"France","countryIsoCode":"FR","hyKeyWord":"stlsb","pingYin":"sitelasibao"},
+ {"cityId":"1566","cityNameEn":"Avignon","cityNameCN":"阿维尼翁","cityCode":"AVN","countryName":"France","countryIsoCode":"FR","hyKeyWord":"awnw","pingYin":"aweiniweng"},
+ {"cityId":"1567","cityNameEn":"Naples","cityNameCN":"那不勒斯","cityCode":"NAP","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"nbls","pingYin":"nabulesi"},
+ {"cityId":"1568","cityNameEn":"Verona","cityNameCN":"维罗纳","cityCode":"VRN","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"wln","pingYin":"weiluona"},
+ {"cityId":"1569","cityNameEn":"Pisa","cityNameCN":"比萨","cityCode":"PSA","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"bs","pingYin":"bisa"},
+ {"cityId":"1570","cityNameEn":"Bologna","cityNameCN":"博洛尼亚","cityCode":"BLQ","countryName":"Italy","countryIsoCode":"IT","hyKeyWord":"blny","pingYin":"boluoniya"},
+ {"cityId":"1571","cityNameEn":"Stuttgart","cityNameCN":"斯图加特","cityCode":"STR","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"stjt","pingYin":"situjiate"},
+ {"cityId":"1572","cityNameEn":"Nuremberg","cityNameCN":"纽伦堡","cityCode":"NUE","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"nlb","pingYin":"niulunbao"},
+ {"cityId":"1573","cityNameEn":"Hannover","cityNameCN":"汉诺威","cityCode":"HAJ","countryName":"Germany","countryIsoCode":"DE","hyKeyWord":"hnw","pingYin":"hannuowei"},
+ {"cityId":"1574","cityNameEn":"Santiago De Compostela","cityNameCN":"圣地亚哥-德孔波斯特拉","cityCode":"SCQ","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"sdygdkbstl","pingYin":"shengdiyage-dekongbositela"},
+ {"cityId":"1575","cityNameEn":"Bilbao","cityNameCN":"毕尔巴鄂","cityCode":"BIO","countryName":"Spain","countryIsoCode":"ES","hyKeyWord":"bebe","pingYin":"bierbae"},
+ {"cityId":"1576","cityNameEn":"San Juan","cityNameCN":"圣胡安","cityCode":"SJU","countryName":"Puerto Rico","countryIsoCode":"PR","hyKeyWord":"sha","pingYin":"shenghuan"},
+ {"cityId":"1577","cityNameEn":"Punta Cana","cityNameCN":"蓬塔卡纳","cityCode":"PUJ","countryName":"Dominican Republic","countryIsoCode":"DO","hyKeyWord":"ptkn","pingYin":"pengtakana"},
+ {"cityId":"1578","cityNameEn":"Santo Domingo","cityNameCN":"圣多明各","cityCode":"SDQ","countryName":"Dominican Republic","countryIsoCode":"DO","hyKeyWord":"sdmg","pingYin":"shengduomingge"},
+ {"cityId":"1579","cityNameEn":"Puerto Plata","cityNameCN":"普拉塔港","cityCode":"POP","countryName":"Dominican Republic","countryIsoCode":"DO","hyKeyWord":"pltg","pingYin":"pulatagang"},
+ {"cityId":"1580","cityNameEn":"San Jose","cityNameCN":"圣何塞","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"shs","pingYin":"shenghesai"},
+ {"cityId":"1581","cityNameEn":"Guanacaste","cityNameCN":"瓜纳卡斯特","cityCode":"LIR","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"gnkst","pingYin":"guanakasite"},
+ {"cityId":"1582","cityNameEn":"Alajuela","cityNameCN":"阿拉胡埃拉","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"alhal","pingYin":"alahuaila"},
+ {"cityId":"1583","cityNameEn":"Jaco","cityNameCN":"雅科","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"yk","pingYin":"yake"},
+ {"cityId":"1584","cityNameEn":"Puntarenas","cityNameCN":"蓬塔雷纳斯省","cityCode":"SJO","countryName":"Costa Rica","countryIsoCode":"CR","hyKeyWord":"pdlns","pingYin":"pengtaleinasisheng"},
+ {"cityId":"1585","cityNameEn":"Perhentian Island","cityNameCN":"停泊岛","cityCode":"MY4","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"tbd","pingYin":"tingbodao"},
+ {"cityId":"1586","cityNameEn":"Lucena","cityNameCN":"卢塞纳","cityCode":"P12","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lsn","pingYin":"lusaina"},
+ {"cityId":"1587","cityNameEn":"Misamis Occidental","cityNameCN":"西米萨米斯省","cityCode":"P14","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xmsms","pingYin":"ximisamisisheng"},
+ {"cityId":"1588","cityNameEn":"Pakse","cityNameCN":"巴色","cityCode":"PKZ","countryName":"Laos","countryIsoCode":"LA","hyKeyWord":"bs","pingYin":"base"},
+ {"cityId":"1590","cityNameEn":"SunMoon Lake","cityNameCN":"日月潭","cityCode":"NULL","countryName":"Taiwan","countryIsoCode":"TW","hyKeyWord":"ryt","pingYin":"riyuetan"},
+ {"cityId":"1591","cityNameEn":"Negros Occidental","cityNameCN":"西内格罗省","cityCode":"P29","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xngl","pingYin":"xineigeluosheng"},
+ {"cityId":"1592","cityNameEn":"Bariloche","cityNameCN":"巴里洛切 ","cityCode":"BRC","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"bllq","pingYin":"baliluoqie"},
+ {"cityId":"1593","cityNameEn":"Mendoza","cityNameCN":"门多萨","cityCode":"MDZ","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"mds","pingYin":"menduosa"},
+ {"cityId":"1595","cityNameEn":"Cordoba","cityNameCN":"科尔多瓦","cityCode":"COR","countryName":"Argentina","countryIsoCode":"AR","hyKeyWord":"kedw","pingYin":"keerduowa"},
+ {"cityId":"1596","cityNameEn":"Oaxaca","cityNameCN":"瓦哈卡","cityCode":"OAX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"whk","pingYin":"wahaka"},
+ {"cityId":"1597","cityNameEn":"Puebla","cityNameCN":"普埃布拉","cityCode":"PBC","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"pabl","pingYin":"puaibula"},
+ {"cityId":"1598","cityNameEn":"Queretaro","cityNameCN":"克雷塔罗","cityCode":"QRO","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"kltl","pingYin":"keleitaluo"},
+ {"cityId":"1599","cityNameEn":"Riviera Maya","cityNameCN":"马雅里维拉","cityCode":"NULL","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"lylml","pingYin":"mayaliweila"},
+ {"cityId":"1600","cityNameEn":"Veracruz","cityNameCN":"韦拉克鲁斯州","cityCode":"VER","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"wlkls","pingYin":"weilakelusi"},
+ {"cityId":"1601","cityNameEn":"Morelia","cityNameCN":"莫雷利亚","cityCode":"MLM","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mlly","pingYin":"moleiliya"},
+ {"cityId":"1602","cityNameEn":"Monterrey","cityNameCN":"蒙特雷","cityCode":"MTY","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mtl","pingYin":"mengtelei"},
+ {"cityId":"1603","cityNameEn":"Merida","cityNameCN":"梅里达","cityCode":"MID","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mld","pingYin":"meilida"},
+ {"cityId":"1604","cityNameEn":"Mazatlan","cityNameCN":"马萨特兰","cityCode":"MZT","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"mstl","pingYin":"masatelan"},
+ {"cityId":"1605","cityNameEn":"Manzanillo","cityNameCN":"曼萨尼约","cityCode":"ZLO","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"msnl","pingYin":"mansaniyue"},
+ {"cityId":"1606","cityNameEn":"Ixtapa","cityNameCN":"印坦巴","cityCode":"ZIH","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"ytb","pingYin":"yintanba"},
+ {"cityId":"1607","cityNameEn":"Huatulco","cityNameCN":"哈杜克","cityCode":"HUX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"hdek","pingYin":"haduke"},
+ {"cityId":"1608","cityNameEn":"Guanajuato","cityNameCN":"瓜纳华托","cityCode":"BJX","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"gnht","pingYin":"guanahuatuo"},
+ {"cityId":"1609","cityNameEn":"Guadalajara","cityNameCN":"瓜达拉哈拉","cityCode":"GDL","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"gdlhl","pingYin":"guadalahala"},
+ {"cityId":"1610","cityNameEn":"Panama city","cityNameCN":"巴拿马市","cityCode":"PTY","countryName":"Panama","countryIsoCode":"PA","hyKeyWord":"bnm","pingYin":"banamashi"},
+ {"cityId":"1611","cityNameEn":"Romblon","cityNameCN":"朗布隆","cityCode":"TBH","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lbl","pingYin":"langbulong"},
+ {"cityId":"1612","cityNameEn":"Playa del Carmen","cityNameCN":"卡门海滩","cityCode":"NULL","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"km","pingYin":"kamenhaitan"},
+ {"cityId":"1613","cityNameEn":"Cozumel","cityNameCN":"科苏梅尔岛","cityCode":"CZM","countryName":"Mexico","countryIsoCode":"MX","hyKeyWord":"ksme","pingYin":"kesumeier"},
+ {"cityId":"1614","cityNameEn":"Newcastle","cityNameCN":"纽卡斯尔","cityCode":"NULL","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"nkse","pingYin":"niukasier"},
+ {"cityId":"1615","cityNameEn":"Palembang","cityNameCN":"巨港","cityCode":"PLM","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"jg","pingYin":"jugang"},
+ {"cityId":"1617","cityNameEn":"Alleppey","cityNameCN":"阿勒皮","cityCode":"NULL","countryName":"India","countryIsoCode":"IN","hyKeyWord":"alp","pingYin":"alepi"},
+ {"cityId":"1618","cityNameEn":"Marinduque","cityNameCN":"马林杜克省","cityCode":"MRQ","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"mldk","pingYin":"malindukesheng"},
+ {"cityId":"1619","cityNameEn":"Madaba","cityNameCN":"马达巴","cityCode":"NULL","countryName":"Jordan","countryIsoCode":"JO","hyKeyWord":"mdb","pingYin":"madaba"},
+ {"cityId":"1621","cityNameEn":"Surigao","cityNameCN":"苏里高","cityCode":"SUG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"slg","pingYin":"suligao"},
+ {"cityId":"1622","cityNameEn":"Naga","cityNameCN":"那伽","cityCode":"WNP","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ng","pingYin":"naga"},
+ {"cityId":"1624","cityNameEn":"Dunedin","cityNameCN":"达尼丁","cityCode":"DUD","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"dnd","pingYin":"daniding"},
+ {"cityId":"1625","cityNameEn":"Hamner Springs","cityNameCN":"汉默泉","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hmq","pingYin":"hanmoquan"},
+ {"cityId":"1626","cityNameEn":"Invercargill","cityNameCN":"因弗卡吉尔","cityCode":"IVC","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"yfkje","pingYin":"yinfukajier"},
+ {"cityId":"1628","cityNameEn":"Napier","cityNameCN":"内皮尔","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"npe","pingYin":"neipier"},
+ {"cityId":"1629","cityNameEn":"Taupo","cityNameCN":"陶波","cityCode":"TUO","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"tb","pingYin":"taobo"},
+ {"cityId":"1630","cityNameEn":"Hamilton","cityNameCN":"哈密尔顿","cityCode":"HLZ","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hmed","pingYin":"hamierdun"},
+ {"cityId":"1631","cityNameEn":"Bay of Islands","cityNameCN":"岛屿湾","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"dyw","pingYin":"daoyuwan"},
+ {"cityId":"1632","cityNameEn":"Kaikoura","cityNameCN":"凯库拉","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"kkl","pingYin":"kaikula"},
+ {"cityId":"1633","cityNameEn":"Palmerston North","cityNameCN":"北帕墨斯顿","cityCode":"PMR","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"bpmsd","pingYin":"beipamosidun"},
+ {"cityId":"1634","cityNameEn":"New Plymouth","cityNameCN":"新普利茅斯","cityCode":"NPL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"xplms","pingYin":"xinpulimaosi"},
+ {"cityId":"1635","cityNameEn":"Gisbourne","cityNameCN":"吉斯本","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"jsb","pingYin":"jisiben"},
+ {"cityId":"1636","cityNameEn":"Whangarei","cityNameCN":"旺格雷","cityCode":"WRE","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"wgl","pingYin":"wanggelei"},
+ {"cityId":"1637","cityNameEn":"Picton","cityNameCN":"皮克顿","cityCode":"NULL","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"pkd","pingYin":"pikedun"},
+ {"cityId":"1638","cityNameEn":"Hokitika","cityNameCN":"霍基芾卡","cityCode":"HKK","countryName":"New Zealand","countryIsoCode":"NZ","hyKeyWord":"hjfk","pingYin":"huojifeika"},
+ {"cityId":"1639","cityNameEn":"Udon Thani","cityNameCN":"乌隆","cityCode":"UTH","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wl","pingYin":"wulong"},
+ {"cityId":"1640","cityNameEn":"Bataan","cityNameCN":"巴丹半岛","cityCode":"P31","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bdbd","pingYin":"badanbandao"},
+ {"cityId":"1641","cityNameEn":"General Santos","cityNameCN":"桑托斯将军城","cityCode":"GES","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"stsjjc","pingYin":"sangtuosijiangjuncheng"},
+ {"cityId":"1642","cityNameEn":"Cerf Island","cityNameCN":"塞尔夫岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"sef","pingYin":"saierfudao"},
+ {"cityId":"1643","cityNameEn":"Ubon Ratchathani","cityNameCN":"乌汶府","cityCode":"UBP","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wwf","pingYin":"wuwenfu"},
+ {"cityId":"1644","cityNameEn":"San Juan","cityNameCN":"圣胡安","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"sha","pingYin":"shenghuan"},
+ {"cityId":"1645","cityNameEn":"Desroche Island","cityNameCN":"迪斯洛契斯岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"dslqs","pingYin":"disiluoqisidao"},
+ {"cityId":"1646","cityNameEn":"Cousine Island","cityNameCN":"塞舌尔表姐妹岛","cityCode":"NULL","countryName":"Seychelles","countryIsoCode":"SC","hyKeyWord":"ssebjm","pingYin":"saisheerbiaojiemeidao"},
+ {"cityId":"1647","cityNameEn":"Klang","cityNameCN":"巴生","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bs","pingYin":"basheng"},
+ {"cityId":"1662","cityNameEn":"Phu Yen","cityNameCN":"富安","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"xh","pingYin":"fuan"},
+ {"cityId":"1686","cityNameEn":"Tanjung Karang","cityNameCN":"丹绒卡朗","cityCode":"NULL","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"drkl","pingYin":"danrongkalang"},
+ {"cityId":"1688","cityNameEn":"Makassar","cityNameCN":"望加锡","cityCode":"UPG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wjx","pingYin":"wangjiaxi"},
+ {"cityId":"1689","cityNameEn":"Puncak","cityNameCN":"亚峰","cityCode":"ID4","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"yf","pingYin":"yafeng"},
+ {"cityId":"1690","cityNameEn":"Anyer","cityNameCN":"阿涅洛尔","cityCode":"ID1","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"anle","pingYin":"anieluoer"},
+ {"cityId":"1693","cityNameEn":"Chonburi","cityNameCN":"春武里","cityCode":"QHI","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"cwl","pingYin":"chunwuli"},
+ {"cityId":"1717","cityNameEn":"Kendari","cityNameCN":"肯达里","cityCode":"KDI","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"kdl","pingYin":"kendali"},
+ {"cityId":"1718","cityNameEn":"Genting Highlands","cityNameCN":"云顶高原","cityCode":"GTB","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ydgy","pingYin":"yundinggaoyuan"},
+ {"cityId":"1719","cityNameEn":"Ambon","cityNameCN":"安汶","cityCode":"AMQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"aw","pingYin":"anwen"},
+ {"cityId":"1740","cityNameEn":"Johor","cityNameCN":"柔佛","cityCode":"M13","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"rf","pingYin":"roufo"},
+ {"cityId":"1741","cityNameEn":"Kuching","cityNameCN":"古晋","cityCode":"NULL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gj","pingYin":"gujin"},
+ {"cityId":"1742","cityNameEn":"Sepang","cityNameCN":"雪邦","cityCode":"M20","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"xb","pingYin":"xuebang"},
+ {"cityId":"1744","cityNameEn":"Corregidor","cityNameCN":"格律希岛 ","cityCode":"RPL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"glx","pingYin":"gelvxidao"},
+ {"cityId":"1749","cityNameEn":"Calapan","cityNameCN":"卡拉潘","cityCode":"P45","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"klp","pingYin":"kalapan"},
+ {"cityId":"1751","cityNameEn":"Nakhon Ratchasima","cityNameCN":"呵叻府","cityCode":"NAK","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"hlf","pingYin":"helefu"},
+ {"cityId":"1753","cityNameEn":"Siquijor","cityNameCN":"锡基霍尔","cityCode":"SIQ","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"xjhe","pingYin":"xijihuoer"},
+ {"cityId":"1757","cityNameEn":"Dong Hoi","cityNameCN":"洞海","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"dh","pingYin":"donghai"},
+ {"cityId":"1758","cityNameEn":"Ninh Binh","cityNameCN":"宁平","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"np","pingYin":"ningping"},
+ {"cityId":"1759","cityNameEn":"Inle Lake","cityNameCN":"茵莱湖","cityCode":"MM7","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"ylh","pingYin":"yinlaihu"},
+ {"cityId":"1760","cityNameEn":"Ratchaburi","cityNameCN":"叻丕府","cityCode":"T34","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"lpf","pingYin":"lepifu"},
+ {"cityId":"1762","cityNameEn":"Mandalay","cityNameCN":"曼德勒","cityCode":"MDL","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mdl","pingYin":"mandele"},
+ {"cityId":"1763","cityNameEn":"Rach Gia","cityNameCN":"迪石","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"ds","pingYin":"dishi"},
+ {"cityId":"1765","cityNameEn":"Leyte, Southern","cityNameCN":"莱特岛","cityCode":"P40","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ltd","pingYin":"laitedao"},
+ {"cityId":"1772","cityNameEn":"Hai Duong","cityNameCN":"海阳","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"hy","pingYin":"haiyang"},
+ {"cityId":"1773","cityNameEn":"Albay","cityNameCN":"阿尔拜","cityCode":"P38","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"aeb","pingYin":"aerbai"},
+ {"cityId":"1774","cityNameEn":"Camarines Sur","cityNameCN":"南甘马磷(尼斯)省","cityCode":"P43","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ngml","pingYin":"nanganmalin(nisi)sheng"},
+ {"cityId":"1777","cityNameEn":"Kawthoung","cityNameCN":"高当","cityCode":"MM8","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"gd","pingYin":"gaodang"},
+ {"cityId":"1778","cityNameEn":"Alabang","cityNameCN":"阿拉邦","cityCode":"P37","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"alb","pingYin":"alabang"},
+ {"cityId":"1779","cityNameEn":"The Fort, Taguig","cityNameCN":"达义堡","cityCode":"P33","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"dy","pingYin":"dayibao"},
+ {"cityId":"1780","cityNameEn":"Bagan","cityNameCN":"蒲甘","cityCode":"BPE","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"pg","pingYin":"pugan"},
+ {"cityId":"1781","cityNameEn":"Balikpapan","cityNameCN":"巴厘巴板","cityCode":"BPN","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"blbb","pingYin":"balibaban"},
+ {"cityId":"1784","cityNameEn":"Bogor","cityNameCN":"茂物","cityCode":"BOG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mw","pingYin":"maowu"},
+ {"cityId":"1785","cityNameEn":"Purwokerto","cityNameCN":"普禾加多","cityCode":"PWL","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"phjd","pingYin":"puhejiaduo"},
+ {"cityId":"1786","cityNameEn":"Pekanbaru","cityNameCN":"北干巴鲁","cityCode":"PKU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bgbl","pingYin":"beiganbalu"},
+ {"cityId":"1787","cityNameEn":"Labuan","cityNameCN":"纳闽","cityCode":"LBU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"nm","pingYin":"namin"},
+ {"cityId":"1788","cityNameEn":"Sorong","cityNameCN":"索荣","cityCode":"SOQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"sr","pingYin":"suorong"},
+ {"cityId":"1791","cityNameEn":"Buriram","cityNameCN":"武里南","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wln","pingYin":"wulinan"},
+ {"cityId":"1792","cityNameEn":"Koh Kood","cityNameCN":"阁骨岛","cityCode":"T31","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"gd","pingYin":"gegudao"},
+ {"cityId":"1794","cityNameEn":"Bangka","cityNameCN":"邦加","cityCode":"ID8","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bj","pingYin":"bangjia"},
+ {"cityId":"1843","cityNameEn":"Roxas City","cityNameCN":"罗哈斯市","cityCode":"RXS","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lhs","pingYin":"luohasishi"},
+ {"cityId":"1844","cityNameEn":"Malang","cityNameCN":"玛琅","cityCode":"MLG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"ml","pingYin":"malang"},
+ {"cityId":"1846","cityNameEn":"Nonthaburi","cityNameCN":"暖武里府","cityCode":"T30","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nwl","pingYin":"nuanwulifu"},
+ {"cityId":"1847","cityNameEn":"Caticlan, Aklan","cityNameCN":"卡地克兰，阿卡兰","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"kdkl","pingYin":"kadikelan"},
+ {"cityId":"1848","cityNameEn":"Kalibo, Aklan","cityNameCN":"卡利波，阿卡兰","cityCode":"P39","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"klb","pingYin":"kalibo"},
+ {"cityId":"1849","cityNameEn":"Pleiku - Gia Lai","cityNameCN":"波来古- 嘉莱","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"blg","pingYin":"bolaigu-jialai"},
+ {"cityId":"1850","cityNameEn":"Quezon Province","cityNameCN":"奎松省","cityCode":"P65","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ks","pingYin":"kuisongsheng"},
+ {"cityId":"1857","cityNameEn":"Sandakan","cityNameCN":"山打根","cityCode":"SDK","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sdg","pingYin":"shandagen"},
+ {"cityId":"1859","cityNameEn":"Koh Mak","cityNameCN":"苏梅麦","cityCode":"T32","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"smm","pingYin":"sumeimai"},
+ {"cityId":"1860","cityNameEn":"Nakhon Nayok","cityNameCN":"那空那育","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nkny","pingYin":"nakongnayu"},
+ {"cityId":"1862","cityNameEn":"Kota Bharu","cityNameCN":"哥打巴鲁","cityCode":"KBR","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gdbl","pingYin":"gedabalu"},
+ {"cityId":"1864","cityNameEn":"Saraburi","cityNameCN":"沙拉武里","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"slbl","pingYin":"shalawuli"},
+ {"cityId":"1865","cityNameEn":"Suphanburi","cityNameCN":"素攀武里","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"spwl","pingYin":"supanwuli"},
+ {"cityId":"1866","cityNameEn":"Prachin Buri","cityNameCN":"巴真武里","cityCode":"NULL","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"bzwl","pingYin":"bazhenwuli"},
+ {"cityId":"1867","cityNameEn":"Pyin Oo Lwin","cityNameCN":"眉谬","cityCode":"MM5","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mm","pingYin":"meimiu"},
+ {"cityId":"1868","cityNameEn":"Ngapali","cityNameCN":"额不里","cityCode":"MM2","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nbl","pingYin":"dongbuli"},
+ {"cityId":"1869","cityNameEn":"Nay Pyi Daw","cityNameCN":"内比都","cityCode":"NULL","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nbd","pingYin":"neibidu"},
+ {"cityId":"1870","cityNameEn":"Ngwe Saung","cityNameCN":"维桑","cityCode":"MM3","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"ws","pingYin":"weisang"},
+ {"cityId":"1871","cityNameEn":"Nay Pyi Taw","cityNameCN":"奈比多","cityCode":"MM1","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nbd","pingYin":"naibiduo"},
+ {"cityId":"1872","cityNameEn":"Pasuruan","cityNameCN":"巴苏鲁安","cityCode":"I10","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bsla","pingYin":"basuluan"},
+ {"cityId":"1876","cityNameEn":"Con Dao Island","cityNameCN":"昆仑岛","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"kld","pingYin":"kunlundao"},
+ {"cityId":"1877","cityNameEn":"Bulacan","cityNameCN":"布拉干省     ","cityCode":"P46","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"blg","pingYin":"bulagansheng"},
+ {"cityId":"1880","cityNameEn":"Ilocos Norte","cityNameCN":"北伊罗戈","cityCode":"P10","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bylg","pingYin":"beiyiluoge"},
+ {"cityId":"1883","cityNameEn":"Toungoo","cityNameCN":"东吁","cityCode":"MM6","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"tg","pingYin":"dongyu"},
+ {"cityId":"1884","cityNameEn":"Kelantan","cityNameCN":"吉兰丹","cityCode":"M23","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"jld","pingYin":"jilandan"},
+ {"cityId":"1885","cityNameEn":"Nyaung Shwe","cityNameCN":"娘瑞","cityCode":"MM4","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"nr","pingYin":"niangrui"},
+ {"cityId":"1886","cityNameEn":"Pyu","cityNameCN":"骠省","cityCode":"MM9","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"bs","pingYin":"biaosheng"},
+ {"cityId":"1887","cityNameEn":"Phan Rang – Cham Tower","cityNameCN":"藩朗 - 湛塔","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"fl","pingYin":"fanlang-zhanta"},
+ {"cityId":"1888","cityNameEn":"Alor setar","cityNameCN":"亚罗士打","cityCode":"AOR","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ylsd","pingYin":"yaluoshida"},
+ {"cityId":"1941","cityNameEn":"Cirebon","cityNameCN":"井里汶","cityCode":"CBN","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"jlw","pingYin":"jingliwen"},
+ {"cityId":"3957","cityNameEn":"Bengkulu","cityNameCN":"朋古鲁","cityCode":"BKS","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"pgl","pingYin":"penggulu"},
+ {"cityId":"3958","cityNameEn":"Berau","cityNameCN":"伯劳","cityCode":"BEJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bl","pingYin":"bolao"},
+ {"cityId":"3959","cityNameEn":"Biak","cityNameCN":"比亚克","cityCode":"BIK","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"byk","pingYin":"biyake"},
+ {"cityId":"3960","cityNameEn":"Bima","cityNameCN":"比马","cityCode":"BMU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bm","pingYin":"bima"},
+ {"cityId":"3961","cityNameEn":"Datadawai","cityNameCN":"达塔达瓦伊","cityCode":"DTD","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"dtdwy","pingYin":"datadawayi"},
+ {"cityId":"3962","cityNameEn":"Ende","cityNameCN":"英德","cityCode":"ENE","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"yd","pingYin":"yingde"},
+ {"cityId":"3963","cityNameEn":"Fak Fak","cityNameCN":"法克法克","cityCode":"FKQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"fkfk","pingYin":"fakefake"},
+ {"cityId":"3964","cityNameEn":"Gorontalo","cityNameCN":"哥伦打洛","cityCode":"GTO","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"gldl","pingYin":"gelundaluo"},
+ {"cityId":"3965","cityNameEn":"Jambi","cityNameCN":"占碑","cityCode":"DJB","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"zb","pingYin":"zhanbei"},
+ {"cityId":"3966","cityNameEn":"Kaimana","cityNameCN":"凯马纳","cityCode":"KNG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"kmn","pingYin":"kaimana"},
+ {"cityId":"3967","cityNameEn":"Ketapang","cityNameCN":"吉打榜","cityCode":"KTG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"jdb","pingYin":"jidabang"},
+ {"cityId":"3968","cityNameEn":"Kupang","cityNameCN":"古邦","cityCode":"KOE","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"gb","pingYin":"gubang"},
+ {"cityId":"3969","cityNameEn":"Labuan Bajo","cityNameCN":"纳闽巴霍","cityCode":"LBJ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"nmbh","pingYin":"naminbahuo"},
+ {"cityId":"3970","cityNameEn":"Langgur","cityNameCN":"朗格","cityCode":"LUV","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lg","pingYin":"langge"},
+ {"cityId":"3971","cityNameEn":"Long Apung","cityNameCN":"  伦阿彭","cityCode":"LPU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lap","pingYin":"lunapeng"},
+ {"cityId":"3972","cityNameEn":"Long Bawan","cityNameCN":"  隆巴旺","cityCode":"LBW","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"lbw","pingYin":"longbawang"},
+ {"cityId":"3973","cityNameEn":"Mataram","cityNameCN":"马塔兰","cityCode":"NULL","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mtl","pingYin":"matalan"},
+ {"cityId":"3974","cityNameEn":"Maumere","cityNameCN":"玛米尔","cityCode":"MOF","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mme","pingYin":"mamier"},
+ {"cityId":"3975","cityNameEn":"Merauke","cityNameCN":"马老奇","cityCode":"MKQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"mlq","pingYin":"malaoqi"},
+ {"cityId":"3976","cityNameEn":"Naha","cityNameCN":"那覇","cityCode":"NAH","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"nb","pingYin":"naba"},
+ {"cityId":"3977","cityNameEn":"Nunukan","cityNameCN":"奴奴干城","cityCode":"NNX","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"nngc","pingYin":"nunugancheng"},
+ {"cityId":"3978","cityNameEn":"Padang","cityNameCN":"巴东","cityCode":"PDG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bd","pingYin":"badong"},
+ {"cityId":"3979","cityNameEn":"Pangkalanbun","cityNameCN":"庞卡兰邦","cityCode":"PKN","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"pklb","pingYin":"pangkalanbang"},
+ {"cityId":"3980","cityNameEn":"Pangkalpinang","cityNameCN":"槟港","cityCode":"PGK","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bl","pingYin":"bingang"},
+ {"cityId":"3981","cityNameEn":"Putussibau","cityNameCN":"乌阿普","cityCode":"PSU","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wap","pingYin":"wuapu"},
+ {"cityId":"3982","cityNameEn":"Sintang","cityNameCN":"  新当","cityCode":"SQG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"xd","pingYin":"xindang"},
+ {"cityId":"3983","cityNameEn":"Tambolaka","cityNameCN":"坦波拉卡","cityCode":"TMC","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tblk","pingYin":"tanbolaka"},
+ {"cityId":"3984","cityNameEn":"Tanjung Pandan","cityNameCN":"丹绒香兰","cityCode":"TJQ","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tjxl","pingYin":"danrongxianglan"},
+ {"cityId":"3985","cityNameEn":"Tembagapura","cityNameCN":"特姆巴加普拉","cityCode":"TIM","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tmbjpl","pingYin":"temubajiapula"},
+ {"cityId":"3986","cityNameEn":"Ternate","cityNameCN":"特尔纳特","cityCode":"TTE","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"tent","pingYin":"teernate"},
+ {"cityId":"3987","cityNameEn":"Ujung Pandang","cityNameCN":"乌戎潘当","cityCode":"I11","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wrpd","pingYin":"wurongpandang"},
+ {"cityId":"3988","cityNameEn":"Waingapu","cityNameCN":"瓦英阿普  ","cityCode":"WGP","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"wyap","pingYin":"wayingapu"},
+ {"cityId":"4187","cityNameEn":"Bakalalan","cityNameCN":"巴卡拉兰","cityCode":"BKM","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bkll","pingYin":"bakalalan"},
+ {"cityId":"4188","cityNameEn":"Bario","cityNameCN":"巴里奥","cityCode":"BBN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bla","pingYin":"baliao"},
+ {"cityId":"4189","cityNameEn":"Belaga","cityNameCN":"贝拉加","cityCode":"BLG","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bjl","pingYin":"beilajia"},
+ {"cityId":"4190","cityNameEn":"Bintulu","cityNameCN":"民都鲁","cityCode":"BTU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"bdl","pingYin":"mindulu"},
+ {"cityId":"4191","cityNameEn":"Kudat","cityNameCN":"古达","cityCode":"KUD","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"gd","pingYin":"guda"},
+ {"cityId":"4192","cityNameEn":"Lahad Datu","cityNameCN":"拿笃","cityCode":"LDU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"nd","pingYin":"nadu"},
+ {"cityId":"4193","cityNameEn":"Lawas","cityNameCN":"老越","cityCode":"LWY","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ly","pingYin":"laoyue"},
+ {"cityId":"4194","cityNameEn":"Limbang","cityNameCN":"林梦","cityCode":"LMN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lm","pingYin":"linmeng"},
+ {"cityId":"4195","cityNameEn":"Long Akah","cityNameCN":"宋卡","cityCode":"LKH","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sk","pingYin":"songka"},
+ {"cityId":"4196","cityNameEn":"Long Banga","cityNameCN":"隆邦加","cityCode":"LBP","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lbj","pingYin":"longbangjia"},
+ {"cityId":"4197","cityNameEn":"Long Lellang","cityNameCN":"隆乐浪","cityCode":"LGL","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lll","pingYin":"longlelang"},
+ {"cityId":"4198","cityNameEn":"Long Seridan","cityNameCN":"隆塞里丹","cityCode":"ODN","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"lsld","pingYin":"longsailidan"},
+ {"cityId":"4199","cityNameEn":"Marudi","cityNameCN":"马卢地","cityCode":"MUR","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"mld","pingYin":"maludi"},
+ {"cityId":"4200","cityNameEn":"Miri","cityNameCN":"美里","cityCode":"MYY","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ml","pingYin":"meili"},
+ {"cityId":"4201","cityNameEn":"Mukah","cityNameCN":"木胶","cityCode":"MKM","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"mj","pingYin":"mujiao"},
+ {"cityId":"4202","cityNameEn":"Mulu","cityNameCN":"姆鲁","cityCode":"MZV","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"ml","pingYin":"mulu"},
+ {"cityId":"4203","cityNameEn":"Sibu","cityNameCN":"诗巫","cityCode":"SBW","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"sw","pingYin":"shiwu"},
+ {"cityId":"4204","cityNameEn":"Tawau","cityNameCN":"斗湖","cityCode":"TWU","countryName":"Malaysia","countryIsoCode":"MY","hyKeyWord":"dh","pingYin":"donghu"},
+ {"cityId":"4317","cityNameEn":"Bassein","cityNameCN":"勃生","cityCode":"BSX","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"bs","pingYin":"bosheng"},
+ {"cityId":"4318","cityNameEn":"Bhamo","cityNameCN":"八莫","cityCode":"BMO","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"bm","pingYin":"bamo"},
+ {"cityId":"4319","cityNameEn":"Dawei","cityNameCN":"土瓦","cityCode":"TVY","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"tw","pingYin":"tuwa"},
+ {"cityId":"4320","cityNameEn":"Heho","cityNameCN":"河湖","cityCode":"HEH","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"hh","pingYin":"hehu"},
+ {"cityId":"4321","cityNameEn":"Kalemyo","cityNameCN":"格礼","cityCode":"KMV","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"gl","pingYin":"geli"},
+ {"cityId":"4322","cityNameEn":"Keng Tung","cityNameCN":"景栋","cityCode":"KET","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"jd","pingYin":"jingdong"},
+ {"cityId":"4323","cityNameEn":"Khamti","cityNameCN":"卡姆迪","cityCode":"KHM","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"kmd","pingYin":"kamudi"},
+ {"cityId":"4324","cityNameEn":"Kyaukpyu","cityNameCN":"皎漂","cityCode":"KYP","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"jp","pingYin":"jiaopiao"},
+ {"cityId":"4325","cityNameEn":"Lashio","cityNameCN":"腊戌","cityCode":"LSH","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"lx","pingYin":"laxu"},
+ {"cityId":"4326","cityNameEn":"Loikaw","cityNameCN":"垒固","cityCode":"LIW","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"lg","pingYin":"leigu"},
+ {"cityId":"4327","cityNameEn":"Magway","cityNameCN":"马圭","cityCode":"MWQ","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mg","pingYin":"magui"},
+ {"cityId":"4328","cityNameEn":"Mawlamyine","cityNameCN":"毛淡棉","cityCode":"MNU","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mdm","pingYin":"maodanmian"},
+ {"cityId":"4329","cityNameEn":"Mong Hsat","cityNameCN":"孟萨","cityCode":"MOG","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"NULL","pingYin":"mengsa"},
+ {"cityId":"4330","cityNameEn":"Myeik","cityNameCN":"丹老","cityCode":"MGZ","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"dl","pingYin":"danlao"},
+ {"cityId":"4331","cityNameEn":"Myitkyina","cityNameCN":"密支那","cityCode":"MYT","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mzn","pingYin":"mizhina"},
+ {"cityId":"4332","cityNameEn":"Pakokku","cityNameCN":"木各贝","cityCode":"PKK","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"mgb","pingYin":"mugebei"},
+ {"cityId":"4333","cityNameEn":"Putao","cityNameCN":"葡萄","cityCode":"PBU","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"pt","pingYin":"putao"},
+ {"cityId":"4334","cityNameEn":"Sittwe","cityNameCN":"实兑","cityCode":"AKY","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"sd","pingYin":"shidui"},
+ {"cityId":"4335","cityNameEn":"Tachilek","cityNameCN":"大其力","cityCode":"THL","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"dql","pingYin":"daqili"},
+ {"cityId":"4336","cityNameEn":"Thandwe","cityNameCN":"山多威","cityCode":"SNW","countryName":"Myanmar","countryIsoCode":"MM","hyKeyWord":"adw","pingYin":"shanduowei"},
+ {"cityId":"4615","cityNameEn":"Basco","cityNameCN":"巴斯科","cityCode":"BSO","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bsk","pingYin":"basike"},
+ {"cityId":"4616","cityNameEn":"Busuanga","cityNameCN":"布桑加","cityCode":"USU","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"bsj","pingYin":"busangjia"},
+ {"cityId":"4617","cityNameEn":"Jolo","cityNameCN":"瑚洛 ","cityCode":"JOL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"hl","pingYin":"huluo"},
+ {"cityId":"4618","cityNameEn":"Legaspi","cityNameCN":"黎牙实比","cityCode":"NULL","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"lysb","pingYin":"liyashibi"},
+ {"cityId":"4619","cityNameEn":"Tawitawi","cityNameCN":"塔威塔威","cityCode":"TWT","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"twtw","pingYin":"taweitawei"},
+ {"cityId":"4620","cityNameEn":"Taytay Sandoval","cityNameCN":"泰泰桑多瓦尔","cityCode":"RZP","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ttsdwe","pingYin":"taitaisangdongwaer"},
+ {"cityId":"4621","cityNameEn":"Tuguegarao","cityNameCN":"土格加劳","cityCode":"TUG","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"tgjl","pingYin":"tugejialao"},
+ {"cityId":"4622","cityNameEn":"Virac","cityNameCN":"比拉克","cityCode":"VRC","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"blk","pingYin":"bilake"},
+ {"cityId":"4979","cityNameEn":"Nakhon Phanom","cityNameCN":"那空拍侬","cityCode":"KOP","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nkpn","pingYin":"nakongpainong"},
+ {"cityId":"4980","cityNameEn":"Nan","cityNameCN":"南府","cityCode":"NNT","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nf","pingYin":"nanfu"},
+ {"cityId":"4981","cityNameEn":"Narathiwat","cityNameCN":"那拉提瓦","cityCode":"NAW","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"nltw","pingYin":"nalatiwa"},
+ {"cityId":"4982","cityNameEn":"Roi Et","cityNameCN":"黎逸府","cityCode":"ROI","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"ly","pingYin":"liyifu"},
+ {"cityId":"4983","cityNameEn":"Sakon Nakhon","cityNameCN":"沙功那空","cityCode":"SNO","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"sgnk","pingYin":"shagongnakong"},
+ {"cityId":"4984","cityNameEn":"Utapao","cityNameCN":"乌塔堡","cityCode":"UTP","countryName":"Thailand","countryIsoCode":"TH","hyKeyWord":"wtb","pingYin":"wutabao"},
+ {"cityId":"5774","cityNameEn":"Ban Me Thuot","cityNameCN":"邦美蜀市","cityCode":"BMV","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"bmss","pingYin":"bangmeishushi"},
+ {"cityId":"5775","cityNameEn":"Ca Mau","cityNameCN":"金甌","cityCode":"CAH","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"jo","pingYin":"jinou"},
+ {"cityId":"5777","cityNameEn":"Dien Bien Phu","cityNameCN":"奠边府","cityCode":"DIN","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"dbf","pingYin":"dianbianfu"},
+ {"cityId":"5778","cityNameEn":"Bien Hoa","cityNameCN":"归仁的","cityCode":"UIH","countryName":"Vietnam","hyKeyWord":"grd","pingYin":"guirende"},
+ {"cityId":"5779","cityNameEn":"Tamky","cityNameCN":"三岐","cityCode":"VCL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sq","pingYin":"sanqi"},
+ {"cityId":"5780","cityNameEn":"Tuyhoa","cityNameCN":"绥和","cityCode":"TBB","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"sh","pingYin":"suihe"},
+ {"cityId":"5781","cityNameEn":"Vinh City","cityNameCN":"荣市","cityCode":"VII","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"rs","pingYin":"rongshi"},
+ {"cityId":"5804","cityNameEn":"Klaten","cityNameCN":"克拉登","cityCode":"KLT","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"kld","pingYin":"keladeng"},
+ {"cityId":"5810","cityNameEn":"Preah Vihear","cityNameCN":"柏威夏省","cityCode":"NULL","countryName":"Cambodia","countryIsoCode":"KH","hyKeyWord":"bwx","pingYin":"baiweixia"},
+ {"cityId":"5812","cityNameEn":"Vinh Phuc","cityNameCN":"永福","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"yf","pingYin":"yongfu"},
+ {"cityId":"5813","cityNameEn":"Bontang","cityNameCN":"邦坦","cityCode":"BTG","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"bt","pingYin":"bangtan"},
+ {"cityId":"5814","cityNameEn":"Baler","cityNameCN":"巴勒尔      ","cityCode":"BQA","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ble","pingYin":"baleer"},
+ {"cityId":"5816","cityNameEn":"Binh Duong","cityNameCN":"平阳","cityCode":"NULL","countryName":"Vietnam","countryIsoCode":"VN","hyKeyWord":"py","pingYin":"pingyang"},
+ {"cityId":"5817","cityNameEn":"Sorsogon","cityNameCN":"索索贡","cityCode":"PP2","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"ssg","pingYin":"suosuogong"},
+ {"cityId":"5818","cityNameEn":"Marikina","cityNameCN":"马利金纳","cityCode":"P30","countryName":"Philippines","countryIsoCode":"PH","hyKeyWord":"nljn","pingYin":"malijinna"},
+ {"cityId":"5821","cityNameEn":"Jember","cityNameCN":"任抹","cityCode":"ID9","countryName":"Indonesia","countryIsoCode":"ID","hyKeyWord":"rm","pingYin":"renmo"}
+ ];
+ var domesticCities =[{"cityId":"8","cityNameEn":"Shanghai","cityNameCn":"上海","cityCode":"SHA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sh","pingYin":"shanghai"},{"cityId":"10","cityNameEn":"Beijing","cityNameCn":"北京","cityCode":"BJS","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bj","pingYin":"beijing"},{"cityId":"146","cityNameEn":"Guangzhou","cityNameCn":"广州","cityCode":"CAN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gz","pingYin":"guangzhou"},{"cityId":"147","cityNameEn":"Shenzhen","cityNameCn":"深圳","cityCode":"SZX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sz","pingYin":"shenzhen"},{"cityId":"148","cityNameEn":"Xian","cityNameCn":"西安","cityCode":"SIA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xa","pingYin":"xian"},{"cityId":"149","cityNameEn":"Suzhou","cityNameCn":"苏州","cityCode":"SZV","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sz","pingYin":"suzhou"},{"cityId":"233","cityNameEn":"Hangzhou","cityNameCn":"杭州","cityCode":"HGH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hz","pingYin":"hangzhou"},{"cityId":"234","cityNameEn":"Kunming","cityNameCn":"昆明","cityCode":"KMG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"km","pingYin":"kunming"},{"cityId":"235","cityNameEn":"Guilin","cityNameCn":"桂林","cityCode":"KWL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gl","pingYin":"guilin"},{"cityId":"236","cityNameEn":"Sanya","cityNameCn":"三亚","cityCode":"SYX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sy","pingYin":"sanya"},{"cityId":"237","cityNameEn":"Beihai","cityNameCn":"北海市","cityCode":"BHY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bh","pingYin":"beihaishi"},{"cityId":"238","cityNameEn":"Boao","cityNameCn":"博鳌","cityCode":"CH1","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ba","pingYin":"boao"},{"cityId":"239","cityNameEn":"Changchun","cityNameCn":"长春","cityCode":"CGQ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cc","pingYin":"changchun"},{"cityId":"240","cityNameEn":"Changsha","cityNameCn":"长沙","cityCode":"CSX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cs","pingYin":"changsha"},{"cityId":"241","cityNameEn":"Chaozhou","cityNameCn":"潮州","cityCode":"CH2","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cz","pingYin":"chaozhou"},{"cityId":"242","cityNameEn":"Chengdu","cityNameCn":"成都","cityCode":"CTU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cd","pingYin":"chengdu"},{"cityId":"243","cityNameEn":"Chongqing","cityNameCn":"重庆","cityCode":"CKG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cq","pingYin":"chongqing"},{"cityId":"244","cityNameEn":"Dali","cityNameCn":"大理","cityCode":"DLU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dl","pingYin":"dali"},{"cityId":"245","cityNameEn":"Dalian","cityNameCn":"大连","cityCode":"DLC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dl","pingYin":"dalian"},{"cityId":"246","cityNameEn":"Dongguan","cityNameCn":"东莞","cityCode":"DGM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dg","pingYin":"dongguan"},{"cityId":"247","cityNameEn":"Dunhuang","cityNameCn":"敦煌","cityCode":"DNH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dh","pingYin":"dunhuang"},{"cityId":"248","cityNameEn":"Fuzhou","cityNameCn":"福州","cityCode":"FOC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"fz","pingYin":"fuzhou"},{"cityId":"249","cityNameEn":"Foshan","cityNameCn":"佛山","cityCode":"FUO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"fs","pingYin":"foshan"},{"cityId":"250","cityNameEn":"Guiyang","cityNameCn":"贵阳","cityCode":"KWE","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gy","pingYin":"guiyang"},{"cityId":"251","cityNameEn":"Haikou","cityNameCn":"海口","cityCode":"HAK","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hk","pingYin":"haikou"},{"cityId":"252","cityNameEn":"Harbin","cityNameCn":"哈尔滨","cityCode":"HRB","countryName":"China","countryIsoCode":"CN","hyKeyWord":"heb","pingYin":"haerbin"},{"cityId":"253","cityNameEn":"Hefei","cityNameCn":"合肥","cityCode":"HFE","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hf","pingYin":"hefei"},{"cityId":"254","cityNameEn":"Huangshan","cityNameCn":"黄山","cityCode":"CH4","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hs","pingYin":"huangshan"},{"cityId":"255","cityNameEn":"JiNan","cityNameCn":"济南","cityCode":"TNA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jn","pingYin":"jinan"},{"cityId":"256","cityNameEn":"Lanzhou","cityNameCn":"兰州","cityCode":"LHW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"lanzhou"},{"cityId":"257","cityNameEn":"Lhasa","cityNameCn":"拉萨","cityCode":"LXA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ls","pingYin":"lasa"},{"cityId":"258","cityNameEn":"Lijiang","cityNameCn":"丽江","cityCode":"LJG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lj","pingYin":"lijiang"},{"cityId":"259","cityNameEn":"Kunshan","cityNameCn":"昆山","cityCode":"CH9","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ks","pingYin":"kunshan"},{"cityId":"260","cityNameEn":"Nanjing","cityNameCn":"南京","cityCode":"NKG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nj","pingYin":"nanjing"},{"cityId":"261","cityNameEn":"Nanning","cityNameCn":"南宁","cityCode":"NNG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nn","pingYin":"nanning"},{"cityId":"262","cityNameEn":"Ningbo","cityNameCn":"宁波","cityCode":"NGB","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nb","pingYin":"ningbo"},{"cityId":"263","cityNameEn":"Nanchang","cityNameCn":"南昌","cityCode":"KHN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nc","pingYin":"nanchang"},{"cityId":"264","cityNameEn":"Qingdao","cityNameCn":"青岛","cityCode":"TAO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qd","pingYin":"qingdao"},{"cityId":"265","cityNameEn":"Qinhuangdao","cityNameCn":"秦皇岛","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qhd","pingYin":"qinhuangdao"},{"cityId":"267","cityNameEn":"Shantou","cityNameCn":"汕头","cityCode":"SWA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"st","pingYin":"shantou"},{"cityId":"268","cityNameEn":"Shenyang","cityNameCn":"沈阳","cityCode":"SHE","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sy","pingYin":"shenyang"},{"cityId":"269","cityNameEn":"Shijiazhuang","cityNameCn":"石家庄","cityCode":"SJW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sjz","pingYin":"shijiazhuang"},{"cityId":"270","cityNameEn":"Taishan","cityNameCn":"泰山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ts","pingYin":"taishan"},{"cityId":"271","cityNameEn":"Tianjin","cityNameCn":"天津","cityCode":"TSN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tj","pingYin":"tianjin"},{"cityId":"272","cityNameEn":"Tulufan","cityNameCn":"吐鲁番","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tlf","pingYin":"tulufan"},{"cityId":"273","cityNameEn":"Urumqi","cityNameCn":"乌鲁木齐","cityCode":"URC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wlmq","pingYin":"wulumuqi"},{"cityId":"274","cityNameEn":"Wuhan","cityNameCn":"武汉","cityCode":"WUH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wh","pingYin":"wuhan"},{"cityId":"275","cityNameEn":"Wuxi","cityNameCn":"无锡","cityCode":"WUX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wx","pingYin":"wuxi"},{"cityId":"276","cityNameEn":"Xiamen","cityNameCn":"厦门","cityCode":"XMN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xm","pingYin":"xiamen"},{"cityId":"278","cityNameEn":"Zhaoqing","cityNameCn":"肇庆","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zq","pingYin":"zhaoqing"},{"cityId":"279","cityNameEn":"Zhuhai","cityNameCn":"珠海","cityCode":"ZUH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zh","pingYin":"zhuhai"},{"cityId":"280","cityNameEn":"Zhongshan","cityNameCn":"中山","cityCode":"ZGN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zs","pingYin":"zhongshan"},{"cityId":"281","cityNameEn":"Zhengzhou","cityNameCn":"郑州","cityCode":"CGO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zz","pingYin":"zhengzhou"},{"cityId":"566","cityNameEn":"Jiuzhaigou","cityNameCn":"九寨沟","cityCode":"CH8","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jzg","pingYin":"jiuzhaigou"},{"cityId":"568","cityNameEn":"Shangri-La","cityNameCn":"香格里拉","cityCode":"C15","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xgll","pingYin":"xianggelila"},{"cityId":"843","cityNameEn":"Wenzhou","cityNameCn":"温州","cityCode":"WNZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wz","pingYin":"wenzhou"},{"cityId":"1001","cityNameEn":"JiangMen","cityNameCn":"江门","cityCode":"CH6","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jm","pingYin":"jiangmen"},{"cityId":"1182","cityNameEn":"Yiwu","cityNameCn":"义乌","cityCode":"YIW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yw","pingYin":"yiwu"},{"cityId":"1356","cityNameEn":"Changzhou","cityNameCn":"常州","cityCode":"CZX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cz","pingYin":"changzhou"},{"cityId":"1357","cityNameEn":"Baotou","cityNameCn":"包头","cityCode":"BAV","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bt","pingYin":"baotou"},{"cityId":"1358","cityNameEn":"Huhhot","cityNameCn":"呼和浩特","cityCode":"CH5","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hhht","pingYin":"huhehaote"},{"cityId":"1359","cityNameEn":"JiaShan","cityNameCn":"嘉善","cityCode":"CH7","countryName":"China","countryIsoCode":"CN","hyKeyWord":"js","pingYin":"jiashan"},{"cityId":"1442","cityNameEn":"Taiyuan","cityNameCn":"太原","cityCode":"TYN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ty","pingYin":"taiyuan"},{"cityId":"1589","cityNameEn":"Changshu","cityNameCn":"常熟","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cs","pingYin":"changshu"},{"cityId":"1616","cityNameEn":"Zhanjiang","cityNameCn":"湛江","cityCode":"ZHA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zj","pingYin":"zhanjiang"},{"cityId":"1623","cityNameEn":"Yantai ","cityNameCn":"烟台","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yt","pingYin":"yantai"},{"cityId":"1951","cityNameEn":"Anshan","cityNameCn":"鞍山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"as","pingYin":"anshan"},{"cityId":"3393","cityNameEn":"Aksu","cityNameCn":"阿克苏","cityCode":"AKU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"aks","pingYin":"akesu"},{"cityId":"3394","cityNameEn":"Altay","cityNameCn":"阿勒泰","cityCode":"AAT","countryName":"China","countryIsoCode":"CN","hyKeyWord":"alt","pingYin":"aletai"},{"cityId":"3395","cityNameEn":"An Shun","cityNameCn":"安顺","cityCode":"AVA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"as","pingYin":"anshun"},{"cityId":"3396","cityNameEn":"Ankang","cityNameCn":"安康","cityCode":"AKA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ak","pingYin":"ankang"},{"cityId":"3397","cityNameEn":"Bangda","cityNameCn":"邦达","cityCode":"BPX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"bd","pingYin":"bangda"},{"cityId":"3398","cityNameEn":"Chifeng","cityNameCn":"赤峰","cityCode":"CIF","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cf","pingYin":"chifeng"},{"cityId":"3399","cityNameEn":"Dandong","cityNameCn":"丹东","cityCode":"DDG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dd","pingYin":"dandong"},{"cityId":"3400","cityNameEn":"Datong","cityNameCn":"大同","cityCode":"DAT","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dt","pingYin":"datong"},{"cityId":"3401","cityNameEn":"Daxian","cityNameCn":"达县","cityCode":"DAX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dx","pingYin":"daxian"},{"cityId":"3402","cityNameEn":"Dayong","cityNameCn":"大用镇","cityCode":"DYG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dy","pingYin":"dayongzhen"},{"cityId":"3403","cityNameEn":"Diqing","cityNameCn":"迪庆","cityCode":"DIG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dq","pingYin":"diqing"},{"cityId":"3404","cityNameEn":"Dongying","cityNameCn":"东营","cityCode":"DOY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"dy","pingYin":"dongying"},{"cityId":"3405","cityNameEn":"Enshi","cityNameCn":"恩施","cityCode":"ENH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"es","pingYin":"enshi"},{"cityId":"3406","cityNameEn":"Ganzhou","cityNameCn":"赣州","cityCode":"KOW","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gz","pingYin":"ganzhou"},{"cityId":"3407","cityNameEn":"Golmud","cityNameCn":"格尔木","cityCode":"GOQ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"gem","pingYin":"geermu"},{"cityId":"3408","cityNameEn":"Hailar","cityNameCn":"海拉尔","cityCode":"HLD","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hle","pingYin":"hailaer"},{"cityId":"3409","cityNameEn":"Hanzhong","cityNameCn":"汉中","cityCode":"HZG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hz","pingYin":"hanzhong"},{"cityId":"3410","cityNameEn":"Heihe","cityNameCn":"黑河","cityCode":"HEK","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hh","pingYin":"heihe"},{"cityId":"3411","cityNameEn":"Hohhot","cityNameCn":"呼和浩特","cityCode":"HET","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hhht","pingYin":"huhehaote"},{"cityId":"3412","cityNameEn":"Hotan","cityNameCn":"和田","cityCode":"HTN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ht","pingYin":"hetian"},{"cityId":"3413","cityNameEn":"Huizhou","cityNameCn":"惠州","cityCode":"HUZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hz","pingYin":"huizhou"},{"cityId":"3414","cityNameEn":"Humen","cityNameCn":"虎门","cityCode":"ZTI","countryName":"China","countryIsoCode":"CN","hyKeyWord":"hm","pingYin":"humen"},{"cityId":"3415","cityNameEn":"Ji An","cityNameCn":"集安市","cityCode":"JGS","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ja","pingYin":"jianshi"},{"cityId":"3416","cityNameEn":"Quzhou","cityNameCn":"衢州","cityCode":"JUZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qz","pingYin":"quzhou"},{"cityId":"3417","cityNameEn":"Karamay","cityNameCn":"克拉玛依","cityCode":"KRY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"klmy","pingYin":"kelamayi"},{"cityId":"3418","cityNameEn":"Kashi","cityNameCn":"喀什","cityCode":"KHG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ks","pingYin":"kashi"},{"cityId":"3419","cityNameEn":"Korla","cityNameCn":"库尔勒","cityCode":"KRL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"kel","pingYin":"kuerle"},{"cityId":"3420","cityNameEn":"Kuqa","cityNameCn":"库车","cityCode":"KCA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"kc","pingYin":"kuche"},{"cityId":"3421","cityNameEn":"Lianyungang","cityNameCn":"连云港","cityCode":"LYG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lyg","pingYin":"lianyungang"},{"cityId":"3422","cityNameEn":"Lin Zhi","cityNameCn":"林芝","cityCode":"LZY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"linzhi"},{"cityId":"3423","cityNameEn":"Lincang","cityNameCn":"临沧","cityCode":"LNJ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lc","pingYin":"lincang"},{"cityId":"3424","cityNameEn":"Linyi","cityNameCn":"临沂","cityCode":"LYI","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ly","pingYin":"linyi"},{"cityId":"3425","cityNameEn":"Liping City","cityNameCn":"黎平","cityCode":"HZH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lp","pingYin":"liping"},{"cityId":"3426","cityNameEn":"Liuzhou","cityNameCn":"柳州","cityCode":"LZH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"liuzhou"},{"cityId":"3427","cityNameEn":"Longyan","cityNameCn":"龙岩","cityCode":"LCX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ly","pingYin":"longyan"},{"cityId":"3428","cityNameEn":"Luoyang","cityNameCn":"洛阳","cityCode":"LYA","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ly","pingYin":"luoyang"},{"cityId":"3429","cityNameEn":"Luxi","cityNameCn":"鲁西","cityCode":"LUM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lx","pingYin":"luxi"},{"cityId":"3430","cityNameEn":"Luzhou","cityNameCn":"泸州","cityCode":"LZO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"lz","pingYin":"luzhou"},{"cityId":"3431","cityNameEn":"Manzhouli","cityNameCn":"满洲里","cityCode":"NZH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mzl","pingYin":"manzhouli"},{"cityId":"3432","cityNameEn":"Meixian","cityNameCn":"梅县","cityCode":"MXZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mx","pingYin":"meixian"},{"cityId":"3433","cityNameEn":"Mian Yang","cityNameCn":"绵阳","cityCode":"MIG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"my","pingYin":"mianyang"},{"cityId":"3434","cityNameEn":"Mudanjiang","cityNameCn":"牡丹江","cityCode":"MDG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mdj","pingYin":"mudanjiang"},{"cityId":"3435","cityNameEn":"Nantong","cityNameCn":"南通","cityCode":"NTG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"nt","pingYin":"nantong"},{"cityId":"3436","cityNameEn":"Nanyang","cityNameCn":"南阳","cityCode":"NNY","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ny","pingYin":"nanyang"},{"cityId":"3437","cityNameEn":"Pan Zhi Hua","cityNameCn":"攀枝花","cityCode":"PZI","countryName":"China","countryIsoCode":"CN","hyKeyWord":"pzh","pingYin":"panzhihua"},{"cityId":"3438","cityNameEn":"Qiemo","cityNameCn":"且末县","cityCode":"IQM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qm","pingYin":"qiemoxian"},{"cityId":"3439","cityNameEn":"Qiqihar","cityNameCn":"齐齐哈尔","cityCode":"NDG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"qqhe","pingYin":"qiqihaer"},{"cityId":"3440","cityNameEn":"Simao","cityNameCn":"思茅","cityCode":"SYM","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sm","pingYin":"simao"},{"cityId":"3442","cityNameEn":"Tacheng","cityNameCn":"塔城","cityCode":"TCG","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tc","pingYin":"tacheng"},{"cityId":"3443","cityNameEn":"Tongliao","cityNameCn":"通辽","cityCode":"TGO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tl","pingYin":"tongliao"},{"cityId":"3444","cityNameEn":"Tongren","cityNameCn":"铜仁","cityCode":"TEN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tr","pingYin":"tongren"},{"cityId":"3445","cityNameEn":"Tunxi","cityNameCn":"屯溪","cityCode":"TXN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"tx","pingYin":"tunxi"},{"cityId":"3446","cityNameEn":"Ulanhot","cityNameCn":"乌兰浩特","cityCode":"HLH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wlht","pingYin":"wulanhaote"},{"cityId":"3447","cityNameEn":"Wanxian","cityNameCn":"万县","cityCode":"WXN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wx","pingYin":"wanxian"},{"cityId":"3448","cityNameEn":"Weifang","cityNameCn":"潍坊","cityCode":"WEF","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wf","pingYin":"weifang"},{"cityId":"3449","cityNameEn":"Weihai","cityNameCn":"威海","cityCode":"WEH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wh","pingYin":"weihai"},{"cityId":"3450","cityNameEn":"Wenshan","cityNameCn":"文山","cityCode":"WNH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ws","pingYin":"wenshan"},{"cityId":"3451","cityNameEn":"Wuyishan","cityNameCn":"武夷山","cityCode":"WUS","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wys","pingYin":"wuyishan"},{"cityId":"3452","cityNameEn":"Ping Yao","cityNameCn":"西安","cityCode":"PYO","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xa","pingYin":"xian"},{"cityId":"3453","cityNameEn":"Xichang","cityNameCn":"西昌","cityCode":"XIC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xc","pingYin":"xichang"},{"cityId":"3454","cityNameEn":"Xilinhot","cityNameCn":"锡林浩特","cityCode":"XIL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xlht","pingYin":"xilinhaote"},{"cityId":"3455","cityNameEn":"Xingyi","cityNameCn":"兴义","cityCode":"ACX","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xy","pingYin":"xingyi"},{"cityId":"3456","cityNameEn":"Xining","cityNameCn":"西宁","cityCode":"XNN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xn","pingYin":"xining"},{"cityId":"3458","cityNameEn":"Xuzhou","cityNameCn":"徐州","cityCode":"XUZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xz","pingYin":"xuzhou"},{"cityId":"3459","cityNameEn":"Yancheng","cityNameCn":"盐城","cityCode":"YNZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yancheng"},{"cityId":"3460","cityNameEn":"Yibin","cityNameCn":"宜宾","cityCode":"YBP","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yb","pingYin":"yibin"},{"cityId":"3461","cityNameEn":"Yichang","cityNameCn":"宜昌","cityCode":"YIH","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yichang"},{"cityId":"3462","cityNameEn":"Yinchuan","cityNameCn":"银川","cityCode":"INC","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yinchuan"},{"cityId":"3463","cityNameEn":"Yining","cityNameCn":"伊宁","cityCode":"YIN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yn","pingYin":"yining"},{"cityId":"3464","cityNameEn":"Yulin","cityNameCn":"榆林","cityCode":"UYN","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yl","pingYin":"yulin"},{"cityId":"3465","cityNameEn":"Yun Cheng","cityNameCn":"运城","cityCode":"YCU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yc","pingYin":"yuncheng"},{"cityId":"3466","cityNameEn":"Zhaotong","cityNameCn":"昭通","cityCode":"ZAT","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zt","pingYin":"zhaotong"},{"cityId":"5862","cityNameEn":"Anyang","cityNameCn":"安阳","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ay","pingYin":"anyang"},{"cityId":"5866","cityNameEn":"Tangshan","cityNameCn":"唐山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ts","pingYin":"tangshan"},{"cityId":"5867","cityNameEn":"Jianyang","cityNameCn":"建阳","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jy","pingYin":"jianyang"},{"cityId":"5868","cityNameEn":"Meishan","cityNameCn":"眉山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ms","pingYin":"meishan"},{"cityId":"5998","cityNameEn":"Jinghong","cityNameCn":"景洪","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jh","pingYin":"jinghong"},{"cityId":"6016","cityNameEn":"Maanshan","cityNameCn":"马鞍山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"mas","pingYin":"maanshan"},{"cityId":"6017","cityNameEn":"Shaoxing","cityNameCn":"绍兴","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"sx","pingYin":"shaoxing"},{"cityId":"6019","cityNameEn":"Wuhu","cityNameCn":"芜湖","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"wh","pingYin":"wuhu"},{"cityId":"6020","cityNameEn":"Xiangyang","cityNameCn":"襄阳","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"xy","pingYin":"xiangyang"},{"cityId":"6021","cityNameEn":"Yangjiang","cityNameCn":"阳江","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yj","pingYin":"yangjiang"},{"cityId":"6022","cityNameEn":"Yangzhou","cityNameCn":"扬州","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"yz","pingYin":"yangzhou"},{"cityId":"6023","cityNameEn":"Zhangzhou","cityNameCn":"漳州","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zz","pingYin":"zhangzhou"},{"cityId":"6024","cityNameEn":"Zhenjiang","cityNameCn":"镇江","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"zj","pingYin":"zhenjiang"},{"cityId":"6373","cityNameEn":"Changbaishan","cityNameCn":"长白山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"cbs","pingYin":"changbaishan"},{"cityId":"6376","cityNameEn":"Chaohu","cityNameCn":"巢湖","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ch","pingYin":"chaohu"},{"cityId":"6455","cityNameEn":"Leshan","cityNameCn":"乐山","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ls","pingYin":"leshan"},{"cityId":"6474","cityNameEn":"Dujiangyan","cityNameCn":"都江堰","cityCode":"CTU","countryName":"China","countryIsoCode":"CN","hyKeyWord":"djy","pingYin":"dongjiangyan"},{"cityId":"6475","cityNameEn":"Panjin","cityNameCn":"盘锦","cityCode":"JNZ","countryName":"China","countryIsoCode":"CN","hyKeyWord":"pj","pingYin":"panjin"},{"cityId":"6476","cityNameEn":"Putian","cityNameCn":"莆田","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"pt","pingYin":"putian"},{"cityId":"7145","cityNameEn":"Jixian","cityNameCn":"蓟县","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"jx","pingYin":"jixian"},{"cityId":"7267","cityNameEn":"Liaoning","cityNameCn":"辽宁","cityCode":"NULL","countryName":"China","countryIsoCode":"CN","hyKeyWord":"ln","pingYin":"liaoning"}];
+*/
+var internationalCities = {
+  "A": [{
+    "cityNameCn": "\u963f\u6bd4\u6797",
+    "cityCode": "ABI",
+    "cityId": "1189",
+    "countryId": "2",
+    "cityNameEn": "Abilene",
+    "pingYin": "Abilin",
+    "hyKeyWord": "ABL"
+  }, {
+    "cityNameCn": "\u963f\u6bd4\u8ba9",
+    "cityCode": "ABJ",
+    "cityId": "774",
+    "countryId": "29",
+    "cityNameEn": "Abidjan",
+    "pingYin": "Abirang",
+    "hyKeyWord": "ABR"
+  }, {
+    "cityNameCn": "\u963f\u5e03\u8d3e",
+    "cityCode": "ABV",
+    "cityId": "875",
+    "countryId": "65",
+    "cityNameEn": "Abuja",
+    "pingYin": "Abujia",
+    "hyKeyWord": "ABJ"
+  }, {
+    "cityNameCn": "\u963f\u5e03\u624e\u6bd4",
+    "cityCode": "AUH",
+    "cityId": "336",
+    "countryId": "15",
+    "cityNameEn": "Abu Dhabi",
+    "pingYin": "Abuzhabi",
+    "hyKeyWord": "ABZB"
+  }, {
+    "cityNameCn": "\u963f\u8fbe\u90a3",
+    "cityCode": "ADA",
+    "cityId": "1580",
+    "countryId": "38",
+    "cityNameEn": "ADANA",
+    "pingYin": "Adanei",
+    "hyKeyWord": "ADN"
+  }, {
+    "cityNameCn": "\u963f\u5fb7\u5217\u5c14\/\u7d22\u5951",
+    "cityCode": "AER",
+    "cityId": "1273",
+    "countryId": "26",
+    "cityNameEn": "Adler\/Sochi",
+    "pingYin": "Adelieer\/suoqi",
+    "hyKeyWord": "ADLE\/SQ"
+  }, {
+    "cityNameCn": "\u963f\u5c14\u5e03\u51ef\u514b",
+    "cityCode": "ABQ",
+    "cityId": "842",
+    "countryId": "2",
+    "cityNameEn": "Albuquerque",
+    "pingYin": "Aerbukaike",
+    "hyKeyWord": "AEBKK"
+  }, {
+    "cityNameCn": "\u963f\u5c14\u76d6\u7f57",
+    "cityCode": "AHO",
+    "cityId": "917",
+    "countryId": "14",
+    "cityNameEn": "Alghero",
+    "pingYin": "Aergailuo",
+    "hyKeyWord": "AEGL"
+  }, {
+    "cityNameCn": "\u963f\u5c14\u53ca\u5c14",
+    "cityCode": "ALG",
+    "cityId": "727",
+    "countryId": "35",
+    "cityNameEn": "Algiers",
+    "pingYin": "Aerjier",
+    "hyKeyWord": "AEJE"
+  }, {
+    "cityNameCn": "\u963f\u5c14\u76ae\u7eb3",
+    "cityCode": "APN",
+    "cityId": "1232",
+    "countryId": "2",
+    "cityNameEn": "Alpena",
+    "pingYin": "Aerpina",
+    "hyKeyWord": "AEPN"
+  }, {
+    "cityNameCn": "\u963f\u5c14\u5854",
+    "cityCode": "ALF",
+    "cityId": "1083",
+    "countryId": "80",
+    "cityNameEn": "Alta",
+    "pingYin": "Aerta",
+    "hyKeyWord": "AET"
+  }, {
+    "cityNameCn": "\u7231\u8fbe\u8377\u798f\u5c14\u65af",
+    "cityCode": "IDA",
+    "cityId": "940",
+    "countryId": "2",
+    "cityNameEn": "Idaho Falls",
+    "pingYin": "Aidahefuersi",
+    "hyKeyWord": "ADHFES"
+  }, {
+    "cityNameCn": "\u57c3\u5fb7\u8499\u987f",
+    "cityCode": "YEA",
+    "cityId": "742",
+    "countryId": "91",
+    "cityNameEn": "Edmonton",
+    "pingYin": "Aidemengdun",
+    "hyKeyWord": "ADMD"
+  }, {
+    "cityNameCn": "\u57c3\u5c14\u6bd4\u52d2",
+    "cityCode": "EBL",
+    "cityId": "1479",
+    "countryId": "117",
+    "cityNameEn": "Erbil",
+    "pingYin": "Aierbile",
+    "hyKeyWord": "AEBL"
+  }, {
+    "cityNameCn": "\u57c3\u5c14\u741b\u5fb7",
+    "cityCode": "AES",
+    "cityId": "1082",
+    "countryId": "80",
+    "cityNameEn": "Aalesund",
+    "pingYin": "Aierchende",
+    "hyKeyWord": "AECD"
+  }, {
+    "cityNameCn": "\u57c3\u5c14\u5bcc\u7279",
+    "cityCode": "ERF",
+    "cityId": "887",
+    "countryId": "7",
+    "cityNameEn": "Erfurt",
+    "pingYin": "Aierfute",
+    "hyKeyWord": "AEFT"
+  }, {
+    "cityNameCn": "\u57c3\u5c14\u8fc8\u62c9",
+    "cityCode": "ELM",
+    "cityId": "1237",
+    "countryId": "2",
+    "cityNameEn": "ELMIRA",
+    "pingYin": "Aiermaila",
+    "hyKeyWord": "AEML"
+  }, {
+    "cityNameCn": "\u57c3\u5c14\u5e15\u7d22",
+    "cityCode": "ELP",
+    "cityId": "1109",
+    "countryId": "2",
+    "cityNameEn": "El Paso",
+    "pingYin": "Aierpasuo",
+    "hyKeyWord": "AEPS"
+  }, {
+    "cityNameCn": "\u827e\u54c8\u8fc8\u8fbe\u5df4\u5fb7",
+    "cityCode": "AMD",
+    "cityId": "748",
+    "countryId": "36",
+    "cityNameEn": "Ahmedabad",
+    "pingYin": "Aihamaidabade",
+    "hyKeyWord": "AHMDBD"
+  }, {
+    "cityNameCn": "\u57c3\u91cc\u6e29",
+    "cityCode": "EVN",
+    "cityId": "1493",
+    "countryId": "190",
+    "cityNameEn": "Yerevan",
+    "pingYin": "Ailiwen",
+    "hyKeyWord": "ALW"
+  }, {
+    "cityNameCn": "\u57c3\u83ab\u897f\u7ea6",
+    "cityCode": "HMO",
+    "cityId": "1615",
+    "countryId": "76",
+    "cityNameEn": "HERMOSILLO",
+    "pingYin": "Aimoxiyue",
+    "hyKeyWord": "AMXY"
+  }, {
+    "cityNameCn": "\u57c3\u65af\u5361\u7eb3\u5df4",
+    "cityCode": "ESC",
+    "cityId": "988",
+    "countryId": "2",
+    "cityNameEn": "Escanaba",
+    "pingYin": "Aisikanaba",
+    "hyKeyWord": "ASKNB"
+  }, {
+    "cityNameCn": "\u827e\u65af\u5c24\u7279",
+    "cityCode": "ATZ",
+    "cityId": "1688",
+    "countryId": "115",
+    "cityNameEn": "Assiut",
+    "pingYin": "Aisiyoute",
+    "hyKeyWord": "ASYT"
+  }, {
+    "cityNameCn": "\u57c3\u6587\u65af\u7ef4\u5c14",
+    "cityCode": "EVV",
+    "cityId": "989",
+    "countryId": "2",
+    "cityNameEn": "Evansville",
+    "pingYin": "Aiwensiweier",
+    "hyKeyWord": "AWSWE"
+  }, {
+    "cityNameCn": "\u57c3\u6c83\u5185\u65af",
+    "cityCode": "EVE",
+    "cityId": "1085",
+    "countryId": "80",
+    "cityNameEn": "Evenes",
+    "pingYin": "Aiwoneisi",
+    "hyKeyWord": "AWNS"
+  }, {
+    "cityNameCn": "\u827e\u56e0",
+    "cityCode": "AAN",
+    "cityId": "1357",
+    "countryId": "15",
+    "cityNameEn": "Al Ain",
+    "pingYin": "Aiyin",
+    "hyKeyWord": "AY"
+  }, {
+    "cityNameCn": "\u963f\u5361\u666e\u5c14\u79d1",
+    "cityCode": "ACA",
+    "cityId": "1224",
+    "countryId": "76",
+    "cityNameEn": "Acapulco",
+    "pingYin": "Akapuerke",
+    "hyKeyWord": "AKPEK"
+  }, {
+    "cityNameCn": "\u963f\u514b\u62c9",
+    "cityCode": "ACC",
+    "cityId": "696",
+    "countryId": "30",
+    "cityNameEn": "Accra",
+    "pingYin": "Akela",
+    "hyKeyWord": "AKL"
+  }, {
+    "cityNameCn": "\u963f\u514b\u4f26\/\u574e\u987f",
+    "cityCode": "CAK",
+    "cityId": "962",
+    "countryId": "2",
+    "cityNameEn": "Akron\/Canton",
+    "pingYin": "Akelun\/kandun",
+    "hyKeyWord": "AKL\/KD"
+  }, {
+    "cityNameCn": "\u963f\u514b\u79cb\u5bbe\u65af\u514b",
+    "cityCode": "AKX",
+    "cityId": "1301",
+    "countryId": "34",
+    "cityNameEn": "Aktyubinsk",
+    "pingYin": "Akeqiubinsike",
+    "hyKeyWord": "AKQBSK"
+  }, {
+    "cityNameCn": "\u963f\u514b\u82cf\u59c6",
+    "cityCode": "AXU",
+    "cityId": "1567",
+    "countryId": "31",
+    "cityNameEn": "Axum",
+    "pingYin": "Akesumu",
+    "hyKeyWord": "AKSM"
+  }, {
+    "cityNameCn": "\u963f\u514b\u5854",
+    "cityCode": "ACV",
+    "cityId": "1590",
+    "countryId": "2",
+    "cityNameEn": "ARCATA",
+    "pingYin": "Aketa",
+    "hyKeyWord": "AKT"
+  }, {
+    "cityNameCn": "\u963f\u514b\u5957",
+    "cityCode": "SCO",
+    "cityId": "1317",
+    "countryId": "34",
+    "cityNameEn": "Aktau",
+    "pingYin": "Aketao",
+    "hyKeyWord": "AKT"
+  }, {
+    "cityNameCn": "\u963f\u96f7\u683c\u91cc\u6e2f",
+    "cityCode": "POA",
+    "cityId": "1457",
+    "countryId": "3",
+    "cityNameEn": "Porto Alegre",
+    "pingYin": "Aleigeligang",
+    "hyKeyWord": "ALGLG"
+  }, {
+    "cityNameCn": "\u963f\u5229\u574e\u7279",
+    "cityCode": "ALC",
+    "cityId": "869",
+    "countryId": "109",
+    "cityNameEn": "Alicante",
+    "pingYin": "Alikante",
+    "hyKeyWord": "ALKT"
+  }, {
+    "cityNameCn": "\u963f\u4f26\u6566",
+    "cityCode": "ABE",
+    "cityId": "964",
+    "countryId": "2",
+    "cityNameEn": "Allentown",
+    "pingYin": "Alundun",
+    "hyKeyWord": "ALD"
+  }, {
+    "cityNameCn": "\u963f\u9a6c\u91cc\u6d1b",
+    "cityCode": "AMA",
+    "cityId": "1104",
+    "countryId": "2",
+    "cityNameEn": "Amarillo",
+    "pingYin": "Amaliluo",
+    "hyKeyWord": "AMLL"
+  }, {
+    "cityNameCn": "\u963f\u7c73\u4ee3\u5c14",
+    "cityCode": "ARM",
+    "cityId": "1582",
+    "countryId": "16",
+    "cityNameEn": "ARMIDALE",
+    "pingYin": "Amidaier",
+    "hyKeyWord": "AMDE"
+  }, {
+    "cityNameCn": "\u963f\u59c6\u5229\u5219",
+    "cityCode": "ATQ",
+    "cityId": "1218",
+    "countryId": "36",
+    "cityNameEn": "Amritsar",
+    "pingYin": "Amulize",
+    "hyKeyWord": "AMLZ"
+  }, {
+    "cityNameCn": "\u5b89\u5927\u7565(\u7f8e\u56fd)",
+    "cityCode": "ONT",
+    "cityId": "944",
+    "countryId": "2",
+    "cityNameEn": "Ontario",
+    "pingYin": "Andalu:e(meiguo)",
+    "hyKeyWord": "ADL(MG)"
+  }, {
+    "cityNameCn": "\u963f\u5185\u897f",
+    "cityCode": "NCY",
+    "cityId": "1119",
+    "countryId": "17",
+    "cityNameEn": "Annecy",
+    "pingYin": "Aneixi",
+    "hyKeyWord": "ANX"
+  }, {
+    "cityNameCn": "\u6602\u70ed",
+    "cityCode": "ANE",
+    "cityId": "1453",
+    "countryId": "17",
+    "cityNameEn": "Angers",
+    "pingYin": "Angre",
+    "hyKeyWord": "AR"
+  }, {
+    "cityNameCn": "\u5b89\u5409\u5229\u65af\u6e2f",
+    "cityCode": "CLM",
+    "cityId": "949",
+    "countryId": "2",
+    "cityNameEn": "Port Angeles",
+    "pingYin": "Anjilisigang",
+    "hyKeyWord": "AJLSG"
+  }, {
+    "cityNameCn": "\u5b89\u5361\u62c9",
+    "cityCode": "ANK",
+    "cityId": "1150",
+    "countryId": "38",
+    "cityNameEn": "Ankara",
+    "pingYin": "Ankala",
+    "hyKeyWord": "AKL"
+  }, {
+    "cityNameCn": "\u5b89\u79d1\u96f7\u5947",
+    "cityCode": "ANC",
+    "cityId": "843",
+    "countryId": "2",
+    "cityNameEn": "Anchorage",
+    "pingYin": "Ankeleiqi",
+    "hyKeyWord": "AKLQ"
+  }, {
+    "cityNameCn": "\u5b89\u79d1\u7eb3",
+    "cityCode": "AOI",
+    "cityId": "827",
+    "countryId": "14",
+    "cityNameEn": "Ancona",
+    "pingYin": "Ankena",
+    "hyKeyWord": "AKN"
+  }, {
+    "cityNameCn": "\u5b89\u5854\u5229\u4e9a",
+    "cityCode": "AYT",
+    "cityId": "1405",
+    "countryId": "38",
+    "cityNameEn": "Antalya",
+    "pingYin": "Antaliya",
+    "hyKeyWord": "ATLY"
+  }, {
+    "cityNameCn": "\u5b89\u7279\u536b\u666e",
+    "cityCode": "ANR",
+    "cityId": "792",
+    "countryId": "39",
+    "cityNameEn": "Antwerp",
+    "pingYin": "Anteweipu",
+    "hyKeyWord": "ATWP"
+  }, {
+    "cityNameCn": "\u5b89\u63d0\u74dc",
+    "cityCode": "ANU",
+    "cityId": "1202",
+    "countryId": "146",
+    "cityNameEn": "Antigua",
+    "pingYin": "Antigua",
+    "hyKeyWord": "ATG"
+  }, {
+    "cityNameCn": "\u5965\u5c14\u5df4\u5c3c",
+    "cityCode": "ALB",
+    "cityId": "963",
+    "countryId": "2",
+    "cityNameEn": "Albany",
+    "pingYin": "Aoerbani",
+    "hyKeyWord": "AEBN"
+  }, {
+    "cityNameCn": "\u5965\u5c14\u5821",
+    "cityCode": "AAL",
+    "cityId": "1080",
+    "countryId": "27",
+    "cityNameEn": "Aalborg",
+    "pingYin": "Aoerbao",
+    "hyKeyWord": "AEB"
+  }, {
+    "cityNameCn": "\u5965\u5c14\u6bd4\u4e9a",
+    "cityCode": "OLB",
+    "cityId": "897",
+    "countryId": "14",
+    "cityNameEn": "Olbia",
+    "pingYin": "Aoerbiya",
+    "hyKeyWord": "AEBY"
+  }, {
+    "cityNameCn": "\u5965\u5c14\u80e1\u65af",
+    "cityCode": "AAR",
+    "cityId": "1081",
+    "countryId": "27",
+    "cityNameEn": "Aarhus",
+    "pingYin": "Aoerhusi",
+    "hyKeyWord": "AEHS"
+  }, {
+    "cityNameCn": "\u5965\u53e4\u65af\u5854",
+    "cityCode": "AGS",
+    "cityId": "967",
+    "countryId": "2",
+    "cityNameEn": "Augusta",
+    "pingYin": "Aogusita",
+    "hyKeyWord": "AGST"
+  }, {
+    "cityNameCn": "\u5965\u514b\u84dd",
+    "cityCode": "OAK",
+    "cityId": "523",
+    "countryId": "2",
+    "cityNameEn": "Oakland",
+    "pingYin": "Aokelan",
+    "hyKeyWord": "AKL"
+  }, {
+    "cityNameCn": "\u5965\u5170\u591a",
+    "cityCode": "MCO",
+    "cityId": "496",
+    "countryId": "2",
+    "cityNameEn": "Orlando",
+    "pingYin": "Aolanduo",
+    "hyKeyWord": "ALD"
+  }, {
+    "cityNameCn": "\u5965\u5170\u52a0\u5df4\u5fb7",
+    "cityCode": "IXU",
+    "cityId": "1614",
+    "countryId": "36",
+    "cityNameEn": "AURANGABAD",
+    "pingYin": "Aolanjiabade",
+    "hyKeyWord": "ALJBD"
+  }, {
+    "cityNameCn": "\u5965\u5362",
+    "cityCode": "OUL",
+    "cityId": "1092",
+    "countryId": "62",
+    "cityNameEn": "Oulu",
+    "pingYin": "Aolu",
+    "hyKeyWord": "AL"
+  }, {
+    "cityNameCn": "\u5965\u9a6c\u54c8",
+    "cityCode": "OMA",
+    "cityId": "1036",
+    "countryId": "2",
+    "cityNameEn": "Omaha",
+    "pingYin": "Aomaha",
+    "hyKeyWord": "AMH"
+  }, {
+    "cityNameCn": "\u5965\u4ec0",
+    "cityCode": "OSS",
+    "cityId": "1311",
+    "countryId": "97",
+    "cityNameEn": "Osh",
+    "pingYin": "Aoshen",
+    "hyKeyWord": "AS"
+  }, {
+    "cityNameCn": "\u5965\u65af\u6c40",
+    "cityCode": "AUS",
+    "cityId": "702",
+    "countryId": "2",
+    "cityNameEn": "Austin",
+    "pingYin": "Aositing",
+    "hyKeyWord": "AST"
+  }, {
+    "cityNameCn": "\u5965\u7ef4\u591a",
+    "cityCode": "OVD",
+    "cityId": "916",
+    "countryId": "109",
+    "cityNameEn": "Oviedo",
+    "pingYin": "Aoweiduo",
+    "hyKeyWord": "AWD"
+  }, {
+    "cityNameCn": "\u963f\u76ae\u4e9a",
+    "cityCode": "APW",
+    "cityId": "1595",
+    "countryId": "193",
+    "cityNameEn": "APIA",
+    "pingYin": "Apiya",
+    "hyKeyWord": "APY"
+  }, {
+    "cityNameCn": "\u963f\u666e\u5c14\u987f",
+    "cityCode": "ATW",
+    "cityId": "965",
+    "countryId": "2",
+    "cityNameEn": "Appleton",
+    "pingYin": "Apuerdun",
+    "hyKeyWord": "APED"
+  }, {
+    "cityNameCn": "\u963f\u4ec0\u54c8\u5df4\u5fb7",
+    "cityCode": "ASB",
+    "cityId": "651",
+    "countryId": "122",
+    "cityNameEn": "Ashkhabad",
+    "pingYin": "Ashenhabade",
+    "hyKeyWord": "ASHBD"
+  }, {
+    "cityNameCn": "\u963f\u65af\u5f6d",
+    "cityCode": "ASE",
+    "cityId": "750",
+    "countryId": "2",
+    "cityNameEn": "Aspen",
+    "pingYin": "Asipeng",
+    "hyKeyWord": "ASP"
+  }, {
+    "cityNameCn": "\u963f\u65af\u5854\u7eb3",
+    "cityCode": "TSE",
+    "cityId": "1302",
+    "countryId": "34",
+    "cityNameEn": "Astana",
+    "pingYin": "Asitana",
+    "hyKeyWord": "ASTN"
+  }, {
+    "cityNameCn": "\u963f\u7279\u52b3",
+    "cityCode": "GUW",
+    "cityId": "1706",
+    "countryId": "34",
+    "cityNameEn": "ATYRAU",
+    "pingYin": "Atelao",
+    "hyKeyWord": "ATL"
+  }, {
+    "cityNameCn": "\u963f\u7ef4\u5c3c\u7fc1",
+    "cityCode": "AVN",
+    "cityId": "1120",
+    "countryId": "17",
+    "cityNameEn": "Avignon",
+    "pingYin": "Aweiniweng",
+    "hyKeyWord": "AWNW"
+  }, {
+    "cityNameCn": "\u963f\u96c5\u514b\u8096",
+    "cityCode": "AJA",
+    "cityId": "1118",
+    "countryId": "17",
+    "cityNameEn": "Ajaccio",
+    "pingYin": "Ayakexiao",
+    "hyKeyWord": "AYKX"
+  }, {
+    "cityNameCn": "\u963f\u4f2f\u4e01\uff08\u7f8e\uff09",
+    "cityCode": "ABR",
+    "cityId": "1249",
+    "countryId": "2",
+    "cityNameEn": "Aberdeen\uff08america\uff09",
+    "pingYin": "aboding",
+    "hyKeyWord": "abd"
+  }, {
+    "cityNameCn": "\u963f\u4f2f\u4e01",
+    "cityCode": "ABZ",
+    "cityId": "928",
+    "countryId": "21",
+    "cityNameEn": "Aberdeen",
+    "pingYin": "aboding",
+    "hyKeyWord": "abd"
+  }, {
+    "cityNameCn": "\u963f\u5fb7\u83b1\u5fb7",
+    "cityCode": "ADL",
+    "cityId": "697",
+    "countryId": "16",
+    "cityNameEn": "Adelade",
+    "pingYin": "adelaide",
+    "hyKeyWord": "adld"
+  }, {
+    "cityNameCn": "\u7231\u4e01\u5821",
+    "cityCode": "EDI",
+    "cityId": "771",
+    "countryId": "21",
+    "cityNameEn": "Edinburgh",
+    "pingYin": "aidingbao",
+    "hyKeyWord": "adb"
+  }, {
+    "cityNameCn": "\u963f\u62c9\u6728\u56fe",
+    "cityCode": "ALA",
+    "cityId": "329",
+    "countryId": "34",
+    "cityNameEn": "Almaty",
+    "pingYin": "alamutu",
+    "hyKeyWord": "almt"
+  }, {
+    "cityNameCn": "\u963f\u59c6\u65af\u7279\u4e39",
+    "cityCode": "AMS",
+    "cityId": "331",
+    "countryId": "22",
+    "cityNameEn": "Amsterdam",
+    "pingYin": "amusitedan",
+    "hyKeyWord": "amstd"
+  }, {
+    "cityNameCn": "\u5b89\u66fc",
+    "cityCode": "AMM",
+    "cityId": "330",
+    "countryId": "37",
+    "cityNameEn": "Amman",
+    "pingYin": "anman",
+    "hyKeyWord": "am"
+  }, {
+    "cityNameCn": "\u5965\u514b\u5170",
+    "cityCode": "AKL",
+    "cityId": "1117",
+    "countryId": "33",
+    "cityNameEn": "Auckland",
+    "pingYin": "aokelan",
+    "hyKeyWord": "akl"
+  }, {
+    "cityNameCn": "\u6fb3\u95e8",
+    "cityCode": "MFM",
+    "cityId": "500",
+    "countryId": "175",
+    "cityNameEn": "Macau",
+    "pingYin": "aomen",
+    "hyKeyWord": "am"
+  }, {
+    "cityNameCn": "\u5965\u65af\u9646",
+    "cityCode": "OSL",
+    "cityId": "527",
+    "countryId": "80",
+    "cityNameEn": "Oslo",
+    "pingYin": "aosilu",
+    "hyKeyWord": "osl"
+  }],
+  "B": [{
+    "cityNameCn": "\u5df4\u6de1\u5c9b",
+    "cityCode": "BTH",
+    "cityId": "1658",
+    "countryId": "54",
+    "cityNameEn": "batam",
+    "pingYin": "Badandao",
+    "hyKeyWord": "BDD"
+  }, {
+    "cityNameCn": "\u5df4\u4e1c",
+    "cityCode": "PDG",
+    "cityId": "1693",
+    "countryId": "54",
+    "cityNameEn": "padang",
+    "pingYin": "Badong",
+    "hyKeyWord": "BD"
+  }, {
+    "cityNameCn": "\u5df4\u5c14\u7684\u6469",
+    "cityCode": "BWI",
+    "cityId": "356",
+    "countryId": "2",
+    "cityNameEn": "Baltimore",
+    "pingYin": "Baerdemo",
+    "hyKeyWord": "BEDM"
+  }, {
+    "cityNameCn": "\u5df4\u683c\u8fbe",
+    "cityCode": "BGW",
+    "cityId": "341",
+    "countryId": "117",
+    "cityNameEn": "Baghdad",
+    "pingYin": "Bageda",
+    "hyKeyWord": "BGD"
+  }, {
+    "cityNameCn": "\u767e\u6155\u5927",
+    "cityCode": "BDA",
+    "cityId": "877",
+    "countryId": "2",
+    "cityNameEn": "Bermuda",
+    "pingYin": "Baimuda",
+    "hyKeyWord": "BMD"
+  }, {
+    "cityNameCn": "\u5df4\u79d1\u6d1b\u5fb7",
+    "cityCode": "BCD",
+    "cityId": "1588",
+    "countryId": "79",
+    "cityNameEn": "BACOLOD",
+    "pingYin": "Bakeluode",
+    "hyKeyWord": "BKLD"
+  }, {
+    "cityNameCn": "\u5df4\u79d1\u9a6c",
+    "cityCode": "BKO",
+    "cityId": "1308",
+    "countryId": "156",
+    "cityNameEn": "Bamako",
+    "pingYin": "Bakema",
+    "hyKeyWord": "BKM"
+  }, {
+    "cityNameCn": "\u5df4\u5e93",
+    "cityCode": "BAK",
+    "cityId": "1260",
+    "countryId": "153",
+    "cityNameEn": "Baku",
+    "pingYin": "Baku",
+    "hyKeyWord": "BK"
+  }, {
+    "cityNameCn": "\u5df4\u52d2\u83ab",
+    "cityCode": "PMO",
+    "cityId": "898",
+    "countryId": "14",
+    "cityNameEn": "Palermo",
+    "pingYin": "Balemo",
+    "hyKeyWord": "BLM"
+  }, {
+    "cityNameCn": "\u5df4\u91cc",
+    "cityCode": "BRI",
+    "cityId": "829",
+    "countryId": "14",
+    "cityNameEn": "Bari",
+    "pingYin": "Bali",
+    "hyKeyWord": "BL"
+  }, {
+    "cityNameCn": "\u5df4\u91cc\u5df4\u677f",
+    "cityCode": "BPN",
+    "cityId": "1661",
+    "countryId": "54",
+    "cityNameEn": "Kote Balikpapan",
+    "pingYin": "Balibaban",
+    "hyKeyWord": "BLBB"
+  }, {
+    "cityNameCn": "\u5df4\u6797",
+    "cityCode": "BAH",
+    "cityId": "811",
+    "countryId": "41",
+    "cityNameEn": "Bahrain",
+    "pingYin": "Balin",
+    "hyKeyWord": "BL"
+  }, {
+    "cityNameCn": "\u5df4\u62ff\u9a6c\u57ce\uff08\u5df4\uff09",
+    "cityCode": "PTY",
+    "cityId": "720",
+    "countryId": "100",
+    "cityNameEn": "Panama City\uff08PA\uff09",
+    "pingYin": "Banamacheng(Ba)",
+    "hyKeyWord": "BNMC(B)"
+  }, {
+    "cityNameCn": "\u73ed\u8fbe\u4e9a\u9f50",
+    "cityCode": "BTJ",
+    "cityId": "1604",
+    "countryId": "54",
+    "cityNameEn": "BANDA ACEH",
+    "pingYin": "Bandayaqi",
+    "hyKeyWord": "BDYQ"
+  }, {
+    "cityNameCn": "\u73ed\u6208",
+    "cityCode": "BGR",
+    "cityId": "968",
+    "countryId": "2",
+    "cityNameEn": "Bangor",
+    "pingYin": "Bange",
+    "hyKeyWord": "BG"
+  }, {
+    "cityNameCn": "\u73ed\u8d3e\u5c14\u9a6c\u8f9b",
+    "cityCode": "BDJ",
+    "cityId": "1556",
+    "countryId": "54",
+    "cityNameEn": "Banjarmasin",
+    "pingYin": "Banjiaermaxin",
+    "hyKeyWord": "BJEMX"
+  }, {
+    "cityNameCn": "\u73ed\u52a0\u7f57\u5c14",
+    "cityCode": "BLR",
+    "cityId": "689",
+    "countryId": "36",
+    "cityNameEn": "Bangalore",
+    "pingYin": "Banjialuoer",
+    "hyKeyWord": "BJLE"
+  }, {
+    "cityNameCn": "\u73ed\u52a0\u897f",
+    "cityCode": "BEN",
+    "cityId": "1402",
+    "countryId": "43",
+    "cityNameEn": "BENGHAZI",
+    "pingYin": "Banjiaxi",
+    "hyKeyWord": "BJX"
+  }, {
+    "cityNameCn": "\u73ed\u6885\u82cf\u5965\u7279",
+    "cityCode": "BMV",
+    "cityId": "1419",
+    "countryId": "105",
+    "cityNameEn": "Banmethuot",
+    "pingYin": "Banmeisuaote",
+    "hyKeyWord": "BMSAT"
+  }, {
+    "cityNameCn": "\u5df4\u6d66\u6d1b\u8fbe\u5c14",
+    "cityCode": "PWQ",
+    "cityId": "1544",
+    "countryId": "34",
+    "cityNameEn": "Pavlodar",
+    "pingYin": "Bapuluodaer",
+    "hyKeyWord": "BPLDE"
+  }, {
+    "cityNameCn": "\u5df4\u585e\u5c14",
+    "cityCode": "BSL",
+    "cityId": "816",
+    "countryId": "60",
+    "cityNameEn": "Basel",
+    "pingYin": "Basaier",
+    "hyKeyWord": "BSE"
+  }, {
+    "cityNameCn": "\u5df4\u58eb\u62c9",
+    "cityCode": "BSR",
+    "cityId": "1583",
+    "countryId": "117",
+    "cityNameEn": "BASRA",
+    "pingYin": "Bashila",
+    "hyKeyWord": "BSL"
+  }, {
+    "cityNameCn": "\u5df4\u65af\u8482\u4e9a",
+    "cityCode": "BIA",
+    "cityId": "1121",
+    "countryId": "17",
+    "cityNameEn": "Bastia",
+    "pingYin": "Basidiya",
+    "hyKeyWord": "BSDY"
+  }, {
+    "cityNameCn": "\u5df4\u7279\u90a3",
+    "cityCode": "PAT",
+    "cityId": "1197",
+    "countryId": "36",
+    "cityNameEn": "Patna",
+    "pingYin": "Batenei",
+    "hyKeyWord": "BTN"
+  }, {
+    "cityNameCn": "\u5df4\u7edf",
+    "cityCode": "BUS",
+    "cityId": "1594",
+    "countryId": "173",
+    "cityNameEn": "BATUMI",
+    "pingYin": "Batong",
+    "hyKeyWord": "BT"
+  }, {
+    "cityNameCn": "\u5df4\u541e\u9c81\u65e5",
+    "cityCode": "BTR",
+    "cityId": "969",
+    "countryId": "2",
+    "cityNameEn": "Baton Rouge",
+    "pingYin": "Batunluri",
+    "hyKeyWord": "BTLR"
+  }, {
+    "cityNameCn": "\u5df4\u897f\u5229\u4e9a",
+    "cityCode": "BSB",
+    "cityId": "351",
+    "countryId": "3",
+    "cityNameEn": "Brasilia",
+    "pingYin": "Baxiliya",
+    "hyKeyWord": "BXLY"
+  }, {
+    "cityNameCn": "\u5df4\u4e9a\u5c14\u5854\u6e2f",
+    "cityCode": "PVR",
+    "cityId": "1230",
+    "countryId": "76",
+    "cityNameEn": "Purwokerto",
+    "pingYin": "Bayaertagang",
+    "hyKeyWord": "BYETG"
+  }, {
+    "cityNameCn": "\u5317\u672c\u5fb7",
+    "cityCode": "OTH",
+    "cityId": "943",
+    "countryId": "2",
+    "cityNameEn": "North Bend",
+    "pingYin": "Beibende",
+    "hyKeyWord": "BBD"
+  }, {
+    "cityNameCn": "\u8d1d\u5c14\u6cd5\u65af\u7279",
+    "cityCode": "BFS",
+    "cityId": "885",
+    "countryId": "21",
+    "cityNameEn": "Belfast",
+    "pingYin": "Beierfasite",
+    "hyKeyWord": "BEFST"
+  }, {
+    "cityNameCn": "\u8d1d\u5c14\u683c\u83b1\u5fb7",
+    "cityCode": "BEG",
+    "cityId": "831",
+    "countryId": "42",
+    "cityNameEn": "Belgrade",
+    "pingYin": "Beiergelaide",
+    "hyKeyWord": "BEGLD"
+  }, {
+    "cityNameCn": "\u5351\u5c14\u6839",
+    "cityCode": "BGO",
+    "cityId": "800",
+    "countryId": "80",
+    "cityNameEn": "Bergen",
+    "pingYin": "Beiergen",
+    "hyKeyWord": "BEG"
+  }, {
+    "cityNameCn": "\u5317\u5e72\u5df4\u9c81",
+    "cityCode": "PKU",
+    "cityId": "1624",
+    "countryId": "54",
+    "cityNameEn": "pekanbaru",
+    "pingYin": "Beiganbalu",
+    "hyKeyWord": "BGBL"
+  }, {
+    "cityNameCn": "\u5317\u4e5d\u5dde",
+    "cityCode": "KKJ",
+    "cityId": "825",
+    "countryId": "13",
+    "cityNameEn": "Kitakyushu",
+    "pingYin": "Beijiuzhou",
+    "hyKeyWord": "BJZ"
+  }, {
+    "cityNameCn": "\u5317\u5361\u7f57\u6765\u7eb3\u5dde",
+    "cityCode": "AVL",
+    "cityId": "1139",
+    "countryId": "2",
+    "cityNameEn": "Asheville Regional Airport",
+    "pingYin": "Beikaluolainazhou",
+    "hyKeyWord": "BKLLNZ"
+  }, {
+    "cityNameCn": "\u8d1d\u514b\u65af\u83f2\u5c14\u5fb7",
+    "cityCode": "BFL",
+    "cityId": "844",
+    "countryId": "2",
+    "cityNameEn": "Bakersfield",
+    "pingYin": "Beikesifeierde",
+    "hyKeyWord": "BKSFED"
+  }, {
+    "cityNameCn": "\u8d1d\u6797\u54c8\u59c6",
+    "cityCode": "BLI",
+    "cityId": "845",
+    "countryId": "2",
+    "cityNameEn": "Bellingham",
+    "pingYin": "Beilinhamu",
+    "hyKeyWord": "BLHM"
+  }, {
+    "cityNameCn": "\u8d1d\u6d1b\u5965\u91cc\u4e66\u7279",
+    "cityCode": "BHZ",
+    "cityId": "1454",
+    "countryId": "3",
+    "cityNameEn": "Belo Horizonte",
+    "pingYin": "Beiluoaolicangte",
+    "hyKeyWord": "BLALCT"
+  }, {
+    "cityNameCn": "\u8d1d\u9c81\u7279",
+    "cityCode": "BEY",
+    "cityId": "808",
+    "countryId": "44",
+    "cityNameEn": "Beirut",
+    "pingYin": "Beilute",
+    "hyKeyWord": "BLT"
+  }, {
+    "cityNameCn": "\u5f7c\u5f97\u7f57\u5df4\u752b\u6d1b\u592b\u65af\u514b \u582a\u5bdf\u52a0",
+    "cityCode": "PKC",
+    "cityId": "1561",
+    "countryId": "24",
+    "cityNameEn": "Petropavlovsk-Kamchatsky",
+    "pingYin": "Bideluobafuluofusike kanchajia",
+    "hyKeyWord": "BDLBFLFSK KCJ"
+  }, {
+    "cityNameCn": "\u5f7c\u5f97\u9a6c\u91cc\u8328\u5821",
+    "cityCode": "ZAF",
+    "cityId": "1603",
+    "countryId": "48",
+    "cityNameEn": "PIETERMARITZBURG",
+    "pingYin": "Bidemalicibao",
+    "hyKeyWord": "BDMLCB"
+  }, {
+    "cityNameCn": "\u6bd5\u5c14\u5df4\u9102",
+    "cityCode": "BIO",
+    "cityId": "911",
+    "countryId": "109",
+    "cityNameEn": "Bilbao",
+    "pingYin": "Bierbae",
+    "hyKeyWord": "BEBE"
+  }, {
+    "cityNameCn": "\u6bd4\u6797\u65af",
+    "cityCode": "BIL",
+    "cityId": "846",
+    "countryId": "2",
+    "cityNameEn": "Billings",
+    "pingYin": "Bilinsi",
+    "hyKeyWord": "BLS"
+  }, {
+    "cityNameCn": "\u6bd4\u4f26\u5fb7",
+    "cityCode": "BLL",
+    "cityId": "791",
+    "countryId": "27",
+    "cityNameEn": "Billund",
+    "pingYin": "Bilunde",
+    "hyKeyWord": "BLD"
+  }, {
+    "cityNameCn": "\u5bbe\u6c49\u987f",
+    "cityCode": "BGM",
+    "cityId": "972",
+    "countryId": "2",
+    "cityNameEn": "Binghamton",
+    "pingYin": "Binhandun",
+    "hyKeyWord": "BHD"
+  }, {
+    "cityNameCn": "\u5bbe\u56fe\u5362",
+    "cityCode": "BTU",
+    "cityId": "840",
+    "countryId": "70",
+    "cityNameEn": "Bintulu",
+    "pingYin": "Bintulu",
+    "hyKeyWord": "BTL"
+  }, {
+    "cityNameCn": "\u6bd4\u8428",
+    "cityCode": "PSA",
+    "cityId": "862",
+    "countryId": "14",
+    "cityNameEn": "Pisa",
+    "pingYin": "Bisa",
+    "hyKeyWord": "BS"
+  }, {
+    "cityNameCn": "\u6bd4\u7ecd",
+    "cityCode": "OXB",
+    "cityId": "1320",
+    "countryId": "158",
+    "cityNameEn": "Bissau",
+    "pingYin": "Bishao",
+    "hyKeyWord": "BS"
+  }, {
+    "cityNameCn": "\u6bd4\u4ec0\u51ef\u514b",
+    "cityCode": "FRU",
+    "cityId": "679",
+    "countryId": "97",
+    "cityNameEn": "Bishkek",
+    "pingYin": "Bishenkaike",
+    "hyKeyWord": "BSKK"
+  }, {
+    "cityNameCn": "\u4ffe\u65af\u9ea6",
+    "cityCode": "BIS",
+    "cityId": "973",
+    "countryId": "2",
+    "cityNameEn": "Bismarck",
+    "pingYin": "Bisimai",
+    "hyKeyWord": "BSM"
+  }, {
+    "cityNameCn": "\u6bd4\u4e9a\u91cc\u8328",
+    "cityCode": "BIQ",
+    "cityId": "1123",
+    "countryId": "17",
+    "cityNameEn": "Biarritz",
+    "pingYin": "Biyalici",
+    "hyKeyWord": "BYLC"
+  }, {
+    "cityNameCn": "\u6bd4\u5c24\u7279",
+    "cityCode": "BTM",
+    "cityId": "849",
+    "countryId": "2",
+    "cityNameEn": "Butte",
+    "pingYin": "Biyoute",
+    "hyKeyWord": "BYT"
+  }, {
+    "cityNameCn": "\u4f2f\u73ed\u514b",
+    "cityCode": "BUR",
+    "cityId": "1186",
+    "countryId": "2",
+    "cityNameEn": "Burbank",
+    "pingYin": "Bobanke",
+    "hyKeyWord": "BBK"
+  }, {
+    "cityNameCn": "\u6ce2\u57ce",
+    "cityCode": "PUF",
+    "cityId": "1131",
+    "countryId": "17",
+    "cityNameEn": "Pau",
+    "pingYin": "Bocheng",
+    "hyKeyWord": "BC"
+  }, {
+    "cityNameCn": "\u6ce2\u5fb7\u6208\u91cc\u5bdf",
+    "cityCode": "TGD",
+    "cityId": "1526",
+    "countryId": "42",
+    "cityNameEn": "Podgorica",
+    "pingYin": "Bodegelicha",
+    "hyKeyWord": "BDGLC"
+  }, {
+    "cityNameCn": "\u535a\u591a",
+    "cityCode": "BOO",
+    "cityId": "1084",
+    "countryId": "80",
+    "cityNameEn": "Bodo",
+    "pingYin": "Boduo",
+    "hyKeyWord": "BD"
+  }, {
+    "cityNameCn": "\u6ce2\u5c14\u591a",
+    "cityCode": "BOD",
+    "cityId": "788",
+    "countryId": "17",
+    "cityNameEn": "Bordeaux",
+    "pingYin": "Boerduo",
+    "hyKeyWord": "BED"
+  }, {
+    "cityNameCn": "\u4f2f\u5c14\u5c3c",
+    "cityCode": "BRN",
+    "cityId": "1146",
+    "countryId": "60",
+    "cityNameEn": "Berne",
+    "pingYin": "Boerni",
+    "hyKeyWord": "BEN"
+  }, {
+    "cityNameCn": "\u6ce2\u5c14\u56fe",
+    "cityCode": "OPO",
+    "cityId": "710",
+    "countryId": "59",
+    "cityNameEn": "Porto",
+    "pingYin": "Boertu",
+    "hyKeyWord": "BET"
+  }, {
+    "cityNameCn": "\u6ce2\u5361\u7279\u6d1b",
+    "cityCode": "PIH",
+    "cityId": "948",
+    "countryId": "2",
+    "cityNameEn": "Pocatello",
+    "pingYin": "Bokateluo",
+    "hyKeyWord": "BKTL"
+  }, {
+    "cityNameCn": "\u6ce2\u6765\u53e4",
+    "cityCode": "PXU",
+    "cityId": "1638",
+    "countryId": "105",
+    "cityNameEn": "PLEIKU",
+    "pingYin": "Bolaigu",
+    "hyKeyWord": "BLG"
+  }, {
+    "cityNameCn": "\u4f2f\u6797\u987f",
+    "cityCode": "BRL",
+    "cityId": "975",
+    "countryId": "2",
+    "cityNameEn": "Burlington",
+    "pingYin": "Bolindun",
+    "hyKeyWord": "BLD"
+  }, {
+    "cityNameCn": "\u6ce2\u4f26\u4e9a",
+    "cityCode": "BLQ",
+    "cityId": "933",
+    "countryId": "14",
+    "cityNameEn": "Bologna",
+    "pingYin": "Bolunya",
+    "hyKeyWord": "BLY"
+  }, {
+    "cityNameCn": "\u4f2f\u7c73\u5409",
+    "cityCode": "BJI",
+    "cityId": "970",
+    "countryId": "2",
+    "cityNameEn": "Bemidji",
+    "pingYin": "Bomiji",
+    "hyKeyWord": "BMJ"
+  }, {
+    "cityNameCn": "\u4f2f\u660e\u7ff0\uff08\u7f8e\u56fd\uff09",
+    "cityCode": "BHM",
+    "cityId": "1106",
+    "countryId": "2",
+    "cityNameEn": "Birmingham (United States)",
+    "pingYin": "Bominghan(Meiguo)",
+    "hyKeyWord": "BMH(MG)"
+  }, {
+    "cityNameCn": "\u535a\u5e15\u5c14",
+    "cityCode": "BHO",
+    "cityId": "1666",
+    "countryId": "36",
+    "cityNameEn": "BHOPAL ",
+    "pingYin": "Bopaer",
+    "hyKeyWord": "BPE"
+  }, {
+    "cityNameCn": "\u6ce2\u7279\u5170\uff08pwm\uff09",
+    "cityCode": "PWM",
+    "cityId": "1195",
+    "countryId": "2",
+    "cityNameEn": "Portland\uff08pwm\uff09",
+    "pingYin": "Botelan(Pwm)",
+    "hyKeyWord": "BTL(pwm)"
+  }, {
+    "cityNameCn": "\u535a\u4f0a\u897f",
+    "cityCode": "BOI",
+    "cityId": "847",
+    "countryId": "2",
+    "cityNameEn": "Boise",
+    "pingYin": "Boyixi",
+    "hyKeyWord": "BYX"
+  }, {
+    "cityNameCn": "\u535a\u5179\u66fc",
+    "cityCode": "BZN",
+    "cityId": "848",
+    "countryId": "2",
+    "cityNameEn": "Bozeman",
+    "pingYin": "Boziman",
+    "hyKeyWord": "BZM"
+  }, {
+    "cityNameCn": "\u6ce2\u5179\u5357",
+    "cityCode": "POZ",
+    "cityId": "907",
+    "countryId": "25",
+    "cityNameEn": "Poznan",
+    "pingYin": "Bozinan",
+    "hyKeyWord": "BZN"
+  }, {
+    "cityNameCn": "\u5e03\u5df4\u5185\u65af\u74e6\u5c14",
+    "cityCode": "BBI",
+    "cityId": "1611",
+    "countryId": "36",
+    "cityNameEn": "BHUBANESWAR",
+    "pingYin": "Bubaneisiwaer",
+    "hyKeyWord": "BBNSWE"
+  }, {
+    "cityNameCn": "\u5e03\u5c14\u8bfa",
+    "cityCode": "BRQ",
+    "cityId": "1456",
+    "countryId": "99",
+    "cityNameEn": "Brno",
+    "pingYin": "Buernuo",
+    "hyKeyWord": "BEN"
+  }, {
+    "cityNameCn": "\u5e03\u6cd5\u7f57",
+    "cityCode": "BUF",
+    "cityId": "724",
+    "countryId": "2",
+    "cityNameEn": "Buffalo",
+    "pingYin": "Bufaluo",
+    "hyKeyWord": "BFL"
+  }, {
+    "cityNameCn": "\u5e03\u54c8\u62c9",
+    "cityCode": "BHK",
+    "cityId": "1600",
+    "countryId": "89",
+    "cityNameEn": "BUKHARA",
+    "pingYin": "Buhala",
+    "hyKeyWord": "BHL"
+  }, {
+    "cityNameCn": "\u5e03\u62c9\u67f4\u7ef4\u5c14",
+    "cityCode": "BZV",
+    "cityId": "1334",
+    "countryId": "102",
+    "cityNameEn": "Brazzaville",
+    "pingYin": "Bulachaiweier",
+    "hyKeyWord": "BLCWE"
+  }, {
+    "cityNameCn": "\u5e03\u62c9\u8fea\u65af\u62c9\u53d1",
+    "cityCode": "BTS",
+    "cityId": "918",
+    "countryId": "140",
+    "cityNameEn": "Bratislava",
+    "pingYin": "Buladisilafa",
+    "hyKeyWord": "BLDSLF"
+  }, {
+    "cityNameCn": "\u4e0d\u83b1\u6885",
+    "cityCode": "BRE",
+    "cityId": "769",
+    "countryId": "7",
+    "cityNameEn": "Bremen",
+    "pingYin": "Bulaimei",
+    "hyKeyWord": "BLM"
+  }, {
+    "cityNameCn": "\u5e03\u6717\u65af\u7ef4\u5c14",
+    "cityCode": "BRO",
+    "cityId": "1173",
+    "countryId": "2",
+    "cityNameEn": "Brownsvil",
+    "pingYin": "Bulangsiweier",
+    "hyKeyWord": "BLSWE"
+  }, {
+    "cityNameCn": "\u5e03\u96f7\u767b\u987f",
+    "cityCode": "SRQ",
+    "cityId": "1157",
+    "countryId": "2",
+    "cityNameEn": "Bradenton",
+    "pingYin": "Buleidengdun",
+    "hyKeyWord": "BLDD"
+  }, {
+    "cityNameCn": "\u5e03\u96f7\u7eb3\u5fb7",
+    "cityCode": "BRD",
+    "cityId": "974",
+    "countryId": "2",
+    "cityNameEn": "Brainerd",
+    "pingYin": "Buleinade",
+    "hyKeyWord": "BLND"
+  }, {
+    "cityNameCn": "\u5e03\u96f7\u65af\u7279",
+    "cityCode": "BES",
+    "cityId": "1122",
+    "countryId": "17",
+    "cityNameEn": "Brest",
+    "pingYin": "Buleisite",
+    "hyKeyWord": "BLST"
+  }, {
+    "cityNameCn": "\u5e03\u6797\u8fea\u897f",
+    "cityCode": "BDS",
+    "cityId": "828",
+    "countryId": "14",
+    "cityNameEn": "Brindisi",
+    "pingYin": "Bulindixi",
+    "hyKeyWord": "BLDX"
+  }, {
+    "cityNameCn": "\u5e03\u91cc\u5947\u6566",
+    "cityCode": "BGI",
+    "cityId": "878",
+    "countryId": "131",
+    "cityNameEn": "Bridgetown",
+    "pingYin": "Buliqidun",
+    "hyKeyWord": "BLQD"
+  }, {
+    "cityNameCn": "\u5e03\u91cc\u65af\u6258\u5c14",
+    "cityCode": "TRI",
+    "cityId": "782",
+    "countryId": "2",
+    "cityNameEn": "BRISTOL\/HOHNSON CITY\/KIN    ",
+    "pingYin": "Bulisituoer",
+    "hyKeyWord": "BLSTE"
+  }, {
+    "cityNameCn": "\u5e03\u5362\u660e\u987f.\u8bfa\u6728\u5c14",
+    "cityCode": "BMI",
+    "cityId": "971",
+    "countryId": "2",
+    "cityNameEn": "Bloomington",
+    "pingYin": "Bulumingdun.nuomuer",
+    "hyKeyWord": "BLMD.NME"
+  }, {
+    "cityNameCn": "\u5e03\u743c\u5e03\u62c9 ",
+    "cityCode": "BJM",
+    "cityId": "1339",
+    "countryId": "165",
+    "cityNameEn": "Bujumbura",
+    "pingYin": "Buqiongbula ",
+    "hyKeyWord": "BQBL "
+  }, {
+    "cityNameCn": "\u5df4\u9ece",
+    "cityCode": "PAR",
+    "cityId": "360",
+    "countryId": "17",
+    "cityNameEn": "Paris",
+    "pingYin": "bali",
+    "hyKeyWord": "bl"
+  }, {
+    "cityNameCn": "\u5df4\u5398\u5c9b",
+    "cityCode": "DPS",
+    "cityId": "392",
+    "countryId": "54",
+    "cityNameEn": "Bali Island",
+    "pingYin": "balidao",
+    "hyKeyWord": "bld"
+  }, {
+    "cityNameCn": "\u5df4\u585e\u7f57\u90a3",
+    "cityCode": "BCN",
+    "cityId": "339",
+    "countryId": "109",
+    "cityNameEn": "Barcelona",
+    "pingYin": "basailuona",
+    "hyKeyWord": "bsln"
+  }, {
+    "cityNameCn": "\u69df\u57ce",
+    "cityCode": "PEN",
+    "cityId": "530",
+    "countryId": "70",
+    "cityNameEn": "Penang",
+    "pingYin": "binlangyu",
+    "hyKeyWord": "bly"
+  }, {
+    "cityNameCn": "\u6ce2\u54e5\u5927",
+    "cityCode": "BOG",
+    "cityId": "1404",
+    "countryId": "112",
+    "cityNameEn": "BOGOTA",
+    "pingYin": "bogeda",
+    "hyKeyWord": "bgd"
+  }, {
+    "cityNameCn": "\u67cf\u6797",
+    "cityCode": "BER",
+    "cityId": "1423",
+    "countryId": "7",
+    "cityNameEn": "Berlin",
+    "pingYin": "bolin",
+    "hyKeyWord": "bl"
+  }, {
+    "cityNameCn": "\u4f2f\u660e\u7ff0\uff08\u82f1\u56fd\uff09",
+    "cityCode": "BHX",
+    "cityId": "685",
+    "countryId": "21",
+    "cityNameEn": "Birmingham",
+    "pingYin": "bominghan",
+    "hyKeyWord": "bmh"
+  }, {
+    "cityNameCn": "\u6ce2\u58eb\u987f",
+    "cityCode": "BOS",
+    "cityId": "348",
+    "countryId": "2",
+    "cityNameEn": "Boston",
+    "pingYin": "boshidun",
+    "hyKeyWord": "bsd"
+  }, {
+    "cityNameCn": "\u6ce2\u7279\u5170",
+    "cityCode": "PDX",
+    "cityId": "528",
+    "countryId": "2",
+    "cityNameEn": "Portland",
+    "pingYin": "botelan",
+    "hyKeyWord": "btl"
+  }, {
+    "cityNameCn": "\u5e03\u8fbe\u4f69\u65af",
+    "cityCode": "BUD",
+    "cityId": "353",
+    "countryId": "118",
+    "cityNameEn": "Budapest",
+    "pingYin": "budapeisi",
+    "hyKeyWord": "bd"
+  }, {
+    "cityNameCn": "\u5e03\u52a0\u52d2\u65af\u7279",
+    "cityCode": "BUH",
+    "cityId": "355",
+    "countryId": "119",
+    "cityNameEn": "Bucharest",
+    "pingYin": "bujialesite",
+    "hyKeyWord": "bjlst"
+  }, {
+    "cityNameCn": "\u5e03\u62c9\u683c",
+    "cityCode": "PRG",
+    "cityId": "688",
+    "countryId": "99",
+    "cityNameEn": "Prague",
+    "pingYin": "bulage",
+    "hyKeyWord": "blg"
+  }, {
+    "cityNameCn": "\u5e03\u91cc\u65af\u73ed",
+    "cityCode": "BNE",
+    "cityId": "346",
+    "countryId": "16",
+    "cityNameEn": "Brisbane",
+    "pingYin": "bulisiban",
+    "hyKeyWord": "blsb"
+  }, {
+    "cityNameCn": "\u5e03\u9c81\u585e\u5c14",
+    "cityCode": "BRU",
+    "cityId": "350",
+    "countryId": "39",
+    "cityNameEn": "Brussels",
+    "pingYin": "bulusaier",
+    "hyKeyWord": "blse"
+  }, {
+    "cityNameCn": "\u5e03\u5b9c\u8bfa\u65af\u827e\u5229\u65af",
+    "cityCode": "BUE",
+    "cityId": "354",
+    "countryId": "6",
+    "cityNameEn": "Buenos Aires",
+    "pingYin": "buyinuosiailisi",
+    "hyKeyWord": "bynsals"
+  }],
+  "C": [{
+    "cityNameCn": "\u67e5\u5c14\u65af\u987f",
+    "cityCode": "CRW",
+    "cityId": "977",
+    "countryId": "2",
+    "cityNameEn": "Charleston",
+    "pingYin": "Chaersidun",
+    "hyKeyWord": "CESD"
+  }, {
+    "cityNameCn": "\u67e5\u5854\u52aa\u52a0",
+    "cityCode": "CHA",
+    "cityId": "979",
+    "countryId": "2",
+    "cityNameEn": "Chattanooga",
+    "pingYin": "Chatanujia",
+    "hyKeyWord": "CTNJ"
+  }, {
+    "cityNameCn": "\u8f66\u91cc\u96c5\u5bbe\u65af\u514b",
+    "cityCode": "CEK",
+    "cityId": "1669",
+    "countryId": "24",
+    "cityNameEn": "Chelyabinsk ",
+    "pingYin": "Cheliyabinsike",
+    "hyKeyWord": "CLYBSK"
+  }, {
+    "cityNameCn": "\u6668\u5948",
+    "cityCode": "MAA",
+    "cityId": "834",
+    "countryId": "36",
+    "cityNameEn": "Madras",
+    "pingYin": "Chennai",
+    "hyKeyWord": "CN"
+  }, {
+    "cityNameCn": "\u8d64\u5854",
+    "cityCode": "HTA",
+    "cityId": "1330",
+    "countryId": "24",
+    "cityNameEn": "Chita",
+    "pingYin": "Chita",
+    "hyKeyWord": "CT"
+  }, {
+    "cityNameCn": "\u51b2\u7ef3",
+    "cityCode": "OKA",
+    "cityId": "665",
+    "countryId": "13",
+    "cityNameEn": "Okinawa",
+    "pingYin": "chongsheng",
+    "hyKeyWord": "cs"
+  }],
+  "D": [{
+    "cityNameCn": "\u8fbe\u5c14\u6587",
+    "cityCode": "DRW",
+    "cityId": "1374",
+    "countryId": "16",
+    "cityNameEn": "Darwin",
+    "pingYin": "Daerwen",
+    "hyKeyWord": "DEW"
+  }, {
+    "cityNameCn": "\u5927\u5206",
+    "cityCode": "OIT",
+    "cityId": "934",
+    "countryId": "13",
+    "cityNameEn": "Oita",
+    "pingYin": "Dafen",
+    "hyKeyWord": "DF"
+  }, {
+    "cityNameCn": "\u5927\u798f\u514b\u65af",
+    "cityCode": "GFK",
+    "cityId": "997",
+    "countryId": "2",
+    "cityNameEn": "Grand Forks",
+    "pingYin": "Dafukesi",
+    "hyKeyWord": "DFKS"
+  }, {
+    "cityNameCn": "\u6234\u987f",
+    "cityCode": "DAY",
+    "cityId": "983",
+    "countryId": "2",
+    "cityNameEn": "Dayton",
+    "pingYin": "Daidun",
+    "hyKeyWord": "DD"
+  }, {
+    "cityNameCn": "\u4ee3\u6258\u7eb3\u6bd4\u5947",
+    "cityCode": "DAB",
+    "cityId": "1147",
+    "countryId": "2",
+    "cityNameEn": "Daytonga Beach",
+    "pingYin": "Daituonabiqi",
+    "hyKeyWord": "DTNBQ"
+  }, {
+    "cityNameCn": "\u5927\u52a0\u90a3\u5229\u5c9b",
+    "cityCode": "LPA",
+    "cityId": "915",
+    "countryId": "109",
+    "cityNameEn": "Grand Canaria",
+    "pingYin": "Dajianeilidao",
+    "hyKeyWord": "DJNLD"
+  }, {
+    "cityNameCn": "\u5927\u6025\u6d41",
+    "cityCode": "GRR",
+    "cityId": "998",
+    "countryId": "2",
+    "cityNameEn": "Grand Rapids",
+    "pingYin": "Dajiliu",
+    "hyKeyWord": "DJL"
+  }, {
+    "cityNameCn": "\u8fbe\u5580\u5c14",
+    "cityCode": "DKR",
+    "cityId": "744",
+    "countryId": "55",
+    "cityNameEn": "Dakar",
+    "pingYin": "Dakaer",
+    "hyKeyWord": "DKE"
+  }, {
+    "cityNameCn": "\u5927\u5f00\u66fc\u5c9b",
+    "cityCode": "GCM",
+    "cityId": "882",
+    "countryId": "134",
+    "cityNameEn": "Grand Cayman",
+    "pingYin": "Dakaimandao",
+    "hyKeyWord": "DKMD"
+  }, {
+    "cityNameCn": "\u8fbe\u62c9\u66fc",
+    "cityCode": "DLM",
+    "cityId": "1441",
+    "countryId": "38",
+    "cityNameEn": "DALAMAN",
+    "pingYin": "Dalaman",
+    "hyKeyWord": "DLM"
+  }, {
+    "cityNameCn": "\u8fbe\u5170\u8428\u62c9",
+    "cityCode": "DHM",
+    "cityId": "1708",
+    "countryId": "36",
+    "cityNameEn": "DHARAMSALA ",
+    "pingYin": "Dalansala",
+    "hyKeyWord": "DLSL"
+  }, {
+    "cityNameCn": "\u8fbe\u62c9\u65af",
+    "cityCode": "DFW",
+    "cityId": "981",
+    "countryId": "2",
+    "cityNameEn": "Dallas",
+    "pingYin": "Dalasi",
+    "hyKeyWord": "DLS"
+  }, {
+    "cityNameCn": "\u5927\u52d2",
+    "cityCode": "DLI",
+    "cityId": "1637",
+    "countryId": "105",
+    "cityNameEn": " Da Lat",
+    "pingYin": "Dale",
+    "hyKeyWord": "DL"
+  }, {
+    "cityNameCn": "\u5927\u9a6c\u58eb\u9769",
+    "cityCode": "DAM",
+    "cityId": "378",
+    "countryId": "51",
+    "cityNameEn": "Damascus",
+    "pingYin": "Damashige",
+    "hyKeyWord": "DMSG"
+  }, {
+    "cityNameCn": "\u4e39\u4f5b",
+    "cityCode": "DEN",
+    "cityId": "384",
+    "countryId": "2",
+    "cityNameEn": "Denver",
+    "pingYin": "Danfo",
+    "hyKeyWord": "DF"
+  }, {
+    "cityNameCn": "\u8fbe\u5c3c\u4e01",
+    "cityCode": "DUD",
+    "cityId": "1326",
+    "countryId": "33",
+    "cityNameEn": "Dunedin",
+    "pingYin": "Daniding",
+    "hyKeyWord": "DND"
+  }, {
+    "cityNameCn": "\u9053\u5947\u5821",
+    "cityCode": "FOD",
+    "cityId": "993",
+    "countryId": "2",
+    "cityNameEn": "Fort Dodge",
+    "pingYin": "Daoqibao",
+    "hyKeyWord": "DQB"
+  }, {
+    "cityNameCn": "\u5927\u65af\u666e\u6797",
+    "cityCode": "HCA",
+    "cityId": "661",
+    "countryId": "2",
+    "cityNameEn": "Big Spring",
+    "pingYin": "Dasipulin",
+    "hyKeyWord": "DSPL"
+  }, {
+    "cityNameCn": "\u8fbe\u6c83",
+    "cityCode": "DVO",
+    "cityId": "1616",
+    "countryId": "79",
+    "cityNameEn": "DAVAO",
+    "pingYin": "Dawo",
+    "hyKeyWord": "DW"
+  }, {
+    "cityNameCn": "\u5927\u897f\u6d0b\u57ce",
+    "cityCode": "AIY",
+    "cityId": "966",
+    "countryId": "2",
+    "cityNameEn": "Atlantic City",
+    "pingYin": "Daxiyangcheng",
+    "hyKeyWord": "DXYC"
+  }, {
+    "cityNameCn": "\u5fb7\u73ed",
+    "cityCode": "DUR",
+    "cityId": "1247",
+    "countryId": "48",
+    "cityNameEn": "Durban",
+    "pingYin": "Deban",
+    "hyKeyWord": "DB"
+  }, {
+    "cityNameCn": "\u5fb7\u5c14\u91cc\u5965",
+    "cityCode": "DRT",
+    "cityId": "1179",
+    "countryId": "2",
+    "cityNameEn": "Del Rio",
+    "pingYin": "Deerliao",
+    "hyKeyWord": "DELA"
+  }, {
+    "cityNameCn": "\u5fb7\u514b\u8428\u65af\u5dde",
+    "cityCode": "BPT",
+    "cityId": "1169",
+    "countryId": "2",
+    "cityNameEn": "Beaumont",
+    "pingYin": "Dekesasizhou",
+    "hyKeyWord": "DKSSZ"
+  }, {
+    "cityNameCn": "\u5fb7\u7d2f\u65af\u987f",
+    "cityCode": "DRS",
+    "cityId": "745",
+    "countryId": "7",
+    "cityNameEn": "Dresden",
+    "pingYin": "Deleisidun",
+    "hyKeyWord": "DLSD"
+  }, {
+    "cityNameCn": "\u7684\u91cc\u96c5\u65af\u7279",
+    "cityCode": "TRS",
+    "cityId": "902",
+    "countryId": "14",
+    "cityNameEn": "Trieste",
+    "pingYin": "Deliyasite",
+    "hyKeyWord": "DLYST"
+  }, {
+    "cityNameCn": "\u5fb7\u5362\u65af",
+    "cityCode": "DLH",
+    "cityId": "985",
+    "countryId": "2",
+    "cityNameEn": "Duluth",
+    "pingYin": "Delusi",
+    "hyKeyWord": "DLS"
+  }, {
+    "cityNameCn": "\u5f97\u6885\u56e0",
+    "cityCode": "DSM",
+    "cityId": "982",
+    "countryId": "2",
+    "cityNameEn": "Des Moines",
+    "pingYin": "Demeiyin",
+    "hyKeyWord": "DMY"
+  }, {
+    "cityNameCn": "\u5960\u8fb9\u5e9c",
+    "cityCode": "DIN",
+    "cityId": "1632",
+    "countryId": "105",
+    "cityNameEn": "DIEN BIEN PHU",
+    "pingYin": "Dianbianfu",
+    "hyKeyWord": "DBF"
+  }, {
+    "cityNameCn": "\u8fea\u6bd4\u514b",
+    "cityCode": "DBQ",
+    "cityId": "984",
+    "countryId": "2",
+    "cityNameEn": "Dubuque",
+    "pingYin": "Dibike",
+    "hyKeyWord": "DBK"
+  }, {
+    "cityNameCn": "\u7b2c\u6bd4\u5229\u65af",
+    "cityCode": "TBS",
+    "cityId": "1497",
+    "countryId": "173",
+    "cityNameEn": "Tbilisi",
+    "pingYin": "Dibilisi",
+    "hyKeyWord": "DBLS"
+  }, {
+    "cityNameCn": "\u8482\u534e\u7eb3",
+    "cityCode": "TIJ",
+    "cityId": "1500",
+    "countryId": "76",
+    "cityNameEn": "Tijuana",
+    "pingYin": "Dihuana",
+    "hyKeyWord": "DHN"
+  }, {
+    "cityNameCn": "\u8fea\u51ef\u7279",
+    "cityCode": "DEC",
+    "cityId": "1192",
+    "countryId": "2",
+    "cityNameEn": "Decatur",
+    "pingYin": "Dikaite",
+    "hyKeyWord": "DKT"
+  }, {
+    "cityNameCn": "\u8fea\u514b\u83b1\u5c14",
+    "cityCode": "YDF",
+    "cityId": "1540",
+    "countryId": "91",
+    "cityNameEn": "Deer Lake",
+    "pingYin": "Dikelaier",
+    "hyKeyWord": "DKLE"
+  }, {
+    "cityNameCn": "\u5e1d\u529b",
+    "cityCode": "DIL",
+    "cityId": "659",
+    "countryId": "54",
+    "cityNameEn": "Dili",
+    "pingYin": "Dili",
+    "hyKeyWord": "DL"
+  }, {
+    "cityNameCn": "\u8482\u9c81\u5409\u62c9\u5e15\u5229",
+    "cityCode": "TRZ",
+    "cityId": "1244",
+    "countryId": "36",
+    "cityNameEn": "Tiruchirapalli",
+    "pingYin": "Dilujilapali",
+    "hyKeyWord": "DLJLPL"
+  }, {
+    "cityNameCn": "\u8482\u7c73\u4ec0\u74e6\u62c9",
+    "cityCode": "TSR",
+    "cityId": "1465",
+    "countryId": "119",
+    "cityNameEn": "Timisoara",
+    "pingYin": "Dimishenwala",
+    "hyKeyWord": "DMSWL"
+  }, {
+    "cityNameCn": "\u7b2c\u8042\u4f2f\u7f57\u5f7c\u5f97\u7f57\u592b\u65af\u514b",
+    "cityCode": "DNK",
+    "cityId": "1514",
+    "countryId": "26",
+    "cityNameEn": "Dnepropetrovsk",
+    "pingYin": "Dinieboluobideluofusike",
+    "hyKeyWord": "DNBLBDLFSK"
+  }, {
+    "cityNameCn": "\u8482\u585e\u5fb7",
+    "cityCode": "MME",
+    "cityId": "1116",
+    "countryId": "21",
+    "cityNameEn": "Teesside",
+    "pingYin": "Disaide",
+    "hyKeyWord": "DSD"
+  }, {
+    "cityNameCn": "\u8fea\u77f3",
+    "cityCode": "VKG",
+    "cityId": "1635",
+    "countryId": "105",
+    "cityNameEn": "Rach Gia",
+    "pingYin": "Dishi",
+    "hyKeyWord": "DS"
+  }, {
+    "cityNameCn": "\u4e1c\u4f26\u6566",
+    "cityCode": "ELS",
+    "cityId": "1646",
+    "countryId": "48",
+    "cityNameEn": "East London",
+    "pingYin": "Donglundun",
+    "hyKeyWord": "DLD"
+  }, {
+    "cityNameCn": "\u6597\u6e56",
+    "cityCode": "TWU",
+    "cityId": "938",
+    "countryId": "70",
+    "cityNameEn": "Tawau",
+    "pingYin": "Douhu",
+    "hyKeyWord": "DH"
+  }, {
+    "cityNameCn": "\u90fd\u7075",
+    "cityCode": "TRN",
+    "cityId": "761",
+    "countryId": "14",
+    "cityNameEn": "Turin",
+    "pingYin": "Douling",
+    "hyKeyWord": "DL"
+  }, {
+    "cityNameCn": "\u675c\u963f\u62c9",
+    "cityCode": "DLA",
+    "cityId": "1335",
+    "countryId": "163",
+    "cityNameEn": "Douala",
+    "pingYin": "Duala",
+    "hyKeyWord": "DAL"
+  }, {
+    "cityNameCn": "\u675c\u5e03\u7f57\u592b\u5c3c\u514b",
+    "cityCode": "DBV",
+    "cityId": "1135",
+    "countryId": "138",
+    "cityNameEn": "Dubrovnik",
+    "pingYin": "Dubuluofunike",
+    "hyKeyWord": "DBLFNK"
+  }, {
+    "cityNameCn": "\u675c\u5170\u6208",
+    "cityCode": "DRO",
+    "cityId": "1543",
+    "countryId": "2",
+    "cityNameEn": "Durango",
+    "pingYin": "Dulange",
+    "hyKeyWord": "DLG"
+  }, {
+    "cityNameCn": "\u675c\u9a6c\u683c\u7279",
+    "cityCode": "DGT",
+    "cityId": "1586",
+    "countryId": "79",
+    "cityNameEn": "DUMAGUETE",
+    "pingYin": "Dumagete",
+    "hyKeyWord": "DMGT"
+  }, {
+    "cityNameCn": "\u591a\u5df4\u54e5",
+    "cityCode": "TAB",
+    "cityId": "880",
+    "countryId": "133",
+    "cityNameEn": "Tobago",
+    "pingYin": "Duobage",
+    "hyKeyWord": "DBG"
+  }, {
+    "cityNameCn": "\u591a\u5185\u8328\u514b",
+    "cityCode": "DOK",
+    "cityId": "1541",
+    "countryId": "26",
+    "cityNameEn": "Donetsk",
+    "pingYin": "Duoneicike",
+    "hyKeyWord": "DNCK"
+  }, {
+    "cityNameCn": "\u591a\u68ee",
+    "cityCode": "DHN",
+    "cityId": "1703",
+    "countryId": "2",
+    "cityNameEn": "Dothan",
+    "pingYin": "Duosen",
+    "hyKeyWord": "DS"
+  }, {
+    "cityNameCn": "\u591a\u7279\u8499\u7279",
+    "cityCode": "DTM",
+    "cityId": "884",
+    "countryId": "7",
+    "cityNameEn": "Dortmund",
+    "pingYin": "Duotemengte",
+    "hyKeyWord": "DTMT"
+  }, {
+    "cityNameCn": "\u675c\u5c1a\u522b",
+    "cityCode": "DYU",
+    "cityId": "1298",
+    "countryId": "155",
+    "cityNameEn": "Dushanbe",
+    "pingYin": "Dushangbie",
+    "hyKeyWord": "DSB"
+  }, {
+    "cityNameCn": "\u5927\u962a",
+    "cityCode": "OSA",
+    "cityId": "526",
+    "countryId": "13",
+    "cityNameEn": "Osaka",
+    "pingYin": "daban",
+    "hyKeyWord": "db"
+  }, {
+    "cityNameCn": "\u8fbe\u5361",
+    "cityCode": "DAC",
+    "cityId": "713",
+    "countryId": "50",
+    "cityNameEn": "Dhaka",
+    "pingYin": "daka",
+    "hyKeyWord": "dk"
+  }, {
+    "cityNameCn": "\u8fbe\u7d2f\u65af\u8428\u62c9\u59c6",
+    "cityCode": "DAR",
+    "cityId": "812",
+    "countryId": "52",
+    "cityNameEn": "Dar Es Salaam",
+    "pingYin": "daleisisalamu",
+    "hyKeyWord": "dlsslm"
+  }, {
+    "cityNameCn": "\u8fbe\u66fc",
+    "cityCode": "DMM",
+    "cityId": "718",
+    "countryId": "53",
+    "cityNameEn": "Dammam",
+    "pingYin": "daman",
+    "hyKeyWord": "dm"
+  }, {
+    "cityNameCn": "\u5927\u4e18",
+    "cityCode": "TAE",
+    "cityId": "567",
+    "countryId": "86",
+    "cityNameEn": "Daegu",
+    "pingYin": "daqiu",
+    "hyKeyWord": "dq"
+  }, {
+    "cityNameCn": "\u5fb7\u9ed1\u5170",
+    "cityCode": "THR",
+    "cityId": "573",
+    "countryId": "28",
+    "cityNameEn": "Teheran",
+    "pingYin": "deheilan",
+    "hyKeyWord": "dhl"
+  }, {
+    "cityNameCn": "\u5fb7\u91cc",
+    "cityCode": "DEL",
+    "cityId": "383",
+    "countryId": "36",
+    "cityNameEn": "Delhi",
+    "pingYin": "deli",
+    "hyKeyWord": "dl"
+  }, {
+    "cityNameCn": "\u8fea\u62dc",
+    "cityCode": "DXB",
+    "cityId": "394",
+    "countryId": "15",
+    "cityNameEn": "Dubai",
+    "pingYin": "dibai",
+    "hyKeyWord": "db"
+  }, {
+    "cityNameCn": "\u7684\u9ece\u6ce2\u91cc",
+    "cityCode": "TIP",
+    "cityId": "690",
+    "countryId": "43",
+    "cityNameEn": "Tripoli",
+    "pingYin": "diliboli",
+    "hyKeyWord": "dlbl"
+  }, {
+    "cityNameCn": "\u5e95\u7279\u5f8b",
+    "cityCode": "DTT",
+    "cityId": "393",
+    "countryId": "2",
+    "cityNameEn": "Detroit",
+    "pingYin": "ditelv",
+    "hyKeyWord": "dtl"
+  }, {
+    "cityNameCn": "\u4e1c\u4eac",
+    "cityCode": "TYO",
+    "cityId": "584",
+    "countryId": "13",
+    "cityNameEn": "Tokyo",
+    "pingYin": "dongjing",
+    "hyKeyWord": "DJ"
+  }, {
+    "cityNameCn": "\u90fd\u4f2f\u6797",
+    "cityCode": "DUB",
+    "cityId": "701",
+    "countryId": "57",
+    "cityNameEn": "Dublin",
+    "pingYin": "dubolin",
+    "hyKeyWord": "dbl"
+  }, {
+    "cityNameCn": "\u591a\u54c8",
+    "cityCode": "DOH",
+    "cityId": "390",
+    "countryId": "56",
+    "cityNameEn": "Doha",
+    "pingYin": "duoha",
+    "hyKeyWord": "duoha"
+  }, {
+    "cityNameCn": "\u591a\u4f26\u591a",
+    "cityCode": "YTO",
+    "cityId": "619",
+    "countryId": "91",
+    "cityNameEn": "Toronto",
+    "pingYin": "duolunduo",
+    "hyKeyWord": "dld"
+  }, {
+    "cityNameCn": "\u675c\u585e\u5c14\u591a\u592b",
+    "cityCode": "DUS",
+    "cityId": "678",
+    "countryId": "7",
+    "cityNameEn": "Dusseldorf",
+    "pingYin": "dusaierduofu",
+    "hyKeyWord": "dsedf"
+  }],
+  "E": [{
+    "cityNameCn": "\u5384\u5c14\u574e",
+    "cityCode": "ECN",
+    "cityId": "1426",
+    "countryId": "114",
+    "cityNameEn": "ERCAN",
+    "pingYin": "Eerkan",
+    "hyKeyWord": "EEK"
+  }, {
+    "cityNameCn": "\u5384\u52d2\u5e03\u9c81",
+    "cityCode": "ORB",
+    "cityId": "1354",
+    "countryId": "18",
+    "cityNameEn": "Orebro",
+    "pingYin": "Elebulu",
+    "hyKeyWord": "ELBL"
+  }, {
+    "cityNameCn": "\u9102\u6728\u65af\u514b",
+    "cityCode": "OMS",
+    "cityId": "1525",
+    "countryId": "24",
+    "cityNameEn": "Omsk",
+    "pingYin": "Emusike",
+    "hyKeyWord": "EMSK"
+  }, {
+    "cityNameCn": "\u6069\u5fb7\u57f9",
+    "cityCode": "EBB",
+    "cityId": "874",
+    "countryId": "58",
+    "cityNameEn": "Entebbe",
+    "pingYin": "Endepei",
+    "hyKeyWord": "EDP"
+  }, {
+    "cityNameCn": "\u6069\u8d3e\u6885\u62c9",
+    "cityCode": "NDJ",
+    "cityId": "1336",
+    "countryId": "154",
+    "cityNameEn": "Ndjamena",
+    "pingYin": "Enjiameila",
+    "hyKeyWord": "EJML"
+  }, {
+    "cityNameCn": "\u6069\u820d\u5c14\u5179\u7ef4\u514b",
+    "cityCode": "OER",
+    "cityId": "1090",
+    "countryId": "18",
+    "cityNameEn": "Ornskoldsvik",
+    "pingYin": "Ensheerziweike",
+    "hyKeyWord": "ESEZWK"
+  }, {
+    "cityNameCn": "\u5384\u65af\u7279\u677e\u5fb7",
+    "cityCode": "OSD",
+    "cityId": "1091",
+    "countryId": "18",
+    "cityNameEn": "Ostersund",
+    "pingYin": "Esitesongde",
+    "hyKeyWord": "ESTSD"
+  }, {
+    "cityNameCn": "\u4fc4\u514b\u62c9\u4f55\u9a6c\u57ce",
+    "cityCode": "OKC",
+    "cityId": "1035",
+    "countryId": "2",
+    "cityNameEn": "Oklahoma ",
+    "pingYin": "ekelahemacheng",
+    "hyKeyWord": "eklhmc"
+  }],
+  "F": [{
+    "cityNameCn": "\u6cd5\u6208",
+    "cityCode": "FAR",
+    "cityId": "990",
+    "countryId": "2",
+    "cityNameEn": "Fargo\/Moorhead",
+    "pingYin": "Fage",
+    "hyKeyWord": "FG"
+  }, {
+    "cityNameCn": "\u6cd5\u9c81",
+    "cityCode": "FAO",
+    "cityId": "867",
+    "countryId": "59",
+    "cityNameEn": "Faro",
+    "pingYin": "Falu",
+    "hyKeyWord": "FL"
+  }, {
+    "cityNameCn": "\u8d39\u57ce",
+    "cityCode": "ZFV",
+    "cityId": "531",
+    "countryId": "2",
+    "cityNameEn": "Philadelphia",
+    "pingYin": "Feicheng",
+    "hyKeyWord": "FC"
+  }, {
+    "cityNameCn": "\u8d39\u5c14\u73ed\u514b\u65af",
+    "cityCode": "FAI",
+    "cityId": "1464",
+    "countryId": "2",
+    "cityNameEn": "Fairbanks",
+    "pingYin": "Feierbankesi",
+    "hyKeyWord": "FEBKS"
+  }, {
+    "cityNameCn": "\u83f2\u5c3c\u514b\u65af",
+    "cityCode": "PHX",
+    "cityId": "703",
+    "countryId": "2",
+    "cityNameEn": "Phoenix",
+    "pingYin": "Feinikesi",
+    "hyKeyWord": "FNKS"
+  }, {
+    "cityNameCn": "\u8153\u7279\u70c8\u6e2f",
+    "cityCode": "FDH",
+    "cityId": "929",
+    "countryId": "7",
+    "cityNameEn": "Friedrichshafen",
+    "pingYin": "Feiteliegang",
+    "hyKeyWord": "FTLG"
+  }, {
+    "cityNameCn": "\u8d39\u8036\u7279\u7ef4\u5c14",
+    "cityCode": "FAY",
+    "cityId": "991",
+    "countryId": "2",
+    "cityNameEn": "Fayetteville",
+    "pingYin": "Feiyeteweier",
+    "hyKeyWord": "FYTWE"
+  }, {
+    "cityNameCn": "\u4e30\u6c99\u5c14",
+    "cityCode": "FNC",
+    "cityId": "863",
+    "countryId": "59",
+    "cityNameEn": "Funchal",
+    "pingYin": "Fengshaer",
+    "hyKeyWord": "FSE"
+  }, {
+    "cityNameCn": "\u4f5b\u7f57\u4f26\u8428",
+    "cityCode": "FLR",
+    "cityId": "767",
+    "countryId": "14",
+    "cityNameEn": "Florence",
+    "pingYin": "Foluolunsa",
+    "hyKeyWord": "FLLS"
+  }, {
+    "cityNameCn": "\u4f5b\u8499\u7279\u5dde\u4f2f\u7075\u987f",
+    "cityCode": "BTV",
+    "cityId": "1605",
+    "countryId": "2",
+    "cityNameEn": "Burlington Vermont",
+    "pingYin": "Fomengtezhoubolingdun",
+    "hyKeyWord": "FMTZBLD"
+  }, {
+    "cityNameCn": "\u798f\u5c9b",
+    "cityCode": "FKS",
+    "cityId": "682",
+    "countryId": "13",
+    "cityNameEn": "Fukushima",
+    "pingYin": "Fudao",
+    "hyKeyWord": "FD"
+  }, {
+    "cityNameCn": "\u4f0f\u5c14\u52a0\u683c\u52d2",
+    "cityCode": "VOG",
+    "cityId": "1702",
+    "countryId": "24",
+    "cityNameEn": "Volgograd",
+    "pingYin": "Fuerjiagele",
+    "hyKeyWord": "FEJGL"
+  }, {
+    "cityNameCn": "\u5bcc\u56fd\u5c9b",
+    "cityCode": "PQC",
+    "cityId": "1524",
+    "countryId": "105",
+    "cityNameEn": "Phu quoc",
+    "pingYin": "Fuguodao",
+    "hyKeyWord": "FGD"
+  }, {
+    "cityNameCn": "\u7b26\u62c9\u8fea\u6c83\u65af\u6258\u514b",
+    "cityCode": "VVO",
+    "cityId": "590",
+    "countryId": "24",
+    "cityNameEn": "Vladivostok",
+    "pingYin": "Fuladiwosituoke",
+    "hyKeyWord": "FLDWSTK"
+  }, {
+    "cityNameCn": "\u5f17\u96f7\u5fb7\u91cc\u514b\u987f",
+    "cityCode": "YFC",
+    "cityId": "1425",
+    "countryId": "91",
+    "cityNameEn": "Fredericton",
+    "pingYin": "Fuleidelikedun",
+    "hyKeyWord": "FLDLKD"
+  }, {
+    "cityNameCn": "\u5f17\u96f7\u65af\u8bfa",
+    "cityCode": "FAT",
+    "cityId": "851",
+    "countryId": "2",
+    "cityNameEn": "Fresno",
+    "pingYin": "Fuleisinuo",
+    "hyKeyWord": "FLSN"
+  }, {
+    "cityNameCn": "\u5f17\u6797\u7279",
+    "cityCode": "FNT",
+    "cityId": "992",
+    "countryId": "2",
+    "cityNameEn": "Flint",
+    "pingYin": "Fulinte",
+    "hyKeyWord": "FLT"
+  }, {
+    "cityNameCn": "\u5f17\u7f57\u8328\u74e6\u592b",
+    "cityCode": "WRO",
+    "cityId": "908",
+    "countryId": "25",
+    "cityNameEn": "Wroclaw",
+    "pingYin": "Fuluociwafu",
+    "hyKeyWord": "FLCWF"
+  }, {
+    "cityNameCn": "\u5f17\u6d1b\u91cc\u4e9a\u8bfa\u6ce2\u5229\u65af",
+    "cityCode": "FLN",
+    "cityId": "1612",
+    "countryId": "3",
+    "cityNameEn": "FLORIANOPOLIS",
+    "pingYin": "Fuluoliyanuobolisi",
+    "hyKeyWord": "FLLYNBLS"
+  }, {
+    "cityNameCn": "\u5bcc\u5c71",
+    "cityCode": "TOY",
+    "cityId": "577",
+    "countryId": "13",
+    "cityNameEn": "Toyama",
+    "pingYin": "Fushan",
+    "hyKeyWord": "FS"
+  }, {
+    "cityNameCn": "\u6cd5\u5170\u514b\u798f",
+    "cityCode": "FRA",
+    "cityId": "400",
+    "countryId": "7",
+    "cityNameEn": "Frankfurt",
+    "pingYin": "falankefu",
+    "hyKeyWord": "flkf"
+  }, {
+    "cityNameCn": "\u798f\u5188",
+    "cityCode": "FUK",
+    "cityId": "402",
+    "countryId": "13",
+    "cityNameEn": "Fukuoka",
+    "pingYin": "fugang",
+    "hyKeyWord": "fg"
+  }, {
+    "cityNameCn": "\u91dc\u5c71",
+    "cityCode": "PUS",
+    "cityId": "533",
+    "countryId": "86",
+    "cityNameEn": "Pusan",
+    "pingYin": "fushan",
+    "hyKeyWord": "fs"
+  }],
+  "G": [{
+    "cityNameCn": "\u76d6\u6069\u65af\u7ef4\u5c14",
+    "cityCode": "GNV",
+    "cityId": "1381",
+    "countryId": "2",
+    "cityNameEn": "Gainesville",
+    "pingYin": "Gaiensiweier",
+    "hyKeyWord": "GESWE"
+  }, {
+    "cityNameCn": "\u5188\u5c71",
+    "cityCode": "OKJ",
+    "cityId": "699",
+    "countryId": "13",
+    "cityNameEn": "Okayama",
+    "pingYin": "Gangshan",
+    "hyKeyWord": "GS"
+  }, {
+    "cityNameCn": "\u5e72\u5c3c\u4e9a",
+    "cityCode": "CHQ",
+    "cityId": "925",
+    "countryId": "40",
+    "cityNameEn": "Chania",
+    "pingYin": "Ganniya",
+    "hyKeyWord": "GNY"
+  }, {
+    "cityNameCn": "\u9ad8\u677e",
+    "cityCode": "TAK",
+    "cityId": "1628",
+    "countryId": "13",
+    "cityNameEn": "TAKAMATSU ",
+    "pingYin": "Gaosong",
+    "hyKeyWord": "GS"
+  }, {
+    "cityNameCn": "\u9ad8\u77e5",
+    "cityCode": "KCZ",
+    "cityId": "1593",
+    "countryId": "13",
+    "cityNameEn": "Kochi",
+    "pingYin": "Gaozhi",
+    "hyKeyWord": "GZ"
+  }, {
+    "cityNameCn": "\u54e5\u8fbe\u5df4\u9c81",
+    "cityCode": "KBR",
+    "cityId": "837",
+    "countryId": "70",
+    "cityNameEn": "Kota Bharu",
+    "pingYin": "Gedabalu",
+    "hyKeyWord": "GDBL"
+  }, {
+    "cityNameCn": "\u683c\u4f46\u65af\u514b",
+    "cityCode": "GDN",
+    "cityId": "905",
+    "countryId": "25",
+    "cityNameEn": "Gdansk",
+    "pingYin": "Gedansike",
+    "hyKeyWord": "GDSK"
+  }, {
+    "cityNameCn": "\u54e5\u5fb7\u5821",
+    "cityCode": "GOT",
+    "cityId": "407",
+    "countryId": "18",
+    "cityNameEn": "Gothenburg",
+    "pingYin": "Gedebao",
+    "hyKeyWord": "GDB"
+  }, {
+    "cityNameCn": "\u6208\u5c14\u5fb7\u79d1\u65af\u7279",
+    "cityCode": "OOL",
+    "cityId": "524",
+    "countryId": "16",
+    "cityNameEn": "Gold Coast",
+    "pingYin": "Geerdekesite",
+    "hyKeyWord": "GEDKST"
+  }, {
+    "cityNameCn": "\u683c\u5c14\u592b\u6ce2\u7279",
+    "cityCode": "GPT",
+    "cityId": "1001",
+    "countryId": "2",
+    "cityNameEn": "Gulfport\/Biloxi",
+    "pingYin": "Geerfubote",
+    "hyKeyWord": "GEFBT"
+  }, {
+    "cityNameCn": "\u683c\u62c9\u8328",
+    "cityCode": "GRZ",
+    "cityId": "755",
+    "countryId": "107",
+    "cityNameEn": "Graz",
+    "pingYin": "Gelaci",
+    "hyKeyWord": "GLC"
+  }, {
+    "cityNameCn": "\u683c\u62c9\u5fb7\u65af\u901a",
+    "cityCode": "GLT",
+    "cityId": "1513",
+    "countryId": "16",
+    "cityNameEn": "Gladstone",
+    "pingYin": "Geladesitong",
+    "hyKeyWord": "GLDST"
+  }, {
+    "cityNameCn": "\u683c\u96f7\u7279\u7206\u5e03",
+    "cityCode": "GTF",
+    "cityId": "852",
+    "countryId": "2",
+    "cityNameEn": "Great Falls",
+    "pingYin": "Geleitebaobu",
+    "hyKeyWord": "GLTBB"
+  }, {
+    "cityNameCn": "\u683c\u6797\u8d1d",
+    "cityCode": "GRB",
+    "cityId": "999",
+    "countryId": "2",
+    "cityNameEn": "Green Bay ",
+    "pingYin": "Gelinbei",
+    "hyKeyWord": "GLB"
+  }, {
+    "cityNameCn": "\u683c\u6797\u7eb3\u8fbe",
+    "cityCode": "GND",
+    "cityId": "1204",
+    "countryId": "148",
+    "cityNameEn": "Grenada",
+    "pingYin": "Gelinnada",
+    "hyKeyWord": "GLND"
+  }, {
+    "cityNameCn": "\u683c\u6797\u65af\u4f2f\u52d2",
+    "cityCode": "GSO",
+    "cityId": "1111",
+    "countryId": "2",
+    "cityNameEn": "Greensboro",
+    "pingYin": "Gelinsibole",
+    "hyKeyWord": "GLSBL"
+  }, {
+    "cityNameCn": "\u683c\u6797\u7ef4\u5c14",
+    "cityCode": "GSP",
+    "cityId": "1000",
+    "countryId": "2",
+    "cityNameEn": "Greenville",
+    "pingYin": "Gelinweier",
+    "hyKeyWord": "GLWE"
+  }, {
+    "cityNameCn": "\u54e5\u4f26\u6bd4\u4e9a",
+    "cityCode": "CAE",
+    "cityId": "1166",
+    "countryId": "2",
+    "cityNameEn": "Columbia",
+    "pingYin": "Gelunbiya",
+    "hyKeyWord": "GLBY"
+  }, {
+    "cityNameCn": "\u54e5\u4f26\u5e03(\u4fc4\u4ea5\u4fc4\u5dde)",
+    "cityCode": "CMH",
+    "cityId": "680",
+    "countryId": "2",
+    "cityNameEn": "Columbus",
+    "pingYin": "Gelunbu(ehaiezhou)",
+    "hyKeyWord": "GLB(EHEZ)"
+  }, {
+    "cityNameCn": "\u683c\u96c5",
+    "cityCode": "GAY",
+    "cityId": "1076",
+    "countryId": "36",
+    "cityNameEn": "Gaya",
+    "pingYin": "Geya",
+    "hyKeyWord": "GY"
+  }, {
+    "cityNameCn": "\u54e5\u5370\u62dc\u9640",
+    "cityCode": "CJB",
+    "cityId": "1325",
+    "countryId": "36",
+    "cityNameEn": "Coimbatore",
+    "pingYin": "Geyinbaituo",
+    "hyKeyWord": "GYBT"
+  }, {
+    "cityNameCn": "\u5bab\u5d0e",
+    "cityCode": "KMI",
+    "cityId": "1711",
+    "countryId": "13",
+    "cityNameEn": "Miyazaki",
+    "pingYin": "Gongqi",
+    "hyKeyWord": "GQ"
+  }, {
+    "cityNameCn": "\u74dc\u8fbe\u62c9\u54c8\u62c9",
+    "cityCode": "GDL",
+    "cityId": "1221",
+    "countryId": "76",
+    "cityNameEn": "Guadalajara",
+    "pingYin": "Guadalahala",
+    "hyKeyWord": "GDLHL"
+  }, {
+    "cityNameCn": "\u74dc\u62c9\u4e01\u52a0\u5974",
+    "cityCode": "TGG",
+    "cityId": "674",
+    "countryId": "70",
+    "cityNameEn": "Kuala Terengganu",
+    "pingYin": "Gualadingjianu",
+    "hyKeyWord": "GLDJN"
+  }, {
+    "cityNameCn": "\u5173\u4e39",
+    "cityCode": "KUA",
+    "cityId": "1427",
+    "countryId": "70",
+    "cityNameEn": "KUANTAN",
+    "pingYin": "Guandan",
+    "hyKeyWord": "GD"
+  }, {
+    "cityNameCn": "\u5e7f\u5c9b",
+    "cityCode": "HIJ",
+    "cityId": "419",
+    "countryId": "13",
+    "cityNameEn": "Hiroshima",
+    "pingYin": "Guangdao",
+    "hyKeyWord": "GD"
+  }, {
+    "cityNameCn": "\u5149\u5dde",
+    "cityCode": "KWJ",
+    "cityId": "770",
+    "countryId": "86",
+    "cityNameEn": "Gwangju",
+    "pingYin": "Guangzhou",
+    "hyKeyWord": "GZ"
+  }, {
+    "cityNameCn": "\u74dc\u4e9a\u57fa\u5c14",
+    "cityCode": "GYE",
+    "cityId": "1463",
+    "countryId": "174",
+    "cityNameEn": "Guayaquil",
+    "pingYin": "Guayajier",
+    "hyKeyWord": "GYJE"
+  }, {
+    "cityNameCn": "\u5f52\u4ec1",
+    "cityCode": "UIH",
+    "cityId": "1640",
+    "countryId": "105",
+    "cityNameEn": "QUI NHON ",
+    "pingYin": "Guiren",
+    "hyKeyWord": "GR"
+  }, {
+    "cityNameCn": "\u53e4\u664b",
+    "cityCode": "KCH",
+    "cityId": "838",
+    "countryId": "70",
+    "cityNameEn": "Kuching",
+    "pingYin": "Gujin",
+    "hyKeyWord": "GJ"
+  }, {
+    "cityNameCn": "\u679c\u963f",
+    "cityCode": "GOI",
+    "cityId": "1200",
+    "countryId": "36",
+    "cityNameEn": "Goa",
+    "pingYin": "Guoa",
+    "hyKeyWord": "GA"
+  }, {
+    "cityNameCn": "\u56fd\u9645\u7011\u5e03",
+    "cityCode": "INL",
+    "cityId": "1008",
+    "countryId": "2",
+    "cityNameEn": "International Falls",
+    "pingYin": "Guojipubu",
+    "hyKeyWord": "GJPB"
+  }, {
+    "cityNameCn": "\u53e4\u74e6\u54c8\u8482",
+    "cityCode": "GAU",
+    "cityId": "1201",
+    "countryId": "36",
+    "cityNameEn": "Guwahati",
+    "pingYin": "Guwahadi",
+    "hyKeyWord": "GWHD"
+  }, {
+    "cityNameCn": "\u9ad8\u96c4",
+    "cityCode": "KHH",
+    "cityId": "455",
+    "countryId": "137",
+    "cityNameEn": "Kaohsiung",
+    "pingYin": "gaoxiong",
+    "hyKeyWord": "gx"
+  }, {
+    "cityNameCn": "\u54e5\u672c\u54c8\u6839",
+    "cityCode": "CPH",
+    "cityId": "373",
+    "countryId": "27",
+    "cityNameEn": "Copenhagen ",
+    "pingYin": "gebenhagen",
+    "hyKeyWord": "gbhg"
+  }, {
+    "cityNameCn": "\u54e5\u6253\u57fa\u7eb3\u5df4\u5362",
+    "cityCode": "BKI",
+    "cityId": "653",
+    "countryId": "70",
+    "cityNameEn": "Kota Kinabalu",
+    "pingYin": "gedajinabalu",
+    "hyKeyWord": "gdjnbl"
+  }, {
+    "cityNameCn": "\u683c\u62c9\u65af\u54e5",
+    "cityCode": "GLA",
+    "cityId": "757",
+    "countryId": "21",
+    "cityNameEn": "Glasgow",
+    "pingYin": "gelasige",
+    "hyKeyWord": "glsg"
+  }, {
+    "cityNameCn": "\u5173\u5c9b",
+    "cityCode": "GUM",
+    "cityId": "1196",
+    "countryId": "2",
+    "cityNameEn": "Guam",
+    "pingYin": "guandao",
+    "hyKeyWord": "gd"
+  }],
+  "H": [{
+    "cityNameCn": "\u54c8\u535a\u7f57\u5185",
+    "cityCode": "GBE",
+    "cityId": "1680",
+    "countryId": "189",
+    "cityNameEn": "Gaborone",
+    "pingYin": "Haboluonei",
+    "hyKeyWord": "HBLN"
+  }, {
+    "cityNameCn": "\u54c8\u5c14\u79d1\u592b",
+    "cityCode": "HRK",
+    "cityId": "1519",
+    "countryId": "26",
+    "cityNameEn": "Kharkov",
+    "pingYin": "Haerkefu",
+    "hyKeyWord": "HEKF"
+  }, {
+    "cityNameCn": "\u6d77\u5f97\u62c9\u5df4",
+    "cityCode": "HYD",
+    "cityId": "1075",
+    "countryId": "36",
+    "cityNameEn": "Hyderabad",
+    "pingYin": "Haidelaba",
+    "hyKeyWord": "HDLB"
+  }, {
+    "cityNameCn": "\u6d77\u767b",
+    "cityCode": "HDN",
+    "cityId": "1112",
+    "countryId": "2",
+    "cityNameEn": "Hayden",
+    "pingYin": "Haideng",
+    "hyKeyWord": "HD"
+  }, {
+    "cityNameCn": "\u6d77\u6069\u5c3c\u65af",
+    "cityCode": "HYA",
+    "cityId": "1007",
+    "countryId": "2",
+    "cityNameEn": "Hyannis",
+    "pingYin": "Haiennisi",
+    "hyKeyWord": "HENS"
+  }, {
+    "cityNameCn": "\u6d77\u9632",
+    "cityCode": "HPH",
+    "cityId": "1307",
+    "countryId": "105",
+    "cityNameEn": "Haiphong",
+    "pingYin": "Haifang",
+    "hyKeyWord": "HF"
+  }, {
+    "cityNameCn": "\u6d77\u4e8e\u683c\u751f\u5fb7",
+    "cityCode": "HAU",
+    "cityId": "1086",
+    "countryId": "80",
+    "cityNameEn": "Haugesund",
+    "pingYin": "Haiyugeshengde",
+    "hyKeyWord": "HYGSD"
+  }, {
+    "cityNameCn": "\u54c8\u79d1\u7279\u6e2f",
+    "cityCode": "PHC",
+    "cityId": "1462",
+    "countryId": "65",
+    "cityNameEn": "Port Harcourt",
+    "pingYin": "Haketegang",
+    "hyKeyWord": "HKTG"
+  }, {
+    "cityNameCn": "\u54c8\u62c9\u96f7",
+    "cityCode": "HRE",
+    "cityId": "871",
+    "countryId": "63",
+    "cityNameEn": "Harare",
+    "pingYin": "Halalei",
+    "hyKeyWord": "HLL"
+  }, {
+    "cityNameCn": "\u54c8\u5229\u6cd5\u514b\u65af",
+    "cityCode": "YHZ",
+    "cityId": "1141",
+    "countryId": "91",
+    "cityNameEn": "Halifax",
+    "pingYin": "Halifakesi",
+    "hyKeyWord": "HLFKS"
+  }, {
+    "cityNameCn": "\u54c8\u7075\u6839",
+    "cityCode": "HRL",
+    "cityId": "1168",
+    "countryId": "2",
+    "cityNameEn": "Harlingen",
+    "pingYin": "Halinggen",
+    "hyKeyWord": "HLG"
+  }, {
+    "cityNameCn": "\u54c8\u5229\u65af\u5821",
+    "cityCode": "MDT",
+    "cityId": "725",
+    "countryId": "2",
+    "cityNameEn": "Harrisburg",
+    "pingYin": "Halisibao",
+    "hyKeyWord": "HLSB"
+  }, {
+    "cityNameCn": "\u6c49\u73ed\u6258\u5854",
+    "cityCode": "HRI",
+    "cityId": "1709",
+    "countryId": "47",
+    "cityNameEn": "Hambantota",
+    "pingYin": "Hanbantuota",
+    "hyKeyWord": "HBTT"
+  }, {
+    "cityNameCn": "\u51fd\u9986",
+    "cityCode": "HKD",
+    "cityId": "1210",
+    "countryId": "13",
+    "cityNameEn": "Hakodate",
+    "pingYin": "Hanguan",
+    "hyKeyWord": "HG"
+  }, {
+    "cityNameCn": "\u6c49\u8003\u514b",
+    "cityCode": "CMX",
+    "cityId": "1002",
+    "countryId": "2",
+    "cityNameEn": "HANCOCK",
+    "pingYin": "Hankaoke",
+    "hyKeyWord": "HKK"
+  }, {
+    "cityNameCn": "\u6c49\u8bfa\u5a01",
+    "cityCode": "HAJ",
+    "cityId": "735",
+    "countryId": "7",
+    "cityNameEn": "Hanover",
+    "pingYin": "Hannuowei",
+    "hyKeyWord": "HNW"
+  }, {
+    "cityNameCn": "\u54c8\u5854\u4f0a",
+    "cityCode": "HTY",
+    "cityId": "1691",
+    "countryId": "38",
+    "cityNameEn": "Hatay",
+    "pingYin": "Hatayi",
+    "hyKeyWord": "HTY"
+  }, {
+    "cityNameCn": "\u54c8\u7279\u798f\u5fb7",
+    "cityCode": "HFD",
+    "cityId": "1358",
+    "countryId": "2",
+    "cityNameEn": "Hartford",
+    "pingYin": "Hatefude",
+    "hyKeyWord": "HTFD"
+  }, {
+    "cityNameCn": "\u54c8\u74e6\u90a3",
+    "cityCode": "HAV",
+    "cityId": "691",
+    "countryId": "61",
+    "cityNameEn": "Havana",
+    "pingYin": "Hawanei",
+    "hyKeyWord": "HWN"
+  }, {
+    "cityNameCn": "\u5408\u827e",
+    "cityCode": "HDY",
+    "cityId": "734",
+    "countryId": "8",
+    "cityNameEn": "Hat Yai",
+    "pingYin": "Heai",
+    "hyKeyWord": "HA"
+  }, {
+    "cityNameCn": "\u9ed1\u89d2",
+    "cityCode": "PNR",
+    "cityId": "1627",
+    "countryId": "102",
+    "cityNameEn": "Pointe-Noire",
+    "pingYin": "Heijiao",
+    "hyKeyWord": "HJ"
+  }, {
+    "cityNameCn": "\u8d6b\u96f7\u65af-\u5fb7\u62c9\u5f17\u9f99\u7279\u62c9",
+    "cityCode": "XRY",
+    "cityId": "920",
+    "countryId": "109",
+    "cityNameEn": "Jerez De La Frontera",
+    "pingYin": "Heleisi-delafulongtela",
+    "hyKeyWord": "HLS-DLFLTL"
+  }, {
+    "cityNameCn": "\u8d6b\u52d2\u7eb3",
+    "cityCode": "HLN",
+    "cityId": "853",
+    "countryId": "2",
+    "cityNameEn": "Helena ",
+    "pingYin": "Helena",
+    "hyKeyWord": "HLN"
+  }, {
+    "cityNameCn": "\u4ea8\u4f2f\u8d5b\u5fb7",
+    "cityCode": "HUY",
+    "cityId": "753",
+    "countryId": "21",
+    "cityNameEn": "Humberside",
+    "pingYin": "Hengbosaide",
+    "hyKeyWord": "HBSD"
+  }, {
+    "cityNameCn": "\u4ea8\u8328\u7ef4\u5c14",
+    "cityCode": "HSV",
+    "cityId": "1006",
+    "countryId": "2",
+    "cityNameEn": "Huntsville\/ Decatur",
+    "pingYin": "Hengciweier",
+    "hyKeyWord": "HCWE"
+  }, {
+    "cityNameCn": "\u4ea8\u5ef7\u987f",
+    "cityCode": "HTS",
+    "cityId": "1005",
+    "countryId": "2",
+    "cityNameEn": "Huntington",
+    "pingYin": "Hengtingdun",
+    "hyKeyWord": "HTD"
+  }, {
+    "cityNameCn": "\u6000\u7279\u666e\u83b1\u6069\u65af",
+    "cityCode": "HPN",
+    "cityId": "1038",
+    "countryId": "2",
+    "cityNameEn": "White Plains",
+    "pingYin": "Huaitepulaiensi",
+    "hyKeyWord": "HTPLES"
+  }, {
+    "cityNameCn": "\u7687\u540e\u9547",
+    "cityCode": "ZQN",
+    "cityId": "1216",
+    "countryId": "33",
+    "cityNameEn": "Queenstown",
+    "pingYin": "Huanghouzhen",
+    "hyKeyWord": "HHZ"
+  }, {
+    "cityNameCn": "\u6ed1\u94c1\u5362",
+    "cityCode": "ALO",
+    "cityId": "1068",
+    "countryId": "2",
+    "cityNameEn": "Waterloo",
+    "pingYin": "Huatielu",
+    "hyKeyWord": "HTL"
+  }, {
+    "cityNameCn": "\u60e0\u7075\u987f",
+    "cityCode": "WLG",
+    "cityId": "730",
+    "countryId": "33",
+    "cityNameEn": "Wellington",
+    "pingYin": "Huilingdun",
+    "hyKeyWord": "HLD"
+  }, {
+    "cityNameCn": "\u970d\u5965\u83b1\u80e1\u963f",
+    "cityCode": "MKK",
+    "cityId": "1718",
+    "countryId": "2",
+    "cityNameEn": "Hoolehua",
+    "pingYin": "Huoaolaihua",
+    "hyKeyWord": "HALHA"
+  }, {
+    "cityNameCn": "\u970d\u5df4\u7279",
+    "cityCode": "HBA",
+    "cityId": "772",
+    "countryId": "16",
+    "cityNameEn": "Hobart",
+    "pingYin": "Huobate",
+    "hyKeyWord": "HBT"
+  }, {
+    "cityNameCn": "\u970d\u592b",
+    "cityCode": "HOQ",
+    "cityId": "889",
+    "countryId": "7",
+    "cityNameEn": "Hof",
+    "pingYin": "Huofu",
+    "hyKeyWord": "HF"
+  }, {
+    "cityNameCn": "\u80e1\u5360\u5fb7",
+    "cityCode": "LBD",
+    "cityId": "1478",
+    "countryId": "155",
+    "cityNameEn": "Khudzhand",
+    "pingYin": "Huzhande",
+    "hyKeyWord": "HZD"
+  }, {
+    "cityNameCn": "\u54c8\u5df4\u7f57\u592b\u65af\u514b",
+    "cityCode": "KHV",
+    "cityId": "458",
+    "countryId": "24",
+    "cityNameEn": "Khabarovsk",
+    "pingYin": "habaluofusike",
+    "hyKeyWord": "hblfsk"
+  }, {
+    "cityNameCn": "\u54c8\u5c14\u683c\u8428",
+    "cityCode": "HGA",
+    "cityId": "1342",
+    "countryId": "77",
+    "cityNameEn": "Hargeisa",
+    "pingYin": "haergesa",
+    "hyKeyWord": "HEGS"
+  }, {
+    "cityNameCn": "\u6c49\u5821",
+    "cityCode": "HAM",
+    "cityId": "411",
+    "countryId": "7",
+    "cityNameEn": "Hamburg",
+    "pingYin": "hanbao",
+    "hyKeyWord": "hb"
+  }, {
+    "cityNameCn": "\u8d6b\u5c14\u8f9b\u57fa",
+    "cityCode": "HEL",
+    "cityId": "415",
+    "countryId": "62",
+    "cityNameEn": "Helsinki",
+    "pingYin": "heerxinji",
+    "hyKeyWord": "hexj"
+  }, {
+    "cityNameCn": "\u6cb3\u5185",
+    "cityCode": "HAN",
+    "cityId": "412",
+    "countryId": "105",
+    "cityNameEn": "Hanoi",
+    "pingYin": "henei",
+    "hyKeyWord": "hn"
+  }, {
+    "cityNameCn": "\u534e\u6c99",
+    "cityCode": "WAW",
+    "cityId": "591",
+    "countryId": "25",
+    "cityNameEn": "Warsaw",
+    "pingYin": "huasha",
+    "hyKeyWord": "hs"
+  }, {
+    "cityNameCn": "\u534e\u76db\u987f",
+    "cityCode": "WAS",
+    "cityId": "381",
+    "countryId": "2",
+    "cityNameEn": "Washington",
+    "pingYin": "huashengdun",
+    "hyKeyWord": "hsd"
+  }, {
+    "cityNameCn": "\u706b\u5974\u9c81\u9c81",
+    "cityCode": "HNL",
+    "cityId": "425",
+    "countryId": "2",
+    "cityNameEn": "Honolulu",
+    "pingYin": "huonululu",
+    "hyKeyWord": "hnll"
+  }, {
+    "cityNameCn": "\u80e1\u5fd7\u660e\u5e02",
+    "cityCode": "SGN",
+    "cityId": "547",
+    "countryId": "105",
+    "cityNameEn": "Ho Chi Minh",
+    "pingYin": "huzhiming",
+    "hyKeyWord": "hzm"
+  }],
+  "J": [{
+    "cityNameCn": "\u52a0\u7684\u592b",
+    "cityCode": "CWL",
+    "cityId": "783",
+    "countryId": "21",
+    "cityNameEn": "Cardiff",
+    "pingYin": "Jiadefu",
+    "hyKeyWord": "JDF"
+  }, {
+    "cityNameCn": "\u52a0\u5c14\u5404\u7b54",
+    "cityCode": "CCU",
+    "cityId": "714",
+    "countryId": "36",
+    "cityNameEn": "Calcutta",
+    "pingYin": "Jiaergeda",
+    "hyKeyWord": "JEGD"
+  }, {
+    "cityNameCn": "\u52a0\u6d4e\u5b89\u6cf0\u666e",
+    "cityCode": "GZT",
+    "cityId": "1477",
+    "countryId": "38",
+    "cityNameEn": "Gaziantep",
+    "pingYin": "Jiajiantaipu",
+    "hyKeyWord": "JJATP"
+  }, {
+    "cityNameCn": "\u52a0\u62c9\u52a0\u65af",
+    "cityCode": "CCS",
+    "cityId": "841",
+    "countryId": "128",
+    "cityNameEn": "Caracas",
+    "pingYin": "Jialajiasi",
+    "hyKeyWord": "JLJS"
+  }, {
+    "cityNameCn": "\u52a0\u5229\u798f\u5c3c\u4e9a\u5dde",
+    "cityCode": "XNA",
+    "cityId": "1148",
+    "countryId": "2",
+    "cityNameEn": "California",
+    "pingYin": "Jialifuniyazhou",
+    "hyKeyWord": "JLFNYZ"
+  }, {
+    "cityNameCn": "\u52a0\u91cc\u5b81\u683c\u52d2",
+    "cityCode": "KGD",
+    "cityId": "1574",
+    "countryId": "24",
+    "cityNameEn": "KALININGRAD",
+    "pingYin": "Jialininggele",
+    "hyKeyWord": "JLNGL"
+  }, {
+    "cityNameCn": "\u7532\u7c73",
+    "cityCode": "KBV",
+    "cityId": "1495",
+    "countryId": "8",
+    "cityNameEn": "Krabi",
+    "pingYin": "Jiami",
+    "hyKeyWord": "JM"
+  }, {
+    "cityNameCn": "\u6c5f\u539f\u9053",
+    "cityCode": "YNY",
+    "cityId": "1655",
+    "countryId": "86",
+    "cityNameEn": "YANGYANG",
+    "pingYin": "Jiangyuandao",
+    "hyKeyWord": "JYD"
+  }, {
+    "cityNameCn": "\u7126\u7279\u5e03\u5c14",
+    "cityCode": "JDH",
+    "cityId": "1606",
+    "countryId": "36",
+    "cityNameEn": "JODHPUR",
+    "pingYin": "Jiaotebuer",
+    "hyKeyWord": "JTBE"
+  }, {
+    "cityNameCn": "\u52a0\u897f\u59c6",
+    "cityCode": "ELQ",
+    "cityId": "1712",
+    "countryId": "53",
+    "cityNameEn": "GASSIM",
+    "pingYin": "Jiaximu",
+    "hyKeyWord": "JXM"
+  }, {
+    "cityNameCn": "\u5409\u5e03\u63d0",
+    "cityCode": "JIB",
+    "cityId": "1343",
+    "countryId": "167",
+    "cityNameEn": "Djibouti",
+    "pingYin": "Jibuti",
+    "hyKeyWord": "JBT"
+  }, {
+    "cityNameCn": "\u5409\u8fbe",
+    "cityCode": "JED",
+    "cityId": "717",
+    "countryId": "53",
+    "cityNameEn": "Jeddah",
+    "pingYin": "Jida",
+    "hyKeyWord": "JD"
+  }, {
+    "cityNameCn": "\u5409\u5927\u6e2f",
+    "cityCode": "CGP",
+    "cityId": "1074",
+    "countryId": "50",
+    "cityNameEn": "Chittagong",
+    "pingYin": "Jidagang",
+    "hyKeyWord": "JDG"
+  }, {
+    "cityNameCn": "\u57fa\u7763\u57ce",
+    "cityCode": "CHC",
+    "cityId": "687",
+    "countryId": "33",
+    "cityNameEn": "Christchurch",
+    "pingYin": "Jiducheng",
+    "hyKeyWord": "JDC"
+  }, {
+    "cityNameCn": "\u57fa\u591a",
+    "cityCode": "UIO",
+    "cityId": "1392",
+    "countryId": "174",
+    "cityNameEn": "Quito",
+    "pingYin": "Jiduo",
+    "hyKeyWord": "JD"
+  }, {
+    "cityNameCn": "\u6770\u514b\u900a",
+    "cityCode": "JAN",
+    "cityId": "1009",
+    "countryId": "2",
+    "cityNameEn": "Jackson Ms",
+    "pingYin": "Jiekexun",
+    "hyKeyWord": "JKX"
+  }, {
+    "cityNameCn": "\u6770\u514b\u900a\u7ef4\u5c14",
+    "cityCode": "JAX",
+    "cityId": "1012",
+    "countryId": "2",
+    "cityNameEn": "Jacksonville",
+    "pingYin": "Jiekexunweier",
+    "hyKeyWord": "JKXWE"
+  }, {
+    "cityNameCn": "\u57fa\u5c14",
+    "cityCode": "KEL",
+    "cityId": "890",
+    "countryId": "7",
+    "cityNameEn": "Kiel",
+    "pingYin": "Jier",
+    "hyKeyWord": "JE"
+  }, {
+    "cityNameCn": "\u57fa\u52a0\u5229",
+    "cityCode": "KGL",
+    "cityId": "1340",
+    "countryId": "166",
+    "cityNameEn": "Kigali",
+    "pingYin": "Jijiali",
+    "hyKeyWord": "JJL"
+  }, {
+    "cityNameCn": "\u57fa\u6797",
+    "cityCode": "ILE",
+    "cityId": "1170",
+    "countryId": "2",
+    "cityNameEn": "Killeen",
+    "pingYin": "Jilin",
+    "hyKeyWord": "JL"
+  }, {
+    "cityNameCn": "\u57fa\u5f8b\u7eb3",
+    "cityCode": "KRN",
+    "cityId": "1087",
+    "countryId": "18",
+    "cityNameEn": "Kiruna",
+    "pingYin": "Jilu:na",
+    "hyKeyWord": "JLN"
+  }, {
+    "cityNameCn": "\u9759\u5188",
+    "cityCode": "FSZ",
+    "cityId": "1409",
+    "countryId": "13",
+    "cityNameEn": "shizuoka",
+    "pingYin": "Jinggang",
+    "hyKeyWord": "JG"
+  }, {
+    "cityNameCn": "\u91d1\u95e8",
+    "cityCode": "KNH",
+    "cityId": "1585",
+    "countryId": "137",
+    "cityNameEn": "KINMEN",
+    "pingYin": "Jinmen",
+    "hyKeyWord": "JM"
+  }, {
+    "cityNameCn": "\u91d1\u74ef\u89d2 ",
+    "cityCode": "CAH",
+    "cityId": "1633",
+    "countryId": "105",
+    "cityNameEn": "CA MAU",
+    "pingYin": "Jinoujiao ",
+    "hyKeyWord": "JOJ "
+  }, {
+    "cityNameCn": "\u91d1\u6c99\u8428",
+    "cityCode": "FIH",
+    "cityId": "1378",
+    "countryId": "102",
+    "cityNameEn": "Kinshasa",
+    "pingYin": "Jinshasa",
+    "hyKeyWord": "JSS"
+  }, {
+    "cityNameCn": "\u91d1\u65af\u6566",
+    "cityCode": "KIN",
+    "cityId": "881",
+    "countryId": "67",
+    "cityNameEn": "Kingston",
+    "pingYin": "Jinsidun",
+    "hyKeyWord": "JSD"
+  }, {
+    "cityNameCn": "\u664b\u5dde",
+    "cityCode": "HIN",
+    "cityId": "1545",
+    "countryId": "86",
+    "cityNameEn": "Jinju",
+    "pingYin": "Jinzhou",
+    "hyKeyWord": "JZ"
+  }, {
+    "cityNameCn": "\u5409\u65af\u4f2f\u6069",
+    "cityCode": "GIS",
+    "cityId": "1449",
+    "countryId": "33",
+    "cityNameEn": "Gisborne",
+    "pingYin": "Jisiboen",
+    "hyKeyWord": "JSBE"
+  }, {
+    "cityNameCn": "\u57fa\u82cf\u6728",
+    "cityCode": "KIS",
+    "cityId": "1269",
+    "countryId": "75",
+    "cityNameEn": "Kisumu",
+    "pingYin": "Jisumu",
+    "hyKeyWord": "JSM"
+  }, {
+    "cityNameCn": "\u57fa\u97e6\u65af\u5fb7",
+    "cityCode": "EYW",
+    "cityId": "1105",
+    "countryId": "2",
+    "cityNameEn": "Key West",
+    "pingYin": "Jiweiside",
+    "hyKeyWord": "JWSD"
+  }, {
+    "cityNameCn": "\u57fa\u5e0c\u8bb7\u4e4c",
+    "cityCode": "KIV",
+    "cityId": "1517",
+    "countryId": "143",
+    "cityNameEn": "Chisinau",
+    "pingYin": "Jixinewu",
+    "hyKeyWord": "JXNW"
+  }, {
+    "cityNameCn": "\u5de8\u6e2f",
+    "cityCode": "PLM",
+    "cityId": "667",
+    "countryId": "54",
+    "cityNameEn": "Palembang",
+    "pingYin": "Jugang",
+    "hyKeyWord": "JG"
+  }, {
+    "cityNameCn": "\u52a0\u5fb7\u6ee1\u90fd",
+    "cityCode": "KTM",
+    "cityId": "466",
+    "countryId": "69",
+    "cityNameEn": "Kathmandu",
+    "pingYin": "jiademandu",
+    "hyKeyWord": "jdmd"
+  }, {
+    "cityNameCn": "\u57fa\u8f85",
+    "cityCode": "IEV",
+    "cityId": "794",
+    "countryId": "26",
+    "cityNameEn": "Kiev",
+    "pingYin": "jifu",
+    "hyKeyWord": "jf"
+  }, {
+    "cityNameCn": "\u5409\u9686\u5761",
+    "cityCode": "KUL",
+    "cityId": "467",
+    "countryId": "70",
+    "cityNameEn": "Kuala Lumpur",
+    "pingYin": "jilongpo",
+    "hyKeyWord": "jlp"
+  }, {
+    "cityNameCn": "\u91d1\u8fb9",
+    "cityCode": "PNH",
+    "cityId": "532",
+    "countryId": "81",
+    "cityNameEn": "Phnom Penh",
+    "pingYin": "jinbian",
+    "hyKeyWord": "jb"
+  }, {
+    "cityNameCn": "\u65e7\u91d1\u5c71",
+    "cityCode": "SFO",
+    "cityId": "546",
+    "countryId": "2",
+    "cityNameEn": "San Francisco",
+    "pingYin": "jiujinshan",
+    "hyKeyWord": "jjs"
+  }, {
+    "cityNameCn": "\u6d4e\u5dde",
+    "cityCode": "CJU",
+    "cityId": "656",
+    "countryId": "86",
+    "cityNameEn": "Jeju",
+    "pingYin": "jizhou",
+    "hyKeyWord": "jz"
+  }],
+  "K": [{
+    "cityNameCn": "\u5580\u5e03\u5c14",
+    "cityCode": "KBL",
+    "cityId": "452",
+    "countryId": "66",
+    "cityNameEn": "Kabul",
+    "pingYin": "Kabuer",
+    "hyKeyWord": "KBE"
+  }, {
+    "cityNameCn": "\u5361\u5c14\u52a0\u91cc",
+    "cityCode": "YYC",
+    "cityId": "618",
+    "countryId": "91",
+    "cityNameEn": "Calgary",
+    "pingYin": "Kaerjiali",
+    "hyKeyWord": "KEJL"
+  }, {
+    "cityNameCn": "\u5361\u5c14\u9a6c",
+    "cityCode": "KLR",
+    "cityId": "1088",
+    "countryId": "18",
+    "cityNameEn": "Kalima",
+    "pingYin": "Kaerma",
+    "hyKeyWord": "KEM"
+  }, {
+    "cityNameCn": "\u5361\u5c14\u7ef4",
+    "cityCode": "CLY",
+    "cityId": "1124",
+    "countryId": "17",
+    "cityNameEn": "Calvi",
+    "pingYin": "Kaerwei",
+    "hyKeyWord": "KEW"
+  }, {
+    "cityNameCn": "\u5361\u80e1\u5362\u4f0a",
+    "cityCode": "OGG",
+    "cityId": "1502",
+    "countryId": "2",
+    "cityNameEn": "Kahului",
+    "pingYin": "Kahuluyi",
+    "hyKeyWord": "KHLY"
+  }, {
+    "cityNameCn": "\u51ef\u6069\u65af",
+    "cityCode": "CNS",
+    "cityId": "657",
+    "countryId": "16",
+    "cityNameEn": "Cairns ",
+    "pingYin": "Kaiensi",
+    "hyKeyWord": "KES"
+  }, {
+    "cityNameCn": "\u51ef\u6d1b\u6c83\u7eb3",
+    "cityCode": "YLW",
+    "cityId": "822",
+    "countryId": "91",
+    "cityNameEn": "Kelowna",
+    "pingYin": "Kailuowona",
+    "hyKeyWord": "KLWN"
+  }, {
+    "cityNameCn": "\u5f00\u666e\u5409\u62c9\u591a",
+    "cityCode": "CGI",
+    "cityId": "1191",
+    "countryId": "2",
+    "cityNameEn": "Cape Girardeau",
+    "pingYin": "Kaipujiladuo",
+    "hyKeyWord": "KPJLD"
+  }, {
+    "cityNameCn": "\u5361\u52a0\u5ef7 \u633d\u5fb7\u5965\u7f57",
+    "cityCode": "CGY",
+    "cityId": "1537",
+    "countryId": "79",
+    "cityNameEn": "Cagayan De Oro",
+    "pingYin": "Kajiating wandeaoluo",
+    "hyKeyWord": "KJT WDAL"
+  }, {
+    "cityNameCn": "\u5361\u62c9\u5e72\u8fbe",
+    "cityCode": "KGF",
+    "cityId": "1305",
+    "countryId": "34",
+    "cityNameEn": "Karaganda",
+    "pingYin": "Kalaganda",
+    "hyKeyWord": "KLGD"
+  }, {
+    "cityNameCn": "\u5361\u62c9\u9a6c\u7956",
+    "cityCode": "AZO",
+    "cityId": "1011",
+    "countryId": "2",
+    "cityNameEn": "Kalamazoo",
+    "pingYin": "Kalamazu",
+    "hyKeyWord": "KLMZ"
+  }, {
+    "cityNameCn": "\u5361\u5229\u535a",
+    "cityCode": "KLO",
+    "cityId": "1488",
+    "countryId": "79",
+    "cityNameEn": "Kalibo",
+    "pingYin": "Kalibo",
+    "hyKeyWord": "KLB"
+  }, {
+    "cityNameCn": "\u5361\u5229\u5361\u7279",
+    "cityCode": "CCJ",
+    "cityId": "1245",
+    "countryId": "36",
+    "cityNameEn": "Calicut",
+    "pingYin": "Kalikate",
+    "hyKeyWord": "KLKT"
+  }, {
+    "cityNameCn": "\u5361\u5229\u65af\u4f69\u5c14",
+    "cityCode": "FCA",
+    "cityId": "854",
+    "countryId": "2",
+    "cityNameEn": "Kalispell",
+    "pingYin": "Kalisipeier",
+    "hyKeyWord": "KLSPE"
+  }, {
+    "cityNameCn": "\u5361\u5229\u4e9a\u91cc",
+    "cityCode": "CAG",
+    "cityId": "895",
+    "countryId": "14",
+    "cityNameEn": "Cagliari",
+    "pingYin": "Kaliyali",
+    "hyKeyWord": "KLYL"
+  }, {
+    "cityNameCn": "\u5361\u9c81\u666e",
+    "cityCode": "KRP",
+    "cityId": "1101",
+    "countryId": "27",
+    "cityNameEn": "Karup",
+    "pingYin": "Kalupu",
+    "hyKeyWord": "KLP"
+  }, {
+    "cityNameCn": "\u5361\u95e8\u57ce",
+    "cityCode": "CME",
+    "cityId": "1692",
+    "countryId": "76",
+    "cityNameEn": "CIUDAD DEL CAMEN",
+    "pingYin": "Kamencheng",
+    "hyKeyWord": "KMC"
+  }, {
+    "cityNameCn": "\u574e\u6606",
+    "cityCode": "CUM",
+    "cityId": "1226",
+    "countryId": "76",
+    "cityNameEn": "Canccn",
+    "pingYin": "Kankun",
+    "hyKeyWord": "KK"
+  }, {
+    "cityNameCn": "\u574e\u4f69\u5c14",
+    "cityCode": "UIP",
+    "cityId": "1217",
+    "countryId": "17",
+    "cityNameEn": "Quimper",
+    "pingYin": "Kanpeier",
+    "hyKeyWord": "KPE"
+  }, {
+    "cityNameCn": "\u582a\u57f9\u62c9",
+    "cityCode": "CBR",
+    "cityId": "359",
+    "countryId": "16",
+    "cityNameEn": "Canberra",
+    "pingYin": "Kanpeila",
+    "hyKeyWord": "KPL"
+  }, {
+    "cityNameCn": "\u582a\u8428\u65af\u57ce",
+    "cityCode": "MKC",
+    "cityId": "1153",
+    "countryId": "2",
+    "cityNameEn": "Kansas City",
+    "pingYin": "Kansasicheng",
+    "hyKeyWord": "KSSC"
+  }, {
+    "cityNameCn": "\u5361\u8bfa",
+    "cityCode": "KAN",
+    "cityId": "1617",
+    "countryId": "65",
+    "cityNameEn": "KANO",
+    "pingYin": "Kanuo",
+    "hyKeyWord": "KN"
+  }, {
+    "cityNameCn": "\u8003\u7231\u5c9b",
+    "cityCode": "LIH",
+    "cityId": "1601",
+    "countryId": "2",
+    "cityNameEn": "KAUAI ISLAND",
+    "pingYin": "Kaoaidao",
+    "hyKeyWord": "KAD"
+  }, {
+    "cityNameCn": "\u5361\u8428\u5e03\u5170\u5361",
+    "cityCode": "CAS",
+    "cityId": "868",
+    "countryId": "129",
+    "cityNameEn": "Casablanca",
+    "pingYin": "Kasabulanka",
+    "hyKeyWord": "KSBLK"
+  }, {
+    "cityNameCn": "\u5580\u5c71",
+    "cityCode": "KZN",
+    "cityId": "1492",
+    "countryId": "24",
+    "cityNameEn": "Kazan",
+    "pingYin": "Kashan",
+    "hyKeyWord": "KS"
+  }, {
+    "cityNameCn": "\u5361\u65af\u73c0",
+    "cityCode": "CPR",
+    "cityId": "1176",
+    "countryId": "2",
+    "cityNameEn": "Casper",
+    "pingYin": "Kasipo",
+    "hyKeyWord": "KSP"
+  }, {
+    "cityNameCn": "\u5361\u5854\u8d6b\u7eb3",
+    "cityCode": "CTG",
+    "cityId": "1506",
+    "countryId": "112",
+    "cityNameEn": "Cartagena",
+    "pingYin": "Katahena",
+    "hyKeyWord": "KTHN"
+  }, {
+    "cityNameCn": "\u5361\u5854\u5c3c\u4e9a",
+    "cityCode": "CTA",
+    "cityId": "830",
+    "countryId": "14",
+    "cityNameEn": "Catania",
+    "pingYin": "Kataniya",
+    "hyKeyWord": "KTNY"
+  }, {
+    "cityNameCn": "\u5361\u63d0\u514b\u5170",
+    "cityCode": "MPH",
+    "cityId": "1316",
+    "countryId": "79",
+    "cityNameEn": "Caticlan",
+    "pingYin": "Katikelan",
+    "hyKeyWord": "KTKL"
+  }, {
+    "cityNameCn": "\u5580\u571f\u7a46",
+    "cityCode": "KRT",
+    "cityId": "464",
+    "countryId": "68",
+    "cityNameEn": "Khartoum",
+    "pingYin": "Katumu",
+    "hyKeyWord": "KTM"
+  }, {
+    "cityNameCn": "\u5361\u6258\u7ef4\u5179",
+    "cityCode": "KTW",
+    "cityId": "906",
+    "countryId": "25",
+    "cityNameEn": "Katowice",
+    "pingYin": "Katuoweizi",
+    "hyKeyWord": "KTWZ"
+  }, {
+    "cityNameCn": "\u5361\u4e9a\u5c3c",
+    "cityCode": "KAJ",
+    "cityId": "1443",
+    "countryId": "62",
+    "cityNameEn": "Kajaani",
+    "pingYin": "Kayani",
+    "hyKeyWord": "KYN"
+  }, {
+    "cityNameCn": "\u514b\u4e45\u62c9\u970d",
+    "cityCode": "HJR",
+    "cityId": "1486",
+    "countryId": "36",
+    "cityNameEn": "Khajuraho",
+    "pingYin": "Kejiulahuo",
+    "hyKeyWord": "KJLH"
+  }, {
+    "cityNameCn": "\u79d1\u514b",
+    "cityCode": "ORK",
+    "cityId": "793",
+    "countryId": "57",
+    "cityNameEn": "Cork",
+    "pingYin": "Keke",
+    "hyKeyWord": "KK"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u6839\u798f",
+    "cityCode": "KLU",
+    "cityId": "818",
+    "countryId": "107",
+    "cityNameEn": "Klagenfurt",
+    "pingYin": "Kelagenfu",
+    "hyKeyWord": "KLGF"
+  }, {
+    "cityNameCn": "\u514b\u83b1\u8499\u8d39\u6717",
+    "cityCode": "CFE",
+    "cityId": "1125",
+    "countryId": "17",
+    "cityNameEn": "Clermont Ferrand",
+    "pingYin": "Kelaimengfeilang",
+    "hyKeyWord": "KLMFL"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u79d1\u592b",
+    "cityCode": "KRK",
+    "cityId": "820",
+    "countryId": "25",
+    "cityNameEn": "Krakow",
+    "pingYin": "Kelakefu",
+    "hyKeyWord": "KLKF"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u514b\u65af\u5821",
+    "cityCode": "CKB",
+    "cityId": "1142",
+    "countryId": "2",
+    "cityNameEn": "Clarksburg",
+    "pingYin": "Kelakesibao",
+    "hyKeyWord": "KLKSB"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u9a6c\u65af\u798f\u5c14\u65af",
+    "cityCode": "LMT",
+    "cityId": "855",
+    "countryId": "2",
+    "cityNameEn": "Klamath Falls OR",
+    "pingYin": "Kelamasifuersi",
+    "hyKeyWord": "KLMSFES"
+  }, {
+    "cityNameCn": "\u514b\u5170\u5e03\u9c81\u514b",
+    "cityCode": "YXC",
+    "cityId": "1622",
+    "countryId": "91",
+    "cityNameEn": "Cranbrook",
+    "pingYin": "Kelanbuluke",
+    "hyKeyWord": "KLBLK"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u65af\u8bfa\u8fbe\u5c14",
+    "cityCode": "KRR",
+    "cityId": "1535",
+    "countryId": "24",
+    "cityNameEn": "Krasnodar",
+    "pingYin": "Kelasinuodaer",
+    "hyKeyWord": "KLSNDE"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u65af\u8bfa\u96c5\u5c14\u65af\u514b",
+    "cityCode": "KJA",
+    "cityId": "1367",
+    "countryId": "24",
+    "cityNameEn": "Krasnojarsk",
+    "pingYin": "Kelasinuoyaersike",
+    "hyKeyWord": "KLSNYESK"
+  }, {
+    "cityNameCn": "\u514b\u96f7\u5854\u7f57",
+    "cityCode": "QRO",
+    "cityId": "1648",
+    "countryId": "76",
+    "cityNameEn": "QUERETARO",
+    "pingYin": "Keleitaluo",
+    "hyKeyWord": "KLTL"
+  }, {
+    "cityNameCn": "\u514b\u91cc\u592b\u5170",
+    "cityCode": "CLE",
+    "cityId": "729",
+    "countryId": "2",
+    "cityNameEn": "Cleveland",
+    "pingYin": "Kelifulan",
+    "hyKeyWord": "KLFL"
+  }, {
+    "cityNameCn": "\u79d1\u5229\u5947\u7ad9",
+    "cityCode": "CLL",
+    "cityId": "1175",
+    "countryId": "2",
+    "cityNameEn": "College Station",
+    "pingYin": "Keliqizhan",
+    "hyKeyWord": "KLQZ"
+  }, {
+    "cityNameCn": "\u514b\u91cc\u65af\u8482\u5b89\u6851",
+    "cityCode": "KRS",
+    "cityId": "786",
+    "countryId": "80",
+    "cityNameEn": "Kristiansand",
+    "pingYin": "Kelisidiansang",
+    "hyKeyWord": "KLSDAS"
+  }, {
+    "cityNameCn": "\u79d1\u9686",
+    "cityCode": "CGN",
+    "cityId": "728",
+    "countryId": "7",
+    "cityNameEn": "Cologne",
+    "pingYin": "Kelong",
+    "hyKeyWord": "KL"
+  }, {
+    "cityNameCn": "\u79d1\u9686\u5c9b",
+    "cityCode": "USU",
+    "cityId": "1663",
+    "countryId": "79",
+    "cityNameEn": "Coron  ",
+    "pingYin": "Kelongdao",
+    "hyKeyWord": "KLD"
+  }, {
+    "cityNameCn": "\u79d1\u7f57\u5c14",
+    "cityCode": "ROR",
+    "cityId": "1494",
+    "countryId": "191",
+    "cityNameEn": "Koror",
+    "pingYin": "Keluoer",
+    "hyKeyWord": "KLE"
+  }, {
+    "cityNameCn": "\u79d1\u7f57\u62c9\u591a\u65af\u666e\u6797",
+    "cityCode": "COS",
+    "cityId": "1107",
+    "countryId": "2",
+    "cityNameEn": "Colorado Spring",
+    "pingYin": "Keluoladuosipulin",
+    "hyKeyWord": "KLLDSPL"
+  }, {
+    "cityNameCn": "\u79d1\u7f57\u62c9\u591a\u5dde",
+    "cityCode": "EGE",
+    "cityId": "1108",
+    "countryId": "2",
+    "cityNameEn": "Colorado",
+    "pingYin": "Keluoladuozhou",
+    "hyKeyWord": "KLLDZ"
+  }, {
+    "cityNameCn": "\u514b\u5362\u65e5",
+    "cityCode": "CLJ",
+    "cityId": "1134",
+    "countryId": "119",
+    "cityNameEn": "Cluj",
+    "pingYin": "Keluri",
+    "hyKeyWord": "KLR"
+  }, {
+    "cityNameCn": "\u79d1\u7eb3",
+    "cityCode": "KOA",
+    "cityId": "1194",
+    "countryId": "2",
+    "cityNameEn": "Kona",
+    "pingYin": "Kena",
+    "hyKeyWord": "KN"
+  }, {
+    "cityNameCn": "\u79d1\u7eb3\u514b\u91cc",
+    "cityCode": "CKY",
+    "cityId": "1379",
+    "countryId": "46",
+    "cityNameEn": "Conakry",
+    "pingYin": "Kenakeli",
+    "hyKeyWord": "KNKL"
+  }, {
+    "cityNameCn": "\u80af\u8fbe\u91cc",
+    "cityCode": "KDI",
+    "cityId": "1651",
+    "countryId": "54",
+    "cityNameEn": "kendari",
+    "pingYin": "Kendali",
+    "hyKeyWord": "KDL"
+  }, {
+    "cityNameCn": "\u79d1\u73c0\u65af\u79d1\u91cc\u65af\u8482",
+    "cityCode": "CRP",
+    "cityId": "1177",
+    "countryId": "2",
+    "cityNameEn": "Corpus Christi",
+    "pingYin": "Keposikelisidi",
+    "hyKeyWord": "KPSKLSD"
+  }, {
+    "cityNameCn": "\u79d1\u94a6",
+    "cityCode": "COK",
+    "cityId": "1198",
+    "countryId": "36",
+    "cityNameEn": "Cochin",
+    "pingYin": "Keqin",
+    "hyKeyWord": "KQ"
+  }, {
+    "cityNameCn": "\u79d1\u82cf\u6885\u5c14",
+    "cityCode": "CZM",
+    "cityId": "1227",
+    "countryId": "76",
+    "cityNameEn": "Cozumel",
+    "pingYin": "Kesumeier",
+    "hyKeyWord": "KSME"
+  }, {
+    "cityNameCn": "\u79d1\u6258\u52aa",
+    "cityCode": "COO",
+    "cityId": "1328",
+    "countryId": "160",
+    "cityNameEn": "Cotonou",
+    "pingYin": "Ketuonu",
+    "hyKeyWord": "KTN"
+  }, {
+    "cityNameCn": "\u79d1\u5a01\u7279",
+    "cityCode": "KWI",
+    "cityId": "469",
+    "countryId": "71",
+    "cityNameEn": "Kuwait",
+    "pingYin": "Keweite",
+    "hyKeyWord": "KWT"
+  }, {
+    "cityNameCn": "\u79d1\u5e0c\u83b1",
+    "cityCode": "KSC",
+    "cityId": "1461",
+    "countryId": "99",
+    "cityNameEn": "Kosice",
+    "pingYin": "Kexilai",
+    "hyKeyWord": "KXL"
+  }, {
+    "cityNameCn": "\u514b\u5b5c\u52d2\u5965\u5c14\u8fbe",
+    "cityCode": "KZO",
+    "cityId": "1327",
+    "countryId": "34",
+    "cityNameEn": "Kzyl-Orda",
+    "pingYin": "Kezileaoerda",
+    "hyKeyWord": "KZLAED"
+  }, {
+    "cityNameCn": "\u5b54\u656c",
+    "cityCode": "KKC",
+    "cityId": "1610",
+    "countryId": "8",
+    "cityNameEn": "KHON KAEN",
+    "pingYin": "Kongjing",
+    "hyKeyWord": "KJ"
+  }, {
+    "cityNameCn": "\u5e93\u5965\u76ae\u6b27",
+    "cityCode": "KUO",
+    "cityId": "1459",
+    "countryId": "62",
+    "cityNameEn": "Kuopio",
+    "pingYin": "Kuaopiou",
+    "hyKeyWord": "KAPO"
+  }, {
+    "cityNameCn": "\u9b41\u5317\u514b",
+    "cityCode": "YQB",
+    "cityId": "1143",
+    "countryId": "91",
+    "cityNameEn": "Quebec",
+    "pingYin": "Kuibeike",
+    "hyKeyWord": "KBK"
+  }, {
+    "cityNameCn": "\u5e93\u62c9\u7d22\u5c9b",
+    "cityCode": "CUR",
+    "cityId": "1522",
+    "countryId": "185",
+    "cityNameEn": "Curacao",
+    "pingYin": "Kulasuodao",
+    "hyKeyWord": "KLSD"
+  }, {
+    "cityNameCn": "\u5e93\u91cc\u8482\u5df4",
+    "cityCode": "CWB",
+    "cityId": "1460",
+    "countryId": "3",
+    "cityNameEn": "Curitiba",
+    "pingYin": "Kulidiba",
+    "hyKeyWord": "KLDB"
+  }, {
+    "cityNameCn": "\u6606\u4ed1\u5c9b",
+    "cityCode": "VCS",
+    "cityId": "1634",
+    "countryId": "105",
+    "cityNameEn": "CON DAO",
+    "pingYin": "Kunlundao",
+    "hyKeyWord": "KLD"
+  }, {
+    "cityNameCn": "\u5e93\u8428\u83ab",
+    "cityCode": "KAO",
+    "cityId": "1562",
+    "countryId": "62",
+    "cityNameEn": "Kuusamo",
+    "pingYin": "Kusamo",
+    "hyKeyWord": "KSM"
+  }, {
+    "cityNameCn": "\u5f00\u7f57",
+    "cityCode": "CAI",
+    "cityId": "357",
+    "countryId": "115",
+    "cityNameEn": "Cairo",
+    "pingYin": "kailuo",
+    "hyKeyWord": "kl"
+  }, {
+    "cityNameCn": "\u5f00\u666e\u987f",
+    "cityCode": "CPT",
+    "cityId": "698",
+    "countryId": "48",
+    "cityNameEn": "Cape Town",
+    "pingYin": "kaipudun",
+    "hyKeyWord": "kpd"
+  }, {
+    "cityNameCn": "\u5361\u62c9\u5947",
+    "cityCode": "KHI",
+    "cityId": "456",
+    "countryId": "64",
+    "cityNameEn": "Karachi",
+    "pingYin": "kalaqi",
+    "hyKeyWord": "klq"
+  }, {
+    "cityNameCn": "\u79d1\u4f26\u5761",
+    "cityCode": "CMB",
+    "cityId": "371",
+    "countryId": "47",
+    "cityNameEn": "Colombo",
+    "pingYin": "kelunpo",
+    "hyKeyWord": "klp"
+  }],
+  "L": [{
+    "cityNameCn": "\u62c9\u5df4\u7279",
+    "cityCode": "RBA",
+    "cityId": "1458",
+    "countryId": "129",
+    "cityNameEn": "Rabat",
+    "pingYin": "Labate",
+    "hyKeyWord": "LBT"
+  }, {
+    "cityNameCn": "\u62c9\u4f2f\u514b",
+    "cityCode": "LBB",
+    "cityId": "1171",
+    "countryId": "2",
+    "cityNameEn": "Lubbock",
+    "pingYin": "Laboke",
+    "hyKeyWord": "LBK"
+  }, {
+    "cityNameCn": "\u62c9\u6ce2\u7279",
+    "cityCode": "LPO",
+    "cityId": "937",
+    "countryId": "2",
+    "cityNameEn": "La Porte",
+    "pingYin": "Labote",
+    "hyKeyWord": "LBT"
+  }, {
+    "cityNameCn": "\u62c9\u5e03\u5b89\u5c9b",
+    "cityCode": "LBU",
+    "cityId": "1481",
+    "countryId": "70",
+    "cityNameEn": "Labuan",
+    "pingYin": "Labuandao",
+    "hyKeyWord": "LBAD"
+  }, {
+    "cityNameCn": "\u62c9\u6590\u7279",
+    "cityCode": "LFT",
+    "cityId": "1015",
+    "countryId": "2",
+    "cityNameEn": "Lafayette",
+    "pingYin": "Lafeite",
+    "hyKeyWord": "LFT"
+  }, {
+    "cityNameCn": "\u62c9\u5408\u5c14",
+    "cityCode": "LHE",
+    "cityId": "686",
+    "countryId": "64",
+    "cityNameEn": "Lahore",
+    "pingYin": "Laheer",
+    "hyKeyWord": "LHE"
+  }, {
+    "cityNameCn": "\u83b1\u6602-\u74dc\u7eb3\u534e\u6258",
+    "cityCode": "BJX",
+    "cityId": "1225",
+    "countryId": "76",
+    "cityNameEn": "Leon-Guanajuato",
+    "pingYin": "Laiang-guanahuatuo",
+    "hyKeyWord": "LA-GNHT"
+  }, {
+    "cityNameCn": "\u83b1\u5df4\u5ae9",
+    "cityCode": "LEB",
+    "cityId": "1017",
+    "countryId": "2",
+    "cityNameEn": "Lebanon",
+    "pingYin": "Laibanen",
+    "hyKeyWord": "LBN"
+  }, {
+    "cityNameCn": "\u6765\u6bd4\u9521",
+    "cityCode": "LEJ",
+    "cityId": "814",
+    "countryId": "7",
+    "cityNameEn": "Leipzig",
+    "pingYin": "Laibixi",
+    "hyKeyWord": "LBX"
+  }, {
+    "cityNameCn": "\u8d56\u5e03\u5c14",
+    "cityCode": "RPR",
+    "cityId": "1403",
+    "countryId": "36",
+    "cityNameEn": "Raipur",
+    "pingYin": "Laibuer",
+    "hyKeyWord": "LBE"
+  }, {
+    "cityNameCn": "\u83b1\u514b\u67e5\u5c14\u65af",
+    "cityCode": "LCH",
+    "cityId": "1151",
+    "countryId": "2",
+    "cityNameEn": "Lake Charls La",
+    "pingYin": "Laikechaersi",
+    "hyKeyWord": "LKCES"
+  }, {
+    "cityNameCn": "\u83b1\u56e0\u5170\u5fb7",
+    "cityCode": "RHI",
+    "cityId": "1051",
+    "countryId": "2",
+    "cityNameEn": "Rhinelande",
+    "pingYin": "Laiyinlande",
+    "hyKeyWord": "LYLD"
+  }, {
+    "cityNameCn": "\u62c9\u79d1\u9c81\u5c3c\u4e9a",
+    "cityCode": "LCG",
+    "cityId": "914",
+    "countryId": "109",
+    "cityNameEn": "La Coruna",
+    "pingYin": "Lakeluniya",
+    "hyKeyWord": "LKLNY"
+  }, {
+    "cityNameCn": "\u62c9\u514b\u9c81\u4e1d",
+    "cityCode": "LSE",
+    "cityId": "1014",
+    "countryId": "2",
+    "cityNameEn": "La Crosse",
+    "pingYin": "Lakelusi",
+    "hyKeyWord": "LKLS"
+  }, {
+    "cityNameCn": "\u62c9\u96f7\u591a",
+    "cityCode": "LRD",
+    "cityId": "1172",
+    "countryId": "2",
+    "cityNameEn": "Laredo Tx",
+    "pingYin": "Laleiduo",
+    "hyKeyWord": "LLD"
+  }, {
+    "cityNameCn": "\u62c9\u52d2\u7c73",
+    "cityCode": "LAR",
+    "cityId": "1652",
+    "countryId": "2",
+    "cityNameEn": "Laramie",
+    "pingYin": "Lalemi",
+    "hyKeyWord": "LLM"
+  }, {
+    "cityNameCn": "\u62c9\u9ed8\u9f50\u4e9a\uff0d\u6cf0\u5c14\u9ed8",
+    "cityCode": "SUF",
+    "cityId": "901",
+    "countryId": "14",
+    "cityNameEn": "Lamezia Terme",
+    "pingYin": "Lamoqiya-Taiermo",
+    "hyKeyWord": "LMQY(TEM)"
+  }, {
+    "cityNameCn": "\u62c9\u7a46",
+    "cityCode": "LAU",
+    "cityId": "1270",
+    "countryId": "75",
+    "cityNameEn": "Lamu",
+    "pingYin": "Lamu",
+    "hyKeyWord": "LM"
+  }, {
+    "cityNameCn": "\u62c9\u5948",
+    "cityCode": "LNY",
+    "cityId": "1717",
+    "countryId": "2",
+    "cityNameEn": "Lanai",
+    "pingYin": "Lanai",
+    "hyKeyWord": "LN"
+  }, {
+    "cityNameCn": "\u62c9\u7eb3\u5361",
+    "cityCode": "LCA",
+    "cityId": "789",
+    "countryId": "114",
+    "cityNameEn": "Larnaca",
+    "pingYin": "Lanaka",
+    "hyKeyWord": "LNK"
+  }, {
+    "cityNameCn": "\u6717\u52c3\u62c9\u90a6",
+    "cityCode": "LPQ",
+    "cityId": "663",
+    "countryId": "90",
+    "cityNameEn": "Luang Prabang",
+    "pingYin": "Langbolabang",
+    "hyKeyWord": "LBLB"
+  }, {
+    "cityNameCn": "\u6717\u585e\u65af\u987f",
+    "cityCode": "LST",
+    "cityId": "773",
+    "countryId": "16",
+    "cityNameEn": "Launceston",
+    "pingYin": "Langsaisidun",
+    "hyKeyWord": "LSSD"
+  }, {
+    "cityNameCn": "\u6717\u7ef4\u5c24",
+    "cityCode": "GGG",
+    "cityId": "1193",
+    "countryId": "2",
+    "cityNameEn": "Longview",
+    "pingYin": "Langweiyou",
+    "hyKeyWord": "LWY"
+  }, {
+    "cityNameCn": "\u6717\u4f0a\u5c14\u57ce",
+    "cityCode": "LYR",
+    "cityId": "1565",
+    "countryId": "80",
+    "cityNameEn": "Longyearbyen",
+    "pingYin": "Langyiercheng",
+    "hyKeyWord": "LYEC"
+  }, {
+    "cityNameCn": "\u62c9\u5c3c\u6c38",
+    "cityCode": "LAI",
+    "cityId": "1126",
+    "countryId": "17",
+    "cityNameEn": "Lannion",
+    "pingYin": "Laniyong",
+    "hyKeyWord": "LNY"
+  }, {
+    "cityNameCn": "\u5170\u5361\u5a01",
+    "cityCode": "LGK",
+    "cityId": "475",
+    "countryId": "70",
+    "cityNameEn": "Langkawi",
+    "pingYin": "Lankawei",
+    "hyKeyWord": "LKW"
+  }, {
+    "cityNameCn": "\u5170\u4f69\u675c\u8428",
+    "cityCode": "LMP",
+    "cityId": "896",
+    "countryId": "14",
+    "cityNameEn": "Lampedusa",
+    "pingYin": "Lanpeidusa",
+    "hyKeyWord": "LPDS"
+  }, {
+    "cityNameCn": "\u5170\u8428\u7f57\u7279",
+    "cityCode": "ACE",
+    "cityId": "910",
+    "countryId": "109",
+    "cityNameEn": "Lanzarote",
+    "pingYin": "Lansaluote",
+    "hyKeyWord": "LSLT"
+  }, {
+    "cityNameCn": "\u5170\u8f9b",
+    "cityCode": "LAN",
+    "cityId": "1016",
+    "countryId": "2",
+    "cityNameEn": "Lansing",
+    "pingYin": "Lanxin",
+    "hyKeyWord": "LX"
+  }, {
+    "cityNameCn": "\u52b3\u5fb7\u5c14\u5821",
+    "cityCode": "FLL",
+    "cityId": "719",
+    "countryId": "2",
+    "cityNameEn": "Ft.Lauderdale ",
+    "pingYin": "Laodeerbao",
+    "hyKeyWord": "LDEB"
+  }, {
+    "cityNameCn": "\u52b3\u96f7\u5c14",
+    "cityCode": "PIB",
+    "cityId": "1236",
+    "countryId": "2",
+    "cityNameEn": "Laurel MS",
+    "pingYin": "Laoleier",
+    "hyKeyWord": "LLE"
+  }, {
+    "cityNameCn": "\u62c9\u76ae\u5fb7\u57ce",
+    "cityCode": "RAP",
+    "cityId": "1050",
+    "countryId": "2",
+    "cityNameEn": "Rapid City",
+    "pingYin": "Lapidecheng",
+    "hyKeyWord": "LPDC"
+  }, {
+    "cityNameCn": "\u62c9\u7279\u7f57\u5e03",
+    "cityCode": "LBE",
+    "cityId": "1235",
+    "countryId": "2",
+    "cityNameEn": "Latrobe PA",
+    "pingYin": "Lateluobu",
+    "hyKeyWord": "LTLB"
+  }, {
+    "cityNameCn": "\u52d2\u963f\u5f17\u5c14",
+    "cityCode": "LEH",
+    "cityId": "1466",
+    "countryId": "17",
+    "cityNameEn": "Le Havre",
+    "pingYin": "Leafuer",
+    "hyKeyWord": "LAFE"
+  }, {
+    "cityNameCn": "\u96f7\u5fb7\u8499\u5fb7",
+    "cityCode": "RDM",
+    "cityId": "951",
+    "countryId": "2",
+    "cityNameEn": "Redmond\/ Bend",
+    "pingYin": "Leidemengde",
+    "hyKeyWord": "LDMD"
+  }, {
+    "cityNameCn": "\u96f7\u6069",
+    "cityCode": "RNS",
+    "cityId": "1152",
+    "countryId": "17",
+    "cityNameEn": "Rennes",
+    "pingYin": "Leien",
+    "hyKeyWord": "LE"
+  }, {
+    "cityNameCn": "\u96f7\u7126\u5361\u62c9\u5e03\u91cc\u4e9a",
+    "cityCode": "REG",
+    "cityId": "900",
+    "countryId": "14",
+    "cityNameEn": "Reggio Calabria",
+    "pingYin": "Leijiaokalabuliya",
+    "hyKeyWord": "LJKLBLY"
+  }, {
+    "cityNameCn": "\u96f7\u514b\u96c5\u672a\u514b",
+    "cityCode": "REK",
+    "cityId": "778",
+    "countryId": "82",
+    "cityNameEn": "Reykjavik",
+    "pingYin": "Leikeyaweike",
+    "hyKeyWord": "LKYWK"
+  }, {
+    "cityNameCn": "\u96f7\u8bfa\u8428",
+    "cityCode": "REX",
+    "cityId": "1548",
+    "countryId": "76",
+    "cityNameEn": "Reynosa",
+    "pingYin": "Leinuosa",
+    "hyKeyWord": "LNS"
+  }, {
+    "cityNameCn": "\u7d2f\u897f\u8153",
+    "cityCode": "REC",
+    "cityId": "1467",
+    "countryId": "3",
+    "cityNameEn": "Recife",
+    "pingYin": "Leixifei",
+    "hyKeyWord": "LXF"
+  }, {
+    "cityNameCn": "\u52d2\u514b\u7459",
+    "cityCode": "LKO",
+    "cityId": "1501",
+    "countryId": "36",
+    "cityNameEn": "Lucknow",
+    "pingYin": "Lekenao",
+    "hyKeyWord": "LKN"
+  }, {
+    "cityNameCn": "\u52d2\u8292",
+    "cityCode": "LME",
+    "cityId": "1455",
+    "countryId": "17",
+    "cityNameEn": "Le Mans",
+    "pingYin": "Lemang",
+    "hyKeyWord": "LM"
+  }, {
+    "cityNameCn": "\u91cc\u6602",
+    "cityCode": "LYS",
+    "cityId": "491",
+    "countryId": "17",
+    "cityNameEn": "Lyon",
+    "pingYin": "Liang",
+    "hyKeyWord": "LA"
+  }, {
+    "cityNameCn": "\u91cc\u8d1d\u6717\u666e\u96f7\u56fe",
+    "cityCode": "RAO",
+    "cityId": "1444",
+    "countryId": "3",
+    "cityNameEn": "Ribeirao Preto",
+    "pingYin": "Libeilangpuleitu",
+    "hyKeyWord": "LBLPLT"
+  }, {
+    "cityNameCn": "\u5229\u4f2f\u7ef4\u5c14",
+    "cityCode": "LBV",
+    "cityId": "1333",
+    "countryId": "162",
+    "cityNameEn": "Libreville",
+    "pingYin": "Liboweier",
+    "hyKeyWord": "LBWE"
+  }, {
+    "cityNameCn": "\u5217\u514b\u661f\u6566",
+    "cityCode": "LEX",
+    "cityId": "715",
+    "countryId": "2",
+    "cityNameEn": "Lexington",
+    "pingYin": "Liekexingdun",
+    "hyKeyWord": "LKXD"
+  }, {
+    "cityNameCn": "\u91cc\u5c14",
+    "cityCode": "LIL",
+    "cityId": "1468",
+    "countryId": "17",
+    "cityNameEn": "Lille",
+    "pingYin": "Lier",
+    "hyKeyWord": "LE"
+  }, {
+    "cityNameCn": "\u91cc\u52a0",
+    "cityCode": "RIX",
+    "cityId": "809",
+    "countryId": "123",
+    "cityNameEn": "Riga",
+    "pingYin": "Lijia",
+    "hyKeyWord": "LJ"
+  }, {
+    "cityNameCn": "\u91cc\u8d3e\u7eb3",
+    "cityCode": "YQR",
+    "cityId": "824",
+    "countryId": "91",
+    "cityNameEn": "Regina",
+    "pingYin": "Lijiana",
+    "hyKeyWord": "LJN"
+  }, {
+    "cityNameCn": "\u5229\u9686\u572d",
+    "cityCode": "LLW",
+    "cityId": "873",
+    "countryId": "130",
+    "cityNameEn": "Lilongwe",
+    "pingYin": "Lilonggui",
+    "hyKeyWord": "LLG"
+  }, {
+    "cityNameCn": "\u5229\u9a6c",
+    "cityCode": "LIM",
+    "cityId": "478",
+    "countryId": "49",
+    "cityNameEn": "Lima",
+    "pingYin": "Lima",
+    "hyKeyWord": "LM"
+  }, {
+    "cityNameCn": "\u91cc\u7c73\u5c3c",
+    "cityCode": "RMI",
+    "cityId": "904",
+    "countryId": "14",
+    "cityNameEn": "Rimini",
+    "pingYin": "Limini",
+    "hyKeyWord": "LMN"
+  }, {
+    "cityNameCn": "\u5229\u6469\u65e5",
+    "cityCode": "LIG",
+    "cityId": "1127",
+    "countryId": "17",
+    "cityNameEn": "Limoges",
+    "pingYin": "Limori",
+    "hyKeyWord": "LMR"
+  }, {
+    "cityNameCn": "\u6797\u5f7b\u5e73",
+    "cityCode": "LPI",
+    "cityId": "1102",
+    "countryId": "18",
+    "cityNameEn": "Linkoeping",
+    "pingYin": "Lincheping",
+    "hyKeyWord": "LCP"
+  }, {
+    "cityNameCn": "\u6797\u8328",
+    "cityCode": "LNZ",
+    "cityId": "776",
+    "countryId": "107",
+    "cityNameEn": "Linz",
+    "pingYin": "Linci",
+    "hyKeyWord": "LC"
+  }, {
+    "cityNameCn": "\u6797\u80af",
+    "cityCode": "LNK",
+    "cityId": "806",
+    "countryId": "2",
+    "cityNameEn": "Lincoln",
+    "pingYin": "Linken",
+    "hyKeyWord": "LK"
+  }, {
+    "cityNameCn": "\u91cc\u8bfa",
+    "cityCode": "RNO",
+    "cityId": "952",
+    "countryId": "2",
+    "cityNameEn": "Reno",
+    "pingYin": "Linuo",
+    "hyKeyWord": "LN"
+  }, {
+    "cityNameCn": "\u91cc\u58eb\u6ee1",
+    "cityCode": "RIC",
+    "cityId": "751",
+    "countryId": "2",
+    "cityNameEn": "Richmond",
+    "pingYin": "Lishiman",
+    "hyKeyWord": "LSM"
+  }, {
+    "cityNameCn": "\u4e3d\u6c34",
+    "cityCode": "RSU",
+    "cityId": "1566",
+    "countryId": "86",
+    "cityNameEn": "Yeosu",
+    "pingYin": "Lishui",
+    "hyKeyWord": "LS"
+  }, {
+    "cityNameCn": "\u5218\u6613\u65af\u987f",
+    "cityCode": "LWS",
+    "cityId": "856",
+    "countryId": "2",
+    "cityNameEn": "Lewiston",
+    "pingYin": "Liuyisidun",
+    "hyKeyWord": "LYSD"
+  }, {
+    "cityNameCn": "\u5229\u6c83\u592b",
+    "cityCode": "LWO",
+    "cityId": "1591",
+    "countryId": "26",
+    "cityNameEn": "SNILOW",
+    "pingYin": "Liwofu",
+    "hyKeyWord": "LWF"
+  }, {
+    "cityNameCn": "\u5229\u7269\u6d66",
+    "cityCode": "LPL",
+    "cityId": "804",
+    "countryId": "21",
+    "cityNameEn": "Liverpool",
+    "pingYin": "Liwupu",
+    "hyKeyWord": "LWP"
+  }, {
+    "cityNameCn": "\u5229\u96c5\u5f97",
+    "cityCode": "RUH",
+    "cityId": "539",
+    "countryId": "53",
+    "cityNameEn": "Riyadh",
+    "pingYin": "Liyade",
+    "hyKeyWord": "LYD"
+  }, {
+    "cityNameCn": "\u91cc\u7ea6\u70ed\u5185\u5362",
+    "cityCode": "RIO",
+    "cityId": "537",
+    "countryId": "3",
+    "cityNameEn": "Rio de Janeiro",
+    "pingYin": "Liyuereneilu",
+    "hyKeyWord": "LYRNL"
+  }, {
+    "cityNameCn": "\u5229\u5179",
+    "cityCode": "LBA",
+    "cityId": "768",
+    "countryId": "21",
+    "cityNameEn": "Leeds",
+    "pingYin": "Lizi",
+    "hyKeyWord": "LZ"
+  }, {
+    "cityNameCn": "\u9f99\u76ee\u5c9b",
+    "cityCode": "LOP",
+    "cityId": "1602",
+    "countryId": "54",
+    "cityNameEn": "LOMBOK",
+    "pingYin": "Longmudao",
+    "hyKeyWord": "LMD"
+  }, {
+    "cityNameCn": "\u9686\u5185\u6bd4",
+    "cityCode": "RNB",
+    "cityId": "1355",
+    "countryId": "18",
+    "cityNameEn": "Ronneby",
+    "pingYin": "Longneibi",
+    "hyKeyWord": "LNB"
+  }, {
+    "cityNameCn": "\u5415\u52d2\u5965",
+    "cityCode": "LLA",
+    "cityId": "1089",
+    "countryId": "18",
+    "cityNameEn": "Lulea",
+    "pingYin": "Lu:leao",
+    "hyKeyWord": "LLA"
+  }, {
+    "cityNameCn": "\u5415\u5b8b\u5c9b",
+    "cityCode": "CRK",
+    "cityId": "1248",
+    "countryId": "79",
+    "cityNameEn": "Luzon Island",
+    "pingYin": "Lu:songdao",
+    "hyKeyWord": "LSD"
+  }, {
+    "cityNameCn": "\u9c81\u6602",
+    "cityCode": "URO",
+    "cityId": "1469",
+    "countryId": "17",
+    "cityNameEn": "Rouen",
+    "pingYin": "Luang",
+    "hyKeyWord": "LA"
+  }, {
+    "cityNameCn": "\u5362\u672c\u5df4\u5e0c",
+    "cityCode": "FBM",
+    "cityId": "1377",
+    "countryId": "102",
+    "cityNameEn": "Lubumbashi",
+    "pingYin": "Lubenbaxi",
+    "hyKeyWord": "LBBX"
+  }, {
+    "cityNameCn": "\u5362\u5e03\u5c14\u96c5\u90a3",
+    "cityCode": "LJU",
+    "cityId": "909",
+    "countryId": "139",
+    "cityNameEn": "Ljubljana",
+    "pingYin": "Lubueryanei",
+    "hyKeyWord": "LBEYN"
+  }, {
+    "cityNameCn": "\u9e7f\u5c14\u5c9b",
+    "cityCode": "KOJ",
+    "cityId": "726",
+    "countryId": "13",
+    "cityNameEn": "Kagoshima",
+    "pingYin": "Luerdao",
+    "hyKeyWord": "LED"
+  }, {
+    "cityNameCn": "\u5362\u4f3d\u8bfa",
+    "cityCode": "LUG",
+    "cityId": "1668",
+    "countryId": "60",
+    "cityNameEn": "lugano",
+    "pingYin": "Lujianuo",
+    "hyKeyWord": "LJN"
+  }, {
+    "cityNameCn": "\u5362\u514b\u7d22",
+    "cityCode": "LXR",
+    "cityId": "1241",
+    "countryId": "115",
+    "cityNameEn": "Luxor",
+    "pingYin": "Lukesuo",
+    "hyKeyWord": "LKS"
+  }, {
+    "cityNameCn": "\u4f26\u6566\uff08\u52a0\u62ff\u5927\uff09",
+    "cityCode": "YXU",
+    "cityId": "1234",
+    "countryId": "91",
+    "cityNameEn": "London OT",
+    "pingYin": "Lundun(Jianada)",
+    "hyKeyWord": "LD(JND)"
+  }, {
+    "cityNameCn": "\u7f57\u5b89\u8fbe",
+    "cityCode": "LAD",
+    "cityId": "780",
+    "countryId": "72",
+    "cityNameEn": "Luanda",
+    "pingYin": "Luoanda",
+    "hyKeyWord": "LAD"
+  }, {
+    "cityNameCn": "\u7f57\u963f\u8bfa\u514b",
+    "cityCode": "ROA",
+    "cityId": "1052",
+    "countryId": "2",
+    "cityNameEn": "Roanoke",
+    "pingYin": "Luoanuoke",
+    "hyKeyWord": "LANK"
+  }, {
+    "cityNameCn": "\u7f57\u5f97\uff08\u5c9b\uff09",
+    "cityCode": "RHO",
+    "cityId": "927",
+    "countryId": "40",
+    "cityNameEn": "Rhode Island",
+    "pingYin": "Luode(Dao)",
+    "hyKeyWord": "LD(D)"
+  }, {
+    "cityNameCn": "\u7f57\u5fb7\u5179",
+    "cityCode": "RDZ",
+    "cityId": "1133",
+    "countryId": "17",
+    "cityNameEn": "Rodez",
+    "pingYin": "Luodezi",
+    "hyKeyWord": "LDZ"
+  }, {
+    "cityNameCn": "\u7f57\u514b\u798f\u5fb7",
+    "cityCode": "RFD",
+    "cityId": "1054",
+    "countryId": "2",
+    "cityNameEn": "Rockford",
+    "pingYin": "Luokefude",
+    "hyKeyWord": "LKFD"
+  }, {
+    "cityNameCn": "\u7f57\u5229",
+    "cityCode": "RDU",
+    "cityId": "695",
+    "countryId": "2",
+    "cityNameEn": "Raleigh",
+    "pingYin": "Luoli",
+    "hyKeyWord": "LL"
+  }, {
+    "cityNameCn": "\u6d1b\u91cc\u6602",
+    "cityCode": "LRT",
+    "cityId": "1128",
+    "countryId": "17",
+    "cityNameEn": "Lorient",
+    "pingYin": "Luoliang",
+    "hyKeyWord": "LLA"
+  }, {
+    "cityNameCn": "\u6d1b\u6797",
+    "cityCode": "ETZ",
+    "cityId": "1160",
+    "countryId": "17",
+    "cityNameEn": "Metz-Nancy-Lorraine Airport",
+    "pingYin": "Luolin",
+    "hyKeyWord": "LL"
+  }, {
+    "cityNameCn": "\u6d1b\u7f8e",
+    "cityCode": "LFW",
+    "cityId": "1337",
+    "countryId": "164",
+    "cityNameEn": "Lome",
+    "pingYin": "Luomei",
+    "hyKeyWord": "LM"
+  }, {
+    "cityNameCn": "\u7f57\u5207\u65af\u7279MN",
+    "cityCode": "RST",
+    "cityId": "1447",
+    "countryId": "2",
+    "cityNameEn": "Rochester",
+    "pingYin": "LuoqiesiteMN",
+    "hyKeyWord": "LQSTMN"
+  }, {
+    "cityNameCn": "\u7f57\u5207\u65af\u7279NY",
+    "cityCode": "ROC",
+    "cityId": "1053",
+    "countryId": "2",
+    "cityNameEn": "Rochester",
+    "pingYin": "LuoqiesiteNY",
+    "hyKeyWord": "LQSTNY"
+  }, {
+    "cityNameCn": "\u7f57\u8428\u91cc\u5965\u6e2f",
+    "cityCode": "FUE",
+    "cityId": "912",
+    "countryId": "109",
+    "cityNameEn": "Puerto del Rosario ",
+    "pingYin": "Luosaliaogang",
+    "hyKeyWord": "LSLAG"
+  }, {
+    "cityNameCn": "\u7f57\u65af\u6258\u592b",
+    "cityCode": "ROV",
+    "cityId": "1482",
+    "countryId": "24",
+    "cityNameEn": "Rostov",
+    "pingYin": "Luosituofu",
+    "hyKeyWord": "LSTF"
+  }, {
+    "cityNameCn": "\u7f57\u6258\u9c81\u963f",
+    "cityCode": "ROT",
+    "cityId": "1542",
+    "countryId": "33",
+    "cityNameEn": "Rotorua",
+    "pingYin": "Luotuolua",
+    "hyKeyWord": "LTLA"
+  }, {
+    "cityNameCn": "\u7f57\u74e6\u6d85\u7c73",
+    "cityCode": "RVN",
+    "cityId": "923",
+    "countryId": "62",
+    "cityNameEn": "Rovaniemi",
+    "pingYin": "Luowaniemi",
+    "hyKeyWord": "LWNM"
+  }, {
+    "cityNameCn": "\u5362\u8428\u5361",
+    "cityCode": "LUN",
+    "cityId": "872",
+    "countryId": "73",
+    "cityNameEn": "Lusaka",
+    "pingYin": "Lusaka",
+    "hyKeyWord": "LSK"
+  }, {
+    "cityNameCn": "\u5362\u68ee\u5821",
+    "cityCode": "LUX",
+    "cityId": "861",
+    "countryId": "74",
+    "cityNameEn": "Luxembourg",
+    "pingYin": "Lusenbao",
+    "hyKeyWord": "LSB"
+  }, {
+    "cityNameCn": "\u9e7f\u7279\u4e39",
+    "cityCode": "RTM",
+    "cityId": "781",
+    "countryId": "22",
+    "cityNameEn": "Rotterdam",
+    "pingYin": "Lutedan",
+    "hyKeyWord": "LTD"
+  }, {
+    "cityNameCn": "\u8def\u6613\u65af\u5b89\u90a3\u5dde",
+    "cityCode": "AEX",
+    "cityId": "1138",
+    "countryId": "2",
+    "cityNameEn": "Alexandria International Airport",
+    "pingYin": "Luyisianneizhou",
+    "hyKeyWord": "LYSANZ"
+  }, {
+    "cityNameCn": "\u8def\u6613\u65af\u7ef4\u5c14",
+    "cityCode": "SDF",
+    "cityId": "1019",
+    "countryId": "2",
+    "cityNameEn": "Louisville",
+    "pingYin": "Luyisiweier",
+    "hyKeyWord": "LYSWE"
+  }, {
+    "cityNameCn": "\u62c9\u5404\u65af",
+    "cityCode": "LOS",
+    "cityId": "736",
+    "countryId": "65",
+    "cityNameEn": "Lagos",
+    "pingYin": "lagesi",
+    "hyKeyWord": "lgs"
+  }, {
+    "cityNameCn": "\u62c9\u65af\u7ef4\u52a0\u65af",
+    "cityCode": "LAS",
+    "cityId": "471",
+    "countryId": "2",
+    "cityNameEn": "Las Vegas ",
+    "pingYin": "lasiweijiasi",
+    "hyKeyWord": "lswjs"
+  }, {
+    "cityNameCn": "\u91cc\u65af\u672c",
+    "cityCode": "LIS",
+    "cityId": "479",
+    "countryId": "59",
+    "cityNameEn": "Lisbon",
+    "pingYin": "lisiben",
+    "hyKeyWord": "lsb"
+  }, {
+    "cityNameCn": "\u4f26\u6566\uff08\u82f1\u56fd\uff09",
+    "cityCode": "LON",
+    "cityId": "483",
+    "countryId": "21",
+    "cityNameEn": "London",
+    "pingYin": "lundun",
+    "hyKeyWord": "ld"
+  }, {
+    "cityNameCn": "\u7f57\u9a6c",
+    "cityCode": "ROM",
+    "cityId": "538",
+    "countryId": "14",
+    "cityNameEn": "Rome",
+    "pingYin": "luoma",
+    "hyKeyWord": "lm"
+  }, {
+    "cityNameCn": "\u6d1b\u6749\u77f6",
+    "cityCode": "LAX",
+    "cityId": "472",
+    "countryId": "2",
+    "cityNameEn": "Los Angeles",
+    "pingYin": "luoshanji",
+    "hyKeyWord": "lsj"
+  }],
+  "M": [{
+    "cityNameCn": "\u9a6c\u5c14\u58a8",
+    "cityCode": "MMA",
+    "cityId": "1521",
+    "countryId": "18",
+    "cityNameEn": "Malmo",
+    "pingYin": "Maermo",
+    "hyKeyWord": "MEM"
+  }, {
+    "cityNameCn": "\u9a6c\u8033\u4ed6",
+    "cityCode": "MLA",
+    "cityId": "866",
+    "countryId": "127",
+    "cityNameEn": "Malta",
+    "pingYin": "Maerta",
+    "hyKeyWord": "MET"
+  }, {
+    "cityNameCn": "\u9a6c\u516c",
+    "cityCode": "MZG",
+    "cityId": "1577",
+    "countryId": "137",
+    "cityNameEn": "MAKUNG",
+    "pingYin": "Magong",
+    "hyKeyWord": "MG"
+  }, {
+    "cityNameCn": "\u9ea6\u5730\u90a3",
+    "cityCode": "MED",
+    "cityId": "1547",
+    "countryId": "53",
+    "cityNameEn": "Madinah",
+    "pingYin": "Maidinei",
+    "hyKeyWord": "MDN"
+  }, {
+    "cityNameCn": "\u9ea6\u8fea\u900a",
+    "cityCode": "MSN",
+    "cityId": "1020",
+    "countryId": "2",
+    "cityNameEn": "Madison",
+    "pingYin": "Maidixun",
+    "hyKeyWord": "MDX"
+  }, {
+    "cityNameCn": "\u8fc8\u5c14\u65af\u5821",
+    "cityCode": "RSW",
+    "cityId": "1113",
+    "countryId": "2",
+    "cityNameEn": "Fort Myers",
+    "pingYin": "Maiersibao",
+    "hyKeyWord": "MESB"
+  }, {
+    "cityNameCn": "\u9ea6\u5361\u4f26",
+    "cityCode": "MFE",
+    "cityId": "1181",
+    "countryId": "2",
+    "cityNameEn": "Mc Mllen Tx",
+    "pingYin": "Maikalun",
+    "hyKeyWord": "MKL"
+  }, {
+    "cityNameCn": "\u8fc8\u8bfa\u7279",
+    "cityCode": "MOT",
+    "cityId": "1025",
+    "countryId": "2",
+    "cityNameEn": "Minot",
+    "pingYin": "Mainuote",
+    "hyKeyWord": "MNT"
+  }, {
+    "cityNameCn": "\u9a6c\u51ef\u7279",
+    "cityCode": "MQT",
+    "cityId": "1021",
+    "countryId": "2",
+    "cityNameEn": "Marquette",
+    "pingYin": "Makaite",
+    "hyKeyWord": "MKT"
+  }, {
+    "cityNameCn": "\u9a6c\u62c9\u535a",
+    "cityCode": "SSG",
+    "cityId": "1510",
+    "countryId": "170",
+    "cityNameEn": "Malabo",
+    "pingYin": "Malabo",
+    "hyKeyWord": "MLB"
+  }, {
+    "cityNameCn": "\u9a6c\u62c9\u52a0",
+    "cityCode": "AGP",
+    "cityId": "826",
+    "countryId": "109",
+    "cityNameEn": "Malaga",
+    "pingYin": "Malajia",
+    "hyKeyWord": "MLJ"
+  }, {
+    "cityNameCn": "\u9a6c\u62c9\u5f00\u6ce2",
+    "cityCode": "MAR",
+    "cityId": "1366",
+    "countryId": "128",
+    "cityNameEn": "Maracaibo",
+    "pingYin": "Malakaibo",
+    "hyKeyWord": "MLKB"
+  }, {
+    "cityNameCn": "\u9a6c\u62c9\u5580\u4ec0",
+    "cityCode": "RAK",
+    "cityId": "870",
+    "countryId": "129",
+    "cityNameEn": "Marrakech",
+    "pingYin": "Malakashen",
+    "hyKeyWord": "MLKS"
+  }, {
+    "cityNameCn": "\u739b\u7405",
+    "cityCode": "MLG",
+    "cityId": "1660",
+    "countryId": "54",
+    "cityNameEn": "Malang",
+    "pingYin": "Malang",
+    "hyKeyWord": "ML"
+  }, {
+    "cityNameCn": "\u9a6c\u6797\u8fea",
+    "cityCode": "MYD",
+    "cityId": "1271",
+    "countryId": "75",
+    "cityNameEn": "Malindi",
+    "pingYin": "Malindi",
+    "hyKeyWord": "MLD"
+  }, {
+    "cityNameCn": "\u9a6c\u7459\u65af",
+    "cityCode": "MAO",
+    "cityId": "684",
+    "countryId": "3",
+    "cityNameEn": "Manaus",
+    "pingYin": "Manaosi",
+    "hyKeyWord": "MNS"
+  }, {
+    "cityNameCn": "\u66fc\u5f7b\u65af\u7279\uff08\u7f8e\uff09",
+    "cityCode": "MHT",
+    "cityId": "495",
+    "countryId": "2",
+    "cityNameEn": "Manchester",
+    "pingYin": "Manchesite(Mei)",
+    "hyKeyWord": "MCST(M)"
+  }, {
+    "cityNameCn": "\u66fc\u5fb7\u52d2",
+    "cityCode": "MDL",
+    "cityId": "1239",
+    "countryId": "83",
+    "cityNameEn": "Mandalay",
+    "pingYin": "Mandele",
+    "hyKeyWord": "MDL"
+  }, {
+    "cityNameCn": "\u9a6c\u90a3\u74dc",
+    "cityCode": "MGA",
+    "cityId": "1625",
+    "countryId": "103",
+    "cityNameEn": "MANAGUA",
+    "pingYin": "Maneigua",
+    "hyKeyWord": "MNG"
+  }, {
+    "cityNameCn": "\u8292\u7279\u827e\u8fbe",
+    "cityCode": "ISA",
+    "cityId": "1512",
+    "countryId": "16",
+    "cityNameEn": "Mount Isa",
+    "pingYin": "Mangteaida",
+    "hyKeyWord": "MTAD"
+  }, {
+    "cityNameCn": "\u66fc\u54c8\u987f",
+    "cityCode": "MHK",
+    "cityId": "1507",
+    "countryId": "2",
+    "cityNameEn": "Manhattan",
+    "pingYin": "Manhadun",
+    "hyKeyWord": "MHD"
+  }, {
+    "cityNameCn": "\u66fc\u9f50\u5c3c ",
+    "cityCode": "MTS",
+    "cityId": "1621",
+    "countryId": "194",
+    "cityNameEn": "Manzini",
+    "pingYin": "Manqini ",
+    "hyKeyWord": "MQN "
+  }, {
+    "cityNameCn": "\u6bdb\u91cc\u6c42\u65af",
+    "cityCode": "MRU",
+    "cityId": "1376",
+    "countryId": "142",
+    "cityNameEn": "Mauritius",
+    "pingYin": "Maoliqiusi",
+    "hyKeyWord": "MLQS"
+  }, {
+    "cityNameCn": "\u9a6c\u666e\u6258",
+    "cityCode": "MPM",
+    "cityId": "1503",
+    "countryId": "169",
+    "cityNameEn": "Maputo",
+    "pingYin": "Maputuo",
+    "hyKeyWord": "MPT"
+  }, {
+    "cityNameCn": "\u9a6c\u8d5b",
+    "cityCode": "MRS",
+    "cityId": "798",
+    "countryId": "17",
+    "cityNameEn": "Marseille",
+    "pingYin": "Masai",
+    "hyKeyWord": "MS"
+  }, {
+    "cityNameCn": "\u9a6c\u585e\u5362",
+    "cityCode": "MSU",
+    "cityId": "1414",
+    "countryId": "176",
+    "cityNameEn": "Maseru",
+    "pingYin": "Masailu",
+    "hyKeyWord": "MSL"
+  }, {
+    "cityNameCn": "\u9a6c\u8428\u7279\u5170",
+    "cityCode": "MZT",
+    "cityId": "1228",
+    "countryId": "76",
+    "cityNameEn": "Mazatlan",
+    "pingYin": "Masatelan",
+    "hyKeyWord": "MSTL"
+  }, {
+    "cityNameCn": "\u9a6c\u4ec0\u54c8\u5fb7",
+    "cityCode": "MHD",
+    "cityId": "939",
+    "countryId": "28",
+    "cityNameEn": "Mashad",
+    "pingYin": "Mashenhade",
+    "hyKeyWord": "MSHD"
+  }, {
+    "cityNameCn": "\u9a6c\u65af\u57fa\u6839",
+    "cityCode": "MKG",
+    "cityId": "1031",
+    "countryId": "2",
+    "cityNameEn": "Muskegon",
+    "pingYin": "Masijigen",
+    "hyKeyWord": "MSJG"
+  }, {
+    "cityNameCn": "\u9a6c\u65af\u7279\u91cc\u8d6b\u7279",
+    "cityCode": "MST",
+    "cityId": "931",
+    "countryId": "22",
+    "cityNameEn": "Maastricht",
+    "pingYin": "Masitelihete",
+    "hyKeyWord": "MSTLHT"
+  }, {
+    "cityNameCn": "\u9a6c\u5854\u5170",
+    "cityCode": "AMI",
+    "cityId": "1184",
+    "countryId": "54",
+    "cityNameEn": "Mataram",
+    "pingYin": "Matalan",
+    "hyKeyWord": "MTL"
+  }, {
+    "cityNameCn": "\u9a6c\u6731\u7f57",
+    "cityCode": "MAJ",
+    "cityId": "1673",
+    "countryId": "197",
+    "cityNameEn": "Majuro",
+    "pingYin": "Mazhuluo",
+    "hyKeyWord": "MZL"
+  }, {
+    "cityNameCn": "\u6885\u5fb7\u798f",
+    "cityCode": "MFR",
+    "cityId": "857",
+    "countryId": "2",
+    "cityNameEn": "Medford",
+    "pingYin": "Meidefu",
+    "hyKeyWord": "MDF"
+  }, {
+    "cityNameCn": "\u6885\u8fea\u8f9b\u54c8\u7279",
+    "cityCode": "YXH",
+    "cityId": "1313",
+    "countryId": "91",
+    "cityNameEn": "Medicine Hat",
+    "pingYin": "Meidixinhate",
+    "hyKeyWord": "MDXHT"
+  }, {
+    "cityNameCn": "\u7f8e\u91cc",
+    "cityCode": "MYY",
+    "cityId": "839",
+    "countryId": "70",
+    "cityNameEn": "Miri",
+    "pingYin": "Meili",
+    "hyKeyWord": "ML"
+  }, {
+    "cityNameCn": "\u6885\u8bfa\u5361",
+    "cityCode": "MAH",
+    "cityId": "1470",
+    "countryId": "109",
+    "cityNameEn": "Menorca",
+    "pingYin": "Meinuoka",
+    "hyKeyWord": "MNK"
+  }, {
+    "cityNameCn": "\u6885\u68ee\u57ce",
+    "cityCode": "MCW",
+    "cityId": "1022",
+    "countryId": "2",
+    "cityNameEn": "Mason City",
+    "pingYin": "Meisencheng",
+    "hyKeyWord": "MSC"
+  }, {
+    "cityNameCn": "\u8499\u5df4\u8428",
+    "cityCode": "MBA",
+    "cityId": "1440",
+    "countryId": "75",
+    "cityNameEn": "Mombasa",
+    "pingYin": "Mengbasa",
+    "hyKeyWord": "MBS"
+  }, {
+    "cityNameCn": "\u8499\u5f7c\u5229\u57c3",
+    "cityCode": "MPL",
+    "cityId": "1129",
+    "countryId": "17",
+    "cityNameEn": "Montpellier",
+    "pingYin": "Mengbiliai",
+    "hyKeyWord": "MBLA"
+  }, {
+    "cityNameCn": "\u8499\u5f97\u7ef4\u7684\u4e9a",
+    "cityCode": "MVD",
+    "cityId": "1322",
+    "countryId": "159",
+    "cityNameEn": "Montevideo",
+    "pingYin": "Mengdeweideya",
+    "hyKeyWord": "MDWDY"
+  }, {
+    "cityNameCn": "\u5b5f\u83f2\u65af",
+    "cityCode": "MEM",
+    "cityId": "711",
+    "countryId": "2",
+    "cityNameEn": "Memphis",
+    "pingYin": "Mengfeisi",
+    "hyKeyWord": "MFS"
+  }, {
+    "cityNameCn": "\u8499\u54e5\u9a6c\u5229",
+    "cityCode": "MGM",
+    "cityId": "1029",
+    "countryId": "2",
+    "cityNameEn": "Montgomery",
+    "pingYin": "Menggemali",
+    "hyKeyWord": "MGML"
+  }, {
+    "cityNameCn": "\u8499\u514b\u987f",
+    "cityCode": "YQM",
+    "cityId": "1144",
+    "countryId": "91",
+    "cityNameEn": "Moncton",
+    "pingYin": "Mengkedun",
+    "hyKeyWord": "MKD"
+  }, {
+    "cityNameCn": "\u8499\u7f57\u7ef4\u4e9a",
+    "cityCode": "MLW",
+    "cityId": "1314",
+    "countryId": "78",
+    "cityNameEn": "Monrovia",
+    "pingYin": "Mengluoweiya",
+    "hyKeyWord": "MLWY"
+  }, {
+    "cityNameCn": "\u8499\u65af\u7279",
+    "cityCode": "FMO",
+    "cityId": "785",
+    "countryId": "7",
+    "cityNameEn": "Muenster",
+    "pingYin": "Mengsite",
+    "hyKeyWord": "MST"
+  }, {
+    "cityNameCn": "\u8499\u7279\u54e5\u8d1d",
+    "cityCode": "MBJ",
+    "cityId": "1596",
+    "countryId": "67",
+    "cityNameEn": "Montego Bay",
+    "pingYin": "Mengtegebei",
+    "hyKeyWord": "MTGB"
+  }, {
+    "cityNameCn": "\u8499\u7279\u96f7",
+    "cityCode": "MTY",
+    "cityId": "1508",
+    "countryId": "76",
+    "cityNameEn": "Monterrey",
+    "pingYin": "Mengtelei",
+    "hyKeyWord": "MTL"
+  }, {
+    "cityNameCn": "\u8499\u7279\u96f7(\u7f8e)",
+    "cityCode": "MRY",
+    "cityId": "941",
+    "countryId": "2",
+    "cityNameEn": "Monterrey",
+    "pingYin": "Mengtelei(mei)",
+    "hyKeyWord": "MTL(M)"
+  }, {
+    "cityNameCn": "\u8499\u7279\u7f57\u65af",
+    "cityCode": "MTJ",
+    "cityId": "1174",
+    "countryId": "2",
+    "cityNameEn": "Montrose Co",
+    "pingYin": "Mengteluosi",
+    "hyKeyWord": "MTLS"
+  }, {
+    "cityNameCn": "\u95e8\u7f57",
+    "cityCode": "MLU",
+    "cityId": "1028",
+    "countryId": "2",
+    "cityNameEn": "Monroe",
+    "pingYin": "Menluo",
+    "hyKeyWord": "ML"
+  }, {
+    "cityNameCn": "\u68c9\u5170",
+    "cityCode": "KNO",
+    "cityId": "833",
+    "countryId": "54",
+    "cityNameEn": "Medan",
+    "pingYin": "Mianlan",
+    "hyKeyWord": "ML"
+  }, {
+    "cityNameCn": "\u7c73\u5fb7\u5170",
+    "cityCode": "MAF",
+    "cityId": "1180",
+    "countryId": "2",
+    "cityNameEn": "Midland Tx",
+    "pingYin": "Midelan",
+    "hyKeyWord": "MDL"
+  }, {
+    "cityNameCn": "\u5bc6\u5c14\u6c83\u57fa",
+    "cityCode": "MKE",
+    "cityId": "1024",
+    "countryId": "2",
+    "cityNameEn": "Milwaukee",
+    "pingYin": "Mierwoji",
+    "hyKeyWord": "MEWJ"
+  }, {
+    "cityNameCn": "\u7c73\u5362\u65af",
+    "cityCode": "MLH",
+    "cityId": "799",
+    "countryId": "17",
+    "cityNameEn": "Mulhouse",
+    "pingYin": "Milusi",
+    "hyKeyWord": "MLS"
+  }, {
+    "cityNameCn": "\u660e\u65af\u514b",
+    "cityCode": "MSQ",
+    "cityId": "1310",
+    "countryId": "157",
+    "cityNameEn": "Minsk",
+    "pingYin": "Mingsike",
+    "hyKeyWord": "MSK"
+  }, {
+    "cityNameCn": "\u7c73\u82cf\u62c9",
+    "cityCode": "MSO",
+    "cityId": "858",
+    "countryId": "2",
+    "cityNameEn": "Missoula",
+    "pingYin": "Misula",
+    "hyKeyWord": "MSL"
+  }, {
+    "cityNameCn": "\u7c73\u82cf\u62c9\u5854",
+    "cityCode": "MRA",
+    "cityId": "1713",
+    "countryId": "43",
+    "cityNameEn": "MISURATA",
+    "pingYin": "Misulata",
+    "hyKeyWord": "MSLT"
+  }, {
+    "cityNameCn": "\u83ab\u6bd4\u5c14",
+    "cityCode": "MOB",
+    "cityId": "1026",
+    "countryId": "2",
+    "cityNameEn": "Mobile",
+    "pingYin": "Mobier",
+    "hyKeyWord": "MBE"
+  }, {
+    "cityNameCn": "\u58a8\u513f\u672c",
+    "cityCode": "MLB",
+    "cityId": "1220",
+    "countryId": "2",
+    "cityNameEn": "Melbourne Fl",
+    "pingYin": "Moerben",
+    "hyKeyWord": "MEB"
+  }, {
+    "cityNameCn": "\u6469\u6839\u6566",
+    "cityCode": "MGW",
+    "cityId": "1598",
+    "countryId": "2",
+    "cityNameEn": "MORGANTOWN",
+    "pingYin": "Mogendun",
+    "hyKeyWord": "MGD"
+  }, {
+    "cityNameCn": "\u9ed8\u91cc\u8fea\u6069",
+    "cityCode": "MEI",
+    "cityId": "1023",
+    "countryId": "2",
+    "cityNameEn": "Meridian",
+    "pingYin": "Molidien",
+    "hyKeyWord": "MLDE"
+  }, {
+    "cityNameCn": "\u83ab\u6797",
+    "cityCode": "MLI",
+    "cityId": "1027",
+    "countryId": "2",
+    "cityNameEn": "Moline",
+    "pingYin": "Molin",
+    "hyKeyWord": "ML"
+  }, {
+    "cityNameCn": "\u6469\u585e\u65af\u83b1\u514b",
+    "cityCode": "MWH",
+    "cityId": "942",
+    "countryId": "2",
+    "cityNameEn": "Moses Lake",
+    "pingYin": "Mosaisilaike",
+    "hyKeyWord": "MSSLK"
+  }, {
+    "cityNameCn": "\u9ed8\u7279\u5c14\u6bd4\u5947",
+    "cityCode": "MYR",
+    "cityId": "1154",
+    "countryId": "2",
+    "cityNameEn": "Myrtle Beach",
+    "pingYin": "Moteerbiqi",
+    "hyKeyWord": "MTEBQ"
+  }, {
+    "cityNameCn": "\u83ab\u897f\u5c3c",
+    "cityCode": "CWA",
+    "cityId": "1071",
+    "countryId": "2",
+    "cityNameEn": "Mosinee",
+    "pingYin": "Moxini",
+    "hyKeyWord": "MXN"
+  }, {
+    "cityNameCn": "\u9a6c\u5fb7\u91cc",
+    "cityCode": "MAD",
+    "cityId": "494",
+    "countryId": "109",
+    "cityNameEn": "Madrid",
+    "pingYin": "madeli",
+    "hyKeyWord": "mdl"
+  }, {
+    "cityNameCn": "\u8fc8\u963f\u5bc6",
+    "cityCode": "MIA",
+    "cityId": "501",
+    "countryId": "2",
+    "cityNameEn": "Miami",
+    "pingYin": "maiami",
+    "hyKeyWord": "mam"
+  }, {
+    "cityNameCn": "\u9a6c\u7d2f(\u9a6c\u5c14\u4ee3\u592b)",
+    "cityCode": "MLE",
+    "cityId": "504",
+    "countryId": "98",
+    "cityNameEn": "Male",
+    "pingYin": "malei",
+    "hyKeyWord": "ml"
+  }, {
+    "cityNameCn": "\u66fc\u5f7b\u65af\u7279",
+    "cityCode": "MAN",
+    "cityId": "1183",
+    "countryId": "21",
+    "cityNameEn": "Manchester",
+    "pingYin": "manchesite",
+    "hyKeyWord": "mcst"
+  }, {
+    "cityNameCn": "\u66fc\u8c37",
+    "cityCode": "BKK",
+    "cityId": "344",
+    "countryId": "8",
+    "cityNameEn": "Bangkok",
+    "pingYin": "mangu",
+    "hyKeyWord": "mg"
+  }, {
+    "cityNameCn": "\u9a6c\u5c3c\u62c9",
+    "cityCode": "MNL",
+    "cityId": "505",
+    "countryId": "79",
+    "cityNameEn": "Manila",
+    "pingYin": "manila",
+    "hyKeyWord": "mnl"
+  }, {
+    "cityNameCn": "\u9a6c\u65af\u5580\u7279",
+    "cityCode": "MCT",
+    "cityId": "821",
+    "countryId": "126",
+    "cityNameEn": "Muscat",
+    "pingYin": "masikete",
+    "hyKeyWord": "mskt"
+  }, {
+    "cityNameCn": "\u5b5f\u4e70",
+    "cityCode": "BOM",
+    "cityId": "347",
+    "countryId": "36",
+    "cityNameEn": "Mumbai",
+    "pingYin": "mengmai",
+    "hyKeyWord": "mm"
+  }, {
+    "cityNameCn": "\u8499\u7279\u5229\u5c14",
+    "cityCode": "YMQ",
+    "cityId": "704",
+    "countryId": "91",
+    "cityNameEn": "Montreal",
+    "pingYin": "mengtelier",
+    "hyKeyWord": "mtle"
+  }, {
+    "cityNameCn": "\u7c73\u5170",
+    "cityCode": "MIL",
+    "cityId": "503",
+    "countryId": "14",
+    "cityNameEn": "Milan",
+    "pingYin": "milan",
+    "hyKeyWord": "ml"
+  }, {
+    "cityNameCn": "\u540d\u53e4\u5c4b",
+    "cityCode": "NGO",
+    "cityId": "515",
+    "countryId": "13",
+    "cityNameEn": "Nagoya",
+    "pingYin": "mingguwu",
+    "hyKeyWord": "mgw"
+  }, {
+    "cityNameCn": "\u660e\u5c3c\u963f\u6ce2\u5229\u65af",
+    "cityCode": "MSP",
+    "cityId": "712",
+    "countryId": "2",
+    "cityNameEn": "Minneapolis",
+    "pingYin": "mingniabolisi",
+    "hyKeyWord": "mnabls"
+  }, {
+    "cityNameCn": "\u58a8\u5c14\u672c",
+    "cityCode": "MEL",
+    "cityId": "498",
+    "countryId": "16",
+    "cityNameEn": "Melbourne",
+    "pingYin": "moerben",
+    "hyKeyWord": "meb"
+  }, {
+    "cityNameCn": "\u83ab\u65af\u79d1",
+    "cityCode": "MOW",
+    "cityId": "506",
+    "countryId": "24",
+    "cityNameEn": "Moscow",
+    "pingYin": "mosike",
+    "hyKeyWord": "msk"
+  }, {
+    "cityNameCn": "\u58a8\u897f\u54e5\u57ce",
+    "cityCode": "MEX",
+    "cityId": "499",
+    "countryId": "76",
+    "cityNameEn": "Mexico ",
+    "pingYin": "moxigecheng",
+    "hyKeyWord": "mxgc"
+  }, {
+    "cityNameCn": "\u6155\u5c3c\u9ed1",
+    "cityCode": "MUC",
+    "cityId": "509",
+    "countryId": "7",
+    "cityNameEn": "Munich",
+    "pingYin": "munihei",
+    "hyKeyWord": "mnh"
+  }],
+  "N": [{
+    "cityNameCn": "\u65b0\u666e\u91cc\u8305\u65af",
+    "cityCode": "NPL",
+    "cityId": "1489",
+    "countryId": "33",
+    "cityNameEn": "NEW PLYMOUTH ",
+    "pingYin": "NEW PLYMOUTH",
+    "hyKeyWord": "NPL"
+  }, {
+    "cityNameCn": "\u7eb3\u8fea",
+    "cityCode": "NAN",
+    "cityId": "762",
+    "countryId": "108",
+    "cityNameEn": "Nadi",
+    "pingYin": "Nadi",
+    "hyKeyWord": "ND"
+  }, {
+    "cityNameCn": "\u7eb3\u5c14\u900a",
+    "cityCode": "NSN",
+    "cityId": "1399",
+    "countryId": "33",
+    "cityNameEn": "Nelson",
+    "pingYin": "Naerxun",
+    "hyKeyWord": "NEX"
+  }, {
+    "cityNameCn": "\u7eb3\u5948\u83ab",
+    "cityCode": "YCD",
+    "cityId": "732",
+    "countryId": "91",
+    "cityNameEn": "Nanaimo",
+    "pingYin": "Nanaimo",
+    "hyKeyWord": "NNM"
+  }, {
+    "cityNameCn": "\u5357\u5b89\u666e\u6566",
+    "cityCode": "SOU",
+    "cityId": "1162",
+    "countryId": "21",
+    "cityNameEn": "Southampton",
+    "pingYin": "Nananpudun",
+    "hyKeyWord": "NAPD"
+  }, {
+    "cityNameCn": "\u5357\u672c\u5fb7",
+    "cityCode": "SBN",
+    "cityId": "1059",
+    "countryId": "2",
+    "cityNameEn": "South Bend",
+    "pingYin": "Nanbende",
+    "hyKeyWord": "NBD"
+  }, {
+    "cityNameCn": "\u6960\u666e\u62c9",
+    "cityCode": "APL",
+    "cityId": "1674",
+    "countryId": "169",
+    "cityNameEn": "Nampula",
+    "pingYin": "Nanpula",
+    "hyKeyWord": "NPL"
+  }, {
+    "cityNameCn": "\u5357\u8428\u54c8\u6797\u65af\u514b",
+    "cityCode": "UUS",
+    "cityId": "1516",
+    "countryId": "24",
+    "cityNameEn": "Yuzhno-Sakhalinsk",
+    "pingYin": "Nansahalinsike",
+    "hyKeyWord": "NSHLSK"
+  }, {
+    "cityNameCn": "\u6960\u5854\u57fa\u7279",
+    "cityCode": "ACK",
+    "cityId": "1032",
+    "countryId": "2",
+    "cityNameEn": "Nantucket",
+    "pingYin": "Nantajite",
+    "hyKeyWord": "NTJT"
+  }, {
+    "cityNameCn": "\u5357\u7279",
+    "cityCode": "NTE",
+    "cityId": "1130",
+    "countryId": "17",
+    "cityNameEn": "Nantes",
+    "pingYin": "Nante",
+    "hyKeyWord": "NT"
+  }, {
+    "cityNameCn": "\u62ff\u9a9a",
+    "cityCode": "NAS",
+    "cityId": "879",
+    "countryId": "132",
+    "cityNameEn": "Nassau",
+    "pingYin": "Nasao",
+    "hyKeyWord": "NS"
+  }, {
+    "cityNameCn": "\u5185\u6bd4\u90fd",
+    "cityCode": "NYT",
+    "cityId": "1707",
+    "countryId": "83",
+    "cityNameEn": "Naypyitaw",
+    "pingYin": "Neibidou",
+    "hyKeyWord": "NBD"
+  }, {
+    "cityNameCn": "\u90a3\u4e0d\u52d2\u65af",
+    "cityCode": "NAP",
+    "cityId": "832",
+    "countryId": "14",
+    "cityNameEn": "Naples",
+    "pingYin": "Neibulesi",
+    "hyKeyWord": "NBLS"
+  }, {
+    "cityNameCn": "\u5185\u5c14\u65af\u666e\u96f7\u7279",
+    "cityCode": "NLP",
+    "cityId": "1676",
+    "countryId": "48",
+    "cityNameEn": "nelspruit",
+    "pingYin": "Neiersipuleite",
+    "hyKeyWord": "NESPLT"
+  }, {
+    "cityNameCn": "\u90a3\u683c\u6d66\u5c14",
+    "cityCode": "NAG",
+    "cityId": "1618",
+    "countryId": "36",
+    "cityNameEn": "NAGPUR",
+    "pingYin": "Neigepuer",
+    "hyKeyWord": "NGPE"
+  }, {
+    "cityNameCn": "\u5185\u76ae\u5c14",
+    "cityCode": "NPE",
+    "cityId": "1552",
+    "countryId": "33",
+    "cityNameEn": "Napier",
+    "pingYin": "Neipier",
+    "hyKeyWord": "NPE"
+  }, {
+    "cityNameCn": "\u90a3\u7259 ",
+    "cityCode": "WNP",
+    "cityId": "1664",
+    "countryId": "79",
+    "cityNameEn": "NAGA",
+    "pingYin": "Neiya ",
+    "hyKeyWord": "NY "
+  }, {
+    "cityNameCn": "\u9e1f\u53d6",
+    "cityCode": "TTJ",
+    "cityId": "1665",
+    "countryId": "13",
+    "cityNameEn": "Tottori",
+    "pingYin": "Niaoqu",
+    "hyKeyWord": "NQ"
+  }, {
+    "cityNameCn": "\u5c3c\u65af",
+    "cityCode": "NCE",
+    "cityId": "512",
+    "countryId": "17",
+    "cityNameEn": "Nice",
+    "pingYin": "Nisi",
+    "hyKeyWord": "NS"
+  }, {
+    "cityNameCn": "\u7ebd\u5821",
+    "cityCode": "SWF",
+    "cityId": "1115",
+    "countryId": "2",
+    "cityNameEn": "Newburgh",
+    "pingYin": "Niubao",
+    "hyKeyWord": "NB"
+  }, {
+    "cityNameCn": "\u7ebd\u6ce2\u7279\u7ebd\u65af",
+    "cityCode": "PHF",
+    "cityId": "1629",
+    "countryId": "2",
+    "cityNameEn": "NewportNews",
+    "pingYin": "Niuboteniusi",
+    "hyKeyWord": "NBTNS"
+  }, {
+    "cityNameCn": "\u7ebd\u9ed1\u6587",
+    "cityCode": "HVN",
+    "cityId": "1164",
+    "countryId": "2",
+    "cityNameEn": "New Haven",
+    "pingYin": "Niuheiwen",
+    "hyKeyWord": "NHW"
+  }, {
+    "cityNameCn": "\u7ebd\u4f26\u5821",
+    "cityCode": "NUE",
+    "cityId": "709",
+    "countryId": "7",
+    "cityNameEn": "Nuremberg",
+    "pingYin": "Niulunbao",
+    "hyKeyWord": "NLB"
+  }, {
+    "cityNameCn": "\u5c3c\u4e9a\u7f8e",
+    "cityCode": "NIM",
+    "cityId": "1527",
+    "countryId": "178",
+    "cityNameEn": "Niamey",
+    "pingYin": "Niyamei",
+    "hyKeyWord": "NYM"
+  }, {
+    "cityNameCn": "\u52aa\u7f8e\u963f",
+    "cityCode": "NOU",
+    "cityId": "1471",
+    "countryId": "144",
+    "cityNameEn": "Noumea",
+    "pingYin": "Numeia",
+    "hyKeyWord": "NMA"
+  }, {
+    "cityNameCn": "\u8bfa\u5c14\u96ea\u5e73",
+    "cityCode": "NRK",
+    "cityId": "1103",
+    "countryId": "18",
+    "cityNameEn": "Norrkoping",
+    "pingYin": "Nuoerxueping",
+    "hyKeyWord": "NEXP"
+  }, {
+    "cityNameCn": "\u8bfa\u798f\u514b",
+    "cityCode": "ORF",
+    "cityId": "1034",
+    "countryId": "2",
+    "cityNameEn": "Norfolk",
+    "pingYin": "Nuofuke",
+    "hyKeyWord": "NFK"
+  }, {
+    "cityNameCn": "\u8bfa\u514b\u65af\u7ef4\u5c14",
+    "cityCode": "TYS",
+    "cityId": "1013",
+    "countryId": "2",
+    "cityNameEn": "Knoxville",
+    "pingYin": "Nuokesiweier",
+    "hyKeyWord": "NKSWE"
+  }, {
+    "cityNameCn": "\u8bfa\u4ec0\u7ef4\u5c14",
+    "cityCode": "BNA",
+    "cityId": "1072",
+    "countryId": "2",
+    "cityNameEn": "Nashville",
+    "pingYin": "Nuoshenweier",
+    "hyKeyWord": "NSWE"
+  }, {
+    "cityNameCn": "\u8bfa\u65af\u8d1d",
+    "cityCode": "YYB",
+    "cityId": "1656",
+    "countryId": "91",
+    "cityNameEn": "NORTH BAY",
+    "pingYin": "Nuosibei",
+    "hyKeyWord": "NSB"
+  }, {
+    "cityNameCn": "\u8bfa\u5a01\u5947",
+    "cityCode": "NWI",
+    "cityId": "777",
+    "countryId": "21",
+    "cityNameEn": "Norwich",
+    "pingYin": "Nuoweiqi",
+    "hyKeyWord": "NWQ"
+  }, {
+    "cityNameCn": "\u52aa\u74e6\u514b\u8096\u7279",
+    "cityCode": "NKC",
+    "cityId": "1644",
+    "countryId": "195",
+    "cityNameEn": "NOUAKCHOTT ",
+    "pingYin": "Nuwakexiaote",
+    "hyKeyWord": "NWKXT"
+  }, {
+    "cityNameCn": "\u5185\u7f57\u6bd5",
+    "cityCode": "NBO",
+    "cityId": "740",
+    "countryId": "75",
+    "cityNameEn": "Nairobi",
+    "pingYin": "neiluobi",
+    "hyKeyWord": "nlb"
+  }, {
+    "cityNameCn": "\u7ebd\u5361\u65af\u5c14",
+    "cityCode": "NCL",
+    "cityId": "683",
+    "countryId": "21",
+    "cityNameEn": "Newcastle",
+    "pingYin": "niukasier",
+    "hyKeyWord": "nkse"
+  }, {
+    "cityNameCn": "\u7ebd\u7ea6",
+    "cityCode": "NYC",
+    "cityId": "521",
+    "countryId": "2",
+    "cityNameEn": "New York",
+    "pingYin": "niuyue",
+    "hyKeyWord": "ny"
+  }],
+  "O": [{
+    "cityNameCn": "\u6b27\u5fb7\u8428",
+    "cityCode": "ODS",
+    "cityId": "1538",
+    "countryId": "26",
+    "cityNameEn": "Odessa",
+    "pingYin": "Oudesa",
+    "hyKeyWord": "ODS"
+  }, {
+    "cityNameCn": "\u6b27\u514b\u83b1\u5c14",
+    "cityCode": "EAU",
+    "cityId": "986",
+    "countryId": "2",
+    "cityNameEn": "Eau Claire",
+    "pingYin": "Oukelaier",
+    "hyKeyWord": "OKLE"
+  }, {
+    "cityNameCn": "\u6b27\u6587\u65af\u4f2f\u52d2",
+    "cityCode": "OWB",
+    "cityId": "1041",
+    "countryId": "2",
+    "cityNameEn": "Owensboro",
+    "pingYin": "Ouwensibole",
+    "hyKeyWord": "OWSBL"
+  }],
+  "P": [{
+    "cityNameCn": "\u5e15\u5fb7\u535a\u6069",
+    "cityCode": "PAD",
+    "cityId": "733",
+    "countryId": "7",
+    "cityNameEn": "Paderborn",
+    "pingYin": "Padeboen",
+    "hyKeyWord": "PDBE"
+  }, {
+    "cityNameCn": "\u5e15\u8fea\u5c24\u5361",
+    "cityCode": "PAH",
+    "cityId": "1042",
+    "countryId": "2",
+    "cityNameEn": "Paducah",
+    "pingYin": "Padiyouka",
+    "hyKeyWord": "PDYK"
+  }, {
+    "cityNameCn": "\u5e15\u5c14\u9a6c\u9a6c\u62c9\u5c14\u514b",
+    "cityCode": "PMI",
+    "cityId": "864",
+    "countryId": "109",
+    "cityNameEn": "Palma de Mallorca ",
+    "pingYin": "Paermamalaerke",
+    "hyKeyWord": "PEMMLEK"
+  }, {
+    "cityNameCn": "\u5e15\u798f\u65af",
+    "cityCode": "PFO",
+    "cityId": "790",
+    "countryId": "114",
+    "cityNameEn": "Paphos",
+    "pingYin": "Pafusi",
+    "hyKeyWord": "PFS"
+  }, {
+    "cityNameCn": "\u5e15\u62c9\u5e03\u5c14\u591a",
+    "cityCode": "PBO",
+    "cityId": "1675",
+    "countryId": "16",
+    "cityNameEn": "Paraburdoo",
+    "pingYin": "Palabuerduo",
+    "hyKeyWord": "PLBED"
+  }, {
+    "cityNameCn": "\u5e15\u62c9\u9a6c\u91cc\u535a",
+    "cityCode": "PBM",
+    "cityId": "813",
+    "countryId": "125",
+    "cityNameEn": "Paramaribo",
+    "pingYin": "Palamalibo",
+    "hyKeyWord": "PLMLB"
+  }, {
+    "cityNameCn": "\u5e15\u9ed8\u65af\u987f\u5317",
+    "cityCode": "PMR",
+    "cityId": "1553",
+    "countryId": "33",
+    "cityNameEn": "Palmerston North",
+    "pingYin": "Pamosidunbei",
+    "hyKeyWord": "PMSDB"
+  }, {
+    "cityNameCn": "\u5e15\u7eb3\u9a6c\u57ce",
+    "cityCode": "PFN",
+    "cityId": "1043",
+    "countryId": "2",
+    "cityNameEn": "Panama City\uff08US\uff09",
+    "pingYin": "Panamacheng",
+    "hyKeyWord": "PNMC"
+  }, {
+    "cityNameCn": "\u6f58\u6cf0\u83b1\u91cc\u4e9a",
+    "cityCode": "PNL",
+    "cityId": "903",
+    "countryId": "14",
+    "cityNameEn": "Pantelleria",
+    "pingYin": "Pantailailiya",
+    "hyKeyWord": "PTLLY"
+  }, {
+    "cityNameCn": "\u5e15\u76ae\u63d0",
+    "cityCode": "PPT",
+    "cityId": "1438",
+    "countryId": "182",
+    "cityNameEn": "Papeete",
+    "pingYin": "Papiti",
+    "hyKeyWord": "PPT"
+  }, {
+    "cityNameCn": "\u5e15\u65af\u79d1",
+    "cityCode": "PSC",
+    "cityId": "946",
+    "countryId": "2",
+    "cityNameEn": "Pasco",
+    "pingYin": "Pasike",
+    "hyKeyWord": "PSK"
+  }, {
+    "cityNameCn": "\u4f69\u5c14\u65af\u987f",
+    "cityCode": "PLN",
+    "cityId": "1044",
+    "countryId": "2",
+    "cityNameEn": "Pellston",
+    "pingYin": "Peiersidun",
+    "hyKeyWord": "PESD"
+  }, {
+    "cityNameCn": "\u4f69\u9c81\u8d3e",
+    "cityCode": "PEG",
+    "cityId": "1079",
+    "countryId": "14",
+    "cityNameEn": "Perugia",
+    "pingYin": "Peilujia",
+    "hyKeyWord": "PLJ"
+  }, {
+    "cityNameCn": "\u4f69\u76ae\u5c3c\u6602",
+    "cityCode": "PGF",
+    "cityId": "1132",
+    "countryId": "17",
+    "cityNameEn": "Perpignan",
+    "pingYin": "Peipiniang",
+    "hyKeyWord": "PPNA"
+  }, {
+    "cityNameCn": "\u4f69\u65af\u5361\u62c9",
+    "cityCode": "PSR",
+    "cityId": "899",
+    "countryId": "14",
+    "cityNameEn": "Pescara",
+    "pingYin": "Peisikala",
+    "hyKeyWord": "PSKL"
+  }, {
+    "cityNameCn": "\u5f6d\u8428\u79d1\u62c9",
+    "cityCode": "PNS",
+    "cityId": "1045",
+    "countryId": "2",
+    "cityNameEn": "Pensacola",
+    "pingYin": "Pengsakela",
+    "hyKeyWord": "PSKL"
+  }, {
+    "cityNameCn": "\u76ae\u5965\u91cc\u4e9a",
+    "cityCode": "PIA",
+    "cityId": "1046",
+    "countryId": "2",
+    "cityNameEn": "Peoria",
+    "pingYin": "Piaoliya",
+    "hyKeyWord": "PALY"
+  }, {
+    "cityNameCn": "\u76ae\u5c14",
+    "cityCode": "PIR",
+    "cityId": "1047",
+    "countryId": "2",
+    "cityNameEn": "Pierre",
+    "pingYin": "Pier",
+    "hyKeyWord": "PE"
+  }, {
+    "cityNameCn": "\u5e73\u58e4",
+    "cityCode": "FNJ",
+    "cityId": "398",
+    "countryId": "110",
+    "cityNameEn": "Pyongyang",
+    "pingYin": "Pingrang",
+    "hyKeyWord": "PR"
+  }, {
+    "cityNameCn": "\u5339\u5179\u5821",
+    "cityCode": "PIT",
+    "cityId": "737",
+    "countryId": "2",
+    "cityNameEn": "Pittsburgh",
+    "pingYin": "Pizibao",
+    "hyKeyWord": "PZB"
+  }, {
+    "cityNameCn": "\u666e\u57c3\u5e03\u62c9",
+    "cityCode": "PBC",
+    "cityId": "1229",
+    "countryId": "76",
+    "cityNameEn": "Puebla",
+    "pingYin": "Puaibula",
+    "hyKeyWord": "PABL"
+  }, {
+    "cityNameCn": "\u666e\u5c14\u66fc",
+    "cityCode": "PUW",
+    "cityId": "950",
+    "countryId": "2",
+    "cityNameEn": "Pullman",
+    "pingYin": "Puerman",
+    "hyKeyWord": "PEM"
+  }, {
+    "cityNameCn": "\u666e\u62c9\u8328\u5821",
+    "cityCode": "PLB",
+    "cityId": "1155",
+    "countryId": "2",
+    "cityNameEn": "Plattisburgh",
+    "pingYin": "Pulacibao",
+    "hyKeyWord": "PLCB"
+  }, {
+    "cityNameCn": "\u666e\u96f7\u65af\u514b\u5c9b",
+    "cityCode": "PQI",
+    "cityId": "1048",
+    "countryId": "2",
+    "cityNameEn": "Presque Isle",
+    "pingYin": "Puleisikedao",
+    "hyKeyWord": "PLSKD"
+  }, {
+    "cityNameCn": "\u666e\u6797\u585e\u8428\u6e2f",
+    "cityCode": "PPS",
+    "cityId": "1498",
+    "countryId": "79",
+    "cityNameEn": "Puerto Princesa",
+    "pingYin": "Pulinsaisagang",
+    "hyKeyWord": "PLSSG"
+  }, {
+    "cityNameCn": "\u666e\u7f57\u7ef4\u767b\u65af",
+    "cityCode": "PVD",
+    "cityId": "1049",
+    "countryId": "2",
+    "cityNameEn": "Providence",
+    "pingYin": "Puluoweidengsi",
+    "hyKeyWord": "PLWDS"
+  }, {
+    "cityNameCn": "\u666e\u7f57\u7ef4\u767b\u590f\u83b1\u65af",
+    "cityCode": "PLS",
+    "cityId": "883",
+    "countryId": "135",
+    "cityNameEn": "Providenciales",
+    "pingYin": "Puluoweidengxialaisi",
+    "hyKeyWord": "PLWDXLS"
+  }, {
+    "cityNameCn": "\u6d66\u90a3",
+    "cityCode": "PNQ",
+    "cityId": "1199",
+    "countryId": "36",
+    "cityNameEn": "Pune",
+    "pingYin": "Punei",
+    "hyKeyWord": "PN"
+  }, {
+    "cityNameCn": "\u6d66\u9879",
+    "cityCode": "KPO",
+    "cityId": "1592",
+    "countryId": "86",
+    "cityNameEn": "Pohang",
+    "pingYin": "Puxiang",
+    "hyKeyWord": "PX"
+  }, {
+    "cityNameCn": "\u73c0\u65af",
+    "cityCode": "PER",
+    "cityId": "666",
+    "countryId": "16",
+    "cityNameEn": "Perth",
+    "pingYin": "posi",
+    "hyKeyWord": "ps"
+  }, {
+    "cityNameCn": "\u666e\u5409",
+    "cityCode": "HKT",
+    "cityId": "421",
+    "countryId": "8",
+    "cityNameEn": "Phuket",
+    "pingYin": "puji",
+    "hyKeyWord": "pj"
+  }],
+  "Q": [{
+    "cityNameCn": "\u4e54\u666e\u6797",
+    "cityCode": "JLN",
+    "cityId": "1010",
+    "countryId": "2",
+    "cityNameEn": "Joplin",
+    "pingYin": "Qiaopulin",
+    "hyKeyWord": "QPL"
+  }, {
+    "cityNameCn": "\u4e54\u6cbb",
+    "cityCode": "GRJ",
+    "cityId": "1412",
+    "countryId": "48",
+    "cityNameEn": "George",
+    "pingYin": "Qiaozhi",
+    "hyKeyWord": "QZ"
+  }, {
+    "cityNameCn": "\u4e54\u6cbb\u738b\u5b50\u57ce",
+    "cityCode": "YXS",
+    "cityId": "823",
+    "countryId": "91",
+    "cityNameEn": "Prince George",
+    "pingYin": "Qiaozhiwangzicheng",
+    "hyKeyWord": "QZWZC"
+  }, {
+    "cityNameCn": "\u5947\u79d1",
+    "cityCode": "CIC",
+    "cityId": "1568",
+    "countryId": "2",
+    "cityNameEn": "Chico",
+    "pingYin": "Qike",
+    "hyKeyWord": "QK"
+  }, {
+    "cityNameCn": "\u4e5e\u529b\u9a6c\u624e\u7f57\u5c71",
+    "cityCode": "JRO",
+    "cityId": "1341",
+    "countryId": "52",
+    "cityNameEn": "Kilimanjaro",
+    "pingYin": "Qilimazhaluoshan",
+    "hyKeyWord": "QLMZLS"
+  }, {
+    "cityNameCn": "\u5947\u59c6\u80af\u7279",
+    "cityCode": "CIT",
+    "cityId": "1304",
+    "countryId": "34",
+    "cityNameEn": "Shimkent",
+    "pingYin": "Qimukente",
+    "hyKeyWord": "QMKT"
+  }, {
+    "cityNameCn": "\u9752\u83b1",
+    "cityCode": "CEI",
+    "cityId": "722",
+    "countryId": "8",
+    "cityNameEn": "Chiang Rai",
+    "pingYin": "Qinglai",
+    "hyKeyWord": "QL"
+  }, {
+    "cityNameCn": "\u6e05\u8fc8",
+    "cityCode": "CNX",
+    "cityId": "658",
+    "countryId": "8",
+    "cityNameEn": "Chiang Mai",
+    "pingYin": "Qingmai",
+    "hyKeyWord": "QM"
+  }, {
+    "cityNameCn": "\u9752\u68ee",
+    "cityCode": "AOJ",
+    "cityId": "935",
+    "countryId": "13",
+    "cityNameEn": "Aomori",
+    "pingYin": "Qingsen",
+    "hyKeyWord": "QS"
+  }, {
+    "cityNameCn": "\u6e05\u5dde",
+    "cityCode": "CJJ",
+    "cityId": "655",
+    "countryId": "86",
+    "cityNameEn": "Cheonju",
+    "pingYin": "Qingzhou",
+    "hyKeyWord": "QZ"
+  }, {
+    "cityNameCn": "\u82b9\u82f4",
+    "cityCode": "VCA",
+    "cityId": "1631",
+    "countryId": "105",
+    "cityNameEn": "Can Tho",
+    "pingYin": "Qinju",
+    "hyKeyWord": "QJ"
+  }, {
+    "cityNameCn": "\u79cb\u7530",
+    "cityCode": "AXT",
+    "cityId": "936",
+    "countryId": "13",
+    "cityNameEn": "Akita",
+    "pingYin": "Qiutian",
+    "hyKeyWord": "QT"
+  }, {
+    "cityNameCn": "\u5947\u74e6\u74e6",
+    "cityCode": "CUU",
+    "cityId": "1619",
+    "countryId": "76",
+    "cityNameEn": "CHIHUAHUA",
+    "pingYin": "Qiwawa",
+    "hyKeyWord": "QWW"
+  }],
+  "R": [{
+    "cityNameCn": "\u70ed\u90a3\u4e9a",
+    "cityCode": "GOA",
+    "cityId": "731",
+    "countryId": "14",
+    "cityNameEn": "Genoa",
+    "pingYin": "Reneiya",
+    "hyKeyWord": "RNY"
+  }, {
+    "cityNameCn": "\u70ed\u8212\u592b",
+    "cityCode": "RZE",
+    "cityId": "1650",
+    "countryId": "25",
+    "cityNameEn": "RZE",
+    "pingYin": "Reshufu",
+    "hyKeyWord": "RSF"
+  }, {
+    "cityNameCn": "\u65e5\u60f9",
+    "cityCode": "JOG",
+    "cityId": "700",
+    "countryId": "54",
+    "cityNameEn": "Yogyakarta",
+    "pingYin": "Rire",
+    "hyKeyWord": "RR"
+  }, {
+    "cityNameCn": "\u8363\u5f7b\u5e73",
+    "cityCode": "JKG",
+    "cityId": "1098",
+    "countryId": "18",
+    "cityNameEn": "Jonkoping",
+    "pingYin": "Rongcheping",
+    "hyKeyWord": "RCP"
+  }, {
+    "cityNameCn": "\u8363\u5e02",
+    "cityCode": "VII",
+    "cityId": "1641",
+    "countryId": "105",
+    "cityNameEn": "VINH CITY ",
+    "pingYin": "Rongshi",
+    "hyKeyWord": "RS"
+  }, {
+    "cityNameCn": "\u67d4\u4f5b\u5df4\u9c81",
+    "cityCode": "JHB",
+    "cityId": "835",
+    "countryId": "70",
+    "cityNameEn": "Johor Bahru",
+    "pingYin": "Roufobalu",
+    "hyKeyWord": "RFBL"
+  }, {
+    "cityNameCn": "\u65e5\u5185\u74e6",
+    "cityCode": "GVA",
+    "cityId": "408",
+    "countryId": "60",
+    "cityNameEn": "Geneva",
+    "pingYin": "rineiwa",
+    "hyKeyWord": "rnw"
+  }],
+  "S": [{
+    "cityNameCn": "\u8428\u6bd4\u54c8-\u633d\u54e5\u514b\u585e\u65af",
+    "cityCode": "SAW",
+    "cityId": "1530",
+    "countryId": "38",
+    "cityNameEn": "Sabiha Gokcen",
+    "pingYin": "Sabiha-wangekesaisi",
+    "hyKeyWord": "SBH-WGKSS"
+  }, {
+    "cityNameCn": "\u8428\u5fb7\u4f2f\u91cc",
+    "cityCode": "YSB",
+    "cityId": "1437",
+    "countryId": "91",
+    "cityNameEn": "Sudbury",
+    "pingYin": "Sadeboli",
+    "hyKeyWord": "SDBL"
+  }, {
+    "cityNameCn": "\u8428\u5c14\u5e03\u5415\u80af",
+    "cityCode": "SCN",
+    "cityId": "892",
+    "countryId": "7",
+    "cityNameEn": "Saarbrucken",
+    "pingYin": "Saerbulu:ken",
+    "hyKeyWord": "SEBLK"
+  }, {
+    "cityNameCn": "\u8428\u5c14\u8328\u5821",
+    "cityCode": "SZG",
+    "cityId": "893",
+    "countryId": "107",
+    "cityNameEn": "Salzburg",
+    "pingYin": "Saercibao",
+    "hyKeyWord": "SECB"
+  }, {
+    "cityNameCn": "\u8428\u5c14\u74e6\u591a",
+    "cityCode": "SSA",
+    "cityId": "1472",
+    "countryId": "3",
+    "cityNameEn": "Salvador",
+    "pingYin": "Saerwaduo",
+    "hyKeyWord": "SEWD"
+  }, {
+    "cityNameCn": "\u8428\u51e1\u7eb3",
+    "cityCode": "SAV",
+    "cityId": "1156",
+    "countryId": "2",
+    "cityNameEn": "Savannah",
+    "pingYin": "Safanna",
+    "hyKeyWord": "SFN"
+  }, {
+    "cityNameCn": "\u8428\u683c\u52d2\u5e03",
+    "cityCode": "ZAG",
+    "cityId": "894",
+    "countryId": "138",
+    "cityNameEn": "Zagreb",
+    "pingYin": "Sagelebu",
+    "hyKeyWord": "SGLB"
+  }, {
+    "cityNameCn": "\u585e\u52d2\u59c6",
+    "cityCode": "SLE",
+    "cityId": "953",
+    "countryId": "2",
+    "cityNameEn": "Salem",
+    "pingYin": "Sailemu",
+    "hyKeyWord": "SLM"
+  }, {
+    "cityNameCn": "\u585e\u8428\u6d1b\u5c3c\u57fa",
+    "cityCode": "SKG",
+    "cityId": "924",
+    "countryId": "40",
+    "cityNameEn": "Thessaloniki",
+    "pingYin": "Saisaluoniji",
+    "hyKeyWord": "SSLNJ"
+  }, {
+    "cityNameCn": "\u585e\u820c\u5c14(\u9a6c\u57c3\u5c9b)",
+    "cityCode": "SEZ",
+    "cityId": "1242",
+    "countryId": "152",
+    "cityNameEn": "Seychelles(Mahe Is)",
+    "pingYin": "Saisheer(maaidao)",
+    "hyKeyWord": "SSE(MAD)"
+  }, {
+    "cityNameCn": "\u585e\u7ef4\u83b1",
+    "cityCode": "SVQ",
+    "cityId": "865",
+    "countryId": "109",
+    "cityNameEn": "Seville",
+    "pingYin": "Saiweilai",
+    "hyKeyWord": "SWL"
+  }, {
+    "cityNameCn": "\u8428\u5409\u8bfa",
+    "cityCode": "MBS",
+    "cityId": "1055",
+    "countryId": "2",
+    "cityNameEn": "Saginaw - Bay City",
+    "pingYin": "Sajinuo",
+    "hyKeyWord": "SJN"
+  }, {
+    "cityNameCn": "\u8428\u514b\u62c9\u95e8\u6258",
+    "cityCode": "SAC",
+    "cityId": "1445",
+    "countryId": "2",
+    "cityNameEn": "SACRAMENTO",
+    "pingYin": "Sakelamentuo",
+    "hyKeyWord": "SKLMT"
+  }, {
+    "cityNameCn": "\u8428\u62c9\u70ed\u7a9d",
+    "cityCode": "SJJ",
+    "cityId": "1214",
+    "countryId": "150",
+    "cityNameEn": "Sarajevo",
+    "pingYin": "Salarewo",
+    "hyKeyWord": "SLRW"
+  }, {
+    "cityNameCn": "\u8428\u9a6c\u5c14\u7f55",
+    "cityCode": "SKD",
+    "cityId": "1329",
+    "countryId": "89",
+    "cityNameEn": "Samarkand",
+    "pingYin": "Samaerhan",
+    "hyKeyWord": "SMEH"
+  }, {
+    "cityNameCn": "\u8428\u9a6c\u62c9",
+    "cityCode": "KUF",
+    "cityId": "1518",
+    "countryId": "24",
+    "cityNameEn": "Samara",
+    "pingYin": "Samala",
+    "hyKeyWord": "SML"
+  }, {
+    "cityNameCn": "\u4e09\u5b9d\u5784",
+    "cityCode": "SRG",
+    "cityId": "1185",
+    "countryId": "54",
+    "cityNameEn": "Semarang",
+    "pingYin": "Sanbaolong",
+    "hyKeyWord": "SBL"
+  }, {
+    "cityNameCn": "\u6851\u5fb7\u8d1d",
+    "cityCode": "YQT",
+    "cityId": "1231",
+    "countryId": "91",
+    "cityNameEn": "Thunder Bay",
+    "pingYin": "Sangdebei",
+    "hyKeyWord": "SDB"
+  }, {
+    "cityNameCn": "\u6851\u7ed9\u5df4\u5c14",
+    "cityCode": "ZNZ",
+    "cityId": "1528",
+    "countryId": "52",
+    "cityNameEn": "Zanzibar",
+    "pingYin": "Sangjibaer",
+    "hyKeyWord": "SJBE"
+  }, {
+    "cityNameCn": "\u4e09\u6b67",
+    "cityCode": "TMK",
+    "cityId": "1670",
+    "countryId": "105",
+    "cityNameEn": "TAMKY",
+    "pingYin": "Sanqi",
+    "hyKeyWord": "SQ"
+  }, {
+    "cityNameCn": "\u4e09\u6cfd",
+    "cityCode": "MSJ",
+    "cityId": "1491",
+    "countryId": "13",
+    "cityNameEn": "Misawa",
+    "pingYin": "Sanze",
+    "hyKeyWord": "SZ"
+  }, {
+    "cityNameCn": "\u8428\u65af\u5361\u901a",
+    "cityCode": "YXE",
+    "cityId": "763",
+    "countryId": "91",
+    "cityNameEn": "Saskatoon",
+    "pingYin": "Sasikatong",
+    "hyKeyWord": "SSKT"
+  }, {
+    "cityNameCn": "\u68ee\u8bb7\u5821",
+    "cityCode": "SGD",
+    "cityId": "1100",
+    "countryId": "27",
+    "cityNameEn": "Sonderborg",
+    "pingYin": "Sennebao",
+    "hyKeyWord": "SNB"
+  }, {
+    "cityNameCn": "\u68ee\u74e6\u5229",
+    "cityCode": "SUN",
+    "cityId": "749",
+    "countryId": "2",
+    "cityNameEn": "Sun Valley",
+    "pingYin": "Senwali",
+    "hyKeyWord": "SWL"
+  }, {
+    "cityNameCn": "\u6c99\u5df4",
+    "cityCode": "SBV",
+    "cityId": "343",
+    "countryId": "70",
+    "cityNameEn": "Sabah",
+    "pingYin": "Shaba",
+    "hyKeyWord": "SB"
+  }, {
+    "cityNameCn": "\u6c99\u8fe6",
+    "cityCode": "SHJ",
+    "cityId": "550",
+    "countryId": "15",
+    "cityNameEn": "Sharjah",
+    "pingYin": "Shajia",
+    "hyKeyWord": "SJ"
+  }, {
+    "cityNameCn": "\u6c99\u59c6\u6c99\u4f0a\u8d6b\u6e7e",
+    "cityCode": "SSH",
+    "cityId": "1523",
+    "countryId": "115",
+    "cityNameEn": "Sharm El Sheikh",
+    "pingYin": "Shamushayihewan",
+    "hyKeyWord": "SMSYHW"
+  }, {
+    "cityNameCn": "\u5c71\u6253\u6839",
+    "cityCode": "SDK",
+    "cityId": "947",
+    "countryId": "70",
+    "cityNameEn": "Sandakan",
+    "pingYin": "Shandagen",
+    "hyKeyWord": "SDG"
+  }, {
+    "cityNameCn": "\u5c1a\u8d1d\u91cc",
+    "cityCode": "CMF",
+    "cityId": "976",
+    "countryId": "2",
+    "cityNameEn": "Champaign",
+    "pingYin": "Shangbeili",
+    "hyKeyWord": "SBL"
+  }, {
+    "cityNameCn": "\u5c1a\u4f69\u6069",
+    "cityCode": "CMI",
+    "cityId": "1550",
+    "countryId": "2",
+    "cityNameEn": "Champaign",
+    "pingYin": "Shangpeien",
+    "hyKeyWord": "SPE"
+  }, {
+    "cityNameCn": "\u6c99\u74e6",
+    "cityCode": "PEW",
+    "cityId": "1243",
+    "countryId": "64",
+    "cityNameEn": "Peshawar",
+    "pingYin": "Shawa",
+    "hyKeyWord": "SW"
+  }, {
+    "cityNameCn": "\u5723\u5b89\u4e1c\u5c3c\u5965",
+    "cityCode": "SAT",
+    "cityId": "1659",
+    "countryId": "2",
+    "cityNameEn": "SAN ANTONIO",
+    "pingYin": "Shengandongniao",
+    "hyKeyWord": "SADNA"
+  }, {
+    "cityNameCn": "\u5723\u5b89\u5a1c",
+    "cityCode": "SNA",
+    "cityId": "1114",
+    "countryId": "2",
+    "cityNameEn": "Sant Ana",
+    "pingYin": "Shenganna",
+    "hyKeyWord": "SAN"
+  }, {
+    "cityNameCn": "\u5723\u5df4\u5df4\u62c9",
+    "cityCode": "SBA",
+    "cityId": "955",
+    "countryId": "2",
+    "cityNameEn": "Santa Barbara",
+    "pingYin": "Shengbabala",
+    "hyKeyWord": "SBBL"
+  }, {
+    "cityNameCn": "\u5723\u8fed\u6208",
+    "cityCode": "SAN",
+    "cityId": "954",
+    "countryId": "2",
+    "cityNameEn": "San Diego",
+    "pingYin": "Shengdiege",
+    "hyKeyWord": "SDG"
+  }, {
+    "cityNameCn": "\u5723\u5730\u4e9a\u54e5",
+    "cityCode": "STI",
+    "cityId": "1626",
+    "countryId": "106",
+    "cityNameEn": "SANTIAGO",
+    "pingYin": "Shengdiyage",
+    "hyKeyWord": "SDYG"
+  }, {
+    "cityNameCn": "\u5723\u5730\u4e9a\u54e5(\u53e4\u5df4)",
+    "cityCode": "SCU",
+    "cityId": "542",
+    "countryId": "61",
+    "cityNameEn": "Santiago(cuba)",
+    "pingYin": "Shengdiyage(guba)",
+    "hyKeyWord": "SDYG(GB)"
+  }, {
+    "cityNameCn": "\u5723\u5730\u4e9a\u54e5(\u667a\u5229)",
+    "cityCode": "SCL",
+    "cityId": "1323",
+    "countryId": "84",
+    "cityNameEn": "Santiago(Chile)",
+    "pingYin": "Shengdiyage(zhili)",
+    "hyKeyWord": "SDYG(ZL)"
+  }, {
+    "cityNameCn": "\u5723\u5730\u4e9a\u54e5\u79d1\u6ce2\u6cf0\u62c9",
+    "cityCode": "SCQ",
+    "cityId": "919",
+    "countryId": "109",
+    "cityNameEn": "Santiago Comptela",
+    "pingYin": "Shengdiyagekebotaila",
+    "hyKeyWord": "SDYGKBTL"
+  }, {
+    "cityNameCn": "\u5723\u591a\u660e\u5404",
+    "cityCode": "SDQ",
+    "cityId": "752",
+    "countryId": "106",
+    "cityNameEn": "Santo Domingo",
+    "pingYin": "Shengduomingge",
+    "hyKeyWord": "SDMG"
+  }, {
+    "cityNameCn": "\u5723\u4f55\u585e",
+    "cityCode": "SJO",
+    "cityId": "1496",
+    "countryId": "168",
+    "cityNameEn": "San Jose",
+    "pingYin": "Shenghesai",
+    "hyKeyWord": "SHS"
+  }, {
+    "cityNameCn": "\u5723\u4f55\u585e\uff08\u7f8e\uff09",
+    "cityCode": "SJC",
+    "cityId": "554",
+    "countryId": "2",
+    "cityNameEn": "San Jose",
+    "pingYin": "Shenghesai(Mei)",
+    "hyKeyWord": "SHS(M)"
+  }, {
+    "cityNameCn": "\u5723\u80e1\u5b89",
+    "cityCode": "SJU",
+    "cityId": "1375",
+    "countryId": "87",
+    "cityNameEn": "San Juan",
+    "pingYin": "Shenghuan",
+    "hyKeyWord": "SHA"
+  }, {
+    "cityNameCn": "\u5723\u514b\u52b3\u5fb7",
+    "cityCode": "STC",
+    "cityId": "1061",
+    "countryId": "2",
+    "cityNameEn": "St. Cloud ",
+    "pingYin": "Shengkelaode",
+    "hyKeyWord": "SKLD"
+  }, {
+    "cityNameCn": "\u5723\u5362\u897f\u4e9a",
+    "cityCode": "UVF",
+    "cityId": "1203",
+    "countryId": "147",
+    "cityNameEn": "Saint Lucia",
+    "pingYin": "Shengluxiya",
+    "hyKeyWord": "SLXY"
+  }, {
+    "cityNameCn": "\u5723\u8def\u6613\u65af",
+    "cityCode": "STL",
+    "cityId": "557",
+    "countryId": "2",
+    "cityNameEn": "St. Louis",
+    "pingYin": "Shengluyisi",
+    "hyKeyWord": "SLYS"
+  }, {
+    "cityNameCn": "\u5723\u8def\u6613\u65af \u5965\u6bd4\u65af\u6ce2",
+    "cityCode": "CSL",
+    "cityId": "1078",
+    "countryId": "2",
+    "cityNameEn": "San Luis Obispo",
+    "pingYin": "Shengluyisi aobisibo",
+    "hyKeyWord": "SLYS ABSB"
+  }, {
+    "cityNameCn": "\u5723\u8def\u6613\u65af\u6ce2\u6258\u897f",
+    "cityCode": "SLP",
+    "cityId": "1515",
+    "countryId": "76",
+    "cityNameEn": "San Luis Potosi",
+    "pingYin": "Shengluyisibotuoxi",
+    "hyKeyWord": "SLYSBTX"
+  }, {
+    "cityNameCn": "\u5723\u739b\u4e3d\u4e9a",
+    "cityCode": "SMX",
+    "cityId": "1505",
+    "countryId": "2",
+    "cityNameEn": "Santa Maria",
+    "pingYin": "Shengmaliya",
+    "hyKeyWord": "SMLY"
+  }, {
+    "cityNameCn": "\u5723\u9a6c\u6ed5",
+    "cityCode": "SXM",
+    "cityId": "1473",
+    "countryId": "185",
+    "cityNameEn": "Saint Maarten",
+    "pingYin": "Shengmateng",
+    "hyKeyWord": "SMT"
+  }, {
+    "cityNameCn": "\u5723\u6258\u91cc\u5c3c",
+    "cityCode": "JTR",
+    "cityId": "1578",
+    "countryId": "40",
+    "cityNameEn": "SANTORINI",
+    "pingYin": "Shengtuolini",
+    "hyKeyWord": "STLN"
+  }, {
+    "cityNameCn": "\u5723\u7ea6\u7ff0",
+    "cityCode": "YYT",
+    "cityId": "1145",
+    "countryId": "91",
+    "cityNameEn": "Stjohns",
+    "pingYin": "Shengyuehan",
+    "hyKeyWord": "SYH"
+  }, {
+    "cityNameCn": "\u795e\u6237",
+    "cityCode": "UKB",
+    "cityId": "1679",
+    "countryId": "13",
+    "cityNameEn": "Kobe",
+    "pingYin": "Shenhu",
+    "hyKeyWord": "SH"
+  }, {
+    "cityNameCn": "\u4ec0\u91cc\u592b\u6ce2\u7279",
+    "cityCode": "SHV",
+    "cityId": "1056",
+    "countryId": "2",
+    "cityNameEn": "Shreveport",
+    "pingYin": "Shenlifubote",
+    "hyKeyWord": "SLFBT"
+  }, {
+    "cityNameCn": "\u53f2\u5bc6\u65af\u5821",
+    "cityCode": "FSM",
+    "cityId": "994",
+    "countryId": "2",
+    "cityNameEn": "Fort Smith",
+    "pingYin": "Shimisibao",
+    "hyKeyWord": "SMSB"
+  }, {
+    "cityNameCn": "\u987a\u5316",
+    "cityCode": "HUI",
+    "cityId": "1422",
+    "countryId": "105",
+    "cityNameEn": "Hue",
+    "pingYin": "Shunhua",
+    "hyKeyWord": "SH"
+  }, {
+    "cityNameCn": "\u65af\u6ce2\u574e",
+    "cityCode": "GEG",
+    "cityId": "956",
+    "countryId": "2",
+    "cityNameEn": "Spokane",
+    "pingYin": "Sibokan",
+    "hyKeyWord": "SBK"
+  }, {
+    "cityNameCn": "\u65af\u514b\u5170\u987f",
+    "cityCode": "AVP",
+    "cityId": "1623",
+    "countryId": "2",
+    "cityNameEn": "SCRANTON",
+    "pingYin": "Sikelandun",
+    "hyKeyWord": "SKLD"
+  }, {
+    "cityNameCn": "\u65af\u79d1\u666e\u91cc",
+    "cityCode": "SKP",
+    "cityId": "1136",
+    "countryId": "151",
+    "cityNameEn": "Skopje",
+    "pingYin": "Sikepuli",
+    "hyKeyWord": "SKPL"
+  }, {
+    "cityNameCn": "\u65af\u91cc\u5df4\u52a0\u6e7e\u5e02",
+    "cityCode": "BWN",
+    "cityId": "654",
+    "countryId": "113",
+    "cityNameEn": "Band.Seri Begawan",
+    "pingYin": "Silibajiawanshi",
+    "hyKeyWord": "SLBJWS"
+  }, {
+    "cityNameCn": "\u65af\u5229\u90a3\u52a0",
+    "cityCode": "SXR",
+    "cityId": "1436",
+    "countryId": "36",
+    "cityNameEn": "SRINAGAR",
+    "pingYin": "Silineijia",
+    "hyKeyWord": "SLNJ"
+  }, {
+    "cityNameCn": "\u65af\u666e\u6797\u83f2\u5c14\u5fb7",
+    "cityCode": "SGF",
+    "cityId": "1073",
+    "countryId": "2",
+    "cityNameEn": "Springfield",
+    "pingYin": "Sipulinfeierde",
+    "hyKeyWord": "SPLFED"
+  }, {
+    "cityNameCn": "\u65af\u666e\u5229\u7279",
+    "cityCode": "SPU",
+    "cityId": "891",
+    "countryId": "138",
+    "cityNameEn": "Split",
+    "pingYin": "Sipulite",
+    "hyKeyWord": "SPLT"
+  }, {
+    "cityNameCn": "\u65af\u6cf0\u7279\u79d1\u5229\u5947",
+    "cityCode": "SCE",
+    "cityId": "1060",
+    "countryId": "2",
+    "cityNameEn": "State College",
+    "pingYin": "Sitaitekeliqi",
+    "hyKeyWord": "STTKLQ"
+  }, {
+    "cityNameCn": "\u65af\u5854\u4e07\u683c",
+    "cityCode": "SVG",
+    "cityId": "787",
+    "countryId": "80",
+    "cityNameEn": "Stavanger",
+    "pingYin": "Sitawange",
+    "hyKeyWord": "STWG"
+  }, {
+    "cityNameCn": "\u65af\u7279\u62c9\u65af\u5821",
+    "cityCode": "SXB",
+    "cityId": "797",
+    "countryId": "17",
+    "cityNameEn": "Strasbourg",
+    "pingYin": "Sitelasibao",
+    "hyKeyWord": "STLSB"
+  }, {
+    "cityNameCn": "\u65af\u56fe\u52a0\u7279",
+    "cityCode": "STR",
+    "cityId": "692",
+    "countryId": "7",
+    "cityNameEn": "Stuttgart",
+    "pingYin": "Situjiate",
+    "hyKeyWord": "STJT"
+  }, {
+    "cityNameCn": "\u6cd7\u52a1",
+    "cityCode": "SBW",
+    "cityId": "669",
+    "countryId": "70",
+    "cityNameEn": "Sibu",
+    "pingYin": "Siwu",
+    "hyKeyWord": "SW"
+  }, {
+    "cityNameCn": "\u65af\u5e0c\u6ce2\u5c14",
+    "cityCode": "SPL",
+    "cityId": "1212",
+    "countryId": "22",
+    "cityNameEn": "Schiphol",
+    "pingYin": "Sixiboer",
+    "hyKeyWord": "SXBE"
+  }, {
+    "cityNameCn": "\u677e\u5c71",
+    "cityCode": "MYJ",
+    "cityId": "738",
+    "countryId": "13",
+    "cityNameEn": "Matsuyama",
+    "pingYin": "Songshan",
+    "hyKeyWord": "SS"
+  }, {
+    "cityNameCn": "\u677e\u5179\u74e6\u5c14",
+    "cityCode": "SDL",
+    "cityId": "1093",
+    "countryId": "18",
+    "cityNameEn": "Sundsvall",
+    "pingYin": "Songziwaer",
+    "hyKeyWord": "SZWE"
+  }, {
+    "cityNameCn": "\u82cf\u57ce",
+    "cityCode": "SUX",
+    "cityId": "1057",
+    "countryId": "2",
+    "cityNameEn": "Sioux City",
+    "pingYin": "Sucheng",
+    "hyKeyWord": "SC"
+  }, {
+    "cityNameCn": "\u82cf\u798f\u5c14\u65af",
+    "cityCode": "FSD",
+    "cityId": "1058",
+    "countryId": "2",
+    "cityNameEn": "Sioux Falls",
+    "pingYin": "Sufuersi",
+    "hyKeyWord": "SFES"
+  }, {
+    "cityNameCn": "\u7ee5\u548c",
+    "cityCode": "TBB",
+    "cityId": "1639",
+    "countryId": "105",
+    "cityNameEn": "TUY HOA",
+    "pingYin": "Suihe",
+    "hyKeyWord": "SH"
+  }, {
+    "cityNameCn": "\u7d20\u53fb\u4ed6\u5c3c \u987d\u4e07\u4f26 \u4e38",
+    "cityCode": "URT",
+    "cityId": "1536",
+    "countryId": "8",
+    "cityNameEn": "Surat Thani",
+    "pingYin": "Suletani wanwanlun wan",
+    "hyKeyWord": "SLTN WWL W"
+  }, {
+    "cityNameCn": "\u7d22\u975e\u4e9a",
+    "cityCode": "SOF",
+    "cityId": "746",
+    "countryId": "88",
+    "cityNameEn": "Sofia",
+    "pingYin": "Suofeiya",
+    "hyKeyWord": "SFY"
+  }, {
+    "cityNameCn": "\u7d22\u7f57\u57ce",
+    "cityCode": "SOC",
+    "cityId": "670",
+    "countryId": "54",
+    "cityNameEn": "Solo City",
+    "pingYin": "Suoluocheng",
+    "hyKeyWord": "SLC"
+  }, {
+    "cityNameCn": "\u82cf\u5723\u739b\u4e3d",
+    "cityCode": "SSM",
+    "cityId": "1233",
+    "countryId": "2",
+    "cityNameEn": "Sault St Mtrie Mi",
+    "pingYin": "Sushengmali",
+    "hyKeyWord": "SSML"
+  }, {
+    "cityNameCn": "\u5bbf\u52a1",
+    "cityCode": "CEB",
+    "cityId": "361",
+    "countryId": "79",
+    "cityNameEn": "Cebu",
+    "pingYin": "Suwu",
+    "hyKeyWord": "SW"
+  }, {
+    "cityNameCn": "\u585e\u73ed\u5c9b",
+    "cityCode": "SPN",
+    "cityId": "541",
+    "countryId": "104",
+    "cityNameEn": "Saipan",
+    "pingYin": "saibandao",
+    "hyKeyWord": "sbd"
+  }, {
+    "cityNameCn": "\u8428\u90a3",
+    "cityCode": "SAH",
+    "cityId": "540",
+    "countryId": "32",
+    "cityNameEn": "Sana",
+    "pingYin": "sana",
+    "hyKeyWord": "sn"
+  }, {
+    "cityNameCn": "\u5723\u4fdd\u7f57",
+    "cityCode": "SAO",
+    "cityId": "507",
+    "countryId": "3",
+    "cityNameEn": "Sao Paulo ",
+    "pingYin": "shengbaoluo",
+    "hyKeyWord": "sbl"
+  }, {
+    "cityNameCn": "\u5723\u5f7c\u5f97\u5821",
+    "cityCode": "LED",
+    "cityId": "795",
+    "countryId": "24",
+    "cityNameEn": "St Petersburg",
+    "pingYin": "shengbidebao",
+    "hyKeyWord": "sbdb"
+  }, {
+    "cityNameCn": "\u9996\u5c14",
+    "cityCode": "SEL",
+    "cityId": "545",
+    "countryId": "86",
+    "cityNameEn": "Seoul",
+    "pingYin": "shouer",
+    "hyKeyWord": "se"
+  }, {
+    "cityNameCn": "\u65af\u5fb7\u54e5\u5c14\u6469",
+    "cityCode": "STO",
+    "cityId": "558",
+    "countryId": "18",
+    "cityNameEn": "Stockholm",
+    "pingYin": "sidegeermo",
+    "hyKeyWord": "sdgem"
+  }, {
+    "cityNameCn": "\u6cd7\u6c34",
+    "cityCode": "SUB",
+    "cityId": "672",
+    "countryId": "54",
+    "cityNameEn": "Surabaya",
+    "pingYin": "sishui",
+    "hyKeyWord": "ss"
+  }, {
+    "cityNameCn": "\u82cf\u9ece\u4e16",
+    "cityCode": "ZRH",
+    "cityId": "622",
+    "countryId": "60",
+    "cityNameEn": "Zurich",
+    "pingYin": "sulishi",
+    "hyKeyWord": "sls"
+  }, {
+    "cityNameCn": "\u82cf\u6885\u5c9b",
+    "cityCode": "USM",
+    "cityId": "675",
+    "countryId": "8",
+    "cityNameEn": "Koh Samui",
+    "pingYin": "sumeidao",
+    "hyKeyWord": "smd"
+  }],
+  "T": [{
+    "cityNameCn": "\u5854\u6bd4\u62c9\u5170",
+    "cityCode": "TAG",
+    "cityId": "1551",
+    "countryId": "79",
+    "cityNameEn": "Tagbilaran",
+    "pingYin": "Tabilalan",
+    "hyKeyWord": "TBLL"
+  }, {
+    "cityNameCn": "\u5854\u5c14\u8428",
+    "cityCode": "TUL",
+    "cityId": "721",
+    "countryId": "2",
+    "cityNameEn": "Tulsa",
+    "pingYin": "Taersa",
+    "hyKeyWord": "TES"
+  }, {
+    "cityNameCn": "\u6cf0\u52d2",
+    "cityCode": "TYR",
+    "cityId": "1222",
+    "countryId": "2",
+    "cityNameEn": "Tyler TX",
+    "pingYin": "Taile",
+    "hyKeyWord": "TL"
+  }, {
+    "cityNameCn": "\u592a\u5b50\u6e2f",
+    "cityCode": "PAP",
+    "cityId": "1474",
+    "countryId": "186",
+    "cityNameEn": "Port Au Prince",
+    "pingYin": "Taizigang",
+    "hyKeyWord": "TZG"
+  }, {
+    "cityNameCn": "\u5854\u62c9\u54c8\u897f",
+    "cityCode": "TLH",
+    "cityId": "1158",
+    "countryId": "2",
+    "cityNameEn": "Tallahassee",
+    "pingYin": "Talahaxi",
+    "hyKeyWord": "TLHX"
+  }, {
+    "cityNameCn": "\u5854\u6797",
+    "cityCode": "TLL",
+    "cityId": "796",
+    "countryId": "120",
+    "cityNameEn": "Tallinn",
+    "pingYin": "Talin",
+    "hyKeyWord": "TL"
+  }, {
+    "cityNameCn": "\u5854\u90a3\u90a3\u5229\u4f5b",
+    "cityCode": "TNR",
+    "cityId": "1587",
+    "countryId": "180",
+    "cityNameEn": "ANTANANARIVO",
+    "pingYin": "Taneineilifo",
+    "hyKeyWord": "TNNLF"
+  }, {
+    "cityNameCn": "\u6c64\u65af\u7ef4\u5c14",
+    "cityCode": "TSV",
+    "cityId": "1487",
+    "countryId": "16",
+    "cityNameEn": "Townsville",
+    "pingYin": "Tangsiweier",
+    "hyKeyWord": "TSWE"
+  }, {
+    "cityNameCn": "\u5766\u5e15",
+    "cityCode": "TPA",
+    "cityId": "876",
+    "countryId": "2",
+    "cityNameEn": "Tampa",
+    "pingYin": "Tanpa",
+    "hyKeyWord": "TP"
+  }, {
+    "cityNameCn": "\u5766\u4f69\u96f7",
+    "cityCode": "TMP",
+    "cityId": "1110",
+    "countryId": "62",
+    "cityNameEn": "Tampere",
+    "pingYin": "Tanpeilei",
+    "hyKeyWord": "TPL"
+  }, {
+    "cityNameCn": "\u5766\u76ae\u79d1",
+    "cityCode": "TAM",
+    "cityId": "1223",
+    "countryId": "76",
+    "cityNameEn": "Tampico",
+    "pingYin": "Tanpike",
+    "hyKeyWord": "TPK"
+  }, {
+    "cityNameCn": "\u5854\u65af\u5361\u5362\u8428",
+    "cityCode": "TCL",
+    "cityId": "1331",
+    "countryId": "161",
+    "cityNameEn": "Tuscaloosa",
+    "pingYin": "Tasikalusa",
+    "hyKeyWord": "TSKLS"
+  }, {
+    "cityNameCn": "\u7279\u53e4\u897f\u52a0\u5c14\u5df4",
+    "cityCode": "TGU",
+    "cityId": "1642",
+    "countryId": "145",
+    "cityNameEn": "TEGUCIGALPA",
+    "pingYin": "Teguxijiaerba",
+    "hyKeyWord": "TGXJEB"
+  }, {
+    "cityNameCn": "\u7279\u79d1\u8428\u5361\u7eb3",
+    "cityCode": "TXK",
+    "cityId": "1159",
+    "countryId": "2",
+    "cityNameEn": "Texarkana",
+    "pingYin": "Tekesakana",
+    "hyKeyWord": "TKSKN"
+  }, {
+    "cityNameCn": "\u7279\u62c9\u5f17\u65af",
+    "cityCode": "TVC",
+    "cityId": "1065",
+    "countryId": "2",
+    "cityNameEn": "Traverse City",
+    "pingYin": "Telafusi",
+    "hyKeyWord": "TLFS"
+  }, {
+    "cityNameCn": "\u7279\u62c9\u7ef4\u592b-\u96c5\u6cd5",
+    "cityCode": "TLV",
+    "cityId": "574",
+    "countryId": "111",
+    "cityNameEn": "Telaviv Yafo",
+    "pingYin": "Telaweifu-yafa",
+    "hyKeyWord": "TLWF-YF"
+  }, {
+    "cityNameCn": "\u7279\u91cc\u51e1\u5f97\u7405",
+    "cityCode": "TRV",
+    "cityId": "1219",
+    "countryId": "36",
+    "cityNameEn": "Thiruvananthapuram",
+    "pingYin": "Telifandelang",
+    "hyKeyWord": "TLFDL"
+  }, {
+    "cityNameCn": "\u7279\u9686\u8d6b\u59c6",
+    "cityCode": "TRD",
+    "cityId": "723",
+    "countryId": "80",
+    "cityNameEn": "Trondheim",
+    "pingYin": "Telonghemu",
+    "hyKeyWord": "TLHM"
+  }, {
+    "cityNameCn": "\u7279\u7f57\u59c6\u745f",
+    "cityCode": "TOS",
+    "cityId": "1095",
+    "countryId": "80",
+    "cityNameEn": "Tromso",
+    "pingYin": "Teluomuse",
+    "hyKeyWord": "TLMS"
+  }, {
+    "cityNameCn": "\u7279\u5185\u91cc\u8d39",
+    "cityCode": "TCI",
+    "cityId": "1475",
+    "countryId": "109",
+    "cityNameEn": "Tenerife",
+    "pingYin": "Teneilifei",
+    "hyKeyWord": "TNLF"
+  }, {
+    "cityNameCn": "\u7279\u6e29\u798f\u5c14\u65af",
+    "cityCode": "TWF",
+    "cityId": "958",
+    "countryId": "2",
+    "cityNameEn": "Twin Falls",
+    "pingYin": "Tewenfuersi",
+    "hyKeyWord": "TWFES"
+  }, {
+    "cityNameCn": "\u63d0\u62c9\u7eb3",
+    "cityCode": "TIA",
+    "cityId": "1430",
+    "countryId": "161",
+    "cityNameEn": "Tirana",
+    "pingYin": "Tilana",
+    "hyKeyWord": "TLN"
+  }, {
+    "cityNameCn": "\u56fe\u5c14",
+    "cityCode": "TUF",
+    "cityId": "1476",
+    "countryId": "17",
+    "cityNameEn": "Tours",
+    "pingYin": "Tuer",
+    "hyKeyWord": "TE"
+  }, {
+    "cityNameCn": "\u56fe\u5c14\u5e93",
+    "cityCode": "TKU",
+    "cityId": "1099",
+    "countryId": "62",
+    "cityNameEn": "Turku",
+    "pingYin": "Tuerku",
+    "hyKeyWord": "TEK"
+  }, {
+    "cityNameCn": "\u571f\u4f26",
+    "cityCode": "TLN",
+    "cityId": "1163",
+    "countryId": "17",
+    "cityNameEn": "Toulon",
+    "pingYin": "Tulun",
+    "hyKeyWord": "TL"
+  }, {
+    "cityNameCn": "\u56fe\u5362\u5179",
+    "cityCode": "TLS",
+    "cityId": "932",
+    "countryId": "17",
+    "cityNameEn": "Toulouse",
+    "pingYin": "Tuluzi",
+    "hyKeyWord": "TLZ"
+  }, {
+    "cityNameCn": "\u6258\u83b1\u591a",
+    "cityCode": "TOL",
+    "cityId": "1064",
+    "countryId": "2",
+    "cityNameEn": "Toledo",
+    "pingYin": "Tuolaiduo",
+    "hyKeyWord": "TLD"
+  }, {
+    "cityNameCn": "\u56fe\u73c0\u6d1b",
+    "cityCode": "TUP",
+    "cityId": "1066",
+    "countryId": "2",
+    "cityNameEn": "Tupelo",
+    "pingYin": "Tupoluo",
+    "hyKeyWord": "TPL"
+  }, {
+    "cityNameCn": "\u56fe\u68ee",
+    "cityCode": "TUS",
+    "cityId": "957",
+    "countryId": "2",
+    "cityNameEn": "Tucson",
+    "pingYin": "Tusen",
+    "hyKeyWord": "TS"
+  }, {
+    "cityNameCn": "\u53f0\u5317",
+    "cityCode": "TPE",
+    "cityId": "578",
+    "countryId": "137",
+    "cityNameEn": "Taipei",
+    "pingYin": "taibei",
+    "hyKeyWord": "tb"
+  }, {
+    "cityNameCn": "\u53f0\u4e2d",
+    "cityCode": "RMQ",
+    "cityId": "579",
+    "countryId": "137",
+    "cityNameEn": "Taichung",
+    "pingYin": "taizhong",
+    "hyKeyWord": "tz"
+  }, {
+    "cityNameCn": "\u5854\u4ec0\u5e72",
+    "cityCode": "TAS",
+    "cityId": "569",
+    "countryId": "89",
+    "cityNameEn": "Tashkent",
+    "pingYin": "tashigan",
+    "hyKeyWord": "tsg"
+  }, {
+    "cityNameCn": "\u7a81\u5c3c\u65af",
+    "cityCode": "TUN",
+    "cityId": "739",
+    "countryId": "101",
+    "cityNameEn": "Tunis",
+    "pingYin": "tunisi",
+    "hyKeyWord": "tns"
+  }],
+  "U": [{
+    "cityNameCn": "\u963f\u5e73\u987f",
+    "cityCode": "UTN",
+    "cityId": "1609",
+    "countryId": "48",
+    "cityNameEn": "UPINGTON",
+    "pingYin": "UPINGTON",
+    "hyKeyWord": "APD"
+  }],
+  "W": [{
+    "cityNameCn": "\u74e6\u591a\u8fbe\u62c9",
+    "cityCode": "BDQ",
+    "cityId": "1533",
+    "countryId": "36",
+    "cityNameEn": "Vadodara",
+    "pingYin": "Waduodala",
+    "hyKeyWord": "WDDL"
+  }, {
+    "cityNameCn": "\u74e6\u5c14\u5e15\u83b1\u7d22",
+    "cityCode": "VPS",
+    "cityId": "995",
+    "countryId": "2",
+    "cityNameEn": "Valparaiso",
+    "pingYin": "Waerpalaisuo",
+    "hyKeyWord": "WEPLS"
+  }, {
+    "cityNameCn": "\u74e6\u54c8\u5361",
+    "cityCode": "OAX",
+    "cityId": "1573",
+    "countryId": "76",
+    "cityNameEn": "Oaxac",
+    "pingYin": "Wahaka",
+    "hyKeyWord": "WHK"
+  }, {
+    "cityNameCn": "\u74e6\u62c9\u591a\u5229\u5fb7",
+    "cityCode": "VLL",
+    "cityId": "1161",
+    "countryId": "109",
+    "cityNameEn": "Valladolid",
+    "pingYin": "Waladuolide",
+    "hyKeyWord": "WLDLD"
+  }, {
+    "cityNameCn": "\u74e6\u62c9\u7eb3\u897f",
+    "cityCode": "VNS",
+    "cityId": "1077",
+    "countryId": "36",
+    "cityNameEn": "Varanasi",
+    "pingYin": "Walanaxi",
+    "hyKeyWord": "WLNX"
+  }, {
+    "cityNameCn": "\u74e6\u62c9\u74e6\u62c9",
+    "cityCode": "ALW",
+    "cityId": "959",
+    "countryId": "2",
+    "cityNameEn": "Walla Walla ",
+    "pingYin": "Walawala",
+    "hyKeyWord": "WLWL"
+  }, {
+    "cityNameCn": "\u74e6\u4f26\u897f\u4e9a",
+    "cityCode": "VLC",
+    "cityId": "922",
+    "countryId": "109",
+    "cityNameEn": "Valencia",
+    "pingYin": "Walunxiya",
+    "hyKeyWord": "WLXY"
+  }, {
+    "cityNameCn": "\u4e07\u9686",
+    "cityCode": "BDO",
+    "cityId": "1671",
+    "countryId": "54",
+    "cityNameEn": "BANDUNG",
+    "pingYin": "Wanlong",
+    "hyKeyWord": "WL"
+  }, {
+    "cityNameCn": "\u4e07\u8c61",
+    "cityCode": "VTE",
+    "cityId": "589",
+    "countryId": "90",
+    "cityNameEn": "Vientiane",
+    "pingYin": "Wanxiang",
+    "hyKeyWord": "WX"
+  }, {
+    "cityNameCn": "\u4e07\u9e26\u8001",
+    "cityCode": "MDC",
+    "cityId": "664",
+    "countryId": "54",
+    "cityNameEn": "Manado",
+    "pingYin": "Wanyalao",
+    "hyKeyWord": "WYL"
+  }, {
+    "cityNameCn": "\u5371\u5730\u9a6c\u62c9\u57ce",
+    "cityCode": "GUA",
+    "cityId": "1572",
+    "countryId": "177",
+    "cityNameEn": "GUATEMALA CITY",
+    "pingYin": "Weidimalacheng",
+    "hyKeyWord": "WDMLC"
+  }, {
+    "cityNameCn": "\u7ef4\u591a\u5229\u4e9a",
+    "cityCode": "VCT",
+    "cityId": "1178",
+    "countryId": "2",
+    "cityNameEn": "Victoria Tx",
+    "pingYin": "Weiduoliya",
+    "hyKeyWord": "WDLY"
+  }, {
+    "cityNameCn": "\u7ef4\u591a\u5229\u4e9a",
+    "cityCode": "YYJ",
+    "cityId": "756",
+    "countryId": "91",
+    "cityNameEn": "Victoria ",
+    "pingYin": "Weiduoliya",
+    "hyKeyWord": "WDLY"
+  }, {
+    "cityNameCn": "\u7ef4\u591a\u5229\u4e9a\u7011\u5e03\u57ce",
+    "cityCode": "VFA",
+    "cityId": "1620",
+    "countryId": "63",
+    "cityNameEn": "VICTORIA FALLS AIRPORT",
+    "pingYin": "Weiduoliyapubucheng",
+    "hyKeyWord": "WDLYPBC"
+  }, {
+    "cityNameCn": "\u97e6\u6069\u5821",
+    "cityCode": "FWA",
+    "cityId": "996",
+    "countryId": "2",
+    "cityNameEn": "Fort Wayne",
+    "pingYin": "Weienbao",
+    "hyKeyWord": "WEB"
+  }, {
+    "cityNameCn": "\u5a01\u5c14\u660e\u987f",
+    "cityCode": "ILM",
+    "cityId": "1165",
+    "countryId": "2",
+    "cityNameEn": "Wilmington",
+    "pingYin": "Weiermingdun",
+    "hyKeyWord": "WEMD"
+  }, {
+    "cityNameCn": "\u7ef4\u5c14\u7ebd\u65af",
+    "cityCode": "VNO",
+    "cityId": "810",
+    "countryId": "124",
+    "cityNameEn": "Vilnius",
+    "pingYin": "Weierniusi",
+    "hyKeyWord": "WENS"
+  }, {
+    "cityNameCn": "\u7ef4\u54e5",
+    "cityCode": "VGO",
+    "cityId": "921",
+    "countryId": "109",
+    "cityNameEn": "Vigo",
+    "pingYin": "Weige",
+    "hyKeyWord": "WG"
+  }, {
+    "cityNameCn": "\u97e6\u79d1",
+    "cityCode": "ACT",
+    "cityId": "1190",
+    "countryId": "2",
+    "cityNameEn": "Waco",
+    "pingYin": "Weike",
+    "hyKeyWord": "WK"
+  }, {
+    "cityNameCn": "\u97e6\u514b\u820d",
+    "cityCode": "VXO",
+    "cityId": "1097",
+    "countryId": "18",
+    "cityNameEn": "Vaxjo",
+    "pingYin": "Weikeshe",
+    "hyKeyWord": "WKS"
+  }, {
+    "cityNameCn": "\u7ef4\u62c9\u6e2f",
+    "cityCode": "VLI",
+    "cityId": "1451",
+    "countryId": "184",
+    "cityNameEn": "Port Vlia",
+    "pingYin": "Weilagang",
+    "hyKeyWord": "WLG"
+  }, {
+    "cityNameCn": "\u7ef4\u7f57\u7eb3",
+    "cityCode": "VRN",
+    "cityId": "815",
+    "countryId": "14",
+    "cityNameEn": "Verona",
+    "pingYin": "Weiluona",
+    "hyKeyWord": "WLN"
+  }, {
+    "cityNameCn": "\u5a01\u5947\u6258",
+    "cityCode": "ICT",
+    "cityId": "1039",
+    "countryId": "2",
+    "cityNameEn": "Wichita",
+    "pingYin": "Weiqituo",
+    "hyKeyWord": "WQT"
+  }, {
+    "cityNameCn": "\u7ef4\u8428\u5361\u5e15\u7279\u5357",
+    "cityCode": "VTZ",
+    "cityId": "1687",
+    "countryId": "36",
+    "cityNameEn": "VISHAKHAPATNAM",
+    "pingYin": "Weisakapatenan",
+    "hyKeyWord": "WSKPTN"
+  }, {
+    "cityNameCn": "\u97e6\u65af\u7279\u5207\u65af\u7279",
+    "cityCode": "ZTF",
+    "cityId": "1037",
+    "countryId": "2",
+    "cityNameEn": "Westchester County",
+    "pingYin": "Weisiteqiesite",
+    "hyKeyWord": "WSTQST"
+  }, {
+    "cityNameCn": "\u6e29\u5f97\u548c\u514b ",
+    "cityCode": "WDH",
+    "cityId": "1570",
+    "countryId": "188",
+    "cityNameEn": "WINDHOEK ",
+    "pingYin": "Wendeheke ",
+    "hyKeyWord": "WDHK "
+  }, {
+    "cityNameCn": "\u6587\u7eb3\u5947",
+    "cityCode": "EAT",
+    "cityId": "960",
+    "countryId": "2",
+    "cityNameEn": "Wenatchee",
+    "pingYin": "Wennaqi",
+    "hyKeyWord": "WNQ"
+  }, {
+    "cityNameCn": "\u6e29\u5c3c\u4f2f",
+    "cityCode": "YWG",
+    "cityId": "807",
+    "countryId": "91",
+    "cityNameEn": "Winnipeg",
+    "pingYin": "Wennibo",
+    "hyKeyWord": "WNB"
+  }, {
+    "cityNameCn": "\u6e29\u838e",
+    "cityCode": "YQG",
+    "cityId": "1312",
+    "countryId": "91",
+    "cityNameEn": "Windsor",
+    "pingYin": "Wensha",
+    "hyKeyWord": "WS"
+  }, {
+    "cityNameCn": "\u6c83\u52a0\u6c83\u52a0",
+    "cityCode": "WGA",
+    "cityId": "1549",
+    "countryId": "16",
+    "cityNameEn": "Wagga Wagga",
+    "pingYin": "Wojiawojia",
+    "hyKeyWord": "WJWJ"
+  }, {
+    "cityNameCn": "\u6c83\u7d22",
+    "cityCode": "AUW",
+    "cityId": "1647",
+    "countryId": "2",
+    "cityNameEn": "WAUSAU",
+    "pingYin": "Wosuo",
+    "hyKeyWord": "WS"
+  }, {
+    "cityNameCn": "\u6c83\u7279\u6566",
+    "cityCode": "ART",
+    "cityId": "1069",
+    "countryId": "2",
+    "cityNameEn": "Watertown",
+    "pingYin": "Wotedun",
+    "hyKeyWord": "WTD"
+  }, {
+    "cityNameCn": "\u4e4c\u4ee3\u5e03\u5c14",
+    "cityCode": "UDR",
+    "cityId": "1485",
+    "countryId": "36",
+    "cityNameEn": "Udaipru",
+    "pingYin": "Wudaibuer",
+    "hyKeyWord": "WDBE"
+  }, {
+    "cityNameCn": "\u6b66\u7aef",
+    "cityCode": "BXU",
+    "cityId": "1499",
+    "countryId": "79",
+    "cityNameEn": "Butuan",
+    "pingYin": "Wuduan",
+    "hyKeyWord": "WD"
+  }, {
+    "cityNameCn": "\u4e4c\u6cd5",
+    "cityCode": "UFA",
+    "cityId": "1607",
+    "countryId": "24",
+    "cityNameEn": "UFA",
+    "pingYin": "Wufa",
+    "hyKeyWord": "WF"
+  }, {
+    "cityNameCn": "\u4e4c\u5170\u4e4c\u5fb7",
+    "cityCode": "UUD",
+    "cityId": "1560",
+    "countryId": "24",
+    "cityNameEn": "Ulan-ude",
+    "pingYin": "Wulanwude",
+    "hyKeyWord": "WLWD"
+  }, {
+    "cityNameCn": "\u4e4c\u9ed8\u5965",
+    "cityCode": "UME",
+    "cityId": "1096",
+    "countryId": "18",
+    "cityNameEn": "Umeaa",
+    "pingYin": "Wumoao",
+    "hyKeyWord": "WMA"
+  }, {
+    "cityNameCn": "\u4e4c\u620e\u6f58\u5f53",
+    "cityCode": "UPG",
+    "cityId": "1534",
+    "countryId": "54",
+    "cityNameEn": "Ujung Pandang",
+    "pingYin": "Wurongpandang",
+    "hyKeyWord": "WRPD"
+  }, {
+    "cityNameCn": "\u5a01\u5c3c\u65af",
+    "cityCode": "VCE",
+    "cityId": "694",
+    "countryId": "14",
+    "cityNameEn": "Venice",
+    "pingYin": "weinisi",
+    "hyKeyWord": "wns"
+  }, {
+    "cityNameCn": "\u7ef4\u4e5f\u7eb3",
+    "cityCode": "VIE",
+    "cityId": "588",
+    "countryId": "107",
+    "cityNameEn": "Vienna",
+    "pingYin": "weiyena",
+    "hyKeyWord": "wyn"
+  }, {
+    "cityNameCn": "\u6e29\u54e5\u534e",
+    "cityCode": "YVR",
+    "cityId": "617",
+    "countryId": "91",
+    "cityNameEn": "Vancouver",
+    "pingYin": "wengehua",
+    "hyKeyWord": "wgh"
+  }, {
+    "cityNameCn": "\u6e25\u592a\u534e",
+    "cityCode": "YOW",
+    "cityId": "616",
+    "countryId": "91",
+    "cityNameEn": "Ottawa",
+    "pingYin": "wotaihua",
+    "hyKeyWord": "wth"
+  }, {
+    "cityNameCn": "\u4e4c\u5170\u5df4\u6258",
+    "cityCode": "ULN",
+    "cityId": "585",
+    "countryId": "116",
+    "cityNameEn": "Ulan Bator",
+    "pingYin": "wulanbatuo",
+    "hyKeyWord": "wlbt"
+  }],
+  "X": [{
+    "cityNameCn": "\u590f\u6d1b\u8328\u7ef4\u5c14",
+    "cityCode": "CHO",
+    "cityId": "1662",
+    "countryId": "2",
+    "cityNameEn": "Charlottesville",
+    "pingYin": "Xialuociweier",
+    "hyKeyWord": "XLCWE"
+  }, {
+    "cityNameCn": "\u590f\u6d1b\u7279",
+    "cityCode": "CLT",
+    "cityId": "978",
+    "countryId": "2",
+    "cityNameEn": "Charlotte",
+    "pingYin": "Xialuote",
+    "hyKeyWord": "XLT"
+  }, {
+    "cityNameCn": "\u590f\u6d1b\u7279\u57ce",
+    "cityCode": "YYG",
+    "cityId": "1306",
+    "countryId": "91",
+    "cityNameEn": "Charlottetown",
+    "pingYin": "Xialuotecheng",
+    "hyKeyWord": "XLTC"
+  }, {
+    "cityNameCn": "\u5c98\u6e2f",
+    "cityCode": "DAD",
+    "cityId": "743",
+    "countryId": "105",
+    "cityNameEn": "Da Nang",
+    "pingYin": "Xiangang",
+    "hyKeyWord": "XG"
+  }, {
+    "cityNameCn": "\u8c61\u5c9b",
+    "cityCode": "TDX",
+    "cityId": "673",
+    "countryId": "8",
+    "cityNameEn": "Trat",
+    "pingYin": "Xiangdao",
+    "hyKeyWord": "XD"
+  }, {
+    "cityNameCn": "\u9999\u519c",
+    "cityCode": "SNN",
+    "cityId": "886",
+    "countryId": "57",
+    "cityNameEn": "Shannon",
+    "pingYin": "Xiangnong",
+    "hyKeyWord": "XN"
+  }, {
+    "cityNameCn": "\u5c0f\u77f3\u57ce",
+    "cityCode": "LIT",
+    "cityId": "1018",
+    "countryId": "2",
+    "cityNameEn": "Little Rock",
+    "pingYin": "Xiaoshicheng",
+    "hyKeyWord": "XSC"
+  }, {
+    "cityNameCn": "\u5c0f\u677e",
+    "cityCode": "KMQ",
+    "cityId": "758",
+    "countryId": "13",
+    "cityNameEn": "Komatsu",
+    "pingYin": "Xiaosong",
+    "hyKeyWord": "XS"
+  }, {
+    "cityNameCn": "\u897f\u73ed\u7259\u6e2f",
+    "cityCode": "POS",
+    "cityId": "1555",
+    "countryId": "133",
+    "cityNameEn": "Port Of Spain",
+    "pingYin": "Xibanyagang",
+    "hyKeyWord": "XBYG"
+  }, {
+    "cityNameCn": "\u897f\u5bbe",
+    "cityCode": "HIB",
+    "cityId": "1004",
+    "countryId": "2",
+    "cityNameEn": "Hibbing",
+    "pingYin": "Xibin",
+    "hyKeyWord": "XB"
+  }, {
+    "cityNameCn": "\u9521\u8fbe\u62c9\u76ae\u5179",
+    "cityCode": "CID",
+    "cityId": "766",
+    "countryId": "2",
+    "cityNameEn": "Cedar Rapids",
+    "pingYin": "Xidalapizi",
+    "hyKeyWord": "XDLPZ"
+  }, {
+    "cityNameCn": "\u8c22\u83b1\u592b\u7279\u5965",
+    "cityCode": "SFT",
+    "cityId": "1094",
+    "countryId": "18",
+    "cityNameEn": "Skelleftea",
+    "pingYin": "Xielaifuteao",
+    "hyKeyWord": "XLFTA"
+  }, {
+    "cityNameCn": "\u5e0c\u5c14\u514b\u5185\u65af",
+    "cityCode": "KKN",
+    "cityId": "1677",
+    "countryId": "80",
+    "cityNameEn": "Kirkenes",
+    "pingYin": "Xierkeneisi",
+    "hyKeyWord": "XEKNS"
+  }, {
+    "cityNameCn": "\u9521\u592b\u91cc\u5f17\u798f\u5c14\u65af",
+    "cityCode": "TVF",
+    "cityId": "1063",
+    "countryId": "2",
+    "cityNameEn": "Thief River Falls",
+    "pingYin": "Xifulifufuersi",
+    "hyKeyWord": "XFLFFES"
+  }, {
+    "cityNameCn": "\u9521\u62c9\u4e18\u5179",
+    "cityCode": "SYR",
+    "cityId": "1062",
+    "countryId": "2",
+    "cityNameEn": "Syracuse",
+    "pingYin": "Xilaqiuzi",
+    "hyKeyWord": "XLQZ"
+  }, {
+    "cityNameCn": "\u5e0c\u6d1b",
+    "cityCode": "ITO",
+    "cityId": "1685",
+    "countryId": "2",
+    "cityNameEn": "hilo",
+    "pingYin": "Xiluo",
+    "hyKeyWord": "XL"
+  }, {
+    "cityNameCn": "\u65b0\u5965\u5c14\u826f",
+    "cityCode": "MSY",
+    "cityId": "508",
+    "countryId": "2",
+    "cityNameEn": "New Orleans",
+    "pingYin": "Xinaoerliang",
+    "hyKeyWord": "XAEL"
+  }, {
+    "cityNameCn": "\u8f9b\u83f2\u7f57\u6ce2\u5c14",
+    "cityCode": "SIP",
+    "cityId": "1504",
+    "countryId": "26",
+    "cityNameEn": "Simferopol",
+    "pingYin": "Xinfeiluoboer",
+    "hyKeyWord": "XFLBE"
+  }, {
+    "cityNameCn": "\u6089\u5c3c(\u52a0\u62ff\u5927)",
+    "cityCode": "YQY",
+    "cityId": "1599",
+    "countryId": "91",
+    "cityNameEn": "SYDNEY (CA)",
+    "pingYin": "Xini(jianada)",
+    "hyKeyWord": "XN(JND)"
+  }, {
+    "cityNameCn": "\u65b0\u6cfb",
+    "cityCode": "KIJ",
+    "cityId": "459",
+    "countryId": "13",
+    "cityNameEn": "Niigata",
+    "pingYin": "Xinxie",
+    "hyKeyWord": "XX"
+  }, {
+    "cityNameCn": "\u8f9b\u8f9b\u90a3\u63d0",
+    "cityCode": "CVG",
+    "cityId": "980",
+    "countryId": "2",
+    "cityNameEn": "Cincinnati",
+    "pingYin": "Xinxinneiti",
+    "hyKeyWord": "XXNT"
+  }, {
+    "cityNameCn": "\u718a\u672c",
+    "cityCode": "KMJ",
+    "cityId": "1704",
+    "countryId": "13",
+    "cityNameEn": "Kumamoto",
+    "pingYin": "Xiongben",
+    "hyKeyWord": "XB"
+  }, {
+    "cityNameCn": "\u9521\u4e9a\u5c14\u79d1\u7279",
+    "cityCode": "SKT",
+    "cityId": "1649",
+    "countryId": "64",
+    "cityNameEn": "Sialkot",
+    "pingYin": "Xiyaerkete",
+    "hyKeyWord": "XYEKT"
+  }, {
+    "cityNameCn": "\u897f\u68d5\u6988\u6ee9",
+    "cityCode": "PBI",
+    "cityId": "1070",
+    "countryId": "2",
+    "cityNameEn": "West Palm Beach",
+    "pingYin": "Xizonglu:tan",
+    "hyKeyWord": "XZLT"
+  }, {
+    "cityNameCn": "\u65ed\u5ddd",
+    "cityCode": "AKJ",
+    "cityId": "1684",
+    "countryId": "13",
+    "cityNameEn": "ASAHIKAWA",
+    "pingYin": "Xuchuan",
+    "hyKeyWord": "XC"
+  }, {
+    "cityNameCn": "\u9999\u6e2f",
+    "cityCode": "HKG",
+    "cityId": "420",
+    "countryId": "136",
+    "cityNameEn": "Hong Kong",
+    "pingYin": "xianggang",
+    "hyKeyWord": "xg"
+  }, {
+    "cityNameCn": "\u66b9\u7c92",
+    "cityCode": "REP",
+    "cityId": "668",
+    "countryId": "81",
+    "cityNameEn": "Siem Reap",
+    "pingYin": "xianli",
+    "hyKeyWord": "xl"
+  }, {
+    "cityNameCn": "\u4ed9\u53f0",
+    "cityCode": "SDJ",
+    "cityId": "543",
+    "countryId": "13",
+    "cityNameEn": "Sendai",
+    "pingYin": "xiantai",
+    "hyKeyWord": "xt"
+  }, {
+    "cityNameCn": "\u6089\u5c3c",
+    "cityCode": "SYD",
+    "cityId": "562",
+    "countryId": "16",
+    "cityNameEn": "Sydney ",
+    "pingYin": "xini",
+    "hyKeyWord": "xn"
+  }, {
+    "cityNameCn": "\u65b0\u52a0\u5761",
+    "cityCode": "SIN",
+    "cityId": "553",
+    "countryId": "85",
+    "cityNameEn": "Singapore",
+    "pingYin": "xinjiapo",
+    "hyKeyWord": "xjp"
+  }, {
+    "cityNameCn": "\u65b0\u897f\u4f2f\u5229\u4e9a",
+    "cityCode": "OVB",
+    "cityId": "1238",
+    "countryId": "24",
+    "cityNameEn": "Novosibirsk",
+    "pingYin": "xinxiboliya",
+    "hyKeyWord": "xxbly"
+  }, {
+    "cityNameCn": "\u4f11\u65af\u6566",
+    "cityCode": "HOU",
+    "cityId": "693",
+    "countryId": "2",
+    "cityNameEn": "Houston",
+    "pingYin": "xiusidun",
+    "hyKeyWord": "xsd"
+  }, {
+    "cityNameCn": "\u897f\u96c5\u56fe",
+    "cityCode": "SEA",
+    "cityId": "544",
+    "countryId": "2",
+    "cityNameEn": "Seattle",
+    "pingYin": "xiyatu",
+    "hyKeyWord": "xyt"
+  }],
+  "Y": [{
+    "cityNameCn": "\u4e9a\u7684\u65af\u4e9a\u8d1d\u5df4",
+    "cityCode": "ADD",
+    "cityId": "677",
+    "countryId": "31",
+    "cityNameEn": "Addis Ababa",
+    "pingYin": "Yadesiyabeiba",
+    "hyKeyWord": "YDSYBB"
+  }, {
+    "cityNameCn": "\u4e9a\u4e01",
+    "cityCode": "ADE",
+    "cityId": "779",
+    "countryId": "32",
+    "cityNameEn": "Aden",
+    "pingYin": "Yading",
+    "hyKeyWord": "YD"
+  }, {
+    "cityNameCn": "\u4e9a\u57fa\u9a6c",
+    "cityCode": "YKM",
+    "cityId": "961",
+    "countryId": "2",
+    "cityNameEn": "Yakima",
+    "pingYin": "Yajima",
+    "hyKeyWord": "YJM"
+  }, {
+    "cityNameCn": "\u96c5\u5e93\u8328\u514b",
+    "cityCode": "YKS",
+    "cityId": "1559",
+    "countryId": "24",
+    "cityNameEn": "Yakutsk",
+    "pingYin": "Yakucike",
+    "hyKeyWord": "YKCK"
+  }, {
+    "cityNameCn": "\u4e9a\u5386\u5c71\u5927",
+    "cityCode": "ALY",
+    "cityId": "1240",
+    "countryId": "115",
+    "cityNameEn": "Alexandria",
+    "pingYin": "Yalishanda",
+    "hyKeyWord": "YLSD"
+  }, {
+    "cityNameCn": "\u4e9a\u5386\u5c71\u5927\u57ce",
+    "cityCode": "ALX",
+    "cityId": "1315",
+    "countryId": "2",
+    "cityNameEn": "Alexander City",
+    "pingYin": "Yalishandacheng",
+    "hyKeyWord": "YLSDC"
+  }, {
+    "cityNameCn": "\u4e9a\u7f57\u58eb\u6253",
+    "cityCode": "AOR",
+    "cityId": "836",
+    "countryId": "70",
+    "cityNameEn": "Alor Setar",
+    "pingYin": "Yaluoshida",
+    "hyKeyWord": "YLSD"
+  }, {
+    "cityNameCn": "\u626c\u65af\u6566",
+    "cityCode": "YNG",
+    "cityId": "1040",
+    "countryId": "2",
+    "cityNameEn": "Youngstown",
+    "pingYin": "Yangsidun",
+    "hyKeyWord": "YSD"
+  }, {
+    "cityNameCn": "\u76d0\u6e56\u57ce",
+    "cityCode": "SLC",
+    "cityId": "764",
+    "countryId": "2",
+    "cityNameEn": "Salt Lake City",
+    "pingYin": "Yanhucheng",
+    "hyKeyWord": "YHC"
+  }, {
+    "cityNameCn": "\u4e9a\u677e\u68ee",
+    "cityCode": "ASU",
+    "cityId": "1539",
+    "countryId": "172",
+    "cityNameEn": "Asuncion",
+    "pingYin": "Yasongsen",
+    "hyKeyWord": "YSS"
+  }, {
+    "cityNameCn": "\u96c5\u6e29\u5f97",
+    "cityCode": "YAO",
+    "cityId": "1597",
+    "countryId": "163",
+    "cityNameEn": "YAOUNDE",
+    "pingYin": "Yawende",
+    "hyKeyWord": "YWD"
+  }, {
+    "cityNameCn": "\u82bd\u5e84",
+    "cityCode": "NHA",
+    "cityId": "1429",
+    "countryId": "105",
+    "cityNameEn": "Nha Trang",
+    "pingYin": "Yazhuang",
+    "hyKeyWord": "YZ"
+  }, {
+    "cityNameCn": "\u53f6\u5361\u6377\u7433\u5821",
+    "cityCode": "SVX",
+    "cityId": "1411",
+    "countryId": "24",
+    "cityNameEn": "Ekaterinburg",
+    "pingYin": "Yekajielinbao",
+    "hyKeyWord": "YKJLB"
+  }, {
+    "cityNameCn": "\u8036\u8def\u6492\u51b7",
+    "cityCode": "JRS",
+    "cityId": "449",
+    "countryId": "111",
+    "cityNameEn": "Jerusalem",
+    "pingYin": "Yelusaleng",
+    "hyKeyWord": "YLSL"
+  }, {
+    "cityNameCn": "\u6021\u4fdd",
+    "cityCode": "IPH",
+    "cityId": "660",
+    "countryId": "70",
+    "cityNameEn": "Ipoh",
+    "pingYin": "Yibao",
+    "hyKeyWord": "YB"
+  }, {
+    "cityNameCn": "\u4f0a\u6bd4\u8428",
+    "cityCode": "IBZ",
+    "cityId": "913",
+    "countryId": "109",
+    "cityNameEn": "Ibiza",
+    "pingYin": "Yibisa",
+    "hyKeyWord": "YBS"
+  }, {
+    "cityNameCn": "\u4f0a\u5c14\u5e93\u8328\u514b",
+    "cityCode": "IKT",
+    "cityId": "1272",
+    "countryId": "24",
+    "cityNameEn": "Irkutsk",
+    "pingYin": "Yierkucike",
+    "hyKeyWord": "YEKCK"
+  }, {
+    "cityNameCn": "\u4f0a\u74dc\u82cf",
+    "cityCode": "IGU",
+    "cityId": "1657",
+    "countryId": "3",
+    "cityNameEn": "IGUASSU",
+    "pingYin": "Yiguasu",
+    "hyKeyWord": "YGS"
+  }, {
+    "cityNameCn": "\u4f0a\u62c9\u514b\u5229\u7fc1",
+    "cityCode": "HER",
+    "cityId": "926",
+    "countryId": "40",
+    "cityNameEn": "Heraklion",
+    "pingYin": "Yilakeliweng",
+    "hyKeyWord": "YLKLW"
+  }, {
+    "cityNameCn": "\u4f0a\u5229",
+    "cityCode": "ERI",
+    "cityId": "987",
+    "countryId": "2",
+    "cityNameEn": "Erie",
+    "pingYin": "Yili",
+    "hyKeyWord": "YL"
+  }, {
+    "cityNameCn": "\u4f0a\u4e3d\u838e\u767d\u6e2f",
+    "cityCode": "PLZ",
+    "cityId": "1246",
+    "countryId": "48",
+    "cityNameEn": "Pt Elizabeth",
+    "pingYin": "Yilishabaigang",
+    "hyKeyWord": "YLSBG"
+  }, {
+    "cityNameCn": "\u4f0a\u6d1b\u4f0a\u6d1b",
+    "cityCode": "ILO",
+    "cityId": "1511",
+    "countryId": "79",
+    "cityNameEn": "Iloilo",
+    "pingYin": "Yiluoyiluo",
+    "hyKeyWord": "YLYL"
+  }, {
+    "cityNameCn": "\u5370\u7b2c\u5b89\u7eb3\u6ce2\u5229\u65af",
+    "cityCode": "IND",
+    "cityId": "760",
+    "countryId": "2",
+    "cityNameEn": "Indianapolis",
+    "pingYin": "Yindiannabolisi",
+    "hyKeyWord": "YDANBLS"
+  }, {
+    "cityNameCn": "\u5370\u591a\u5c14",
+    "cityCode": "IDR",
+    "cityId": "1558",
+    "countryId": "36",
+    "cityNameEn": "Indore",
+    "pingYin": "Yinduoer",
+    "hyKeyWord": "YDE"
+  }, {
+    "cityNameCn": "\u56e0\u5f17\u5185\u65af",
+    "cityCode": "INV",
+    "cityId": "860",
+    "countryId": "21",
+    "cityNameEn": "Inverness",
+    "pingYin": "Yinfuneisi",
+    "hyKeyWord": "YFNS"
+  }, {
+    "cityNameCn": "\u56e0\u8428\u62c9\u8d6b",
+    "cityCode": "INZ",
+    "cityId": "1321",
+    "countryId": "35",
+    "cityNameEn": "In Salah",
+    "pingYin": "Yinsalahe",
+    "hyKeyWord": "YSLH"
+  }, {
+    "cityNameCn": "\u56e0\u65af\u5e03\u9c81\u514b",
+    "cityCode": "INN",
+    "cityId": "817",
+    "countryId": "107",
+    "cityNameEn": "Innsbruck",
+    "pingYin": "Yinsibuluke",
+    "hyKeyWord": "YSBLK"
+  }, {
+    "cityNameCn": "\u4f0a\u8428\u5361",
+    "cityCode": "ITH",
+    "cityId": "1564",
+    "countryId": "2",
+    "cityNameEn": "Ithaca",
+    "pingYin": "Yisaka",
+    "hyKeyWord": "YSK"
+  }, {
+    "cityNameCn": "\u4f0a\u65af\u987f",
+    "cityCode": "ESN",
+    "cityId": "1137",
+    "countryId": "2",
+    "cityNameEn": "Easton",
+    "pingYin": "Yisidun",
+    "hyKeyWord": "YSD"
+  }, {
+    "cityNameCn": "\u4f0a\u5179\u5bc6\u5c14",
+    "cityCode": "IZM",
+    "cityId": "1532",
+    "countryId": "38",
+    "cityNameEn": "Izmir",
+    "pingYin": "Yizimier",
+    "hyKeyWord": "YZME"
+  }, {
+    "cityNameCn": "\u5c24\u91d1",
+    "cityCode": "EUG",
+    "cityId": "850",
+    "countryId": "2",
+    "cityNameEn": "Eugene",
+    "pingYin": "Youjin",
+    "hyKeyWord": "YJ"
+  }, {
+    "cityNameCn": "\u851a\u5c71",
+    "cityCode": "USN",
+    "cityId": "1608",
+    "countryId": "86",
+    "cityNameEn": "ULSAN",
+    "pingYin": "Yushan",
+    "hyKeyWord": "YS"
+  }, {
+    "cityNameCn": "\u96c5\u5178",
+    "cityCode": "ATH",
+    "cityId": "335",
+    "countryId": "40",
+    "cityNameEn": "Athens",
+    "pingYin": "yadian",
+    "hyKeyWord": "yd"
+  }, {
+    "cityNameCn": "\u96c5\u52a0\u8fbe",
+    "cityCode": "JKT",
+    "cityId": "445",
+    "countryId": "54",
+    "cityNameEn": "Jakarta",
+    "pingYin": "yajiada",
+    "hyKeyWord": "yjd"
+  }, {
+    "cityNameCn": "\u4ef0\u5149",
+    "cityCode": "RGN",
+    "cityId": "536",
+    "countryId": "83",
+    "cityNameEn": "Rangon",
+    "pingYin": "yangguang",
+    "hyKeyWord": "yg"
+  }, {
+    "cityNameCn": "\u4e9a\u7279\u5170\u5927",
+    "cityCode": "ATL",
+    "cityId": "413",
+    "countryId": "2",
+    "cityNameEn": "Atlanta",
+    "pingYin": "yatelanda",
+    "hyKeyWord": "ytld"
+  }, {
+    "cityNameCn": "\u4f0a\u65af\u5170\u5821",
+    "cityCode": "ISB",
+    "cityId": "436",
+    "countryId": "64",
+    "cityNameEn": "Islamabad",
+    "pingYin": "yisilanbao",
+    "hyKeyWord": "yslb"
+  }, {
+    "cityNameCn": "\u4f0a\u65af\u5766\u5e03\u5c14",
+    "cityCode": "IST",
+    "cityId": "437",
+    "countryId": "38",
+    "cityNameEn": "Istanbul",
+    "pingYin": "yisitanbuer",
+    "hyKeyWord": "ystbe"
+  }, {
+    "cityNameCn": "\u7ea6\u7ff0\u5185\u65af\u5821",
+    "cityCode": "JNB",
+    "cityId": "681",
+    "countryId": "48",
+    "cityNameEn": "Johannesburg ",
+    "pingYin": "yuehanneisibao",
+    "hyKeyWord": "yhnsb"
+  }],
+  "Z": [{
+    "cityNameCn": "\u6cfd\u897f",
+    "cityCode": "JER",
+    "cityId": "859",
+    "countryId": "21",
+    "cityNameEn": "Jersey",
+    "pingYin": "Zexi",
+    "hyKeyWord": "ZX"
+  }, {
+    "cityNameCn": "\u658b\u666e\u5c14",
+    "cityCode": "JAI",
+    "cityId": "1686",
+    "countryId": "36",
+    "cityNameEn": "Jaipur",
+    "pingYin": "Zhaipuer",
+    "hyKeyWord": "ZPE"
+  }, {
+    "cityNameCn": "\u5360\u7891",
+    "cityCode": "DJB",
+    "cityId": "1490",
+    "countryId": "54",
+    "cityNameEn": "Jambi",
+    "pingYin": "Zhanbei",
+    "hyKeyWord": "ZB"
+  }, {
+    "cityNameCn": "\u957f\u5d0e",
+    "cityCode": "NGS",
+    "cityId": "516",
+    "countryId": "13",
+    "cityNameEn": "Nagasaki",
+    "pingYin": "Zhangqi",
+    "hyKeyWord": "ZQ"
+  }, {
+    "cityNameCn": "\u957f\u6ee9",
+    "cityCode": "LGB",
+    "cityId": "1188",
+    "countryId": "2",
+    "cityNameEn": "Long Beach",
+    "pingYin": "Zhangtan",
+    "hyKeyWord": "ZT"
+  }, {
+    "cityNameCn": "\u5e84\u5185",
+    "cityCode": "SYO",
+    "cityId": "1589",
+    "countryId": "13",
+    "cityNameEn": "SHONAI",
+    "pingYin": "Zhuangnei",
+    "hyKeyWord": "ZN"
+  }, {
+    "cityNameCn": "\u6731\u5df4 ",
+    "cityCode": "JUB",
+    "cityId": "1338",
+    "countryId": "68",
+    "cityNameEn": "Juba",
+    "pingYin": "Zhuba ",
+    "hyKeyWord": "ZB "
+  }, {
+    "cityNameCn": "\u68d5\u6988\u6cc9",
+    "cityCode": "PSP",
+    "cityId": "945",
+    "countryId": "2",
+    "cityNameEn": "Palm Springs",
+    "pingYin": "Zonglu:quan",
+    "hyKeyWord": "ZLQ"
+  }, {
+    "cityNameCn": "\u672d\u5e4c",
+    "cityCode": "SPK",
+    "cityId": "556",
+    "countryId": "13",
+    "cityNameEn": "Sapporo",
+    "pingYin": "zhahuang",
+    "hyKeyWord": "zh"
+  }, {
+    "cityNameCn": "\u829d\u52a0\u54e5",
+    "cityCode": "CHI",
+    "cityId": "525",
+    "countryId": "2",
+    "cityNameEn": "Chicago",
+    "pingYin": "zhijiage",
+    "hyKeyWord": "zjg"
+  }]
+};
+var domesticCities = {
+  "A": [{
+    "cityNameCn": "\u5b89\u5eb7",
+    "cityCode": "AKA",
+    "pingYin": "ankang",
+    "latitude": "32.6847810",
+    "longitude": "109.0293030",
+    "hyKeyWord": "ak"
+  }, {
+    "cityNameCn": "\u5b89\u5e86",
+    "cityCode": "AQG",
+    "pingYin": "anqing",
+    "latitude": "30.5248950",
+    "longitude": "117.0568570",
+    "hyKeyWord": "aq"
+  }, {
+    "cityNameCn": "\u5b89\u987a",
+    "cityCode": "AVA",
+    "pingYin": "anshun",
+    "latitude": "26.2530720",
+    "longitude": "105.9475940",
+    "hyKeyWord": "as"
+  }, {
+    "cityNameCn": "\u963f\u514b\u82cf",
+    "cityCode": "AKU",
+    "pingYin": "aksu",
+    "latitude": "41.1687790",
+    "longitude": "80.2606050",
+    "hyKeyWord": "aks"
+  }, {
+    "cityNameCn": "\u5b89\u9633",
+    "cityCode": "AYN",
+    "pingYin": "anyang",
+    "latitude": "37.3942527",
+    "longitude": "126.9568209",
+    "hyKeyWord": "ay"
+  }, {
+    "cityNameCn": "\u963f\u52d2\u6cf0",
+    "cityCode": "AAT",
+    "pingYin": "aletai",
+    "latitude": "47.8449240",
+    "longitude": "88.1412530",
+    "hyKeyWord": "alt"
+  }, {
+    "cityNameCn": "\u978d\u5c71",
+    "cityCode": "AOG",
+    "pingYin": "anshan",
+    "latitude": "41.1085460",
+    "longitude": "122.9946460",
+    "hyKeyWord": "as"
+  }, {
+    "cityNameCn": "\u963f\u5c14\u5c71",
+    "cityCode": "YIE",
+    "pingYin": "aershan",
+    "latitude": "47.1776560",
+    "longitude": "119.9435080",
+    "hyKeyWord": "aes"
+  }, {
+    "cityNameCn": "\u963f\u91cc",
+    "cityCode": "NGQ",
+    "pingYin": "ali",
+    "latitude": "32.5010340",
+    "longitude": "80.1056520",
+    "hyKeyWord": "al"
+  }, {
+    "cityNameCn": "\u963f\u62c9\u5584\u5de6\u65d7",
+    "cityCode": "AXF",
+    "pingYin": "alashanzuoqi",
+    "latitude": "38.893171",
+    "longitude": "105.661011",
+    "hyKeyWord": "alszq"
+  }, {
+    "cityNameCn": "\u963f\u62c9\u5584\u53f3\u65d7",
+    "cityCode": "RHT",
+    "pingYin": "alashanyouqi",
+    "latitude": "39.255651",
+    "longitude": "101.670227",
+    "hyKeyWord": "alsyq"
+  }],
+  "B": [{
+    "cityNameCn": "\u6bd5\u8282",
+    "cityCode": "BFJ",
+    "pingYin": "bijie",
+    "latitude": "27.444916",
+    "longitude": "105.281982",
+    "hyKeyWord": "bj"
+  }, {
+    "cityNameCn": "\u5df4\u5f66\u6dd6\u5c14",
+    "cityCode": "RLK",
+    "pingYin": "bayannaoer",
+    "latitude": "40.7432130",
+    "longitude": "107.3876570",
+    "hyKeyWord": "byne"
+  }, {
+    "cityNameCn": "\u535a\u4e50",
+    "cityCode": "BPL",
+    "pingYin": "bole",
+    "latitude": "44.9005260",
+    "longitude": "82.0713080",
+    "hyKeyWord": "bl"
+  }, {
+    "cityNameCn": "\u5305\u5934",
+    "cityCode": "BAV",
+    "pingYin": "baotou",
+    "latitude": "40.6574470",
+    "longitude": "109.8403860",
+    "hyKeyWord": "bt"
+  }, {
+    "cityNameCn": "\u767e\u8272",
+    "cityCode": "AEB",
+    "pingYin": "baise",
+    "latitude": "23.9023710",
+    "longitude": "106.6182750",
+    "hyKeyWord": "bs"
+  }, {
+    "cityNameCn": "\u5317\u6d77",
+    "cityCode": "BHY",
+    "pingYin": "beihai",
+    "latitude": "21.4812170",
+    "longitude": "109.1198990",
+    "hyKeyWord": "bh"
+  }, {
+    "cityNameCn": "\u4fdd\u5b9a",
+    "cityCode": "BAO",
+    "pingYin": "baoding",
+    "latitude": "38.8738910",
+    "longitude": "115.4648060",
+    "hyKeyWord": "bd"
+  }, {
+    "cityNameCn": "\u5317\u4eac",
+    "cityCode": "BJS",
+    "pingYin": "beijing",
+    "latitude": "39.9042140",
+    "longitude": "116.4074130",
+    "hyKeyWord": "bj"
+  }, {
+    "cityNameCn": "\u868c\u57e0",
+    "cityCode": "BFU",
+    "pingYin": "bengbu",
+    "latitude": "32.9162870",
+    "longitude": "117.3897190",
+    "hyKeyWord": "bb"
+  }, {
+    "cityNameCn": "\u4fdd\u5c71",
+    "cityCode": "BSD",
+    "pingYin": "baoshan",
+    "latitude": "25.1120650",
+    "longitude": "99.1614710",
+    "hyKeyWord": "bs"
+  }],
+  "C": [{
+    "cityNameCn": "\u5e38\u5fb7",
+    "cityCode": "CGD",
+    "pingYin": "changde",
+    "latitude": "29.0316730",
+    "longitude": "111.6984970",
+    "hyKeyWord": "cd"
+  }, {
+    "cityNameCn": "\u660c\u90fd",
+    "cityCode": "BPX",
+    "pingYin": "changdu",
+    "latitude": "31.1409690",
+    "longitude": "97.1720200",
+    "hyKeyWord": "cd"
+  }, {
+    "cityNameCn": "\u8d64\u5cf0",
+    "cityCode": "CIF",
+    "pingYin": "chifeng",
+    "latitude": "42.2578170",
+    "longitude": "118.8868560",
+    "hyKeyWord": "cf"
+  }, {
+    "cityNameCn": "\u957f\u6cbb",
+    "cityCode": "CIH",
+    "pingYin": "changzhi",
+    "latitude": "36.1953860",
+    "longitude": "113.1162550",
+    "hyKeyWord": "cz"
+  }, {
+    "cityNameCn": "\u91cd\u5e86",
+    "cityCode": "CKG",
+    "pingYin": "chongqing",
+    "latitude": "29.5630100",
+    "longitude": "106.5515570",
+    "hyKeyWord": "cq"
+  }, {
+    "cityNameCn": "\u957f\u6d77",
+    "cityCode": "CNI",
+    "pingYin": "changhai",
+    "latitude": "39.2727790",
+    "longitude": "122.5887080",
+    "hyKeyWord": "ch"
+  }, {
+    "cityNameCn": "\u627f\u5fb7",
+    "cityCode": "CQD",
+    "pingYin": "chengde",
+    "latitude": "40.9540710",
+    "longitude": "117.9624110",
+    "hyKeyWord": "cd"
+  }, {
+    "cityNameCn": "\u957f\u6c99",
+    "cityCode": "CSX",
+    "pingYin": "changsha",
+    "latitude": "28.2282090",
+    "longitude": "112.9388140",
+    "hyKeyWord": "cs"
+  }, {
+    "cityNameCn": "\u6210\u90fd",
+    "cityCode": "CTU",
+    "pingYin": "chengdu",
+    "latitude": "30.6586010",
+    "longitude": "104.0648560",
+    "hyKeyWord": "cd"
+  }, {
+    "cityNameCn": "\u5e38\u5dde",
+    "cityCode": "CZX",
+    "pingYin": "changzhou",
+    "latitude": "31.8100770",
+    "longitude": "119.9744540",
+    "hyKeyWord": "cz"
+  }, {
+    "cityNameCn": "\u957f\u6625",
+    "cityCode": "CGQ",
+    "pingYin": "changchun",
+    "latitude": "43.8170840",
+    "longitude": "125.3235420",
+    "hyKeyWord": "cc"
+  }, {
+    "cityNameCn": "\u671d\u9633\u5e02",
+    "cityCode": "CHG",
+    "pingYin": "chaoyangshi",
+    "latitude": "41.5737340",
+    "longitude": "120.4503720",
+    "hyKeyWord": "cys"
+  }, {
+    "cityNameCn": "\u695a\u95e8",
+    "cityCode": "CHM",
+    "pingYin": "chumen",
+    "latitude": "28.2161950",
+    "longitude": "121.2975670",
+    "hyKeyWord": "cm"
+  }, {
+    "cityNameCn": "\u6f6e\u5dde",
+    "cityCode": "CZU",
+    "pingYin": "chaozhou",
+    "latitude": "23.6569720",
+    "longitude": "116.6225970",
+    "hyKeyWord": "cz"
+  }, {
+    "cityNameCn": "\u957f\u767d\u5c71",
+    "cityCode": "NBS",
+    "pingYin": "changbaishan",
+    "latitude": "42.0013420",
+    "longitude": "128.0608530",
+    "hyKeyWord": "cbs"
+  }],
+  "D": [{
+    "cityNameCn": "\u5927\u5e86",
+    "cityCode": "DQA",
+    "pingYin": "daqing",
+    "latitude": "46.5901900",
+    "longitude": "125.1046370",
+    "hyKeyWord": "dq"
+  }, {
+    "cityNameCn": "\u7a3b\u57ce\u4e9a\u4e01",
+    "cityCode": "DCY",
+    "pingYin": "daochengyading",
+    "latitude": "28.456052",
+    "longitude": "100.339808",
+    "hyKeyWord": "dcyd"
+  }, {
+    "cityNameCn": "\u675c\u6865",
+    "cityCode": "DUQ",
+    "pingYin": "duqiao",
+    "latitude": "28.7640930",
+    "longitude": "121.4973680",
+    "hyKeyWord": "dq"
+  }, {
+    "cityNameCn": "\u4e1c\u839e",
+    "cityCode": "DOG",
+    "pingYin": "dongguan",
+    "latitude": "23.0205360",
+    "longitude": "113.7517650",
+    "hyKeyWord": "dg"
+  }, {
+    "cityNameCn": "\u5927\u540c",
+    "cityCode": "DAT",
+    "pingYin": "datong",
+    "latitude": "40.0768160",
+    "longitude": "113.3001260",
+    "hyKeyWord": "dt"
+  }, {
+    "cityNameCn": "\u8fbe\u53bf",
+    "cityCode": "DAX",
+    "pingYin": "daxian",
+    "latitude": "31.1960710",
+    "longitude": "107.5119200",
+    "hyKeyWord": "dx"
+  }, {
+    "cityNameCn": "\u4e39\u4e1c",
+    "cityCode": "DDG",
+    "pingYin": "dandong",
+    "latitude": "40.1273440",
+    "longitude": "124.3849130",
+    "hyKeyWord": "dd"
+  }, {
+    "cityNameCn": "\u5927\u8fde",
+    "cityCode": "DLC",
+    "pingYin": "dalian",
+    "latitude": "38.9140030",
+    "longitude": "121.6146820",
+    "hyKeyWord": "dl"
+  }, {
+    "cityNameCn": "\u5927\u7406",
+    "cityCode": "DLU",
+    "pingYin": "dali",
+    "latitude": "25.6064860",
+    "longitude": "100.2676380",
+    "hyKeyWord": "dl"
+  }, {
+    "cityNameCn": "\u8fea\u5e86(\u9999\u683c\u91cc\u62c9)",
+    "cityCode": "DIG",
+    "pingYin": "diqing(xianggelila)",
+    "hyKeyWord": "dq(xgll)"
+  }, {
+    "cityNameCn": "\u6566\u714c",
+    "cityCode": "DNH",
+    "pingYin": "dunhuang",
+    "latitude": "40.1421300",
+    "longitude": "94.6618810",
+    "hyKeyWord": "dh"
+  }, {
+    "cityNameCn": "\u4e1c\u8425",
+    "cityCode": "DOY",
+    "pingYin": "dongying",
+    "latitude": "37.4347510",
+    "longitude": "118.6747670",
+    "hyKeyWord": "dy"
+  }],
+  "E": [{
+    "cityNameCn": "\u6069\u65bd",
+    "cityCode": "ENH",
+    "pingYin": "enshi",
+    "latitude": "30.2721560",
+    "longitude": "109.4881720",
+    "hyKeyWord": "es"
+  }, {
+    "cityNameCn": "\u9102\u5c14\u591a\u65af",
+    "cityCode": "DSN",
+    "pingYin": "eerduosi",
+    "latitude": "39.6082660",
+    "longitude": "109.7813270",
+    "hyKeyWord": "eeds"
+  }, {
+    "cityNameCn": "\u989d\u6d4e\u7eb3",
+    "cityCode": "EJN",
+    "pingYin": "ejina",
+    "latitude": "42.053372",
+    "longitude": "101.085205",
+    "hyKeyWord": "ejn"
+  }, {
+    "cityNameCn": "\u4e8c\u8fde\u6d69\u7279",
+    "cityCode": "ERL",
+    "pingYin": "erlianhaote",
+    "latitude": "43.6531700",
+    "longitude": "111.9779430",
+    "hyKeyWord": "elht"
+  }],
+  "F": [{
+    "cityNameCn": "\u629a\u987a",
+    "cityCode": "FUS",
+    "pingYin": "fushun",
+    "latitude": "41.8808720",
+    "longitude": "123.9572080",
+    "hyKeyWord": "fs"
+  }, {
+    "cityNameCn": "\u961c\u65b0",
+    "cityCode": "FUX",
+    "pingYin": "fuxin",
+    "latitude": "42.0216190",
+    "longitude": "121.6703250",
+    "hyKeyWord": "fx"
+  }, {
+    "cityNameCn": "\u9632\u57ce\u6e2f",
+    "cityCode": "FFF",
+    "pingYin": "fangchenggang",
+    "latitude": "21.6861140",
+    "longitude": "108.3556380",
+    "hyKeyWord": "fcg"
+  }, {
+    "cityNameCn": "\u798f\u5dde",
+    "cityCode": "FOC",
+    "pingYin": "fuzhou",
+    "latitude": "26.0745080",
+    "longitude": "119.2964940",
+    "hyKeyWord": "fz"
+  }, {
+    "cityNameCn": "\u961c\u9633",
+    "cityCode": "FUG",
+    "pingYin": "fuyang",
+    "latitude": "32.8901240",
+    "longitude": "115.8142050",
+    "hyKeyWord": "fy"
+  }, {
+    "cityNameCn": "\u4f5b\u5c71",
+    "cityCode": "FUO",
+    "pingYin": "foshan",
+    "latitude": "23.0215480",
+    "longitude": "113.1214160",
+    "hyKeyWord": "fs"
+  }, {
+    "cityNameCn": "\u5bcc\u8574",
+    "cityCode": "FYN",
+    "pingYin": "fuyun",
+    "latitude": "46.9941910",
+    "longitude": "89.5255060",
+    "hyKeyWord": "fy"
+  }],
+  "G": [{
+    "cityNameCn": "\u5e7f\u6c49",
+    "cityCode": "GHN",
+    "pingYin": "guanghan",
+    "latitude": "30.9761800",
+    "longitude": "104.2824300",
+    "hyKeyWord": "gh"
+  }, {
+    "cityNameCn": "\u683c\u5c14\u6728",
+    "cityCode": "GOQ",
+    "pingYin": "geermu",
+    "latitude": "36.4016190",
+    "longitude": "94.9037310",
+    "hyKeyWord": "gem"
+  }, {
+    "cityNameCn": "\u5e7f\u5143",
+    "cityCode": "GYS",
+    "pingYin": "guangyuan",
+    "latitude": "32.4354350",
+    "longitude": "105.8433570",
+    "hyKeyWord": "gy"
+  }, {
+    "cityNameCn": "\u5e7f\u5dde",
+    "cityCode": "CAN",
+    "pingYin": "guangzhou",
+    "latitude": "23.1291630",
+    "longitude": "113.2644350",
+    "hyKeyWord": "gz"
+  }, {
+    "cityNameCn": "\u8d35\u9633",
+    "cityCode": "KWE",
+    "pingYin": "guiyang",
+    "latitude": "26.6474490",
+    "longitude": "106.6301430",
+    "hyKeyWord": "gy"
+  }, {
+    "cityNameCn": "\u6842\u6797",
+    "cityCode": "KWL",
+    "pingYin": "guilin",
+    "latitude": "25.2735660",
+    "longitude": "110.2901950",
+    "hyKeyWord": "gl"
+  }, {
+    "cityNameCn": "\u8d63\u5dde",
+    "cityCode": "KOW",
+    "pingYin": "ganzhou",
+    "latitude": "25.8319250",
+    "longitude": "114.9350250",
+    "hyKeyWord": "gz"
+  }, {
+    "cityNameCn": "\u8d35\u6e2f\u5e02",
+    "cityCode": "NNN",
+    "pingYin": "guigangshi",
+    "latitude": "23.1115310",
+    "longitude": "109.5989270",
+    "hyKeyWord": "ggs"
+  }, {
+    "cityNameCn": "\u6842\u5e73",
+    "cityCode": "PPP",
+    "pingYin": "guiping",
+    "latitude": "23.3943260",
+    "longitude": "110.0793790",
+    "hyKeyWord": "gp"
+  }, {
+    "cityNameCn": "\u56fa\u539f",
+    "cityCode": "GYU",
+    "pingYin": "guyuan",
+    "latitude": "36.0158550",
+    "longitude": "106.2426100",
+    "hyKeyWord": "gy"
+  }],
+  "H": [{
+    "cityNameCn": "\u6dee\u5b89",
+    "cityCode": "HIA",
+    "pingYin": "huaian",
+    "latitude": "33.6103600",
+    "longitude": "119.0152880",
+    "hyKeyWord": "ha"
+  }, {
+    "cityNameCn": "\u6e56\u5dde",
+    "cityCode": "HZO",
+    "pingYin": "huzhou",
+    "latitude": "30.8943480",
+    "longitude": "120.0868230",
+    "hyKeyWord": "hz"
+  }, {
+    "cityNameCn": "\u6d77\u62c9\u5c14",
+    "cityCode": "HLD",
+    "pingYin": "hailaer",
+    "latitude": "49.2122000",
+    "longitude": "119.7364060",
+    "hyKeyWord": "hle"
+  }, {
+    "cityNameCn": "\u90af\u90f8",
+    "cityCode": "HDG",
+    "pingYin": "handan",
+    "latitude": "36.6256040",
+    "longitude": "114.5390850",
+    "hyKeyWord": "hd"
+  }, {
+    "cityNameCn": "\u8861\u6c34",
+    "cityCode": "HES",
+    "pingYin": "hengshui",
+    "latitude": "37.7353020",
+    "longitude": "115.6986800",
+    "hyKeyWord": "hs"
+  }, {
+    "cityNameCn": "\u9e64\u58c1",
+    "cityCode": "HEB",
+    "pingYin": "hebi",
+    "latitude": "35.7472250",
+    "longitude": "114.2972730",
+    "hyKeyWord": "hb"
+  }, {
+    "cityNameCn": "\u6cb3\u6c60\u5e02",
+    "cityCode": "HCJ",
+    "pingYin": "hechishi",
+    "latitude": "24.6929310",
+    "longitude": "108.0852610",
+    "hyKeyWord": "hcs"
+  }, {
+    "cityNameCn": "\u6000\u5316",
+    "cityCode": "HJJ",
+    "pingYin": "huaihua",
+    "latitude": "27.5549780",
+    "longitude": "109.9984880",
+    "hyKeyWord": "hh"
+  }, {
+    "cityNameCn": "\u8861\u9633",
+    "cityCode": "HNY",
+    "pingYin": "hengyang",
+    "latitude": "26.8938400",
+    "longitude": "112.5719000",
+    "hyKeyWord": "hy"
+  }, {
+    "cityNameCn": "\u9ec4\u5c71",
+    "cityCode": "TXN",
+    "pingYin": "huangshan",
+    "latitude": "29.7146830",
+    "longitude": "118.3374760",
+    "hyKeyWord": "hs"
+  }, {
+    "cityNameCn": "\u54c8\u5bc6",
+    "cityCode": "HMI",
+    "pingYin": "hami",
+    "latitude": "42.8185010",
+    "longitude": "93.5149170",
+    "hyKeyWord": "hm"
+  }, {
+    "cityNameCn": "\u54c8\u5c14\u6ee8",
+    "cityCode": "HRB",
+    "pingYin": "haerbin",
+    "latitude": "45.8037750",
+    "longitude": "126.5349670",
+    "hyKeyWord": "heb"
+  }, {
+    "cityNameCn": "\u548c\u7530",
+    "cityCode": "HTN",
+    "pingYin": "hetian",
+    "latitude": "37.1141570",
+    "longitude": "79.9222110",
+    "hyKeyWord": "ht"
+  }, {
+    "cityNameCn": "\u5fbd\u5dde",
+    "cityCode": "HUZ",
+    "pingYin": "huizhou",
+    "latitude": "29.8279370",
+    "longitude": "118.3367230",
+    "hyKeyWord": "hz"
+  }, {
+    "cityNameCn": "\u9ec4\u5ca9",
+    "cityCode": "HYN",
+    "pingYin": "huangyan",
+    "latitude": "28.6502060",
+    "longitude": "121.2616250",
+    "hyKeyWord": "hy"
+  }, {
+    "cityNameCn": "\u6c49\u4e2d",
+    "cityCode": "HZG",
+    "pingYin": "hanzhong",
+    "latitude": "33.0674800",
+    "longitude": "107.0233230",
+    "hyKeyWord": "hz"
+  }, {
+    "cityNameCn": "\u6d77\u53e3",
+    "cityCode": "HAK",
+    "pingYin": "haikou",
+    "latitude": "20.0307930",
+    "longitude": "110.3288590",
+    "hyKeyWord": "hk"
+  }, {
+    "cityNameCn": "\u9ed1\u6cb3",
+    "cityCode": "HEK",
+    "pingYin": "heihe",
+    "latitude": "50.2452970",
+    "longitude": "127.5284600",
+    "hyKeyWord": "hh"
+  }, {
+    "cityNameCn": "\u547c\u548c\u6d69\u7279",
+    "cityCode": "HET",
+    "pingYin": "huhehaote",
+    "latitude": "40.8423100",
+    "longitude": "111.7488470",
+    "hyKeyWord": "hhht"
+  }, {
+    "cityNameCn": "\u5408\u80a5",
+    "cityCode": "HFE",
+    "pingYin": "hefei",
+    "latitude": "31.8214480",
+    "longitude": "117.2272710",
+    "hyKeyWord": "hf"
+  }, {
+    "cityNameCn": "\u676d\u5dde",
+    "cityCode": "HGH",
+    "pingYin": "hangzhou",
+    "latitude": "30.2740890",
+    "longitude": "120.1550690",
+    "hyKeyWord": "hz"
+  }],
+  "J": [{
+    "cityNameCn": "\u666f\u5fb7\u9547",
+    "cityCode": "JDZ",
+    "pingYin": "jingdezhen",
+    "latitude": "29.2688360",
+    "longitude": "117.1784200",
+    "hyKeyWord": "jdz"
+  }, {
+    "cityNameCn": "\u5609\u5cea\u5173",
+    "cityCode": "JGN",
+    "pingYin": "jiayuguan",
+    "latitude": "39.7731300",
+    "longitude": "98.2891520",
+    "hyKeyWord": "jyg"
+  }, {
+    "cityNameCn": "\u4e95\u5188\u5c71",
+    "cityCode": "JGS",
+    "pingYin": "jinggangshan",
+    "latitude": "26.7481860",
+    "longitude": "114.2891820",
+    "hyKeyWord": "jgs"
+  }, {
+    "cityNameCn": "\u9152\u6cc9",
+    "cityCode": "CHW",
+    "pingYin": "jiuquan",
+    "latitude": "39.7324880",
+    "longitude": "98.4944110",
+    "hyKeyWord": "jq"
+  }, {
+    "cityNameCn": "\u5409\u6797",
+    "cityCode": "JIL",
+    "pingYin": "jilin",
+    "latitude": "43.8378830",
+    "longitude": "126.5495720",
+    "hyKeyWord": "jl"
+  }, {
+    "cityNameCn": "\u4e5d\u6c5f",
+    "cityCode": "JIU",
+    "pingYin": "jiujiang",
+    "latitude": "29.7051030",
+    "longitude": "116.0019510",
+    "hyKeyWord": "jj"
+  }, {
+    "cityNameCn": "\u4f73\u6728\u65af",
+    "cityCode": "JMU",
+    "pingYin": "jiamusi",
+    "latitude": "46.7999230",
+    "longitude": "130.3189170",
+    "hyKeyWord": "jms"
+  }, {
+    "cityNameCn": "\u6d4e\u5b81",
+    "cityCode": "JNG",
+    "pingYin": "jining",
+    "latitude": "35.4149210",
+    "longitude": "116.5870990",
+    "hyKeyWord": "jn"
+  }, {
+    "cityNameCn": "\u9526\u5dde",
+    "cityCode": "JNZ",
+    "pingYin": "jinzhou",
+    "latitude": "41.0951200",
+    "longitude": "121.1270040",
+    "hyKeyWord": "jz"
+  }, {
+    "cityNameCn": "\u4e5d\u5be8\u6c9f",
+    "cityCode": "JZH",
+    "pingYin": "jiuzhaigou",
+    "latitude": "33.2598510",
+    "longitude": "103.9184450",
+    "hyKeyWord": "jzg"
+  }, {
+    "cityNameCn": "\u6d4e\u5357",
+    "cityCode": "TNA",
+    "pingYin": "jinan",
+    "latitude": "36.6652820",
+    "longitude": "116.9949170",
+    "hyKeyWord": "jn"
+  }, {
+    "cityNameCn": "\u5409\u5b89",
+    "cityCode": "KNC",
+    "pingYin": "jian",
+    "latitude": "27.1130390",
+    "longitude": "114.9929120",
+    "hyKeyWord": "ja"
+  }, {
+    "cityNameCn": "\u63ed\u9633",
+    "cityCode": "JIE",
+    "pingYin": "jieyang",
+    "latitude": "23.5499930",
+    "longitude": "116.3728310",
+    "hyKeyWord": "jy"
+  }, {
+    "cityNameCn": "\u91d1\u534e",
+    "cityCode": "JJJ",
+    "pingYin": "jinhua",
+    "latitude": "29.0790590",
+    "longitude": "119.6474450",
+    "hyKeyWord": "jh"
+  }, {
+    "cityNameCn": "\u6c5f\u95e8\u5e02",
+    "cityCode": "MMM",
+    "pingYin": "jiangmenshi",
+    "latitude": "22.5787380",
+    "longitude": "113.0819010",
+    "hyKeyWord": "jms"
+  }, {
+    "cityNameCn": "\u6c5f\u9634",
+    "cityCode": "JYN",
+    "pingYin": "jiangyin",
+    "latitude": "31.9206730",
+    "longitude": "120.2849460",
+    "hyKeyWord": "jy"
+  }, {
+    "cityNameCn": "\u6d4e\u6e90",
+    "cityCode": "JIY",
+    "pingYin": "jiyuan",
+    "latitude": "35.0672430",
+    "longitude": "112.6019190",
+    "hyKeyWord": "jy"
+  }, {
+    "cityNameCn": "\u91d1\u660c",
+    "cityCode": "JIC",
+    "pingYin": "jinchang",
+    "latitude": "38.5200890",
+    "longitude": "102.1880430",
+    "hyKeyWord": "jc"
+  }, {
+    "cityNameCn": "\u664b\u6c5f",
+    "cityCode": "JJN",
+    "pingYin": "jinjiang",
+    "latitude": "24.7816810",
+    "longitude": "118.5523650",
+    "hyKeyWord": "jj"
+  }, {
+    "cityNameCn": "\u52a0\u683c\u8fbe\u5947",
+    "cityCode": "JGD",
+    "pingYin": "jiagedaqi",
+    "latitude": "50.440889",
+    "longitude": "124.124908",
+    "hyKeyWord": "jgdq"
+  }, {
+    "cityNameCn": "\u9e21\u897f",
+    "cityCode": "JXA",
+    "pingYin": "jixi",
+    "latitude": "45.2950750",
+    "longitude": "130.9693330",
+    "hyKeyWord": "jx"
+  }, {
+    "cityNameCn": "\u4e5d\u534e\u5c71\uff08\u6c60\u5dde\uff09",
+    "cityCode": "JUH",
+    "pingYin": "jiuhuashan(chizhou)",
+    "latitude": "30.58951",
+    "longitude": "117.939498",
+    "hyKeyWord": "jhs(cz)"
+  }],
+  "K": [{
+    "cityNameCn": "\u51ef\u91cc",
+    "cityCode": "KJH",
+    "pingYin": "kaili",
+    "latitude": "26.583001",
+    "longitude": "107.979813",
+    "hyKeyWord": "kl"
+  }, {
+    "cityNameCn": "\u5eb7\u5b9a",
+    "cityCode": "KGT",
+    "pingYin": "kangding",
+    "latitude": "30.0553090",
+    "longitude": "101.9648320",
+    "hyKeyWord": "kd"
+  }, {
+    "cityNameCn": "\u5580\u7eb3\u65af",
+    "cityCode": "KJI",
+    "pingYin": "kanasi",
+    "latitude": "48.4385680",
+    "longitude": "86.6391680",
+    "hyKeyWord": "kns"
+  }, {
+    "cityNameCn": "\u5f00\u5c01",
+    "cityCode": "KAF",
+    "pingYin": "kaifeng",
+    "latitude": "34.7972390",
+    "longitude": "114.3075820",
+    "hyKeyWord": "kf"
+  }, {
+    "cityNameCn": "\u67ef\u6865",
+    "cityCode": "KQI",
+    "pingYin": "keqiao",
+    "latitude": "30.0675200",
+    "longitude": "120.4750860",
+    "hyKeyWord": "kq"
+  }, {
+    "cityNameCn": "\u6606\u5c71",
+    "cityCode": "KUS",
+    "pingYin": "kunshan",
+    "latitude": "35.9676772",
+    "longitude": "126.7366293",
+    "hyKeyWord": "ks"
+  }, {
+    "cityNameCn": "\u5e93\u5c14\u52d2",
+    "cityCode": "KRL",
+    "pingYin": "kuerle",
+    "latitude": "41.7660230",
+    "longitude": "86.1552880",
+    "hyKeyWord": "kel"
+  }, {
+    "cityNameCn": "\u514b\u62c9\u739b\u4f9d",
+    "cityCode": "KRY",
+    "pingYin": "kelamayi",
+    "latitude": "45.5798890",
+    "longitude": "84.8892070",
+    "hyKeyWord": "klmy"
+  }, {
+    "cityNameCn": "\u6606\u660e",
+    "cityCode": "KMG",
+    "pingYin": "kunming",
+    "latitude": "25.0377210",
+    "longitude": "102.7222020",
+    "hyKeyWord": "km"
+  }, {
+    "cityNameCn": "\u5e93\u8f66",
+    "cityCode": "KCA",
+    "pingYin": "kuche",
+    "latitude": "41.7179060",
+    "longitude": "82.9620160",
+    "hyKeyWord": "kc"
+  }, {
+    "cityNameCn": "\u5580\u4ec0",
+    "cityCode": "KHG",
+    "pingYin": "kashi",
+    "latitude": "39.4704000",
+    "longitude": "75.9897550",
+    "hyKeyWord": "ks"
+  }],
+  "L": [{
+    "cityNameCn": "\u9f99\u5ca9(\u8fde\u57ce)",
+    "cityCode": "LCX",
+    "pingYin": "longyan(liancheng)",
+    "latitude": "25.7100380",
+    "longitude": "116.7545080",
+    "hyKeyWord": "ly(lc)"
+  }, {
+    "cityNameCn": "\u7f57\u5b9a",
+    "cityCode": "LDG",
+    "pingYin": "luoding",
+    "latitude": "22.7685950",
+    "longitude": "111.5700110",
+    "hyKeyWord": "ld"
+  }, {
+    "cityNameCn": "\u5170\u5dde",
+    "cityCode": "LHW",
+    "pingYin": "lanzhou",
+    "latitude": "36.0612550",
+    "longitude": "103.8343770",
+    "hyKeyWord": "lz"
+  }, {
+    "cityNameCn": "\u6881\u5e73",
+    "cityCode": "LIA",
+    "pingYin": "liangping",
+    "latitude": "30.6740590",
+    "longitude": "107.8021260",
+    "hyKeyWord": "lp"
+  }, {
+    "cityNameCn": "\u4e3d\u6c5f",
+    "cityCode": "LJG",
+    "pingYin": "lijiang",
+    "latitude": "26.8767740",
+    "longitude": "100.2303760",
+    "hyKeyWord": "lj"
+  }, {
+    "cityNameCn": "\u4e34\u6ca7",
+    "cityCode": "LNJ",
+    "pingYin": "lincang",
+    "latitude": "23.8775730",
+    "longitude": "100.0795830",
+    "hyKeyWord": "lc"
+  }, {
+    "cityNameCn": "\u5e90\u5c71",
+    "cityCode": "LUZ",
+    "pingYin": "lushan",
+    "latitude": "29.6088000",
+    "longitude": "115.8800000",
+    "hyKeyWord": "ls"
+  }, {
+    "cityNameCn": "\u62c9\u8428",
+    "cityCode": "LXA",
+    "pingYin": "lasa",
+    "latitude": "29.6455540",
+    "longitude": "91.1408560",
+    "hyKeyWord": "ls"
+  }, {
+    "cityNameCn": "\u6797\u897f",
+    "cityCode": "LXI",
+    "pingYin": "linxi",
+    "latitude": "43.6181200",
+    "longitude": "118.0554500",
+    "hyKeyWord": "lx"
+  }, {
+    "cityNameCn": "\u6d1b\u9633",
+    "cityCode": "LYA",
+    "pingYin": "luoyang",
+    "latitude": "34.6184520",
+    "longitude": "112.4542900",
+    "hyKeyWord": "ly"
+  }, {
+    "cityNameCn": "\u8fde\u4e91\u6e2f",
+    "cityCode": "LYG",
+    "pingYin": "lianyungang",
+    "latitude": "34.5965440",
+    "longitude": "119.2212820",
+    "hyKeyWord": "lyg"
+  }, {
+    "cityNameCn": "\u4e34\u6c82",
+    "cityCode": "LYI",
+    "pingYin": "linyi",
+    "latitude": "35.1046720",
+    "longitude": "118.3564480",
+    "hyKeyWord": "ly"
+  }, {
+    "cityNameCn": "\u67f3\u5dde",
+    "cityCode": "LZH",
+    "pingYin": "liuzhou",
+    "latitude": "24.3255020",
+    "longitude": "109.4159530",
+    "hyKeyWord": "lz"
+  }, {
+    "cityNameCn": "\u6cf8\u5dde",
+    "cityCode": "LZO",
+    "pingYin": "luzhou",
+    "latitude": "28.8718200",
+    "longitude": "105.4423470",
+    "hyKeyWord": "lz"
+  }, {
+    "cityNameCn": "\u6797\u829d",
+    "cityCode": "LZY",
+    "pingYin": "linzhi",
+    "latitude": "29.6491280",
+    "longitude": "94.3614900",
+    "hyKeyWord": "lz"
+  }, {
+    "cityNameCn": "\u6765\u5bbe",
+    "cityCode": "LLL",
+    "pingYin": "laibin",
+    "latitude": "23.7503120",
+    "longitude": "109.2214600",
+    "hyKeyWord": "lb"
+  }, {
+    "cityNameCn": "\u9e7f\u5be8",
+    "cityCode": "ZZZ",
+    "pingYin": "luzhai",
+    "latitude": "24.4873260",
+    "longitude": "109.7331260",
+    "hyKeyWord": "lz"
+  }, {
+    "cityNameCn": "\u8354\u6ce2",
+    "cityCode": "LLB",
+    "pingYin": "libo",
+    "latitude": "25.4111570",
+    "longitude": "107.8869690",
+    "hyKeyWord": "lb"
+  }, {
+    "cityNameCn": "\u6f2f\u6cb3",
+    "cityCode": "LUH",
+    "pingYin": "luohe",
+    "latitude": "33.5814130",
+    "longitude": "114.0165390",
+    "hyKeyWord": "lh"
+  }, {
+    "cityNameCn": "\u4e34\u6d77",
+    "cityCode": "LHH",
+    "pingYin": "linhai",
+    "latitude": "28.8585110",
+    "longitude": "121.1449520",
+    "hyKeyWord": "lh"
+  }, {
+    "cityNameCn": "\u9ece\u5e73",
+    "cityCode": "HZH",
+    "pingYin": "liping",
+    "latitude": "26.2303720",
+    "longitude": "109.1367500",
+    "hyKeyWord": "lp"
+  }],
+  "M": [{
+    "cityNameCn": "\u6f20\u6cb3",
+    "cityCode": "OHE",
+    "pingYin": "mohe",
+    "latitude": "52.9722720",
+    "longitude": "122.5385920",
+    "hyKeyWord": "mh"
+  }, {
+    "cityNameCn": "\u7261\u4e39\u6c5f",
+    "cityCode": "MDG",
+    "pingYin": "mudanjiang",
+    "latitude": "44.5516530",
+    "longitude": "129.6331690",
+    "hyKeyWord": "mdj"
+  }, {
+    "cityNameCn": "\u7ef5\u9633",
+    "cityCode": "MIG",
+    "pingYin": "mianyang",
+    "latitude": "31.4674500",
+    "longitude": "104.6791140",
+    "hyKeyWord": "my"
+  }, {
+    "cityNameCn": "\u6885\u53bf",
+    "cityCode": "MXZ",
+    "pingYin": "meixian",
+    "latitude": "24.2652720",
+    "longitude": "116.0821440",
+    "hyKeyWord": "mx"
+  }, {
+    "cityNameCn": "\u8292\u5e02",
+    "cityCode": "LUM",
+    "pingYin": "mangshi",
+    "latitude": "24.4337350",
+    "longitude": "98.5886410",
+    "hyKeyWord": "ms"
+  }, {
+    "cityNameCn": "\u6ee1\u6d32\u91cc",
+    "cityCode": "NZH",
+    "pingYin": "manzhouli",
+    "latitude": "49.5876640",
+    "longitude": "117.4803350",
+    "hyKeyWord": "mzl"
+  }],
+  "N": [{
+    "cityNameCn": "\u5b81\u6ce2",
+    "cityCode": "NGB",
+    "pingYin": "ningbo",
+    "latitude": "29.8683360",
+    "longitude": "121.5439900",
+    "hyKeyWord": "nb"
+  }, {
+    "cityNameCn": "\u5357\u4eac",
+    "cityCode": "NKG",
+    "pingYin": "nanjing",
+    "latitude": "32.0602550",
+    "longitude": "118.7968770",
+    "hyKeyWord": "nj"
+  }, {
+    "cityNameCn": "\u5357\u5b81",
+    "cityCode": "NNG",
+    "pingYin": "nanning",
+    "latitude": "22.8176420",
+    "longitude": "108.3656310",
+    "hyKeyWord": "nn"
+  }, {
+    "cityNameCn": "\u5357\u9633",
+    "cityCode": "NNY",
+    "pingYin": "nanyang",
+    "latitude": "32.9906140",
+    "longitude": "112.5283450",
+    "hyKeyWord": "ny"
+  }, {
+    "cityNameCn": "\u5357\u901a",
+    "cityCode": "NTG",
+    "pingYin": "nantong",
+    "latitude": "31.9801840",
+    "longitude": "120.8943320",
+    "hyKeyWord": "nt"
+  }, {
+    "cityNameCn": "\u5357\u5145",
+    "cityCode": "NAO",
+    "pingYin": "nanchong",
+    "latitude": "30.8377930",
+    "longitude": "106.1106980",
+    "hyKeyWord": "nc"
+  }, {
+    "cityNameCn": "\u5357\u660c",
+    "cityCode": "KHN",
+    "pingYin": "nanchang",
+    "latitude": "28.6831600",
+    "longitude": "115.8580890",
+    "hyKeyWord": "nc"
+  }, {
+    "cityNameCn": "\u5357\u5e73(\u6b66\u5937\u5c71)",
+    "cityCode": "WUS",
+    "pingYin": "nanping(wuyishan)",
+    "latitude": "35.655413",
+    "longitude": "139.392042",
+    "hyKeyWord": "np(wys)"
+  }],
+  "P": [{
+    "cityNameCn": "\u76d8\u9526",
+    "cityCode": "PAJ",
+    "pingYin": "panjin",
+    "latitude": "41.1199970",
+    "longitude": "122.0707140",
+    "hyKeyWord": "pj"
+  }, {
+    "cityNameCn": "\u90a6\u8fbe",
+    "cityCode": "BPX",
+    "pingYin": "pomda",
+    "latitude": "30.557087",
+    "longitude": "97.109184",
+    "hyKeyWord": "pd"
+  }, {
+    "cityNameCn": "\u6500\u679d\u82b1",
+    "cityCode": "PZI",
+    "pingYin": "panzhihua",
+    "latitude": "26.5823470",
+    "longitude": "101.7186370",
+    "hyKeyWord": "pzh"
+  }],
+  "Q": [{
+    "cityNameCn": "\u79e6\u7687\u5c9b",
+    "cityCode": "SHP",
+    "pingYin": "qinhuangdao",
+    "latitude": "39.9353770",
+    "longitude": "119.6004920",
+    "hyKeyWord": "qhd"
+  }, {
+    "cityNameCn": "\u9f50\u9f50\u54c8\u5c14",
+    "cityCode": "NDG",
+    "pingYin": "qiqihaer",
+    "latitude": "47.3543480",
+    "longitude": "123.9181860",
+    "hyKeyWord": "qqhe"
+  }, {
+    "cityNameCn": "\u4e14\u672b",
+    "cityCode": "IQM",
+    "pingYin": "qiemo",
+    "latitude": "38.1456360",
+    "longitude": "85.5296260",
+    "hyKeyWord": "qm"
+  }, {
+    "cityNameCn": "\u5e86\u9633",
+    "cityCode": "IQN",
+    "pingYin": "qingyang",
+    "latitude": "35.7386680",
+    "longitude": "107.6324690",
+    "hyKeyWord": "qy"
+  }, {
+    "cityNameCn": "\u9752\u5c9b",
+    "cityCode": "TAO",
+    "pingYin": "qingdao",
+    "latitude": "36.0672200",
+    "longitude": "120.3825040",
+    "hyKeyWord": "qd"
+  }, {
+    "cityNameCn": "\u8862\u5dde",
+    "cityCode": "JUZ",
+    "pingYin": "quzhou",
+    "latitude": "28.9358100",
+    "longitude": "118.8743750",
+    "hyKeyWord": "qz"
+  }, {
+    "cityNameCn": "\u94a6\u5dde\u6e2f",
+    "cityCode": "QZG",
+    "pingYin": "qinzhougang",
+    "latitude": "21.7383150",
+    "longitude": "108.6010890",
+    "hyKeyWord": "qzg"
+  }, {
+    "cityNameCn": "\u9ed4\u6c5f",
+    "cityCode": "JIQ",
+    "pingYin": "qianjiang",
+    "latitude": "29.5331830",
+    "longitude": "108.7708640",
+    "hyKeyWord": "qj"
+  }, {
+    "cityNameCn": "\u94a6\u5dde\u5e02",
+    "cityCode": "QQQ",
+    "pingYin": "qinzhoushi",
+    "latitude": "21.9809680",
+    "longitude": "108.6545430",
+    "hyKeyWord": "qzs"
+  }, {
+    "cityNameCn": "\u6cc9\u5dde(\u664b\u6c5f)",
+    "cityCode": "JJN",
+    "pingYin": "quanzhou(jinjang)",
+    "latitude": "24.7816810",
+    "longitude": "118.5523650",
+    "hyKeyWord": "qz(jj)"
+  }],
+  "R": [{
+    "cityNameCn": "\u745e\u4e3d",
+    "cityCode": "RAY",
+    "pingYin": "ruili",
+    "latitude": "24.0127770",
+    "longitude": "97.8518850",
+    "hyKeyWord": "rl"
+  }, {
+    "cityNameCn": "\u65e5\u5580\u5219",
+    "cityCode": "RKZ",
+    "pingYin": "rikaze",
+    "latitude": "29.2668700",
+    "longitude": "88.8805830",
+    "hyKeyWord": "rkz"
+  }],
+  "S": [{
+    "cityNameCn": "\u5546\u4e18",
+    "cityCode": "SHQ",
+    "pingYin": "shangqiu",
+    "latitude": "34.4141720",
+    "longitude": "115.6563700",
+    "hyKeyWord": "sq"
+  }, {
+    "cityNameCn": "\u4e09\u95e8",
+    "cityCode": "SMM",
+    "pingYin": "sanmen",
+    "latitude": "29.1048190",
+    "longitude": "121.3954900",
+    "hyKeyWord": "sm"
+  }, {
+    "cityNameCn": "\u77f3\u72ee",
+    "cityCode": "SHI",
+    "pingYin": "shishi",
+    "latitude": "24.7322460",
+    "longitude": "118.6479400",
+    "hyKeyWord": "ss"
+  }, {
+    "cityNameCn": "\u7ecd\u5174",
+    "cityCode": "SHX",
+    "pingYin": "shaoxing",
+    "latitude": "29.9957620",
+    "longitude": "120.5861090",
+    "hyKeyWord": "sx"
+  }, {
+    "cityNameCn": "\u97f6\u5173",
+    "cityCode": "HSC",
+    "pingYin": "shaoguan",
+    "latitude": "24.8104030",
+    "longitude": "113.5975220",
+    "hyKeyWord": "sg"
+  }, {
+    "cityNameCn": "\u4e0a\u6d77",
+    "cityCode": "SHA",
+    "pingYin": "shanghai",
+    "latitude": "31.2303930",
+    "longitude": "121.4737040",
+    "hyKeyWord": "sh"
+  }, {
+    "cityNameCn": "\u6c99\u5e02",
+    "cityCode": "SHS",
+    "pingYin": "shashi",
+    "latitude": "30.3110560",
+    "longitude": "112.2555830",
+    "hyKeyWord": "ss"
+  }, {
+    "cityNameCn": "\u77f3\u5bb6\u5e84",
+    "cityCode": "SJW",
+    "pingYin": "shijiazhuang",
+    "latitude": "38.0423070",
+    "longitude": "114.5148600",
+    "hyKeyWord": "sjz"
+  }, {
+    "cityNameCn": "\u6c55\u5934",
+    "cityCode": "SWA",
+    "pingYin": "shantou",
+    "latitude": "23.3532990",
+    "longitude": "116.6818380",
+    "hyKeyWord": "st"
+  }, {
+    "cityNameCn": "\u912f\u5584",
+    "cityCode": "SXJ",
+    "pingYin": "shanshan",
+    "latitude": "42.8687440",
+    "longitude": "90.2133300",
+    "hyKeyWord": "ss"
+  }, {
+    "cityNameCn": "\u601d\u8305",
+    "cityCode": "SYM",
+    "pingYin": "simao",
+    "latitude": "22.7869100",
+    "longitude": "100.9771650",
+    "hyKeyWord": "sm"
+  }, {
+    "cityNameCn": "\u4e09\u4e9a",
+    "cityCode": "SYX",
+    "pingYin": "sanya",
+    "latitude": "18.2528470",
+    "longitude": "109.5119090",
+    "hyKeyWord": "sy"
+  }, {
+    "cityNameCn": "\u82cf\u5dde",
+    "cityCode": "SZV",
+    "pingYin": "suzhou",
+    "latitude": "31.2988860",
+    "longitude": "120.5853160",
+    "hyKeyWord": "sz"
+  }, {
+    "cityNameCn": "\u6df1\u5733",
+    "cityCode": "SZX",
+    "pingYin": "shenzhen",
+    "latitude": "22.5430990",
+    "longitude": "114.0578680",
+    "hyKeyWord": "sz"
+  }, {
+    "cityNameCn": "\u6c88\u9633",
+    "cityCode": "SHE",
+    "pingYin": "shenyang",
+    "latitude": "41.8057200",
+    "longitude": "123.4314700",
+    "hyKeyWord": "sy"
+  }],
+  "T": [{
+    "cityNameCn": "\u5854\u57ce",
+    "cityCode": "TCG",
+    "pingYin": "tacheng",
+    "latitude": "46.7453640",
+    "longitude": "82.9803170",
+    "hyKeyWord": "tc"
+  }, {
+    "cityNameCn": "\u94dc\u4ec1",
+    "cityCode": "TEN",
+    "pingYin": "tongren",
+    "latitude": "27.7315150",
+    "longitude": "109.1895980",
+    "hyKeyWord": "tr"
+  }, {
+    "cityNameCn": "\u901a\u8fbd",
+    "cityCode": "TGO",
+    "pingYin": "tongliao",
+    "latitude": "43.6194400",
+    "longitude": "122.2657370",
+    "hyKeyWord": "tl"
+  }, {
+    "cityNameCn": "\u53f0\u5357",
+    "cityCode": "TNN",
+    "pingYin": "tainan",
+    "latitude": "23.1416985",
+    "longitude": "120.2512728",
+    "hyKeyWord": "tn"
+  }, {
+    "cityNameCn": "\u5929\u6d25",
+    "cityCode": "TSN",
+    "pingYin": "tianjin",
+    "latitude": "39.0841580",
+    "longitude": "117.2009830",
+    "hyKeyWord": "tj"
+  }, {
+    "cityNameCn": "\u53f0\u4e1c",
+    "cityCode": "TTT",
+    "pingYin": "taidong",
+    "latitude": "22.9846118",
+    "longitude": "120.9876321",
+    "hyKeyWord": "td"
+  }, {
+    "cityNameCn": "\u592a\u539f",
+    "cityCode": "TYN",
+    "pingYin": "taiyuan",
+    "latitude": "37.8706620",
+    "longitude": "112.5506190",
+    "hyKeyWord": "ty"
+  }, {
+    "cityNameCn": "\u901a\u5316",
+    "cityCode": "TNH",
+    "pingYin": "tonghua",
+    "latitude": "41.7284010",
+    "longitude": "125.9396970",
+    "hyKeyWord": "th"
+  }, {
+    "cityNameCn": "\u5929\u53f0",
+    "cityCode": "TIT",
+    "pingYin": "tiantai",
+    "latitude": "35.6314160",
+    "longitude": "140.1127750",
+    "hyKeyWord": "tt"
+  }, {
+    "cityNameCn": "\u53f0\u5dde",
+    "cityCode": "TAZ",
+    "pingYin": "taizhou",
+    "latitude": "28.6563860",
+    "longitude": "121.4207570",
+    "hyKeyWord": "tz"
+  }, {
+    "cityNameCn": "\u6cf0\u5b89",
+    "cityCode": "TAN",
+    "pingYin": "taian",
+    "latitude": "36.2002520",
+    "longitude": "117.0876140",
+    "hyKeyWord": "ta"
+  }, {
+    "cityNameCn": "\u5410\u9c81\u756a",
+    "cityCode": "TLQ",
+    "pingYin": "tulufan",
+    "latitude": "42.9513840",
+    "longitude": "89.1896550",
+    "hyKeyWord": "tlf"
+  }, {
+    "cityNameCn": "\u817e\u51b2",
+    "cityCode": "TCZ",
+    "pingYin": "tengchong ",
+    "latitude": "25.0206170",
+    "longitude": "98.4900020",
+    "hyKeyWord": "tc"
+  }, {
+    "cityNameCn": "\u94c1\u5cad",
+    "cityCode": "TIN",
+    "pingYin": "tieling",
+    "latitude": "42.2229700",
+    "longitude": "123.7261630",
+    "hyKeyWord": "tl"
+  }, {
+    "cityNameCn": "\u5929\u6c34",
+    "cityCode": "THQ",
+    "pingYin": "tianshui",
+    "latitude": "34.5808620",
+    "longitude": "105.7249470",
+    "hyKeyWord": "ts"
+  }, {
+    "cityNameCn": "\u5510\u5c71",
+    "cityCode": "TVS",
+    "pingYin": "tangshan",
+    "latitude": "39.6304760",
+    "longitude": "118.1804070",
+    "hyKeyWord": "ts"
+  }],
+  "W": [{
+    "cityNameCn": "\u4e4c\u9c81\u6728\u9f50",
+    "cityCode": "URC",
+    "pingYin": "wulumuqi",
+    "latitude": "43.8256450",
+    "longitude": "87.6168230",
+    "hyKeyWord": "wlmq"
+  }, {
+    "cityNameCn": "\u4e4c\u5170\u6d69\u7279",
+    "cityCode": "HLH",
+    "pingYin": "wulanhaote",
+    "latitude": "46.0733020",
+    "longitude": "122.0930040",
+    "hyKeyWord": "wlht"
+  }, {
+    "cityNameCn": "\u829c\u6e56",
+    "cityCode": "WHU",
+    "pingYin": "wuhu",
+    "latitude": "31.3528590",
+    "longitude": "118.4329410",
+    "hyKeyWord": "wh"
+  }, {
+    "cityNameCn": "\u6f4d\u574a",
+    "cityCode": "WEF",
+    "pingYin": "weifang",
+    "latitude": "36.7066910",
+    "longitude": "119.1619300",
+    "hyKeyWord": "wf"
+  }, {
+    "cityNameCn": "\u5a01\u6d77",
+    "cityCode": "WEH",
+    "pingYin": "weihai",
+    "latitude": "37.5130680",
+    "longitude": "122.1204200",
+    "hyKeyWord": "wh"
+  }, {
+    "cityNameCn": "\u6e29\u5dde",
+    "cityCode": "WNZ",
+    "pingYin": "wenzhou",
+    "latitude": "27.9942670",
+    "longitude": "120.6993670",
+    "hyKeyWord": "wz"
+  }, {
+    "cityNameCn": "\u6b66\u6c49",
+    "cityCode": "WUH",
+    "pingYin": "wuhan",
+    "latitude": "30.5930870",
+    "longitude": "114.3053570",
+    "hyKeyWord": "wh"
+  }, {
+    "cityNameCn": "\u65e0\u9521",
+    "cityCode": "WUX",
+    "pingYin": "wuxi",
+    "latitude": "31.5661450",
+    "longitude": "120.3030270",
+    "hyKeyWord": "wx"
+  }, {
+    "cityNameCn": "\u68a7\u5dde",
+    "cityCode": "WUZ",
+    "pingYin": "wuzhou",
+    "latitude": "23.4769100",
+    "longitude": "111.2791700",
+    "hyKeyWord": "wz"
+  }, {
+    "cityNameCn": "\u4e07\u5dde",
+    "cityCode": "WXN",
+    "pingYin": "wanzhou",
+    "latitude": "30.8078230",
+    "longitude": "108.4087460",
+    "hyKeyWord": "wz"
+  }, {
+    "cityNameCn": "\u6587\u5c71",
+    "cityCode": "WNH",
+    "pingYin": "wenshan",
+    "latitude": "23.3688170",
+    "longitude": "104.2510450",
+    "hyKeyWord": "ws"
+  }, {
+    "cityNameCn": "\u4e4c\u6d77",
+    "cityCode": "WUA",
+    "pingYin": "wuhai",
+    "latitude": "39.6550240",
+    "longitude": "106.7942050",
+    "hyKeyWord": "wh"
+  }, {
+    "cityNameCn": "\u6e29\u5cad",
+    "cityCode": "WEL",
+    "pingYin": "wenling",
+    "latitude": "28.3732000",
+    "longitude": "121.3851810",
+    "hyKeyWord": "wl"
+  }],
+  "X": [{
+    "cityNameCn": "\u4ed9\u5c45",
+    "cityCode": "XXJ",
+    "pingYin": "xianju",
+    "latitude": "28.8468770",
+    "longitude": "120.7287320",
+    "hyKeyWord": "xj"
+  }, {
+    "cityNameCn": "\u5174\u4e49",
+    "cityCode": "ACX",
+    "pingYin": "xingyi",
+    "latitude": "25.0920530",
+    "longitude": "104.8954890",
+    "hyKeyWord": "xy"
+  }, {
+    "cityNameCn": "\u8bb8\u660c",
+    "cityCode": "XUC",
+    "pingYin": "xuchang",
+    "latitude": "34.0355060",
+    "longitude": "113.8526400",
+    "hyKeyWord": "xc"
+  }, {
+    "cityNameCn": "\u5174\u57ce",
+    "cityCode": "XEN",
+    "pingYin": "xingcheng",
+    "latitude": "40.6147630",
+    "longitude": "120.7283100",
+    "hyKeyWord": "xc"
+  }, {
+    "cityNameCn": "\u5174\u5b81",
+    "cityCode": "XIN",
+    "pingYin": "xingning",
+    "latitude": "22.8539290",
+    "longitude": "108.3689210",
+    "hyKeyWord": "xn"
+  }, {
+    "cityNameCn": "\u90a2\u53f0",
+    "cityCode": "XNT",
+    "pingYin": "xingtai",
+    "latitude": "37.0705890",
+    "longitude": "114.5048440",
+    "hyKeyWord": "xt"
+  }, {
+    "cityNameCn": "\u8427\u5c71",
+    "cityCode": "XXX",
+    "pingYin": "xiaoshan",
+    "latitude": "30.1827060",
+    "longitude": "120.2644940",
+    "hyKeyWord": "xs"
+  }, {
+    "cityNameCn": "\u65b0\u6e90(\u90a3\u62c9\u63d0)",
+    "cityCode": "NLT",
+    "pingYin": "xinyuan(nalati)",
+    "latitude": "43.3212770",
+    "longitude": "84.0175190",
+    "hyKeyWord": "xy(nlt)"
+  }, {
+    "cityNameCn": "\u590f\u6cb3",
+    "cityCode": "GXH",
+    "pingYin": "xiahe",
+    "latitude": "35.256834",
+    "longitude": "102.521667",
+    "hyKeyWord": "xh"
+  }, {
+    "cityNameCn": "\u8944\u6a0a(\u8944\u9633)",
+    "cityCode": "XFN",
+    "pingYin": "xiangfan(xiangyang)",
+    "latitude": "32.1217140",
+    "longitude": "112.7416282",
+    "hyKeyWord": "xf(xy)"
+  }, {
+    "cityNameCn": "\u897f\u660c",
+    "cityCode": "XIC",
+    "pingYin": "xichang",
+    "latitude": "27.8945040",
+    "longitude": "102.2644490",
+    "hyKeyWord": "xc"
+  }, {
+    "cityNameCn": "\u9521\u6797\u6d69\u7279",
+    "cityCode": "XIL",
+    "pingYin": "xilinhaote",
+    "latitude": "43.9334110",
+    "longitude": "116.0860320",
+    "hyKeyWord": "xlht"
+  }, {
+    "cityNameCn": "\u897f\u5b89",
+    "cityCode": "SIA",
+    "pingYin": "xian",
+    "latitude": "34.2649870",
+    "longitude": "108.9442690",
+    "hyKeyWord": "xa"
+  }, {
+    "cityNameCn": "\u53a6\u95e8",
+    "cityCode": "XMN",
+    "pingYin": "xiamen",
+    "latitude": "24.4798360",
+    "longitude": "118.0894200",
+    "hyKeyWord": "xm"
+  }, {
+    "cityNameCn": "\u897f\u5b81",
+    "cityCode": "XNN",
+    "pingYin": "xining",
+    "latitude": "36.6171440",
+    "longitude": "101.7782280",
+    "hyKeyWord": "xn"
+  }, {
+    "cityNameCn": "\u5f90\u5dde",
+    "cityCode": "XUZ",
+    "pingYin": "xuzhou",
+    "latitude": "34.2047500",
+    "longitude": "117.2840670",
+    "hyKeyWord": "xz"
+  }, {
+    "cityNameCn": "\u666f\u6d2a(\u897f\u53cc\u7248\u7eb3)",
+    "cityCode": "JHG",
+    "pingYin": "jinghong(xishuangbanna)",
+    "latitude": "22.0107100",
+    "longitude": "100.7997760",
+    "hyKeyWord": "jh(xsbn)"
+  }],
+  "Y": [{
+    "cityNameCn": "\u94f6\u5ddd",
+    "cityCode": "INC",
+    "pingYin": "yinchuan",
+    "latitude": "38.4871940",
+    "longitude": "106.2309090",
+    "hyKeyWord": "yc"
+  }, {
+    "cityNameCn": "\u5ef6\u5b89",
+    "cityCode": "ENY",
+    "pingYin": "yanan",
+    "latitude": "36.5854240",
+    "longitude": "109.4896350",
+    "hyKeyWord": "ya"
+  }, {
+    "cityNameCn": "\u6c38\u5dde",
+    "cityCode": "LLF",
+    "pingYin": "yongzhou",
+    "latitude": "26.4203940",
+    "longitude": "111.6134450",
+    "hyKeyWord": "yz"
+  }, {
+    "cityNameCn": "\u5b9c\u5bbe",
+    "cityCode": "YBP",
+    "pingYin": "yibin",
+    "latitude": "28.7518120",
+    "longitude": "104.6433820",
+    "hyKeyWord": "yb"
+  }, {
+    "cityNameCn": "\u8fd0\u57ce",
+    "cityCode": "YCU",
+    "pingYin": "yuncheng",
+    "latitude": "35.0263720",
+    "longitude": "111.0073240",
+    "hyKeyWord": "yc"
+  }, {
+    "cityNameCn": "\u5b9c\u660c",
+    "cityCode": "YIH",
+    "pingYin": "yichang",
+    "latitude": "30.6919670",
+    "longitude": "111.2864710",
+    "hyKeyWord": "yc"
+  }, {
+    "cityNameCn": "\u4f0a\u5b81",
+    "cityCode": "YIN",
+    "pingYin": "yining",
+    "latitude": "43.9129450",
+    "longitude": "81.3293240",
+    "hyKeyWord": "yn"
+  }, {
+    "cityNameCn": "\u4e49\u4e4c",
+    "cityCode": "YIW",
+    "pingYin": "yiwu",
+    "latitude": "29.3068410",
+    "longitude": "120.0750580",
+    "hyKeyWord": "yw"
+  }, {
+    "cityNameCn": "\u4f9d\u5170",
+    "cityCode": "YLN",
+    "pingYin": "yilan",
+    "latitude": "46.3254330",
+    "longitude": "129.5681160",
+    "hyKeyWord": "yl"
+  }, {
+    "cityNameCn": "\u5ef6\u5409",
+    "cityCode": "YNJ",
+    "pingYin": "yanji",
+    "latitude": "42.9069590",
+    "longitude": "129.5139140",
+    "hyKeyWord": "yj"
+  }, {
+    "cityNameCn": "\u70df\u53f0",
+    "cityCode": "YNT",
+    "pingYin": "yantai",
+    "latitude": "37.4638190",
+    "longitude": "121.4479260",
+    "hyKeyWord": "yt"
+  }, {
+    "cityNameCn": "\u76d0\u57ce",
+    "cityCode": "YNZ",
+    "pingYin": "yancheng",
+    "latitude": "33.3473780",
+    "longitude": "120.1635610",
+    "hyKeyWord": "yc"
+  }, {
+    "cityNameCn": "\u6986\u6797",
+    "cityCode": "UYN",
+    "pingYin": "yulin",
+    "latitude": "38.2853420",
+    "longitude": "109.7345560",
+    "hyKeyWord": "yl"
+  }, {
+    "cityNameCn": "\u5b9c\u6625",
+    "cityCode": "YIC",
+    "pingYin": "yichun",
+    "latitude": "27.822074",
+    "longitude": "114.416428",
+    "hyKeyWord": "yc"
+  }, {
+    "cityNameCn": "\u7389\u6811",
+    "cityCode": "YUS",
+    "pingYin": "yushu",
+    "latitude": "33.0058220",
+    "longitude": "97.0066360",
+    "hyKeyWord": "ys"
+  }, {
+    "cityNameCn": "\u4f0a\u6625",
+    "cityCode": "LDS",
+    "pingYin": "yichun",
+    "latitude": "47.7275420",
+    "longitude": "128.8406610",
+    "hyKeyWord": "yc"
+  }, {
+    "cityNameCn": "\u4f59\u59da",
+    "cityCode": "OOO",
+    "pingYin": "yuyao",
+    "latitude": "30.0371970",
+    "longitude": "121.1546290",
+    "hyKeyWord": "yy"
+  }, {
+    "cityNameCn": "\u626c\u5dde",
+    "cityCode": "YTY",
+    "pingYin": "yangzhou",
+    "latitude": "32.3942100",
+    "longitude": "119.4129660",
+    "hyKeyWord": "yz"
+  }, {
+    "cityNameCn": "\u5143\u8c0b",
+    "cityCode": "YUA",
+    "pingYin": "yuanmou",
+    "latitude": "25.7045530",
+    "longitude": "101.8744680",
+    "hyKeyWord": "ym"
+  }, {
+    "cityNameCn": "\u7389\u6797",
+    "cityCode": "YYY",
+    "pingYin": "yulin",
+    "latitude": "22.6363790",
+    "longitude": "110.1647560",
+    "hyKeyWord": "yl"
+  }, {
+    "cityNameCn": "\u7389\u73af",
+    "cityCode": "YUH",
+    "pingYin": "yuhuan",
+    "latitude": "28.1359300",
+    "longitude": "121.2318050",
+    "hyKeyWord": "yh"
+  }, {
+    "cityNameCn": "\u9633\u6714",
+    "cityCode": "SSS",
+    "pingYin": "yangshuo",
+    "latitude": "24.7784810",
+    "longitude": "110.4965930",
+    "hyKeyWord": "ys"
+  }],
+  "Z": [{
+    "cityNameCn": "\u6cfd\u56fd",
+    "cityCode": "ZEG",
+    "pingYin": "zeguo",
+    "latitude": "28.5103290",
+    "longitude": "121.3671060",
+    "hyKeyWord": "zg"
+  }, {
+    "cityNameCn": "\u5468\u53e3",
+    "cityCode": "ZHK",
+    "pingYin": "zhoukou",
+    "latitude": "33.6186860",
+    "longitude": "114.6576160",
+    "hyKeyWord": "zk"
+  }, {
+    "cityNameCn": "\u4e2d\u536b",
+    "cityCode": "ZHY",
+    "pingYin": "zhongwei",
+    "latitude": "37.5168920",
+    "longitude": "105.1738370",
+    "hyKeyWord": "zw"
+  }, {
+    "cityNameCn": "\u5f20\u6396",
+    "cityCode": "YZY",
+    "pingYin": "zhangye",
+    "latitude": "38.9256460",
+    "longitude": "100.4498220",
+    "hyKeyWord": "zy"
+  }, {
+    "cityNameCn": "\u5f20\u5bb6\u53e3",
+    "cityCode": "ZQZ",
+    "pingYin": "zhangjiakou",
+    "latitude": "40.836671",
+    "longitude": "114.8909",
+    "hyKeyWord": "zjk"
+  }, {
+    "cityNameCn": "\u9547\u6c5f",
+    "cityCode": "ZJA",
+    "pingYin": "zhenjiang",
+    "latitude": "32.1991470",
+    "longitude": "119.4572200",
+    "hyKeyWord": "zj"
+  }, {
+    "cityNameCn": "\u9075\u4e49",
+    "cityCode": "ZYI",
+    "pingYin": "zunyi",
+    "latitude": "27.7256540",
+    "longitude": "106.9273890",
+    "hyKeyWord": "zy"
+  }, {
+    "cityNameCn": "\u662d\u901a",
+    "cityCode": "ZAT",
+    "pingYin": "zhaotong",
+    "latitude": "27.3382570",
+    "longitude": "103.7174650",
+    "hyKeyWord": "zt"
+  }, {
+    "cityNameCn": "\u6e5b\u6c5f",
+    "cityCode": "ZHA",
+    "pingYin": "zhanjiang",
+    "latitude": "21.2707020",
+    "longitude": "110.3593870",
+    "hyKeyWord": "zj"
+  }, {
+    "cityNameCn": "\u73e0\u6d77",
+    "cityCode": "ZUH",
+    "pingYin": "zhuhai",
+    "latitude": "22.2707150",
+    "longitude": "113.5767260",
+    "hyKeyWord": "zh"
+  }, {
+    "cityNameCn": "\u821f\u5c71(\u666e\u9640\u5c71)",
+    "cityCode": "HSN",
+    "pingYin": "zhoushan(putuoshan)",
+    "latitude": "30.0024990",
+    "longitude": "122.3903490",
+    "hyKeyWord": "zs(pts)"
+  }, {
+    "cityNameCn": "\u90d1\u5dde",
+    "cityCode": "CGO",
+    "pingYin": "zhengzhou",
+    "latitude": "34.7466000",
+    "longitude": "113.6253680",
+    "hyKeyWord": "zz"
+  }, {
+    "cityNameCn": "\u5f20\u5bb6\u754c",
+    "cityCode": "DYG",
+    "pingYin": "zhangjiajie",
+    "latitude": "29.1170960",
+    "longitude": "110.4791910",
+    "hyKeyWord": "zjj"
+  }]
+};
 

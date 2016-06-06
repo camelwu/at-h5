@@ -43,8 +43,8 @@
                     <%if(item==0){ %>
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= leaveItem["departDate"].substring(5, 10) %></span><span
-                            class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>
+                        <span><%= hftFlightDetail.returnDay(leaveItem["departDate"]) %></span><span
+                            class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= flightInfo.segmentsLeave[0]["cityNameFrom"]%></span><span>-</span><span><%= flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1]["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span>
                     </div>
                     <%}%>
                     <div class="timeAirport fixedMargin">
@@ -77,9 +77,12 @@
                 leaveTransferMins = hftFlightDetail["getMinutes"](leaveItem["arriveDate"],endDate);
                 leaveTransferHm = parseInt(leaveTransferMins / 60) + 'h' + leaveTransferMins % 60 + 'm';
                 %>
-                <p class="flightDetailArrow addMargin">
-                    中转<%=leaveItem["cityNameTo"]%><span><%=leaveTransferHm%></span>
-                </p>
+              <%if(flightInfo.transferListLeave[item]){%>
+              <p class="flightDetailArrow addMargin">
+                中转<%=flightInfo.transferListLeave[item]%><span><%=flightInfo.transferListLeaveTime[item]%></span>
+              </p>
+              <%}%>
+
                 <%}%>
                 <%})%>
                 <%flightInfo.segmentsReturn.forEach(function(returnItem,item_){ var len =
@@ -92,11 +95,11 @@
                     <%if(item_==0){ %>
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= returnItem["departDate"].substring(5, 10) %></span><span
-                            class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>
+                        <span><%= hftFlightDetail.returnDay(returnItem["departDate"]) %></span><span
+                            class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= flightInfo.segmentsReturn[0]["cityNameFrom"]%></span><span>-</span><span><%= flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1]["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span>
                     </div>
                     <%}%>
-                    <div class="timeAirport fixedMargin">
+              <div class="timeAirport fixedMargin">
                         <div class="left">
                             <span class="startTime"><%= returnItem["departDate"].substring(11, 16) %></span><span
                                 class="startPort"><%= returnItem["airportNameFrom"] %><%= returnItem["termDepart"] %></span>
@@ -127,9 +130,11 @@
                 returnTransferMins = hftFlightDetail["getMinutes"](returnItem["arriveDate"],endDate_);
                 returnTransferHm = parseInt(returnTransferMins / 60) + 'h' + returnTransferMins % 60 + 'm';
                 %>
+              <%if(flightInfo.transferListReturn[item_]){%>
                 <p class="flightDetailArrow addMargin">
-                    中转<%=returnItem["cityNameTo"]%><span><%= returnTransferHm%></span>
+                   中转<%=flightInfo.transferListReturn[item_]%><span><%=flightInfo.transferListReturnTime[item_]%></span>
                 </p>
+              <%}%>
                 <%}%>
                 <%})%>
             </ul>

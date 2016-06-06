@@ -61,6 +61,15 @@ var  hftFlightDetail = {
   return dayCount = (Math.abs(time2 - time1)) / 1000 / 60;
 },
 
+  returnDay: function () {
+    var array = [], arg = arguments[0];
+    if(!arg){return ""}
+    array = arg.split('-');
+    array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
+    array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
+    return array[1] + '月' + array[2] + '日';
+  },
+
   setChineseStar:function(){
     var strNumber = arguments[0].substr(0,1), resultNum='';
     switch (strNumber.charCodeAt(0)) {

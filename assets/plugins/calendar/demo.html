@@ -18,7 +18,7 @@
             margin: 0 auto;
             font-size: .28rem;
         }
-
+        
         .main .header .title {
             height: 100%;
             margin: 0 1rem;
@@ -26,29 +26,29 @@
             text-align: center;
             background: #eeeccc;
         }
-
+        
         .content {
             margin-top: .88rem;
         }
-
+        
         .siteRight {
             height: 1rem;
             line-height: 1rem;
             background: #eee;
             text-align: center;
         }
-
+        
         .select_time {
             /* margin: .2rem;*/
         }
-
+        
         .select_time .check_in {
             height: .5rem;
             width: 5rem;
             border-bottom: 1px solid #999;
             float: left;
         }
-
+        
         .select_time .time_icon {
             float: right;
             height: 1rem;
@@ -77,6 +77,14 @@
                     <div class="time_icon"></div>
                 </div>
             </div>
+            <div class="select_time clearfix">
+                <h2>选择日期</h2>
+                <div id="timeClickWrap1">
+                    <div id="checkInTime" class="check_in"></div>
+                    <div id="checkOutTime" class="check_out"></div>
+                    <div class="time_icon"></div>
+                </div>
+            </div>
         </div>
         <div class="siteRight">
             <p>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</p>
@@ -90,18 +98,18 @@
     <script>
         //默认选择两个日期
 
-        //        var myTime = new AtPlugins.Calender({
-        //            id: "timeClickWrap",
-        //            time: {
-        //                "2016-05-20": "checkinTime",
-        //                "2016-05-23": "checkoutTime"
-        //            },
-        //            checkInTimeOptId: 'checkInTime',
-        //            checkOutTimeOptId: 'checkOutTime',
-        //            callback: function(result) {
-        //                console.info(result);
-        //            }
-        //        });
+        var myTime = new ATplugins.Calender({
+            id: "timeClickWrap1",
+            time: {
+                "2016-05-20": "checkinTime",
+                "2016-05-23": "checkoutTime"
+            },
+            checkInTimeOptId: 'checkInTime',
+            checkOutTimeOptId: 'checkOutTime',
+            callback: function(result) {
+                console.info(result);
+            }
+        });
         var myTime = new ATplugins.Calender({
             id: "timeClickWrap",
             selectTime: 1,
@@ -139,7 +147,6 @@
         //                console.info(result);
         //            }
         //        });
-
 
     </script>
 </body>
