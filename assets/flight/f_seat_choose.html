@@ -151,8 +151,8 @@
           <button>预订</button>
           </div>
            <div class="left_small_word">
-             <p><span class="seat_word">经济舱</span> <span class="prices">￥1208</span> </p>
-             <p><span class="explain">退改签说明</span> <span class="taxFair">￥税费1518</span> </p>
+             <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountExc"]%></span> </p>
+             <p><span class="explain">退改签说明</span> <span class="taxFair">￥税费<%= flightInfo["totalTaxAmountADT"]%></span> </p>
            </div>
       </div>
     </div>
