@@ -384,14 +384,11 @@
             hotelDetail.myData.createAllback = result;
             console.log(hotelDetail.myData);
             if (result.success == true) {
-                hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
-                //data = hotelDetail.myData[0];
-                // var locatdata = sessionStorage.getItem("hotelStorage12345").ToCity;
-                // console.log(locatdata);
+                vlm.loadend();
+                if(result.data[0].hotelRoomsList.length==0){jAlert("该时间段没有可用的房间，请更换时间再试试！");}
             } else {
-                alert(result.message);
+                jAlert(result.message);
                 return;
-                //return false;
             }
 
             if (document.getElementsByClassName('enterDate')[0] && document.getElementsByClassName('enterDate')[0].innerHTML != '') {
@@ -500,7 +497,7 @@
         },
 
         upDateContent: function () {
-
+			vlm.loading();
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             hotelDetail.init(hotelDetail.gdataInfo);
