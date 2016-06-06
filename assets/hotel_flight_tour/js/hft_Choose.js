@@ -625,7 +625,6 @@ var hftChoose = {
     }
     return resultNum;
   },
-
   createTags: function () {
     var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "";
     tempStr = $("#template").html();
