@@ -52,7 +52,6 @@ var fSingleList = {
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       } else if (target.className == "nextDay") {
-        alert(2)
         lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
         tem = new Date(temDate.replace(/-/g, "/"));
         plusOne = new Date(tem.setDate(tem.getDate() + 1));
@@ -108,7 +107,7 @@ var fSingleList = {
         that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler() : "";
+        that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler(true) :that.loadMoreHandler(false);
         that.first = false;
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
@@ -143,16 +142,17 @@ var fSingleList = {
     dates[0].innerHTML = this.returnDay(this.postObj.departDate);
     weeks[0].innerHTML = this.setWeekItems(this.postObj.departDate);
   },
-
   loadMoreHandler: function () {
-    var loadMore = document.querySelector("#loadMore"), that = fSingleList;
+    var loadMore = document.querySelector("#loadMore"), that = fSingleList, tag = arguments[0];
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
       loadMore.innerHTML = "点击查看更多...";
-      this.addHandler(loadMore, 'click', function () {
-        that.loadMoreData();
-      });
+      if(tag){
+        this.addHandler(loadMore, 'click', function () {
+          that.loadMoreData();
+        });
+      }
     }
     return this;
   },

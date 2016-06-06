@@ -653,7 +653,7 @@
 
                 //执行回调函数 将选择的日期作为参数传入
                 if (typeof that.callback === 'function') {
-                    that.callback(that.result);
+                    that.callback(that.result, that);
                 }
                 //清空result
                 that.result = [];

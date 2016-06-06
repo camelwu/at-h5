@@ -71,7 +71,7 @@ var fDoubleList = {
         that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler() : "";
+        that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler(true) : that.loadMoreHandler(false);
         that.first = false;
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
@@ -147,14 +147,16 @@ var fDoubleList = {
   },
 
   loadMoreHandler: function () {
-    var loadMore = document.querySelector("#loadMore"), that = fDoubleList;
+    var loadMore = document.querySelector("#loadMore"), that = fDoubleList, tag = arguments[0];
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
       loadMore.innerHTML = "点击查看更多...";
-      this.addHandler(loadMore, 'click', function () {
-        that.loadMoreData();
-      });
+      if(tag){
+        this.addHandler(loadMore, 'click', function () {
+          that.loadMoreData();
+        });
+      }
     }
     return this;
   },

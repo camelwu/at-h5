@@ -203,7 +203,9 @@
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave[0]%></span>
+              <% if(flightInfoListGroup[i].flightInfoList[j].transferListLeave){%>
+               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave[0]%></span>
+              <% }%>
             </div>
             <div class="end_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveEndDate.substr(11,5)%></span>
@@ -233,7 +235,9 @@
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
+              <%if(flightInfoListGroup[i].flightInfoList[j].transferListReturn){%>
               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListReturn[0]%></span>
+              <%}%>
             </div>
             <div class="end_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightReturnEndDate.substr(11,5)%></span>
@@ -246,7 +250,9 @@
           <p class="small_info_tip"><img src="<%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airwayLogo%>" alt=""/><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airCorpName%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeType%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeName%></p>
         </div>
       </div>
-      <b class="hft_icon  <%= selectedFlight.cacheID == flightInfoListGroup[i].flightInfoList[j].cacheID&&selectedFlight.setID == flightInfoListGroup[i].flightInfoList[j].setID > 2 ? 'cho_gou' : '' %> "></b>
+      <% if(selectedFlight){%>
+          <b class="hft_icon  <%= selectedFlight.cacheID == flightInfoListGroup[i].flightInfoList[j].cacheID&&selectedFlight.setID == flightInfoListGroup[i].flightInfoList[j].setID? 'cho_gou' : '' %> "></b>
+      <% }%>
     </li>
     <% } %>
   </ul>
