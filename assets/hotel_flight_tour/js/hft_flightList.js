@@ -72,9 +72,16 @@ var flightList = {
         if(json.success && json.code == '200'&&data.flightInfoListGroup.length>0) {
           $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
           $('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
+
+          //航班列表选中项
+          var str2 = $("#flightCur").html();
+          var flightCur = ejs.render(str2, data);
+          $('#fligtList').append(flightCur);
+          //航班列表
           var str1 = $("#tplFlightList").html();
-          var flight_list = ejs.render(str1, data);
-          document.getElementById('fligtList').innerHTML = flight_list;
+          var flightList = ejs.render(str1, data);
+          $('#fligtList').append(flightList);
+
           if (!filterSign) {
             filterSign = true;
             bottom(data);
