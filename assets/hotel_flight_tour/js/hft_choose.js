@@ -264,8 +264,8 @@ var hftChoose = {
         hftChangeFlightPara.tours = toursArray;
         hftChangeFlightPara.packageID = that.initParaObj.packageID;
       } else {
-        hftChangeFlightPara.airwaySetID = that.curData.flightInfo.setID;
-        hftChangeFlightPara.airwayCacheID = that.curData.flightInfo.cacheID;
+        hftChangeFlightPara.airwaySetID = that.curData.airwaySetID;
+        hftChangeFlightPara.airwayCacheID = that.curData.airwayCacheID;
         hftChangeFlightPara.SortFields = [0];
         hftChangeFlightPara.ScreenFields = [0];
         hftChangeFlightPara.FlightStartTime = 0;
