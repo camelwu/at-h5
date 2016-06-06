@@ -257,7 +257,7 @@
           "countryName": $(".addAir_page .country").html(),
           "sexCode": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code"),
           "sexName": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name"),
-          "dateOfBirth": $(".addAir_page .birthDay").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', ''),
+          "dateOfBirth": $(".addAir_page .birthDay").eq(0).val().replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
           "email": $(".addAir_page .email").val(),
           //"createTime":"2016-05-25T18:53:09",
           "memberId": memberId,
@@ -272,7 +272,7 @@
             "idNumber": $(".addAir_page .cardNumber").val(),
             "idCountry": $(".addAir_page .cardCountry").attr("data-code"),
             "idCountryName": $(".addAir_page .cardCountry").html(),
-            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', ''),
+            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).val().replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
             "nationalityCode": $(".addAir_page .cardCountry").attr("data-code")
           }
         ]
@@ -296,7 +296,7 @@
       modle.traveller.countryName=$(".addAir_page .country").html();
       modle.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
       modle.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
-      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
+      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).val().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.traveller.email=$(".addAir_page .email").val();
       modle.traveller.mobilePhone=$(".addAir_page .telephone").val();
       modle.traveller.mobilePhoneAreaCode= $(".addAir_page .phone_pre").html();
@@ -304,7 +304,7 @@
       modle.listTravellerIdInfo[0].idNumber=$(".addAir_page .cardNumber").val();
       modle.listTravellerIdInfo[0].idCountry= $(".addAir_page .cardCountry").attr("data-code");
       modle.listTravellerIdInfo[0].idCountryName= $(".addAir_page .cardCountry").html();
-      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).val().replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
+      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).val().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.listTravellerIdInfo[0].nationalityCode= $(".addAir_page .cardCountry").attr("data-code");
 
       return modle;
@@ -318,14 +318,14 @@
     $(".addAir_page .postCard").attr("data-code",model.listTravellerIdInfo[0].idType);
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
-    $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
+    $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','年').replace('/','月')+'号');
     $(".addAir_page .cardCountry").attr("data-code",model.listTravellerIdInfo[0].idCountry);
     $(".addAir_page .cardCountry").html(model.listTravellerIdInfo[0].idCountryName);
     $(".addAir_page .country").attr("data-code",model.traveller.countryCode);
     $(".addAir_page .country").html(model.traveller.countryName);
     $(".addAir_page .telephone").val(model.traveller.mobilePhone);
     $(".addAir_page .email").val(model.traveller.email);
-    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
+    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('/','年').replace('/','月')+'号');
     $(".addAir_page .phone_pre").html(model.traveller.mobilePhoneAreaCode);
 
     $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2");

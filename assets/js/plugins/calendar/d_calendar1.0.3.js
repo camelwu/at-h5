@@ -465,10 +465,8 @@
                     }
 
                 });
-                if (throughSign) {
-                    selectedEle.eq(0).addClass('selectStart');
-                    selectedEle.eq(1).addClass('selectEnd');
-                }
+                selectedEle.eq(0).addClass('selectStart');
+                selectedEle.eq(1).addClass('selectEnd');
             } else {
                 $(".calendar .through").removeClass('through');
                 $(".calendar .selectStart").removeClass('selectStart');

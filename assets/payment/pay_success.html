@@ -44,7 +44,11 @@
               <ul class="tra_c2_inbox">
                   <li><h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span></li>
                   <li class="tra_live">{%=productName%}</li>
-                  <li class="tra_price" id="tdPrice">订单总额：<span>{%=currency%}{%=totalPrice%}</span></li>
+                {% if(vlm.getpara("type")=="Hotle" ){ %}
+                <li class="tra_price" id="tdPrice">订单总额：<span>{%=currency%}{%=totalPrice%}</span></li>
+                {% } else{ %}
+                <li class="tra_price" id="tdPrice">订单总额：<span>￥{%=totalPrice%}</span></li>
+                {% } %}
               </ul>
           </div>
       </div>
