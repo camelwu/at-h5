@@ -78,9 +78,15 @@ var flight_list = {
 				var newL = data.selectedAirway?data.airways.unshift(data.selectedAirway):null;
 				$('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
 				$('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
+				//航班列表选中项
+				var str2 = $("#flightCur").html();
+				var flightCur = ejs.render(str2, data);
+				$('#fligtList').append(flightCur);
+				//航班列表
 				var str1 = $("#tplFlightList").html();
 				var flightList = ejs.render(str1, data);
-				document.getElementById('fligtList').innerHTML = flightList;
+				$('#fligtList').append(flightList);
+
 				if (!filterSign) {
 					filterSign = true;
 					bottom(data);
