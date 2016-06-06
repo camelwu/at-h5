@@ -1101,7 +1101,6 @@ input.name{
   padding-left: .28rem;
 }
 
-
 .contact_wrap .more_black {
   display: inline-block;
   width: 49%;
@@ -1409,7 +1408,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   position: fixed;
   top: 40%;
   font-size: .24rem;
-  color: #333;
+  color: #999;
   display: none;
 }
 .target {

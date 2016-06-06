@@ -32,6 +32,7 @@ i {
   background-repeat: no-repeat;
   background-position: center;
   margin: -125px 0 0 -125px;
+  display: none;
 }
 
 /*酒店列表  开始*/
