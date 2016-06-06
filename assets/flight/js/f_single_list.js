@@ -112,6 +112,9 @@ var fSingleList = {
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
     } else {
+      if(!that.first){
+        $(".flight_ul").eq(0).html("");
+      }
       no_result.style.display = "block";
       $('#loadMore').hide();
       that.filterHandler().dateCalender();

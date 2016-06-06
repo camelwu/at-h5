@@ -316,21 +316,17 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   line-height: .60rem;
   color: #666666;
 }
-
 .middle_input .weekWord {
   margin-left: .06rem
 }
-
 .middle_input i, .date-top i {
   display: inline-block;
-  width: .242rem;
-  height: .122rem;
-  background: url(../../images/ui/icon_hft.png) no-repeat;
-  background-size: 7.50rem auto;
-  background-position: 51.18% 51.58%;
+  width: .240rem;
+  height: .140rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -2.24rem -.68rem;
   margin-left: .16rem;
-  position: relative;
-  top: -.04rem;
 }
 
 .date-top i {
