@@ -387,7 +387,17 @@
   <script type="text/template" id="tpl_BookingPackage">
     <!--景点包信息-->
     <div class="booking_package">
-      <h3 class="booking_package_h3"><%=lists.DetailData.data.packageName%><span class="booking_package_span">(<%=lists.DetailData.data.packageRefNo%>)</span></h3>
+      <h3 class="booking_package_h3"><%=lists.DetailData.data.packageName%><span class="booking_package_span">
+        (产品编号:<%=lists.DetailData.data.packageRefNo%>)
+        <% for(var i = 0;i < lists.SearchPriceData.data.prices.length;i++){ %>
+            <% if(lists.SearchPriceData.data.prices[i].category=="ADULT" && lists.isAudlt == 1){ %>
+              (成人票)
+            <% } %>
+            <% if(lists.SearchPriceData.data.prices[i].category=="CHILD" && lists.isAudlt == 0){ %>
+                (儿童票)
+            <% } %>
+          <% } %>
+      </span></h3>
       <P class="booking_package_preprice">
         <span class="booking_package_price">¥</span>
         <span class="booking_package_price">
