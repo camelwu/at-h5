@@ -52,7 +52,6 @@ var fSingleList = {
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       } else if (target.className == "nextDay") {
-        alert(2)
         lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
         tem = new Date(temDate.replace(/-/g, "/"));
         plusOne = new Date(tem.setDate(tem.getDate() + 1));
