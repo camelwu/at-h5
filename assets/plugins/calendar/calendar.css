@@ -63,6 +63,7 @@
     top: 2.68rem;
     padding-bottom: 1.18rem;
     background: rgb(255, 255, 255);
+    -webkit-overflow-scrolling: touch;
 }
 
 .calendar_date.no_tiper {
