@@ -429,6 +429,7 @@ var footer = (function() {
 			node[0].className == "flight_company" ? node[0].style.top = "" : node[0].style.bottom = "";
 			for (var i = 1; i < node.length; i++) {
 				node[i].style.bottom = "";
+				box.childNodes[i].style.backgroundColor = "";
 			}
 		},
 		request : function() {
