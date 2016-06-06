@@ -60,43 +60,43 @@
     </div>
 </script>
 <script type ="text/template"  id = "Sceniccontent">
-    <div class = "scenic_content_feature">
-        <h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>
-        <ul>
-            <li><%- inclusiveItem%></li>
-        </ul>
-    </div>
-    <div class="scenic_content_time">
-        <h3><i></i>营业时间</h3>
-        <span><%= vlm.Utils.format_date(defaultDepartStartDate ,"hm")%></span>
-    </div>
-    <div class="scenic_content_address">
-        <h3><i></i>营业地址</h3>
-        <address><%= destCityName%></address>
-    </div>
-    <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>
-    <div class="scenic_content_scheduling">
-        <h3><i></i>行程安排</h3>
-        <ul>
-            <li class = "scenic_height1"><%- tours[i].overview%></li>
-        </ul>
-        <i class = "scenic_content_scheduling_down" id = "Sheight1"></i>
-    </div>
-    <div class="scenic_content_notes">
-        <h3><i></i>注意事项</h3>
-        <ul>
-            <li class = "scenic_height2"><%- tours[i].importantNotes%></li>
-        </ul>
-        <i class = "scenic_content_scheduling_down" id = "Sheight2"></i>
-    </div>
-    <% }} %>
-    <div class="scenic_content_TOS">
-        <h3><i></i>服务条款</h3>
-        <ul>
-            <li class = "scenic_height3"><%- termsConditions%></li>
-        </ul>
-        <i class = "scenic_content_scheduling_down" id = "Sheight3"></i>
-    </div>
+  <div class = "scenic_content_feature">
+    <h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>
+    <ul>
+      <li><%- inclusiveItem.replace(/<[^>]+>/g,"")%></li>
+    </ul>
+  </div>
+  <div class="scenic_content_time">
+    <h3><i></i>营业时间</h3>
+    <span><%= vlm.Utils.format_date(defaultDepartStartDate ,"hm")%></span>
+  </div>
+  <div class="scenic_content_address">
+    <h3><i></i>营业地址</h3>
+    <address><%= destCityName%></address>
+  </div>
+  <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>
+  <div class="scenic_content_scheduling">
+    <h3><i></i>行程安排</h3>
+    <ul>
+      <li class = "scenic_height1"><%- tours[i].overview.replace(/<[^>]+>/g,"")%></li>
+    </ul>
+    <i class = "scenic_content_scheduling_down" id = "Sheight1"></i>
+  </div>
+  <div class="scenic_content_notes">
+    <h3><i></i>注意事项</h3>
+    <ul>
+      <li class = "scenic_height2"><%- tours[i].importantNotes.replace(/<[^>]+>/g,"")%></li>
+    </ul>
+    <i class = "scenic_content_scheduling_down" id = "Sheight2"></i>
+  </div>
+  <% }} %>
+  <div class="scenic_content_TOS">
+    <h3><i></i>服务条款</h3>
+    <ul>
+      <li class = "scenic_height3"><%- termsConditions.replace(/<[^>]+>/g,"")%></li>
+    </ul>
+    <i class = "scenic_content_scheduling_down" id = "Sheight3"></i>
+  </div>
 </script>
 
 </html>
