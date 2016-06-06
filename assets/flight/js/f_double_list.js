@@ -59,7 +59,6 @@ var fDoubleList = {
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
-
   renderHandler: function () {
     var result = arguments[0], that = fDoubleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
     that.fadeHandler();
