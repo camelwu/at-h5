@@ -1,6 +1,21 @@
 body{
   overflow-x: hidden!important;
 }
+/*去掉滚动条*/
+element::-webkit-scrollbar{
+  display: none;
+}
+/*灰色禁用事件*/
+.stopgray {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  pointer-events: none;
+}
+
+
 /*日历*/
 .calendar_Wrap {
   position: fixed;
@@ -1303,19 +1318,6 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   z-index: 999;
   pointer-events:auto;
   display: none;
-}
-
-::-webkit-scrollbar{
-  display: none;
-}
-
-.stopgray {
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  pointer-events: none;
 }
 
 .booking_footer_popprice{
