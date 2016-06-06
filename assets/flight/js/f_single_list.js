@@ -100,6 +100,7 @@ var fSingleList = {
     var result = arguments[0], that = fSingleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
     that.fadeHandler();
     if (result.success && result.code == "200") {
+      no_result.style.display = "none";
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
@@ -112,6 +113,9 @@ var fSingleList = {
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
     } else {
+      if(!that.first){
+        $(".flight_ul").eq(0).html("");
+      }
       no_result.style.display = "block";
       $('#loadMore').hide();
       that.filterHandler().dateCalender();
