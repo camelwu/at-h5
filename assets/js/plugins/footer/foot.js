@@ -429,6 +429,7 @@ var footer = (function() {
 			node[0].className == "flight_company" ? node[0].style.top = "" : node[0].style.bottom = "";
 			for (var i = 1; i < node.length; i++) {
 				node[i].style.bottom = "";
+				box.childNodes[i].style.backgroundColor = "";
 			}
 		},
 		request : function() {
@@ -464,7 +465,6 @@ var footer = (function() {
 				}
 			}
 			footer.result = obj;
-			console.log(obj);
 			this.remove();
 			if (box.style.display == 'none') {
 				box.style.display = 'block';

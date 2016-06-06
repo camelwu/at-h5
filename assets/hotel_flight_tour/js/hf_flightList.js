@@ -74,6 +74,8 @@ var flight_list = {
 			if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
 				// 数据过滤，research情况下，selectedFlight字段有可能不存在
 				data.selectedFlight = data.selectedFlight ? data.selectedFlight : false;
+				// 增加打包产品默认选中的航空公司
+				var newL = data.airways.unshift(data.selectedAirway);
 				$('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
 				$('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
 				var str1 = $("#tplFlightList").html();
