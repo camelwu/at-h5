@@ -515,7 +515,6 @@ var hftChoose = {
       jAlert(result.message);
     }
   },
-
   noResult:function(){
     $("#status").fadeOut();
     $("#preloader").delay(400).fadeOut("medium");
@@ -625,7 +624,6 @@ var hftChoose = {
     }
     return resultNum;
   },
-
   createTags: function () {
     var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "";
     tempStr = $("#template").html();
