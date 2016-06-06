@@ -71,8 +71,8 @@ var roomUpGrade = {
 		var outStr = dateD2[1] + '-' + dateD2[2];
 		var time1 = new Date(dateD1[0].replace('-', '/').replace('-', '/').replace('T00:00:00', '')), time2 = new Date(dateD2[0].replace('-', '/').replace('-', '/').replace('T00:00:00', ''));
 		var dayNum = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
-		document.querySelector('.date-in').innerHTML = '<span>'+inStr.replace('-', '月') + '</span>日入住';
-		document.querySelector('.date-out').innerHTML ='<span>'+ outStr.replace('-', '月') + '</span>日离店';
+		document.querySelector('.date-in').innerHTML = '<span>'+inStr.replace('-', '月') + '日</span>入住';
+		document.querySelector('.date-out').innerHTML ='<span>'+ outStr.replace('-', '月') + '日</span>离店';
 		document.querySelector('.day-number').innerHTML = "共" +'<span>'+  dayNum + "</span>晚";
 		return this;
 	},
