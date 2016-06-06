@@ -8,9 +8,34 @@ var filterSign = false;
 var flightList = {
 	requestUrl : "",
 	getWeekDay : function(date) {
-		var final_date = date.substr(0, 10).replace(/-/g, '/');
-		var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
-		return week;
+      console.log(typeof date)
+      switch (date){
+        case "0":
+              date = "周日";
+              break;
+        case "1":
+              date = "周一";
+              break;
+        case "2":
+              date = "周二";
+              break;
+        case "3":
+              date = "周三";
+              break;
+        case "4":
+              date = "周四";
+              break;
+        case "5":
+              date = "周五";
+              break;
+        case "6":
+              date = "周六";
+              break;
+
+      }
+		//var final_date = date.substr(0, 10).replace(/-/g, '/');
+		//var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
+		return date;
 	},
 	//格式化日期,
 	formatDate : function(date, format) {
