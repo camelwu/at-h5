@@ -262,6 +262,7 @@
             outString = ejs.render(tplString,{lists:ExtendData});
             $("#js_BookingPackage_last").html(outString);
             Adapter.bindChildCount();
+            $(".js_booking_package_child_maxbtn").trigger("click");
           }
 
           $("#js_booking_package_addpackage").addClass("stopgray");

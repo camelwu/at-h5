@@ -515,7 +515,6 @@ var hftChoose = {
       jAlert(result.message);
     }
   },
-
   noResult:function(){
     $("#status").fadeOut();
     $("#preloader").delay(400).fadeOut("medium");
