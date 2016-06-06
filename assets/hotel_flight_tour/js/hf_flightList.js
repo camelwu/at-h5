@@ -103,7 +103,7 @@ var flight_list = {
 					hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
 					window.location.href = 'hft_choose.html' + window.location.search;
 				});
-				$('.flight_company ul li').eq(0).addClass('cur');
+				//$('.flight_company ul li').eq(0).addClass('cur');
 			} else {
 				that.noResult();
 			}
