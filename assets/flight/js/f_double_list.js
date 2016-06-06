@@ -59,11 +59,11 @@ var fDoubleList = {
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
-
   renderHandler: function () {
     var result = arguments[0], that = fDoubleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
     that.fadeHandler();
     if (result.success && result.code == "200") {
+      no_result.style.display = "none";
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
@@ -76,6 +76,9 @@ var fDoubleList = {
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
       }
     } else {
+      if(!that.first){
+        $(".flight_ul").eq(0).html("");
+      }
       no_result.style.display = "block";
       $('#loadMore').hide();
       that.filterHandler().dateCalender();

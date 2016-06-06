@@ -128,7 +128,7 @@
             return {
                 "cardAddressPostalCode":$(".cardAddressPostalCode").val(),
                 "bankName":$(".bankName").val(),
-                "countryNumber":$(".phone ").attr("data-code"),
+                "countryNumber":$(".phone_pre ").attr("data-code"),
                 "cardAddressCity":$(".cardAddressCity").val(),
                 "cardHolderName":$(".cardHolderName").val(),
                 "cardExpiryDate":$(".cardExpiryDate").attr("data-expire"),

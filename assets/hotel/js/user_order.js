@@ -323,6 +323,7 @@ uoHisData();
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
                 '<input type="text" value="" placeholder="姓（如：Zhang）" class="uo_lastname"  />' +
+                '<span class = "line"></span>'+
                 '<input type="text" value="" placeholder="名（如：San）" class="uo_firstname"  />' +
                 '</div>' +
                 '</div>';
@@ -331,6 +332,7 @@ uoHisData();
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
                 '<input type="text"  placeholder="姓（如：李）" class="uo_lastname"  />' +
+                '<span class = "line"></span>'+
                 '<input type="text"  placeholder="名（如：世民）" class="uo_firstname"  />' +
                 '</div>' +
                 '</div>';
@@ -501,12 +503,14 @@ uoHisData();
                     oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                         '<div class="uo_c3_infor hotel_user_detail_name2">' +
                         '<input type="text"  value="" placeholder="姓（如：Zhang）" class="uo_lastname"  />' +
+                        '<span class = "line"></span>'+
                         '<input type="text"  value="" placeholder="名（如：San）" class="uo_firstname"  />' +
                         '</div>';
                 } else if (hoPos == 'dom') {
                     oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                         '<div class="uo_c3_infor hotel_user_detail_name2">' +
                         '<input type="text" value="姓（如：张）" class="uo_lastname"  />' +
+                        '<span class = "line"></span>'+
                         '<input type="text" value="名（如：三）" class="uo_firstname"  />' +
                         '</div>';
                 }

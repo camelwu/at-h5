@@ -312,10 +312,10 @@
                     var maxVlaue = parseInt(inputEle.attr("data-max"));
 
                     if (inputValue > minValue) {
-                        minusEle.addClass("able");
+                        minusEle.removeClass('disable').addClass("able");
                     }
                     if (inputValue == maxVlaue) {
-                        addEle.addClass('disable');
+                        addEle.removeClass('able').addClass('disable');
                     }
                 }
             }

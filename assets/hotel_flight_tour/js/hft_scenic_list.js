@@ -17,7 +17,7 @@
 					"departCityCode" : destCityCode,
 					"destCityCode" : departCityCode
 				},
-				"ForeEndType" : 2,
+				"ForeEndType" : 3,
 				"Code" : "60100002"
 			};
 			console.log(JSON.stringify(SParameter));
@@ -89,7 +89,7 @@
 				Para.destCityCode = destCityCode;
 				Para.sortType = obj.sortTypes[0];
 				Para.filterFields = obj.filters;
-				tAjax("",Para,"60100002","2",callback);
+				tAjax("",Para,"60100002","3",callback);
 			};
 			if (footer) {
 				footer.data = f_data;
@@ -104,8 +104,8 @@
 				ForeEndType : ForeEndType,
 				Code : Code
 			};
-			questUrl = questUrl || that.requestUrl;
-			vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+			//questUrl = questUrl || that.requestUrl;
+			vlm.loadJson("", JSON.stringify(dataObj), Callback);
 		};
 		//城市列表父宽
 		var PWidth = function(data) {
