@@ -265,8 +265,7 @@
             var toMap = this.$Id('map');
             toMap.onclick = function () {
                 var dataObj = {
-                    HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelNameLocale+" （"+hotelDetail.sourceData.data[0].hotelGenInfo.hotelName+"）",
-                    hotelAddress: hotelDetail.sourceData.data[0].hotelGenInfo.hotelAddress,
+                    HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelName,
                     Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
                     Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
                 }
@@ -275,7 +274,7 @@
                     paramStr += "&" + attr + "=" + dataObj[attr];
                 }
                 paramStr = paramStr.slice(1);
-                document.location.href = 'hotel_map.html?' + paramStr;
+                document.location.href = 'jyy_hd_map.html?' + paramStr;
             };
 
             for (var i = 0; i < showListTrigger.length; i++) {
@@ -384,11 +383,14 @@
             hotelDetail.myData.createAllback = result;
             console.log(hotelDetail.myData);
             if (result.success == true) {
-                vlm.loadend();
-                if(result.data[0].hotelRoomsList.length==0){jAlert("该时间段没有可用的房间，请更换时间再试试！");}
+                hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
+                //data = hotelDetail.myData[0];
+                // var locatdata = sessionStorage.getItem("hotelStorage12345").ToCity;
+                // console.log(locatdata);
             } else {
-                jAlert(result.message);
+                alert(result.message);
                 return;
+                //return false;
             }
 
             if (document.getElementsByClassName('enterDate')[0] && document.getElementsByClassName('enterDate')[0].innerHTML != '') {
@@ -439,7 +441,8 @@
             //H5-410 点评为0时不显示该模块
             rateStr = result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li class = "score" onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分 /' + '<b>' + result.data[0].hotelGenInfo.hotelReviewCount + '</b>' + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
 
-            firstUl += '<div class="maps"><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) + '</h3><div id="map"></div><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></div><ul class="d-ul1 hotel_shoulder">' + '' + rateStr + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>' + isFreeWifi + isFreeTransfer + '<b class="icons open-arg hotel_shoulder_icon"></b>' + hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList) + '</li></ul>';
+            firstUl += '<div class="maps"><h3><p class="d-p1">' + result.data[0].hotelGenInfo.hotelNameLocale + "(" + result.data[0].hotelGenInfo.hotelName + ")" +
+                '</p></h3><div id="map"></div><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></div><ul class="d-ul1 hotel_shoulder">' + '' + rateStr + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>' + isFreeWifi + isFreeTransfer + '<b class="icons open-arg hotel_shoulder_icon"></b>' + hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList) + '</li></ul>';
 
             secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
@@ -497,7 +500,7 @@
         },
 
         upDateContent: function () {
-			vlm.loading();
+
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             hotelDetail.init(hotelDetail.gdataInfo);
@@ -713,7 +716,7 @@
             //   document.body.removeChild(hotelDetail.$Id('infoAll'))
             //   hotelDetail.$Id('r-mb').style.display = 'none';
             //};
-            var title = arg.isabd ? arg.roomName + '(含早)' : arg.roomName + '&nbsp(无早)';
+            var title = arg.isabd ? arg.roomName + '(含早)' : arg.roomName + ' (无早)';
             jLayer(modalStr, title);
         },
 
@@ -804,9 +807,9 @@
                 var error_url = images[i].getAttribute('data-error');
                 (function (i, re_url) {
                     loadImage(re_url, error_url, i, function (i) {
-                      if(re_url) images[i].setAttribute('src', re_url);
+                        if (re_url) images[i].setAttribute('src', re_url);
                     }, function () {
-                      if(error_url) images[i].setAttribute('src', error_url);
+                        if (error_url) images[i].setAttribute('src', error_url);
                     });
                 })(i, re_url)
             }

@@ -70,7 +70,7 @@
     top: 1.48rem;
 }
 
-.calendar_date.no_tiper .calendar_week {
+.calendar_header.no_tiper .calendar_week {
     top: 0.88rem;
 }
 
@@ -177,7 +177,7 @@
     width: 100%;
     background: #f7f7f7;
     overflow: hidden;
-    z-index: 100;
+    z-index: 120;
 }
 
 .calendar_week .date_title {
