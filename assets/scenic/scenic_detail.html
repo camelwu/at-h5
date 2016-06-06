@@ -59,7 +59,7 @@
     <img src="<%= images.imageGalleries[i].imageURL%>" alt="image"/></a>
   <% }%>
   <div class="bar_img_word">
-  <span class = "bar_img_num">编号：<%= images.packageRefNo %></span>
+  <span class = "bar_img_num">产品编号：<%= images.packageRefNo %></span>
   <% if(images.imageGalleries.length>0) %>
   <span class = "bar_img_page"><%=(images.imageGalleries.length)%>张</span>
   <% } %>
@@ -82,7 +82,7 @@
   %>
   <li class="scenic_content_booking_li" >
     <div class="scenic_content_booking_div">
-      <p class="scenic_content_booking_title"><%=data.packageName%></p>
+      <p class="scenic_content_booking_title"><%=data.packageName%>(<%if(category==1){%>成人票<%}else{%>儿童票<%}%>)</p>
       <p class="scenic_content_booking_p">
         <span class="scenic_content_booking_dollar">￥</span>
         <span class="scenic_content_booking_price"><%=data.prices[i].amount%></span>

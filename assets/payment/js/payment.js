@@ -205,6 +205,7 @@
                 url=vlm.apiWithDeviceID;
                 var model=_get_modle();
                 var guestNameList = [];
+              debugger;
                 //酒店订单未生成
                 if (bookingRefNo == null || bookingRefNo==undefined ) {
                     if (paymentMode == "CreditCard") {

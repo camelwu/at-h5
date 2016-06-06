@@ -561,7 +561,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .left_info .right {
   float: right;
   text-align: right;
-  margin-right: .48rem;
+  /*margin-right: .48rem;*/
   position: relative;
 }
 
@@ -606,7 +606,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .left_info .starPort, .left_info .endPort {
   display: block;
   margin-top: .32rem;
-  width: 1.42rem;
+  width: 1.9rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

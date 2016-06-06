@@ -179,22 +179,20 @@
                 <div class="check-more-room">查看更多房型<span class="letter-space">(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
                 <% }%>
         </div>
-
-
-        <div class="priceDetailInfo">
-            <p>成人<span class="price-num-price">￥<span>56X2</span></span>
-            </p>
-
-            <p>儿童<span class="price-num-price">￥<span>56X2</span></span>
-            </p>
-        </div>
-        <div class="bottomPrice">
-            <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
-            <span class="preserve">立即预定</span>
-        </div>
         <div class="addMarginBottom"></div>
     </div>
     <div class="shadow"></div>
+    <div class="priceDetailInfo">
+        <p>成人<span class="price-num-price">￥<span>56X2</span></span>
+        </p>
+
+        <p>儿童<span class="price-num-price">￥<span>56X2</span></span>
+        </p>
+    </div>
+    <div class="bottomPrice">
+        <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
+        <span class="preserve">立即预定</span>
+    </div>
 </script>
 <script id="template_room" type="text/template">
     <% hotelInfo["rooms"].forEach(function(room, item){%>
