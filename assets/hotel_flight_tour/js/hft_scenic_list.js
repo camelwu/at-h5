@@ -24,9 +24,8 @@
 			vlm.loadJson(url, JSON.stringify(SParameter), callback);
 		};
 		var callback = function(data) {
-			vlm.init();
 			if (data.success) {
-
+        vlm.init();
 				filterData = data;
 				var localStoragedata = JSON.parse(localStorage.getItem("searchInfo"));
 				console.log(data);
