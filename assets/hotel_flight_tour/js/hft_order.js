@@ -102,7 +102,6 @@
 
 
 
-
     travelDet();
     var hft_peotot=travelDet();
     window.localStorage.hft_peotot=(hft_peotot.adunum+hft_peotot.chinum);
@@ -138,11 +137,10 @@
   var orderSub=document.querySelector('.order_submit');
   function hf_order(obj){
     obj.onclick=function(){
-
       var Parmeters = {
         "Parameters": {
           "cityCodeFrom": hftCreateOrderPara.cityCodeFrom,
-          "cityCodeTo": hftCreateOrderPara.cityCodeFrom,
+          "cityCodeTo": hftCreateOrderPara.cityCodeTo,
           "packageID": hftCreateOrderPara.packageID,
           "departDate": hftCreateOrderPara.departDate,
           "returnDate": hftCreateOrderPara.returnDate,
@@ -225,6 +223,45 @@
       //房间信息
       Parmeters.Parameters.RoomDetails=hftCreateOrderPara.roomDetails;
 
+      function getBirthday(departDate,age){
+        var newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+        newDate.setFullYear(newDate.getFullYear()-age);
+        var year=newDate.getFullYear();
+        var month=newDate.getMonth()+1;
+        var day=newDate.getDate();
+        return year+"-"+month+"-"+day;
+      }
+
+      var birthDay=[];//重新计算小孩年龄
+
+
+
+      for(var i=0;i<=Parmeters.Parameters.RoomDetails.length-1;i++){
+
+        if(Parmeters.Parameters.RoomDetails[i].hasOwnProperty("childWithOutBed")) {
+          for (var j = 0; j <= Parmeters.Parameters.RoomDetails[i].childWithOutBed.length - 1; j++) {
+            var b = getBirthday(hftCreateOrderPara.departDate, Parmeters.Parameters.RoomDetails[i].childWithOutBed[j])
+            birthDay.push({
+                birth: b,
+                age: Parmeters.Parameters.RoomDetails[i].childWithOutBed[j]
+              }
+            )
+          }
+        }
+        if(Parmeters.Parameters.RoomDetails[i].hasOwnProperty("childWithBed")) {
+          for(var j=0; j<=Parmeters.Parameters.RoomDetails[i].childWithBed.length-1;j++) {
+            var b = getBirthday(hftCreateOrderPara.departDate, Parmeters.Parameters.RoomDetails[i].childWithBed[j])
+            birthDay.push({
+                birth: b,
+                age: Parmeters.Parameters.RoomDetails[i].childWithBed[j]
+              }
+            )
+          }
+          }
+
+
+      }
+
       //出行人
       var traveller=[];
       if(localStorage.travellerInfo_selected){
@@ -233,10 +270,21 @@
         {
           var tra={};
           var person={};
+
+          var age=vlm.Utils.getAge(traInfo_sel[i].DateOfBirth);
+          if(age<=12){
+            var tempAge=birthDay.pop();
+            if(age !=tempAge.age) {
+              person.dateOfBirth =tempAge.birth ;
+            }
+          }
+          else{
+            person.dateOfBirth=traInfo_sel[i].DateOfBirth;
+          }
+
           person.firstName=traInfo_sel[i].FirstName;
           person.lastName=traInfo_sel[i].LastName;
           person.passengerType=traInfo_sel[i].PassengerType;
-          person.dateOfBirth=traInfo_sel[i].DateOfBirth;
           tra.idNumber=traInfo_sel[i].CertificateInfo.IdNumber;
           tra.idCountry=traInfo_sel[i].CertificateInfo.IdCountry;
           tra.idType=traInfo_sel[i].CertificateInfo.IdType;
