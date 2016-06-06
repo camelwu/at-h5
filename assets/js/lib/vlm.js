@@ -364,7 +364,7 @@
                         return "周" + reslut;
                     }
                 },
-              getAge:function GetAgeByBrithday(birthday,departDate){
+              getAge:function(birthday,departDate){
                 var age=-1,today;
                 if(departDate==undefined){
                   today=new Date();

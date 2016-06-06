@@ -89,7 +89,7 @@
     '<i class="per_type" data-id="2">成人</i></li>',
     '{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ if(dd.listTravellerIdInfo[j].idType==1){ %}',
     '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
-    '{% } else if(dd.listTravellerIdInfo[j].idType==2 && defaultShowCardType==1){ %}',
+    '{% break; } else if(dd.listTravellerIdInfo[j].idType==2 && defaultShowCardType==1){ %}',
     '<li class="passport-num"><span class="passport-card-type" style="color: #999;">请补全护照信息</span></li>',
     '{% } else{ %}',
     '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
