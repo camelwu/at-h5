@@ -113,11 +113,11 @@ var footer = (function() {
 				index = 0;
 				returnVal = target.getAttribute("data-type");
 				//底部样式改变
-				for(var i=0;i<size(footer.data);i++){
+				for (var i = 0; i < size(footer.data); i++) {
 					box.childNodes[i].style.backgroundColor = "";
 				}
 				while ( target = target.previousSibling) {
-					if (target.nodeType == 1){
+					if (target.nodeType == 1) {
 						index++;
 					}
 				}
@@ -426,9 +426,16 @@ var footer = (function() {
 				masker.style.display = "none";
 			}
 			var node = sec.getElementsByTagName("section");
-			node[0].className == "flight_company" ? node[0].style.top = "" : node[0].style.bottom = "";
+			// first
+			if (node[0].className == "flight_company") {
+				node[0].style.top = "";
+				box.childNodes[0].style.backgroundColor = "";
+			} else {
+				node[0].style.bottom = "";
+			}
 			for (var i = 1; i < node.length; i++) {
 				node[i].style.bottom = "";
+				box.childNodes[i].style.backgroundColor = "";
 			}
 		},
 		request : function() {
@@ -464,7 +471,6 @@ var footer = (function() {
 				}
 			}
 			footer.result = obj;
-			console.log(obj);
 			this.remove();
 			if (box.style.display == 'none') {
 				box.style.display = 'block';
