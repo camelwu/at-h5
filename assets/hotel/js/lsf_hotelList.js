@@ -884,7 +884,7 @@ function styleChange(id, mytext) {
 
     }
     function noWIfi(){
-      if(window.navigator.onLine==true){
+      if(window.navigator.onLine==false){
         vlm.init();
         document.getElementById("loadMore").style.display = "none";
         var oLi = document.createElement('li');
