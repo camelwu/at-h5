@@ -535,7 +535,6 @@
                     startIndex = index;
                 }
                 if (!endDate) {
-                	console.log(index + ">"+ startIndex);
                     if (startIndex && index > startIndex) {
                         $(ele).addClass("disabled");
                     } else {
