@@ -73,7 +73,7 @@ var fDoubleList = {
         that.currrentFlightList = result.data;
         that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler(true) : that.loadMoreHandler(false);
         that.first = false;
-        that.createTags(that.currrentFlightList).fadeHandler().eventHandler().dateCalender();
+        that.createTags(that.currrentFlightList).delayLoadImage().fadeHandler().eventHandler().dateCalender();
       }
     } else {
       if(!that.first){
@@ -162,6 +162,32 @@ var fDoubleList = {
       }
     }
     return this;
+  },
+
+  delayLoadImage : function() {
+    var images = document.getElementsByTagName('img');
+    var  loadImage = function(url, error_url,callback,errorFunc) {
+      var img = new Image();
+      img.src = url;
+      img.onload = function() {
+        img.onload = null;
+        callback();
+      };
+      img.onerror = function(){
+        img.onerror = null;
+        errorFunc();
+      }
+    };
+    images = Array.prototype.slice.call(images)
+    images.forEach(function(array){
+      var re_url = array.getAttribute('data-src'), error_url = "../images/loading_def_big.png";
+      loadImage(re_url,error_url, function() {
+        array.setAttribute('src', re_url);
+      },function(){
+        array.setAttribute('src', error_url);
+      });
+    });
+    return this
   },
 
   loadMoreData: function () {

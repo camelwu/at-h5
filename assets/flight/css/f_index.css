@@ -498,7 +498,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin-right: .10rem;
   margin-top: .04rem;
 }
-
+.airCropIcon img{height:100%}
 .flight_detail .airCropIcon:before, .flight_detail .airCropName:before {
   content: "";
   display: none;
