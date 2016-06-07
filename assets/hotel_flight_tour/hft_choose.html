@@ -61,9 +61,7 @@
                             <span class="startTime"><%= flightInfo["flightLeaveStartDate"].substring(11, 16) %></span><span class="startPort"><%= flightInfo["segmentsLeave"][0]["airportNameFrom"] %><%= flightInfo["segmentsLeave"][0]["termDepart"] %></span>
                         </div>
                         <div class="middle">
-                            <div class="timeCost">
-                                <%= flightInfo["segmentsLeaveTotalTravelTimeString"] %>
-                            </div>
+                            <div class="timeCost"><%= flightInfo["segmentsLeaveTotalTravelTimeString"]%></div>
                             <%if(!flightInfo["transferListLeave"]){%>
                                 <div class="arrow"></div>
                                 <%}else{%>
