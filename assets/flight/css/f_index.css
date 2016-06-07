@@ -325,7 +325,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   height: .140rem;
   background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
-  background-position: -2.24rem -.68rem;
+  background-position:-2.24rem -.688rem;
   margin-left: .06rem;
 }
 
