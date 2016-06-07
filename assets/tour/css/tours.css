@@ -69,6 +69,9 @@ i,em{
 .index_abroad_box li.cur a{
     color: #7bc300;
 }
+.index_abroad_box li a{
+    display: block;
+}
 .index_hotspot{
     padding:0.3rem 0.2rem 0;
 }
