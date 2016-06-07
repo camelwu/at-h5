@@ -495,7 +495,6 @@ uoHisData();
         if (parseInt(uo_c2_num.innerHTML) > 10) {
             uo_c2_num.innerHTML = 10;
         } else {
-          debugger;
             for (var i = parseInt(myNum); i < parseInt(uo_c2_num.innerHTML); i++) {
                 var oDiv = document.createElement('div');
                 oDiv.className = 'uo_c3_peo';
