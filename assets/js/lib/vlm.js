@@ -277,7 +277,6 @@
                 format_date: function (dtime, format) {
 
                     var stringTime = dtime.replace('-', "/").replace('-', "/").replace('T', " ");
-                    console.log(stringTime)
                     var newDate = new Date(stringTime);
                     var year = newDate.getFullYear();
                     var yy = year.toString(),

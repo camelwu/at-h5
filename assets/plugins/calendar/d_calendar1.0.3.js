@@ -48,7 +48,7 @@
                 right: pos.right + scrollx,
                 bottom: pos.bottom + scrollt,
                 left: pos.left + scrollx
-            }
+            };
         },
         // 添加样式名
         addClass: function (c, node) {
@@ -101,11 +101,12 @@
 
         // 模板数组
         _template: [
-        '<dl class="ca_month">',
+        //'<dl class="ca_month">',
         '<dt class="title-date">',
         '</dt>',
-        '<dd></dd>',
-        '</dl>'],
+        '<dd></dd>'
+        //'</dl>'
+        ],
         // 初始化对象
         initialize: function (options) {
             //默认使用机票模板   flight
@@ -142,7 +143,7 @@
             calendarWrap.className = 'calendar_Wrap';
             var container = this.container = document.createElement('div');
             container.id = this.id + 'Date';
-            container.className = "calendar_date"
+            container.className = "calendar_date";
                 //container.style.position = "absolute";
                 //container.style.zIndex = 100;
             if (this.input.tagName === 'input') {
@@ -181,6 +182,10 @@
                 comfirmBtn.className = 'calendar_comfirm';
                 comfirmBtn.innerHTML = "<span class='btn'>确定</span>";
                 container.appendChild(comfirmBtn);
+                // 增加容器，减少dom操作
+                var Warpper = this.Warpper = document.createElement('div');
+                Warpper.className = 'calendar';
+                container.appendChild(Warpper);
             }
             calendarWrap.appendChild(container);
             document.body.appendChild(calendarWrap);
@@ -196,8 +201,8 @@
 
             disableDate = this.disableDate;
 
-            this.dateWarp = dateWarp = document.createElement('div');
-            dateWarp.className = 'calendar';
+            dateWarp = this.dateWarp = document.createElement('dl');
+            dateWarp.className = 'ca_month';
             dateWarp.innerHTML = this._template.join('');
             this.year = year = odate.getFullYear();
             this.month = month = odate.getMonth() + 1;
@@ -274,7 +279,7 @@
             dd.innerHTML = ddHtml.join('');
 
             // 添加
-            this.container.appendChild(dateWarp);
+            this.Warpper.appendChild(dateWarp);
             //IE6 select遮罩
             var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
             if (ie6) dateWarp.appendChild(this.createIframe());
@@ -288,8 +293,8 @@
                 nowyear = nowDate.getFullYear(),
                 nowmonth = nowDate.getMonth(),
                 nowdate = nowDate.getDate();
-            this.dateWarp = dateWarp = document.createElement('div');
-            dateWarp.className = 'calendar';
+            this.dateWarp = dateWarp = document.createElement('dl');
+            dateWarp.className = 'ca_month';
             dateWarp.innerHTML = this._template.join('');
             this.year = year = odate.getFullYear();
             this.month = month = odate.getMonth() + 1;
@@ -346,7 +351,7 @@
             dd.innerHTML = ddHtml.join('');
 
             // 添加
-            this.container.appendChild(dateWarp);
+            this.Warpper.appendChild(dateWarp);
             //IE6 select遮罩
             var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
             if (ie6) dateWarp.appendChild(this.createIframe());
