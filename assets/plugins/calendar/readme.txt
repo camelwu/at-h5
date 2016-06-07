@@ -1,6 +1,8 @@
 
 var myTime = new Calender({
             id: "timeClickWrap",
+            disableDateAfterLength: 10,
+      		minDuration: 1,
             time: {
                 "2016-05-17": "checkinTime",
                 "2016-05-19": "checkoutTime"
@@ -14,6 +16,8 @@ var myTime = new Calender({
 参数说明：
     id : 触发日历组件的容器id
     time: 初始化显示在日历组件上的日期
+    disableDateAfterLength: 最多选择几天
+    minDuration: 最少选择几天
     checkInTimeOptId：页面显示选择的checkIn time的元素ID
     checkOutTimeOptId：页面显示选择的checkOut time的元素ID
     callback：回调函数，将选择的日期传入回调函数中
