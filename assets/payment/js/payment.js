@@ -205,7 +205,6 @@
                 url=vlm.apiWithDeviceID;
                 var model=_get_modle();
                 var guestNameList = [];
-              debugger;
                 //酒店订单未生成
                 if (bookingRefNo == null || bookingRefNo==undefined ) {
                     if (paymentMode == "CreditCard") {
@@ -431,14 +430,16 @@
                 var numofChild=0;
                 for (var i = 0;i<data.data.chargeDetails.length;i++){
                   if(data.data.chargeDetails[i].category=="ADULT"){
-                    numofAdult+=1
+                    numofAdult=data.data.chargeDetails[i].quantity;
                     totalPrice+=data.data.chargeDetails[i].totalAmount;
                   }else if(data.data.chargeDetails[i].category=="CHILD"){
-                    numofChild+=1;
+                    numofChild=data.data.chargeDetails[i].quantity;
                     totalPrice+=data.data.chargeDetails[i].totalAmount;
                   }
                 }
                 data.data.totalPrice=totalPrice;
+                data.data.totalFlightPrice=totalPrice;
+
                 data.data.numofAdult=numofAdult;
                 data.data.numofChild=numofChild;
 

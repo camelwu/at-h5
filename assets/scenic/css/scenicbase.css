@@ -240,6 +240,24 @@ element::-webkit-scrollbar{
 /*首页_国外热门景点*/
 
 /*列表页*/
+.scenic_list_error{
+  height: 130px;
+  margin: 51% 15%;
+  position: relative;
+  background: url(/images/error/error.png) fixed center center no-repeat;
+  background-size: 150px 90px;
+  background-position: 50% 50%;
+  display: none;
+}
+.scenic_list_error_div{
+  display: inline-block;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
+  color: #e6e6e6;
+  font-size: .28rem;
+}
 .scenic-detile{
   background: white;
   padding:0 .26rem ;
