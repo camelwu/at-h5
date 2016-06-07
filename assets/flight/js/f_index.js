@@ -34,7 +34,7 @@ var fIndexModal = {
 
   getCityType: function (arg) {
     var dataPool1 = internationalCities, dataPool2 = domesticCities, tag1 = "";
-    for(var ff in dataPool1){
+    for (var ff in dataPool1) {
       dataPool1[ff].forEach(function (index) {
         if (index.cityCode == arg) {
           tag1 = "international";//domestic
@@ -42,7 +42,7 @@ var fIndexModal = {
         }
       })
     }
-    for(var gg in dataPool2){
+    for (var gg in dataPool2) {
       dataPool2[gg].forEach(function (index) {
         if (index.cityCode == arg) {
           tag1 = "domestic";//domestic
@@ -54,7 +54,7 @@ var fIndexModal = {
   },
 
   getHotCityHandler: function () {
-    this.tAjax("", {top:40}, "30100005", 3, this.citySearchHandler);
+    this.tAjax("", {top: 40}, "30100005", 3, this.citySearchHandler);
     return this
   },
 
@@ -64,16 +64,16 @@ var fIndexModal = {
     var internationalTitle = document.querySelector('.international_title'), domesticTitle = document.querySelector('.domestic_title');
     that.hotDometicCity = [];
     that.hotInterCity = [];
-    if(!dataObj.success){
+    if (!dataObj.success) {
       jAlert(dataObj.message, '提示');
       return false;
     }
-    dataObj.data.cities.forEach(function(array){
-             if(array.countryCode == "CN"){
-               that.hotDometicCity.push(array);
-             }else{
-               that.hotInterCity.push(array);
-             }
+    dataObj.data.cities.forEach(function (array) {
+      if (array.countryCode == "CN") {
+        that.hotDometicCity.push(array);
+      } else {
+        that.hotInterCity.push(array);
+      }
     });
     that.domesticArray = domesticCities;
     that.internationalArray = internationalCities;
@@ -230,13 +230,13 @@ var fIndexModal = {
       var cityListSearched = document.querySelector('.country-list-searched-order');
       var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = cityInputZone.value, resultStr = '';
       var allCityData = [], tempArray = [];
-      for(var ttt in internationalCities){
-        internationalCities[ttt].forEach(function(array){
+      for (var ttt in internationalCities) {
+        internationalCities[ttt].forEach(function (array) {
           tempArray.push(array)
         })
       }
-      for(var vvv in domesticCities){
-        domesticCities[vvv].forEach(function(array){
+      for (var vvv in domesticCities) {
+        domesticCities[vvv].forEach(function (array) {
           tempArray.push(array)
         })
       }
@@ -271,14 +271,15 @@ var fIndexModal = {
         allCityData.forEach(function (array) {
           if (array.cityCode) {
             if (array.cityNameCn.toLowerCase().indexOf(mb) > -1 ||
-                 array.hyKeyWord.toLowerCase().indexOf(mb) > -1 ||
-                  array.cityCode.toLowerCase().indexOf(mb) > -1 ||
-                   array.pingYin.toLowerCase().indexOf(mb) > -1) {
+              array.hyKeyWord.toLowerCase().indexOf(mb) > -1 ||
+              array.cityCode.toLowerCase().indexOf(mb) > -1 ||
+              array.pingYin.toLowerCase().indexOf(mb) > -1) {
               searchResult.push(array);
             }
           }
         });
-      };
+      }
+      ;
       searchResult = searchResult.distinct();
       if (!searchResult.length) {
         resultStr += '<li>无搜索结果</li>';
@@ -321,7 +322,7 @@ var fIndexModal = {
         doubleWrap.style.display = "block";
         document.querySelector('.dateInfo').className = "dateInfo white";
       } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
-        var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "", temType="";
+        var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "", temType = "";
         oSpan.style.transition = '0.7s all ease';
         oSpan.style.webkitTransition = '0.7s all ease';
         that.deg += 180;
@@ -400,9 +401,9 @@ var fIndexModal = {
           var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
           return (cityTypeFrom == "domestic" && cityTypeTo == "domestic" ) ? "domestic" : "international";
         };
-        if(cityEles[0].getAttribute('data-code')==cityEles[1].getAttribute('data-code')){
-               jAlert("请选择到达城市为不同城市", '提示');
-               return false;
+        if (cityEles[0].getAttribute('data-code') == cityEles[1].getAttribute('data-code')) {
+          jAlert("请选择到达城市为不同城市", '提示');
+          return false;
         }
         paraObj = {
           "cityCodeFrom": cityEles[0].getAttribute('data-code'),
@@ -508,7 +509,7 @@ var fIndexModal = {
     return [startDay, endDay];
   },
 
-  buttonStatusHandler:function(){
+  buttonStatusHandler: function () {
     var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i"), adultNum = 0, childNum = 0;
     adultNum = parseInt(document.querySelector('.adultNumber').innerHTML), childNum = parseInt(document.querySelector('.childNumber').innerHTML);
     adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
@@ -518,7 +519,7 @@ var fIndexModal = {
   },
 
   initShowInfo: function () {
-    var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'),that = this,
+    var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'), that = this,
       weeks = document.querySelectorAll('.weekWord'), adultValue = document.querySelector('.adultNumber'),
       childValue = document.querySelector('.childNumber'), cityEle = document.querySelectorAll(".citySearch"),
       seatValue = document.querySelector('#seats'), timeClickWrap = document.querySelector('#timeClickWrap'),
@@ -552,7 +553,7 @@ var fIndexModal = {
       singleWrap.style.display = "block";
       doubleWrap.style.display = "none";
     } else {
-      if(data.returnDate){
+      if (data.returnDate) {
         defaultDate[1] = data.returnDate
       }
       tripTitles[0].className = "singleTrip grey-title";

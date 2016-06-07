@@ -148,7 +148,7 @@
             <div class="hotelImgInfo">
                 <img src="../images/loading_def_big.png" data-src="<%= hotelInfo['hotelPictureURL'] %>">
                 <div class="hotelRightPart" data-statl="detail">
-                    <h3><%= hotelInfo["hotelName"] %></h3>
+                    <h3><%= hotelInfo["hotelNameLocale"] %><%= hotelInfo["hotelName"] %></h3>
                     <%if(parseInt(hotelInfo['hotelReviewScore'])>0||parseInt(hotelInfo['hotelReviewCount'])>0){%>
                        <p class="scorePersonNumber">
                          <% if(parseInt(hotelInfo['hotelReviewScore'])>0){%>

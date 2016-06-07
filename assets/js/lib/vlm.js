@@ -277,7 +277,6 @@
                 format_date: function (dtime, format) {
 
                     var stringTime = dtime.replace('-', "/").replace('-', "/").replace('T', " ");
-                    console.log(stringTime)
                     var newDate = new Date(stringTime);
                     var year = newDate.getFullYear();
                     var yy = year.toString(),
@@ -1158,6 +1157,9 @@
                         case "ht":
                             title = '选择出行人';
                             break;
+                        case "fx":
+                          title = '选择出游人';
+                          break;
                         default:
                             title = '选择乘机人';
                             break;

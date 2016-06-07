@@ -276,8 +276,12 @@ var htf_search = {
 
     //F+H 日历初始化
     var fhCalendar = new ATplugins.Calender({
-      id : "fhCalendar",
+      id : "fhCalendar",num:12,
       time : initFhDate,
+      disableDateAfterLength: 10,
+      minDuration: 1,
+      sClass1: 'CheckInDateI',
+      type: 'hotel',
       callback : function(result) {
         //保存选择日期
         fhStartDayData.attr('data-day', result[0]);
@@ -294,7 +298,12 @@ var htf_search = {
 
     var fhtCalendar = new ATplugins.Calender({
       id : "fhtCalendar",
+      num : 12,
       time : initFhtDate,
+      disableDateAfterLength: 10,
+      minDuration: 1,
+      sClass1: 'CheckInDateI',
+      type: 'hotel',
       callback : function(result) {
         //保存选择日期
         fhtStartDayData.attr('data-day', result[0]);

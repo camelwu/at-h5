@@ -325,7 +325,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   height: .140rem;
   background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
-  background-position: -2.24rem -.68rem;
+  background-position:-2.24rem -.688rem;
   margin-left: .06rem;
 }
 
@@ -353,11 +353,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .flight_ul .trip_go, .flight_ul .trip_back {
-  height: 2.0rem;
+  /*height: 2.0rem;*/
 }
 
 .flight_ul .trip_back {
-  margin-top: .36rem
+  margin-top: .5rem
 }
 
 .flight_ul .starTime, .flight_ul .endTime {
@@ -378,14 +378,14 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .flight_ul li {
   padding: .20rem 0;
-  height: 1.8rem;
+  /*height: 1.8rem;*/
   border-bottom: 1px solid #e6e6e6;;
 }
-.flight_ul li:first-child{padding-top: .40rem}
+.flight_ul li:first-child{padding:0.5rem 0 0.40rem;}
 .flight_ul li:last-child{padding-bottom: .40rem}
 
 .double_ul li {
-  height: 4.4rem
+  /*height: 4.4rem*/
 }
 
 .flight_ul li:last-child {
@@ -394,7 +394,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .seat_price {
   width: 1.72rem;
-  height: 100%;
+  /*height: 100%;*/
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   padding-top: 1.0rem;
@@ -403,7 +403,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .double_ul .seat_price {
-  padding-top: 1.182rem!important;
+  padding-top: 1.25rem;
 }
 
 .singleFlight .seat_price{
@@ -444,7 +444,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .seat_price .priceNumber .tax_cost, .seat_price .priceNumber .seat_condition {
   position: absolute;
   right: 0;
-  bottom: -.40rem;
+  bottom: -.25rem;
   text-align: right;
 }
 
@@ -464,7 +464,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .time_airport {
-  height: 100%;
+  /*height: 100%;*/
   margin-right: 1.72rem;
 }
 
@@ -506,9 +506,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .left_info .left, .left_info .right {
   width: 1rem;
-  height: 1.46rem;
+  /*height: 1.46rem;*/
   float: left;
-  position: relative
+  position: relative;
+  padding-bottom: 0.2rem;
 }
 
 .date-week-port {
@@ -519,8 +520,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity  span.icon, .trip_go_ span.icon, .trip_back_ span.icon ,.trip_go_ i,.trip_back_ i{
-  width: .32rem;
-  height: .32rem;
+  width: .34rem;
+  height: .34rem;
   background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
   background-position: -2.6999rem -1.522rem;
@@ -538,7 +539,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .trip_go .left span.icon , .trip_back .left span.icon{
   position: absolute;
   left: -.48rem;
-  top: .04rem;
+  top: .0rem;
 }
 .trip_go_ span.icon, .trip_back_ span.icon{
   position: static;
@@ -602,10 +603,16 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .left_info .middle span {
   display: block;
 }
-
+.left_info .middle span.transferCity{
+  width: 0.8rem;
+  margin: 0 auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+}
 .left_info .starPort, .left_info .endPort {
   display: block;
-  margin-top: .32rem;
+  margin-top: .4rem;
   width: 1.9rem;
   white-space: nowrap;
   overflow: hidden;

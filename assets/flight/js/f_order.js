@@ -243,7 +243,7 @@ var fOrder = {
           return;
         }
         postPara.travellerInfo = storageInfo;
-        if (window['localStorage']['contact_selected']) {
+      /* if (window['localStorage']['contact_selected']) {
           contactInfo = JSON.parse(window['localStorage']['contact_selected']);
         } else {
           contactInfo = {
@@ -254,21 +254,27 @@ var fOrder = {
             mobilePhone: "",
             sexCode: "Mr"
           }
-        }
-        contactInfoCache.firstName = document.querySelector('#first-name').value;
-        contactInfoCache.lastName = document.querySelector('#last-name').value;
+        }*/
+        contactInfo = {
+          countryNumber: "",
+          email: "",
+          firstName: storageInfo[0].FirstName,
+          lastName: storageInfo[0].LastName,
+          mobilePhone: "",
+          sexCode: "Mr"
+        };
         contactInfoCache.email = document.querySelector('#email-label').value;
         contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
         contactInfoCache.countryNumber = document.querySelector('.nation_code_value').innerHTML;
-        if (contactInfoCache.firstName == ""&&contactInfoCache.lastName == "") {
+        /*if (contactInfoCache.firstName == ""&&contactInfoCache.lastName == "") {
           jAlert('请完善联系人信息!', '提示');
           return;
-        }
+        }*/
         if (contactInfoCache.mobilePhone == "") {
-          jAlert('请输入手机号!', '提示');
+          jAlert('请输入手机号码!', '提示');
           return;
         } else if (!/^1\d{10}$/.test(contactInfoCache.mobilePhone)) {
-          jAlert('请输入正确格式手机号!', '提示');
+          jAlert('请输入正确格式手机号码!', '提示');
           return;
         }
         if (contactInfoCache.email == "") {

@@ -63,6 +63,8 @@ var hotelList = {
 
 		var resultData = arg.data, that = hotelList;
 		console.log(resultData)
+		console.log(resultData.hotels)
+
 		//筛选星级处理
 		function starChoose(resultData){
 			console.log(resultData)
@@ -83,6 +85,7 @@ var hotelList = {
 			if (resultData.hotels.length == 0) {
 				jAlert("抱歉暂时没有数据", "提示");
 			} else {
+
 				that.packageID = resultData.packageID;
 				that.bookingFormInfo = resultData.bookingFormInfo;
 				//var hotels = resultData.hotels;
@@ -310,7 +313,24 @@ var hotelList = {
 	}
 };
 hotelList.init();
-
+//列表星级格式化
+function starList(hotel){
+	switch (hotel){
+		case "2 星级":
+			hotel = "二星级";
+			break;
+		case "3 星级":
+			hotel = "三星级";
+			break;
+		case "4 星级":
+			hotel = "四星级";
+			break;
+		case "5 星级":
+			hotel = "五星级";
+			break;
+	}
+	return hotel;
+}
 //把url字符串变成json
 function url2json(url) {
 	if (!url)
