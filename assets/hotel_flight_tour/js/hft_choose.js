@@ -565,6 +565,40 @@ var hftChoose = {
     return array[1] + '月' + array[2] + '日';
   },
 
+  airCompanyHandler: function () {
+    var data = arguments[0], tag = 0, tem = [], that = hftChoose;
+    Array.prototype.distinct = function () {
+      var sameObj = function (a, b) {
+        var tag = true;
+        if (!a || !b)return false;
+        for (var x in a) {
+          if (!b[x])
+            return false;
+          if (typeof(a[x]) === 'object') {
+            tag = sameObj(a[x], b[x]);
+          } else {
+            if (a[x] !== b[x])
+              return false;
+          }
+        }
+        return tag;
+      };
+      var newArr = [], obj = {};
+      for (var i = 0, len = this.length; i < len; i++) {
+        if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+          newArr.push(this[i]);
+          obj[typeof(this[i]) + this[i]] = this[i];
+        }
+      }
+      return newArr;
+    };
+    data.forEach(function (array) {
+      tem.push(array.airCorpCode);
+    });
+    tem = tem.distinct();
+    return tem.length > 1 ? 1 : 0
+  },
+
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
     switch (index) {

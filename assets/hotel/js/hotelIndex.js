@@ -145,12 +145,12 @@
 
             $('#arr1 .i_address').on('touchend',function () {
               hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
-              $('#h_in').text(remote_ip_info['province']+remote_ip_info['city'])
+              $('#h_in').text(localAddress['province']+localAddress['city']);
               return false;
-            })
+            });
             $('#arr2 .i_address').on('touchend',function () {
-              $('#h_in').text(remote_ip_info['province']+remote_ip_info['city'])
-            })
+              $('#h_in').text(localAddress['province']+localAddress['city']);
+            });
 
             //城市列表
             $("#h_in").click(function () {

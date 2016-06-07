@@ -35,14 +35,14 @@
     </header>
     <div class="content">
         <div class="top_info">
-            <span>出发:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
+            <span>去程:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
             <span>返程:<span class="arrive"> <%=hftChoose.returnDay(hftChoose.initParaObj.returnDate)%></span></span>
             <span class="person_number">
               <span><%=hftChoose.cacheOtherInfo.adult%></span>成人
              <% if(parseInt(hftChoose.cacheOtherInfo.child)>0){%>
               <span><%=hftChoose.cacheOtherInfo.child%></span>儿童
              <% }%>
-              <span><%=hftChoose.cacheOtherInfo.roomNumber%></span>房间
+              <span><%=hftChoose.cacheOtherInfo.roomNumber%></span>间
             </span>
             <i></i>
         </div>
@@ -54,7 +54,7 @@
                 <li class="tripGo">
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>
+                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span><!--<span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>-->
                     </div>
                     <div class="timeAirport">
                         <div class="left">
@@ -70,7 +70,7 @@
                                     <div class="arrowWord"></div>
                                     <%if(flightInfo["transferListLeave"].length == 1){%>
                                         <div class="transferCity">
-                                            <%= flightInfo["transferListLeave"][0] %>
+                                            <%= flightInfo.segmentsLeave[0].cityNameTo %>
                                         </div>
                                         <%}else{%>
                                             <div class="transferCity">
@@ -87,14 +87,20 @@
                         </div>
                     </div>
                     <p class="flightDetailInfo">
-                        <span><img src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
+                        <span><img src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span>
+                      <%if(hftChoose.airCompanyHandler(flightInfo["segmentsLeave"])){%>
+                      <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %>等</span>
+                      <%}else{%>
+                      <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %></span>
+                      <% }%>
+                      <span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
                     </p>
                 </li>
                 <p class="flightDetailArrow"><i></i></p>
                 <li class="tripBack">
                     <div class="dateWeekCity">
                         <span class="icon"></span>
-                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>
+                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span><!--<span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>-->
                     </div>
                     <div class="timeAirport">
                         <div class="left">
@@ -110,7 +116,9 @@
                                 <%}else{%>
                                     <div class="arrowWord"></div>
                                     <%if(flightInfo["transferListReturn"].length == 1){%>
-                                        <div class="transferCity"><%= flightInfo["transferListReturn"][0] %></div>
+                                        <div class="transferCity">
+                                          <%= flightInfo.segmentsReturn[0].cityNameTo%>
+                                        </div>
                                       <%}else{%>
                                             <div class="transferCity"><%= flightInfo["transferListReturn"].length %>次</div>
                                           <%}%>
@@ -125,7 +133,13 @@
                         </div>
                     </div>
                     <p class="flightDetailInfo">
-                        <span><img src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
+                        <span><img src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span>
+                        <%if(hftChoose.airCompanyHandler(flightInfo["segmentsReturn"])){%>
+                      <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %>等</span>
+                      <%}else{%>
+                      <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %></span>
+                      <% }%>
+                      </span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
                     </p>
                 </li>
             </ul>
@@ -138,14 +152,17 @@
 
                 <div class="hotelRightPart" data-statl="detail">
                     <h3><%= hotelInfo["hotelName"] %></h3>
-
-                    <p class="scorePersonNumber"><span class="score"><%= hotelInfo['hotelReviewScore'] %></span>分 <span class="commit"><%= hotelInfo['hotelReviewCount'] %></span>人点评</p>
-
+                    <%if(parseInt(hotelInfo['hotelReviewScore'])>0||parseInt(hotelInfo['hotelReviewCount'])>0){%>
+                       <p class="scorePersonNumber">
+                         <% if(parseInt(hotelInfo['hotelReviewScore'])>0){%>
+                         <span class="score"><%= hotelInfo['hotelReviewScore'] %></span>分
+                         <% }%>
+                         <% if(parseInt(hotelInfo['hotelReviewCount'])>0){%>
+                         <span class="commit"><%= hotelInfo['hotelReviewCount'] %></span>人点评</p>
+                       <%}%>
+                       <%}%>
                     <p class="starWifi"><span class="star"><%= hftChoose.setChineseStar(hotelInfo['starRating']) %></span><span class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
-
-                    <p>
-                        <%= hotelInfo['location'] %>
-                    </p>
+                    <p><%= hotelInfo['location'] %></p>
                 </div>
                 <i></i>
             </div>
@@ -191,7 +208,7 @@
     </div>
     <div class="bottomPrice">
         <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
-        <span class="preserve">立即预定</span>
+        <span class="preserve">立即预订</span>
     </div>
 </script>
 <script id="template_room" type="text/template">
