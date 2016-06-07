@@ -403,7 +403,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .double_ul .seat_price {
-  padding-top: 1.35rem;
+  padding-top: 1.25rem;
 }
 
 .singleFlight .seat_price{
@@ -616,7 +616,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   width: 1.9rem;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsisi
+  text-overflow: ellipsis;
 }
 
 .left_info .endPort {
