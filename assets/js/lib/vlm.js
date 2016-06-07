@@ -1156,7 +1156,7 @@
                             title = '选择取票人';
                             break;
                         case "ht":
-                            title = '选择取票人';
+                            title = '选择出行人';
                             break;
                         default:
                             title = '选择乘机人';
