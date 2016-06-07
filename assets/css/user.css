@@ -1646,7 +1646,7 @@ a.foot-homes, a.foot-users {
   list-style: none;
   list-style-type: disc;
   color: #999;
-  font-size: .24rem;
+  /*font-size: .24rem;*/
 }
 
 .name_ul li p {
