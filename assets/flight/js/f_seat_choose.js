@@ -80,6 +80,31 @@ var fSeatChoose = {
     }
     return this;
   },
+  delayLoadImage : function() {
+    var images = document.getElementsByTagName('img');
+    var  loadImage = function(url, error_url,callback,errorFunc) {
+      var img = new Image();
+      img.src = url;
+      img.onload = function() {
+        img.onload = null;
+        callback();
+      };
+      img.onerror = function(){
+        img.onerror = null;
+        errorFunc();
+      }
+    };
+    images = Array.prototype.slice.call(images)
+    images.forEach(function(array){
+      var re_url = array.getAttribute('data-src'), error_url = "../images/loading_def_big.png";
+      loadImage(re_url,error_url, function() {
+        array.setAttribute('src', re_url);
+      },function(){
+        array.setAttribute('src', error_url);
+      });
+    });
+    return this
+  },
 
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
@@ -127,7 +152,7 @@ var fSeatChoose = {
     var flightData = {}, storage = window.sessionStorage;
     flightData = JSON.parse(storage.getItem('currentFlight'));
     console.log(flightData)
-    this.fadeHandler().createTags({flightInfo: flightData}).eventHandler();
+    this.fadeHandler().createTags({flightInfo: flightData}).delayLoadImage().eventHandler();
 
   }
 };
