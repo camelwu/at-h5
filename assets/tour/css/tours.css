@@ -492,6 +492,9 @@ a.hotel_detail_pic{
     height: 0.6rem;
     line-height: 0.6rem;
 }
+.hotel_room_list li p.price span.rmb{
+  margin-top: 3px;
+}
 .hotel_room_list li p.price span.money{
     font-size: 0.46rem;
 }
