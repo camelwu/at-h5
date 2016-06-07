@@ -84,6 +84,35 @@ var flightList = {
 		}
 		return array;
 	},
+
+  delayLoadImage : function() {
+    var images = document.getElementsByTagName('img');
+    var  loadImage = function(url, error_url,callback,errorFunc) {
+      var img = new Image();
+      img.src = url;
+      img.onload = function() {
+        img.onload = null;
+        callback();
+      };
+      img.onerror = function(){
+        img.onerror = null;
+        errorFunc();
+      }
+    };
+    images = Array.prototype.slice.call(images);
+    images.forEach(function(array){
+      var re_url = array.getAttribute('data-src'), error_url = "../images/loading_def_big.png";
+      if(array.className == "airwayLogo"){
+        loadImage(re_url,error_url, function() {
+          array.setAttribute('src', re_url);
+        },function(){
+          array.setAttribute('src', error_url);
+        });
+      }
+    });
+    return this
+  },
+
 	getFlightList : function() {
 		var that = this;
     $('#departData').html(that.formatDate(oldFlightInfo.departDate,"MM-dd"));
@@ -92,7 +121,6 @@ var flightList = {
     $('#returnWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.returnDate,"d")));
 		var flightListBack = function(ret) {
 			var json = ret, that = flightList;
-      console.log(json);
       var data = json.data;
         if(json.success && json.code == '200'&&data.flightInfoListGroup.length>0) {
           $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
@@ -104,9 +132,9 @@ var flightList = {
           $('#fligtList').append(flightCur);
           //航班列表
           var str1 = $("#tplFlightList").html();
-          var flightList = ejs.render(str1, data);
-          $('#fligtList').append(flightList);
-
+          var flightListStr = ejs.render(str1, data);
+          $('#fligtList').append(flightListStr);
+          that.delayLoadImage()
           if (!filterSign) {
             filterSign = true;
             bottom(data);
@@ -187,7 +215,9 @@ var flightList = {
       footer.filters.init();
     };
 		this.tAjax("", oldFlightInfo, "60100005", "3", flightListBack);
+    return this
   },
+
 	tAjax : function(questUrl, data, Code, ForeEndType, Callback) {
 		var that = this, dataObj = {
 			Parameters : data,
