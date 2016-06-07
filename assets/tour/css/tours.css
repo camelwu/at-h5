@@ -177,8 +177,18 @@ i,em{
     white-space: nowrap;
 }
 .hotel_list .grade{
-    padding-top:0.42rem;
+    padding-top:0.1rem;
+    color: #999;
 }
+
+.hotel_list .score span{
+    padding-right: 0.2rem;
+}
+
+.hotel_list .score i{
+    color: #333;
+}
+
 .hotel_list .price{
     height: 0.8rem;
     line-height: 0.8rem;
