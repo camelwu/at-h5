@@ -104,7 +104,7 @@
             <section class="personal_data_box order_data_box">
                 <div class="personal_data" id="personal_data">
                     <span class="title"><i>联系人资料</i><b><a href="javascript:;" class="add-contact"></a></b></span>
-                    <ul id="contact" class="order_trave">
+                    <ul id="ht_contact" class="order_trave">
                         <li>
                             <!--<span class="list_tit">姓</span>-->
                             <span class="list_con2">
@@ -259,6 +259,11 @@
     <!--    <script src="js/dateFixed_.js"></script>-->
     <script>
         (function() {
+
+          localStorage.removeItem("travellerInfo_selected");
+          localStorage.removeItem("contact_selected");
+          sessionStorage.removeItem("choiceAir_select_personal_data");
+
             //阻止在嵌套元素中传播
             function cancelPropagation(event) {
                 event = window.event || event;
