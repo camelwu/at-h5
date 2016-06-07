@@ -241,11 +241,11 @@ element::-webkit-scrollbar{
 
 /*列表页*/
 .scenic_list_error{
-  height: 130px;
-  margin: 51% 15%;
+  height: 3.5rem;
+  margin: 30% 10%;
   position: relative;
   background: url(/images/error/error.png) fixed center center no-repeat;
-  background-size: 150px 90px;
+  background-size: 3rem 2rem;
   background-position: 50% 50%;
   display: none;
 }

@@ -108,6 +108,32 @@ var  hftFlightDetail = {
     that.addEvent();
     return that;
   },
+  delayLoadImage : function() {
+    var images = document.getElementsByTagName('img');
+    var  loadImage = function(url, error_url,callback,errorFunc) {
+      var img = new Image();
+      img.src = url;
+      img.onload = function() {
+        img.onload = null;
+        callback();
+      };
+      img.onerror = function(){
+        img.onerror = null;
+        errorFunc();
+      }
+    };
+    images = Array.prototype.slice.call(images)
+    images.forEach(function(array){
+      var re_url = array.getAttribute('data-src'), error_url = "../images/loading_def_big.png";
+      loadImage(re_url,error_url, function() {
+        array.setAttribute('src', re_url);
+      },function(){
+        array.setAttribute('src', error_url);
+      });
+    });
+    return this
+  },
+
   addEvent:function(){
     var iconBack =  document.querySelector('.icon_back');
     this.addHandler(iconBack, 'click', function () {
@@ -123,7 +149,7 @@ var  hftFlightDetail = {
     if(bookingRefNo==undefined){
         var flightData = null, storage = window.sessionStorage;
         flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
-        this.createTags({flightInfo:flightData.flightInfo});
+        this.createTags({flightInfo:flightData.flightInfo}).delayLoadImage();
         $("#status").fadeOut();
         $("#preloader").delay(400).fadeOut("medium");
     }

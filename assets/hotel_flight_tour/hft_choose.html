@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <p class="flightDetailInfo">
-                        <span><img src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span>
+                        <span><img src="../images/loading_def_big.png" data-src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span>
                       <%if(hftChoose.airCompanyHandler(flightInfo["segmentsLeave"])){%>
                       <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %>等</span>
                       <%}else{%>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <p class="flightDetailInfo">
-                        <span><img src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span>
+                        <span><img src="../images/loading_def_big.png" data-src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span>
                         <%if(hftChoose.airCompanyHandler(flightInfo["segmentsReturn"])){%>
                       <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %>等</span>
                       <%}else{%>
@@ -146,7 +146,7 @@
             <div class="statusMoreHotel"><span>酒店</span> <a href="javascript:void(0);" class="moreHotel" title="更多酒店" data-statl="change">更换酒店</a>
             </div>
             <div class="hotelImgInfo">
-                <img src="<%= hotelInfo['hotelPictureURL'] %>">
+                <img src="../images/loading_def_big.png" data-src="<%= hotelInfo['hotelPictureURL'] %>">
                 <div class="hotelRightPart" data-statl="detail">
                     <h3><%= hotelInfo["hotelName"] %></h3>
                     <%if(parseInt(hotelInfo['hotelReviewScore'])>0||parseInt(hotelInfo['hotelReviewCount'])>0){%>
