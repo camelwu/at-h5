@@ -151,8 +151,13 @@
           <button>预订</button>
           </div>
            <div class="left_small_word">
-             <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountExc"]%></span> </p>
+             <% if(window.location.search.substring(8) == "0"){ %>
+             <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
              <p><span class="explain">退改签说明</span> <span class="taxFair">￥税费<%= flightInfo["totalTaxAmountADT"]%></span> </p>
+             <%}else{ %>
+             <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountExc"]%></span> </p>
+             <p><span class="explain">退改签说明</span> <span class="taxFair">含税总价</span> </p>
+             <% } %>
            </div>
       </div>
     </div>
