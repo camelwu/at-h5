@@ -109,7 +109,7 @@ li.cur .h_choose {
   width: 1.68rem;
   height: 1.68rem;
   position: absolute;
-  background: url("../../images/hotelListerrorpic.png") no-repeat;
+  background: url("../../images/loading_def_small.png") no-repeat;
   background-size: 100% 100%;
 }
 

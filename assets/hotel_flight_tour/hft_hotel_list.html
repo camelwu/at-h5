@@ -106,7 +106,14 @@
       <img class="img" src=<%= data.hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
         <h3><%= data.hotels[i].hotelNameLocale %></h3>
-        <p><span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
+        <p>
+          <% if(data.hotels[i].hotelReviewScore && data.hotels[i].hotelReviewScore!=0){ %>
+          <span class="score"><%= data.hotels[i].hotelReviewScore %>.0</span>分&nbsp;
+          <% } %>
+          <% if(data.hotels[i].hotelReviewCount && data.hotels[i].hotelReviewCount != 0){ %>
+          <i><%= data.hotels[i].hotelReviewCount %>人点评</i>
+          <% } %>
+        </p>
         <p class="equipment clearfix">
           <span><%= data.hotels[i].starRating %></span>
           <!--<span class="park"></span>-->
