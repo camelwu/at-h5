@@ -776,16 +776,16 @@
     </div>
     <div class="tour_productinfo tour_ticketinfo">
       <p>使用日期：<%=vlm.Utils.format_date(tours[0].travelDate,"Ymd")%> <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%><%=TourTimer[tours[0].tourSession]%></p>
-      <% var numAdult=0; numchild=0;
+      <% var numAdult=0; numChild=0;
       chargeDetails.forEach(function(info){
       if(info.category=="ADULT"){
       numAdult=info.quantity
       }
-      else if(info.category=="CHLID"){
-      numchild=info.quantity
+      else if(info.category=="CHILD"){
+         numChild=info.quantity
       }
       }) %>
-      <p><span>成人票：<%=numAdult%>张;</span> <span>儿童票：<%=numchild%>张</span></p>
+      <p><span>成人票：<%=numAdult%>张;</span> <span>儿童票：<%=numChild%>张</span></p>
     </div>
   </section>
 
@@ -873,7 +873,7 @@
         if(info.category=="ADULT"){
             numAdult=info.quantity
         }
-        else if(info.category=="CHLID"){
+        else if(info.category=="CHILD"){
              numchild=info.quantity
         }
       }) %>
