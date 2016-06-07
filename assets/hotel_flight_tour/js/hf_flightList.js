@@ -99,14 +99,16 @@ var flight_list = {
         errorFunc();
       }
     };
-    images = Array.prototype.slice.call(images)
+    images = Array.prototype.slice.call(images);
     images.forEach(function(array){
       var re_url = array.getAttribute('data-src'), error_url = "../images/loading_def_big.png";
-      loadImage(re_url,error_url, function() {
-        array.setAttribute('src', re_url);
-      },function(){
-        array.setAttribute('src', error_url);
-      });
+      if(array.className == "airwayLogo"){
+        loadImage(re_url,error_url, function() {
+          array.setAttribute('src', re_url);
+        },function(){
+          array.setAttribute('src', error_url);
+        });
+      }
     });
     return this
   },
