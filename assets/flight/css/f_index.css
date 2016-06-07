@@ -29,7 +29,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .addPaddingTop {
-  padding-top: 1.76rem;
+  padding-top: 1.66rem;
 }
 .addMarginBottomHigh{
   margin-bottom: 1.96rem;
@@ -309,11 +309,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .middle_input {
   display: block;
   border: 1px solid #e6e6e6;
-  margin: .09rem 1.22rem 0;
+  margin: .10rem 1.22rem 0;
   background: #fff;
   border-radius: .44rem;
-  height: .60rem;
-  line-height: .60rem;
+  height: .58rem;
+  line-height: .58rem;
   color: #666666;
 }
 .middle_input .weekWord {
@@ -326,7 +326,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   background: url(../../images/ui.1.0/icon_common.png) no-repeat;
   background-size: 7.90rem auto;
   background-position: -2.24rem -.68rem;
-  margin-left: .16rem;
+  margin-left: .06rem;
 }
 
 .date-top i {

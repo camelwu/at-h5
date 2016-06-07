@@ -399,6 +399,7 @@
                         tra.Salutation = "Mr";
                         tra.FirstName = firstNameAdu;
                         tra.LastName = lastNameAdu;
+                        tra.NationalityCode="CN";
                         traveler.push(tra);
                     }
 
