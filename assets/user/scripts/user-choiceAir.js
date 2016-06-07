@@ -162,6 +162,13 @@
       for(var i=0;i<=selectPassagerList.length-1;i++){
         var key=$(selectPassagerList[i]).attr("data-id")
         passagerArray[key].PagerType=from;
+        var o= passagerArray[key].traveller;
+        if(vlm.Utils.getAge(o.dateOfBirth,departDate)<12) {
+          o.PassengerType= "CHILD";  //乘客类型
+        }
+        else{
+            o.PassengerType= "ADULT";  //乘客类型
+        }
         selectedPassagerArray[key]=passagerArray[key];
       }
       _replacePagerAttri();

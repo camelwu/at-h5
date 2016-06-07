@@ -375,17 +375,29 @@
       sessionStorage.removeItem("choiceAir_select_orderTraveller");
       sessionStorage.removeItem("choiceAir_select_ticket");
 
+
       function callback(){
-        var num=$("#orderTraveller ul:visible").length;
-        $(".adu_choose").html(num);
 
         var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_orderTraveller"));
+        var i= 0, adultNum= 0,childNum=0;
         for (var key in modle) {
-          $(".contact_link_wrap .hft_con_lastname").val(modle[key].traveller.firstName);
-          $(".contact_link_wrap .hft_con_firstname").val(modle[key].traveller.lastName);
-          $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
-          $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
+          if(modle[key].traveller.PassengerType=="CHILD"){
+            childNum++;
+
+          }
+          else{
+            adultNum++
+          }
+          if(i==0) {
+            $(".contact_link_wrap .hft_con_lastname").val(modle[key].traveller.firstName);
+            $(".contact_link_wrap .hft_con_firstname").val(modle[key].traveller.lastName);
+            $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
+            $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
+          }
+          i++;
         }
+        $(".adu_choose").html(adultNum);
+        $(".chi_choose").html(childNum);
 
       }
         //删除出行人
