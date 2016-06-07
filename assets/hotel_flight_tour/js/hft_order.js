@@ -34,6 +34,7 @@
 
     //酒店详情
     var hotelstr=$('#orderHotel').html();
+    console.log(hftCreateOrderPara)
     var hoteldet = ejs.render(hotelstr, hftCreateOrderPara)
     $('#hftHotelTab').html(hoteldet);
 

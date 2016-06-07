@@ -21,7 +21,6 @@
     <link href="../css/country_list.css" rel="stylesheet" />
     <link href="css/hft_order.css" rel="stylesheet" />
 </head>
-
 <body data-statp="order">
     <div id="preloader">
         <div id="status">
@@ -340,7 +339,7 @@
                         <span>共<%=dayNum%>晚（当地时间为准）</span>
                 </li>
                 <li class="hotel_room_det">
-                    <span>房型：双人床</span>
+                    <span>房型：<%=priceRoomInfo.roomName%></span>
                     <span>房间数：<%=roomDetails.length%>间</span>
                 </li>
             </ul>
@@ -356,13 +355,13 @@
     <script id="orderFare" type="text/template">
       <% if( priceRoomInfo.prices.length == 1){ %>
       <% if( priceRoomInfo.prices[0].category == 1){console.log(priceRoomInfo.prices[0].quantity); %>
-      <p>成人费用 x <span><%=priceRoomInfo.prices[0].quantity%></span> <span> ￥<%=priceRoomInfo.prices[0].amount%></span>
+      <p>成人费用<span class="float_right">￥<%=priceRoomInfo.prices[0].amount%> x <span><%=priceRoomInfo.prices[0].quantity%></span>
       </p>
       <% } %>
       <% } else if (priceRoomInfo.prices.length == 2){ %>
-      <p>成人费用 x <span><%=priceRoomInfo.prices[0].quantity %></span><span>￥<%=priceRoomInfo.prices[0].amount %></span>
+      <p>成人费用<span class="float_right">￥<%=priceRoomInfo.prices[0].amount %> x <span><%=priceRoomInfo.prices[0].quantity%></span></span>
       </p>
-      <p>儿童费用 x <span><%=priceRoomInfo.prices[1].quantity %></span><span>￥<%=priceRoomInfo.prices[1].amount %></span>
+      <p>儿童费用<span class="float_right">￥<%=priceRoomInfo.prices[1].amount %> x <span><%=priceRoomInfo.prices[1].quantity %></span></span>
       </p>
       <% } %>
     </script>
