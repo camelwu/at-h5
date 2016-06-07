@@ -394,6 +394,7 @@ editPassager:function(obj){
   },
 
   priceTags: function () {
+    console.log(arguments[0])
     var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.total_word b'), personNum = document.querySelector('.totalPersonNumber b');
     tempString1 = $("#template_flight_price").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
@@ -413,6 +414,7 @@ editPassager:function(obj){
     var flightData = {}, fIndexInfo = {}, storage = window.sessionStorage, priceTotal = "", priceData = {};
     flightData = JSON.parse(storage.getItem('currentFlight'));
     fIndexInfo = JSON.parse(storage.getItem("fIndexInfo")).data;
+    console.log(flightData)
     priceData.numofAdult = fIndexInfo.numofAdult;
     priceData.numofChild = fIndexInfo.numofChild;
     priceData.totalFareAmountADT = flightData.totalFareAmountADT;

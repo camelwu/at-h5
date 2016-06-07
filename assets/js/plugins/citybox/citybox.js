@@ -9,11 +9,14 @@
   var returnAttr = "";
   var returnStrType = "";
   var returnStrAttr = "";
+  var cityboxCache = 1;
   var config = {
     HistoryData:{},
     HotCityListData:{},
     CityListData:{},
-    LetterIndexData:[]
+    LetterIndexData:[],
+    cacheHotCityList:{},
+    cacheCityList:{}
   };
   /**
    * 排序
@@ -34,7 +37,7 @@
   var AjaxAdapter = function(){
     var adapter = {
       /**
-       * 机+酒+景 通信
+       * 机+酒+景 去程 通信
        * @param data
        * @returns {Array}
        */
@@ -45,7 +48,16 @@
         vlm.loadJson("",JSON.stringify(hft_OriCityListData),Method["hft_oriCityListDataCallback"]);
       },
       /**
-       * 机+酒+景 通信
+       * 机+酒+景Cache 去程 通信
+       * @param data
+       * @returns {Array}
+       */
+      hft_ori_cache:function(){
+        Method["hft_oriHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["hft_oriCityListDataCallback"](JSON.parse(config.cacheCityList));
+      },
+      /**
+       * 机+酒+景 返程 通信
        * @param data
        * @returns {Array}
        */
@@ -56,7 +68,16 @@
         vlm.loadJson("",JSON.stringify(hft_DesCityListData),Method["hft_desCityListDataCallback"]);
       },
       /**
-       * 机+酒 通信
+       * 机+酒+景Cache 返程 通信
+       * @param data
+       * @returns {Array}
+       */
+      hft_des_cache:function(){
+        Method["hft_desHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["hft_desCityListDataCallback"](JSON.parse(config.cacheCityList));
+      },
+      /**
+       * 机+酒 去程 通信
        * @param data
        * @returns {Array}
        */
@@ -67,7 +88,16 @@
         vlm.loadJson("",JSON.stringify(hf_OriCityListData),Method["hf_oriCityListDataCallback"]);
       },
       /**
-       * 机+酒 通信
+       * 机+酒Cache 返程 通信
+       * @param data
+       * @returns {Array}
+       */
+      hf_ori_cache:function(){
+        Method["hf_oriHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["hf_oriCityListDataCallback"](JSON.parse(config.cacheCityList));
+      },
+      /**
+       * 机+酒 去程 通信
        * @param data
        * @returns {Array}
        */
@@ -78,6 +108,16 @@
         vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hf_desCityListDataCallback"]);
       },
       /**
+       * 机+酒Cache 返程 通信
+       * @param data
+       * @returns {Array}
+       */
+      hf_des_cache:function(){
+        Method["hf_desHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["hf_desCityListDataCallback"](JSON.parse(config.cacheCityList));
+      },
+
+      /**
        * 景 通信
        */
       t_des:function(){
@@ -87,6 +127,13 @@
         vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["t_desCityListDataCallback"]);
       },
       /**
+       * 景Cache 通信
+       */
+      t_des_cache:function(){
+        Method["t_desHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["t_desCityListDataCallback"](JSON.parse(config.cacheCityList));
+      },
+      /**
        * 酒+景 通信
        */
       ht_des:function(){
@@ -94,6 +141,13 @@
         var ht_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0201"};
         vlm.loadJson("",JSON.stringify(ht_HotCityListData),Method["ht_desHotCityListDataCallback"]);
         vlm.loadJson("",JSON.stringify(ht_DesCityListData),Method["ht_desCityListDataCallback"]);
+      },
+      /**
+       * 酒+景Cache 通信
+       */
+      ht_des_cache:function(){
+        Method["ht_desHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["ht_desCityListDataCallback"](JSON.parse(config.cacheCityList));
       },
       /**
        * 机票 国内 去程 通信
@@ -143,6 +197,13 @@
         vlm.loadJson("",JSON.stringify(h_inCityListData),Method["h_inCityListDataCallback"]);
       },
       /**
+       * 酒Cache 国内 通信
+       */
+      h_in_cache:function(){
+        Method["h_inHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["h_inCityListDataCallback"](JSON.parse(config.cacheCityList));
+      },
+      /**
        * 酒 国际 通信
        */
       h_out:function(){
@@ -150,6 +211,13 @@
         var h_outCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100014"};
         vlm.loadJson("",JSON.stringify(h_outHotCityListData),Method["h_outHotCityListDataCallback"]);
         vlm.loadJson("",JSON.stringify(h_outCityListData),Method["h_outCityListDataCallback"]);
+      },
+      /**
+       * 酒Cache 国际 通信
+       */
+      h_out_cache:function(){
+        Method["h_outHotCityListDataCallback"](JSON.parse(config.cacheHotCityList));
+        Method["h_outCityListDataCallback"](JSON.parse(config.cacheCityList));
       }
     }
 
@@ -1060,12 +1128,13 @@
     showCityBox:function(){
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").show();
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").hide();
-      //$(".citybox_search_suggestBG").hide();
+      $(".citybox_wrap").show();
+      $(".citybox_index").show();
       $("#citybox_search_container").show();
       $("#citybox_search_container").removeClass("citybox_search_container");
       $("#citybox_search_container").addClass("citybox_search_container");
       cityboxHistoryScrollTop = $(document).scrollTop();
-      $(document).scrollTop(0);
+      $(".citybox_search_container").scrollTop(0);
     },
     /**
      * 隐藏城市列表 并 显示城市搜索列表
@@ -1074,6 +1143,7 @@
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").hide();
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").show();
       $(".citybox_search_suggestBG").show();
+      $(".citybox_index").hide();
       $("#js_citybox_searchactive_input").focus();
       $(document).scrollTop(0);
       VM("citybox_suggest_list");
@@ -1084,6 +1154,7 @@
     hideAllCityBox:function(){
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").hide();
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").hide();
+      $(".citybox_wrap").hide();
       $(".citybox_search_container").hide();
       $(document).scrollTop(cityboxHistoryScrollTop);
     },
@@ -1109,13 +1180,23 @@
       returnAttr = data.returnAttr || "";
       returnStrType = data.returnStrId || "";
       returnStrAttr = data.returnStrVal || "";
+      cityboxCache = data.cache || 1;
       show1 = 0;
       show2 = 0;
       $("#preloader").show();
       Method["showCityBox"]();
       VM("citybox_location");//当前城市
       VM("citybox_history");//显示历史纪录
-      AjaxAdapter().callAjaxAdapter(globalType);
+
+      config["cacheHotCityList"] = localStorage.getItem(globalType+"_cacheHotcitylist")||"";
+      config["cacheCityList"] = localStorage.getItem(globalType+"_cacheCitylist") || "";
+      if(config["cacheHotCityList"] != "" && config["cacheCityList"] != "" && cityboxCache == 1){
+        AjaxAdapter().callAjaxAdapter(globalType+"_cache");
+      }else{
+        AjaxAdapter().callAjaxAdapter(globalType);
+      }
+
+
     },
     /**
      * 回调方法 机+酒+景 城市列表 热门城市
@@ -1124,6 +1205,9 @@
     hft_oriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         config["HotCityListData"]= dataAdapter().callAdapter("hftHotCity",json.data.hotCitysCN);
         //localStorage.setItem("listhotcity",JSON.stringify(config["HotCityListData"]));
         VM("citybox_hotcitylist");
@@ -1141,6 +1225,9 @@
     hft_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         config["HotCityListData"]= dataAdapter().callAdapter("hftHotCity",json.data.hotCitysInternational);
         VM("citybox_hotcitylist");
         show1 = 1;
@@ -1157,6 +1244,9 @@
     hft_oriCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         config["CityListData"]= dataAdapter().callAdapter("hftCityList",json.data.departCities);
         //localStorage.setItem("listcity",JSON.stringify(config["CityListData"]));
         VM("citybox_citylist");
@@ -1173,6 +1263,9 @@
     hft_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         config["CityListData"]= dataAdapter().callAdapter("hftCityList",json.data.destCities);
         VM("citybox_citylist");
         show2 = 1;
@@ -1188,6 +1281,9 @@
     hf_oriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         config["HotCityListData"]= dataAdapter().callAdapter("hfHotCity",json.data.hotCitysCN);
         VM("citybox_hotcitylist");
         show1 = 1;
@@ -1203,6 +1299,9 @@
     hf_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         config["HotCityListData"]= dataAdapter().callAdapter("hfHotCity",json.data.hotCitysInternational);
         VM("citybox_hotcitylist");
         show1 = 1;
@@ -1218,6 +1317,9 @@
     hf_oriCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         config["CityListData"]= dataAdapter().callAdapter("hfCityList",json.data.citys);
         VM("citybox_citylist");
         show2 = 1;
@@ -1233,6 +1335,9 @@
     hf_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         config["CityListData"]= dataAdapter().callAdapter("hfCityList",json.data.citys);
         VM("citybox_citylist");
         show2 = 1;
@@ -1247,7 +1352,11 @@
      */
     t_desHotCityListDataCallback:function(json){
       //console.log(json);
+
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("tHotCity",json.data.destCities);
         VM("citybox_hotcitylist");
@@ -1263,6 +1372,9 @@
     t_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("tCityList",json.data.destCities);
         VM("citybox_citylist");
@@ -1278,6 +1390,9 @@
     ht_desHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("htHotCity",json.data.destCities);
         VM("citybox_hotcitylist");
@@ -1293,6 +1408,9 @@
     ht_desCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("htCityList",json.data.destCities);
         VM("citybox_citylist");
@@ -1308,6 +1426,9 @@
     f_inoriHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("f_inoriHotCity",json.data);
         VM("citybox_hotcitylist");
@@ -1323,6 +1444,9 @@
     f_inoriCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("f_inoriCityList",json.data);
         VM("citybox_citylist");
@@ -1338,6 +1462,9 @@
     f_indesHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("f_indesHotCity",json.data);
         VM("citybox_hotcitylist");
@@ -1353,6 +1480,9 @@
     f_indesCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("f_indesCityList",json.data);
         VM("citybox_citylist");
@@ -1368,6 +1498,9 @@
     f_outoriHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("f_inoriHotCity",json.data);
         VM("citybox_hotcitylist");
@@ -1383,6 +1516,9 @@
     f_outoriCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("f_inoriCityList",json.data);
         VM("citybox_citylist");
@@ -1398,6 +1534,9 @@
     f_outdesHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("f_indesHotCity",json.data);
         VM("citybox_hotcitylist");
@@ -1413,6 +1552,9 @@
     f_outdesCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("f_indesCityList",json.data);
         VM("citybox_citylist");
@@ -1428,6 +1570,9 @@
     h_inHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("h_inHotCity",json.data);
         VM("citybox_hotcitylist");
@@ -1443,6 +1588,9 @@
     h_inCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("h_inCityList",json.data);
         VM("citybox_citylist");
@@ -1457,6 +1605,9 @@
     h_outHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheHotCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheHotcitylist",JSON.stringify(json));
+        }
         show1 = 1;
         config["HotCityListData"]= dataAdapter().callAdapter("h_outHotCity",json.data);
         VM("citybox_hotcitylist");
@@ -1472,6 +1623,9 @@
     h_outCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
+        if(config.cacheCityList == "" && cityboxCache == 1){
+          localStorage.setItem(""+globalType+"_cacheCitylist",JSON.stringify(json));
+        }
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("h_outCityList",json.data);
         VM("citybox_citylist");
@@ -1812,9 +1966,9 @@
         var key = this.getAttribute("data-key");
         var a = $("#js_"+key);
         if (a.length != 0) {
-          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_search_container").scrollTop();
+          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
         }
-        $(".citybox_search_container").scrollTop(i);
+        $(".citybox_content").scrollTop(i);
       }
       dom.appendChild(citybox_summary_item_litop2);
 
@@ -1826,9 +1980,9 @@
         var key = this.getAttribute("data-key");
         var a = $("#js_"+key);
         if (a.length != 0) {
-          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_search_container").scrollTop();
+          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
         }
-        $(".citybox_search_container").scrollTop(i);
+        $(".citybox_content").scrollTop(i);
       }
       dom.appendChild(citybox_summary_item_litop3);
       var oldi = 0;
@@ -1843,10 +1997,10 @@
           var a = $("#js_index_" + key);
 
           if (a.length != 0) {
-            i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_search_container").scrollTop();
+            i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
             //console.log($("html").css("font-size") +","+a.offset().top+","+$(".citybox_search_container").scrollTop());
           }
-          $(".citybox_search_container").scrollTop(i);
+          $(".citybox_content").scrollTop(i);
 
         }
         fragment.appendChild(citybox_summary_item_li);

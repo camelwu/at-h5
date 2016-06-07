@@ -83,9 +83,11 @@
 /*content*/
 
 .citybox_content {
-  /*position: relative;*/
   padding-top: 0.9rem;
   background: #ffffff;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
 }
 
 .citybox_content_title {
@@ -181,6 +183,7 @@
 @media only screen and (max-height: 480px) {
   .citybox_index {
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     /*background: #000000;*/
   }
 }
@@ -298,8 +301,8 @@
   height: 100%;
   top: 0;
   left: 0;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  /*overflow: scroll;*/
+  /*-webkit-overflow-scrolling: touch;*/
   /*display: none;*/
 }
 
@@ -311,7 +314,9 @@
 
 .citybox_search_suggest{
   background: #fcfcfc;
-  /*height: 667rem;*/
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
 }
 
 .citybox_search_suggestBG{
