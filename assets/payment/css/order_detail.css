@@ -163,7 +163,7 @@ input {
 .cabin_level {
   border-top: 1px solid #e6e6e6;
   margin-left: .28rem;
-  padding-top: .3rem;
+  padding-top: .4rem;
 }
 
 /*机票结束*/
@@ -175,7 +175,7 @@ input {
 
 .hotel_wrap {
   padding: .4rem .28rem .2rem;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .hotel_wrap li {
@@ -682,7 +682,8 @@ li.order_tlist2 {
 
 .hft_pri_details {
   padding: .4rem .28rem;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  display: none;
 }
 
 .hft_pri_details li {
@@ -745,10 +746,10 @@ li.order_tlist2 {
 }
 
 .fht_order_tab {
-  padding: .35rem 0 0 .28rem;
+  padding: .25rem 0 0 .28rem;
   background-color: #fff;
   overflow: hidden;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .fht_order_tab.border_light {
@@ -760,7 +761,7 @@ li.order_tlist2 {
 }
 
 .fht_order_tab > li {
-  margin-bottom: .28rem;
+  margin-bottom: .5rem;
   padding-right: .28rem;
 }
 
@@ -769,7 +770,7 @@ li.order_tlist2 {
 }
 
 .order_cont_way {
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   background-color: #fff;
   padding-bottom: .32rem;
 }
@@ -1064,7 +1065,7 @@ li.order_tlist2 {
 
 .flight_cir_wrap1 {
   width: 100%;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .fli-status {
@@ -1176,7 +1177,7 @@ li.order_tlist2 {
   display: inline-block;
   vertical-align: top;
   margin-left: .05rem;
-  margin-top: .24rem;
+  margin-top: .1rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -3.3rem -.5rem;
   background-size: 6.6rem 4.55rem;

@@ -149,6 +149,15 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 sendInfo();
             });
 
+            //景点上午下午晚上 周末选择
+            $("#tourTime").on("click", ".tourSelect", function (event) {
+                var target = $(event.target);
+                target.addClass("tourcho");
+                target.siblings().each(function (index, ele) {
+                    $(ele).removeClass("tourcho");
+                });
+            });
+
             //房间增减
             $("#roomNumber .down_btn").click(function (event) {
                 var addBtn = $("#roomNumber .up_btn");
@@ -580,7 +589,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             childAgeMax = parseInt(data.childAgeMax);
             // 酒店，默认开始时间
             document.getElementById("CheckInDate").value = vlm.Utils.format_date(day_start, 'md');
-            document.getElementById("CheckInDate").setAttribute("data-date", day_start);
+            document.getElementById("CheckInDate").setAttribute("data-date", vlm.Utils.format_date(day_start, 'Ymd'));
             document.getElementById("week_span1").innerHTML = day_ary[new Date(day_start).getDay()];
             // 共几晚
             total_day.innerHTML = day_Num - 1;
@@ -591,7 +600,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             etim = dd.getFullYear() + "-" + (dd.getMonth() + 1) + "-" + dd.getDate();
             // 插入离店
             document.getElementById("CheckOutDate").value = vlm.Utils.format_date(etim, 'md');
-            document.getElementById("CheckOutDate").setAttribute("data-date", etim);
+            document.getElementById("CheckOutDate").setAttribute("data-date", vlm.Utils.format_date(etim, 'Ymd'));
             document.getElementById("week_span2").innerHTML = day_ary[dd.getDay()];
             // 房间
             initRoom();

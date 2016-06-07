@@ -179,6 +179,81 @@
 <script src="../js/lib/ejs.js"></script>
 <script src="../plugins/footer/foot.js"></script>
 <script src="js/hf_flightList.js"></script>
+<script id="flightCur" type="text/template">
+  <div class="price_up">以下航班需<span>+￥<%= selectedFlight.additionalPrice %></span></div>
+  <ul class="air_tickets_detail">
+    <li class="seat_detail" data-setID="<%= selectedFlight.setID %>">
+      <div class="time_airport">
+        <div class="go">
+          <div class="ticket_info gotrip">
+            <span class="hft_icon"></span>
+            <span><%= selectedFlight.flightLeaveStartDate.substr(5,5) %> <%= selectedFlight.segmentsLeave[0].departDayOfWeek%> <%= selectedFlight.segmentsLeave[0].cityNameFrom %>-<%= selectedFlight.segmentsLeave[selectedFlight.segmentsLeave.length-1].cityNameTo %></span>
+          </div>
+          <div class="go_info">
+            <div class="start_time_info">
+              <span class="time_number"><%= selectedFlight.flightLeaveStartDate.substr(11,5) %></span>
+              <span class="air_port_word"><%= selectedFlight.segmentsLeave[0].airportNameFrom %></span>
+            </div>
+            <div class="total_time_info">
+              <span class="time_hour_minute"><%= selectedFlight.segmentsLeaveTotalTravelTimeString%></span>
+              <% if(selectedFlight.directFlight==1){ %>
+              <img src="../images/ui/change-arrow.png">
+              <% }else{ %>
+              <span class="hft_icon arrow_time"></span>
+              <% } %>
+              <% if(selectedFlight.transferListLeave){%>
+              <span class="air_port_word"><%= selectedFlight.transferListLeave[0] %></span>
+              <% }%>
+            </div>
+            <div class="end_time_info">
+              <span class="time_number"><%= selectedFlight.flightLeaveEndDate.substr(11,5) %></span>
+              <span class="air_port_word"><%= selectedFlight.segmentsLeave[selectedFlight.segmentsLeave.length-1].airportNameTo%></span>
+              <% if( selectedFlight.flightLeaveSpacingDay!=0 ){ %>
+              <span class="tip_add_days">+<%=selectedFlight.flightLeaveSpacingDay%>天</span>
+              <% } %>
+            </div>
+          </div>
+          <p class="small_info_tip"><img src="<%= selectedFlight.segmentsLeave[0].airwayLogo %>" style=""/><%= selectedFlight.segmentsLeave[0].airCorpName%> | <%= selectedFlight.segmentsLeave[0].planeType%> | <%=selectedFlight.segmentsLeave[0].planeName%></p>
+        </div>
+        <div class="go">
+          <div class="ticket_info backtrip">
+            <span class="hft_icon"></span>
+            <span><%=selectedFlight.flightReturnStartDate.substr(5,5)%> <%=selectedFlight.segmentsReturn[0].departDayOfWeek%> <%= selectedFlight.segmentsReturn[0].cityNameFrom %>-<%= selectedFlight.segmentsReturn[selectedFlight.segmentsReturn.length-1].cityNameTo%></span>
+          </div>
+          <div class="go_info">
+            <div class="start_time_info">
+              <span class="hft_icon end_icon"></span>
+              <span class="time_number"><%=selectedFlight.flightReturnStartDate.substr(11,5)%></span>
+              <span class="air_port_word"><%=selectedFlight.segmentsReturn[0].airportNameFrom%></span>
+            </div>
+            <div class="total_time_info">
+              <span class="time_hour_minute"><%=selectedFlight.segmentsReturnTotalTravelTimeString%></span>
+              <% if(selectedFlight.directFlight==1){ %>
+              <img src="../images/ui/change-arrow.png">
+              <% }else{ %>
+              <span class="hft_icon arrow_time"></span>
+              <% } %>
+              <%if(selectedFlight.transferListReturn){%>
+              <span class="air_port_word"><%=selectedFlight.transferListReturn[0]%></span>
+              <%}%>
+            </div>
+            <div class="end_time_info">
+              <span class="time_number"><%=selectedFlight.flightReturnEndDate.substr(11,5)%></span>
+              <span class="air_port_word"><%=selectedFlight.segmentsReturn[selectedFlight.segmentsReturn.length-1].airportNameTo%></span>
+              <% if(selectedFlight.flightLeaveSpacingDay!=0){ %>
+              <span class="tip_add_days">+<%=selectedFlight.flightReturnSpacingDay%>天</span>
+              <% } %>
+            </div>
+          </div>
+          <p class="small_info_tip"><img src="<%=selectedFlight.segmentsReturn[0].airwayLogo%>" alt=""/><%=selectedFlight.segmentsReturn[0].airCorpName%> | <%=selectedFlight.segmentsReturn[0].planeType%> | <%=selectedFlight.segmentsReturn[0].planeName%></p>
+        </div>
+      </div>
+      <b class="hft_icon cho_gou"></b>
+    </li>
+
+  </ul>
+
+</script>
 <script id="tplFlightList" type="text/template">
   <% for(var i = 0;i < flightInfoListGroup.length;i++){ %>
   <div class="price_up">以下航班需<span>+￥<%=flightInfoListGroup[i].additionalPrice%></span></div>
@@ -250,9 +325,7 @@
           <p class="small_info_tip"><img src="<%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airwayLogo%>" alt=""/><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airCorpName%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeType%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeName%></p>
         </div>
       </div>
-      <% if(selectedFlight){%>
-          <b class="hft_icon  <%= selectedFlight.cacheID == flightInfoListGroup[i].flightInfoList[j].cacheID&&selectedFlight.setID == flightInfoListGroup[i].flightInfoList[j].setID? 'cho_gou' : '' %> "></b>
-      <% }%>
+          <b class="hft_icon"></b>
     </li>
     <% } %>
   </ul>

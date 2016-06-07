@@ -8,9 +8,34 @@ var filterSign = false;
 var flightList = {
 	requestUrl : "",
 	getWeekDay : function(date) {
-		var final_date = date.substr(0, 10).replace(/-/g, '/');
-		var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
-		return week;
+      console.log(typeof date)
+      switch (date){
+        case "0":
+              date = "周日";
+              break;
+        case "1":
+              date = "周一";
+              break;
+        case "2":
+              date = "周二";
+              break;
+        case "3":
+              date = "周三";
+              break;
+        case "4":
+              date = "周四";
+              break;
+        case "5":
+              date = "周五";
+              break;
+        case "6":
+              date = "周六";
+              break;
+
+      }
+		//var final_date = date.substr(0, 10).replace(/-/g, '/');
+		//var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
+		return date;
 	},
 	//格式化日期,
 	formatDate : function(date, format) {
@@ -72,9 +97,16 @@ var flightList = {
         if(json.success && json.code == '200'&&data.flightInfoListGroup.length>0) {
           $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
           $('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
+
+          //航班列表选中项
+          var str2 = $("#flightCur").html();
+          var flightCur = ejs.render(str2, data);
+          $('#fligtList').append(flightCur);
+          //航班列表
           var str1 = $("#tplFlightList").html();
-          var flight_list = ejs.render(str1, data);
-          document.getElementById('fligtList').innerHTML = flight_list;
+          var flightList = ejs.render(str1, data);
+          $('#fligtList').append(flightList);
+
           if (!filterSign) {
             filterSign = true;
             bottom(data);

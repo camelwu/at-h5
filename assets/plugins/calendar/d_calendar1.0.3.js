@@ -87,7 +87,7 @@
         '<span class="nextmonth">nextmonth</span>',
     ],
         _tempweek: [
-        '<dl class="ca_week">',
+        '<dl class="ca_week clearfix">',
         '<dt class="date_title">日</dt>',
         '<dt class="date_title">一</dt>',
         '<dt class="date_title">二</dt>',
@@ -165,15 +165,16 @@
                     var tiperWrap = document.createElement("div");
                     tiperWrap.className = "calendar_tiper";
                     tiperWrap.innerHTML = this._flightTemptiper;
-                    container.appendChild(tiperWrap);
+                    header.appendChild(tiperWrap);
                 } else {
+                    header.className = header.className + " no_tiper";
                     container.className = container.className + " no_tiper";
                 }
 
                 var weeker = document.createElement('div');
                 weeker.className = 'calendar_week';
                 weeker.innerHTML = this._tempweek.join('');
-                container.appendChild(weeker);
+                header.appendChild(weeker);
 
                 var comfirmBtn = this.tiper = document.createElement('div');
                 comfirmBtn.id = 'comfirmBtn';
@@ -465,10 +466,8 @@
                     }
 
                 });
-                if (throughSign) {
-                    selectedEle.eq(0).addClass('selectStart');
-                    selectedEle.eq(1).addClass('selectEnd');
-                }
+                selectedEle.eq(0).addClass('selectStart');
+                selectedEle.eq(1).addClass('selectEnd');
             } else {
                 $(".calendar .through").removeClass('through');
                 $(".calendar .selectStart").removeClass('selectStart');
@@ -481,13 +480,13 @@
          **/
         showSelected: function () {
             var values = this.result;
-            var firstEle = $("#" + this.id + "Date" + " #electedTime0");
-            var secondEle = $("#" + this.id + "Date" + " #electedTime1");
-            var infoEle = $("#" + this.id + "Date" + " .info");
-            var secondInfoEle = $("#" + this.id + "Date" + " .second_info");
+            var firstEle = $("#" + this.id + "Header" + " #electedTime0");
+            var secondEle = $("#" + this.id + "Header" + " #electedTime1");
+            var infoEle = $("#" + this.id + "Header" + " .info");
+            var secondInfoEle = $("#" + this.id + "Header" + " .second_info");
 
             for (var i = 0; i < values.length; i++) {
-                $("#" + this.id + "Date" + " #electedTime" + i).html(values[i]).parent().show();;
+                $("#" + this.id + "Header" + " #electedTime" + i).html(values[i]).parent().show();;
             }
             if (values.length === 1) {
                 secondEle.parent().hide();

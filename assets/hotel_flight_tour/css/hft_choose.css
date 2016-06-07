@@ -708,7 +708,7 @@ body {
     height: 4.12rem;
     width: 100%;
     bottom: -126%;
-    z-index: 102;
+    z-index: 189;
     background: #fff;
 }
 
@@ -721,7 +721,7 @@ body {
     line-height: .98rem;
     bottom: 0;
     border-top: 1px solid #dedede;
-    z-index: 105;
+    z-index: 194;
 }
 
 .priceTotal {

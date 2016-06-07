@@ -432,8 +432,8 @@
                     if (d1 == '' || d1 == null || d2 == '' || d2 == null) {
                         return 'no timestr.';
                     }
-                    d1 = new Date(d1.replace("T", " "));
-                    d2 = new Date(d2.replace("T", " "));
+                    d1 = new Date(d1.replace('-', "/").replace('-', "/").replace('T', " "));
+                    d2 = new Date(d2.replace('-', "/").replace('-', "/").replace('T', " "));
                     var dtime = Math.floor((d2 - d1) / (24 * 60 * 60 * 1000));
                     return dtime;
                 },

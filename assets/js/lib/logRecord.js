@@ -22,7 +22,7 @@
      *
      {
          parameters:[{
-            u:url/path 
+            u:url/path
             p:page, =>data-statp
             m:module, =>data-statm
             l:lable, =>data-statl

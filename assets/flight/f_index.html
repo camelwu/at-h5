@@ -96,7 +96,7 @@
                 <i class="icon_back"></i>
             </a>
             <h3>
-      <div class="cl_search"><input type="text" placeholder="新加坡/xjp/sinjiapo/SIN" id="city-input-zone"><i></i></div>
+      <div class="cl_search"><input type="text" placeholder="新加坡/sinjiapo/SIN" id="city-input-zone"><i></i></div>
     </h3>
         </header>
         <div class="hTab">
@@ -136,13 +136,13 @@
     </div>
     <!--全部列表-->
     <div class="full_city_outer">
-        <% for(var tem in resultArray){%>
+        <% for(var tem in resultArray){console.log(resultArray)%>
             <a class="target" name="<%=tem%>"></a>
             <h4><%= tem%></h4>
             <ul class="full_city_list">
                 <%resultArray[tem].forEach(function(array){%>
                     <li class="city_list" data-city-code="<%=array.cityCode%>">
-                        <%= array.cityNameCN%>
+                        <%= array.cityNameCn%>
                     </li>
                     <% })%>
             </ul>
@@ -170,6 +170,7 @@
 <script type="text/javascript" src="../js/plugins/scroller/scroller1.1.js"></script>
 <script type="text/javascript" src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
-<script type="text/javascript" src="../js/plugins/citybox/ticketCityData.js"></script>
+<script type="text/javascript" src="../js/plugins/citybox/cityData.js"></script>
 <script type="text/javascript" src="js/f_index.js"></script>
+
 </html>

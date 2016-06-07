@@ -131,7 +131,39 @@ function styleChange(id, mytext) {
         }
     };
 }
+////解决位置搜索部分确定按钮太靠下的问题
+//;(function(){
+////		var inst = document.getElementById("fo_lo");
+////		var submit = document.getElementById("l_but");
+//	$("#fo_lo").on("click",function(){
+//		$("#l_but").addClass("s-but-checked");
+//		$("#s_but1").addClass("s-but-checked");
+//		console.log("111");
+//	});
+//	$("#l_but").on("click",function(){
+//		$("#l_but").removeClass("s-but-checked");
+//		$("#s_but1").removeClass("s-but-checked");
+//	});
+//
+//})();
 (function () {
+    //function checked() {
+    //    $("#fo_lo").on("click", function () {
+    //        $("#l_but").addClass("s-but-checked");
+    //        $("#s_but1").addClass("s-but-checked");
+    //        console.log("111");
+    //    });
+    //}
+    //
+    //function submit() {
+    //    $("#l_but").on("click", function () {
+    //        $("#l_but").removeClass("s-but-checked");
+    //        $("#s_but1").removeClass("s-but-checked");
+    //    });
+    //}
+    //checked();
+    //submit();
+
     //贾燕云的js
     function h_l_s() {
         var rli = [],
@@ -152,7 +184,6 @@ function styleChange(id, mytext) {
         var fo_lo = _("fo_lo");
         var s_but = _("s_but");
         var l_but = _("l_but");
-        var c1 = _("c1");
         var s_cancelBtn = _("cancelBtn");
         var s_clearBtn = _("clearBtn");
         var l_cancelBtn = _("l_cancelBtn");
@@ -183,25 +214,20 @@ function styleChange(id, mytext) {
             if (rank.style.display == "" || rank.style.display == "block") {
                 rank.style.bottom = -windowHeight + 'px';
                 rank.style.transition = "all 350ms";
-                c1.style.overflow = "auto";
                 $("#l_but").removeClass("s-but-checked");
                 $("#s_but1").removeClass("s-but-checked");
             }
             if (screen.style.display == "" || screen.style.display == "block") {
                 screen.style.bottom = -windowHeight + 'px';
                 screen.style.transition = "all 350ms";
-                c1.style.overflow = "auto";
                 $("#l_but").removeClass("s-but-checked");
                 $("#s_but1").removeClass("s-but-checked");
-
             }
             if (location.style.display == "" || location.style.display == "block") {
                 location.style.bottom = -windowHeight + 'px';
                 location.style.transition = "all 350ms";
-                c1.style.overflow = "auto";
                 $("#l_but").removeClass("s-but-checked");
                 $("#s_but1").removeClass("s-but-checked");
-
             }
         }
 
@@ -268,18 +294,15 @@ function styleChange(id, mytext) {
             }
         }
 
-        function openClick(obj1, obj2,obj3) {
+        function openClick(obj1, obj2) {
             obj1.onclick = function () {
                 show(obj2);
-                //obj3.addClass("pen");
-                obj3.style.overflow = "hidden";
                 mb.addEventListener("click", mb_close);
             }
         }
 
-        function closeClick(obj1, obj2 ,obj3) {
+        function closeClick(obj1, obj2) {
             obj1.onclick = function () {
-              obj3.style.overflow = "auto";
                 close(obj2);
             }
         }
@@ -315,13 +338,13 @@ function styleChange(id, mytext) {
             });
         };
         init();
-        openClick(fo_ra, rank,c1);
-        openClick(fo_sc, screen,c1);
-        openClick(fo_lo, location,c1);
-        closeClick(s_but, screen,c1);
-        closeClick(s_cancelBtn, screen,c1);
-        closeClick(l_cancelBtn, location,c1);
-        closeClick(l_but, location,c1);
+        openClick(fo_ra, rank);
+        openClick(fo_sc, screen);
+        openClick(fo_lo, location);
+        closeClick(s_but, screen);
+        closeClick(s_cancelBtn, screen);
+        closeClick(l_cancelBtn, location);
+        closeClick(l_but, location);
         /*   排序筛选   */
         function selectRank() {
             var obj = window.event.srcElement;
@@ -347,7 +370,6 @@ function styleChange(id, mytext) {
                 mb.style.display = "none";
                 rank.style.bottom = -550 + 'px';
                 rank.style.transition = "all 350ms";
-                c1.style.overflow = "auto";
             }
         }
 
@@ -577,8 +599,15 @@ function styleChange(id, mytext) {
                 	data[i].location = '(' + data[i].location + ')';
                 }*/
 
+                var scoreHtml = "";
+                if (!data[i].hotelReviewScore && !data[i].hotelReviewCount) {
+                    scoreHtml = '<span class="hotel_content_score_span">&nbsp;</span><span>&nbsp;  </span>'
+                } else {
+                    scoreHtml = '<span class="hotel_content_score_span">' + data[i].hotelReviewScore + '分</span><span>' + data[i].hotelReviewCount + '人点评</span>'
+                }
+                console.info(scoreHtml);
                 var namestr = data[i].hotelNameLocale != null && data[i].hotelNameLocale != "" ? data[i].hotelNameLocale + '(' + data[i].hotelName + ')' : data[i].hotelName,
-                    str = '<li class="ho_list hotel_list" data-hotelCode="' + data[i].hotelCode + '" data-InstantConfirmation="' + data[i].InstantConfirmation + '" data-AllOccupancy="' + data[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + '<span class="hotel_content_score_span">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore  + '</span>' + '<span>分 ' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '0') + '人点评</span>' : '0 </span>' + '<span>分 ' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '0') + '人点评</span>') + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + data[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + data[i].location + '</p>' + '</div>' + '</li>';
+                    str = '<li class="ho_list hotel_list" data-hotelCode="' + data[i].hotelCode + '" data-InstantConfirmation="' + data[i].InstantConfirmation + '" data-AllOccupancy="' + data[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + scoreHtml + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + data[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + data[i].location + '</p>' + '</div>' + '</li>';
 
                 liHtml += str;
             }
@@ -636,9 +665,8 @@ function styleChange(id, mytext) {
             } else {
                 document.getElementById("loadMore").style.display = "none";
                 var oLi = document.createElement('li');
-                oLi.innerHTML = '<div id = "conno"><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+                oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
                 oLi.className = 'hotelConNo';
-                oLi.style.display = "block";
                 oUl.style.width = '100%';
                 oUl.style.height = '100%';
                 oUl.appendChild(oLi);
@@ -833,7 +861,6 @@ function styleChange(id, mytext) {
         console.log(json);
         //console.log(1);
         //alert(arr.Success);
-        //  noWIfi();
         if (json.success) {
             //console.log(json.Data);
             var data = json.data[0];
@@ -861,19 +888,7 @@ function styleChange(id, mytext) {
         }
 
     }
-  //  function noWIfi(){
-  //    if(window.navigator.onLine==true){
-  //      vlm.init();
-  //      document.getElementById("loadMore").style.display = "none";
-  //      var oLi = document.createElement('li');
-  //      oLi.innerHTML = '<div id = "nowifi"><img src="../images/error/nowifi.png" /><p class="hotelnowifi1">无法连接网络，请保持网络畅通</p><p class="hotelnowifi2">点击页面重新加载</p></div>';
-  //      oLi.className = 'nowifi';
-  //      oLi.style.display = "block";
-  //      oUl.style.width = '100%';
-  //      oUl.style.height = '100%';
-  //      oUl.appendChild(oLi);
-  //    }
-  //}
+
     //推荐排序里面的点击事件（交互）
     lsf_myweb.bind(oBody, 'click', function (ev) {
         var oEvent = ev || event;

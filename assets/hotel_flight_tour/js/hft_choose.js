@@ -264,8 +264,8 @@ var hftChoose = {
         hftChangeFlightPara.tours = toursArray;
         hftChangeFlightPara.packageID = that.initParaObj.packageID;
       } else {
-        hftChangeFlightPara.airwaySetID = that.curData.flightInfo.setID;
-        hftChangeFlightPara.airwayCacheID = that.curData.flightInfo.cacheID;
+        hftChangeFlightPara.airwaySetID = that.curData.airwaySetID;
+        hftChangeFlightPara.airwayCacheID = that.curData.airwayCacheID;
         hftChangeFlightPara.SortFields = [0];
         hftChangeFlightPara.ScreenFields = [0];
         hftChangeFlightPara.FlightStartTime = 0;
@@ -563,6 +563,40 @@ var hftChoose = {
     array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
     array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
     return array[1] + '月' + array[2] + '日';
+  },
+
+  airCompanyHandler: function () {
+    var data = arguments[0], tag = 0, tem = [], that = hftChoose;
+    Array.prototype.distinct = function () {
+      var sameObj = function (a, b) {
+        var tag = true;
+        if (!a || !b)return false;
+        for (var x in a) {
+          if (!b[x])
+            return false;
+          if (typeof(a[x]) === 'object') {
+            tag = sameObj(a[x], b[x]);
+          } else {
+            if (a[x] !== b[x])
+              return false;
+          }
+        }
+        return tag;
+      };
+      var newArr = [], obj = {};
+      for (var i = 0, len = this.length; i < len; i++) {
+        if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+          newArr.push(this[i]);
+          obj[typeof(this[i]) + this[i]] = this[i];
+        }
+      }
+      return newArr;
+    };
+    data.forEach(function (array) {
+      tem.push(array.airCorpCode);
+    });
+    tem = tem.distinct();
+    return tem.length > 1 ? 1 : 0
   },
 
   setWeekItems: function () {
