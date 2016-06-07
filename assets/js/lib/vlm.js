@@ -1158,6 +1158,9 @@
                         case "ht":
                             title = '选择出行人';
                             break;
+                        case "fx":
+                          title = '选择出游人';
+                          break;
                         default:
                             title = '选择乘机人';
                             break;
