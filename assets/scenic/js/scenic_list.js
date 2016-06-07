@@ -208,6 +208,9 @@
         tplString = $("#tpl_scenic_list").html();
         //console.log(json.data.lists);
         outString = ejs.render(tplString,{lists:json.data.lists});
+        if(json.data.lists.length == 0){
+          $(".scenic_list_error").show();
+        }
         $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
