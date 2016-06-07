@@ -87,7 +87,7 @@
        * @returns {Array}
        */
       m_scenic_list:function(param){
-        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode}, "ForeEndType" : 3, "Code" : "0087"};
+        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode}, "ForeEndType" : 3, "Code" : "0207"};
         vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_listCallback"]);
       }
     }
@@ -217,7 +217,8 @@
             tar = $(tar).closest("li")[0];
           if(tar.nodeName.toLowerCase() === 'li') {
             var packageid = tar.getAttribute("data-code");
-            window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;
+            var leadinPrice = tar.getAttribute("data-leadinPrice");
+            window.location.href = "../tour/packages_detail.html?packageID=" + packageid+"&productPrice="+leadinPrice+"&status=1";
           }
         });
         initFilter(json);

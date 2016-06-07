@@ -214,7 +214,7 @@
 
           if(tar.nodeName.toLowerCase() === 'li') {
             if($(tar).hasClass("current")){
-              if($(tar).siblings().length > 0){
+              if($(tar).siblings().attr("current") == "current" ){
                 $(tar).removeClass("current");
               }
             }else {

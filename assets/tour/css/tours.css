@@ -69,6 +69,9 @@ i,em{
 .index_abroad_box li.cur a{
     color: #7bc300;
 }
+.index_abroad_box li a{
+    display: block;
+}
 .index_hotspot{
     padding:0.3rem 0.2rem 0;
 }
@@ -489,6 +492,9 @@ a.hotel_detail_pic{
     height: 0.6rem;
     line-height: 0.6rem;
 }
+.hotel_room_list li p.price span.rmb{
+  margin-top: 3px;
+}
 .hotel_room_list li p.price span.money{
     font-size: 0.46rem;
 }
@@ -904,7 +910,7 @@ a.hotel_detail_pic{
     height:0.8rem;
     line-height: 0.8rem;
     box-sizing: border-box;
-    background-color: #ffb413;
+    background-color: #7bc300;
     padding-left: 5%;
     color: #fff;
     font-size:0.36rem;

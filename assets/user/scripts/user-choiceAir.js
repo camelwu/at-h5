@@ -485,6 +485,7 @@
 
   //替换页面元素
   var _replacePagerAttri=function(){
+
     var htmlObj =$(ifrCilent.parentNode).find("#"+elementId);
     if(isMulSelect){
       //除了隐藏模板，remove所以子节点
