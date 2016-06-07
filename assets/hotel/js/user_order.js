@@ -194,10 +194,10 @@ console.log(1);
 var hoPos = window.localStorage.getItem('hoPos');
 //hoPos='dom';
 //国际酒店有邮箱，国内酒店没有邮箱
-if (hoPos == 'dom') {
-    var uo_con3 = document.getElementById('uo_con3');
-    uo_con3.removeChild(uo_con3.children[2]);
-}
+//if (hoPos == 'dom') {
+//    var uo_con3 = document.getElementById('uo_con3');
+//    uo_con3.removeChild(uo_con3.children[2]);
+//}
 //本地存储数据
 //localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
@@ -495,6 +495,7 @@ uoHisData();
         if (parseInt(uo_c2_num.innerHTML) > 10) {
             uo_c2_num.innerHTML = 10;
         } else {
+          debugger;
             for (var i = parseInt(myNum); i < parseInt(uo_c2_num.innerHTML); i++) {
                 var oDiv = document.createElement('div');
                 oDiv.className = 'uo_c3_peo';
@@ -516,6 +517,7 @@ uoHisData();
                 }
                 uo_c3_peoBox.appendChild(oDiv);
             }
+
 
             /*uo_c3_peoBox.innerHTML='';
             for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
