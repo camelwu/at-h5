@@ -434,7 +434,8 @@
         </div>
         <div class="booking_package_fullday">
           <ul id="js_booking_package_fullday_ul<%=i%>" class="booking_package_fullday_ul">
-            <% for(var j = 0;j < lists.DetailData.data.tours.length;j++){ %>
+            <% for(var j = 0;j < lists.DetailData.data.tours[i].tourSession.length;j++){ %>
+            <%=console.log(lists.DetailData.data.tours[i].tourSession[j])%>
               <% if(lists.DetailData.data.tours[i].tourSession[j] == 4){ %>
                 <li class="booking_package_fullday_li <%if(j==0){%>current<%}%>" data-key="None" style="display: none;"></li>
               <% } %>
