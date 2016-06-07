@@ -378,7 +378,6 @@
 
                 //添加旅客姓名等信息
                 var traveler = [];
-                debugger;
                 for (var i = 0; i < roomNum.length; i++) {
                     //每个房间的成人信息
                     var oLiAdult = roomNum[i].querySelectorAll('.trave-li-adu');
@@ -475,7 +474,7 @@
                             if (dateTime.indexOf("T") > -1) {
                                 fli.ArrivalDateTime = dateTime;
                             } else {
-                                fli.ArrivalDateTime = dateTime[0] + '-' + dateTime[1] + '-' + dateTime[2] + 'T' + dateTime[3] + ':' + dateTime[4] + ':00';
+                                fli.ArrivalDateTime = arrivalDateTime.replace(" ","T");
                             }
 
                         }
@@ -491,7 +490,7 @@
                             if (departDate.indexOf("T") > -1) {
                                 fli.DepartDateTime = departDate;
                             } else {
-                                fli.DepartDateTime = departDate[0] + '-' + departDate[1] + '-' + departDate[2] + 'T' + departDate[3] + ':' + departDate[4] + ':00';
+                                fli.DepartDateTime = departDateTime.replace(" ","T");
                             }
 
                         }
