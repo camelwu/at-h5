@@ -227,6 +227,7 @@ body {
 .flightDetailInfo {
     margin: .28rem 0 .08rem 0;
     color: #999999;
+    line-height: .40rem;
 }
 
 .flightDetailInfo span:before {
@@ -250,6 +251,7 @@ body {
   height: .32rem;
   float: left;
   margin-right: .10rem;
+  margin-top: .04rem;
 }
 .flightDetailInfo img{width:100%}
 .flightDetailArrow {

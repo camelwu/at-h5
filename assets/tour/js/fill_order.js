@@ -102,17 +102,17 @@
                 //}
                 //else
                 //{
-                oSection.innerHTML = '<li class="first">' + '<span class="list_tit">成人' + (k + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" data-c-id="' + k + '" class="add-passager' + k + '" ></a></b></span>' + '</li>' + '<ul class="order_trave" id="trave"+k+>' + '<li class="trave-li trave-li-adu fillinorder_li">'
+                oSection.innerHTML = '<li class="first">' + '<span class="list_tit">成人' + (k + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" data-c-id="' + k + '" class="add-passager' + k + '" ></a></b></span>' + '</li>' + '<ul class="order_trave" id="ht_trave' + k + '">' + '<li class="trave-li trave-li-adu fillinorder_li">'
                     //+'<span class="list_tit2 ">姓：</span>'
                     + '<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="姓（如：Li）" data-elementName="firstName" /></span>'
                     //+'<span class="list_tit2 ">名：</span>'
-                    + '<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementName="lastName" /></span>' + '</li>' + '<li class="clearFix countries-wrap"><b class="icons open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn" data-code="CN" data-tel-code="86">中国</div></li>' + "</ul>"
+                    + '<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementname="lastName" /></span>' + '</li>' + '<li class="clearFix countries-wrap"><b class="icons open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn" data-code="CN" data-tel-code="86">中国</div></li>' + "</ul>"
                     //}
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
                 $(".add-passager" + k).on("click", function () {
                     var id = $(this).attr("data-c-id");
-                    vlm.f_choice('trave' + id, "ht", 'traver', '', false, false, null, null, null, null);
+                    vlm.f_choice('ht_trave' + id, "ht", 'traver', '', false, false, null, null, null, null);
                 })
             }
 
@@ -259,7 +259,7 @@
         //    })
         //});
         $('.add-contact').click(function () {
-            vlm.f_choice('contact', "ht", 'contact', '', false, false, null, null, null, null);
+            vlm.f_choice('personal_data', "ht", 'contact', '', false, false, null, null, null, null);
         });
 
         sentPackage(oReserve);
@@ -276,7 +276,7 @@
             } else {
                 oAgree.style.background = 'url(../images/ui/icons1.png) -4.7rem -0.07rem';
                 oAgree.style.backgroundSize = '8.00rem 2.40rem';
-                oReserve.style.backgroundColor = '#fdb330';
+                oReserve.style.backgroundColor = '#7bc300';
                 oReserve.style.color = '#fff';
 
                 bOk = true;
@@ -378,6 +378,7 @@
 
                 //添加旅客姓名等信息
                 var traveler = [];
+                debugger;
                 for (var i = 0; i < roomNum.length; i++) {
                     //每个房间的成人信息
                     var oLiAdult = roomNum[i].querySelectorAll('.trave-li-adu');
@@ -399,6 +400,7 @@
                         tra.Salutation = "Mr";
                         tra.FirstName = firstNameAdu;
                         tra.LastName = lastNameAdu;
+                        tra.NationalityCode="CN";
                         traveler.push(tra);
                     }
 
@@ -428,7 +430,7 @@
 
                 }
                 Parmeters.Parameters.Travelers = traveler;
-                Parmeters.Parameters.Travelers[0].NationalityCode = $('#trave0 .country-btn').attr('data-code');
+                Parmeters.Parameters.Travelers[0].NationalityCode = $('.countries-wrap .country-btn').attr('data-code');
 
 
                 //联系人姓名检验
