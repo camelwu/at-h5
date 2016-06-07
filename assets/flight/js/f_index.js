@@ -34,18 +34,22 @@ var fIndexModal = {
 
   getCityType: function (arg) {
     var dataPool1 = internationalCities, dataPool2 = domesticCities, tag1 = "";
-    dataPool1.forEach(function (index) {
-      if (index.cityCode == arg) {
-        tag1 = "international";//domestic
-        return false;
-      }
-    });
-    dataPool2.forEach(function (index) {
-      if (index.cityCode == arg) {
-        tag1 = "domestic";//domestic
-        return false;
-      }
-    });
+    for(var ff in dataPool1){
+      dataPool1[ff].forEach(function (index) {
+        if (index.cityCode == arg) {
+          tag1 = "international";//domestic
+          return false;
+        }
+      })
+    }
+    for(var gg in dataPool2){
+      dataPool2[gg].forEach(function (index) {
+        if (index.cityCode == arg) {
+          tag1 = "domestic";//domestic
+          return false;
+        }
+      })
+    }
     return tag1;
   },
 
@@ -71,59 +75,6 @@ var fIndexModal = {
                that.hotInterCity.push(array);
              }
     });
-   /* Array.prototype.distinct = function () {
-     var sameObj = function (a, b) {
-     var tag = true;
-     if (!a || !b)return false;
-     for (var x in a) {
-     if (!b[x])
-     return false;
-     if (typeof(a[x]) === 'object') {
-     tag = sameObj(a[x], b[x]);
-     } else {
-     if (a[x] !== b[x])
-     return false;
-     }
-     }
-     return tag;
-     };
-     var newArr = [], obj = {};
-     for (var i = 0, len = this.length; i < len; i++) {
-     if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
-     newArr.push(this[i]);
-     obj[typeof(this[i]) + this[i]] = this[i];
-     }
-     }
-     return newArr;
-     };*/
-    /*var returnRArray = function () {
-      var result = {}, array1 = [], data = arguments[0];
-      data.forEach(function (itemValue) {
-        array1.push(itemValue.pingYin.substring(0, 1).toUpperCase())
-      });
-      array1 = array1.distinct();
-      array1 = array1.sort();
-      array1.forEach(function (item) {
-        result[item] = [];
-      });
-      return result;
-    };*/
-   /* internationalArray = returnRArray(internationalCities);
-    domesticArray = returnRArray(domesticCities);
-    internationalCities.forEach(function (itemValue) {
-      for (var temp in  internationalArray) {
-        if (itemValue.pingYin.substring(0, 1).toUpperCase() == temp) {
-          internationalArray[temp].push(itemValue);
-        }
-      }
-    });
-    domesticCities.forEach(function (itemValue) {
-      for (var temp in  domesticArray) {
-        if (itemValue.pingYin.substring(0, 1).toUpperCase() == temp) {
-          domesticArray[temp].push(itemValue);
-        }
-      }
-    });*/
     that.domesticArray = domesticCities;
     that.internationalArray = internationalCities;
     that.addHandler(place, "click", function (e) {
@@ -133,7 +84,7 @@ var fIndexModal = {
         domesticTitle.className = "domestic_title light-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: domesticArray, hotCity: that.hotDometicCity});
+        outputString1 = ejs.render(tempString1, {resultArray: domesticCities, hotCity: that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         city_outer.style.display = "block";
         that.historyInitF("domestic").citySearchEvent();
@@ -142,7 +93,7 @@ var fIndexModal = {
         domesticTitle.className = "domestic_title grey-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: internationalArray, hotCity: that.hotInterCity});
+        outputString1 = ejs.render(tempString1, {resultArray: internationalCities, hotCity: that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("international").citySearchEvent();
         city_outer.style.display = "block";
@@ -171,7 +122,6 @@ var fIndexModal = {
           } else {
             string += '<li class="city_list" data-city-code="' + hisData[i].cityCode + '">' + hisData[i].cityNameCN + '</li>';
           }
-
         })(i);
       }
       historyList.innerHTML = string;
