@@ -1134,7 +1134,7 @@
       $("#citybox_search_container").removeClass("citybox_search_container");
       $("#citybox_search_container").addClass("citybox_search_container");
       cityboxHistoryScrollTop = $(document).scrollTop();
-      $(".citybox_search_container").scrollTop(0);
+      $(".citybox_content").scrollTop(0);
     },
     /**
      * 隐藏城市列表 并 显示城市搜索列表
@@ -1145,7 +1145,7 @@
       $(".citybox_search_suggestBG").show();
       $(".citybox_index").hide();
       $("#js_citybox_searchactive_input").focus();
-      $(document).scrollTop(0);
+      $(".citybox_content").scrollTop(0);
       VM("citybox_suggest_list");
     },
     /**
