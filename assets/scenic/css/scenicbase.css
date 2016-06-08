@@ -1180,6 +1180,10 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   width: 5rem;
 }
 
+.booking_package_pickup_select.current{
+  color: #333333;
+}
+
 
 .booking_footer{
   position: fixed;

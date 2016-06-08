@@ -71,7 +71,6 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   font-size: .36rem;
   position: relative;
 }
-
 .origin, .destination {
   height: 100%;
   width: 50%;
@@ -91,7 +90,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin-right: .68rem;
   border-bottom: 1px solid #dedede;
 }
-
+.citySearch b{font-weight: normal}
 .destination > div {
   text-align: right;
   margin-left: .68rem;
@@ -118,7 +117,12 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   background-position: -3.708rem -3.12062rem;
   overflow: hidden;
 }
-
+.share_word{
+  color:#55bfb7;
+}
+.share_word:before{
+  color:#999;
+}
 .span-target {
   height: .56rem;
   width: .56rem;
@@ -1567,4 +1571,12 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   margin-top: .23rem;
   position: static;
   margin-right: .28rem;
+}
+.shadow_thin{
+ position: fixed;
+ height:100%;
+ width: 100%;
+ background: rgba(0,0,0,.6);
+ bottom: -100%;
+ z-index: 123;
 }

@@ -1082,6 +1082,7 @@
             var id = $(tar).attr("data-key");
             var value = $(tar).html();
             $(".js_booking_package_pickup_select").attr("data-key",id).html(value);
+            $(".js_booking_package_pickup_select").addClass("current");
             $(".js_pickup_pop_search_input").val("");
             $("#js_pickup_pop_header_goback").trigger("click");
           }

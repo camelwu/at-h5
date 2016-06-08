@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = 0.88,cityboxHistoryScrollTop = 0;
+  var show1 = 0,show2 = 0,scrollTopPx = 0.88,cityboxHistoryScrollTop = 0,isHistory = 0;
   var globalType = "";
   var returnType = "";
   var returnAttr = "";
@@ -1134,7 +1134,7 @@
       $("#citybox_search_container").removeClass("citybox_search_container");
       $("#citybox_search_container").addClass("citybox_search_container");
       cityboxHistoryScrollTop = $(document).scrollTop();
-      $(".citybox_search_container").scrollTop(0);
+      $(".citybox_content").scrollTop(0);
     },
     /**
      * 隐藏城市列表 并 显示城市搜索列表
@@ -1145,7 +1145,7 @@
       $(".citybox_search_suggestBG").show();
       $(".citybox_index").hide();
       $("#js_citybox_searchactive_input").focus();
-      $(document).scrollTop(0);
+      $(".citybox_content").scrollTop(0);
       VM("citybox_suggest_list");
     },
     /**
@@ -1679,48 +1679,51 @@
      */
     cityboxHistory:function(dom,data){
       dom.innerHTML = "";
-      var cityboxHistoryData = localStorage.getItem(""+globalType+"_history");
-      cityboxHistoryData = JSON.parse(cityboxHistoryData);
-      var citybox_content_title_div = document.createElement("div");
-      citybox_content_title_div.setAttribute("class","citybox_content_title");
-      citybox_content_title_div.setAttribute("id","js_history");
-      citybox_content_title_div.innerHTML = "历史选择";
-      dom.appendChild(citybox_content_title_div);
-      if(cityboxHistoryData){
-        var citybox_content_container_ul = document.createElement("ul");
-        citybox_content_container_ul.setAttribute("class","citybox_content_container");
+      var cityboxHistoryData = localStorage.getItem(""+globalType+"_history") || "";
+      isHistory = 1;
+      if(cityboxHistoryData != ""){//begin if
+        isHistory  = 0;
+        cityboxHistoryData = JSON.parse(cityboxHistoryData);
+        var citybox_content_title_div = document.createElement("div");
+        citybox_content_title_div.setAttribute("class","citybox_content_title");
+        citybox_content_title_div.setAttribute("id","js_history");
+        citybox_content_title_div.innerHTML = "历史选择";
+        dom.appendChild(citybox_content_title_div);
+        if(cityboxHistoryData){
+          var citybox_content_container_ul = document.createElement("ul");
+          citybox_content_container_ul.setAttribute("class","citybox_content_container");
 
 
-        for (var i = cityboxHistoryData.length-1;i >= 0;i--){
-          var citybox_content_item_li = document.createElement("li");
-          citybox_content_item_li.setAttribute("class","citybox_content_item");
-          citybox_content_item_li.setAttribute("data-code",cityboxHistoryData[i].toString().split(":")[0]);
-          citybox_content_item_li.setAttribute("data-name",cityboxHistoryData[i].toString().split(":")[1]);
-          citybox_content_item_li.onclick = function(){
-            var cityData = {};
-            var cityName = this.getAttribute("data-name");
-            var cityCode = this.getAttribute("data-code");
-            cityData.returnType = returnType;
-            cityData.returnAttr = returnAttr;
-            cityData.returnStrType = returnStrType;
-            cityData.returnStrAttr = returnStrAttr;
-            cityData.cityName = cityName;
-            cityData.cityCode = cityCode;
-            Method["setcityboxHistory"](this,cityCode,cityName);
-            dataCityExec().callCityExec(""+globalType+"Exec",cityData);
-            Method['hideAllCityBox']();
+          for (var i = cityboxHistoryData.length-1;i >= 0;i--){
+            var citybox_content_item_li = document.createElement("li");
+            citybox_content_item_li.setAttribute("class","citybox_content_item");
+            citybox_content_item_li.setAttribute("data-code",cityboxHistoryData[i].toString().split(":")[0]);
+            citybox_content_item_li.setAttribute("data-name",cityboxHistoryData[i].toString().split(":")[1]);
+            citybox_content_item_li.onclick = function(){
+              var cityData = {};
+              var cityName = this.getAttribute("data-name");
+              var cityCode = this.getAttribute("data-code");
+              cityData.returnType = returnType;
+              cityData.returnAttr = returnAttr;
+              cityData.returnStrType = returnStrType;
+              cityData.returnStrAttr = returnStrAttr;
+              cityData.cityName = cityName;
+              cityData.cityCode = cityCode;
+              Method["setcityboxHistory"](this,cityCode,cityName);
+              dataCityExec().callCityExec(""+globalType+"Exec",cityData);
+              Method['hideAllCityBox']();
+            }
+            var citybox_content_itemtitle_div = document.createElement("div");
+            citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
+            citybox_content_itemtitle_div.innerHTML = cityboxHistoryData[i].toString().split(":")[1];
+            citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
+            citybox_content_container_ul.appendChild(citybox_content_item_li);
+
           }
-          var citybox_content_itemtitle_div = document.createElement("div");
-          citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-          citybox_content_itemtitle_div.innerHTML = cityboxHistoryData[i].toString().split(":")[1];
-          citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
-          citybox_content_container_ul.appendChild(citybox_content_item_li);
-
+          dom.appendChild(citybox_content_container_ul);
         }
-        dom.appendChild(citybox_content_container_ul);
-      }
 
-
+      }//end if
     },
     /**
      * 城市历史记录
@@ -1958,19 +1961,21 @@
       //}
       //dom.appendChild(citybox_summary_item_litop1);
 
-      var citybox_summary_item_litop2 = document.createElement("li");
-      citybox_summary_item_litop2.setAttribute("class","citybox_summary_item");
-      citybox_summary_item_litop2.setAttribute("data-key","history");
-      citybox_summary_item_litop2.innerHTML = "历史";
-      citybox_summary_item_litop2.onclick = function(){
-        var key = this.getAttribute("data-key");
-        var a = $("#js_"+key);
-        if (a.length != 0) {
-          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
+      if(!isHistory){
+        var citybox_summary_item_litop2 = document.createElement("li");
+        citybox_summary_item_litop2.setAttribute("class","citybox_summary_item");
+        citybox_summary_item_litop2.setAttribute("data-key","history");
+        citybox_summary_item_litop2.innerHTML = "历史";
+        citybox_summary_item_litop2.onclick = function(){
+          var key = this.getAttribute("data-key");
+          var a = $("#js_"+key);
+          if (a.length != 0) {
+            i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
+          }
+          $(".citybox_content").scrollTop(i);
         }
-        $(".citybox_content").scrollTop(i);
+        dom.appendChild(citybox_summary_item_litop2);
       }
-      dom.appendChild(citybox_summary_item_litop2);
 
       var citybox_summary_item_litop3 = document.createElement("li");
       citybox_summary_item_litop3.setAttribute("class","citybox_summary_item");

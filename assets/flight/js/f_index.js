@@ -1,5 +1,4 @@
 "use strict";
-
 var fIndexModal = {
 
   addHandler: function (target, eventType, handle) {
@@ -79,19 +78,19 @@ var fIndexModal = {
     that.internationalArray = internationalCities;
     that.addHandler(place, "click", function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
-      if (target.getAttribute('data-city-type') == "domestic") {
+      if (target.getAttribute('data-city-type') == "domestic"||target.parentNode.getAttribute('data-city-type') == "domestic") {
         internationalTitle.className = "international_title grey-title";
         domesticTitle.className = "domestic_title light-title";
-        that.cityEle = target;
+        that.cityEle = target.getAttribute('data-city-type') == "domestic"?target:target.parentNode;
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: domesticCities, hotCity: that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         city_outer.style.display = "block";
         that.historyInitF("domestic").citySearchEvent();
-      } else if (target.getAttribute('data-city-type') == "international") {
+      } else if (target.getAttribute('data-city-type') == "international"||target.parentNode.getAttribute('data-city-type') == "international") {
         internationalTitle.className = "international_title light-title";
         domesticTitle.className = "domestic_title grey-title";
-        that.cityEle = target;
+        that.cityEle = target.getAttribute('data-city-type') == "international"?target:target.parentNode;
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: internationalCities, hotCity: that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
@@ -218,7 +217,7 @@ var fIndexModal = {
       } else if (target.className.indexOf('city_list') > -1) {
         var dateCode = target.getAttribute('data-city-code'), type = that.getCityType(dateCode);
         that.cityEle.setAttribute("data-code", dateCode);
-        that.cityEle.innerHTML = target.innerHTML;
+        that.cityEle.querySelector('b').innerHTML = target.innerHTML;
         that.cityEle.setAttribute("data-city-type", type);
         that.cityChooseHistory({type: type, cityCode: dateCode, cityNameCN: target.innerHTML});
         this.style.display = "none";
@@ -290,13 +289,23 @@ var fIndexModal = {
       }
       cityListSearched.innerHTML = resultStr;
       cityListSearched.style.display = 'block';
-    };
+      if(valueStr == ""){
+        cityListSearched.style.display = 'none';
+      }
+    }, shadowThin = document.querySelector('.shadow_thin');
     if (cityInputZone.addEventListener) {
       cityInputZone.addEventListener('input', searchHandler, false)
     } else {
       cityInputZone.attachEvent('onpropertychange', searchHandler)
     }
-
+    shadowThin.style.transition = '0.6s all ease';
+    shadowThin.style.webkitTransition = '0.6s all ease';
+   /* cityInputZone.onblur = function(){
+      shadowThin.style.bottom = "-100%";
+    };
+    cityInputZone.onfocus = function(){
+      shadowThin.style.bottom = "-.88rem"
+    }*/
   },
 
   eventHandler: function () {
@@ -328,19 +337,19 @@ var fIndexModal = {
         that.deg += 180;
         oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
         oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        $(".citySearch").each(function () {
+        $(".place b").each(function () {
           $(this).hide()
         });
-        tem = cityName[0].innerHTML;
+        tem = cityName[0].querySelector('b').innerHTML;
         temCode = cityName[0].getAttribute('data-code');
         temType = cityName[0].getAttribute('data-city-type');
-        cityName[0].innerHTML = cityName[1].innerHTML;
+        cityName[0].querySelector('b').innerHTML = cityName[1].querySelector('b').innerHTML;
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[0].setAttribute('data-city-type', cityName[1].getAttribute('data-city-type'));
-        cityName[1].innerHTML = tem;
+        cityName[1].querySelector('b').innerHTML = tem;
         cityName[1].setAttribute('data-code', temCode);
         cityName[1].setAttribute('data-city-type', temType);
-        $(".citySearch").each(function () {
+        $(".place b").each(function () {
           $(this).fadeIn("700")
         });
       } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
@@ -421,10 +430,10 @@ var fIndexModal = {
           "pageNo": 1,
           "pageSize": 10,
           "internationalOrDomestic": getTripType(),
-          "hasTax": 0,
+          "hasTax": 1,
           "isClearAll": 1,
-          "fromCity": cityEles[0].innerHTML,
-          "toCity": cityEles[1].innerHTML
+          "fromCity": cityEles[0].querySelector('b').innerHTML,
+          "toCity": cityEles[1].querySelector('b').innerHTML
         };
         if (that.type == "oneWay") { /*单程*/
           paraObj.departDate = singleDateSet.getAttribute('date-full-value');
@@ -561,9 +570,9 @@ var fIndexModal = {
       singleWrap.style.display = "none";
       doubleWrap.style.display = "block";
     }
-    cityEle[0].innerHTML = data.fromCity;
+    cityEle[0].querySelector('b').innerHTML = data.fromCity;
     cityEle[0].setAttribute('data-code', data.cityCodeFrom);
-    cityEle[1].innerHTML = data.toCity;
+    cityEle[1].querySelector('b').innerHTML = data.toCity;
     cityEle[1].setAttribute('data-code', data.cityCodeTo);
     singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
     singleDateSet.setAttribute('date-full-value', defaultDate[0]);
@@ -664,3 +673,5 @@ var fIndexModal = {
   }
 };
 fIndexModal.init();
+
+

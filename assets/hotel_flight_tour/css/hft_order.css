@@ -59,6 +59,23 @@ input {
   font-size: .24rem;
   color: #999;
 }
+.tourOuter li{
+  padding: .28rem;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+.tourOuter li h3{
+  width: 100%;
+  font-size: .32rem;
+  color: rgb(72, 72, 72);
+}
+.tourOuter li p{
+  margin-top: .22rem;
+  color: #999999;
+}
+.tourOuter li p .timePart{
+ margin-left: .16rem;
+}
 
 .fht_hd_det i {
   display: inline-block;
@@ -153,7 +170,10 @@ input {
   margin-left: .28rem;
   padding: .4rem 0 .2rem;
 }
-
+.hotel_wrap h3{
+  font-size: .28rem;
+  font-weight: normal;
+}
 .hotel_wrap li {
   margin-bottom: .32rem;
   color: #666;

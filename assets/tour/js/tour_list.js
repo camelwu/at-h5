@@ -257,8 +257,9 @@
  * 入口
  */
 (function(){
-  $("#t_des").click(function(e){
-    VM.Load("t_des");
+  //城市列表
+  $("#ht_des").click(function(){
+    VM.Load("ht_des");
   });
   T.Load("js_scenic_list");
 

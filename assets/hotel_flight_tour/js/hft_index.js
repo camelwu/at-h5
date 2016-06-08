@@ -162,6 +162,46 @@ var htf_search = {
 
     this.initCalendar();
   },
+  // 翻转城市效果
+  switchCities: function () {
+    var deg = 0;
+    $('.iconTip').on('click', function () {
+      var parent = $(this).closest('[data-statm]');
+      var attr = parent.attr('data-statm');
+      var startCityIndex;
+      var endCityIndex;
+      if(attr === 'fh') {
+        startCityIndex = 0;
+        endCityIndex = 1;
+      } else if (attr === 'fht') {
+        startCityIndex = 2;
+        endCityIndex = 3;
+      }
+
+      var oSpan = this.querySelector('.hft_icon'),
+        cityName = document.querySelectorAll('.city-search');
+      oSpan.style.transition = '0.7s all ease';
+      oSpan.style.webkitTransition = '0.7s all ease';
+      deg += 180;
+      oSpan.style.transform = 'rotate(' + deg + 'deg)';
+      oSpan.style.webkitTransform = 'rotate(' + deg + 'deg)';
+      $(".city-search").each(function () {
+        $(this).hide()
+      });
+      tem = cityName[startCityIndex].innerHTML;
+      temCode = cityName[startCityIndex].getAttribute('data-code');
+      temType = cityName[startCityIndex].getAttribute('data-city-type');
+      cityName[startCityIndex].innerHTML = cityName[endCityIndex].innerHTML;
+      cityName[startCityIndex].setAttribute('data-code', cityName[endCityIndex].getAttribute('data-code'));
+      cityName[startCityIndex].setAttribute('data-city-type', cityName[endCityIndex].getAttribute('data-city-type'));
+      cityName[endCityIndex].innerHTML = tem;
+      cityName[endCityIndex].setAttribute('data-code', temCode);
+      cityName[endCityIndex].setAttribute('data-city-type', temType);
+      $(".city-search").each(function () {
+        $(this).fadeIn("700")
+      });
+    })
+  },
   //日历初始化
   initCalendar : function() {
     var initFhDate = {}, initFhtDate = {}, fhStartDate, fhEndDate, fhtStartDate, fhtEndDate, now = new Date(), initStartDate, initEndDate;
@@ -826,6 +866,7 @@ var htf_search = {
   init : function() {
     vlm.init();
     this.init_title_room();
+    this.switchCities();
     this.add_subtract();
     //清空历史数据
     window.sessionStorage.removeItem('hftFlightHotelTourInfo');

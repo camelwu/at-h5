@@ -27,12 +27,39 @@ i{font-style: normal;
 }
 .total_start{
   display: inline-block;
-  padding-top: .36rem;
+  margin-top: .36rem;
+  /*background-color: #7bc300;*/
+}
+.total_start_box{
+  position: relative;
+  width: 1.8rem;
+  height: .34rem;
+  display: inline-block;
+}
+.total_start1{
+  width: 1.9rem;
+  height: .34rem;
+  position: absolute;
+  background: url(../../images/ui.1.0/big_start3.png) repeat-x;
+  background-size: .38rem .34rem;
+  top:0;
+  left:0;
+  z-index: 0;
+}
+.total_start2{
+  width: 100%;
+  height: .34rem;
+  background: url(../../images/ui.1.0/big_start1.png) repeat-x;
+  background-size: .38rem .34rem;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 10;
 }
 .total_start li{
-  width: .39rem;
-  height: .36rem;
-  margin-right: .12rem;
+  width: .38rem;
+  height: .34rem;
+  /*margin-right: .12rem;*/
 }
 .score{
   font-size: .24rem;
@@ -61,7 +88,7 @@ i{font-style: normal;
 .hotel_grade_score section:last-child{
   float: right;
 }
-/*内容部分*/
+/*鍐呭閮ㄥ垎*/
 .hotel_grade_content{
   background: #fff;
 }
@@ -85,8 +112,8 @@ i{font-style: normal;
   right:.28rem;
 }
 .hotel_grade_content_box_ol li{
-  width: .3rem;
-  height: .28rem;
+  width: .24rem;
+  height: .22rem;
   line-height: .2rem;
   background: url(../../images/ui/jd-icon.png) -0.33rem -0.59rem;
   background-size: 5.12rem 1.41rem;
