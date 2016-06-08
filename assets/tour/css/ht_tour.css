@@ -12,6 +12,13 @@ input {
     background-repeat: no-repeat;
     background-size: 7.9rem 5.13rem;
 }
+.icon {
+  background-image: url(../../images/ui/icons.png);
+  background-repeat: no-repeat;
+  background-size: 397px 118px;
+  display: inline-block;
+}
+
 
 
 /*资料输入页开始*/
