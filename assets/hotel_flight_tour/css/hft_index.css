@@ -80,16 +80,21 @@ input{
 .iconTip > div {
   position: relative;
   margin: 0 auto;
-  width: .6rem;
-  height: 100%;
+  top: .32rem;
+  width: .54rem;
+  height: .54rem;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -3.708rem -3.12062rem;
   overflow: hidden;
 }
 .iconTip span{
   position: absolute;
-  height: .6rem;
-  width: .6rem;
-  top: .32rem;
-  background-position: 73.5% 31.5%;
+  height: .56rem;
+  width: .56rem;
+  background: url(../../images/ui/fly-roll.png) no-repeat;
+  background-size: .56rem .56rem;
   overflow: hidden;
 }
 .flight_info .flight_place .destination {
