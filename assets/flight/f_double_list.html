@@ -15,8 +15,8 @@
   <title>机票往返列表页 - 亚程旅行网</title>
   <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
   <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
-  <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
   <link href="../css/plugins/footer/footer.css"  rel="stylesheet" type="text/css">
+  <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="preloader">
@@ -124,7 +124,7 @@
           </div>
           <div class="right">
             <span class="endTime"><%= item["flightReturnEndDate"].substring(11, 16) %></span>
-            <span class="endPort"><%= item["segmentsReturn"][item.segmentsReturn.length-1]["airportNameFrom"] %><%= item["segmentsReturn"][item.segmentsReturn.length-1]["termDepart"] %></span>
+            <span class="endPort"><%= item["segmentsReturn"][item.segmentsReturn.length-1]["airportNameTo"] %><%= item["segmentsReturn"][item.segmentsReturn.length-1]["termArrive"] %></span>
             <%if(item["flightReturnSpacingDay"]>=1){%>
             <span class="spaceDay">+<%= item["flightReturnSpacingDay"] %>天</span>
             <%}%>

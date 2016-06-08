@@ -105,12 +105,13 @@
         {% var start = defaultDepartStartDate.substring(0, 10).replace(/-/g, "/"),dd = new Date(start);dd.setDate(dd.getDate()+1); var week = day_ary[dd.getDay()]; start = dd.getFullYear()+"-"+(dd.getMonth()+1)+"-"+dd.getDate(); %} {% for(var i=0;i
         < tours.length;i++){ %} <div class="nav2-tour tour-out-div" id="content{%= i %}" data-tour-id="{%= tours[i].tourID %}">
             <div><i></i>{%= tours[i].tourName %}</div>
-            <!-- 日期部分-->
+            {% if(tours[i].travelDateMandatory){ %}<!-- 日期部分-->
             <div id="dateContent{%= i %}">
                 <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= start %}" class="content3_CheckInDate" readonly="readonly">
                 <span id="content0_week_span1" class="week-tour">{%= week %}</span>
                 <i></i>
             </div>
+            {% } %}
             <!-- 判断时间部分-->
             {% if(tours[i].tourSession.length == 1){ %} {% if(tours[i].tourSession[0] == 0){ %}
             <div class="zy_all_day clearfix">

@@ -402,7 +402,8 @@ li.scenic_detile_project_first{
 }
 li.scenic_height1, li.scenic_height2, li.scenic_height3{
   height: 2.4rem;
-  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
   margin-top: .4rem;
 }
 .scenic_content_notes i{

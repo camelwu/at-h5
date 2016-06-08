@@ -75,7 +75,7 @@
 				hotelScreen : {
 					title : "筛选",
 					c : "foot_screen",
-					s : 2,
+					s : 1,
 					type : 2,
 					key : 'filters',
 					listData : data.data.filters

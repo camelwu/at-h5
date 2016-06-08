@@ -393,6 +393,12 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 /*   首页搜索页结束    */
 
 /*   机票列表页开始    */
+.header{
+  box-shadow: none;
+}
+.hidden{
+  display: none!important;
+}
 .header h3 i{
   width: .34rem;
   height: .45rem;
