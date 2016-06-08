@@ -27,6 +27,7 @@
     //console.log(Parameters);
     //  点击链接页面跳转
     var link_page = $("#link_page")[0];
+    var shade = $("#shade")[0];
     var setting = $("#setting")[0];
     var verifyName = $("#verifyName")[0];
     var noSignal = $("noSignal")[0];
@@ -39,6 +40,7 @@
     function link(obj1,obj2,obj3){
       obj1.onclick = function(){
         link_page.style.display = "block";
+        shade.style.display = "none";
         u_setting.style.display = "none";
         contactus.style.display = "none";
         title.innerHTML = obj2;
@@ -50,6 +52,7 @@
     function close(obj){
       obj.onclick = function(){
         link_page.style.display = "none";
+        shade.style.display = "block";
       };
     }
     close(close_page);
@@ -126,8 +129,10 @@
 
   $('#about_at').click(function(){
     $('#link_about_us').show();
+    $("#shade")[0].style.display = "none";
     $('#close_page_aboutus').click(function(){
       $('#link_about_us').hide();
+      $("#shade")[0].style.display = "block";
     });
   });
   //设置里的消息开关
@@ -151,6 +156,7 @@
   //关于亚程旅游
   $('#atIntroduce').click(function(){
     $('#link_at').show();
+    $("#shade")[0].style.display = "none";
     $('#close_page_at').click(function(){
       $('#link_at').hide();
     });
@@ -159,6 +165,7 @@
   //协议及声明
   $('#atDeclaration').click(function(){
     $('#link_declaration').show();
+    $("#shade")[0].style.display = "none";
     $('#close_page_de').click(function(){
       $('#link_declaration').hide();
     });
