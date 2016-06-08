@@ -1683,45 +1683,45 @@
       isHistory = 1;
       if(cityboxHistoryData != ""){//begin if
         isHistory  = 0;
-      cityboxHistoryData = JSON.parse(cityboxHistoryData);
-      var citybox_content_title_div = document.createElement("div");
-      citybox_content_title_div.setAttribute("class","citybox_content_title");
-      citybox_content_title_div.setAttribute("id","js_history");
-      citybox_content_title_div.innerHTML = "历史选择";
-      dom.appendChild(citybox_content_title_div);
-      if(cityboxHistoryData){
-        var citybox_content_container_ul = document.createElement("ul");
-        citybox_content_container_ul.setAttribute("class","citybox_content_container");
+        cityboxHistoryData = JSON.parse(cityboxHistoryData);
+        var citybox_content_title_div = document.createElement("div");
+        citybox_content_title_div.setAttribute("class","citybox_content_title");
+        citybox_content_title_div.setAttribute("id","js_history");
+        citybox_content_title_div.innerHTML = "历史选择";
+        dom.appendChild(citybox_content_title_div);
+        if(cityboxHistoryData){
+          var citybox_content_container_ul = document.createElement("ul");
+          citybox_content_container_ul.setAttribute("class","citybox_content_container");
 
 
-        for (var i = cityboxHistoryData.length-1;i >= 0;i--){
-          var citybox_content_item_li = document.createElement("li");
-          citybox_content_item_li.setAttribute("class","citybox_content_item");
-          citybox_content_item_li.setAttribute("data-code",cityboxHistoryData[i].toString().split(":")[0]);
-          citybox_content_item_li.setAttribute("data-name",cityboxHistoryData[i].toString().split(":")[1]);
-          citybox_content_item_li.onclick = function(){
-            var cityData = {};
-            var cityName = this.getAttribute("data-name");
-            var cityCode = this.getAttribute("data-code");
-            cityData.returnType = returnType;
-            cityData.returnAttr = returnAttr;
-            cityData.returnStrType = returnStrType;
-            cityData.returnStrAttr = returnStrAttr;
-            cityData.cityName = cityName;
-            cityData.cityCode = cityCode;
-            Method["setcityboxHistory"](this,cityCode,cityName);
-            dataCityExec().callCityExec(""+globalType+"Exec",cityData);
-            Method['hideAllCityBox']();
+          for (var i = cityboxHistoryData.length-1;i >= 0;i--){
+            var citybox_content_item_li = document.createElement("li");
+            citybox_content_item_li.setAttribute("class","citybox_content_item");
+            citybox_content_item_li.setAttribute("data-code",cityboxHistoryData[i].toString().split(":")[0]);
+            citybox_content_item_li.setAttribute("data-name",cityboxHistoryData[i].toString().split(":")[1]);
+            citybox_content_item_li.onclick = function(){
+              var cityData = {};
+              var cityName = this.getAttribute("data-name");
+              var cityCode = this.getAttribute("data-code");
+              cityData.returnType = returnType;
+              cityData.returnAttr = returnAttr;
+              cityData.returnStrType = returnStrType;
+              cityData.returnStrAttr = returnStrAttr;
+              cityData.cityName = cityName;
+              cityData.cityCode = cityCode;
+              Method["setcityboxHistory"](this,cityCode,cityName);
+              dataCityExec().callCityExec(""+globalType+"Exec",cityData);
+              Method['hideAllCityBox']();
+            }
+            var citybox_content_itemtitle_div = document.createElement("div");
+            citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
+            citybox_content_itemtitle_div.innerHTML = cityboxHistoryData[i].toString().split(":")[1];
+            citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
+            citybox_content_container_ul.appendChild(citybox_content_item_li);
+
           }
-          var citybox_content_itemtitle_div = document.createElement("div");
-          citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-          citybox_content_itemtitle_div.innerHTML = cityboxHistoryData[i].toString().split(":")[1];
-          citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
-          citybox_content_container_ul.appendChild(citybox_content_item_li);
-
+          dom.appendChild(citybox_content_container_ul);
         }
-        dom.appendChild(citybox_content_container_ul);
-      }
 
       }//end if
     },
