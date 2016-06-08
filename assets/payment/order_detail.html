@@ -793,7 +793,7 @@
 
     <% if(voucher!=null && voucher.length>=1){ %>
     <div class="fht_order_detail">
-      <div class="fht_hd">电子确认单（景点入园是时出示）</div>
+      <div class="fht_hd">电子确认单（景点入园时出示）</div>
       <ul class="fht_order_tab">
         <% var i=0; voucher.forEach(function(info){ %>
         <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
@@ -877,7 +877,7 @@
              numchild=info.quantity
         }
       }) %>
-      <p><span>成人票：<%=numAdult%>张;</span> <span>儿童票：<%=numchild%>张</span></p>
+      <p><span>成人票：<%=numAdult%>张 <% if(numchild>0){%>;</span> <span>儿童票：<%=numchild%>张</span><%}%></p>
     </div>
   </section>
 
@@ -891,7 +891,11 @@
            </ul>
            <ul class="col">
              <li>时间：</li>
-             <li><%=vlm.Utils.format_date(hotelDetails.checkinDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%> 共1晚（以当地时间为准）</li>
+             <% function getDayNum(arg1,arg2){
+             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+             }%>
+             <li><%=vlm.Utils.format_date(hotelDetails.checkinDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%> 共<%=getDayNum(hotelDetails.checkinDate,hotelDetails.checkoutDate)%>晚（以当地时间为准）</li>
            </ul>
          </div>
      </div>
@@ -907,7 +911,7 @@
           <% i++ ;} %>
           <ul class="col">
             <li>成人票：</li>
-            <li><%=numAdult%>张；儿童票<%=numchild%>张</li>
+            <li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>
           </ul>
         </div>
       </div>
@@ -968,7 +972,7 @@
       <ul class="hft_pri_details">
         <% chargeDetails.forEach(function(info){ %>
         <% if(info.category=="ADULT"){ %>
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%> </span></li>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span></li>
         <% } else if(info.category=="CHILD") {%>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span></li>
         <% } %>

@@ -909,6 +909,10 @@ i, em {
 .air_date li {
   margin-top: .2rem;
 }
+.all_order_tab .air_date{
+  /*color: #999;*/
+  font-size: .24rem
+}
 
 .find_order {
   padding: .2rem .28rem;
