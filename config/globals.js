@@ -61,6 +61,6 @@ module.exports.globals = {
 
     // models: true
     //    hapi: 'hapi.atrip.net:8000' //online
-    //    hapi: '10.7.2.117:8888' //qa
-    hapi: '10.7.2.100:8888' //dev
+    hapi: '10.7.2.117:8888' //qa
+        //hapi: '10.7.2.100:8888' //dev
 };
