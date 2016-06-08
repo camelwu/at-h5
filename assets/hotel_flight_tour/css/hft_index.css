@@ -7,6 +7,9 @@ body{
   background-repeat: no-repeat;
   background-size: 7.9rem 5.13rem;
 }
+.ico_force {
+opacity: .8;
+}
 .hft_icon {
   display: inline-block;
   background-image: url(../../images/ui/icon-hft.png);
