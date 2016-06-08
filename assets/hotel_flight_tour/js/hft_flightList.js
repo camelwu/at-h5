@@ -127,8 +127,8 @@ var flightList = {
         $('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
 
         // 数据全部返回之后显示头部(H5-1591)
-        $('.data_info').show();
-        $('.header').show();
+        $('.data_info').removeClass('hidden');
+        $('.header').removeClass('hidden');
 
         //航班列表选中项
         var str2 = $("#flightCur").html();

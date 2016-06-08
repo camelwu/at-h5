@@ -394,8 +394,10 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 
 /*   机票列表页开始    */
 .header{
-  display: none;
   box-shadow: none;
+}
+.hidden{
+  display: none!important;
 }
 .header h3 i{
   width: .34rem;
@@ -403,7 +405,6 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   background-position: 81% 29%;
 }
 .data_info{
-  display: none;
   position: fixed;
   z-index: 45;
   top: .88rem;
