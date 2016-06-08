@@ -142,13 +142,16 @@ i, em {
 .login_input input {
   background: transparent !important;
   padding-left: .4rem;
-  height: 1rem;
+  height: .5rem;
   color: #333;
   font-size: .28rem;
+  margin-top: .28rem;
 }
-
+#r_phone,#phone {
+	margin-top: 0!important;
+}
 .change_way {
-  padding: 0 .4rem;
+  padding: .4rem;
   overflow: hidden;
 }
 
