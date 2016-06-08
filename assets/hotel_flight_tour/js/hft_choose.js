@@ -380,6 +380,8 @@ var hftChoose = {
           temObj['tourID'] = array['tourID'];
           temObj['travelDate'] = array['selectTravelDate'];
           temObj['tourSession'] = array['tourSessions'];
+          temObj['tourName'] = array['tourName'];
+          temObj['tourType'] = array['tourType'];
           toursArray.push(temObj);
         });
         hftCreateOrder.tours = toursArray;
@@ -521,7 +523,7 @@ var hftChoose = {
     var backFun = function () {
       var backEle = document.querySelector('.header_back');
       that.addHandler(backEle, 'click', function () {
-        window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
+        window.location.href ="index.html?type=" + that.type
       });
     }, tempStrc="", outputStrc="", that = hftChoose;
     tempStrc = $("#template_no_result").html();
