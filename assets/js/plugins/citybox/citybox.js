@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = 0.88,cityboxHistoryScrollTop = 0;
+  var show1 = 0,show2 = 0,scrollTopPx = 0.88,cityboxHistoryScrollTop = 0,isHistory = 0;
   var globalType = "";
   var returnType = "";
   var returnAttr = "";
@@ -1679,7 +1679,10 @@
      */
     cityboxHistory:function(dom,data){
       dom.innerHTML = "";
-      var cityboxHistoryData = localStorage.getItem(""+globalType+"_history");
+      var cityboxHistoryData = localStorage.getItem(""+globalType+"_history") || "";
+      isHistory = 1;
+      if(cityboxHistoryData != ""){//begin if
+        isHistory  = 0;
       cityboxHistoryData = JSON.parse(cityboxHistoryData);
       var citybox_content_title_div = document.createElement("div");
       citybox_content_title_div.setAttribute("class","citybox_content_title");
@@ -1720,7 +1723,7 @@
         dom.appendChild(citybox_content_container_ul);
       }
 
-
+      }//end if
     },
     /**
      * 城市历史记录
@@ -1958,19 +1961,21 @@
       //}
       //dom.appendChild(citybox_summary_item_litop1);
 
-      var citybox_summary_item_litop2 = document.createElement("li");
-      citybox_summary_item_litop2.setAttribute("class","citybox_summary_item");
-      citybox_summary_item_litop2.setAttribute("data-key","history");
-      citybox_summary_item_litop2.innerHTML = "历史";
-      citybox_summary_item_litop2.onclick = function(){
-        var key = this.getAttribute("data-key");
-        var a = $("#js_"+key);
-        if (a.length != 0) {
-          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
+      if(!isHistory){
+        var citybox_summary_item_litop2 = document.createElement("li");
+        citybox_summary_item_litop2.setAttribute("class","citybox_summary_item");
+        citybox_summary_item_litop2.setAttribute("data-key","history");
+        citybox_summary_item_litop2.innerHTML = "历史";
+        citybox_summary_item_litop2.onclick = function(){
+          var key = this.getAttribute("data-key");
+          var a = $("#js_"+key);
+          if (a.length != 0) {
+            i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
+          }
+          $(".citybox_content").scrollTop(i);
         }
-        $(".citybox_content").scrollTop(i);
+        dom.appendChild(citybox_summary_item_litop2);
       }
-      dom.appendChild(citybox_summary_item_litop2);
 
       var citybox_summary_item_litop3 = document.createElement("li");
       citybox_summary_item_litop3.setAttribute("class","citybox_summary_item");
