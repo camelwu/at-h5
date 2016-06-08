@@ -1,5 +1,4 @@
 "use strict";
-
 var fIndexModal = {
 
   addHandler: function (target, eventType, handle) {
@@ -79,19 +78,19 @@ var fIndexModal = {
     that.internationalArray = internationalCities;
     that.addHandler(place, "click", function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
-      if (target.getAttribute('data-city-type') == "domestic") {
+      if (target.getAttribute('data-city-type') == "domestic"||target.parentNode.getAttribute('data-city-type') == "domestic") {
         internationalTitle.className = "international_title grey-title";
         domesticTitle.className = "domestic_title light-title";
-        that.cityEle = target;
+        that.cityEle = target.getAttribute('data-city-type') == "domestic"?target:target.parentNode;
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: domesticCities, hotCity: that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         city_outer.style.display = "block";
         that.historyInitF("domestic").citySearchEvent();
-      } else if (target.getAttribute('data-city-type') == "international") {
+      } else if (target.getAttribute('data-city-type') == "international"||target.parentNode.getAttribute('data-city-type') == "international") {
         internationalTitle.className = "international_title light-title";
         domesticTitle.className = "domestic_title grey-title";
-        that.cityEle = target;
+        that.cityEle = target.getAttribute('data-city-type') == "international"?target:target.parentNode;
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: internationalCities, hotCity: that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
@@ -290,18 +289,28 @@ var fIndexModal = {
       }
       cityListSearched.innerHTML = resultStr;
       cityListSearched.style.display = 'block';
-    };
+      if(valueStr == ""){
+        cityListSearched.style.display = 'none';
+      }
+    }, shadowThin = document.querySelector('.shadow_thin');
     if (cityInputZone.addEventListener) {
       cityInputZone.addEventListener('input', searchHandler, false)
     } else {
       cityInputZone.attachEvent('onpropertychange', searchHandler)
     }
-
+    shadowThin.style.transition = '0.6s all ease';
+    shadowThin.style.webkitTransition = '0.6s all ease';
+   /* cityInputZone.onblur = function(){
+      shadowThin.style.bottom = "-100%";
+    };
+    cityInputZone.onfocus = function(){
+      shadowThin.style.bottom = "-.88rem"
+    }*/
   },
 
   eventHandler: function () {
     var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
+    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap'), ticketSearchButton = document.querySelector('#ticket-search-button');
     that.deg = 0;
     this.addHandler(content, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
@@ -328,19 +337,19 @@ var fIndexModal = {
         that.deg += 180;
         oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
         oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        $(".citySearch").each(function () {
+        $(".place b").each(function () {
           $(this).hide()
         });
-        tem = cityName[0].innerHTML;
+        tem = cityName[0].querySelector('b').innerHTML;
         temCode = cityName[0].getAttribute('data-code');
         temType = cityName[0].getAttribute('data-city-type');
-        cityName[0].innerHTML = cityName[1].innerHTML;
+        cityName[0].querySelector('b').innerHTML = cityName[1].querySelector('b').innerHTML;
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[0].setAttribute('data-city-type', cityName[1].getAttribute('data-city-type'));
-        cityName[1].innerHTML = tem;
+        cityName[1].querySelector('b').innerHTML = tem;
         cityName[1].setAttribute('data-code', temCode);
         cityName[1].setAttribute('data-city-type', temType);
-        $(".citySearch").each(function () {
+        $(".place b").each(function () {
           $(this).fadeIn("700")
         });
       } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
@@ -374,7 +383,7 @@ var fIndexModal = {
             that.buttonStatusHandler();
           }
         }
-      } else if (target.id == "ticket-search-button") {
+      }/* else if (target.id == "ticket-search-button") {
         var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'), doubleDateArrive = document.querySelector('#arriveDate');
         var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
         var reFixedSeat = function (arg) {
@@ -423,17 +432,17 @@ var fIndexModal = {
           "internationalOrDomestic": getTripType(),
           "hasTax": 0,
           "isClearAll": 1,
-          "fromCity": cityEles[0].innerHTML,
-          "toCity": cityEles[1].innerHTML
+          "fromCity": cityEles[0].querySelector('b').innerHTML,
+          "toCity": cityEles[1].querySelector('b').innerHTML
         };
-        if (that.type == "oneWay") { /*单程*/
+        if (that.type == "oneWay") { /!*单程*!/
           paraObj.departDate = singleDateSet.getAttribute('date-full-value');
           storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
           }
           document.location.href = 'f_single_list.html?' + urlStr;
-        } else {   /*往返*/
+        } else {   /!*往返*!/
           paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
           paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
           storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: paraObj}));
@@ -442,6 +451,75 @@ var fIndexModal = {
           }
           document.location.href = 'f_double_list.html?' + urlStr;
         }
+      }*/
+    });
+    this.addHandler(ticketSearchButton, 'click', function(){
+      var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'), doubleDateArrive = document.querySelector('#arriveDate');
+      var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
+      var reFixedSeat = function (arg) {
+        var cabinStr = "";
+        switch (arg) {
+          case "经济舱":
+            cabinStr = "economy";
+            break;
+          case "商务舱":
+            cabinStr = "business";
+            break;
+          case "头等舱":
+            cabinStr = "first";
+            break;
+          case "豪华经济舱":
+            cabinStr = "economyPremium";
+            break;
+          default :
+            void (0);
+        }
+        return cabinStr;
+      };
+      var getTripType = function () {
+        var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
+        return (cityTypeFrom == "domestic" && cityTypeTo == "domestic" ) ? "domestic" : "international";
+      };
+      if (cityEles[0].getAttribute('data-code') == cityEles[1].getAttribute('data-code')) {
+        jAlert("请选择到达城市为不同城市", '提示');
+        return false;
+      }
+      paraObj = {
+        "cityCodeFrom": cityEles[0].getAttribute('data-code'),
+        "cityCodeTo": cityEles[1].getAttribute('data-code'),
+        "cabinClass": reFixedSeat(seatValue),
+        "routeType": that.type,
+        "isHideSharedFlight": "false",
+        "isDirectFlight": "false",
+        "numofAdult": adultValue,
+        "numofChild": childValue,
+        "departStartHour": "00",
+        "departEndHour": "24",
+        "priorityRule": 0,
+        "isDesc": "false",
+        "pageNo": 1,
+        "pageSize": 10,
+        "internationalOrDomestic": getTripType(),
+        "hasTax": 0,
+        "isClearAll": 1,
+        "fromCity": cityEles[0].querySelector('b').innerHTML,
+        "toCity": cityEles[1].querySelector('b').innerHTML
+      };
+      if (that.type == "oneWay") { /*单程*/
+        paraObj.departDate = singleDateSet.getAttribute('date-full-value');
+        storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
+        for (var att_ in paraObj) {
+          urlStr += "&" + att_ + "=" + paraObj[att_];
+        }
+        document.location.href = 'f_single_list.html?' + urlStr;
+      } else {   /*往返*/
+        paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
+        paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
+        storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: paraObj}));
+        for (var att_ in paraObj) {
+          urlStr += "&" + att_ + "=" + paraObj[att_];
+        }
+        document.location.href = 'f_double_list.html?' + urlStr;
       }
     })
     return this
@@ -561,9 +639,9 @@ var fIndexModal = {
       singleWrap.style.display = "none";
       doubleWrap.style.display = "block";
     }
-    cityEle[0].innerHTML = data.fromCity;
+    cityEle[0].querySelector('b').innerHTML = data.fromCity;
     cityEle[0].setAttribute('data-code', data.cityCodeFrom);
-    cityEle[1].innerHTML = data.toCity;
+    cityEle[1].querySelector('b').innerHTML = data.toCity;
     cityEle[1].setAttribute('data-code', data.cityCodeTo);
     singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
     singleDateSet.setAttribute('date-full-value', defaultDate[0]);
@@ -664,3 +742,5 @@ var fIndexModal = {
   }
 };
 fIndexModal.init();
+
+
