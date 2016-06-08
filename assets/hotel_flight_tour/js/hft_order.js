@@ -1,5 +1,5 @@
 
-(function () {
+var hftOrder = (function () {
   "use strict";
   //加载动画
   function package_detail() {
@@ -13,11 +13,9 @@
 
   var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
   console.log(hftFlightHotelTourInfo);
-
   var hftCreateOrderPara=JSON.parse(sessionStorage.hftCreateOrderPara);
   hftCreateOrderPara.hotelName=hftFlightHotelTourInfo.hotelInfo.hotelName;
-  console.log(hftCreateOrderPara);
-
+  hftCreateOrderPara.hotelNameLocale=hftFlightHotelTourInfo.hotelInfo.hotelNameLocale;
   var freetype=vlm.getpara('type');
   var hft_backstr=window.location.href.split('?')[1];
   //返回资源选择页
@@ -35,6 +33,7 @@
     //酒店详情
     var hotelstr=$('#orderHotel').html();
     console.log(hftCreateOrderPara)
+
     var hoteldet = ejs.render(hotelstr, hftCreateOrderPara)
     $('#hftHotelTab').html(hoteldet);
 
@@ -119,7 +118,7 @@
     if(freetype == 2){
       //景点详情
       var tourstr=$('#orderTour').html();
-      var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
+      var tourdet = ejs.render(tourstr, hftCreateOrderPara)
       $('#hftTourTab').html(tourdet);
 
     }else if(freetype == 1){
@@ -354,5 +353,13 @@
     }
   }
 
+  function resetMonth () {
+    var array = [], arg = arguments[0];
+    array = arg.split('-');
+    array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
+    array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
+    return array[1] + '月' + array[2] + '日';
+  }
+  return {resetMonth:resetMonth}
 })();
 
