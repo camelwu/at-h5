@@ -412,8 +412,13 @@
           ul_li1.innerHTML = travJson.data[i].traveller.idName + travJson.data[i].traveller.lastName + "/" + travJson.data[i].traveller.firstName;
           ul.appendChild(ul_li1);
           b.parentNode.addEventListener("click", updateTra);
-          var ul_li2 = document.createElement("li");
-          if(travJson.data[i].listTravellerIdInfo.length != 0)
+          var IdInfo=travJson.data[i].listTravellerIdInfo;
+          for(var j=0;j<IdInfo.length;j++){
+          	var ul_li2 = document.createElement("li");
+          	ul_li2.innerHTML = vlm.arr_t[parseInt(IdInfo[j].idType)]+IdInfo[j].idNumber;
+          	ul.appendChild(ul_li2);
+          }
+          /*if(travJson.data[i].listTravellerIdInfo.length != 0)
           {
             if (travJson.data[i].listTravellerIdInfo[0].idType == "1") {
               ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
@@ -436,8 +441,8 @@
             else {
               ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
             }
-          }
-          ul.appendChild(ul_li2);
+          }*/
+          
           var ul_li3 = document.createElement("li");
           ul_li3.innerHTML = "手机号" + " " + travJson.data[i].traveller.mobilePhone;
           ul.appendChild(ul_li3);
