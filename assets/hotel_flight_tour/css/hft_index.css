@@ -52,6 +52,8 @@ input{
 .index_tab .active{
   color:#7bc300;
   border-bottom:4px solid #7bc300;
+  line-height: .74rem;
+  height: .74rem;
 }
 .flight_info .flight_place{
   width:100%;
