@@ -217,7 +217,7 @@ var fIndexModal = {
       } else if (target.className.indexOf('city_list') > -1) {
         var dateCode = target.getAttribute('data-city-code'), type = that.getCityType(dateCode);
         that.cityEle.setAttribute("data-code", dateCode);
-        that.cityEle.innerHTML = target.innerHTML;
+        that.cityEle.querySelector('b').innerHTML = target.innerHTML;
         that.cityEle.setAttribute("data-city-type", type);
         that.cityChooseHistory({type: type, cityCode: dateCode, cityNameCN: target.innerHTML});
         this.style.display = "none";
