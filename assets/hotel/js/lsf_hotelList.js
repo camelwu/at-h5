@@ -591,7 +591,7 @@ function styleChange(id, mytext) {
                     //str3 = '<div class="h-div1 hotel_content_div1">返现</div>';
                 }
                 if (data[i].isFreeCityTour) {
-                    str4 = '<div class="h-div1 hotel_content_div1">免费景点</div>';
+                    //str4 = '<div class="h-div1 hotel_content_div1">免费景点</div>';
                 }
 
                 //有地区地址就给地址加括号，没有就不加

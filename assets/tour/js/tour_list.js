@@ -214,7 +214,7 @@
         $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
-            tar = $(tar).closest("li")[0];
+          tar = $(tar).closest("li")[0];
           if(tar.nodeName.toLowerCase() === 'li') {
             var packageid = tar.getAttribute("data-code");
             var leadinPrice = tar.getAttribute("data-leadinPrice");
