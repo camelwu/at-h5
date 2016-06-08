@@ -380,7 +380,7 @@ var fDoubleList = {
           ]
         },
         Tax: {
-          title: "不含税价",
+          title: "含税价",
           c: "f_tax_sort",
           type: 0,
           key: 'tax',

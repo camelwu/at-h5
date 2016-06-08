@@ -187,13 +187,15 @@ var fOrder = {
       }
       cityListSearched.innerHTML = resultStr;
       cityListSearched.style.display = 'block';
+      if(valueStr == ""){
+        cityListSearched.style.display = 'none';
+      }
     };
     if(cityInputZone.addEventListener){
       cityInputZone.addEventListener('input',searchHandler,false)
     }else{
       cityInputZone.attachEvent('onpropertychange',searchHandler)
     }
-
   },
 
   eventHandler: function () {
