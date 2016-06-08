@@ -31,7 +31,7 @@
             <a href="index.html?type=2" class="header_back" id="g_back" data-statl="back">
                 <i class="icon_back"></i>
             </a>
-            <h3>自由行</h3>
+            <h3 id="tour_city">自由行</h3>
         </div>
         <div class="contents">
             <div class="snap-content">
@@ -44,33 +44,17 @@
             </div>
         </div>
     </div>
-    <!--
-<div class="contents">
-    <div class="header">
-        <a href="javascript:window.history.go(-1);" class="header_back" id = "g_back">
-            <i class="icon_back"></i>
-        </a>
-        <h3>自由行</h3>
-    </div>
-    <div class="snap-content">
-        <section class="time_people_list" id = "TimeList">
-        </section>
-        <section class="city_list" id =  "CityList">
-        </section>
-        <section class="scenic-detile" id = "scenicList">
-        </section>
-    </div>
-
-</div>
--->
     <!--底部-->
 </body>
 <script src="../js/lib/logRecord.js" type="text/javascript"></script>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="js/hft_scenic_list.js"></script>
 <script src="../js/plugins/footer/foot.js"></script>
+<script id="tpl_head" type="text/template">
+    <span><%=departCity%></span><i class="arrowDouble"></i><span><%=destCity%></span>
+</script>
 <script id="timeDetile" type="text/template">
     <span class="time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>

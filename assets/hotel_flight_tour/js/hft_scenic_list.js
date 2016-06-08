@@ -25,10 +25,12 @@
 		};
 		var callback = function(data) {
 			if (data.success) {
-        vlm.init();
+        		vlm.init();
 				filterData = data;
 				var localStoragedata = JSON.parse(localStorage.getItem("searchInfo"));
 				console.log(data);
+				//var htmlT = ;
+				$("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
 				var htmlt = $("#timeDetile").html();
 				var htmlT = ejs.render(htmlt, localStoragedata);
 				$("#TimeList").html(htmlT);
