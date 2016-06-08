@@ -306,28 +306,30 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   width: 1.4rem;
   font-size: .28rem;
   margin-top: .18rem;
-  padding-right: .15rem;
+  padding-right: .28rem;
+  text-align: right;
 }
 .inp_cage {
   display: inline-block;
   height: .4rem;
-  width: 70%;
+  width: 50%;
   font-size: .32rem;
   color: #333333;
+  margin-right: 15%;text-align: center;
 }
 input.inp_cage::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #333333;
+  color: rgb(153,153,153);;
 }
 input.inp_cage:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #333333;
+  color: rgb(153,153,153);;
 }
 
 input.inp_cage::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #333333;
+  color: rgb(153,153,153);;
 }
 
 input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color: #333333;
+  color: rgb(153,153,153);;
 }
 
 .child_sui {
