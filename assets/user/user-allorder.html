@@ -160,7 +160,7 @@
         <p class="info_title">{%=productName%}</p>
         <ul class="air_date">
 				{% var d1= new Date(travelStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
-          <li>{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
+          <li>{%= d1.getMonth()+1 %}月{%= d1.getDate() %}日 至{%= d2.getMonth()+1 %}月{%= d2.getDate() %}日 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
 			</ul>
 		</div>
       <div class="clearfix find_order">
@@ -205,7 +205,7 @@
         <p class="info_title">{%=productName%}</p>
         <ul class="air_date">
 				{% var d1= new Date(travelStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
-				<li>{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
+          <li>{%= d1.getMonth()+1 %}月{%= d1.getDate() %}日 至{%= d2.getMonth()+1 %}月{%= d2.getDate() %}日 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
 			</ul>
 		</div>
       <div class="clearfix find_order">
@@ -224,8 +224,8 @@
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
         <ul class="air_date">
-				{% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
-				<li>出行日期：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
+				<li>出行日期：{%= vlm.Utils.format_date(travelStartDate,"Ymd") %}</li>
+        <li> 返程日期：{%= vlm.Utils.format_date(travelEndDate,"Ymd") %}</li>
 			</ul>
 		</div>
       <div class="clearfix find_order">
@@ -244,8 +244,7 @@
       <div class="all_order_tab">
         <p class="info_title">{%=productName%}</p>
         <ul class="air_date">
-				{% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
-				<li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
+				<li>出游日期：{%= vlm.Utils.format_date(travelEndDate,"Ymd") %}</li>
 			</ul>
 		</div>
       <div class="clearfix find_order">
