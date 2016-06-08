@@ -543,7 +543,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .trip_go .left span.icon , .trip_back .left span.icon{
   position: absolute;
   left: -.48rem;
-  top: .0rem;
+  top: .04rem;;
 }
 .trip_go_ span.icon, .trip_back_ span.icon{
   position: static;
