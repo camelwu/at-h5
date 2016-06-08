@@ -492,7 +492,7 @@ Scroller.prototype = {
             for (var i = 1; i < day + 1; i++) {
                 arr3.push('<span>' + i + '日</span>');
             }
-            oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'].join(''));
+            oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp1'].join(''));
             if (pos / 49 - page > 0.5) {
                 page += 3;
             } else {
