@@ -310,7 +310,7 @@ var fIndexModal = {
 
   eventHandler: function () {
     var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap'), ticketSearchButton = document.querySelector('#ticket-search-button');
+    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
     that.deg = 0;
     this.addHandler(content, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
@@ -383,7 +383,7 @@ var fIndexModal = {
             that.buttonStatusHandler();
           }
         }
-      }/* else if (target.id == "ticket-search-button") {
+      } else if (target.id == "ticket-search-button") {
         var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'), doubleDateArrive = document.querySelector('#arriveDate');
         var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
         var reFixedSeat = function (arg) {
@@ -430,19 +430,19 @@ var fIndexModal = {
           "pageNo": 1,
           "pageSize": 10,
           "internationalOrDomestic": getTripType(),
-          "hasTax": 0,
+          "hasTax": 1,
           "isClearAll": 1,
           "fromCity": cityEles[0].querySelector('b').innerHTML,
           "toCity": cityEles[1].querySelector('b').innerHTML
         };
-        if (that.type == "oneWay") { /!*单程*!/
+        if (that.type == "oneWay") { /*单程*/
           paraObj.departDate = singleDateSet.getAttribute('date-full-value');
           storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
           }
           document.location.href = 'f_single_list.html?' + urlStr;
-        } else {   /!*往返*!/
+        } else {   /*往返*/
           paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
           paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
           storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: paraObj}));
@@ -451,75 +451,6 @@ var fIndexModal = {
           }
           document.location.href = 'f_double_list.html?' + urlStr;
         }
-      }*/
-    });
-    this.addHandler(ticketSearchButton, 'click', function(){
-      var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'), doubleDateArrive = document.querySelector('#arriveDate');
-      var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
-      var reFixedSeat = function (arg) {
-        var cabinStr = "";
-        switch (arg) {
-          case "经济舱":
-            cabinStr = "economy";
-            break;
-          case "商务舱":
-            cabinStr = "business";
-            break;
-          case "头等舱":
-            cabinStr = "first";
-            break;
-          case "豪华经济舱":
-            cabinStr = "economyPremium";
-            break;
-          default :
-            void (0);
-        }
-        return cabinStr;
-      };
-      var getTripType = function () {
-        var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
-        return (cityTypeFrom == "domestic" && cityTypeTo == "domestic" ) ? "domestic" : "international";
-      };
-      if (cityEles[0].getAttribute('data-code') == cityEles[1].getAttribute('data-code')) {
-        jAlert("请选择到达城市为不同城市", '提示');
-        return false;
-      }
-      paraObj = {
-        "cityCodeFrom": cityEles[0].getAttribute('data-code'),
-        "cityCodeTo": cityEles[1].getAttribute('data-code'),
-        "cabinClass": reFixedSeat(seatValue),
-        "routeType": that.type,
-        "isHideSharedFlight": "false",
-        "isDirectFlight": "false",
-        "numofAdult": adultValue,
-        "numofChild": childValue,
-        "departStartHour": "00",
-        "departEndHour": "24",
-        "priorityRule": 0,
-        "isDesc": "false",
-        "pageNo": 1,
-        "pageSize": 10,
-        "internationalOrDomestic": getTripType(),
-        "hasTax": 0,
-        "isClearAll": 1,
-        "fromCity": cityEles[0].querySelector('b').innerHTML,
-        "toCity": cityEles[1].querySelector('b').innerHTML
-      };
-      if (that.type == "oneWay") { /*单程*/
-        paraObj.departDate = singleDateSet.getAttribute('date-full-value');
-        storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
-        for (var att_ in paraObj) {
-          urlStr += "&" + att_ + "=" + paraObj[att_];
-        }
-        document.location.href = 'f_single_list.html?' + urlStr;
-      } else {   /*往返*/
-        paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
-        paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
-        storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: paraObj}));
-        for (var att_ in paraObj) {
-          urlStr += "&" + att_ + "=" + paraObj[att_];
-        }
-        document.location.href = 'f_double_list.html?' + urlStr;
       }
     })
     return this
