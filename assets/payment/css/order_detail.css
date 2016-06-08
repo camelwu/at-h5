@@ -676,7 +676,7 @@ li.order_tlist2 {
 /*电话拨号结束*/
 
 #order_detail {
-  margin-bottom: .4rem;
+  margin-bottom: 1rem;
   overflow-x: hidden;
 }
 
@@ -761,7 +761,7 @@ li.order_tlist2 {
 }
 
 .fht_order_tab > li {
-  margin-bottom: .5rem;
+  margin-bottom: .3rem;
   padding-right: .28rem;
 }
 
@@ -1103,7 +1103,7 @@ li.order_tlist2 {
 .tour_wrap {
   background-color: #fff;
   position: relative;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 /*景点*/
@@ -1212,7 +1212,7 @@ li.order_tlist2 {
 
 .tour_list .tour-item i {
   width: .08rem;
-  height: .3rem;
+  height: .25rem;
   background-color: #7bc300;
   display: inline-block;
   margin-right: .2rem;

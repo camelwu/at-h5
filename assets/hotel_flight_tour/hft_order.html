@@ -325,31 +325,30 @@
     <!--模板机票结束-->
 
     <!--模板酒店开始-->
-    <script id="orderHotel" type="text/template"></script>
+    <script id="orderHotel" type="text/template">
+      <div class="hotel_wrap">
+        <h3><%=hotelNameLocale%><%=hotelName%></h3>
+        <ul>
+          <li class="hotel_check_wrap">
+            <span><%=departDate.substring(5,10).replace('-','月')%>日 - <%=returnDate.substring(5,10).replace('-','月')%>日</span>
+            <% function getDayNum(arg1,arg2){
+            var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
+            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+            }
+            var dayNum = getDayNum(departDate.substring(0,10),returnDate.substring(0,10)); %>
+            <span>共<%=dayNum%>晚（当地时间为准）</span>
+          </li>
+          <li class="hotel_room_det">
+            <span>房型：<%=priceRoomInfo.roomName%></span>
+            <span>房间数：<%=roomDetails.length%>间</span>
+          </li>
+        </ul>
+      </div>
+    </script>
     <!--模板酒店结束-->
 
     <!--模板景点开始-->
-    <script id="orderTour" type="text/template">
-      <ul class="tourOuter">
-        <%tours.forEach(function(array){%>
-        <li>
-          <h3 class="tour-list-title"><%=array.tourName%></h3>
-          <%if(array.tourType!==1){%>
-              <p>
-                <span class="month"><%=hftOrder.resetMonth(array.travelDate)%></span>
-                <%if(array.tourSessions){%>
-                <%array.tourSessions.forEach(function(array_){%>
-                <span class="timePart"><%=array_.tourSessionName%></span>
-                <%})%>
-                <%}%>
-              </p>
-          <%}%>
-        </li>
-        <% })%>
-
-
-       </ul>
-</script>
+    <script id="orderTour" type="text/template"></script>
     <!--模板景点结束-->
 
     <!--模板明细开始-->
