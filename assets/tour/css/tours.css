@@ -626,6 +626,7 @@ a.hotel_detail_pic{
 .order_per_data>ul li span.list_tit{
     display: inline-block;
     width:1.24rem;
+    font-size: 0.3rem;
 }
 .order_per_data>ul li .add_icon,.order_data_box .title b{
     position: absolute;
@@ -658,6 +659,7 @@ a.hotel_detail_pic{
 .order_per_data ul.order_trave{
     padding: 0;
     margin: 0;
+    font-size: 0.3rem;
 }
 .order_per_data ul.order_trave li,.personal_data ul.order_trave li{
     margin:0 0 0 0.24rem

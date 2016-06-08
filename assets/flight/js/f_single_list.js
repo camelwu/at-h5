@@ -224,9 +224,9 @@ var fSingleList = {
   },
 
   titleInit: function () {
-    var spans = document.querySelectorAll('.header h3 span');
+    var spans = document.querySelectorAll('.header>h3>span');
     spans[0].innerHTML = this.postObj.fromCity;
-    spans[1].innerHTML = this.postObj.toCity
+    spans[1].innerHTML = this.postObj.toCity;
     return this;
   },
 
