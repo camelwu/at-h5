@@ -144,8 +144,8 @@
             var container = this.container = document.createElement('div');
             container.id = this.id + 'Date';
             container.className = "calendar_date";
-                //container.style.position = "absolute";
-                //container.style.zIndex = 100;
+            //container.style.position = "absolute";
+            //container.style.zIndex = 100;
             if (this.input.tagName === 'input') {
                 //PC输入框
                 var inputPos = _CalF.getPos(this.input);
@@ -523,7 +523,7 @@
          ×@param  startDate  2016-06-24   endDate   option
          **/
         disableDateFrom: function (startDate, endDate) {
-            var dayDate = $("#date-rangeDate").find("a[data-day]");
+            var dayDate = $("#calendarWrap").find("a[data-day]");
             var startIndex = null;
             var endIndex = null;
             var temp, tempDate, startDateValue, endDateValue;
