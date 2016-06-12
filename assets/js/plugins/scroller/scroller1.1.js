@@ -1,4 +1,16 @@
 /**
+ *@desc fastclick 绑定
+ *@time
+ **/
+(function ($) {
+    "use strict";
+    $(document).ready(function () {
+        window.addEventListener('load', function () {
+            FastClick ? FastClick.attach(document.body) : '';
+        }, false);
+    });
+}(jQuery));
+/**
  * @name Slider Widget   depend on jquery scrollstop   vlm
  * @constructor
  * @created by wusong
@@ -52,20 +64,15 @@ Scroller.prototype = {
     // 创建最外层盒子，并设置盒子的样式&定位，绑定头部按钮事件
     createContainer: function (t) {
         var that = this,
-            odiv = document.getElementById("selbox");
-        document.body.style.overflowY = 'hidden';
+            odiv = document.getElementById("selbox"),
+            wrapContainer = document.createElement("div");
+        wrapContainer.id = "atPluginsScroller";
         if (!!odiv) {
             this.masker = document.getElementById("overlay");
             this.container = odiv;
             this.opeater = document.getElementById("opeater");
         } else { //不存在
-            //新增遮罩层并设定样式
-            var masker = this.masker = document.createElement('div');
-            masker.id = "overlay";
-            masker.className = "mask";
-            masker.style.top = '0';
-            document.body.appendChild(masker);
-            document.body.style.overflowY = 'hidden';
+
             //新增容器层并设定样式、属性
             var container = this.container = document.createElement('div');
             container.id = "selbox";
@@ -81,21 +88,91 @@ Scroller.prototype = {
             opeater.className = 'selbox-ul';
             opeater.setAttribute("data-id", t);
             opeater.setAttribute("data-type", that.type);
+            //新增遮罩层并设定样式
+            var masker = this.masker = document.createElement('div');
+            masker.id = "overlay";
+            masker.className = "mask";
+            masker.style.top = '0';
+            document.body.appendChild(masker);
+            document.body.style.overflowY = 'hidden';
             //自定义属性
             container.appendChild(opeater);
             document.body.appendChild(container);
             //头部按钮绑定
             this.btnEvent();
-            //阻止滑动遮挡层事件
-            this.stopEvent();
 
         }
     },
     stopEvent: function () {
         $("#overlay").on("touchstart", function (event) {
-            event.preventDefault();
             event.stopPropagation();
+            event.preventDefault();
         });
+        //H5-1617
+        var payModule = $('.android-relative');
+        if (payModule.length > 0) {
+            payModule.each(function (index, ele) {
+                $(ele).addClass("android_absolute");
+            });
+        }
+        if (this._checkIosSafari()) {
+            var touchX, touchY;
+            var popupContainer = $("#opeater")[0];
+            var scrollerEle = $("#opeater .sel-time");
+            window.ontouchstart = function (e) {
+                if ($("#opeater").length === 0 || !(popupContainer.contains(e.target))) {
+                    return;
+                }
+                var touch = e.changedTouches[0];
+
+                touchX = touch.screenX;
+                touchY = touch.screenY;
+                if (!popupContainer.contains(e.target)) {
+                    e.preventDefault();
+                }
+                scrollerEle.each(function (index, ele) {
+                    if (ele.scrollTop === 0 || ele.scrollTop === ele.scrollHeight - ele.clientHeight) {
+                        e.preventDefault();
+                    }
+                });
+            };
+
+            window.ontouchend = function (e) {
+                var touch = e.changedTouches[0];
+
+                if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
+                    return;
+                touchX = 0;
+                touchY = 0;
+            };
+
+            window.ontouchcancel = function (e) {
+                touchX = 0;
+                touchY = 0;
+            };
+
+            var padding = 1;
+            requestAnimationFrame(function frame() {
+                for (var i = 0, len = scrollerEle.length; i < len; i++) {
+                    var min = 0,
+                        max = scrollerEle[i].scrollHeight - scrollerEle[i].clientHeight;
+
+                    var val = scrollerEle[i].scrollTop;
+
+                    if (val === min) {
+                        scrollerEle[i].scrollTop += padding;
+                    } else if (val === max) {
+                        scrollerEle[i].scrollTop -= padding;
+                    }
+                }
+
+                requestAnimationFrame(frame);
+            });
+        }
+    },
+    _checkIosSafari: function () {
+        var ua = navigator.userAgent;
+        return !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) && ua.indexOf('AppleWebKit') > -1;
     },
     // 渲染内容
     drawData: function (id, t) {
@@ -440,7 +517,7 @@ Scroller.prototype = {
 
         });
         //绑定滑动
-        $(".sel-time").bind("scrollstop", function () {
+        $(".sel-time").bind("scrollstop", function (event) {
             var obj = $(this),
                 Nodes = this.childNodes,
                 posY = this.scrollTop,
@@ -505,16 +582,32 @@ Scroller.prototype = {
     // 确认和取消按钮事件
     btnEvent: function () {
         var that = this;
+        var payModule = $('.android-relative');
         $('.cabin-cancel').on("click", function () {
             that.selShow(0);
             $(document.body).css('overflowY', 'auto');
+            //华为穿透问题
+            if (payModule.length > 0) {
+                payModule.each(function (index, ele) {
+                    $(ele).removeClass("android_absolute");
+                });
+            }
         });
         $('.cabin-sure').on("click", function () {
+            if ($(".android-relative").length > 0) {
+
+            }
             that.selOver();
             if ($('#popup_overlay')) {
                 $(document.body).css('overflowY', 'hidden');
             }
             $(document.body).css('overflowY', 'auto');
+            //华为穿透问题
+            if (payModule.length > 0) {
+                payModule.each(function (index, ele) {
+                    $(ele).removeClass("android_absolute");
+                });
+            }
         });
     },
     // 绑定操作对象的事件
@@ -531,6 +624,8 @@ Scroller.prototype = {
             that.drawData(id, t);
             that.type = t;
             that.scrollTo();
+            //阻止滑动遮挡层事件
+            that.stopEvent();
         });
     },
     // 对象区域外点击，隐藏
