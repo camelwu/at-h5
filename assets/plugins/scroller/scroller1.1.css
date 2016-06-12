@@ -19,11 +19,15 @@
 #selbox .cabin-cancel {
     float: left;
     font-size: .32rem;
+    pointer-events: auto;
+    -webkit-pointer-events: auto;
 }
 
 #selbox .cabin-sure {
     float: right;
     font-size: .32rem;
+    pointer-events: auto;
+    -webkit-pointer-events: auto;
 }
 
 #selbox {
@@ -33,6 +37,8 @@
     bottom: -260px;
     background-color: white;
     transition: 0.9s all ease;
+    pointer-events: none;
+    -webkit-pointer-events: none;
 }
 
 .selbox-footer-exp {
@@ -105,6 +111,9 @@
     max-height: 4.5rem;
     height: 3.6rem;
     overflow: auto;
+    pointer-events: auto;
+    -webkit-pointer-events: auto;
+    overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -142,4 +151,16 @@
 .selbox-ul li span.date-selected {
     font-size: .38rem;
     color: #484848;
+}
+
+.android_absolute {
+    position: absolute;
+    overflow-x: hidden !important;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    font-size: .28rem;
+    color: #333;
+    -webkit-overflow-scrolling: touch;
 }

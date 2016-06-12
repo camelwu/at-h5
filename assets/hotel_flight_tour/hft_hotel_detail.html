@@ -109,7 +109,13 @@
     <div class="slide">
       <div class="lfword">
         <p><span class="name"><%= rooms[i].roomName %></span><i class="book"></i></p>
-        <p class="gray">32-38㎡ 大/双床</p>
+        <p class="gray">
+          <% if(rooms[i].includedBreakfast){%>
+          含早
+          <% }else{ %>
+          无早
+          <% } %>
+        </p>
       </div>
       <div class="price">
         <span class="word">+</span>
