@@ -66,11 +66,11 @@
 <script id="tpl1" type="text/template">
     <% var htls=roomUpGrade.resetData(hotels[0]),imgs=htls.imgages;imgl = imgs.length; if(imgl==0){ %>
         <a class="top-pic hotel_detail_pic">
-            <img src="../images/hotelDetailerrorpic.png" real-src="<%= htls.hotelPictureURL%>" class="hotelPic" alt="image">
+            <img src="../images/loading_def_big.png" real-src="<%= htls.hotelPictureURL%>" class="hotelPic" alt="image">
         </a>
     <% }else{ %>
         <a href="<%= htls.hotelPictureURL %>" class="top-pic hotel_detail_pic swipebox" title="1/<%= (imgl) %>">
-            <img class="hotelPic" src="../images/hotelDetailerrorpic.png" real-src="<%= htls.hotelPictureURL %>">
+            <img class="hotelPic" src="../images/loading_def_big.png" real-src="<%= htls.hotelPictureURL %>">
         </a>
         <div style="display: none;">
             <% for(var i=1;i < imgl;i++){ %>
