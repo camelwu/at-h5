@@ -191,13 +191,18 @@
                 var str = $('#title').html();
                 var title = ejs.render(str, data);
                 $('.header h3 span').html(title);
-
+                //curList
+                var strCur = $('#curList').html();
+                var curList = ejs.render(strCur,result);
+                $('.hotel_list').append(curList);
+                //list
                 var str = $('#templateList').html();
                 var hotels = ejs.render(str, handleData(result));
                 if (more) {
                     $('.hotel_list').append(hotels);
                 } else {
-                    $('.hotel_list').empty().append(hotels);
+                    $('.hotel_list').empty();
+                    $('.hotel_list').append(curList).append(hotels);
                 }
 
                 //TODO 图片懒加载
@@ -224,7 +229,7 @@
             }
         },
         check:function(){
-          $("#hj_jList li:nth-child(1)") .addClass("cur");
+          //$("#hj_jList li:nth-child(1)") .addClass("cur");
         },
         updateMoreStatus: function (data) {
             this.currentPage = data.pageNo;

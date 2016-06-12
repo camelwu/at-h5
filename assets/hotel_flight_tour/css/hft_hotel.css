@@ -192,10 +192,10 @@ li.cur .h_choose {
     position: absolute;
     top: 0;
     right: 0;
-    background: url(../../images/ui/ticket_hotel.png) no-repeat -3.65rem -1.22rem;
+    background: url(../../images/ui/choose.png) no-repeat;
     width: 0.42rem;
     height: 0.42rem;
-    background-size: 5.99rem 4.58rem;
+    background-size:100% 100%;
 }
 
 .hotel_list .equipment span {
