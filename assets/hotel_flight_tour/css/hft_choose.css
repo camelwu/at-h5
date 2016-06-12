@@ -573,10 +573,10 @@ body {
     color: #7bc300;
     background: white;
     border: 1px solid #7bc300;
-    border-radius: .03rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     font-size: .28rem;
     margin-left: .2rem;
+    margin-right: .02rem;
     border-radius: 4px;
 }
 
