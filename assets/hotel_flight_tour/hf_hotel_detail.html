@@ -114,7 +114,9 @@
 </script>
 <!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
+    <% if(!hotelReviewScore == 0 ){ %>
     <li class="jpr" id="h_reviews"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<i class="arrow"></i></li>
+    <% } %>
     <li><%=hotelNameLocale%></li>
 </script>
 <script id="jhf_star" type="text/template">
