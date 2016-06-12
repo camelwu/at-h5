@@ -149,14 +149,12 @@
                 <img src="../images/loading_def_big.png" data-src="<%= hotelInfo['hotelPictureURL'] %>">
                 <div class="hotelRightPart" data-statl="detail">
                     <h3><%= hotelInfo["hotelNameLocale"] %>(<%= hotelInfo["hotelName"]%>)</h3>
-                    <%if(parseInt(hotelInfo['hotelReviewScore'])>0||parseInt(hotelInfo['hotelReviewCount'])>0){%>
                        <p class="scorePersonNumber">
                          <% if(parseInt(hotelInfo['hotelReviewScore'])>0){%>
                          <span class="score"><%= hotelInfo['hotelReviewScore'] %></span>分
                          <% }%>
                          <% if(parseInt(hotelInfo['hotelReviewCount'])>0){%>
                          <span class="commit"><%= hotelInfo['hotelReviewCount'] %></span>人点评</p>
-                       <%}%>
                        <%}%>
                     <p class="starWifi"><span class="star"><%= hftChoose.setChineseStar(hotelInfo['starRating']) %></span><span class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
                     <p><%= hotelInfo['location'] %></p>

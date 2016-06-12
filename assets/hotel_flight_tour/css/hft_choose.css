@@ -355,24 +355,25 @@ body {
 }
 
 .hotelImgInfo, .imgDate {
-    height: 1.6rem;
+   /* height: 1.6rem;*/
     margin: .32rem 0;
     position: relative;
     color: #999999;
 }
 
 .hotelImgInfo i {
-    top: 0.82rem;
+  top: 1rem;
+  z-index: 9;
 }
 
 .hotelImgInfo img, .imgDate img {
-    display: block;
-    height: 1.68rem;
-    width: 1.68rem;
-    background: url("../../images/loading_def_small.png") no-repeat 0 0;
-    background-size: 100% 100%;
-    position: absolute;
-    left: .28rem;
+  display: block;
+  height: 2.0rem;
+  width: 2.0rem;
+  background: url("../../images/loading_def_small.png") no-repeat 0 0;
+  background-size: 100% 100%;
+  position: absolute;
+  left: .28rem;
 }
 
 .imgDate img {
@@ -382,19 +383,21 @@ body {
 
 .hotelImgInfo .hotelRightPart, .imgDate .right {
     display: inline-block;
-    height: 1.68rem;
-    margin: 0 0 0 2.42rem;
+   /* height: 1.68rem;*/
+  margin: 0 0 0 2.56rem;
 }
 
 .hotelRightPart {
-    width: 61.2%;
+    width: 58%;
 }
 
 .hotelRightPart > p {
   line-height: .36rem;
   font-size: .20rem;
 }
-
+.hotelRightPart > p.scorePersonNumber{
+  height:.36rem;
+}
 .imgDate .right {
     display: block;
     margin: 0 0 0 1.82rem;
@@ -405,6 +408,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     /*db兼容IE11，IE浏览器会忽略display: -webkit-box;*/
+    font-size: .28rem;
     display: block;
     display: -webkit-box;
     -webkit-line-clamp: 2;
