@@ -136,7 +136,7 @@
       tmp_data = {
         filterText:data.data.themes[i].themeName,
         filterValue:data.data.themes[i].themeID
-      }
+      };
       newdata.push(tmp_data);
     }
     var themes = [{allowMultiSelect:0,filterType:5,item:newdata,title:"主题",sortNumber:0}];

@@ -122,6 +122,11 @@
 
 	//数据加载部分
 	function list(result) {
+		//curList
+		var strCur = $('#curList').html();
+		var curList = ejs.render(strCur,result);
+		$('.hotel_list').append(curList);
+
 		var str = $('#templateList').html();
 		var hotels = ejs.render(str, handleData(result));
 		$('.hotel_list').append(hotels);

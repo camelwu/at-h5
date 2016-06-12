@@ -98,6 +98,37 @@
 <script id="title" type="text/template">
   <%= totelHotelCount %>
 </script>
+<!--选中的li-->
+<script id="curList" type="text/template">
+  <li data-hotelId="<%= data.selectedHotel.hotelID %>" class="cur">
+    <div>
+      <img class="img" src=<%= data.selectedHotel.hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
+      <article class="message">
+        <h3><%= data.selectedHotel.hotelNameLocale %></h3>
+        <p>
+          <% if(data.selectedHotel.hotelReviewScore && data.selectedHotel.hotelReviewScore!=0){ %>
+          <span class="score"><%= data.selectedHotel.hotelReviewScore %>.0</span>分&nbsp;
+          <% } %>
+          <% if(data.selectedHotel.hotelReviewCount && data.selectedHotel.hotelReviewCount != 0){ %>
+          <i><%= data.selectedHotel.hotelReviewCount %>人点评</i>
+          <% } %>
+        </p>
+        <p class="equipment clearfix">
+          <span><%= data.selectedHotel.starRating %></span>
+          <!--<span class="park"></span>-->
+          <!--<span class="car"></span>-->
+        </p>
+        <p class="address"><%= data.selectedHotel.city %>（<%= data.selectedHotel.location %>）</p>
+        <div class="price">
+          <span class="money"><%= data.selectedHotel.additionalPrice %></span>
+          <span class="dollar">￥</span>
+          <span class="add">+</span>
+        </div>
+      </article>
+    </div>
+    <i></i>
+  </li>
+</script>
 <!--list-->
 <script id="templateList" type="text/template">
   <% for(var i=0;i<data.hotels.length;i++) { %>
