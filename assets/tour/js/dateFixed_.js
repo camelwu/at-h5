@@ -405,6 +405,9 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                     dateStr = tourEle[fg].querySelector('.content3_CheckInDate').value + 'T00:00:00';
                     temp.tourID = id;
                     temp.travelDate = dateStr;
+                    if(tourData.hasOwnProperty("tours") && tourData.tours.length>0) {
+                      temp.tourSession = tourData.tours[fg].tourSession;
+                    }
                     tours.push(temp);
                 } else {
                     temp.tourID = id;

@@ -772,7 +772,7 @@
       <p class="tour_productinfo">
         <span class="productName"><%=packageName%></span><span class="productCode">(产品编号 <%=bookingRefNo%>)</span>
       </p>
-      <i class="tourdetail_icon"></i>
+      <a href="../scenic/scenic_detail.html?packageID=<%=packageID%>"><i class="tourdetail_icon"></i></a>
     </div>
     <div class="tour_productinfo tour_ticketinfo">
       <p>使用日期：<%=vlm.Utils.format_date(tours[0].travelDate,"Ymd")%> <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%><%=TourTimer[tours[0].tourSession]%></p>

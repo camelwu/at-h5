@@ -448,6 +448,17 @@ a.hotel_detail_pic{
     margin-top: 0.32rem;
     background: #fff;
 }
+.hotel_detail_list  li .d-icon1{
+    background: url(../../images/ui/icon_common.png) no-repeat;
+    width: .2rem;
+    height: .28rem;
+    position: absolute;
+    right:0.28rem;
+    top: 50%;
+    margin-top: -.11rem;
+    background-position: -1.13rem -.63rem;
+    background-size: 7.9rem 5.13rem;
+}
 .hotel_room_list img.choose{
     width: 0.43rem;
     height: 0.43rem;

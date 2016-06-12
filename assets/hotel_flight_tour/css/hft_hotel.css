@@ -152,7 +152,7 @@ li.cur .h_choose {
 
 .hotel_list .message .address {
     font-size: 0.2rem;
-    width: 3.4rem;
+    width: 2.6rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -318,6 +318,10 @@ li.cur .h_choose {
 .hotel_detail_msg > ul > li.mes2 {
     height: 0.6rem;
     line-height: 0.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    padding-right: 0.28rem;
 }
 
 .hotel_detail_msg li {
@@ -414,7 +418,13 @@ li.cur .h_choose {
     height: 0.4rem;
     line-height: 0.4rem;
 }
-
+.hotel_detail_rooms .slide .lfword p span{
+    width: 60%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
 .hotel_detail_rooms .gray {
     color: #999;
 }
