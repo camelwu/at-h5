@@ -197,14 +197,14 @@
                             id: "content3_CheckInDate",
                             type: "dateTime",
                             cont: "content3_CheckInDate",
-                            startDate: new Date(checkInDate[0], checkInDate[1], checkInDate[2]),
+                            startDate: new Date(checkInDate[0], checkInDate[1]-1, checkInDate[2]),
                             num: 2
                         });
                         var leftDate = new Scroller({
                             id: "content4_CheckInDate",
                             type: "dateTime",
                             cont: "content4_CheckInDate",
-                            startDate: new Date(checkOutDate[0], checkOutDate[1], checkOutDate[2]),
+                            startDate: new Date(checkOutDate[0], checkOutDate[1]-1, checkOutDate[2]),
                             num: 1
                         });
 
@@ -224,7 +224,7 @@
                             id: "content3_CheckInDate",
                             type: "dateTime",
                             cont: "content3_CheckInDate",
-                            startDate: new Date(checkInDate[0], checkInDate[1], checkInDate[2]),
+                            startDate: new Date(checkInDate[0], checkInDate[1]-1, checkInDate[2]),
                             num: 2
                         });
                         break;
@@ -234,7 +234,7 @@
                             id: "content4_CheckInDate",
                             type: "dateTime",
                             cont: "content4_CheckInDate",
-                            startDate: new Date(checkOutDate[0], checkOutDate[1], checkOutDate[2]),
+                            startDate: new Date(checkOutDate[0], checkOutDate[1]-1, checkOutDate[2]),
                             num: 1
                         });
 
@@ -371,7 +371,10 @@
                     var tour = {};
                     tour.TourID = jsonPackage.tours[i].tourID;
                     tour.TravelDate = jsonPackage.tours[i].travelDate;
-                    tour.TourSession = "None";
+                    if(jsonPackage.tours[i].hasOwnProperty("tourSession")) {
+                      tour.TourSession = jsonPackage.tours[i].tourSession;
+                    }
+                    //tour.TourSession = "None";
                     Tour.push(tour);
                     Parmeters.Parameters.Tours = Tour;
                 }
