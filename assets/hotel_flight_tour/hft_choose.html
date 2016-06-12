@@ -163,7 +163,7 @@
                 </div>
                 <i></i>
             </div>
-              <ul class="roomUl cut"></ul>
+              <ul class="<%= hotelInfo["rooms"].length>2?'roomUl cut':'roomUl'%>"></ul>
             <%if(hotelInfo["rooms"].length>=3){%>
                 <div class="check-more-room">查看更多房型<span class="letter-space">(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
                 <% }%>
