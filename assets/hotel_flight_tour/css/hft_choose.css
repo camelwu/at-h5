@@ -401,9 +401,15 @@ body {
 }
 
 .hotelRightPart h3 {
-    white-space: nowrap;
+    /*多行文本溢出*/
     overflow: hidden;
     text-overflow: ellipsis;
+    /*db兼容IE11，IE浏览器会忽略display: -webkit-box;*/
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
     font-weight: 300;
     color: #000;
     margin-bottom: .1rem;
