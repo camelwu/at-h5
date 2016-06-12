@@ -304,12 +304,16 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             });
         },
 
+        //是否显示加床项
         addBedShowOrHide=function(target){
           var adultNumValue =parseInt(target.parent().parent().parent().find(".adult-people-number").html());
           var childNumValue =parseInt(target.parent().parent().parent().find(".child-number").html());
 
           if(adultNumValue>=2 && childNumValue>0){
             target.parent().parent().siblings(".spenumbList").show();
+            $(".hotelInfo_numb_people .bedList b").on("click",function(){
+                 $(this).toggleClass("ico_select noselect");
+            })
           }
           else{
             target.parent().parent().siblings(".spenumbList").hide();
@@ -332,6 +336,8 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             } else {
                 return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="'+childAgeMin+'-'+childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
             }
+
+
         },
         addNewRoomHtml = function (i, minAdultNum) {
           ;
@@ -360,7 +366,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 if (!onlyForAdult) {
                     var temChildNum = parseInt(temEle.querySelector('.child-number').innerHTML);
                     var extraChild = temEle.querySelector('.extraChild');
-                    var childChooseParent = temEle.querySelectorAll('.numbList');
+                    var childChooseParent = temEle.querySelectorAll('.spenumbList');
                     if (temAdultNum == 1 && temChildNum == 1) {
                         childWithBed.push(temEle.querySelector('input').value);
                     } else if (temAdultNum == 1 && temChildNum == 2) {
@@ -370,14 +376,14 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                     if (temAdultNum == 2 || temAdultNum == 3) {
                         for (var s = 0; s < childChooseParent.length; s++) {
                             var ty = childChooseParent[s];
-                            var tt = ty.querySelector('.icon.noselect');
-                            if (temChildNum == 1) {
+                            var tt = $(ty).children().find('b');
+                            if (temChildNum == 1 && tt!=null) {
                                 if (tt.className.indexOf('ico_select') > -1) {
                                     childWithBed.push(ty.parentNode.querySelector('input').value);
                                 } else {
                                     childWithOutBed.push(ty.parentNode.querySelector('input').value);
                                 }
-                            } else if (temChildNum == 2) {
+                            } else if (temChildNum == 2 && tt!=null) {
                                 childWithBed.push(temEle.querySelectorAll('input')[0].value);
                                 childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
                             }
