@@ -166,7 +166,7 @@
       Param.PriceSortType = obj.sortTypes[0] == 1?"HighToLow":"LowToHigh";
       Param.ThemeID = obj.filters[0].FilterValues[0];
       console.log(Param);
-      tAjax("",Param,"0087","3",Method["m_scenic_listCallback"]);
+      tAjax("",Param,"40100007","3",Method["m_scenic_listCallback"]);
     };
     if (footer) {
       footer.data = f_data;
