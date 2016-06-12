@@ -439,8 +439,12 @@ body {
 
 .roomUl {
     padding: 0 .28rem;
+    height:auto
 }
-
+.cut{
+  height:2.38rem;
+  overflow: hidden;
+}
 .roomUl li, .tourOuter li {
     list-style: none;
     overflow: hidden;

@@ -163,32 +163,7 @@
                 </div>
                 <i></i>
             </div>
-            <ul class="roomUl">
-                <% hotelInfo["rooms"].forEach(function(room, item){
-                if(item > 1) {return}; %>
-                    <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
-                        <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
-                            <%if(hftChoose['urlParseObj']['selectedRoomId']){%>
-                                <%if(room['roomID']==hftChoose['urlParseObj']['selectedRoomId']){hftChoose['roomPriceInfo']=room%>
-                                    <button class="hasChooseButton">已选择</button>
-                                    <% }else{%>
-                                        <button class="noChooseButton">选择</button>
-                                        <% }%>
-                                            <% }else{%>
-                                                <% if(item==0){hftChoose['roomPriceInfo']=room%>
-                                                    <button class="hasChooseButton">已选择</button>
-                                                    <%}else{%>
-                                                        <button class="noChooseButton">选择</button>
-                                                        <% }%>
-                                                            <%}%>
-                        </div>
-                        <div class="roomName">
-                            <p><%= room['roomName'] %></p>
-                            <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
-                        </div>
-                    </li>
-                    <% }) %>
-            </ul>
+              <ul class="roomUl cut"></ul>
             <%if(hotelInfo["rooms"].length>=3){%>
                 <div class="check-more-room">查看更多房型<span class="letter-space">(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
                 <% }%>
@@ -208,23 +183,21 @@
         <span class="preserve">立即预订</span>
     </div>
 </script>
-<script id="template_room" type="text/template">
-    <% hotelInfo["rooms"].forEach(function(room, item){%>
-        <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
-            <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
-                    <%if(room['roomID']==hftChoose['selectedRoomId']){%>
-                        <button class="hasChooseButton">已选择</button>
-                        <% }else{%>
-                            <button class="noChooseButton">选择</button>
-                         <% }%>
-            </div>
-            <div class="roomName">
-              <p><%= room['roomName'] %></p>
-              <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
-            </div>
-        </li>
-        <% }) %>
+
+<script id="template_roomList" type="text/template">
+  <% hotelInfo["rooms"].forEach(function(room, item){%>
+  <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
+    <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
+      <button class="<%= item==0?'hasChooseButton':'noChooseButton' %>"><%= item==0?'已选择':'选择' %></button>
+    </div>
+    <div class="roomName">
+      <p><%= room['roomName'] %></p>
+      <p><span><%= room['includedBreakfast'] == 1 ? '含早' : '不含早' %></span></p>
+    </div>
+  </li>
+  <%})%>
 </script>
+
 <script id="template_date_session" type="text/template">
     <div class="confirm">
         <span>取消</span>
