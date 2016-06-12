@@ -15,7 +15,7 @@ input {
 .icon {
   background-image: url(../../images/ui/icons.png);
   background-repeat: no-repeat;
-  background-size: 397px 118px;
+  background-size: 4.5rem 2.8rem;
   display: inline-block;
 }
 
@@ -332,17 +332,35 @@ input.inp_cage:-ms-input-placeholder {
 }
 
 .spenumbList {
-    border-top: 1px solid #e6e6e6!important;
+  clear: both;
+    margin-left: 0 !important;
+    /*border-top: 1px solid #e6e6e6!important;*/
+
 }
 
+.spenumbList  .bedList{
+  width: 100%;
+  margin-top: .3rem;
+}
+.spenumbList  .bedList i{
+   margin-left:1.7rem;
+  padding-left: .3rem;
+   width: 100%;
+   display: block;
+   border-top: 0.01rem solid #ddd;
+   height: 1rem;
+   line-height: 1rem;
+}
+
+
 .noselect {
-    display: block;
-    position: absolute;
-    right: .1rem;
-    top: .24rem;
-    width: .42rem;
-    height: .42rem;
-    background-position: 59% 11.5%;
+   display: block;
+   position: absolute;
+   right: .1rem;
+   top: .24rem;
+  width: .42rem;
+  height: .5rem;
+  background-position: 66% 16.5%;
 }
 
 .ico_select {

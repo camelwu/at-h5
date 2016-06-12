@@ -1093,7 +1093,9 @@ section.hotelInfo_numb_room .title {
 .hotelInfo_numb_people .extraChild {
   border-top: 1px solid #e6e6e6;
   margin-top: 0.2rem;
-  padding: 0.24rem 0.25rem 0 0.2rem;
+  /*padding: 0.24rem 0.25rem 0 0.2rem;*/
+  height: .5rem;
+  line-height: .5rem;
 }
 
 .hotelInfo_numb_people .numbList .n_tit, .hotelInfo_numb_people .bedList {
@@ -1148,12 +1150,13 @@ section.hotelInfo_numb_room .title {
   margin: 0;
   overflow: hidden;
   position: relative;
+  display: none;
 }
 
 .hotelInfo_numb_people .spenumbList b {
   position: absolute;
-  right: 0;
-  top: 0;
+  right:.3rem;
+  top:.3rem
   width: 0.48rem;
   height: 0.46rem;
   background-image: url(../../images/ui/icon_common.png);
