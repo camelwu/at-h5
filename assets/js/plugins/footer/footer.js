@@ -192,7 +192,6 @@ var footer = (function () {
               }
             }
           }
-
         });
         // 遮罩层|返回按钮点击，包括隐藏
         on(document, 'click', function (event) {
