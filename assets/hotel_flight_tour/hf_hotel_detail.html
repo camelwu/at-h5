@@ -48,7 +48,7 @@
             <!--</dl>-->
         </div>
         <!--score-->
-        <ul class="jhf-ul jhf-score jhf_score">
+        <ul class="jhf-ul jhf_score">
             <!--<li class="jpr"><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评<i class="arrow"></i></li>-->
             <!--<li><i></i>One Orchard Road Singapore Singapore Singapore 238824</li>-->
             <!--<li>三星级<span class="wifi"></span><span class="park"></span><i class="arrow"></i></li>-->
@@ -114,10 +114,17 @@
 </script>
 <!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
-    <% if(!hotelReviewScore == 0 ){ %>
-    <li class="jpr" id="h_reviews"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<i class="arrow"></i></li>
+    <% if( hotelReviewScore!=0 || hotelReviewCount!=0){ %>
+    <li class="jpr li_first" id="h_reviews">
+        <% if( hotelReviewScore!=0 ){ %>
+        <span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/
+        <% } %>
+        <% if( hotelReviewCount!=0 ){ %>
+        <%= hotelReviewCount %>人点评
+        <% } %>
+        <i class="arrow"></i></li>
     <% } %>
-    <li><%=hotelNameLocale%></li>
+    <li class="last_child"><%=hotelNameLocale%></li>
 </script>
 <script id="jhf_star" type="text/template">
     <li id="h_star"><%=starRating%>星级<% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span>--><i class="arrow"></i></li>

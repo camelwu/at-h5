@@ -451,6 +451,12 @@ var hftChoose = {
       shadowEle.style.display = "none";
       priceTotalI.className = 'detail_fare';
       priceDetailInfo.style.bottom = '-126%';
+      if(that.type == 2){
+        chooseDateOuter = document.querySelector('.chooseDate');
+        chooseDateOuter.style.transition = 'all 400ms ease-in';
+        chooseDateOuter.style.webkitTransition = 'all 400ms linear';
+        chooseDateOuter.style.bottom = '-126%';
+      }
     });
   },
 

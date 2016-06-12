@@ -186,10 +186,10 @@ a:link {
   padding-right: 1.5rem;
   color: #fff;
 }
-.jhf_score li:nth-child(1){
+.jhf_score li.li_first{
   background: #fff;
 }
-.jhf_score li:nth-child(2){
+.jhf_score li.last_child{
   position: relative;
   z-index: 20;
 }
@@ -238,6 +238,9 @@ a:link {
   background-position: -1.13rem -0.63rem;
   background-size: 7.9rem 5.13rem;
 }
+.jhf-ul li.li_first .arrow{
+  right: 0.28rem;
+}
 .jhf-ul li:nth-of-type(1) .arrow {
   margin-top: -0.12rem;
 }
@@ -261,7 +264,7 @@ a:link {
   color: #55bfb7;
 }
 
-.jhf-score li:nth-child(2) {
+.jhf-ul.jhf_score li.last_child {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
