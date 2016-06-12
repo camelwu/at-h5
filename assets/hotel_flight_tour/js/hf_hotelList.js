@@ -191,11 +191,13 @@
                 var str = $('#title').html();
                 var title = ejs.render(str, data);
                 $('.header h3 span').html(title);
+
                 //curList
                 var strCur = $('#curList').html();
-                var curList = ejs.render(strCur,result);
+                var curList = ejs.render(strCur, result);
                 $('.hotel_list').append(curList);
                 //list
+
                 var str = $('#templateList').html();
                 var hotels = ejs.render(str, handleData(result));
                 if (more) {
@@ -228,8 +230,9 @@
                 $.alerts.alert(result.message);
             }
         },
-        check:function(){
-          //$("#hj_jList li:nth-child(1)") .addClass("cur");
+
+        check: function () {
+            $("#hj_jList li:nth-child(1)").addClass("cur");
         },
         updateMoreStatus: function (data) {
             this.currentPage = data.pageNo;
