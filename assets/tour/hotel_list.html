@@ -134,7 +134,7 @@
             <img src="../images/loading_def_small.png" real-src="<%= hotels[i].hotelPictureURL %>" class="ho_img" />
             </div>
         <div class="ho_infor">
-            <p class="name"><%= hotels[i].hotelGenInfo.hotelName %></p>
+            <p class="name"><%=hotels[i].hotelGenInfo.hotelNameLocale %>(<%= hotels[i].hotelGenInfo.hotelName %>)</p>
             <div class="grade">
                 <p class="score"><span><i><%= hotels[i].hotelGenInfo.hotelReviewScore %>.0</i>分</span><%= hotels[i].hotelGenInfo.hotelReviewCount %>人点评</p>
                 <span><%= starList(hotels[i].starRating) %></span>
