@@ -235,7 +235,7 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
-      window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
+      window.location.href = "index.html?type=" + that.type;
     });
     this.addHandler(iconBack, 'click', function () {
       window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
