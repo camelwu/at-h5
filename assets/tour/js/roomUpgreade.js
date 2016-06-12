@@ -203,4 +203,22 @@ var roomUpGrade = {
 	}
 };
 roomUpGrade.init();
+//星级格式化
+function star(stars){
+	switch (stars){
+		case "2 stars":
+			stars = "二星级";
+			break;
+		case "3 stars":
+			stars = "三星级";
+			break;
+		case "4 stars":
+			stars = "四星级";
+			break;
+		case "5 stars":
+			stars = "五星级";
+			break;
+	}
+	return stars;
+}
 

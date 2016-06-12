@@ -100,8 +100,9 @@
 </script>
 <script id="tpl13" type="text/template">
     <%  var imgs=tourInfos, htls=roomUpGrade.resetData(hotels[0]);imgl = imgs.length; %>
+    <%  console.log(typeof htls.hotelGenInfo.starRatingName) %>
     <li>
-        <p class="d-score"><%= htls.starRating %>星级</p>
+        <p class="d-score"><%= star(htls.hotelGenInfo.starRatingName) %></p>
         <a href="<%= htls.moreInfoLink %>" class="d-icon1"></a>
     </li>
     <li class="data">
