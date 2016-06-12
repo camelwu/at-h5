@@ -327,7 +327,7 @@
     <!--模板酒店开始-->
     <script id="orderHotel" type="text/template">
       <div class="hotel_wrap">
-        <h3><%=hotelNameLocale%><%=hotelName%></h3>
+        <h3><%=hotelNameLocale%>(<%=hotelName%>)</h3>
         <ul>
           <li class="hotel_check_wrap">
             <span><%=departDate.substring(5,10).replace('-','月')%>日 - <%=returnDate.substring(5,10).replace('-','月')%>日</span>
@@ -346,9 +346,22 @@
       </div>
     </script>
     <!--模板酒店结束-->
-
     <!--模板景点开始-->
-    <script id="orderTour" type="text/template"></script>
+    <script id="orderTour" type="text/template">
+      <ul class="tourOuter">
+        <% tours.forEach(function(array_){%>
+        <li>
+          <h3 class="tour-list-title"><%=array_.tourName%></h3>
+          <%if(array_.tourType!="1"){%>
+          <p>
+            <span class="month"><%=hftTool.resetMonth(array_.travelDate)%></span>
+            <span class="timePart"><%=hftTool.resetSession(array_.enumvalue)%></span>
+          </p>
+          <%}%>
+        </li>
+        <%})%>
+        <ul>
+</script>
     <!--模板景点结束-->
 
     <!--模板明细开始-->

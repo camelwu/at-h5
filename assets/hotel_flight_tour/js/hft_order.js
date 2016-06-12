@@ -1,5 +1,36 @@
-
-var hftOrder = (function () {
+var hftTool ={
+  resetMonth:function () {
+  var array = [], arg = arguments[0];
+  array = arg.split('-');
+  array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
+  array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
+  return array[1] + '月' + array[2] + '日';
+},
+  resetSession:function() {
+   var dataStr = arguments[0],result = "";
+   switch (dataStr) {
+     case "0":
+       result = "上午";
+       break;
+     case "1":
+       result = "下午";
+       break;
+     case "2":
+       result = "晚上";
+       break;
+     case "3":
+       result = "全天";
+       break;
+     case "4":
+       result = "全天";
+       break;
+     default :
+       void (0);
+   }
+   return result;
+ }
+}
+;(function () {
   "use strict";
   //加载动画
   function package_detail() {
@@ -10,7 +41,6 @@ var hftOrder = (function () {
     });
   };
   package_detail();
-
   var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
   console.log(hftFlightHotelTourInfo);
   var hftCreateOrderPara=JSON.parse(sessionStorage.hftCreateOrderPara);
@@ -33,7 +63,6 @@ var hftOrder = (function () {
     //酒店详情
     var hotelstr=$('#orderHotel').html();
     console.log(hftCreateOrderPara)
-
     var hoteldet = ejs.render(hotelstr, hftCreateOrderPara)
     $('#hftHotelTab').html(hoteldet);
 
@@ -175,20 +204,19 @@ var hftOrder = (function () {
       }
 
       if(freetype == 2){
-
         //追踪信息
         Parmeters.Parameters.track=hftCreateOrderPara.track;
-
         //景点信息
-        var tours=[];
-        for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
+        console.log(hftCreateOrderPara)
+        console.log(hftFlightHotelTourInfo)
+        var tours=[]; /*请求景点的参数*/
+       /* for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
         {
           var sceWrap=hftFlightHotelTourInfo.tours[i];
           var scenic={};
           scenic.tourID=sceWrap.tourID;
           scenic.travelDate =null;
           scenic.tourSession=null;
-
           if(sceWrap.tourType!=1){
             scenic.travelDate=sceWrap.travelDates[0];
             var sceArr=[];
@@ -203,9 +231,19 @@ var hftOrder = (function () {
             scenic.tourSession=sceArr[0].tourSession;
           }
           tours.push(scenic);
+        }*/
+        for(var i=0;i<hftCreateOrderPara.tours.length; i++){
+          var scenic={},sceWrap=hftCreateOrderPara.tours[i];
+          scenic.tourID=sceWrap.tourID;
+          scenic.travelDate =null;
+          scenic.tourSession=null;
+          if(sceWrap.tourType!="1"){
+            scenic.travelDate =sceWrap.travelDate;
+            scenic.tourSession = sceWrap.enumvalue;
+          }
+          tours.push(scenic);
         }
         Parmeters.Parameters.tours=tours;
-
         //hft请求码
         Parmeters.foreEndType = 3;
         Parmeters.code = 60100010;
@@ -214,12 +252,10 @@ var hftOrder = (function () {
         Parmeters.Parameters.track={
           "browserType": "",
            "deviceID": vlm.getDeviceID()
-        }
+        };
         Parmeters.foreEndType = 3;
         Parmeters.code = 50100004;
       }
-
-
       //房间信息
       Parmeters.Parameters.RoomDetails=hftCreateOrderPara.roomDetails;
 
@@ -233,9 +269,6 @@ var hftOrder = (function () {
       }
 
       var birthDay=[];//重新计算小孩年龄
-
-
-
       for(var i=0;i<=Parmeters.Parameters.RoomDetails.length-1;i++){
 
         if(Parmeters.Parameters.RoomDetails[i].hasOwnProperty("childWithOutBed")) {
@@ -342,8 +375,8 @@ var hftOrder = (function () {
     vlm.loadend();
     if(json.success)
     {
+       console.log(json.data.bookingRefNo)
       if( freetype == 2 ){
-
         window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
       }else{
         window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
@@ -352,14 +385,6 @@ var hftOrder = (function () {
       jAlert(json.message);
     }
   }
-
-  function resetMonth () {
-    var array = [], arg = arguments[0];
-    array = arg.split('-');
-    array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
-    array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
-    return array[1] + '月' + array[2] + '日';
-  }
-  return {resetMonth:resetMonth}
 })();
+
 

@@ -523,7 +523,7 @@
          ×@param  startDate  2016-06-24   endDate   option
          **/
         disableDateFrom: function (startDate, endDate) {
-            var dayDate = $(".calendar").find("a[data-day]");//2016-06-07修改，从ID：date-rangeDate变成class：calendar
+            var dayDate = $("#date-rangeDate").find("a[data-day]");
             var startIndex = null;
             var endIndex = null;
             var temp, tempDate, startDateValue, endDateValue;

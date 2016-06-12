@@ -325,7 +325,7 @@ var footer = (function() {
 					var a = d[i], item = a.item, li = '';
 					css = i == 0 ? ' class="cur"' : '';
 					cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
-					s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : s;
+					s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : 1;
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + a.filterType + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];

@@ -540,7 +540,7 @@ i, em {
 .user_content {
   position: absolute;
   background-color: white;
-  top: .88rem;
+  top: 0.88rem;
   right: 0;
   bottom: 0;
   left: 0;
@@ -1721,7 +1721,9 @@ a.foot-homes, a.foot-users {
 
 
 /*填写姓名说明页结束*/
-
+#shade{
+  display: block;
+}
 
 
 

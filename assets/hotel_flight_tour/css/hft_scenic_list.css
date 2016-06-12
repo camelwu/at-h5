@@ -166,7 +166,11 @@ li.scenic_detile_project_first{
   font: 700 .2rem/.6rem "FZLTXHK";
   color:#FFBF4B
 }
-
+.loadMore{
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+}
 /*景点详情页开始*/
 .header_scenic{
   height: .66rem;
@@ -402,7 +406,8 @@ li.scenic_detile_project_first{
 }
 li.scenic_height1, li.scenic_height2, li.scenic_height3{
   height: 2.4rem;
-  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
   margin-top: .4rem;
 }
 .scenic_content_notes i{

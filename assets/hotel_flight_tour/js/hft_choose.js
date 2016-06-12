@@ -62,7 +62,7 @@ var hftChoose = {
     var backI = document.querySelector('.top_info i'), changeFlight = document.querySelector('.moreFlight'), moreHotel = document.querySelector('.moreHotel'), that = this;
     var flightDetailI = document.querySelector('.flightOuter'), hotelDetail = document.querySelector('.hotelImgInfo');
     var priceTotal = document.querySelector('.priceTotal'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.header_back');
-    var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo');
+    var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo'),temArray = [];
     var roomUl = document.querySelector('.roomUl'), checkMoreData = document.querySelector('.check-more-room'), shadowEle = document.querySelector('.shadow'), storage = window.sessionStorage;
     that.curChosenTourInfo = {tourId:'', chosenDate:''};
     if (that.type == 2) {
@@ -235,7 +235,7 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
-      window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
+      window.location.href = "index.html?type=" + that.type;
     });
     this.addHandler(iconBack, 'click', function () {
       window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
@@ -340,6 +340,7 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
+
         hftHotelDetailPara.tours = toursArray;
         hftHotelDetailPara.packageID = that.initParaObj.packageID;
       } else {
@@ -353,7 +354,7 @@ var hftChoose = {
       }, 500);
     });
     this.addHandler(preserve, 'click', function () {
-      var tempTours = null, hftCreateOrder = {}, toursArray = [];
+      var tempTours = null, hftCreateOrder = {}, toursArray = [], tourLis = [];
       hftCreateOrder = {
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
@@ -375,16 +376,38 @@ var hftChoose = {
       };
       if (that.type == 2) {
         tempTours = that.curData.tours;
-        tempTours.forEach(function (array) {
+        tourLis = document.querySelectorAll('.tourOuter li');
+        tourLis = [].slice.call(tourLis);
+        tourLis.forEach(function(item){
+             var tourName =item.querySelector('h3').innerHTML, button = null, travelDate = null,temOuterObj = {};
+             temOuterObj.tourID = item.getAttribute('data-tour-id');
+             temOuterObj.tourName = tourName;
+             temOuterObj.tourType = item.getAttribute('data-tour-type');
+          if(item.className =="tourList"){
+            button = item.querySelectorAll('button');
+            travelDate = item.querySelector('span').getAttribute('data-date');
+            temOuterObj.travelDate = travelDate;
+            button = [].slice.call(button);
+            button.forEach(function(item_){
+              if(item_.className == "active"){
+                temOuterObj.enumvalue =  item_.getAttribute('data-enumvalue');/*上下午*/
+              }
+            });
+          }
+           temArray.push(temOuterObj)
+        });
+        console.log(temArray)
+        /*tempTours.forEach(function (array) {
           var temObj = {};
           temObj['tourID'] = array['tourID'];
           temObj['travelDate'] = array['selectTravelDate'];
           temObj['tourSession'] = array['tourSessions'];
           temObj['tourName'] = array['tourName'];
           temObj['tourType'] = array['tourType'];
+          temObj['selectedSessions'] = [];
           toursArray.push(temObj);
-        });
-        hftCreateOrder.tours = toursArray;
+        });*/
+        hftCreateOrder.tours = temArray;
         hftCreateOrder.packageID = that.initParaObj.packageID;
       }
       that.createOrderPara = hftCreateOrder;

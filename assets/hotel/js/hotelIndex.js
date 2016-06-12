@@ -139,7 +139,7 @@
             //返回按钮
             $(".header_back").click(function () {
                 //清楚搜索记录
-                sessionStorage.removeItem("hotelStorage12345");
+                // sessionStorage.removeItem("hotelStorage12345");
                 history.go(-1);
             });
 
