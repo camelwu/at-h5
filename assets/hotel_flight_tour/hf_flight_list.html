@@ -57,7 +57,7 @@
     <!--</div>-->
     <!--<div class="total_time_info">-->
     <!--<span class="time_hour_minute">11h30m</span>-->
-    <!--<img src="../images/ui/change-arrow.png">-->
+    <!--<div class="arrow_word"></div>-->
     <!--<span class="air_port_word">莫斯科</span>-->
     <!--</div>-->
     <!--<div class="end_time_info">-->
@@ -138,7 +138,7 @@
             <div class="total_time_info">
               <span class="time_hour_minute"><%= selectedFlight.segmentsLeaveTotalTravelTimeString%></span>
               <% if(selectedFlight.directFlight==1){ %>
-              <img src="../images/ui/change-arrow.png">
+              <div class="arrow_word"></div>
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
@@ -170,7 +170,7 @@
             <div class="total_time_info">
               <span class="time_hour_minute"><%=selectedFlight.segmentsReturnTotalTravelTimeString%></span>
               <% if(selectedFlight.directFlight==1){ %>
-              <img src="../images/ui/change-arrow.png">
+              <div class="arrow_word"></div>
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
@@ -215,7 +215,7 @@
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeaveTotalTravelTimeString%></span>
               <% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %>
-              <img src="../images/ui/change-arrow.png">
+              <div class="arrow_word"></div>
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
@@ -247,7 +247,7 @@
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturnTotalTravelTimeString%></span>
               <% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %>
-              <img src="../images/ui/change-arrow.png">
+              <div class="arrow_word"></div>
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
