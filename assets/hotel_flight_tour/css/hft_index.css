@@ -500,11 +500,13 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .backtrip span:first-child{
   display: inline-block;
-  background-position: 8.5% 52.5%;
   position: absolute;
   left: 0;
-  width: .32rem;
-  height: .32rem;
+  width: .34rem;
+  height: .34rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -3.372rem -1.519rem;
 }
 .time_airport .go .go_info{
   position: relative;
@@ -565,13 +567,15 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   height: .24rem;
   margin: 0 auto;
 }
-.total_time_info .arrow_time {
+.total_time_info .arrow_word {
   display: block;
-  position: relative;
-  margin: 0 auto 0;
-  width: 1.7rem;
-  height: .1rem;
-  background-position: 10% 69%;
+  margin: 0 auto;
+  width: 1.70rem;
+  height: 0.24rem;
+  background: url(../../images/ui.1.0/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -3.38rem -4.44rem;
 }
 .total_time_info .air_port_word{
   display: inline-block;
@@ -644,7 +648,10 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   top: -.02rem;
   width: .42rem;
   height: .42rem;
-  background-position: 72% 53%;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-repeat: no-repeat;
+  background-size: 7.90rem 7.83rem;
+  background-position: -4.73rem -1.46rem;
 }
 /*   列表底部筛选排序    */
 .list_footer{
