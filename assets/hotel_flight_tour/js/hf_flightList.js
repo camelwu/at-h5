@@ -130,15 +130,18 @@ var flight_list = {
 				var newL = data.selectedAirway?data.airways.unshift(data.selectedAirway):null;
 				$('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
 				$('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
+        $('#fligtList').html('');
 				//航班列表选中项
-				var str2 = $("#flightCur").html();
-				var flightCur = ejs.render(str2, data);
-				$('#fligtList').append(flightCur);
+        if(data.selectedFlight){
+          var str2 = $("#flightCur").html();
+          var flightCur = ejs.render(str2, data);
+          $('#fligtList').append(flightCur);
+        }
 				//航班列表
 				var str1 = $("#tplFlightList").html();
 				var flightList = ejs.render(str1, data);
 				$('#fligtList').append(flightList);
-        flight_list.delayLoadImage()
+        flight_list.delayLoadImage();
 				if (!filterSign) {
 					filterSign = true;
 					bottom(data);
