@@ -122,6 +122,9 @@ var flightList = {
 		var flightListBack = function(ret) {
       var json = ret, that = flightList;
       var data = json.data;
+      var tmp = json.data.airways,tmpto=json.data.selectedAirway;
+      tmp.unshift(tmpto);
+      data.airways = tmp;
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
         $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
         $('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
@@ -130,6 +133,7 @@ var flightList = {
         $('.data_info').removeClass('hidden');
         $('.header').removeClass('hidden');
 
+        $("#fligtList").html('');
         //航班列表选中项
         var str2 = $("#flightCur").html();
         var flightCur = ejs.render(str2, data);
@@ -138,7 +142,7 @@ var flightList = {
         var str1 = $("#tplFlightList").html();
         var flightListStr = ejs.render(str1, data);
         $('#fligtList').append(flightListStr);
-        that.delayLoadImage()
+        that.delayLoadImage();
         if (!filterSign) {
           filterSign = true;
           bottom(data);
