@@ -21,19 +21,15 @@ var hftChoose = {
     this.addHandler(target, eventType, handle);
   },
 
-  tAjax: function (questUrl, data, Code, ForeEndType, callBack, loadMoreSign) {
+  tAjax: function (questUrl, data, Code, ForeEndType, callBack) {
     var that = this, dataObj =
     {
       Parameters: data,
       ForeEndType: ForeEndType,
       Code: Code
     };
-    questUrl = questUrl ? questUrl : that.requestUrl;
-    if (loadMoreSign) {
-      vlm.loadJson("", JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
-    } else {
-      vlm.loadJson("", JSON.stringify(dataObj), callBack);
-    }
+    //questUrl = questUrl ? questUrl : "";
+    vlm.loadJson("", JSON.stringify(dataObj), callBack);
   },
 
   testLogin: function () {
@@ -48,6 +44,7 @@ var hftChoose = {
     }, 500);
     /*  }*/
   },
+
   getCurrentStyle: function (node) {
     var style = null;
     if (window.getComputedStyle) {
@@ -216,18 +213,13 @@ var hftChoose = {
     if (checkMoreData) {
       if (that.getCurrentStyle(checkMoreData).display == "block") {
         this.addHandler(checkMoreData, 'click', function () {
-          var text = this.innerText, te = {}, tempStr = '', output = '', temNum = 0;
-          tempStr = $("#template_room").html();
+          var text = this.innerText, te = {}, temNum = 0, roomUl = document.querySelector('.roomUl');
           te.hotelInfo = {};
           if (text.indexOf('查看') > -1) {
-            te.hotelInfo.rooms = that.curData.hotelInfo.rooms;
-            output = ejs.render(tempStr, te);
-            $(".roomUl").eq(0).html(output);
+            roomUl.className = "roomUl";
             this.innerHTML = '收起更多房型<span class="check-more-up"></span>';
           } else if (text.indexOf('收起') > -1) {
-            te.hotelInfo.rooms = that.curData.hotelInfo.rooms.slice(0, 2);
-            output = ejs.render(tempStr, te);
-            $(".roomUl").eq(0).html(output);
+            roomUl.className = "roomUl cut";
             temNum = that.curData.hotelInfo.rooms.length - 2;
             this.innerHTML = '查看更多房型<span class="letter-space">(' + temNum + ')</span><span class="check-more-down"></span>';
           }
@@ -396,17 +388,6 @@ var hftChoose = {
           }
            temArray.push(temOuterObj)
         });
-        console.log(temArray)
-        /*tempTours.forEach(function (array) {
-          var temObj = {};
-          temObj['tourID'] = array['tourID'];
-          temObj['travelDate'] = array['selectTravelDate'];
-          temObj['tourSession'] = array['tourSessions'];
-          temObj['tourName'] = array['tourName'];
-          temObj['tourType'] = array['tourType'];
-          temObj['selectedSessions'] = [];
-          toursArray.push(temObj);
-        });*/
         hftCreateOrder.tours = temArray;
         hftCreateOrder.packageID = that.initParaObj.packageID;
       }
@@ -432,18 +413,17 @@ var hftChoose = {
     });
 
     this.addHandler(roomUl, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement, temRoomId;
+      var e = e || window.event, target = e.target || e.srcElement, temRoomId,tempStringRoom = "",outputStrRoom="";
       if (target.tagName == "BUTTON") {
-        var allButton = this.querySelectorAll('button');
         temRoomId = target.parentNode.parentNode.getAttribute('data-room-id');
         that.selectedRoomId = temRoomId;
         that.createPriceEle(temRoomId);
-        for (var i = 0; i < allButton.length; i++) {
-          allButton[i].innerHTML = allButton[i] == target ? "已选择" : "选择";
-          allButton[i].className = allButton[i] == target ? "hasChooseButton" : "noChooseButton";
-        }
+        tempStringRoom = $("#template_roomList").html();
+        outputStrRoom = ejs.render(tempStringRoom, that.fixRoomOrder(temRoomId));
+        $(".roomUl").eq(0).html(outputStrRoom);
       }
     });
+
     this.addHandler(shadowEle, "click", function(){
       var priceTotalI = document.querySelector('.priceTotal i');
       priceDetailInfo.style.transition = 'all 400ms ease-in';
@@ -478,6 +458,7 @@ var hftChoose = {
     }
 
   },
+
   selectedRoomHandler:function(){
     var data = arguments[0], that = this;
     this.curData = data;
@@ -495,6 +476,7 @@ var hftChoose = {
     }
     return this
   },
+
   renderHandler: function () {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
     if (resultJSON.success == 1 && resultJSON.code == "200") {
@@ -503,6 +485,7 @@ var hftChoose = {
       originAirIds.airwaySetID = resultData.airwaySetID;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
+      that.operationData = resultData;
       that.selectedRoomHandler(resultData).createTags(resultData).delayLoadImage().createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
       $("#status").fadeOut(resultData);
       $("#preloader").delay(400).fadeOut("medium");
@@ -511,6 +494,7 @@ var hftChoose = {
       jAlert(resultJSON.message);
     }
   },
+
   renderHandler_: function () {
     var result = arguments[0], that = hftChoose;
     if (result.code == 200 && result.success == 1) {
@@ -546,6 +530,7 @@ var hftChoose = {
       jAlert(result.message);
     }
   },
+
   noResult:function(){
     $("#status").fadeOut();
     $("#preloader").delay(400).fadeOut("medium");
@@ -689,11 +674,34 @@ var hftChoose = {
     }
     return resultNum;
   },
+
+  fixRoomOrder:function(){
+          console.log(arguments[0])
+         var that = this,allInfoData = that.operationData,roomsData = [], temp = {};
+         var selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
+         roomsData = allInfoData.hotelInfo.rooms;
+         for(var i = 0;i<roomsData.length;i++){
+                  if(roomsData[i].roomID == selectedRoomId){
+                    temp = roomsData[i];
+                    roomsData.splice(i,1)
+                  }
+         }
+       roomsData.unshift(temp);
+       that.operationData.rooms = roomsData;
+       return that.operationData;
+  },
+
   createTags: function () {
-    var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "";
+    var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "", tempStringRoom = "",outputStrRoom = "";
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr, data);
     $(".all_elements").eq(0).html(outputStr);
+    /*房间数据*/
+    tempStringRoom = $("#template_roomList").html();
+    console.log(that.selectedRoomId)
+    outputStrRoom = ejs.render(tempStringRoom, that.fixRoomOrder(that.selectedRoomId));
+    $(".roomUl").eq(0).html(outputStrRoom);
+    /*景点数据*/
     if (that.type == 2) {
       _tempStr = $("#template_tour").html();
       _outputStr = ejs.render(_tempStr, data);
@@ -711,6 +719,7 @@ var hftChoose = {
     });
     return obj;
   },
+
   tourParaObjHandler: function () {
     var tourPaObj = [], data = arguments[0];
     data.tours.forEach(function (array) {

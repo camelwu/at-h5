@@ -10,13 +10,26 @@
 		//获取附近城市列表
 		//获取景点列表
 		var ScenicList = function() {
-			var destCityCode = JSON.parse(localStorage.getItem("searchInfo")).FromCity;
-			var departCityCode = JSON.parse(localStorage.getItem("searchInfo")).ToCity;
+      var searchInfo = JSON.parse(localStorage.getItem("searchInfo"))
+			var destCityCode = searchInfo.FromCity;
+			var departCityCode = searchInfo.ToCity;
+			var departDate = searchInfo.DepartDate;
+			var returnDate = searchInfo.ReturnDate;
+			var AdultNum = searchInfo.AdultNum;
 			var SParameter = {
 				"Parameters" : {
 					"departCityCode" : destCityCode,
-					"destCityCode" : departCityCode
-				},
+					"destCityCode" : departCityCode,
+					"departDate" : departDate,
+					"returnDate" : returnDate,
+          // Android Request Arguments
+          // "pageIndex":"1",
+          // "pageSize":"20",
+          "roomDetails": [{
+            "adult": AdultNum
+          }],
+          "sortType":0
+        },
 				"ForeEndType" : 3,
 				"Code" : "60100002"
 			};
@@ -67,7 +80,7 @@
 			// 添加底部筛选
 			var f_data = {
 				sortTypes : {
-					title : "推荐排序",
+					title : "快速排序",
 					c : "foot_sort",
 					s : 1,
 					type : 1,

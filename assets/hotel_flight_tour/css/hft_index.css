@@ -240,11 +240,15 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
 }
 .child_age_state{
   position: absolute;
-  width: .34rem;
-  height: .34rem;
+  width: .36rem;
+  height: .36rem;
   margin-left: .08rem;
   margin-top: .26rem;
-  background-position: 54% 31.5%;
+  background-position: -4.06rem -1.51rem;
+  display: inline-block;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.9rem 7.83rem;
 }
 .age_state_box{
   position: absolute;
@@ -324,6 +328,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   font-size: .32rem;
   color: #333333;
   margin-right: 15%;text-align: center;
+  padding:0;
 }
 input.inp_cage::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: rgb(153,153,153);;
@@ -463,18 +468,20 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   position: relative;
 }
 .air_tickets_detail li {
-  width: 98%;
+  width: 100%;
   padding-top: .4rem;
   padding-bottom: .2rem;
-  padding-left: .3rem;
-  padding-right: 1rem;
+  /*padding-left: .28rem;*/
+  /*padding-right: 1rem;*/
+
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
 }
 .air_tickets_detail .time_airport {
-  width: 92%;
+  width: 100%;
   float: left;
+  margin-left: .28rem;
 }
 .air_tickets_detail .time_airport .go {
   width: 100%;
@@ -645,7 +652,8 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .cho_gou{
   position: absolute;
-  top: -.02rem;
+  top: 0;
+  right: 0;
   width: .42rem;
   height: .42rem;
   background: url(../../images/ui.1.0/icon_common.png) no-repeat;

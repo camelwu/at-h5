@@ -37,11 +37,8 @@ var data2 = '', roomdata = '';
 		$("#preloader").hide();
 		if (result.success && result.data.hotelInfo.hotelID) {
 			var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
-			//console.log(flightHotelAllData)
-			if (!window.location.search) {
 				flightHotelAllData.hotelInfo = result.data.hotelInfo;
 				window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
-			}
 			data2 = result.data;
 			console.log(data2);
 			roomdata = data2.hotelInfo.rooms;
@@ -117,11 +114,9 @@ var data2 = '', roomdata = '';
 			}
 
 			$('.jhf-mes li.showh .slide').eq(i).click(function() {
-				//$(this).find('i').toggleClass('cur');
-				//$('.jhf-mes ol.show').eq(i).slideToggle();
 				$(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
 				var roomID = roomdata[i].roomID;
-				window.location.href = 'hft_choose.html?type=1&selectedRoomID=' + roomID;
+				window.location.href = 'hft_choose.html?type=1&selectedRoomId=' + roomID;
 			})
 		});
 	}
