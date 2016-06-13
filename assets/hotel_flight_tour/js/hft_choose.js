@@ -322,7 +322,7 @@ var hftChoose = {
         "roomDetails": that.initParaObj.roomDetails,
         "flightCacheID":that.curData.flightInfo.cacheID,
         "flightSetID":that.curData.flightInfo.setID,
-        "hotelAdditionalPrice":""
+        "hotelAdditionalPrice":that.hotelAdditionalPrice
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -682,6 +682,7 @@ var hftChoose = {
          for(var i = 0;i<roomsData.length;i++){
                   if(roomsData[i].roomID == selectedRoomId){
                     temp = roomsData[i];
+                    that.hotelAdditionalPrice = roomsData[i].addtionalPrice;
                     roomsData.splice(i,1)
                   }
          }
@@ -697,7 +698,6 @@ var hftChoose = {
     $(".all_elements").eq(0).html(outputStr);
     /*房间数据*/
     tempStringRoom = $("#template_roomList").html();
-    console.log(that.selectedRoomId)
     outputStrRoom = ejs.render(tempStringRoom, that.fixRoomOrder(that.selectedRoomId));
     $(".roomUl").eq(0).html(outputStrRoom);
     /*景点数据*/
