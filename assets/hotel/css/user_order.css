@@ -136,16 +136,18 @@ i.right {
     margin-left: .28rem;
     width: 44%;
     font-size: .28rem;
-    padding:.22rem 0;
+    padding: .22rem 0;
 }
-.line{
-  display: inline-block;
-  width: .02rem;
-  height: .4rem;
-  background-color: #e6e6e6;
-  vertical-align: top;
-  margin-top: .25rem;
+
+.line {
+    display: inline-block;
+    width: .02rem;
+    height: .4rem;
+    background-color: #e6e6e6;
+    vertical-align: top;
+    margin-top: .25rem;
 }
+
 .hotel_user_detail_phone,
 .hotel_user_detail_Email {
     height: 0.88rem;
@@ -154,21 +156,24 @@ i.right {
     padding: 0 .28rem;
     border-bottom: 1px solid #DEDEDE;
 }
+
 .hotel_user_detail_phone p {
-  width: 44%;
+    width: 44%;
     line-height: .88rem;
     display: inline-block;
     margin-right: .18rem;
 }
-.hotel_user_detail_Email p{
-  width: 1.3rem;
-  line-height: .88rem;
-  display: inline-block;
+
+.hotel_user_detail_Email p {
+    width: 1.3rem;
+    line-height: .88rem;
+    display: inline-block;
 }
+
 .hotel_user_detail_phone input {
     width: 44%;
     font-size: .28rem;
-    padding:.22rem 0;
+    padding: .22rem 0;
     display: inline-block;
     vertical-align: middle;
     margin-left: .28rem;
@@ -179,7 +184,7 @@ i.right {
     font-size: .28rem;
     display: inline-block;
     vertical-align: middle;
-     padding:.22rem 0;
+    padding: .22rem 0;
 }
 
 .hotel_user_prompt {
@@ -229,6 +234,10 @@ i.right {
     font-size: .24rem;
 }
 
+.hotel_footer_sum_price .sgd_wrap {
+    line-height: .5rem;
+}
+
 .hotel_footer_sum_price1 {
     font-size: .32rem;
     font-weight: bold;
@@ -242,6 +251,7 @@ i.right {
 .hotel_footer_sum_price3 {
     font-size: .24rem;
     color: #999;
+    line-height: 0.5rem;
 }
 
 .hotel_footer_button {
@@ -271,7 +281,7 @@ i.right {
     background-position: -5.56rem -3.33rem;
     position: absolute;
     top: .4rem;
-    right: 0.1rem;
+    right: 0;
 }
 
 

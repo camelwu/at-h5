@@ -425,8 +425,8 @@
       <% for(var i = 0;i < lists.DetailData.data.tours.length;i++){ %>
       <div class="booking_package js_booking_package_tours">
         <div class="booking_package_tourtitle">
-          <i class="booking_package_i"></i>
-          <h3 class="booking_package_h3"><%=lists.DetailData.data.tours[i].tourName %></h3>
+          <i class="booking_package_i booking_package_i_extend"></i>
+          <h3 class="booking_package_h3 booking_package_h3_extend"><%=lists.DetailData.data.tours[i].tourName %></h3>
         </div>
         <div id="js_booking_package_date<%=i%>" class="booking_package_date js_booking_package_date" data-tourid="<%=lists.DetailData.data.tours[i].tourID %>" data-tourfrequency="<%=lists.DetailData.data.tours[i].tourFrequency.join('|') %>" data-defaultdate="<%=lists.DefaultDate%>" data-value="<%=lists.DetailData.data.defaultDepartStartDate%>">
           <p id="js_booking_package_date_p<%=i%>" class="booking_package_date_p js_booking_package_date_p"><%=T.Command().callCommand("formatDate",{date:lists.DetailData.data.defaultDepartStartDate,format:"MM月dd日"})%></p>

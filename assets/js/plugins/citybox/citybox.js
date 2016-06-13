@@ -1833,8 +1833,26 @@
             fragment.appendChild(thin_border_li);
           }
 
+
         }
+
+
+
         dom.appendChild(fragment);
+        //无结果
+        var childLen = dom.childNodes.length;
+        if(childLen == 0){
+          var thin_border_li = document.createElement("li");
+          thin_border_li.setAttribute("class","thin_border");
+          thin_border_li.style.border = 0;
+          thin_border_li.style.textAlign = "center";
+
+          var citybox_searchactive_li_icon_span = document.createElement("span");
+          citybox_searchactive_li_icon_span.innerHTML = "无结果";
+          thin_border_li.appendChild(citybox_searchactive_li_icon_span);
+          fragment.appendChild(thin_border_li);
+          dom.appendChild(fragment);
+        }
 
       });
     },

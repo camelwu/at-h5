@@ -40,7 +40,8 @@ var hftChoose = {
     that.timer0 = setTimeout(function () {
       window.clearTimeout(that.timer0);
       that.timer0 = null;
-      window.location.href = that.type == 2 ? "../hotel_flight_tour/hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "../hotel_flight_tour/hft_order.html?type=" + that.type;
+      //window.location.href = that.type == 2 ? "../hotel_flight_tour/hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "../hotel_flight_tour/hft_order.html?type=" + that.type;
+      window.location.href = that.type == 2 ? "hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID + "&selectedRoomId=" + that.roomPriceInfo.roomID : "hft_order.html?type=" + that.type + "&selectedRoomId=" + that.roomPriceInfo.roomID;
     }, 500);
     /*  }*/
   },
@@ -199,8 +200,6 @@ var hftChoose = {
           for (var u = 0; u < spans_.length; u++) {
             spans_[u].className = u == 0 ? "active" : "";
           }
-
-
         } else if (target.tagName == "SPAN" && target.getAttribute('data-date')) {
           that.curChooseDate = target.getAttribute('data-date');
           temEles = target.parentNode.querySelectorAll('span');

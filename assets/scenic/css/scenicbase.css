@@ -777,7 +777,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 
 .booking_package_tourtitle .booking_package_i{
   position: relative;
-  top: 0.05rem;
+  top: 0.1rem;
 }
 
 .booking_package_i{
@@ -787,6 +787,8 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   display: inline-block;
 }
 
+
+
 .booking_package_h3{
   margin: 0 0 0 .16rem;
   font-size: .32rem;
@@ -795,9 +797,22 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   display: inline-block;
 }
 
-.booking_package_tourtitle .booking_package_h3{
-  position: absolute;
+.booking_package_i_extend{
+  height: .26rem;
+  width: 3px;
+  background: #7bc300;
+  display: inline-block;
+  float: left;
 }
+
+.booking_package_h3_extend{
+  margin: 0 0 0 .16rem;
+  font-size: .32rem;
+  color: #333333;
+  line-height: .48rem;
+  display: inherit;
+}
+
 
 .booking_package_date{
   margin: .4rem 0 0 0;

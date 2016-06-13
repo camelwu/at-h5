@@ -308,19 +308,26 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         addBedShowOrHide=function(target){
           var adultNumValue =parseInt(target.parent().parent().parent().find(".adult-people-number").html());
           var childNumValue =parseInt(target.parent().parent().parent().find(".child-number").html());
-
           if(adultNumValue>=2 && childNumValue>0){
             target.parent().parent().siblings(".spenumbList").show();
-            $(".hotelInfo_numb_people .bedList b").on("click",function(){
-                 $(this).toggleClass("ico_select noselect");
+            target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click",function(){
+                if(childNumValue<=1) {
+                  $(this).toggleClass("ico_select noselect").css({opacity: 1});
+                }
+              else{
+                  $(this).toggleClass("ico_select noselect").css({opacity:0.5});
+                }
             })
+          }
+          else if(childNumValue==2){
+            $(this).unbind("click");
           }
           else{
             target.parent().parent().siblings(".spenumbList").hide();
             target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
           }
           if(adultNumValue>=2  && childNumValue>=2){
-            target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select")
+            target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select").css({opacity:0.5});
           }
           else{
             target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
@@ -344,7 +351,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             if (onlyForAdult) {
                 return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn"></span></div>' + '</div>';
             } else {
-                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: block; float: left">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>'+ '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>' ;
+                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: none; float: left">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>'+ '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>' ;
             }
 
 
@@ -378,7 +385,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                             var ty = childChooseParent[s];
                             var tt = $(ty).children().find('b');
                             if (temChildNum == 1 && tt!=null) {
-                                if (tt.className.indexOf('ico_select') > -1) {
+                                if (tt.hasClass("ico_select")) {
                                     childWithBed.push(ty.parentNode.querySelector('input').value);
                                 } else {
                                     childWithOutBed.push(ty.parentNode.querySelector('input').value);
