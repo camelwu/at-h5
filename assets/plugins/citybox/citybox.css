@@ -10,7 +10,7 @@
 .citybox_header {
   background-color: #fcfcfc;
   height: 0.88rem;
-  border-bottom: #d1d1d1 0.01rem solid;
+  border-bottom: #d1d1d1 1px solid;
   line-height: 0.88rem;
 }
 
@@ -96,7 +96,7 @@
   background-color: #F7F7F7;
   color: #333;
   font-size: 0.28rem;
-  border-top: 0.01rem solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
 }
 
 .citybox_content_lettercitylist {
