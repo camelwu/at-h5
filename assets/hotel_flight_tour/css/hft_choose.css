@@ -360,7 +360,9 @@ body {
     position: relative;
     color: #999999;
 }
-
+.hotelImgInfo{
+  overflow: hidden;
+}
 .hotelImgInfo i {
   top: 1rem;
   z-index: 9;
