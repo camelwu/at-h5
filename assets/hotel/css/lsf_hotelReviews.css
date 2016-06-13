@@ -122,6 +122,10 @@ i{font-style: normal;
   line-height: .4rem;
   padding-bottom: .2rem;
   color: #999999;
+
+}
+.drop_down{
+  height: .2rem;
 }
 .hotel_grade_content_box_comments{
   display: block;
@@ -149,13 +153,31 @@ i{font-style: normal;
   height: 1rem;
   line-height: 1rem;
 }
-.drop_down i{
+/*.drop_down i{*/
+  /*width: .4rem;*/
+  /*height: .4rem;*/
+  /*bottom: 0.8rem;*/
+  /*background: url("../../images/ui.1.0/icon_common.png") -2.22rem -0.64rem no-repeat;*/
+  /*background-size: 7.9rem 7.83rem;*/
+  /*left:48%;*/
+  /*position: absolute;*/
+/*}*/
+.up{
   width: .4rem;
   height: .4rem;
   bottom: 0.8rem;
-  /*background: url("../../images/ui.1.0/icon_common.png") -2.22rem -0.64rem no-repeat;*/
-  /*background-size: 7.9rem 7.83rem;*/
-  right: .4rem;
+  background: url("../../images/ui.1.0/icon_common.png") -2.22rem -0.64rem no-repeat;
+  background-size: 7.9rem 7.83rem;
+  left:48%;
+  position: absolute;
+}
+.down{
+  width: .4rem;
+  height: .4rem;
+  bottom: 0.8rem;
+  background: url("../../images/ui.1.0/icon_common.png") -2.78rem -0.64rem no-repeat;
+  background-size: 7.9rem 7.83rem;
+  left:48%;
   position: absolute;
 }
 .reu_span2{
