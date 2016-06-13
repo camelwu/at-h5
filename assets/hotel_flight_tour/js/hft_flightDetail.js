@@ -105,7 +105,6 @@ var  hftFlightDetail = {
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr,data);
     $(".all_elements").eq(0).html(outputStr);
-    that.addEvent();
     return that;
   },
   delayLoadImage : function() {
@@ -133,16 +132,7 @@ var  hftFlightDetail = {
     });
     return this
   },
-
-  addEvent:function(){
-    var iconBack =  document.querySelector('.icon_back');
-    this.addHandler(iconBack, 'click', function () {
-      window.history.go(-1);
-    });
-  },
-
   init:function(){
-
     var bookingRefNo=vlm.getpara("bookingRefNo");//订单code
     //获取Url参数
     var type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
@@ -167,5 +157,4 @@ var  hftFlightDetail = {
     }
   }
 };
-
 hftFlightDetail.init();
