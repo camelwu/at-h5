@@ -135,9 +135,11 @@ var flightList = {
 
         $("#fligtList").html('');
         //航班列表选中项
-        var str2 = $("#flightCur").html();
-        var flightCur = ejs.render(str2, data);
-        $('#fligtList').append(flightCur);
+        if(data.selectedFlight) {
+          var str2 = $("#flightCur").html();
+          var flightCur = ejs.render(str2, data);
+          $('#fligtList').append(flightCur);
+        }
         //航班列表
         var str1 = $("#tplFlightList").html();
         var flightListStr = ejs.render(str1, data);

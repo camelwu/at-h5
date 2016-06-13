@@ -1,3 +1,4 @@
+var hotelID;
 var roomUpGrade = {
 	CultureName : "zh-CN",
 	eventHandler : function(target, eventType, handle) {
@@ -130,6 +131,8 @@ var roomUpGrade = {
 				$('.hdl_down').html(tpl_GetList13);
 				$('#room-list').html(tpl_GetRooms);
 				var travelersInput = resultData.data.bookingFormInfo.travelersInput;
+        hotelID = resultData.data.hotels[0].hotelID;
+        window.localStorage.hotelDetailData = resultData.data.hotels[0].hotelGenInfo.hotelDesc;
 				that.chooseRoom(travelersInput);
 				that.dateDeal().delayLoadImage().addEvent(travelersInput);
 				//map
@@ -220,5 +223,8 @@ function star(stars){
 			break;
 	}
 	return stars;
+}
+function showHotelInfo(){
+  window.location.href = 'hotel_summary.html';
 }
 
