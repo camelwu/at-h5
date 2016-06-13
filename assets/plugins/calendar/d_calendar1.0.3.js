@@ -550,6 +550,34 @@
             });
         },
         /**
+         *@desc 设置日期可选 默认从startDate开始到日历结束，
+         *@param startDate   2016-06-24  默认是今天
+         *@param endDate options  new Date(fullYear, month + this.num, day);
+         */
+        ableDateFrom: function (startDate, endDate) {
+            var now = new Date();
+            var fullYear = now.getFullYear();
+            var month = now.getMonth();
+            var day = now.getDate();
+            //所有的日历日期
+            var dayDate = $("#calendarWrap").find("a[data-day]");
+
+            var startDate = startDate || vlm.Utils.format_date(fullYear + "-" + (month + 1) + "-" + day, "Ymd");
+            var endDate = endDate || new Date(fullYear, month + this.num, day);
+            var currentDay, startDateValue, endDateValue;
+            if (this.result.length === 0) {
+                dayDate.each(function (index, ele) {
+                    currentDay = $(ele).attr("data-day");
+                    currentDay = new Date(currentDay.replace(/-/g, "/"));
+                    startDateValue = new Date(startDate.replace(/-/g, "/"));
+                    endDateValue = endDate;
+                    if (currentDay >= startDateValue && currentDay <= endDateValue) {
+                        $(ele).removeClass("disabled");
+                    }
+                });
+            }
+        },
+        /**
          *每次点击结束，将选择结果进行处理
          **/
         linkOver: function (target) {
@@ -697,6 +725,7 @@
                 console.info(that.result);
                 that.resetSelected();
                 that.showSelected();
+                that.ableDateFrom();
                 that.showComfirmBtn(0);
             });
         },
