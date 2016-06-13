@@ -129,13 +129,15 @@ var footer = (function() {
 				event = event || window.event;
 				var target = event.target || event.srcElement, src, index, cur;
 				src = target.parentNode;
-				if (target.className == "cancel") {
+				if (target.className == "cancel") {// 取消
 					that.remove();
-				} else if (target.className == "clears") {
+				} else if (target.className == "clears") {// 清初筛选
 					var node = src.parentNode;
 					//previousSibling
 					that.resec(node);
-				} else if (target.className == "sure") {
+				} else if (target.className == "sure") {// 筛选确定
+					that.request();
+				}  else if (target.className == "button") {//航空公司的确定
 					that.request();
 				} else {
 					if (target.tagName == "I" || src.tagName == "LI") {// 非LI向上冒泡
@@ -317,7 +319,7 @@ var footer = (function() {
 					css = d[i].additionalPrice == 0 ? ' class="cur"' : '';
 					listr += '<li' + css + ' data-val="' + d[i].airwayCacheID + '" airwayCacheID="' + d[i].airwayCacheID + '" airwaySetID="' + d[i].airwaySetID + '"><div><img src="' + d[i].airwayLogo + '"></div><span class="airway_name">' + d[i].chineseName + '</span><div class="aw_price"><span>+￥</span><span>' + d[i].additionalPrice + '</span></div><b class="hft_icon"></b></li>';
 				}
-				ulstr = wrapper[0] + listr + wrapper[1];
+				ulstr = wrapper[0] + listr + wrappner[1];
 				break;
 			case "filters":
 				// 筛选
