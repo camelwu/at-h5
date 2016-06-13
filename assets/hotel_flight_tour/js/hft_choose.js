@@ -199,8 +199,6 @@ var hftChoose = {
           for (var u = 0; u < spans_.length; u++) {
             spans_[u].className = u == 0 ? "active" : "";
           }
-
-
         } else if (target.tagName == "SPAN" && target.getAttribute('data-date')) {
           that.curChooseDate = target.getAttribute('data-date');
           temEles = target.parentNode.querySelectorAll('span');
