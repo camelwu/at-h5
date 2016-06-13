@@ -105,7 +105,6 @@ var  hftFlightDetail = {
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr,data);
     $(".all_elements").eq(0).html(outputStr);
-    that.addEvent();
     return that;
   },
   delayLoadImage : function() {
@@ -132,13 +131,6 @@ var  hftFlightDetail = {
       });
     });
     return this
-  },
-
-  addEvent:function(){
-    var iconBack =  document.querySelector('.icon_back');
-    this.addHandler(iconBack, 'click', function () {
-      window.history.go(-1);
-    });
   },
 
   init:function(){
