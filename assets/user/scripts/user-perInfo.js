@@ -600,6 +600,9 @@
 
   //个人信息修改页生日
   new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
-
+//解决safari放回页面错误问题
+  $("#header").on("click",function(){
+    window.location.href = 'user.html';
+  })
 })();
 

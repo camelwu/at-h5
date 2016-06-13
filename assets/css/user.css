@@ -1718,7 +1718,9 @@ a.foot-homes, a.foot-users {
   text-align: center
 
 }
-
+.header{
+  z-index: auto;
+}
 
 /*填写姓名说明页结束*/
 #shade{
