@@ -183,7 +183,10 @@
         <!--<p class="info_title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
         <p class="info_title">{%=productName%}</p>
         <ul class="air_date">
-				<li>出行日期：{%=travelStartDate.replace("T"," ")%}</li>
+          <li>出行日期：{%= vlm.Utils.format_date(travelStartDate,"Ymd") %}</li>
+          {% if(travelEndDate !=null){ %}
+          <li> 返程日期：{%= vlm.Utils.format_date(travelEndDate,"Ymd") %}</li>
+          {% } %}
 				<!--<li>返回日期：10-22 18:00至21:05</li>-->
 			</ul>
 		</div>

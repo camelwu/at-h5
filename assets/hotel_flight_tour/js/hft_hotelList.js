@@ -87,31 +87,6 @@
 		}
 	}
 
-	//根据模板需要提前处理好data
-	function handleData(result) {
-		console.log(result.data)
-		var star = result.data.hotels;
-		for (var i = 0; i < star.length; i++) {
-			switch (star[i].starRating) {
-			case "1 星级":
-				star[i].starRating = '一星级';
-				break;
-			case "2 星级":
-				star[i].starRating = '二星级';
-				break;
-			case "3 星级":
-				star[i].starRating = '三星级';
-				break;
-			case "4 星级":
-				star[i].starRating = '四星级';
-				break;
-			case "5 星级":
-				star[i].starRating = '五星级';
-				break;
-			}
-		}
-		return result;
-	}
 
 	//title
 	function title(data) {
@@ -122,13 +97,14 @@
 
 	//数据加载部分
 	function list(result) {
+		console.log(result.data)
 		//curList
 		var strCur = $('#curList').html();
-		var curList = ejs.render(strCur,result);
+		var curList = ejs.render(strCur, result.data);
 		$('.hotel_list').append(curList);
 
 		var str = $('#templateList').html();
-		var hotels = ejs.render(str, handleData(result));
+		var hotels = ejs.render(str,result.data);
 		$('.hotel_list').append(hotels);
 		//去掉loading
 		$('.status').fadeOut('fast');
@@ -184,3 +160,24 @@
 	}
 
 })();
+//处理星级格式化
+function handleDate(result) {
+	switch (result) {
+		case "1 星级":
+			result = '一星级';
+			break;
+		case "2 星级":
+			result = '二星级';
+			break;
+		case "3 星级":
+			result = '三星级';
+			break;
+		case "4 星级":
+			result = '四星级';
+			break;
+		case "5 星级":
+			result = '五星级';
+			break;
+	}
+	return result;
+}

@@ -186,14 +186,15 @@ var footer = (function () {
                     break;
                 }
                 if (theme == 1 || theme == 3) {// 显示类型确认操作
-                  console.log(111)
                   that.request();
                 }
               }
             }
           }
+
         });
         // 遮罩层|返回按钮点击，包括隐藏
+        $("body").children().click(function () {}); //解决iPhone safari中Document事件不触发
         on(document, 'click', function (event) {
           event = event || window.event;
           var target = event.target || event.srcElement, src = target.parentNode;

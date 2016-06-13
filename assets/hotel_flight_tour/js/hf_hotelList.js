@@ -63,7 +63,7 @@
                 }
                 //排序入参重置
                 var sortArr = [];
-                var sortFilter = data.sortTypes[0] - 0;
+                var sortFilter = data.sortTypes[0] ? data.sortTypes[0] - 0 : 0;
                 sortArr.push(sortFilter);
                 console.log(sortArr);
                 hotelList.parametersStorage.sortFields = sortArr;
@@ -112,34 +112,7 @@
         console.log(starArr);
         return starArr;
     }
-    /**
-     *@desc 预处理数据，将星级信息转换
-     *@para result
-     *@return result
-     **/
-    function handleData(result) {
-        var star = result.data.hotels;
-        for (var i = 0; i < star.length; i++) {
-            switch (star[i].starRating) {
-                case "1":
-                    star[i].starRating = '一星级';
-                    break;
-                case "2":
-                    star[i].starRating = '二星级';
-                    break;
-                case "3":
-                    star[i].starRating = '三星级';
-                    break;
-                case "4":
-                    star[i].starRating = '四星级';
-                    break;
-                case "5":
-                    star[i].starRating = '五星级';
-                    break;
-            }
-        }
-        return result;
-    }
+
 
     function dataCallBack(result) {
         if (result.success && result.code == '200') {
@@ -192,14 +165,16 @@
                 var title = ejs.render(str, data);
                 $('.header h3 span').html(title);
 
-                //curList
-                var strCur = $('#curList').html();
-                var curList = ejs.render(strCur, result);
-                $('.hotel_list').append(curList);
-                //list
+                //curList 只有第一页显示已选择的酒店
+                if (data.pageNo === 1) {
+                    var strCur = $('#curList').html();
+                    var curList = ejs.render(strCur, data);
+                    $('.hotel_list').append(curList);
+                }
 
+                //list
                 var str = $('#templateList').html();
-                var hotels = ejs.render(str, handleData(result));
+                var hotels = ejs.render(str, data);
                 if (more) {
                     $('.hotel_list').append(hotels);
                 } else {
@@ -261,7 +236,7 @@
                 dataPull.parameters.pageNo = hotelList.currentPage + 1;
 
                 loadMoreBtn.html("正在加载...");
-                vlm.loadJson('', JSON.stringify(dataPull), moreDataCallBack);
+                vlm.loadJson('', JSON.stringify(dataPull), moreDataCallBack, false, false, true);
             });
         }
     };
@@ -273,3 +248,28 @@
 
     hotelList.initPage();
 })();
+/**
+ *@desc 预处理数据，将星级信息转换
+ *@para result
+ *@return result
+ **/
+function handleData(result) {
+    switch (result) {
+        case "1":
+            result = '一星级';
+            break;
+        case "2":
+            result = '二星级';
+            break;
+        case "3":
+            result = '三星级';
+            break;
+        case "4":
+            result = '四星级';
+            break;
+        case "5":
+            result = '五星级';
+            break;
+    }
+    return result;
+}

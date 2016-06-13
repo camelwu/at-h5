@@ -52,28 +52,52 @@
     <!--<span class = "bar_img_page">1/20</span>-->
     <!--<% }%>-->
 <!--</script>-->
+<script type="text/template" id="Barimg2">
+  <span class="bar_img_theme">景点详情</span>
+  <% if(images.length==0){ %>
+    <% for(var i = 0;i<tours.length;i++){ %>
+      <% if(tours[i].tourID == vlm.getpara("tourId") ){%>
+        <img src="<%= tours[i].tourPictureURL%>" alt="image"/>
+      <%}%>
+    <%}%>
+  <% }else{ %>
+  <a href="<%= images[0].imageURL%>" class="swipebox" title="1/<%=(images.length)%>">
+    <img src="<%= images[0].imageURL %>" alt="image" style="height:100%;"/></a>
+  <% for(var i=1;i<images.length;i++){ %>
+    <a href="<%= images[i].imageURL%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">
+    <img src="<%= images[i].imageURL%>" alt="image"/></a>
+  <% }%>
+  <span class = "bar_img_num">编号：<%= packageRefNo %></span>
+  <% if(images.length>0) %>
+    <span class = "bar_img_page"><%=(images.length)%>张</span>
+  <% } %>
+</script>
 <script type ="text/template" id = "Barcontent">
-    <h3 class = "bar_content_title"><%= packageName%></h3>
-    <div class="bar_content_time">
-        <p><i class = "bar_content_time_schedule"></i>预定时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>
-        <p><i class = "bar_content_time_travel"></i>预定时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
-    </div>
+    <% for(var i = 0;i<tours.length;i++){ %>
+    <% if(tours[i].tourID == vlm.getpara("tourId") ){%>
+    <h3 class = "bar_content_title"><%= tours[i].tourName %></h3>
+    <%}%>
+    <%}%>
+    <!--<div class="bar_content_time">-->
+        <!--<p><i class = "bar_content_time_schedule"></i>预定时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>-->
+        <!--<p><i class = "bar_content_time_travel"></i>预定时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>-->
+    <!--</div>-->
 </script>
 <script type ="text/template"  id = "Sceniccontent">
-  <div class = "scenic_content_feature">
-    <h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>
-    <ul>
-      <li><%- inclusiveItem.replace(/<[^>]+>/g,"")%></li>
-    </ul>
-  </div>
-  <div class="scenic_content_time">
-    <h3><i></i>营业时间</h3>
-    <span><%= vlm.Utils.format_date(defaultDepartStartDate ,"hm")%></span>
-  </div>
-  <div class="scenic_content_address">
-    <h3><i></i>营业地址</h3>
-    <address><%= destCityName%></address>
-  </div>
+  <!--<div class = "scenic_content_feature">-->
+    <!--<h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>-->
+    <!--<ul>-->
+      <!--<li><%- inclusiveItem.replace(/<[^>]+>/g,"")%></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div class="scenic_content_time">-->
+    <!--<h3><i></i>营业时间</h3>-->
+    <!--<span><%= vlm.Utils.format_date(defaultDepartStartDate ,"hm")%></span>-->
+  <!--</div>-->
+  <!--<div class="scenic_content_address">-->
+    <!--<h3><i></i>营业地址</h3>-->
+    <!--<address><%= destCityName%></address>-->
+  <!--</div>-->
   <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>
   <div class="scenic_content_scheduling">
     <h3><i></i>行程安排</h3>
