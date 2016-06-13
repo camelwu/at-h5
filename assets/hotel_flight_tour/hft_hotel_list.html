@@ -100,27 +100,27 @@
 </script>
 <!--选中的li-->
 <script id="curList" type="text/template">
-  <li data-hotelId="<%= data.selectedHotel.hotelID %>" class="cur">
+  <li data-hotelId="<%= selectedHotel.hotelID %>" class="cur">
     <div>
-      <img class="img" src=<%= data.selectedHotel.hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
+      <img class="img" src=<%= selectedHotel.hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
-        <h3><%= data.selectedHotel.hotelNameLocale %></h3>
+        <h3><%= selectedHotel.hotelNameLocale %></h3>
         <p>
-          <% if(data.selectedHotel.hotelReviewScore && data.selectedHotel.hotelReviewScore!=0){ %>
-          <span class="score"><%= data.selectedHotel.hotelReviewScore %>.0</span>分&nbsp;
+          <% if(selectedHotel.hotelReviewScore && selectedHotel.hotelReviewScore!=0){ %>
+          <span class="score"><%= selectedHotel.hotelReviewScore %>.0</span>分&nbsp;
           <% } %>
-          <% if(data.selectedHotel.hotelReviewCount && data.selectedHotel.hotelReviewCount != 0){ %>
-          <i><%= data.selectedHotel.hotelReviewCount %>人点评</i>
+          <% if( selectedHotel.hotelReviewCount && selectedHotel.hotelReviewCount != 0){ %>
+          <i><%= selectedHotel.hotelReviewCount %>人点评</i>
           <% } %>
         </p>
         <p class="equipment clearfix">
-          <span><%= data.selectedHotel.starRating %></span>
+          <span><%= handleDate(selectedHotel.starRating) %></span>
           <!--<span class="park"></span>-->
           <!--<span class="car"></span>-->
         </p>
-        <p class="address"><%= data.selectedHotel.city %>（<%= data.selectedHotel.location %>）</p>
+        <p class="address"><%= selectedHotel.city %>（<%= selectedHotel.location %>）</p>
         <div class="price">
-          <span class="money"><%= data.selectedHotel.additionalPrice %></span>
+          <span class="money"><%= selectedHotel.additionalPrice %></span>
           <span class="dollar">￥</span>
           <span class="add">+</span>
         </div>
@@ -131,28 +131,28 @@
 </script>
 <!--list-->
 <script id="templateList" type="text/template">
-  <% for(var i=0;i<data.hotels.length;i++) { %>
-  <li data-hotelId="<%= data.hotels[i].hotelID %>">
+  <% for(var i=0;i<hotels.length;i++) { %>
+  <li data-hotelId="<%= hotels[i].hotelID %>">
     <div>
-      <img class="img" src=<%= data.hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
+      <img class="img" src=<%= hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
-        <h3><%= data.hotels[i].hotelNameLocale %></h3>
+        <h3><%= hotels[i].hotelNameLocale %></h3>
         <p>
-          <% if(data.hotels[i].hotelReviewScore && data.hotels[i].hotelReviewScore!=0){ %>
-          <span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;
+          <% if(hotels[i].hotelReviewScore && hotels[i].hotelReviewScore!=0){ %>
+          <span class="score"><%= hotels[i].hotelReviewScore %></span>分&nbsp;
           <% } %>
-          <% if(data.hotels[i].hotelReviewCount && data.hotels[i].hotelReviewCount != 0){ %>
-          <i><%= data.hotels[i].hotelReviewCount %>人点评</i>
+          <% if(hotels[i].hotelReviewCount && hotels[i].hotelReviewCount != 0){ %>
+          <i><%= hotels[i].hotelReviewCount %>人点评</i>
           <% } %>
         </p>
         <p class="equipment clearfix">
-          <span><%= data.hotels[i].starRating %></span>
+          <span><%= handleDate(hotels[i].starRating) %></span>
           <!--<span class="park"></span>-->
           <!--<span class="car"></span>-->
         </p>
-        <p class="address"><%= data.hotels[i].city %>（<%= data.hotels[i].location %>）</p>
+        <p class="address"><%= hotels[i].city %>（<%= hotels[i].location %>）</p>
         <div class="price">
-          <span class="money"><%= data.hotels[i].additionalPrice %></span>
+          <span class="money"><%= hotels[i].additionalPrice %></span>
           <span class="dollar">￥</span>
           <span class="add">+</span>
         </div>
