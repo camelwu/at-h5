@@ -95,7 +95,7 @@
                 <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
             <% }else if(item.segmentsLeave.length>2){%>
                 <span class="arrow_word"></span>
-                <span class="transferCity"><%= item.segmentsLeave.length %>次</span>
+                <span class="transferCity"><%= item.segmentsLeave.length-1 %>次</span>
             <% }%>
           </div>
         </div>
@@ -138,7 +138,7 @@
                 <span class="transferCity"><%= item.segmentsReturn[0].cityNameTo %></span>
             <% }else if(item.segmentsReturn.length>2){%>
                 <span class="arrow_word"></span>
-                <span class="transferCity"><%= item.segmentsReturn.length %>次</span>
+                <span class="transferCity"><%= item.segmentsReturn.length-1 %>次</span>
             <% }%>
           </div>
         </div>
