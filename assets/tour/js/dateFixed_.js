@@ -378,7 +378,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                             var ty = childChooseParent[s];
                             var tt = $(ty).children().find('b');
                             if (temChildNum == 1 && tt!=null) {
-                                if (tt.className.indexOf('ico_select') > -1) {
+                                if (tt.hasClass("ico_select")) {
                                     childWithBed.push(ty.parentNode.querySelector('input').value);
                                 } else {
                                     childWithOutBed.push(ty.parentNode.querySelector('input').value);
