@@ -133,7 +133,7 @@
           <div class="go_info">
             <div class="start_time_info">
               <span class="time_number"><%= selectedFlight.flightLeaveStartDate.substr(11,5) %></span>
-              <span class="air_port_word"><%= selectedFlight.segmentsLeave[0].airportNameFrom %></span>
+              <span class="air_port_word"><%= selectedFlight.segmentsLeave[0].airportNameFrom %><%= selectedFlight.segmentsLeave[0].termDepart%></span>
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%= selectedFlight.segmentsLeaveTotalTravelTimeString%></span>
@@ -148,7 +148,7 @@
             </div>
             <div class="end_time_info">
               <span class="time_number"><%= selectedFlight.flightLeaveEndDate.substr(11,5) %></span>
-              <span class="air_port_word"><%= selectedFlight.segmentsLeave[selectedFlight.segmentsLeave.length-1].airportNameTo%></span>
+              <span class="air_port_word"><%= selectedFlight.segmentsLeave[selectedFlight.segmentsLeave.length-1].airportNameTo%><%= selectedFlight.segmentsLeave[selectedFlight.segmentsLeave.length-1].termArrive%></span>
               <% if( selectedFlight.flightLeaveSpacingDay!=0 ){ %>
               <span class="tip_add_days">+<%=selectedFlight.flightLeaveSpacingDay%>天</span>
               <% } %>
@@ -165,7 +165,7 @@
             <div class="start_time_info">
               <span class="hft_icon end_icon"></span>
               <span class="time_number"><%=selectedFlight.flightReturnStartDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=selectedFlight.segmentsReturn[0].airportNameFrom%></span>
+              <span class="air_port_word"><%=selectedFlight.segmentsReturn[0].airportNameFrom%><%=selectedFlight.segmentsReturn[0].termDepart%></span>
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=selectedFlight.segmentsReturnTotalTravelTimeString%></span>
@@ -180,7 +180,7 @@
             </div>
             <div class="end_time_info">
               <span class="time_number"><%=selectedFlight.flightReturnEndDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=selectedFlight.segmentsReturn[selectedFlight.segmentsReturn.length-1].airportNameTo%></span>
+              <span class="air_port_word"><%=selectedFlight.segmentsReturn[selectedFlight.segmentsReturn.length-1].airportNameTo%><%=selectedFlight.segmentsReturn[selectedFlight.segmentsReturn.length-1].termArrive%></span>
               <% if(selectedFlight.flightReturnSpacingDay!=0){ %>
               <span class="tip_add_days">+<%=selectedFlight.flightReturnSpacingDay%>天</span>
               <% } %>
@@ -210,7 +210,7 @@
           <div class="go_info">
             <div class="start_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveStartDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%></span>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%><%=selectedFlight.segmentsLeave[0].termDepart%></span>
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeaveTotalTravelTimeString%></span>
@@ -225,7 +225,7 @@
             </div>
             <div class="end_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveEndDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[flightInfoListGroup[i].flightInfoList[j].segmentsLeave.length-1].airportNameTo%></span>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[flightInfoListGroup[i].flightInfoList[j].segmentsLeave.length-1].airportNameTo%><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[flightInfoListGroup[i].flightInfoList[j].segmentsLeave.length-1].termArrive%></span>
               <% if(flightInfoListGroup[i].flightInfoList[j].flightLeaveSpacingDay!=0){ %>
               <span class="tip_add_days">+<%=flightInfoListGroup[i].flightInfoList[j].flightLeaveSpacingDay%>天</span>
               <% } %>
@@ -242,7 +242,7 @@
             <div class="start_time_info">
               <span class="hft_icon end_icon"></span>
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightReturnStartDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airportNameFrom%></span>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airportNameFrom%><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].termDepart%></span>
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturnTotalTravelTimeString%></span>
@@ -257,7 +257,7 @@
             </div>
             <div class="end_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightReturnEndDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[flightInfoListGroup[i].flightInfoList[j].segmentsReturn.length-1].airportNameTo%></span>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[flightInfoListGroup[i].flightInfoList[j].segmentsReturn.length-1].airportNameTo%><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[flightInfoListGroup[i].flightInfoList[j].segmentsReturn.length-1].termArrive%></span>
               <% if(flightInfoListGroup[i].flightInfoList[j].flightReturnSpacingDay!=0){ %>
               <span class="tip_add_days">+<%=flightInfoListGroup[i].flightInfoList[j].flightReturnSpacingDay%>天</span>
               <% } %>
