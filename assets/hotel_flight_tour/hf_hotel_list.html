@@ -35,50 +35,7 @@
             <h3>酒店（共<span></span>家）</h3>
         </div>
         <div class="content">
-            <ul class="hotel_list" id="hj_jList">
-                <!--<li class="cur">-->
-                <!--<div>-->
-                <!--<img class="img" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">-->
-                <!--<article class="message">-->
-                <!--<h3>东京(银座)千禧三井花园饭店</h3>-->
-                <!--<p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</i></p>-->
-                <!--<p class="equipment clearfix">-->
-                <!--<span>三星级</span>-->
-                <!--<span class="park"></span>-->
-                <!--<span class="car"></span>-->
-                <!--</p>-->
-                <!--<p class="address">东京（品川区）</p>-->
-                <!--<div class="price">-->
-                <!--<span class="money">100</span>-->
-                <!--<span class="dollar">￥</span>-->
-                <!--<span class="add">+</span>-->
-                <!--</div>-->
-                <!--</article>-->
-                <!--</div>-->
-                <!--<i></i>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<div>-->
-                <!--<img class="img" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">-->
-                <!--<article class="message">-->
-                <!--<h3>东京(银座)千禧三井花园饭店</h3>-->
-                <!--<p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</i></p>-->
-                <!--<p class="equipment clearfix">-->
-                <!--<span>三星级</span>-->
-                <!--<span class="park"></span>-->
-                <!--<span class="car"></span>-->
-                <!--</p>-->
-                <!--<p class="address">东京（品川区）</p>-->
-                <!--<div class="price reduce">-->
-                <!--<span class="money">100</span>-->
-                <!--<span class="dollar">￥</span>-->
-                <!--<span class="add">-</span>-->
-                <!--</div>-->
-                <!--</article>-->
-                <!--</div>-->
-                <!--<i class=""></i>-->
-                <!--</li>-->
-            </ul>
+            <ul class="hotel_list" id="hj_jList"></ul>
             <div class="hotel_more" id="loadMore">点击加载更多</div>
         </div>
     </div>
@@ -98,7 +55,7 @@
 
     <!--选中的li-->
     <script id="curList" type="text/template">
-        <li data-hotelId="<%= selectedHotel.hotelID %>" class="cur">
+        <li data-hotelId="<%= selectedHotel.hotelID %>" data-addPrice="<%= selectedHotel.additionalPrice %>"class="cur">
             <img class="h-choose h_choose" src="../images/ui/choose.png">
             <div>
                 <img class="img" src="<%= selectedHotel.hotelPictureURL %>" data-src="../images/loading-hotel.gif" data-noimg="../images/hotelListNo.jpg" alt="">
@@ -106,7 +63,7 @@
                     <h3><%= selectedHotel.hotelNameLocale %></h3>
                     <p>
                         <% if( selectedHotel.hotelReviewScore && selectedHotel.hotelReviewScore!=0){ %>
-                            <span class="score"><%= selectedHotel.hotelReviewScore %>.0</span>分&nbsp;
+                            <span class="score"><%= selectedHotel.hotelReviewScore %></span>分&nbsp;
                             <% } %>
                                 <% if( selectedHotel.hotelReviewCount && selectedHotel.hotelReviewCount != 0){ %>
                                     <i><%= selectedHotel.hotelReviewCount %>人点评</i>
@@ -134,7 +91,7 @@
     <!--list-->
     <script id="templateList" type="text/template">
         <% for(var i=0;i< hotels.length;i++) { %>
-            <li data-hotelId="<%= hotels[i].hotelID %>">
+            <li data-hotelId="<%= hotels[i].hotelID %>" data-addPrice="<%= hotels[i].additionalPrice %>">
                 <img class="h-choose h_choose" src="../images/ui/choose.png">
                 <div>
                     <img class="img" src="<%= hotels[i].hotelPictureURL %>" data-src="../images/loading-hotel.gif" data-noimg="../images/hotelListNo.jpg" alt="">

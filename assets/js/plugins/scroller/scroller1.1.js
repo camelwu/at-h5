@@ -6,7 +6,7 @@
     "use strict";
     $(document).ready(function () {
         window.addEventListener('load', function () {
-            FastClick ? FastClick.attach(document.body) : '';
+            window.FastClick ? FastClick.attach(document.body) : '';
         }, false);
     });
 }(jQuery));

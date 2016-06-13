@@ -322,7 +322,7 @@ var hftChoose = {
         "roomDetails": that.initParaObj.roomDetails,
         "flightCacheID":that.curData.flightInfo.cacheID,
         "flightSetID":that.curData.flightInfo.setID,
-        "hotelAdditionalPrice":""
+        "hotelAdditionalPrice":that.hotelAdditionalPrice
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -333,11 +333,8 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
-
         hftHotelDetailPara.tours = toursArray;
         hftHotelDetailPara.packageID = that.initParaObj.packageID;
-      } else {
-        hftHotelDetailPara.hotelAdditionalPrice = that.roomPriceInfo.addtionalPrice;
       }
       storage.setItem('hftHotelDetailPara', JSON.stringify(hftHotelDetailPara));
       that.timer3 = setTimeout(function () {
@@ -679,6 +676,7 @@ var hftChoose = {
   fixRoomOrder:function(){
          var that = this,allInfoData = that.operationData,roomsData = [], temp = {},selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
          roomsData = allInfoData.hotelInfo.rooms;
+         that.hotelAdditionalPrice = 0;
          for(var i = 0;i<roomsData.length;i++){
                   if(roomsData[i].roomID == selectedRoomId){
                     temp = roomsData[i];
