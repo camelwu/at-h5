@@ -19,7 +19,7 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
 .time_people_list_number{
   float:right;
   color:#999999;
-  padding-right: .46rem;
+  padding-right: .28rem;
   position: relative;
 }
 .time_people_list_number i{
@@ -32,7 +32,7 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
   background-repeat: no-repeat;
   background-size: 7.9rem 5.13rem;
   position: absolute;
-  top: .4rem;
+  top: .38rem;
   right: 0;
 }
 /*城市列表开始*/
