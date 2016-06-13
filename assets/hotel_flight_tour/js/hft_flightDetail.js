@@ -157,5 +157,4 @@ var  hftFlightDetail = {
     }
   }
 };
-
 hftFlightDetail.init();
