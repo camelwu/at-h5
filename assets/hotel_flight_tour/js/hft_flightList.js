@@ -122,10 +122,10 @@ var flightList = {
 		var flightListBack = function(ret) {
       var json = ret, that = flightList;
       var data = json.data;
-      var tmp = json.data.airways,tmpto=json.data.selectedAirway;
-      tmp.unshift(tmpto);
-      data.airways = tmp;
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
+        var tmp = json.data.airways,tmpto=json.data.selectedAirway;
+        tmp.unshift(tmpto);
+        data.airways = tmp;
         $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
         $('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
 
