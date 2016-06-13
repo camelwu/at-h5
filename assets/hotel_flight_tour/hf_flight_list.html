@@ -208,7 +208,11 @@
           <div class="go_info">
             <div class="start_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveStartDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%><%=selectedFlight.segmentsLeave[0].termDepart%></span>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%>
+              <% if(selectedFlight.segmentsLeave){ %>
+                <%=selectedFlight.segmentsLeave[0].termDepart%>
+              <% } %>
+              </span>
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeaveTotalTravelTimeString%></span>

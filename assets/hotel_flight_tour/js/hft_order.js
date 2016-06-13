@@ -47,19 +47,16 @@ var hftTool ={
   hftCreateOrderPara.hotelName=hftFlightHotelTourInfo.hotelInfo.hotelName;
   hftCreateOrderPara.hotelNameLocale=hftFlightHotelTourInfo.hotelInfo.hotelNameLocale;
   var freetype=vlm.getpara('type');
-  var hft_backstr=window.location.href.split('?')[1];
   //返回资源选择页
   $('#hftFreeBack').click(function(){
-      window.location.href='../hotel_flight_tour/hft_choose.html?'+ hft_backstr;
+      window.location.href='../hotel_flight_tour/hft_choose.html?'+ window.location.search;
   });
   //初始化
   function init() {
-
     //机票详情
     var flightstr=$('#orderFlight').html();
     var flightdet = ejs.render(flightstr , hftFlightHotelTourInfo)
     $('#flightCirTab').html(flightdet);
-
     //酒店详情
     var hotelstr=$('#orderHotel').html();
     console.log(hftCreateOrderPara)

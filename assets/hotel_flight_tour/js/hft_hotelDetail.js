@@ -7,6 +7,14 @@
   if(ulrRoom){
     var ulrRoomId = ulrRoom.substring(40);
   }
+  //酒店详情页的入参 存入session
+  var fhtHotelCharacteristic = {};
+  //酒店详情特色
+  fhtHotelCharacteristic.parameters = {};
+  fhtHotelCharacteristic.parameters.cultureName = "zh-CN";
+  fhtHotelCharacteristic.parameters.hotelID = sStorage.hotelID;
+  fhtHotelCharacteristic.foreEndType = 2;
+  fhtHotelCharacteristic.code = "10100003";
   //经纬度
   var latitude = 0;
   var longitude = 0;
@@ -35,7 +43,13 @@
   vlm.loadJson('',JSON.stringify(data),dataCallBack);
   function dataCallBack(result){
     if(result.success == 1&&result.code == 200){
-      var data = result.data, hftFlightHotelTourInfo =JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+      var data = result.data,
+          hftFlightHotelTourInfo =JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+      console.log(data)
+      //酒店详情描述 存本地session
+      fhtHotelCharacteristic.hotelDesc = data.hotelInfo.hotelDesc;
+      sessionStorage.setItem("fhtHotelCharacteristic",JSON.stringify(fhtHotelCharacteristic));
+
       hftFlightHotelTourInfo['hotelInfo'] = data['hotelInfo']; //替换酒店信息
       window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(hftFlightHotelTourInfo));
       banner(data);

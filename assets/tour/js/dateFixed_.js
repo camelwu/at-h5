@@ -308,19 +308,26 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         addBedShowOrHide=function(target){
           var adultNumValue =parseInt(target.parent().parent().parent().find(".adult-people-number").html());
           var childNumValue =parseInt(target.parent().parent().parent().find(".child-number").html());
-
           if(adultNumValue>=2 && childNumValue>0){
             target.parent().parent().siblings(".spenumbList").show();
-            $(".hotelInfo_numb_people .bedList b").on("click",function(){
-                 $(this).toggleClass("ico_select noselect");
+            target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click",function(){
+                if(childNumValue<=1) {
+                  $(this).toggleClass("ico_select noselect").css({opacity: 1});
+                }
+              else{
+                  $(this).toggleClass("ico_select noselect").css({opacity:0.5});
+                }
             })
+          }
+          else if(childNumValue==2){
+            $(this).unbind("click");
           }
           else{
             target.parent().parent().siblings(".spenumbList").hide();
             target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
           }
           if(adultNumValue>=2  && childNumValue>=2){
-            target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select")
+            target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select").css({opacity:0.5});
           }
           else{
             target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")

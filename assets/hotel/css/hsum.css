@@ -35,6 +35,12 @@ color: #484848;
   width: 50%;
   margin-bottom: .2rem;
 }
+.hotel_feature li.li2 p{
+  width: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .hotel_feature_li_icon{
   width: .4rem;
   height:.36rem;

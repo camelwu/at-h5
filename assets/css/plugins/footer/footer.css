@@ -343,8 +343,20 @@ section.flight_company {
     background: #FFFFFF;
     overflow-x: hidden;
     overflow-y: scroll;
+    padding-bottom:2.8rem;
 }
-
+section.flight_company .button{
+    width: 100%;
+    height: 1rem;
+    background: #7bc300;
+    line-height:1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-size: 0.36rem;
+    color: #fff;
+}
 section.flight_company li {
     position: relative;
     height: .68rem;

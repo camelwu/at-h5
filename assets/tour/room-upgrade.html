@@ -101,9 +101,13 @@
 <script id="tpl13" type="text/template">
     <%  var imgs=tourInfos, htls=roomUpGrade.resetData(hotels[0]);imgl = imgs.length; %>
     <%  console.log(typeof htls.hotelGenInfo.starRatingName) %>
-    <li>
-        <p class="d-score"><%= star(htls.hotelGenInfo.starRatingName) %></p>
-        <a href="<%= htls.moreInfoLink %>" class="d-icon1"></a>
+    <li onclick="showHotelComment()">
+        <p><span><%= star(htls.hotelGenInfo.hotelReviewScore) %></span>分/<%= star(htls.hotelGenInfo.hotelReviewCount) %>人评论</p>
+        <a href="#" class="d-icon1"></a>
+    </li>
+    <li onclick="showHotelInfo()">
+        <p><%= star(htls.hotelGenInfo.starRatingName) %></p>
+        <a href="#" class="d-icon1"></a>
     </li>
     <li class="data">
         <p class="d-p3 date-in d_p3"><span>3月22</span>入住</p>
