@@ -57,7 +57,6 @@ var hftTool ={
     var flightstr=$('#orderFlight').html();
     var flightdet = ejs.render(flightstr , hftFlightHotelTourInfo)
     $('#flightCirTab').html(flightdet);
-
     //酒店详情
     var hotelstr=$('#orderHotel').html();
     console.log(hftCreateOrderPara)
