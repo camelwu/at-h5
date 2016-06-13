@@ -63,7 +63,7 @@
                 }
                 //排序入参重置
                 var sortArr = [];
-                var sortFilter = data.sortTypes[0] - 0;
+                var sortFilter = data.sortTypes[0] ? data.sortTypes[0] - 0 : 0;
                 sortArr.push(sortFilter);
                 console.log(sortArr);
                 hotelList.parametersStorage.sortFields = sortArr;
@@ -165,12 +165,14 @@
                 var title = ejs.render(str, data);
                 $('.header h3 span').html(title);
 
-                //curList
-                var strCur = $('#curList').html();
-                var curList = ejs.render(strCur,data);
-                $('.hotel_list').append(curList);
-                //list
+                //curList 只有第一页显示已选择的酒店
+                if (data.pageNo === 1) {
+                    var strCur = $('#curList').html();
+                    var curList = ejs.render(strCur, data);
+                    $('.hotel_list').append(curList);
+                }
 
+                //list
                 var str = $('#templateList').html();
                 var hotels = ejs.render(str, data);
                 if (more) {

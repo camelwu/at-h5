@@ -347,7 +347,7 @@ var htf_search = {
             disableDateAfterLength: 10,
             minDuration: 1,
             sClass1: 'CheckInDateI',
-            type: 'hotel',
+            type: 'flight',
             callback: function (result) {
                 //保存选择日期
                 fhtStartDayData.attr('data-day', result[0]);
