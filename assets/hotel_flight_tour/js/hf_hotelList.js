@@ -35,9 +35,10 @@
                     key: 'filters',
                     listData: [{
                         title: "星级",
+                        allowMultiSelect:true,
                         filterType: 1,
                         item: starChoose(data)
-					}]
+                    }]
                 },
                 hotelPosition: {
                     title: "位置",
@@ -58,8 +59,8 @@
                 //筛选重构
                 var arrNum = data.filters,
                     filter = 0;
-                for (var i = 0; i < arrNum.length; i++) {
-                    filter += arrNum[i].FilterValues[0] ? arrNum[i].FilterValues[0] - 0 : 0;
+                for (var i = 0; i < arrNum[0].FilterValues.length; i++) {
+                    filter += arrNum[0].FilterValues[i] ? arrNum[0].FilterValues[i] - 0 : 0;
                 }
                 //排序入参重置
                 var sortArr = [];
@@ -85,27 +86,32 @@
         var starArr = [];
         var starJson = {};
         var star = data.starRatingList;
+        var starName;
+        var starValue;
+        starArr.push({
+            "filterText": '不限',
+            "filterValue": 0
+        })
         for (var i = 0; i < star.length; i++) {
-            switch (star[i].starRatingName) {
-                case "1":
-                    star[i].starRatingName = '不限';
-                    break;
+            starName = star[i].starRatingName;
+            starValue = star[i].starRatingValue;
+            switch (starName) {
                 case "2":
-                    star[i].starRatingName = '二星以下';
+                    starName = '二星以下';
                     break;
                 case "3":
-                    star[i].starRatingName = '三星级';
+                    starName = '三星级';
                     break;
                 case "4":
-                    star[i].starRatingName = '四星级';
+                    starName = '四星级';
                     break;
                 case "5":
-                    star[i].starRatingName = '五星级';
+                    starName = '五星级';
                     break;
             }
             starJson = {
-                "filterText": star[i].starRatingName,
-                "filterValue": star[i].starRatingValue
+                "filterText": starName,
+                "filterValue": starValue
             };
             starArr.push(starJson);
         }
