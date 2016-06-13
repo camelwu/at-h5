@@ -80,7 +80,7 @@
         if( attr == ulrRoomId ){
           $('.ul_room li').eq(i).addClass('cur');
         }
-      })
+      });
     }
 
     //点击事件  跳转
@@ -115,9 +115,20 @@
     at.map.createMap(latitude,longitude);
     at.map.markHotel(latitude,longitude,"");
     at.map.moveCenterToHotelLocation(latitude,longitude);
+    // 增加参数
+    var dataObj = {
+        HotelName: data.hotelInfo.hotelNameLocale +"("+data.hotelInfo.hotelName+") "+data.hotelInfo.hotelAddress,
+        Latitude: data.hotelInfo.latitude,
+        Longitude: data.hotelInfo.longitude
+    },paramStr = "";
+    for (var attr in dataObj) {
+        paramStr += "&" + attr + "=" + dataObj[attr];
+    }
+    paramStr = paramStr.slice(1);
+    // 参数拼接结束
     $('#map').on('click',function(){
-      window.location.href = 'hft_hotel_detail_map.html';
-    })
+      window.location.href = '../hotel/hotel_map.html?' + paramStr;
+    });
   }
 
   //message
@@ -154,4 +165,5 @@
     $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
   }
 
-})()
+})();
+
