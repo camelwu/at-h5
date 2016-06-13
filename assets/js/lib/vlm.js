@@ -221,7 +221,6 @@
             _getDeviceID = function () {
                 var deviceID = _Utils.CookieUtil.get("deviceID");
                 var memberid = localStorage.memberid;
-debugger;
                 //没有deciceID，并且用户登录了，deviceID返回空
                 if (deviceID ==null  && memberid!=undefined) {
                     return "none";
