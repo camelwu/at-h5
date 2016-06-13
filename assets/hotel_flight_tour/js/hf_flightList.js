@@ -184,10 +184,13 @@ var flight_list = {
 					type : 1,
 					s : 1,
 					key : 'sortTypes',
-					listData : [{
-						sortText : "不排序",
-						sortValue : 0
-					}, {
+					listData : [ {
+            sortText : "差价升序",
+            sortValue : 7
+          }, {
+            sortText : "差价降序",
+            sortValue : 8
+          }, {
 						sortText : " 直飞在前",
 						sortValue : 1
 					}, {
@@ -205,12 +208,6 @@ var flight_list = {
 					}, {
 						sortText : "起飞时间降序",
 						sortValue : 6
-					}, {
-						sortText : "差价升序",
-						sortValue : 7
-					}, {
-						sortText : "差价降序",
-						sortValue : 8
 					}]
 				},
 				hotelScreen : {

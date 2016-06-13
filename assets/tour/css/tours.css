@@ -438,6 +438,10 @@ a.hotel_detail_pic{
 .hotel_detail_list.hdl_down li{
     border-bottom:1px solid #e6e6e6;
 }
+.hotel_detail_list.hdl_down li span{
+  font-size: 0.36rem;
+  font-weight: 700;
+}
 .hotel_detail_list>li.last{
     height: auto;
     padding: 0;
