@@ -21,19 +21,15 @@ var hftChoose = {
     this.addHandler(target, eventType, handle);
   },
 
-  tAjax: function (questUrl, data, Code, ForeEndType, callBack, loadMoreSign) {
+  tAjax: function (questUrl, data, Code, ForeEndType, callBack) {
     var that = this, dataObj =
     {
       Parameters: data,
       ForeEndType: ForeEndType,
       Code: Code
     };
-    questUrl = questUrl ? questUrl : that.requestUrl;
-    if (loadMoreSign) {
-      vlm.loadJson("", JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
-    } else {
-      vlm.loadJson("", JSON.stringify(dataObj), callBack);
-    }
+    //questUrl = questUrl ? questUrl : "";
+    vlm.loadJson("", JSON.stringify(dataObj), callBack);
   },
 
   testLogin: function () {
@@ -48,6 +44,7 @@ var hftChoose = {
     }, 500);
     /*  }*/
   },
+
   getCurrentStyle: function (node) {
     var style = null;
     if (window.getComputedStyle) {
@@ -461,6 +458,7 @@ var hftChoose = {
     }
 
   },
+
   selectedRoomHandler:function(){
     var data = arguments[0], that = this;
     this.curData = data;
@@ -478,6 +476,7 @@ var hftChoose = {
     }
     return this
   },
+
   renderHandler: function () {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
     if (resultJSON.success == 1 && resultJSON.code == "200") {
@@ -495,6 +494,7 @@ var hftChoose = {
       jAlert(resultJSON.message);
     }
   },
+
   renderHandler_: function () {
     var result = arguments[0], that = hftChoose;
     if (result.code == 200 && result.success == 1) {
@@ -530,6 +530,7 @@ var hftChoose = {
       jAlert(result.message);
     }
   },
+
   noResult:function(){
     $("#status").fadeOut();
     $("#preloader").delay(400).fadeOut("medium");
@@ -673,7 +674,9 @@ var hftChoose = {
     }
     return resultNum;
   },
+
   fixRoomOrder:function(){
+          console.log(arguments[0])
          var that = this,allInfoData = that.operationData,roomsData = [], temp = {};
          var selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
          roomsData = allInfoData.hotelInfo.rooms;
@@ -687,6 +690,7 @@ var hftChoose = {
        that.operationData.rooms = roomsData;
        return that.operationData;
   },
+
   createTags: function () {
     var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "", tempStringRoom = "",outputStrRoom = "";
     tempStr = $("#template").html();
@@ -694,6 +698,7 @@ var hftChoose = {
     $(".all_elements").eq(0).html(outputStr);
     /*房间数据*/
     tempStringRoom = $("#template_roomList").html();
+    console.log(that.selectedRoomId)
     outputStrRoom = ejs.render(tempStringRoom, that.fixRoomOrder(that.selectedRoomId));
     $(".roomUl").eq(0).html(outputStrRoom);
     /*景点数据*/
@@ -714,6 +719,7 @@ var hftChoose = {
     });
     return obj;
   },
+
   tourParaObjHandler: function () {
     var tourPaObj = [], data = arguments[0];
     data.tours.forEach(function (array) {

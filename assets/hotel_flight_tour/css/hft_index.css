@@ -240,11 +240,15 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
 }
 .child_age_state{
   position: absolute;
-  width: .34rem;
-  height: .34rem;
+  width: .36rem;
+  height: .36rem;
   margin-left: .08rem;
   margin-top: .26rem;
-  background-position: 54% 31.5%;
+  background-position: -4.06rem -1.51rem;
+  display: inline-block;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.9rem 7.83rem;
 }
 .age_state_box{
   position: absolute;

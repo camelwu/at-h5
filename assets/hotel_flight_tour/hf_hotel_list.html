@@ -95,6 +95,7 @@
     <script id="title" type="text/template">
         <%= totelHotelCount %>
     </script>
+
     <!--选中的li-->
     <script id="curList" type="text/template">
         <li data-hotelId="<%= data.selectedHotel.hotelID %>" class="cur">
@@ -105,11 +106,11 @@
                     <h3><%= data.selectedHotel.hotelNameLocale %></h3>
                     <p>
                         <% if(data.selectedHotel.hotelReviewScore && data.selectedHotel.hotelReviewScore!=0){ %>
-                        <span class="score"><%= data.selectedHotel.hotelReviewScore %>.0</span>分&nbsp;
-                        <% } %>
-                        <% if(data.selectedHotel.hotelReviewCount && data.selectedHotel.hotelReviewCount != 0){ %>
-                        <i><%= data.selectedHotel.hotelReviewCount %>人点评</i>
-                        <% } %>
+                            <span class="score"><%= data.selectedHotel.hotelReviewScore %>.0</span>分&nbsp;
+                            <% } %>
+                                <% if(data.selectedHotel.hotelReviewCount && data.selectedHotel.hotelReviewCount != 0){ %>
+                                    <i><%= data.selectedHotel.hotelReviewCount %>人点评</i>
+                                    <% } %>
                     </p>
                     <p class="equipment clearfix">
                         <span><%= data.selectedHotel.starRating %></span>
@@ -118,7 +119,7 @@
                     </p>
                     <p class="address">
                         <%= data.selectedHotel.city %>
-                        <%= data.selectedHotel.location %>
+                            <%= data.selectedHotel.location %>
                     </p>
                     <div class="price">
                         <span class="money"><%= data.selectedHotel.additionalPrice %></span>
@@ -134,18 +135,18 @@
     <script id="templateList" type="text/template">
         <% for(var i=0;i< data.hotels.length;i++) { %>
             <li data-hotelId="<%= data.hotels[i].hotelID %>">
-              <img class="h-choose h_choose" src="../images/ui/choose.png">
+                <img class="h-choose h_choose" src="../images/ui/choose.png">
                 <div>
                     <img class="img" src="<%= data.hotels[i].hotelPictureURL %>" data-src="../images/loading-hotel.gif" data-noimg="../images/hotelListNo.jpg" alt="">
                     <article class="message">
                         <h3><%= data.hotels[i].hotelNameLocale %></h3>
                         <p>
-                        <% if(data.hotels[i].hotelReviewScore && data.hotels[i].hotelReviewScore!=0){ %>
-                            <span class="score"><%= data.hotels[i].hotelReviewScore %>.0</span>分&nbsp;
-                        <% } %>
-                        <% if(data.hotels[i].hotelReviewCount && data.hotels[i].hotelReviewCount != 0){ %>
-                            <i><%= data.hotels[i].hotelReviewCount %>人点评</i>
-                        <% } %>
+                            <% if(data.hotels[i].hotelReviewScore && data.hotels[i].hotelReviewScore!=0){ %>
+                                <span class="score"><%= data.hotels[i].hotelReviewScore %>.0</span>分&nbsp;
+                                <% } %>
+                                    <% if(data.hotels[i].hotelReviewCount && data.hotels[i].hotelReviewCount != 0){ %>
+                                        <i><%= data.hotels[i].hotelReviewCount %>人点评</i>
+                                        <% } %>
                         </p>
                         <p class="equipment clearfix">
                             <span><%= data.hotels[i].starRating %></span>
