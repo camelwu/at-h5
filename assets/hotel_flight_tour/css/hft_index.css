@@ -605,9 +605,9 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   /*left: .65rem;*/
 /*}*/
 .go_info .end_time_info {
-  position: static;
+  position: relative;
   float: left;
-  width: 33%;
+  width: 26%;
   overflow: visible;
   text-align: right;
   font-size: .28rem;
@@ -615,8 +615,8 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .end_time_info .tip_add_days {
   position: absolute;
-  right: 0;
-  top: .08rem;
+  right: -0.5rem;
+  top: -.1rem;
   width: .68rem;
   font-size: .2rem;
 }
@@ -625,16 +625,15 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   font-size: .28rem;
   font-weight: bold;
   color: #333333;
-  width: 1.06rem;
-  margin-right: .15rem;
+  width: 100%;
 }
 .end_time_info .air_port_word {
-  display: block;
-  position: absolute;
+  display: inline-block;
+  /* position: absolute; */
   right: .58rem;
   top: 0;
   font-size: .24rem;
-  margin-top: .9rem;
+  margin-top: .4rem;
 }
 .small_info_tip {
   height: .36rem;
