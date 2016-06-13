@@ -1,5 +1,5 @@
 window.onload = function() {
-	var val = vlm.parseUrlPara(window.location.href), hotelMessage = window.localStorage.getItem('hotelDetailData'), hotelCode = val.HotelID ? val.HotelID : JSON.parse(hotelMessage).data.data[0].hotelGenInfo.hotelCode, data = {
+	var val = vlm.parseUrlPara(window.location.href), hotelMessage = window.localStorage.getItem('hotelDetailData'), hotelCode = val.HotelID ? val.HotelID : JSON.parse(hotelMessage).data.hotel[0].hotelGenInfo.hotelCode, data = {
 		"Parameters" : "{\"HotelID\":" + hotelCode + ",\"CultureName\":\"ZH-CN\" }",
 		"ForeEndType" : 3,
 		"Code" : "0009"
@@ -14,7 +14,7 @@ window.onload = function() {
 				addContent(hotelMessage);
 				function addContent(hotelMessage) {
 					var hotelDesc = document.querySelector('.s-content1'), scenicSpot = document.querySelectorAll('.s-ul1')[0], scenicSpot = document.querySelectorAll('.s-ul1')[0], hotelFeature = document.querySelectorAll('.s-ul2')[0];
-					hotelMessage = JSON.parse(hotelMessage).data.data[0].hotelGenInfo;
+					hotelMessage = JSON.parse(hotelMessage).data.hotel[0].hotelGenInfo;
 					hotelDesc.innerText = hotelMessage.hotelDesc;
 					hotelFeature.innerHTML = getFeature(hoteFeatureDesc);
 					/*

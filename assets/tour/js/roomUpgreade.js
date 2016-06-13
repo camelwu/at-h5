@@ -132,12 +132,12 @@ var roomUpGrade = {
 				$('#room-list').html(tpl_GetRooms);
 				var travelersInput = resultData.data.bookingFormInfo.travelersInput;
         hotelID = resultData.data.hotels[0].hotelID;
-        window.localStorage.hotelDetailData = resultData.data.hotels[0].hotelGenInfo.hotelDesc;
+        window.localStorage.hotelDetailData = resultData;
 				that.chooseRoom(travelersInput);
 				that.dateDeal().delayLoadImage().addEvent(travelersInput);
 				//map
 				var dataMap = resultData.data.hotels[0].hotelGenInfo;
-				console.log(dataMap)
+				console.log(dataMap);
 				latitude = dataMap.latitude-0;
 				longitude = dataMap.longitude-0;
 				at.map.createMap(latitude,longitude);
@@ -225,6 +225,6 @@ function star(stars){
 	return stars;
 }
 function showHotelInfo(){
-  window.location.href = 'hotel_summary.html';
+  window.location.href = 'hotel_summary.html?HotelID='+hotelID+'';
 }
 
