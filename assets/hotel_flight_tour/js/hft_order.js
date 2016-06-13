@@ -210,28 +210,6 @@ var hftTool ={
         console.log(hftCreateOrderPara)
         console.log(hftFlightHotelTourInfo)
         var tours=[]; /*请求景点的参数*/
-       /* for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
-        {
-          var sceWrap=hftFlightHotelTourInfo.tours[i];
-          var scenic={};
-          scenic.tourID=sceWrap.tourID;
-          scenic.travelDate =null;
-          scenic.tourSession=null;
-          if(sceWrap.tourType!=1){
-            scenic.travelDate=sceWrap.travelDates[0];
-            var sceArr=[];
-            for(var j=0; j<sceWrap.tourSessions.length; j++)
-            {
-              var session={};
-              if( sceWrap.tourSessions[j].isSelected == 1){
-                session.tourSession=sceWrap.tourSessions[j].tourSessionName;
-              }
-              sceArr.push(session);
-            }
-            scenic.tourSession=sceArr[0].tourSession;
-          }
-          tours.push(scenic);
-        }*/
         for(var i=0;i<hftCreateOrderPara.tours.length; i++){
           var scenic={},sceWrap=hftCreateOrderPara.tours[i];
           scenic.tourID=sceWrap.tourID;
@@ -291,10 +269,7 @@ var hftTool ={
             )
           }
           }
-
-
       }
-
       //出行人
       var traveller=[];
       if(localStorage.travellerInfo_selected){
