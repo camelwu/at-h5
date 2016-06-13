@@ -236,7 +236,7 @@
                 dataPull.parameters.pageNo = hotelList.currentPage + 1;
 
                 loadMoreBtn.html("正在加载...");
-                vlm.loadJson('', JSON.stringify(dataPull), moreDataCallBack);
+                vlm.loadJson('', JSON.stringify(dataPull), moreDataCallBack, false, false, true);
             });
         }
     };
