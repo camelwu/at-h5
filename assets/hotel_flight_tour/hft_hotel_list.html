@@ -139,7 +139,7 @@
         <h3><%= data.hotels[i].hotelNameLocale %></h3>
         <p>
           <% if(data.hotels[i].hotelReviewScore && data.hotels[i].hotelReviewScore!=0){ %>
-          <span class="score"><%= data.hotels[i].hotelReviewScore %>.0</span>分&nbsp;
+          <span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;
           <% } %>
           <% if(data.hotels[i].hotelReviewCount && data.hotels[i].hotelReviewCount != 0){ %>
           <i><%= data.hotels[i].hotelReviewCount %>人点评</i>
