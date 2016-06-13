@@ -188,7 +188,7 @@
                 //                }, 500);
                 $('.hotel_list li').on('click', function () {
                     $(this).addClass('cur').siblings().removeClass('cur');
-                    var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
+                    var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice");
                     //跳转到详情页用
                     hotelList.parametersStorage.hotelID = hotelID;
                     hotelList.parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;

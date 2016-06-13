@@ -110,11 +110,9 @@
 		$('.status').fadeOut('fast');
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
-			var hotelID = $(this).attr("data-hotelId");
-
-			//跳转到详情页用
-			console.log(hotelID);
+			var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
 			parametersStorage.hotelID = hotelID;
+			parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
 			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
 			window.location.href = 'hft_hotel_detail.html';
 		});
