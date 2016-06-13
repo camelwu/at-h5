@@ -1,15 +1,18 @@
-allowMultiSelect
-:
-0
-filterType
-:
-5
-item
-:
-[{filterText: "主题公园", filterValue: "5850"}, {filterText: "动物园/水族馆", filterValue: "6765"},…]
-sortNumber
-:
-0
-title
-:
-"主题"
+ * 底部菜单
+ * 创建底部菜单，id,class会有不同,每个页面只有一个底部，多个筛选条件
+ * menu：根据页面url地址进行判断
+ * filters：根据传入的json对象显示和判断
+ * 传入参数说明：
+ *
+ {
+ hotelSort : {//传入标识
+ title : "推荐排序",//中文名称
+ s : 1|2,//单|多选
+ c : "sort bg_color", //样式
+ type : 1,//类型：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，多条件筛选，点击确认按钮进行查询，3航空公司，特殊处理方式
+ key : 'filters',//键值，返回数据的key值
+ listData : [{}]//统一为数组，内为对象内容
+ 
+2016-06-13 log
+t类型逐渐不太够用，另外也存在多种情况的处理，所以需要部分参数进行重构
+考虑t从int转化为string，在默认的处理中增加一个数组，由内部数组对应方法进行升级。
