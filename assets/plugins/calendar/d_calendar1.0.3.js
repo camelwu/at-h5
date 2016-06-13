@@ -393,14 +393,16 @@
         // A 的事件
         linkOn: function () {
             var that = this;
-            var calendarWrap = _CalF.$('#' + this.id + 'Date');
-            _CalF.bind(calendarWrap, 'click', function (event) {
+            $('#' + this.id + 'Date').on("click", "a", function (event) {
                 var target = event.target || event.srcElement;
-                if (target.tagName == "A" && !(target.className.indexOf('disabled') > -1)) {
+                if (target.tagName == "A" && !(target.className.indexOf('disabled') > -1) && (target.className.indexOf('live') > -1)) {
                     target.innerHTML = '<span class="live_circle">' + (target.innerHTML) + '</span>';
-                    target.classList.add("disabled");
+                    // target.classList.add("disabled");
                     target.classList.add('selected');
                     that.linkOver(target);
+                } else if (target.className.indexOf('live_circle') > -1) {
+                    //已经选中的日期再次点击时target 变为span
+                    that.linkOver(target.parentNode);
                 }
             });
         },

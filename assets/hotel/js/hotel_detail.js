@@ -265,7 +265,7 @@
             var toMap = this.$Id('map');
             toMap.onclick = function () {
                 var dataObj = {
-                    HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelName,
+                    HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelNameLocale +"("+hotelDetail.sourceData.data[0].hotelGenInfo.hotelName+") "+hotelDetail.sourceData.data[0].hotelGenInfo.hotelAddress,
                     Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
                     Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
                 }
@@ -274,7 +274,7 @@
                     paramStr += "&" + attr + "=" + dataObj[attr];
                 }
                 paramStr = paramStr.slice(1);
-                document.location.href = 'jyy_hd_map.html?' + paramStr;
+                document.location.href = 'hotel_map.html?' + paramStr;
             };
 
             for (var i = 0; i < showListTrigger.length; i++) {

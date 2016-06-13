@@ -195,10 +195,6 @@ var footer = (function () {
 
         });
         // 遮罩层|返回按钮点击，包括隐藏
-<<<<<<< Updated upstream
-        $("body").children().click(function () {});   //解决iPhone safari中Document事件不触发
-=======
->>>>>>> Stashed changes
         on(document, 'click', function (event) {
           event = event || window.event;
           var target = event.target || event.srcElement, src = target.parentNode;

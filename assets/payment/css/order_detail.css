@@ -724,9 +724,9 @@ li.order_tlist2 {
   vertical-align: top;
   margin-left: .05rem;
   margin-top: .24rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -2.3rem -.5rem;
-  background-size: 6.6rem 4.55rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-position: -2.24rem -0.66rem;
+  background-size: 7.9rem 7.83rem;
   width: .32rem;
   height: .32rem;
   transition: 0.3s all ease;
@@ -737,14 +737,25 @@ li.order_tlist2 {
   vertical-align: top;
   margin-left: .05rem;
   margin-top: .24rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -1.84rem -.5rem;
-  background-size: 6.6rem 4.55rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-position: -2.8rem -0.66rem;
+  background-size: 7.9rem 7.83rem;
   width: .32rem;
   height: .32rem;
   transition: 0.3s all ease;
 }
-
+.tip{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: .05rem;
+  margin-top: .24rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-position: -2.78rem -0.66rem;
+  background-size: 7.9rem 7.83rem;
+  width: .32rem;
+  height: .32rem;
+  transition: 0.3s all ease;
+}
 .fht_order_tab {
   padding: .25rem 0 0 .28rem;
   background-color: #fff;

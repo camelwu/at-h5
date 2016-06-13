@@ -58,7 +58,7 @@
   box-sizing: border-box;
   width: 6.2rem;
   height: 0.6rem;
-  padding: 0.06rem 0.28rem 0.06rem 2.5rem;
+  padding: 0.06rem 0.28rem 0.06rem 2rem;
   outline: none;
   font-size: 0.28rem;
   color: #333;
@@ -70,7 +70,7 @@
 
 .citybox_search_icon {
   position: absolute;
-  left: 1.96rem;
+  left: 1.5rem;
   height: 0.88rem;
   width: 0.8rem;
   overflow: hidden;

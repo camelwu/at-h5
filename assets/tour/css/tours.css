@@ -1181,7 +1181,9 @@ order-data-people  page   end
 }
 .hotelInfo_numb_people .spenumbList b.ico_select{
     background-position: -5.08rem -0.52rem;
+   opacity:1;
 }
+
 /*
 资料输入  end
 数据错误显示页面   begin
