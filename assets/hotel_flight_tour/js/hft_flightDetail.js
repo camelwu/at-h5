@@ -132,9 +132,7 @@ var  hftFlightDetail = {
     });
     return this
   },
-
   init:function(){
-
     var bookingRefNo=vlm.getpara("bookingRefNo");//订单code
     //获取Url参数
     var type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
