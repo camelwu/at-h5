@@ -64,7 +64,6 @@ var apiOrderDic = {
 }
 
 var getWithTrickParam = function (res, res, param) {
-    console.log(param);
     var orderType = apiOrderDic[param.code] == undefined ? apiOrderDic[param.Code] : apiOrderDic[param.code]
     if (orderType != undefined) {
         if (orderType.tpye != "H") {
@@ -73,14 +72,14 @@ var getWithTrickParam = function (res, res, param) {
                 param.Parameters.track.deviceID = deviceID;
                 res.cookie('deviceID', deviceID);
             }
-            param.Parameters.track.browserType = "Siri";
+            param.Parameters.track.browserType = "";
         } else {
             if (param.Parameters.deviceID == "") {
                 var deviceID = uuid.v4();
                 param.Parameters.deviceID = deviceID;
                 res.cookie('deviceID', deviceID);
             }
-            param.Parameters.browserType = "Siri";
+            param.Parameters.browserType = "";
 
         }
     }
@@ -129,7 +128,7 @@ module.exports = {
             var reqeustStartTime, requestEndTime, spendTime;
             //http://10.6.11.20:6666/api/GetServiceApiResult
             //http://123.56.190.34:8888/api/GetServiceApiResult
-            //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight  
+            //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight
             ////UAT domain   hapi.atrip.net:8000
             var _api = 'http://' + sails.config.globals.hapi + '/api/GetServiceApiResult' + '?rnd=' + Math.random();
 

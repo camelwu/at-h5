@@ -7,7 +7,7 @@
  * ver:1.1.1
  */
 (function (e, t) {
-    var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111  10.7.2.119 m.yazhoulvyou.cn
+    var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111  10.7.2.119
         var _api = "http://10.7.2.119/api/GetServiceApiResult",
             _apiWithDeviceID = "http://10.7.2.119/apiWihtDeviceID/GetServiceApiResult",
             lStorage = window.localStorage,
@@ -220,9 +220,16 @@
             },
             _getDeviceID = function () {
                 var deviceID = _Utils.CookieUtil.get("deviceID");
-                if (deviceID == undefined) {
-                    return "";
-                } else {
+                var memberid = localStorage.memberid;
+debugger;
+                //没有deciceID，并且用户登录了，deviceID返回空
+                if (deviceID ==null  && memberid!=undefined) {
+                    return "none";
+                } else if(deviceID == null && memberid==undefined) {
+                  return "";
+                }
+
+                else {
                     return deviceID;
                 }
             },
@@ -362,41 +369,53 @@
                         return "周" + reslut;
                     }
                 },
-                getAge: function (birthday, departDate) {
-                    var age = -1,
-                        today;
-                    if (departDate == undefined) {
-                        today = new Date();
-                    } else {
-                        today = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
-                    }
-                    var todayYear = today.getFullYear();
-                    var todayMonth = today.getMonth() + 1;
-                    var todayDay = today.getDate();
+              getAge:function(birthday,departDate){
+                var age=-1,today;
+                if(departDate==undefined){
+                  today=new Date();
+                }
+                else {
+                  today = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+                }
+                var todayYear=today.getFullYear();
+                var todayMonth=today.getMonth()+1;
+                var todayDay=today.getDate();
 
-                    var birthday = new Date(birthday.replace('-', "/").replace('-', "/").replace('T', " "))
-                    if (birthday != null) {
-                        birthdayYear = birthday.getFullYear();
-                        birthdayMonth = birthday.getMonth();
-                        birthdayDay = birthday.getDate();
-                        if (todayYear - birthdayYear < 0) {
-                            alert("出生日期选择错误!");
-                        } else {
-                            if (todayMonth * 1 - birthdayMonth * 1 < 0) {
-                                age = (todayYear * 1 - birthdayYear * 1) - 1;
-                            } else {
-                                if (todayDay - birthdayDay >= 0) { //alert(thisDay+'-'+brithd+"_ddd");
-                                    age = (todayYear * 1 - birthdayYear * 1);
-                                } else {
-                                    age = (todayYear * 1 - birthdayYear * 1) - 1;
-                                }
-                            }
-                        }
-                        return age * 1;
-                    } else {
-                        return -1;
+                var birthday= new Date(birthday.replace('-', "/").replace('-', "/").replace('T', " "))
+                if(birthday !=null)
+                {
+                  birthdayYear=birthday.getFullYear();
+                  birthdayMonth=birthday.getMonth();
+                  birthdayDay=birthday.getDate();
+                  if(todayYear-birthdayYear<0)
+                  {
+                    alert("出生日期选择错误!");
+                  }
+                  else
+                  {
+                    if(todayMonth*1-birthdayMonth*1<0)
+                    {
+                      age = (todayYear*1-birthdayYear*1)-1;
                     }
-                },
+                    else
+                    {
+                      if(todayDay-birthdayDay>=0)
+                      {//alert(thisDay+'-'+brithd+"_ddd");
+                        age = (todayYear*1-birthdayYear*1);
+                      }
+                      else
+                      {
+                        age = (todayYear*1-birthdayYear*1)-1;
+                      }
+                    }
+                  }
+                  return age*1;
+                }
+                else
+                {
+                  return -1;
+                }
+              },
                 //比较时间串与当前时间的大小
                 compareTime: function (timeStr) {
                     if (timeStr == '' || timeStr == null) {
@@ -496,6 +515,11 @@
                     },
                     unset: function (name, path, domain, secure) {
                         this.set(name, "", new Date(0), path, domain, secure);
+                    },
+                    delCookie: function (name){//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
+                      var date = new Date();
+                      date.setTime(date.getTime() - 10000);
+                      document.cookie = name + "=a; expires=" + date.toGMTString();
                     }
                 },
                 //格式验证
@@ -1127,7 +1151,7 @@
                     }
                 }, true);
                 return back;
-            }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate, isShowChinaName, isShowContact, callback) {
+            }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate,isShowChinaName,isShowContact,callback) {
                 //if(arguments.length<1){return ;}
                 //var arg = arguments.callee.slice(this);
                 var type = '',
@@ -1146,8 +1170,8 @@
                             title = '选择出行人';
                             break;
                         case "fx":
-                            title = '选择出游人';
-                            break;
+                          title = '选择出游人';
+                          break;
                         default:
                             title = '选择乘机人';
                             break;
@@ -1159,7 +1183,7 @@
                     type = 'add';
                 }
                 //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");isShowChinaName,isShowContact
-                var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callback);
+                var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId + ' &from=' + f+t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate+"&isShowChinaName="+isShowChinaName+"&isShowContact="+isShowContact+"&callback="+callback);
                 document.body.appendChild(choice);
 
                 //choice.location = urls;
