@@ -321,7 +321,8 @@ var hftChoose = {
         "hotelID": that.curData.hotelInfo.hotelID,
         "roomDetails": that.initParaObj.roomDetails,
         "flightCacheID":that.curData.flightInfo.cacheID,
-        "flightSetID":that.curData.flightInfo.setID
+        "flightSetID":that.curData.flightInfo.setID,
+        "hotelAdditionalPrice":""
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -676,9 +677,7 @@ var hftChoose = {
   },
 
   fixRoomOrder:function(){
-          console.log(arguments[0])
-         var that = this,allInfoData = that.operationData,roomsData = [], temp = {};
-         var selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
+         var that = this,allInfoData = that.operationData,roomsData = [], temp = {},selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
          roomsData = allInfoData.hotelInfo.rooms;
          for(var i = 0;i<roomsData.length;i++){
                   if(roomsData[i].roomID == selectedRoomId){
