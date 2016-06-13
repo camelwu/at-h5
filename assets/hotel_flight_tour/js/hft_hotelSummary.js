@@ -12,7 +12,7 @@ window.onload = function() {
 
 			var ulHtml = "";
 			for(var i=0;i<data.length;i++){
-				ulHtml += '<li class="ul2-li"><b class="s-icon3 hotel_feature_li_icon" style="margin-bottom:0px"></b><p class="s-p4 hotel_feature_li_p">'+data[i].featureDesc+'</p></li>';
+				ulHtml += '<li class="li2"><b class="s-icon3 hotel_feature_li_icon" style="margin-bottom:0px"></b><p class="s-p4 hotel_feature_li_p">'+data[i].featureDesc+'</p></li>';
 			}
 			console.log(ulHtml)
 			$('.hotel_feature').html(ulHtml);
