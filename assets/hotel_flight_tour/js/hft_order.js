@@ -53,7 +53,6 @@ var hftTool ={
   });
   //初始化
   function init() {
-
     //机票详情
     var flightstr=$('#orderFlight').html();
     var flightdet = ejs.render(flightstr , hftFlightHotelTourInfo)
