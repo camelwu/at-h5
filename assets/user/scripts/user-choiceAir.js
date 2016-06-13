@@ -250,6 +250,12 @@
       jAlert("名必须为英文！","",null,"确认");
       return false;
     }
+    if($(addOrEditPassagePage).find(".traveler_sex1").length==0){
+      jAlert("请选择性别！","",null,"确认");
+      return false;
+    }
+
+
     return true;
   }
 
