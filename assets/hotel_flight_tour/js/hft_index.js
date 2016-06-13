@@ -14,8 +14,9 @@ var htf_search = {
         var search_hotel = document.getElementsByClassName('search_hotel');
         var hotelInfo_hf = search_hotel[0].querySelector('.hotelInfo_numb_room');
         var hotelInfo_hft = search_hotel[1].querySelector('.hotelInfo_numb_room');
-        if (localStorage.cacheSearch) {
-            var cacheSearch = JSON.parse(localStorage.cacheSearch);
+        var cacheSearch = localStorage.getItem('cacheSearch');
+        if (cacheSearch) {
+            var cacheSearch = JSON.parse(cacheSearch);
             switch (cacheSearch.Box) {
                 case 1:
                     tab[0].className = 'tab active';
@@ -28,12 +29,16 @@ var htf_search = {
                 default:
                     void(0);
             }
-            $('.content_box').eq(0).find('.origin').html(cacheSearch.hfSearchInfo.FromCityNameCN);
-            $('.content_box').eq(0).find('.destination').html(cacheSearch.hfSearchInfo.ToCityNameCN);
-            $('.content_box').eq(1).find('.origin').attr("data-citycode", cacheSearch.hftSearchInfo.FromCityCode);
-            $('.content_box').eq(1).find('.destination').attr("data-citycode", cacheSearch.hftSearchInfo.ToCityCode);
-            $('.content_box').eq(0).find('#hf_roomNum').html(cacheSearch.hfSearchInfo.RoomInfo.length);
-            $('.content_box').eq(1).find('#hft_roomNum').html(cacheSearch.hftSearchInfo.RoomInfo.length);
+            var content_box_fh = $('.content_box').eq(0);
+            var content_box_fht = $('.content_box').eq(1);
+            // FH Search Input恢复上次搜索cityName和cityCode
+            content_box_fh.find('.origin').html(cacheSearch.hfSearchInfo.FromCityNameCN).attr("data-code", cacheSearch.hfSearchInfo.FromCityCode);
+            content_box_fh.find('.destination').html(cacheSearch.hfSearchInfo.ToCityNameCN).attr("data-code", cacheSearch.hfSearchInfo.ToCityCode);
+            content_box_fh.find('#hf_roomNum').html(cacheSearch.hfSearchInfo.RoomInfo.length);
+            // FHT Search Input恢复上次搜索cityName和cityCode
+            content_box_fht.find('.origin').html(cacheSearch.hftSearchInfo.FromCityNameCN).attr("data-code", cacheSearch.hftSearchInfo.FromCityCode);
+            content_box_fht.find('.destination').html(cacheSearch.hftSearchInfo.ToCityNameCN).attr("data-code", cacheSearch.hftSearchInfo.ToCityCode);
+            content_box_fht.find('#hft_roomNum').html(cacheSearch.hftSearchInfo.RoomInfo.length);
             var room;
             var echRoom;
             for (var i = 0; i < cacheSearch.hfSearchInfo.RoomInfo.length; i++) {
@@ -69,8 +74,8 @@ var htf_search = {
                 section = document.createElement('section');
                 section.innerHTML = initStr_hf;
                 section.className = 'hotelInfo_numb_people';
-                room = $('.content_box').eq(0).find('.hotelInfo_numb_people').length;
-                echRoom = $('.content_box').eq(0).find('.hotelInfo_numb_people');
+                room = content_box_fh.find('.hotelInfo_numb_people').length;
+                echRoom = content_box_fh.find('.hotelInfo_numb_people');
                 if (room) {
                     search_hotel[0].insertBefore(section, echRoom[room - 1].nextSibling);
                 } else {
@@ -110,8 +115,8 @@ var htf_search = {
                 section = document.createElement('section');
                 section.innerHTML = initStr_hft;
                 section.className = 'hotelInfo_numb_people';
-                room = $('.content_box').eq(1).find('.hotelInfo_numb_people').length;
-                echRoom = $('.content_box').eq(1).find('.hotelInfo_numb_people');
+                room = content_box_fht.find('.hotelInfo_numb_people').length;
+                echRoom = content_box_fht.find('.hotelInfo_numb_people');
                 if (room) {
                     search_hotel[1].insertBefore(section, echRoom[room - 1].nextSibling);
                 } else {
@@ -235,8 +240,9 @@ var htf_search = {
         initStartDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2);
         initEndDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4);
 
-        if (localStorage.cacheSearch) {
-            var cacheSearch = JSON.parse(localStorage.cacheSearch);
+        var cacheSearch = localStorage.getItem('cacheSearch');
+        if (cacheSearch) {
+            var cacheSearch = JSON.parse(cacheSearch);
             var fhStartDate = cacheSearch.hfSearchInfo.DepartDay;
             var fhEndDate = cacheSearch.hfSearchInfo.ReturnDay;
 
@@ -684,16 +690,16 @@ var htf_search = {
             }
         }
         //   传输查询数据
-        var FromCityNameCN = getByClass(box, 'origin')[0].innerHTML;
-        var ToCityNameCN = getByClass(box, 'destination')[0].innerHTML;
+        var FromCityNameCN = getByClass(box, 'origin')[0].innerHTML.trim();
+        var ToCityNameCN = getByClass(box, 'destination')[0].innerHTML.trim();
         var fromCity = getByClass(box, 'origin')[0].getAttribute('data-code');
         var toCity = getByClass(box, 'destination')[0].getAttribute('data-code');
         var departDate = getByClass(box, 'js_startData')[0].getAttribute('data-day') + 'T00:00:00';
         var returnDate = getByClass(box, 'js_returnData')[0].getAttribute('data-day') + 'T00:00:00';
-        var startday = getByClass(box, 'js_startDay')[0].innerHTML;
-        var endday = getByClass(box, 'js_endDay')[0].innerHTML;
-        var stardWeek = getByClass(box, 'week_one')[0].innerHTML;
-        var endWeek = getByClass(box, 'week_two')[0].innerHTML;
+        // var startday = getByClass(box, 'js_startDay')[0].innerHTML;
+        // var endday = getByClass(box, 'js_endDay')[0].innerHTML;
+        // var stardWeek = getByClass(box, 'week_one')[0].innerHTML;
+        // var endWeek = getByClass(box, 'week_two')[0].innerHTML;
         var roomDetails = [],
             echChildNum = [];
         var room = getByClass(box, 'hotelInfo_numb_people');
@@ -818,8 +824,8 @@ var htf_search = {
 
         var hft_FromCityNameCN = getByClass(box_hft, 'origin')[0].innerHTML;
         var hft_ToCityNameCN = getByClass(box_hft, 'destination')[0].innerHTML;
-        var hft_fromCity = getByClass(box_hft, 'origin')[0].getAttribute('data-citycode');
-        var hft_toCity = getByClass(box_hft, 'destination')[0].getAttribute('data-citycode');
+        var hft_fromCity = getByClass(box_hft, 'origin')[0].getAttribute('data-code');
+        var hft_toCity = getByClass(box_hft, 'destination')[0].getAttribute('data-code');
         var hft_startday = getByClass(box_hft, 'js_startData')[0].getAttribute("data-day");
         var hft_endday = getByClass(box_hft, 'js_returnData')[0].getAttribute("data-day");
         var hft_stardWeek = getByClass(box_hft, 'week_one')[0].innerHTML;

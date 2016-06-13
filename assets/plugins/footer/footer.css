@@ -349,6 +349,7 @@ section.flight_company li {
     position: relative;
     height: .68rem;
     padding: .3rem;
+    margin-left: .3rem;
     margin-bottom: 0;
     font-size: .28em;
     border-bottom: 1px solid #ddd;
