@@ -115,8 +115,8 @@ var flightList = {
 
 	getFlightList : function() {
 		var that = this;
-    $('#departData').html(that.formatDate(oldFlightInfo.departDate,"MM-dd"));
-    $('#returnData').html(that.formatDate(oldFlightInfo.returnDate,"MM-dd"));
+    $('#departData').html(that.formatDate(oldFlightInfo.departDate,"MM月dd日"));
+    $('#returnData').html(that.formatDate(oldFlightInfo.returnDate,"MM月dd日"));
     $('#departWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.departDate,"d")));
     $('#returnWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.returnDate,"d")));
 		var flightListBack = function(ret) {

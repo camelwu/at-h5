@@ -59,7 +59,18 @@
     <span class="time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>
             </span>
-    <span class="time_people_list_number" id="Time"><%= AdultNum %>成人<%= ChildNum %>儿童<i></i></span>
+
+    <span class="time_people_list_number" id="Time">
+      <%if(AdultNum >0){%>
+      <span><%= AdultNum %>成人</span>
+      <%}%>
+       <%if(ChildNum >0){%>
+      <span><%= ChildNum %>儿童</span>
+      <%}%>
+      <%if(RoomInfo.length >0){%>
+      <span><%= (RoomInfo.length) %>房间</span>
+      <%}%>
+      <i></i></span>
 </script>
 <script id="CityDetile" type="text/template">
     <% if(recommendCities.length > 1){ %>
