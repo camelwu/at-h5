@@ -139,7 +139,7 @@
 <script id="message" type="text/template">
   <% console.log(typeof hotelReviewScore) %>
   <% if(hotelReviewCount!=0 || hotelReviewScore!=0){ %>
-  <li class="score"><% if(hotelReviewCount!=0){ %><b><%= hotelReviewCount %></b> 分 <% } %><% if(hotelReviewScore!=0){ %><strong><%= hotelReviewScore %></strong>人点评<% } %><i class="arrow"></i></li>
+  <li class="score"><% if(hotelReviewScore!=0){ %><b><%= hotelReviewScore %></b> 分 <% } %><% if(hotelReviewCount!=0){ %><strong><%= hotelReviewCount %></strong>人点评<% } %><i class="arrow"></i></li>
   <% } %>
   <li class="star">
     <span><%= starRating %></span>
