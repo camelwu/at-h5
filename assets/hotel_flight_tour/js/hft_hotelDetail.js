@@ -1,8 +1,6 @@
 (function(){
   //获取本地存储数据
   var sStorage = JSON.parse(sessionStorage.getItem("hftHotelDetailPara")) || {};
-  //console.log(sStorage);
-  //取url再传给资源选择页
   var chooseUrl = sessionStorage.getItem("hftHotelChooseUrl");
   //添加当前选中样式  资源选择页有roomId、列表页没有，所以用判断
   var ulrRoom = window.location.search;

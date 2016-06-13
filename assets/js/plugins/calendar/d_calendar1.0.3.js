@@ -395,7 +395,7 @@
             var that = this;
             $('#' + this.id + 'Date').on("click", "a", function (event) {
                 var target = event.target || event.srcElement;
-                if (target.tagName == "A" && !(target.className.indexOf('disabled') > -1)) {
+                if (target.tagName == "A" && !(target.className.indexOf('disabled') > -1) && (target.className.indexOf('live') > -1)) {
                     target.innerHTML = '<span class="live_circle">' + (target.innerHTML) + '</span>';
                     // target.classList.add("disabled");
                     target.classList.add('selected');

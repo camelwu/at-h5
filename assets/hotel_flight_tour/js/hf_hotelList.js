@@ -186,15 +186,12 @@
                 //                setTimeout(function () {
                 //                    var c = new lazyLoad('hj_jList');
                 //                }, 500);
-
-
                 $('.hotel_list li').on('click', function () {
                     $(this).addClass('cur').siblings().removeClass('cur');
-                    var hotelID = $(this).attr("data-hotelId");
-
+                    var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice");
                     //跳转到详情页用
-                    console.log(hotelID);
                     hotelList.parametersStorage.hotelID = hotelID;
+                    hotelList.parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
                     sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(hotelList.parametersStorage));
                     window.location.href = 'hf_hotel_detail.html';
                 });

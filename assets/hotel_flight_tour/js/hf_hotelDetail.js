@@ -11,12 +11,12 @@ var data2 = '', roomdata = '';
 		delete temObj.selectedRoomID
 	}
 	//data中入住离店时间必须去掉时分秒
-	console.log(temObj)
 	var data = {
 		"Code" : "50100009",
 		"ForeEndType" : 2,
 		"Parameters" : temObj
-	}
+	};
+  console.log(data)
 	var departDateHtml = temObj.departDate.substring(5);
 	var enterDateHtml = temObj.returnDate.substring(5);
 	$('.jhf-mes span.departDate').html(departDateHtml);
