@@ -348,8 +348,8 @@ input.inp_cage:-ms-input-placeholder {
    width: 100%;
    display: block;
    border-top: 0.01rem solid #ddd;
-   height: 1rem;
-   line-height: 1rem;
+   height: .8rem;
+   line-height: .9rem;
 }
 
 

@@ -12,10 +12,10 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             d2 = new Date(d2);
             d1 = new Date(d1);
             Count = (d2.getFullYear() - d1.getFullYear()) * 12;
-            Count -= d1.getMonth() + 1;
-            Count += d2.getMonth();
+            Count -= d1.getMonth();
+            Count += d2.getMonth() + 1;
             Count = Count <= 0 ? 1 : Count;
-            Count = Count > 12 ? 12 : Count;
+            //Count = Count > 12 ? 12 : Count;
         } else {
             Count = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
         }
@@ -43,6 +43,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
 
 
         dateHandler = {},
+        tourCalendar,
         // 时间相关参数
         day_Num, day_start, day_end, calendar_end, day_weekday, tourData, noon = [],
         initTourCalendar = function () {
@@ -61,9 +62,10 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             initTourDate[vlm.Utils.format_date(defaultSelectedDate, "Ymd")] = "initDate";
             for (var i = 0, len = contentList.length; i < len; i++) {
                 dateContentId = $(contentList[i]).attr("id");
-                var myDate = new ATplugins.Calender({
+                tourCalendar = null;
+                tourCalendar = new ATplugins.Calender({
                     id: dateContentId,
-                    num: 1,
+                    num: getDayNum(rangesDate[0], rangesDate[1], "m"),
                     time: initTourDate,
                     selectTime: 1,
                     ableDateRange: {
@@ -97,6 +99,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 theLastAbleDay: new Date(calendar_end),
                 disableDateAfterLength: maxExtensionNight,
                 minDuration: minDuration,
+                startAbleDate: day_start,
                 sClass1: 'CheckInDateI',
                 type: 'hotel',
                 dateObj: {
@@ -239,7 +242,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                                 upBtn.addClass("cur");
                             }
                             addBedShowOrHide(target);
-                          }
+                        }
                         break;
                     case "extraChild":
                         if (target.hasClass("cur")) {
@@ -290,9 +293,9 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                             childNumEle.html(childNumValue);
                             extraChildHtml = addNewChildHtml(allExtraChild.length + 1);
 
-                          addBedShowOrHide(target)
-                            //target.parents(".hotelInfo_numb_people").append(extraChildHtml);
-                          target.parents(".hotelInfo_numb_people").find(".spenumbList").before(extraChildHtml);
+                            addBedShowOrHide(target)
+                                //target.parents(".hotelInfo_numb_people").append(extraChildHtml);
+                            target.parents(".hotelInfo_numb_people").find(".spenumbList").before(extraChildHtml);
 
                             if (childNumValue === maxChildNum) {
                                 target.removeClass("cur");
@@ -305,53 +308,54 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         },
 
         //是否显示加床项
-        addBedShowOrHide=function(target){
-          var adultNumValue =parseInt(target.parent().parent().parent().find(".adult-people-number").html());
-          var childNumValue =parseInt(target.parent().parent().parent().find(".child-number").html());
-          if(adultNumValue>=2 && childNumValue>0){
-            target.parent().parent().siblings(".spenumbList").show();
-            target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click",function(){
-                if(childNumValue<=1) {
-                  $(this).toggleClass("ico_select noselect").css({opacity: 1});
-                }
-              else{
-                  $(this).toggleClass("ico_select noselect").css({opacity:0.5});
-                }
-            })
-          }
-          else if(childNumValue==2){
-            $(this).unbind("click");
-          }
-          else{
-            target.parent().parent().siblings(".spenumbList").hide();
-            target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
-          }
-          if(adultNumValue>=2  && childNumValue>=2){
-            target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select").css({opacity:0.5});
-          }
-          else{
-            target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
-          }
+        addBedShowOrHide = function (target) {
+            var adultNumValue = parseInt(target.parent().parent().parent().find(".adult-people-number").html());
+            var childNumValue = parseInt(target.parent().parent().parent().find(".child-number").html());
+            if (adultNumValue >= 2 && childNumValue > 0) {
+                target.parent().parent().siblings(".spenumbList").show();
+                target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click", function () {
+                    if (childNumValue <= 1) {
+                        $(this).toggleClass("ico_select noselect").css({
+                            opacity: 1
+                        });
+                    } else {
+                        $(this).toggleClass("ico_select noselect").css({
+                            opacity: 0.5
+                        });
+                    }
+                })
+            } else if (childNumValue == 2) {
+                target.parent().parent().siblings(".spenumbList").find(".bedList b").unbind("click");
+            } else {
+                target.parent().parent().siblings(".spenumbList").hide();
+                target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
+            }
+            if (adultNumValue >= 2 && childNumValue >= 2) {
+                target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select").css({
+                    opacity: 0.5
+                });
+            } else {
+                target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect")
+            }
         },
-        bindChilWithBed=function(child,adult){
+        bindChilWithBed = function (child, adult) {
 
         },
 
         addNewChildHtml = function (i) {
             if (onlyForAdult) {
-                return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童1年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="'+childAgeMin+'-'+childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
+                return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童1年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
             } else {
-                return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="'+childAgeMin+'-'+childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
+                return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
             }
 
 
         },
-        addNewRoomHtml = function (i, minAdultNum) {
-          ;
+        addNewRoomHtml = function (i, minAdultNum) {;
             if (onlyForAdult) {
                 return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn"></span></div>' + '</div>';
             } else {
-                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: none; float: left">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>'+ '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>' ;
+                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: none; float: left">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
             }
 
 
@@ -384,13 +388,13 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         for (var s = 0; s < childChooseParent.length; s++) {
                             var ty = childChooseParent[s];
                             var tt = $(ty).children().find('b');
-                            if (temChildNum == 1 && tt!=null) {
+                            if (temChildNum == 1 && tt != null) {
                                 if (tt.hasClass("ico_select")) {
                                     childWithBed.push(ty.parentNode.querySelector('input').value);
                                 } else {
                                     childWithOutBed.push(ty.parentNode.querySelector('input').value);
                                 }
-                            } else if (temChildNum == 2 && tt!=null) {
+                            } else if (temChildNum == 2 && tt != null) {
                                 childWithBed.push(temEle.querySelectorAll('input')[0].value);
                                 childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
                             }
@@ -412,8 +416,8 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                     dateStr = tourEle[fg].querySelector('.content3_CheckInDate').value + 'T00:00:00';
                     temp.tourID = id;
                     temp.travelDate = dateStr;
-                    if(tourData.hasOwnProperty("tours") && tourData.tours.length>0) {
-                      temp.tourSession = tourData.tours[fg].tourSession;
+                    if (tourData.hasOwnProperty("tours") && tourData.tours.length > 0) {
+                        temp.tourSession = tourData.tours[fg].tourSession;
                     }
                     tours.push(temp);
                 } else {
@@ -588,7 +592,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 // 插入的成人
                 ary_a = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
                 // 儿童
-                ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>'+ '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
+                ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
             //  默认房间数为1人，如有最少起订人数，则更换
             roomNum.innerHTML = nums;
             for (var i = 0; i < nums; i++) {
@@ -625,10 +629,12 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             day_start = data.defaultDepartStartDate.substring(0, 10).replace(/-/g, "/");
             calendar_end = data.departValidTo.substring(0, 10).replace(/-/g, "/");
             day_Num = parseInt(data.minDuration ? data.minDuration : data.packageName.substr(2, 1));
+            minDuration = data.minDuration;
             minPaxType = parseInt(data.minPaxType);
             minPax = parseInt(data.minPax);
             maxAdult = parseInt(data.maxAdult);
             onlyForAdult = data.onlyForAdult;
+            maxExtensionNight = data.maxExtensionNight + minDuration - 1;
 
             dateHandler.dateInfomation = {
                 minDuration: parseInt(data.minDuration) - 1,

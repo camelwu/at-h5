@@ -385,6 +385,8 @@
     $(".addAir_page .country").attr("data-code","CN");
     $(".addAir_page .country").html("中国");
 
+    $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2")
+
   }
 
   //数据保存
