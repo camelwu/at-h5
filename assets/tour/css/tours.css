@@ -702,6 +702,9 @@ a.hotel_detail_pic{
     margin-bottom:0.32rem;
     border-bottom:1px solid #e6e6e6;
 }
+.content > section:last-child{
+  margin-bottom: 1.4rem;
+}
 .order_data_box .personal_data{
     overflow: hidden;
 }

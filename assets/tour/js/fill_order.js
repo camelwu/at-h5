@@ -264,24 +264,24 @@
 
         sentPackage(oReserve);
         //同意条款
-        var oAgree = document.querySelector('.order-notice-btn');
-        var bOk = true;
-        oAgree.onclick = function () {
-            if (bOk) {
-                oAgree.style.background = 'url(../images/ui/icons1.png) -5.29rem -0.07rem';
-                oAgree.style.backgroundSize = '8.00rem 2.40rem';
-                oReserve.style.backgroundColor = '#ddd';
-                sentPackage(oReserve);
-                bOk = false;
-            } else {
-                oAgree.style.background = 'url(../images/ui/icons1.png) -4.7rem -0.07rem';
-                oAgree.style.backgroundSize = '8.00rem 2.40rem';
-                oReserve.style.backgroundColor = '#7bc300';
-                oReserve.style.color = '#fff';
-
-                bOk = true;
-            }
-        };
+        //var oAgree = document.querySelector('.order-notice-btn');
+        //var bOk = true;
+        //oAgree.onclick = function () {
+        //    if (bOk) {
+        //        oAgree.style.background = 'url(../images/ui/icons1.png) -5.29rem -0.07rem';
+        //        oAgree.style.backgroundSize = '8.00rem 2.40rem';
+        //        oReserve.style.backgroundColor = '#ddd';
+        //        sentPackage(oReserve);
+        //        bOk = false;
+        //    } else {
+        //        oAgree.style.background = 'url(../images/ui/icons1.png) -4.7rem -0.07rem';
+        //        oAgree.style.backgroundSize = '8.00rem 2.40rem';
+        //        oReserve.style.backgroundColor = '#7bc300';
+        //        oReserve.style.color = '#fff';
+        //
+        //        bOk = true;
+        //    }
+        //};
 
         //   订单数据
         function sentPackage(obj) {

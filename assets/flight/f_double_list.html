@@ -109,7 +109,10 @@
           <span><%= item["segmentsLeave"][0].airCorpCode %><%= item["segmentsLeave"][0].flightNo %></span>
           <span><%= item["segmentsLeave"][0].cabinClassName %></span>
           <%if(item["isLeaveShareFlight"]){%>
-          <span>共享</span>
+          <span class="share_word">共享</span>
+          <%}%>
+          <%if(item["isLeaveStop"]){%>
+          <span class="share_word">经停</span>
           <%}%>
         </p>
       </div>
@@ -151,8 +154,11 @@
           <% }%>
           <span><%= item["segmentsReturn"][0].airCorpCode %><%= item["segmentsReturn"][0].flightNo %></span>
           <span><%= item["segmentsReturn"][0].cabinClassName %></span>
-          <%if(item["isLeaveShareFlight"]){%>
+          <%if(item["isReturnShareFlight"]){%>
           <span class="share_word">共享</span>
+          <%}%>
+          <%if(item["isReturnStop"]){%>
+          <span class="share_word">经停</span>
           <%}%>
         </p>
       </div>
