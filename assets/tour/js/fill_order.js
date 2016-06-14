@@ -346,8 +346,8 @@
                     if (jsonPackage.roomDetails[0].childWithBed) {
                         var arrWithbed = [];
                         for (var k = 0; k < jsonPackage.roomDetails[0].childWithBed.length; k++) {
-                            //arrWithbed.push(jsonPackage.roomDetails[0].childWithBed[k]);
-                            arrWithbed.push(7);
+                            arrWithbed.push(jsonPackage.roomDetails[0].childWithBed[k]);
+                            //arrWithbed.push(7);
 
                         }
                         roomdetail.ChildwithBed = arrWithbed;
@@ -355,8 +355,8 @@
                     if (jsonPackage.roomDetails[0].childWithOutBed) {
                         var arrWithoutbed = [];
                         for (var m = 0; m < jsonPackage.roomDetails[0].childWithOutBed.length; m++) {
-                            //arrWithoutbed.push(jsonPackage.roomDetails[0].childWithOutBed[m]);
-                            arrWithoutbed.push(7);
+                            arrWithoutbed.push(jsonPackage.roomDetails[0].childWithOutBed[m]);
+                            //arrWithoutbed.push(7);
 
                         }
                         roomdetail.ChildwithoutBed = arrWithoutbed;

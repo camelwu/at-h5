@@ -1,4 +1,4 @@
-var hotelID,Avgrating,TAReviewCount;
+var hotelID,Avgrating,TAReviewCount,room,adult,child;
 var roomUpGrade = {
 	CultureName : "zh-CN",
 	eventHandler : function(target, eventType, handle) {
@@ -148,6 +148,11 @@ var roomUpGrade = {
 				$('#map, li.map_address').on('click',function(){
 					window.location.href = 'hotel_detail_map.html?latitude='+latitude+'&longitude='+longitude;
 				})
+
+				$('#room').html(room);
+				$('#adult').html(adult);
+				$('#child').html(child);
+				console.log($('#room').html())
 			}
 		} else {
 			$("#preloader").fadeOut();
@@ -197,6 +202,11 @@ var roomUpGrade = {
 	createTags : function() {
 		var that = this;
 		var paraObj = JSON.parse(window.localStorage.getItem('info'));
+		console.log(paraObj)
+		room = paraObj.roomDetails.length;
+		adult = paraObj.adultNum;
+		child = paraObj.childNum;
+
 		var hotelIDStr = document.location.search.substring(0, document.location.search.indexOf('&')).replace(/\?/, '');
 		paraObj.hotelID = hotelIDStr.substring(hotelIDStr.indexOf('=') + 1);
 		that.curParaObj = paraObj;

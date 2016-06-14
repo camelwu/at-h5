@@ -123,15 +123,18 @@
 		};
 		//城市列表父宽
 		var PWidth = function(data) {
-			//var sum = 0, ride = 0;
-			//for (var i = 0; i <= data.data.recommendCities.length; i++) {
-			//	sum += 1;
-			//};
       var sum = data.data.recommendCities.length;
-      console.log(sum);
-			ride = sum * 3;
-			$(".city_list ul").css({
-				'width' : ride + 'rem'
+      var num=0;
+      var width =0;
+      for (var i = 0; i < sum; i++) {
+        width= $(".city_list1").eq(i).width();
+        console.log(width);
+        num += width;
+      }
+      num = num + sum*32;
+      console.log(num);
+			$(".city_box").css({
+				'width' : num+ 'px'
 			});
 		};
 		return {
