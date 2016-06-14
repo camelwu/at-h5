@@ -89,7 +89,7 @@ footer.footer_three dt,
 footer.footer_two dt {
     width: 0.36rem;
     height: 0.37rem;
-    background: url(/images/ui/icon_common.png);
+    background: url(../../../images/ui/icon_common.png);
     background-size: 7.89rem 5.07rem;
     margin: 0.12rem auto 0.05rem;
 }
@@ -106,7 +106,7 @@ dl.foot_t_filter dt {
 }
 
 dl.foot_position dt {
-    background: url(/images/hotel_flight_tour/icon_hotel.png);
+    background: url(../../../images/hotel_flight_tour/icon_hotel.png);
     background-size: 7.89rem 2.58rem;
     background-position: -2.19rem -0.46rem;
 }
@@ -145,7 +145,7 @@ section.f_foot_sort li.cur i {
 
 section.foot_sort li i,
 section.f_foot_sort li i {
-    background: url(/images/ui/icon_common.png);
+    background: url(../../../images/ui/icon_common.png);
     background-size: 7.9rem 5.13rem;
     background-position: -6.9rem -0.58rem;
 }
@@ -259,7 +259,7 @@ section.foot_screen .screen_rg i {
 }
 
 section.foot_screen .screen_rg li.cur i {
-    background: url(/images/ui/icon_common.png);
+    background: url(../../../images/ui/icon_common.png);
     background-size: 7.9rem 5.13rem;
     background-position: -6.9rem -0.58rem;
 }
@@ -304,7 +304,7 @@ section.foot_position li i {
     position: absolute;
     right: 0.39rem;
     top: 50%;
-    background: url(/images/ui/icon_common.png);
+    background: url(../../../images/ui/icon_common.png);
     background-size: 7.9rem 5.13rem;
     background-position: -4.40rem -0.51rem;
     width: 0.5rem;
@@ -401,7 +401,7 @@ section.flight_company .aw_price span:last-child {
 
 section.flight_company li.cur b.hft_icon {
     position: absolute;
-    background-image: url(/images/ui/icon_common.png);
+    background-image: url(../../../images/ui/icon_common.png);
     background-size: 7.5rem 4.54rem;
     background-position: -4.47rem -1.29rem;
     width: 0.42rem;
