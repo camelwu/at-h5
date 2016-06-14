@@ -234,15 +234,6 @@ var hftTool ={
       //房间信息
       Parmeters.Parameters.RoomDetails=hftCreateOrderPara.roomDetails;
 
-      function getBirthday(departDate,age){
-        var newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
-        newDate.setFullYear(newDate.getFullYear()-age);
-        var year=newDate.getFullYear();
-        var month=newDate.getMonth()+1;
-        var day=newDate.getDate();
-        return year+"-"+month+"-"+day;
-      }
-
       var birthDay=[];//重新计算小孩年龄
       for(var i=0;i<=Parmeters.Parameters.RoomDetails.length-1;i++){
 
@@ -281,6 +272,9 @@ var hftTool ={
             var tempAge=birthDay.pop();
             if(age !=tempAge.age) {
               person.dateOfBirth =tempAge.birth ;
+            }
+            else{
+              person.dateOfBirth=traInfo_sel[i].DateOfBirth;
             }
           }
           else{
@@ -337,6 +331,15 @@ var hftTool ={
       vlm.loading();
       vlm.loadJson(vlm.apiWithDeviceID, JSON.stringify(Parmeters), hotel_flight_back);
     };
+  }
+
+  function getBirthday(departDate,age){
+    var newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+    newDate.setFullYear(newDate.getFullYear()-age);
+    var year=newDate.getFullYear();
+    var month=newDate.getMonth()+1;
+    var day=newDate.getDate();
+    return year+"-"+month+"-"+day;
   }
   hf_order(orderSub);
 

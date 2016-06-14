@@ -265,7 +265,7 @@
                     } else {
                         if (i == nowdate && month == nowmonth + 1) {
                             if (i < ableStartDate) {
-                                pstr = '<a class="live disabled" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
+                                pstr = '<a class="live disabled">今天</a>';
                             } else {
                                 pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
                             }

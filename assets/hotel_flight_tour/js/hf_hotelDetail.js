@@ -5,6 +5,7 @@ var data2 = '', roomdata = '';
 	var ulrRoomId = urlIf.substring(23) - 0;
 	var departDate = temObj.departDate.substring(0, 10);
 	var enterDate = temObj.returnDate.substring(0, 10);
+  var dataTransferObj = null, flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
 	temObj.departDate = departDate;
 	temObj.returnDate = enterDate;
 	if (!ulrRoomId) {
@@ -46,9 +47,7 @@ var data2 = '', roomdata = '';
 		console.log(result)
 		$("#preloader").hide();
 		if (result.success && result.data.hotelInfo.hotelID) {
-			var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
-				flightHotelAllData.hotelInfo = result.data.hotelInfo;
-				window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
+      dataTransferObj = result;
 			data2 = result.data;
 			console.log(data2);
       // 星级转换为汉字
@@ -123,7 +122,6 @@ var data2 = '', roomdata = '';
 		var jhf_star = ejs.render(str, data2.hotelInfo);
 		$('.jhf_star').html(jhf_star);
 	}
-
 	//客房部分
 	function room() {
 		var str = $('#jhf_room').html();
@@ -135,11 +133,16 @@ var data2 = '', roomdata = '';
 				console.log('true')
 				$('.jhf-mes li.showh .slide').eq(i).find('b').addClass('cur');
 			}
-
 			$('.jhf-mes li.showh .slide').eq(i).click(function() {
 				$(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
 				var roomID = roomdata[i].roomID;
-				window.location.href = 'hft_choose.html?type=1&selectedRoomId=' + roomID;
+        flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;
+        window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
+        window.timer2 = setTimeout(function () {
+          window.clearTimeout(window.timer2);
+          window.timer2 = null;
+          window.location.href = window.location.href = 'hft_choose.html?type=1&selectedRoomId=' + roomID;
+        }, 500);
 			})
 		});
 	}

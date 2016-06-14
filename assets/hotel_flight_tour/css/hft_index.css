@@ -925,7 +925,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   height: 100%;
   min-height: 100%;
   max-height: 100%;
-  z-index: 130;
+  z-index: 110;
   background: #F5F4F9;
 }
 .header_wrap {

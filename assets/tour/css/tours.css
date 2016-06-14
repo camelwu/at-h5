@@ -442,6 +442,14 @@ a.hotel_detail_pic{
 .hotel_detail_list.hdl_down li{
     border-bottom:1px solid #e6e6e6;
 }
+.hotel_detail_list.hdl_down li.data{
+    height: 1.4rem;
+    line-height: 0.45rem;
+}
+.hotel_detail_list.hdl_down li.data div:nth-child(1){
+    padding-top: 0.24rem;
+    overflow: hidden;
+}
 .hotel_detail_list.hdl_down li span{
   font-size: 0.36rem;
   font-weight: 700;
@@ -530,7 +538,7 @@ a.hotel_detail_pic{
     line-height: 0.6rem;
 }
 .hotel_room_list li p.price span.rmb{
-  margin-top: 3px;
+  /*margin-top: 3px;*/
 }
 .hotel_room_list li p.price span.money{
     font-size: 0.46rem;
