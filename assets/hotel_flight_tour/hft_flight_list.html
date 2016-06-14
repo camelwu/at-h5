@@ -201,7 +201,7 @@
                                 <% }else{ %>
                                 <span class="hft_icon arrow_time"></span>
                                 <% } %>
-                                <% if(selectedFlight.transferListLeave){%>
+                                <% if(selectedFlight.transferListLeave !== null){%>
                                 <span class="air_port_word"><%= selectedFlight.transferListLeave[0] %></span>
                                 <% }%>
                             </div>
@@ -233,7 +233,7 @@
                                 <% }else{ %>
                                 <span class="hft_icon arrow_time"></span>
                                 <% } %>
-                                <%if(selectedFlight.transferListReturn){%>
+                                <%if(selectedFlight.transferListReturn !== null){%>
                                 <span class="air_port_word"><%=selectedFlight.transferListReturn[0]%></span>
                                 <%}%>
                             </div>
@@ -278,7 +278,7 @@
                               <% }else{ %>
                               <span class="hft_icon arrow_time"></span>
                               <% } %>
-                              <%if(flightInfoListGroup[i].flightInfoList[j].transferListReturn){%>
+                              <%if(flightInfoListGroup[i].flightInfoList[j].transferListLeave !== null){%>
                               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave[0]%></span>
                               <% } %>
                           </div>
@@ -310,7 +310,7 @@
                               <% }else{ %>
                               <span class="hft_icon arrow_time"></span>
                               <% } %>
-                              <%if(flightInfoListGroup[i].flightInfoList[j].transferListReturn){%>
+                              <%if(flightInfoListGroup[i].flightInfoList[j].transferListReturn !== null){%>
                               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListReturn[0]%></span>
                               <% } %>
                           </div>

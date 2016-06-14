@@ -93,6 +93,7 @@ var footer = (function() {
 				_str += "<a href='" + menus[k][1] + "' class='" + cn + "'><i></i>" + menus[k][0] + "</a>";
 			}
 			menuer.innerHTML = _str;
+			menuer.innerHTML = _str;
 		}
 		//return this;
 	},
@@ -138,6 +139,14 @@ var footer = (function() {
 				} else if (target.className == "sure") {// 筛选确定
 					that.request();
 				}  else if (target.className == "button") {//航空公司的确定
+          var box = target.parentNode;
+          var li = box.getElementsByTagName('li');
+          for(var k = 0;k < li.length;k++){
+            if(li[k].className == 'cur'){
+              var nod = li[k];
+            }
+          }
+          nod.parentNode.insertBefore(nod, nod.parentNode.firstChild);
 					that.request();
 				} else {
 					if (target.tagName == "I" || src.tagName == "LI") {// 非LI向上冒泡
@@ -211,6 +220,9 @@ var footer = (function() {
 							if (theme == 1) {// 显示类型确认操作，2016-06-14将航空公司操作theme==3屏蔽
 								that.request();
 							}
+              if (theme == 3) {// 航空公司操作
+                target.className = target.className == "cur" ? "cur" : "";
+              }
 						}
 					}
 				}
