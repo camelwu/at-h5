@@ -147,9 +147,14 @@
 
   //message
   function message(data){
+    console.log(data)
     var str =$('#message').html();
     var message = ejs.render(str,handleData(data.hotelInfo));
     $('.hotel_detail_msg .ul2').html(message);
+    // 点击评分跳转到酒店评分页面
+    $('li.score').on('click',function(){
+      window.location.href = "../hotel/hotel_reviews.html?HotelID="+data.hotelInfo.hotelID+"&TAAvgRating="+data.hotelInfo.hotelReviewScore+"&TAReviewCount="+data.hotelInfo.hotelReviewCount;
+    })
   }
 
   //根据模板需要提前处理好data
