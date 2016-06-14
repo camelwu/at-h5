@@ -122,7 +122,8 @@
             this.disableDate = options.disableDate || []; //默认不可用的日期
             this.disableDateAfterLength = options.disableDateAfterLength; // 选中一个日期后，后延多少天内日期可选，其他时间不可选   int 
             this.minDuration = options.minDuration; //日期选择的最小间隔  如果是3天 那么选中的第一个日期的第二天不可选；
-            this.ableDateRange = options.ableDateRange; //初始化可选择日期时间段，配合num参数使用
+            this.ableDateRange = options.ableDateRange; //初始化可选择日期时间段，配合num参数使用   
+            this.startAbleDate = options.startAbleDate;
             this.prefix = options.prefix || "calendar";
             this.op = 0; //已操作次数
             this.theLastAbleDay = options.theLastAbleDay;
@@ -193,11 +194,13 @@
         // 渲染日期
         drawDate: function (odate) { // 参数 odate 为日期对象格式
             var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [],
-                textNode, disableDate;
+                textNode, disableDate, ableStartDate, rangeStartDate, rangeEndDate, tempDate;
             var nowDate = new Date(),
                 nowyear = nowDate.getFullYear(),
                 nowmonth = nowDate.getMonth(),
                 nowdate = nowDate.getDate();
+            ableStartDate = this.startAbleDate;
+            ableStartDate = ableStartDate ? new Date(vlm.Utils.format_date(ableStartDate, "Ymd")).getDate() : nowdate;
 
             disableDate = this.disableDate;
 
@@ -209,6 +212,10 @@
             this.date = date = odate.getDate();
             this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
             tims = this.time;
+            this.result.length = 0;
+            for (var key in tims) {
+                this.result.push(key);
+            }
             textNode = document.createTextNode(year + '年' + month + '月');
             titleDate.appendChild(textNode);
             //this.btnEvent();
@@ -227,14 +234,14 @@
             for (i = 1; i <= days; i++) {
                 m = month < 10 ? '0' + month : month;
                 d = i < 10 ? '0' + i : i;
-
+                tempDate = new Date(year, m - 1, d);
                 if (this.ableDateRange) {
                     rangeStartDate = this.ableDateRange.rangeStartDate;
                     rangeEndDate = this.ableDateRange.rangeEndDate;
-                    rangeStartDateDay = new Date(rangeStartDate.replace(/-/g, "/")).getDate();
-                    rangeEndDateDay = new Date(rangeEndDate.replace(/-/g, "/")).getDate();
+                    rangeStartDate = new Date(rangeStartDate.replace(/-/g, "/"));
+                    rangeEndDate = new Date(rangeEndDate.replace(/-/g, "/"));
 
-                    if (i <= rangeEndDateDay && i >= rangeStartDateDay) {
+                    if (tempDate <= rangeEndDate && tempDate >= rangeStartDate) {
                         if (tims[year + '-' + m + '-' + d]) {
                             ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
                         } else {
@@ -252,9 +259,14 @@
                         }
                     } else {
                         if (i == nowdate && month == nowmonth + 1) {
-                            pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
+                            if (i < ableStartDate) {
+                                pstr = '<a class="live disabled" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
+                            } else {
+                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
+                            }
+
                         } else {
-                            if (month == nowmonth + 1 && i < nowdate) {
+                            if ((month == nowmonth + 1 && i < nowdate) || (month == nowmonth + 1 && i < ableStartDate)) {
                                 pstr = '<a class="live disabled">' + i + '</a>';
                             } else if (disableDate.length > 0) {
                                 for (var j = 0; j < disableDate.length; j++) {
@@ -270,10 +282,8 @@
                             }
                         }
                     }
+                    ddHtml.push(pstr);
                 }
-
-
-                ddHtml.push(pstr);
             }
 
             dd.innerHTML = ddHtml.join('');
@@ -321,16 +331,17 @@
             }
             // 循环显示日期
             var theLastAbleDayDate = this.theLastAbleDay ? this.theLastAbleDay.getDate() : nowdate;
-            var rangeStartDate, rangeEndDate, rangeStartDateDay, rangeEndDateDay;
+            var rangeStartDate, rangeEndDate, tempDate;
             for (i = 1; i <= days; i++) {
                 m = month < 10 ? '0' + month : month;
                 d = i < 10 ? '0' + i : i;
+                tempDate = new Date(year, m - 1, d);
                 if (this.ableDateRange) {
                     rangeStartDate = this.ableDateRange.rangeStartDate;
                     rangeEndDate = this.ableDateRange.rangeEndDate;
-                    rangeStartDateDay = new Date(rangeStartDate.replace(/-/g, "/")).getDate();
-                    rangeEndDateDay = new Date(rangeEndDate.replace(/-/g, "/")).getDate();
-                    if (i <= rangeEndDateDay && i >= rangeStartDateDay) {
+                    rangeStartDate = new Date(rangeStartDate.replace(/-/g, "/"));
+                    rangeEndDate = new Date(rangeEndDate.replace(/-/g, "/"));
+                    if ((tempDate <= rangeEndDate) && (tempDate >= rangeStartDate)) {
                         if (tims[year + '-' + m + '-' + d]) {
                             ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
                         } else {
@@ -735,13 +746,21 @@
         inputEvent: function () {
             var that = this;
             var date = new Date();
+            var startDate;
             var nowY = date.getFullYear();
             var nowM = date.getMonth();
             var nowD = date.getDate();
+
+            if (that.ableDateRange) {
+                startDate = new Date(that.ableDateRange['rangeStartDate'].replace(/-/g, "/"));
+                nowY = startDate.getFullYear();
+                nowM = startDate.getMonth();
+                nowD = startDate.getDate();
+            }
             _CalF.bind(this.input, 'click', function () {
                 that.createContainer();
                 for (var i = 0; i < that.num; i++) {
-                    if (i == (that.num - 1)) {
+                    if (i == (that.num - 1) && that.num > 1) {
                         var idate = new Date(nowY, nowM + i, 01);
                         that.drawLastDate(idate);
                     } else {
