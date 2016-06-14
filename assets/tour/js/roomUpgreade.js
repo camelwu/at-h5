@@ -227,4 +227,7 @@ function star(stars){
 function showHotelInfo(){
   window.location.href = 'hotel_summary.html?HotelID='+hotelID+'';
 }
+function showHotelComment(){
+  window.location.href = 'hotel_reviews.html?HotelID='+hotelID+'';
+}
 
