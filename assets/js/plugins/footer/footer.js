@@ -92,20 +92,6 @@ var footer = (function () {
           }
           that.target = target;
           that.showItems(index, returnVal);
-          /*		src = target.parentNode;
-           //当前dom元素等于事件绑定的dom元素的时候，停止“冒泡”
-           while (src && src !== box) {
-           target = src;
-           src = src.parentNode;
-           }
-           index = 0;
-           returnVal = target.getAttribute("data-type");
-           while ( target = target.previousSibling) {
-           if (target.nodeType == 1)
-           index++;
-           };*/
-
-          //	that.showItems(index, returnVal);
         });
         // 容器里的各种点击：取消，确定按钮
         on(sec, 'click', function (event) {
@@ -347,9 +333,6 @@ var footer = (function () {
               css = i == 0 ? ' class="cur"' : '';
               listr += '<li' + css + ' data-val="' + i + '">' + d[i] + '</li>';
             }
-            /*for(var key in d){
-             listr += '<li data-val="' + key + '">' + d[key] + '</li>';
-             }*/
             ulstr = wrapper[0] + listr + wrapper[1];
             break;
         }
@@ -402,37 +385,33 @@ var footer = (function () {
             } else {
               ele.querySelector('dt').className = "";
             }
-            if (outerObj.postObj.internationalOrDomestic == "international") {/*往返国内处理*/
+            if (outerObj.postObj.internationalOrDomestic == "international") {/*往返国际处理*/
               document.querySelector('#Tax').querySelector('dt').className = ""
             } else {
               var ele_ = document.querySelector('#Sort'), sort_ul = document.querySelectorAll('.f_foot_sort li');
-              for (var k = 0; k < sort_ul.length; k++) {
-                if (sort_ul[k].getAttribute('data-val') == "isDesc_false") {
-                  sort_ul[k].className = "cur";
-                } else {
-                  sort_ul[k].className = "";
-                }
-              }
+              sort_ul[0].className = "cur";
               ele_.querySelector('dt').className = "";
             }
           } else {
             var ele = document.querySelector('#Screen');
-            if (outerObj.postObj.cabinClass == "economy") { /*单程国际*/
+            if (outerObj.postObj.cabinClass == "economy") {
               ele.querySelector('dt').className = "clo";
             } else {
               ele.querySelector('dt').className = "";
             }
-            if (outerObj.postObj.internationalOrDomestic == "international") {/*单程国内处理*/
-              document.querySelector('#Tax').querySelector('dt').className = ""
-            } else {
-              var ele_ = document.querySelector('#Sort'), sort_ul = document.querySelectorAll('.f_foot_sort li');
-              for (var k = 0; k < sort_ul.length; k++) {
-                if (sort_ul[k].getAttribute('data-val') == "isDesc_false") {
-                  sort_ul[k].className = "cur";
+            if (outerObj.postObj.internationalOrDomestic == "international") {/*单程国际处理*/
+              document.querySelector('#Tax').querySelector('dt').className = "";
+              document.querySelector('#Sort').querySelector('dt').className = "";
+              var sort_li = document.querySelectorAll('.f_foot_sort li');
+              for (var v = 0; v < sort_li.length; v++) {
+                if (sort_li[v].getAttribute('data-val') == "isDesc_false") {
+                  sort_li[v].className = "cur";
                 } else {
-                  sort_ul[k].className = "";
+                  sort_li[v].className = "";
                 }
               }
+            } else {
+              var ele_ = document.querySelector('#Sort');/*单程国内处理*/
               ele_.querySelector('dt').className = "";
             }
           }
@@ -468,10 +447,12 @@ var footer = (function () {
           } else {  /*往返国内*/
             if (section.className == "f_foot_sort") {
               te0 = section.querySelectorAll('li');
-              for (var i = 0; i < te0.length; i++) {
-                if (te0[i].className.indexOf("cur") > -1) {
+              dt.className = "clo";
+              dd.innerHTML = "优选";
+              for (var j = 0; j < te0.length; j++) {
+                if (j != 0 && te0[j].className.indexOf("cur") > -1) {
                   dt.className = "";
-                  dd.innerHTML = te0[i].innerText;
+                  dd.innerHTML = te0[j].innerText;
                   break;
                 }
               }
@@ -486,9 +467,6 @@ var footer = (function () {
               if (dd.innerHTML == "价格") {
                 dd.innerHTML = "从低到高";
                 dt.className = "";
-              } else {
-                dd.innerHTML = "价格";
-                dt.className = "clo";
               }
             }
           }
@@ -496,18 +474,16 @@ var footer = (function () {
           if (outerObj.postObj.internationalOrDomestic == "international") {/*单程国际*/
             if (section.className == "f_foot_sort") {
               te0 = section.querySelectorAll('li');
-              dt.className = "clo";
-              dd.innerHTML = "优选";
+              dt.className = "";
               for (var i = 0; i < te0.length; i++) {
-                if (i != 0 && te0[i].className.indexOf("cur") > -1) {
-                  dt.className = "";
+                if ( te0[i].className.indexOf("cur") > -1) {
                   dd.innerHTML = te0[i].innerText;
                   break;
                 }
               }
             } else if (section.className == "foot_screen") {
               te0 = section.querySelectorAll('li.cur');
-              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "economy"||te0[4].getAttribute('data-val') != "") {
+              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" ||te0[3].getAttribute('data-val') != "00-24"|| te0[4].getAttribute('data-val') != "economy"||te0[5].getAttribute('data-val') != "") {
                 dt.className = "";
               } else {
                 dt.className = "clo";
@@ -536,16 +512,11 @@ var footer = (function () {
               if (dd.innerHTML == "价格") {
                 dd.innerHTML = "从低到高";
                 dt.className = "";
-              } else {
-                dd.innerHTML = "价格";
-                dt.className = "clo";
               }
             }
           }
-
         }
       },
-
       current: function () {
         return box;
       },
@@ -557,7 +528,7 @@ var footer = (function () {
         } else {
           if (!box)
             this.create();
-            this.chooseStatus();
+          this.chooseStatus();
         }
       },
 
@@ -614,9 +585,6 @@ var footer = (function () {
       // 重置选中
       resec: function (w) {
         var cur = w.getElementsByClassName("cur");
-        /*for (var i = 0; i < cur.length; i++) {
-         cur[i].className=='cur'?cur[i].className = '':null;
-         }*/
         var ul = w.getElementsByTagName("ul");
         for (var i = 0; i < ul.length; i++) {
           if (ul[i].getAttribute("data-key")) {

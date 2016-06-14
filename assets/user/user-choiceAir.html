@@ -59,7 +59,7 @@
     </div>
     <div class="content">
       <div class="chn_eng_wrap">
-        <div class="addtra_title">旅客姓名<b id="name_state" class="icon_common user_must"></b></div>
+        <div class="addtra_title"><span>旅客姓名</span><b id="name_state" class="icon_common user_must"></b></div>
         <ul class="addtra_info nameche_wrap cnNameUL">
           <li>
             <div>中文姓名</div>
@@ -68,11 +68,11 @@
         </ul>
         <ul class="addtra_info nameche_wrap">
           <li>
-            <div>姓（英文 )</div>
+            <div>英文姓</div>
             <input type="text" placeholder="Surname,如Li" class="lastName">
           </li>
           <li>
-            <div>名（英文 )</div>
+            <div>英文名</div>
             <input type="text" placeholder="Given name,如Shimin" class="firstName">
           </li>
         </ul>
@@ -264,83 +264,25 @@
   </div>
   <div class="content">
     <!-- 中文姓名-->
-    <ul class="ch_account" id="ch_account">
-      <li>1. 姓名要与所持证件的姓名一致</li>
-      <li>2. 中文姓名
-        <ul class="name_ul">
-          <li>
-            <p>若持护照乘机，必须确认护照上有中文姓名</p>
-            <p class="example_floor_down">生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”</p>
-            <div class="name_example">
-              <span>中文姓名</span><span>王ben</span>
-            </div>
-          </li>
-          <li>
-            <p class="example_floor">姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”</p>
-            <div class="name_example">
-              <span>中文姓名</span><span>汉族然买买提</span>
-            </div>
-          </li>
-          <li><p class="example_floor">香港、台湾、澳门的护照不支持国内航班，请改用其他证件。</p></li>
-        </ul>
-      </li>
-    </ul>
-    <!-- 英文姓名-->
-    <ul class="ch_account" id="en_account">
-      <li>1. 必须用英文字母填写，并确保与所持证件的姓名一致</li>
-      <li>2. 中文姓名
-        <ul class="name_ul">
-          <li>
-            <p class="example_floor_down">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming</p>
-            <div class="name_example2">
-              <p>
-                <span>Surname</span>
-                <span>Zhuge</span>
-              </p>
-              <p>
-                <span>Given name</span>
-                <span>Kongming</span>
-              </p>
-            </div>
-          </li>
-        </ul>
-      </li>
-      <li>3. 英文姓名
-        <ul class="name_ul">
-          <li>
-            <p class="example_floor_down">若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
-              例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad</p>
-            <div class="name_example2">
-              <p>
-                <span>Surname</span>
-                <span>Potter</span>
-              </p>
-              <p>
-                <span>Given nam</span>
-                <span>joerad</span>
-              </p>
-            </div>
-          </li>
-        </ul>
-        <ul class="name_ul">
-          <li>
-            <p class="example_floor_down">姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
-              在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
-              jame M C</p>
-            <div class="name_example2">
-              <p>
-                <span>Surname</span>
-                <span>BlackSA</span>
-              </p>
-              <p>
-                <span>Given nam</span>
-                <span>jame M C</span>
-              </p>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+      <ul class="ch_account" id="ch_account">
+        <li>乘客姓名需与登机所持证件上的名字一致</li>
+        <li>中文姓名：
+          <ol class="name_ul">
+            <li class="example_floor_down">生僻字可用拼音代替，例如: "王鬳旭"可输入为"王yanxu"。</li>
+            <li class="example_floor_down">姓名中含特殊符号"··""_"等，可不用输入，例如: "汉祖然·买买提"可输入为汉祖然买买提。</li>
+            <li class="example_floor_down">姓名过长请使用缩写，例如: "买买提不拉多娜萨日娜阿诺凡"简写为"买买提不拉多娜萨日娜阿"。</li>
+          </ol>
+        </li>
+      </ul>
+      <!-- 英文姓名-->
+      <ul class="ch_account" id="en_account">
+        <li>英文姓名:
+          <ol class="name_ul">
+            <li class="example_floor_down">若持护照登机，必须按照护照顺序区分姓（Surname）与名（Givenname）。例如: "Smith/Black"，不区分大小写。</li>
+            <li class="example_floor_down">名字长≤26个字符，若过长请使用缩写。</li>
+          </ol>
+        </li>
+      </ul>
   </div>
 </div>
 

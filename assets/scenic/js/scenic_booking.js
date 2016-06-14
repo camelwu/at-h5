@@ -778,11 +778,11 @@
         var Pickup = "", PickupName = "",PickupID = "",PickupPoint = {};
         Pickup = ExtendData.requiredPickupPoint;
         if(Pickup){
-          PickupID = $(".js_booking_package_pickup_select").attr("data-key");
+          PickupID = $(".js_booking_package_pickup_selecttext").attr("data-key");
           if(!T.Command().execCommand({command:"validate", param:{type:"text",data:PickupID,rules:"required",tips:"接送信息不能为空"}})){
             return false;
           }
-          PickupName =  $(".js_booking_package_pickup_select").html().trim();
+          PickupName =  $(".js_booking_package_pickup_selecttext").html().trim();
           PickupPoint ={
             "PickupID" : PickupID,
             "PickupPoint" : PickupName

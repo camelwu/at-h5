@@ -369,6 +369,15 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   height: .42rem;
   background-position: 68% 11.5%;
 }
+.ico_select_disabled{
+  display: block;
+  position: absolute;
+  right: .1rem;
+  top: .24rem;
+  width: .42rem;
+  height: .42rem;
+  background-position: -3.42rem -4.33rem;
+}
 .search_button {
   height: .9rem;
   margin: .4rem .3rem;

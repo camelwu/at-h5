@@ -42,9 +42,9 @@
   <div class="content addPaddingTop addMarginBottomHigh">
     <ul class="flight_ul double_ul"></ul>
     <div id="loadMore">点击加载更多信息...</div>
-    <P id="no_flight_data">没有找到符合条件的航班!</P>
   </div>
 </div>
+<P id="no_flight_data">没有找到符合条件的航班!</P>
 </body>
 <script id="template_flight_double_list" type="text/template">
   <% flightInfos.forEach(function(item, index){%>
@@ -67,7 +67,7 @@
                 <% }%>
           <% }else{%>
                 <p class="priceNumber">
-                  <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+                  <span class="money">￥</span><%= item["totalFareAmountADT"] %>
                   <span class="double_tip">往返</span>
                 </p>
         <% }%>
@@ -171,6 +171,5 @@
 <script type="text/javascript" src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="../js/plugins/footer/footer.js"></script>
-<script type="text/javascript" src="js/doubleListData.js"></script>
 <script type="text/javascript" src="js/f_double_list.js"></script>
 </html>
