@@ -431,16 +431,27 @@ Scroller.prototype = {
                     ele.value = arr.join("/");
                 }
 
-            } else if (that.type == 'dateTime') {
+            } else if (that.type == 'dateTime') {// 20160614搜索过全局，只有H+T有接送服务，并且所使用的是年月日 时：分 格式
                 //TODO 其他组件页面显示内容与实际值分离
                 var values = [];
                 for (var j = 0; j < len; j++) {
                     values.push(box[j].getAttribute("data-temp"));
                 }
                 if (ele.nodeName == 'DIV') {
-                    ele.innerHTML = values.join("/");
+                    if(values.length>1){
+                    	//if(!isNaN(values[1])&&!isNaN(values[2])){
+                    	ele.value = values[0]+" "+values[1]+":"+values[2];
+                    }else{
+                    	ele.innerHTML = values.join("/");
+                    }
+                    //ele.innerHTML = values.join("/");
                 } else if (ele.nodeName == 'INPUT') {
-                    ele.value = values.join("-");
+                    if(values.length>1){
+                    	//if(!isNaN(values[1])&&!isNaN(values[2])){
+                    	ele.value = values[0]+" "+values[1]+":"+values[2];
+                    }else{
+                    	ele.value = values.join("-");
+                    }
                 }
             } else {
                 $(ele).attr("data-code", $(box).attr("data-code")) //添加data-code属性
