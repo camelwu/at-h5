@@ -83,9 +83,9 @@ input{
 .iconTip > div {
   position: relative;
   margin: 0 auto;
-  top: .32rem;
-  width: .54rem;
-  height: .54rem;
+  top: .3rem;
+  width: .6rem;
+  height: .6rem;
   background-image: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
   background-size: 7.90rem auto;

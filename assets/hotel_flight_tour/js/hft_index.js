@@ -887,7 +887,7 @@ var htf_search = {
     init: function () {
         vlm.init();
         this.init_title_room();
-        this.switchCities();
+        //this.switchCities();
         this.add_subtract();
         //清空历史数据
         window.sessionStorage.removeItem('hftFlightHotelTourInfo');

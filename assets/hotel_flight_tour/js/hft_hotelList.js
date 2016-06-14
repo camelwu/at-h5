@@ -4,7 +4,7 @@
 	//console.log( typeof parametersStorage);
 	//获取资源选择页的url保存下来，再传过去
 	var chooseUrl = window.location.search;
-	console.log(chooseUrl)
+	console.log(chooseUrl);
 	sessionStorage.setItem("hftHotelChooseUrl", chooseUrl);
 	//传数据
 	var dataPull = {
@@ -24,20 +24,20 @@
 			Code : Code
 		};
 		questUrl = questUrl || that.requestUrl;
-		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+		vlm.loadJson("", JSON.stringify(dataObj), Callback);
 	};
 
 	function dataCallBack(result) {
 		if (result.success && result.code == '200') {
-			console.log(result)
+			console.log(result);
 			var data = result.data;
 			title(data);
 			list(result);
 			//点击加载更多
 			$('#loadMore').on("click", function () {
-				console.log('111')
+				console.log('111');
 				loadMore();
-			})
+			});
 			clickMore(data);
 
 			//footer  begin
@@ -97,7 +97,7 @@
 
 	//数据加载部分
 	function list(result) {
-		console.log(result.data)
+		if(result.data.hotels.length>0){
 		//curList
 		var strCur = $('#curList').html();
 		var curList = ejs.render(strCur, result.data);
@@ -107,7 +107,7 @@
 		var hotels = ejs.render(str,result.data);
 		$('.hotel_list').append(hotels);
 		//去掉loading
-		$('.status').fadeOut('fast');
+		//$('.status').fadeOut('fast');
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
 			var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
@@ -116,6 +116,9 @@
 			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
 			window.location.href = 'hft_hotel_detail.html';
 		});
+		}else{
+			jAlert("数据为空！");
+		}
 	}
 
 	//加载更多

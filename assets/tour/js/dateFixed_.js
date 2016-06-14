@@ -61,7 +61,9 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             var defaultSelectedDate = defaultDate.getFullYear() + "-" + (defaultDate.getMonth() + 1) + "-" + defaultDate.getDate();
             initTourDate[vlm.Utils.format_date(defaultSelectedDate, "Ymd")] = "initDate";
             for (var i = 0, len = contentList.length; i < len; i++) {
+
                 dateContentId = $(contentList[i]).attr("id");
+                var ableWeekRange = $("#" + dateContentId).attr("data-frequency");
                 tourCalendar = null;
                 tourCalendar = new ATplugins.Calender({
                     id: dateContentId,
@@ -72,6 +74,8 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         rangeStartDate: rangesDate[0],
                         rangeEndDate: rangesDate[1]
                     },
+                    ableWeekRange: ableWeekRange,
+                    //                    ableWeekRange: '1,2,3,',
                     type: 'hotel',
                     callback: function (data, instance) {
                         console.info(data);
