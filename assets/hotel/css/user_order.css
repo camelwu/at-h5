@@ -125,6 +125,7 @@ i.right {
     line-height: .88rem;
     background: #fff;
     color: #d1d1d1;
+    position: relative;
 }
 
 .hotel_user_detail_border {
@@ -133,19 +134,22 @@ i.right {
 }
 
 .hotel_user_detail_name2 input {
-    margin-left: .28rem;
-    width: 44%;
+    width: 50%;
     font-size: .28rem;
-    padding: .22rem 0;
+    box-sizing: border-box;
+    padding: .15rem 0 .15rem .28rem;
+    height: .88rem;
+    vertical-align: middle;
 }
 
 .line {
     display: inline-block;
-    width: .02rem;
+    width: 1px;
     height: .4rem;
     background-color: #e6e6e6;
-    vertical-align: top;
-    margin-top: .25rem;
+    position: absolute;
+    left: 50%;
+    top: .25rem;
 }
 
 .hotel_user_detail_phone,
@@ -153,30 +157,32 @@ i.right {
     height: 0.88rem;
     line-height: .88rem;
     font-size: .28rem;
-    padding: 0 .28rem;
     border-bottom: 1px solid #DEDEDE;
 }
 
 .hotel_user_detail_phone p {
-    width: 44%;
+    width: 50%;
+    box-sizing: border-box;
+    padding-left: .28rem;
     line-height: .88rem;
-    display: inline-block;
-    margin-right: .18rem;
+    float: left;
 }
 
 .hotel_user_detail_Email p {
     width: 1.3rem;
     line-height: .88rem;
     display: inline-block;
+    box-sizing: border-box;
+    padding-left: .28rem;
 }
 
 .hotel_user_detail_phone input {
-    width: 44%;
+    width: 50%;
+    box-sizing: border-box;
     font-size: .28rem;
-    padding: .22rem 0;
+    padding-left: .28rem;
     display: inline-block;
     vertical-align: middle;
-    margin-left: .28rem;
 }
 
 .hotel_user_detail_Email input {
