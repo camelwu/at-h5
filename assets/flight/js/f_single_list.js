@@ -608,7 +608,6 @@ var fSingleList = {
     tem = tem.distinct();
     return tem.length > 1 ? 1 : 0
   },
-
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
     postObj.hasTax = postObj.internationalOrDomestic == "domestic"?0:1;
