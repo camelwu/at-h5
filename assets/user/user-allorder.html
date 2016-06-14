@@ -110,9 +110,9 @@
 
               var html = template("tpl_ticket", cacheData);
               $(".ticket_div").html(html);
-              $(".hotel-div-cancel").on("click", function () {
-                location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
-              })
+//              $(".hotel-div-cancel").on("click", function () {
+//                location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
+//              })
               $(".quitbtn").on("click", function () {
                 $(".jpop_box_tic").show();
               })
