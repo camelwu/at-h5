@@ -104,6 +104,7 @@ var fSingleList = {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
+        $(".flight_ul").eq(0).html("");
         that.first == true ? that.filterHandler().dateCalender() : that.dateCalender();
         that.first = false;
       } else {
@@ -247,10 +248,9 @@ var fSingleList = {
   },
 
   filerCallBack: function () {
-    console.log(arguments);
     var transferData = arguments, that = fSingleList;
-    if (that.postObj.internationalOrDomestic == "international") {
-      if (arguments[1].id == "Tax") {
+    if (that.postObj.internationalOrDomestic == "international"){
+      if (arguments[1].id == "Tax"){
         that.fadeHandler('show')
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
@@ -259,30 +259,6 @@ var fSingleList = {
         } else if (dd.innerHTML == "不含税价") {
           that.postObj.hasTax = 0;
           that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
-        }
-      } else {
-        console.log(transferData[0])
-        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
-        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
-        that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
-        that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
-        that.postObj.priorityRule = transferData[0].sortTypes[0];
-        if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
-          delete that.postObj.airCorpCode;
-        }
-        that.pageHandler();
-        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-      }
-    } else {
-      if (arguments[1].id == "Price") {
-        var dd = arguments[1].querySelector('dd');
-        if (dd.innerHTML == "价格") {
-          that.postObj.priorityRule = 2;
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        } else if (dd.innerHTML == "从低到高") {
-          that.postObj.priorityRule = 0;
-          that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       } else {
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
@@ -298,6 +274,44 @@ var fSingleList = {
           that.postObj.priorityRule = transferData[0].sortTypes[0];
           delete that.postObj.isDesc
         }
+        if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
+          delete that.postObj.airCorpCode;
+        }
+        that.pageHandler();
+        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+      }
+    } else {
+      if (arguments[1].id == "Price") {
+        var dd = arguments[1].querySelector('dd');
+        if (dd.innerHTML == "价格"){
+          that.postObj.priorityRule = 2;
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        } else if (dd.innerHTML == "从低到高") {
+          that.postObj.priorityRule = 2;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        }
+      }else if(arguments[1].id == "Sort"){
+        var dd = arguments[1].querySelector('dd');
+        if (dd.innerHTML == "起飞早到晚") {
+          dd.innerHTML = "起飞晚到早";
+          that.postObj.isDesc = "true";
+          that.postObj.priorityRule = 0;
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        } else if (dd.innerHTML == "起飞晚到早") {
+          dd.innerHTML = "起飞早到晚";
+          that.postObj.isDesc = "false";
+          that.postObj.priorityRule = 0;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        }
+      }else {
+        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
+        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
+        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
+        that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
+        that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
+        that.postObj.airCorpCode = transferData[0].filters[4].FilterValues[0];
         if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
           delete that.postObj.airCorpCode;
         }
@@ -320,13 +334,15 @@ var fSingleList = {
     if (this.postObj.internationalOrDomestic == "international") {
       f_data = {
         Sort: {
-          title: "优选",
+          title: "起飞早到晚",
           c: "f_foot_sort",
           type: 1,
           key: "sortTypes",
           listData: [
-            {sortText: "不限", sortValue: 0}, {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
-            {sortText: "耗时短优先", sortValue: 3}]
+            {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+            {sortText: "起飞晚到早", sortValue: "isDesc_true"}
+          ]
         },
         Screen: {
           title: "筛选", /*名字*/
@@ -336,7 +352,7 @@ var fSingleList = {
           listData: [
             {
               allowMultiSelect: 0,
-              filterType: 4,
+              filterType: 5,
               item: [{
                 filterText: "不限",
                 filterValue: "false"
@@ -348,7 +364,7 @@ var fSingleList = {
               title: "直飞"
             }, {
               allowMultiSelect: 0,
-              filterType: 3,
+              filterType: 4,
               item: [{
                 filterText: "不限",
                 filterValue: "false"
@@ -358,7 +374,30 @@ var fSingleList = {
               }],
               sortNumber: 1,
               title: "共享航班"
-            }, {
+            },
+            {
+              allowMultiSelect: 0,
+              filterType: 3,
+              item: [{
+                filterText: "不限",
+                filterValue: "00-24"
+              }, {
+                filterText: "00:00 - 06:00",
+                filterValue: "00-06"
+              }, {
+                filterText: "06:00 - 12:00",
+                filterValue: "06-12"
+              }, {
+                filterText: "12:00 - 18:00",
+                filterValue: "12-18"
+              }, {
+                filterText: "18:00 - 24:00",
+                filterValue: "18-24"
+              }],
+              sortNumber: 2,
+              title: "起飞时段"
+            },
+            {
               allowMultiSelect: 0,
               filterType: 2,
               item: [
@@ -405,13 +444,9 @@ var fSingleList = {
         Sort: {
           title: "起飞早到晚",
           c: "f_foot_sort",
-          type: 1,
+          type: 0,
           key: "sortTypes",
-          listData: [
-            {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
-            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
-            {sortText: "起飞晚到早", sortValue: "isDesc_true"}
-          ]
+          listData:["起飞早到晚", "起飞晚到早"]
         },
         Screen: {
           title: "筛选", /*名字*/
@@ -573,9 +608,9 @@ var fSingleList = {
     tem = tem.distinct();
     return tem.length > 1 ? 1 : 0
   },
-
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
+    postObj.hasTax = postObj.internationalOrDomestic == "domestic"?0:1;
     this.postObj = postObj;
     this.first = true;
     this.titleInit().dateChangeHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
