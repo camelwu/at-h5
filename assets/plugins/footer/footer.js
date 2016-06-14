@@ -172,7 +172,6 @@ var footer = (function () {
                     break;
                 }
                 if (theme == 1 || theme == 3) {// 显示类型确认操作
-                  console.log(111)
                   that.request();
                 }
               }
@@ -223,7 +222,6 @@ var footer = (function () {
           box.style.fontSize = '0.24rem';
         }
         var data = footer.data, ca = [];
-        console.log(data)
         for (var p in data) {
           ca.push('<dl class=' + data[p].c + ' id=' + p + ' data-type=' + data[p].type + '><dt class="clo"></dt><dd>' + data[p].title + '</dd></dl>');
           this.createSec(data[p].s, data[p].c, data[p].type, data[p].key, data[p].listData);
@@ -418,7 +416,6 @@ var footer = (function () {
           return false;
         }
         var section = document.querySelector('section.' + arguments[0].className), te0 = null, te1 = null, tem2 = null, dt, dd;
-        console.log(section)
         dt = arguments[0].querySelector('dt');
         dd = arguments[0].querySelector('dd');
         if (outerObj.postObj.routeType == "return") { /*往返*/
@@ -458,7 +455,7 @@ var footer = (function () {
               }
             } else if (section.className == "foot_screen") {
               te0 = section.querySelectorAll('li.cur');
-              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "00-24" || te0[4].getAttribute('data-val') != "economy") {
+              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "00-24" || te0[4].getAttribute('data-val') != "economy"||te0[5].getAttribute('data-val') != "") {
                 dt.className = "";
               } else {
                 dt.className = "clo";
