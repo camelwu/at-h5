@@ -45,10 +45,11 @@
     var ifshowkey = $("#ifshowkey")[0];
     var array = title.innerHTML;
     var head = array.split("/");
-
+    var header = $("#header")[0];
     function closeAmend(obj){
         obj.onclick = function(){
             amend_info.style.display = "none";
+            header.style.display = "block";
         }
     }
     closeAmend(close_page);
@@ -81,6 +82,7 @@
             phoneverify.style.display = "none";
             useremail.style.display = "none";
             amendkey.style.display = "none";
+            header.style.display = "none";
             if(obj1 == a_nick || obj1 == a_key){
                 amend_btn.style.display = "none";
             }else{
@@ -600,6 +602,9 @@
 
   //个人信息修改页生日
   new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
-
+//解决safari放回页面错误问题
+//  $("#header").on("click",function(){
+//    window.location.href = 'user.html';
+//  })
 })();
 

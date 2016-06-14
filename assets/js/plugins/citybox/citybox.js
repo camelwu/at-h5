@@ -1833,12 +1833,9 @@
             fragment.appendChild(thin_border_li);
           }
 
-
         }
-
-
-
         dom.appendChild(fragment);
+
         //无结果
         var childLen = dom.childNodes.length;
         if(childLen == 0){

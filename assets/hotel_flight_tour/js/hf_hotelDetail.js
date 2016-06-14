@@ -55,8 +55,19 @@ var data2 = '', roomdata = '';
 			at.map.moveCenterToHotelLocation(latitude, longitude);
 			sessionStorage.setItem('latitude', latitude);
 			sessionStorage.setItem('longitude', longitude);
+			// 增加参数
+		    var dataObj = {
+		        HotelName: data2.hotelInfo.hotelNameLocale +"("+data2.hotelInfo.hotelName+") "+data2.hotelInfo.hotelAddress,
+		        Latitude: latitude,
+		        Longitude: longitude
+		    },paramStr = "";
+		    for (var attr in dataObj) {
+		        paramStr += "&" + attr + "=" + dataObj[attr];
+		    }
+		    paramStr = paramStr.slice(1);
+		    // 参数拼接结束
 			$('#map').on('click', function() {
-				window.location.href = 'hf_hotel_detail_map.html';
+				window.location.href = '../hotel/hotel_map.html?' + paramStr;
 			});
 			// 如有评分，可跳转
 			if(parseInt(data2.hotelInfo.hotelReviewCount)>0){
