@@ -378,7 +378,7 @@ var footer = (function () {
         if (!arguments[0]){
           if (outerObj.postObj.routeType == "return") { /*往返*/
             var ele = document.querySelector('#Screen');
-            if (outerObj.postObj.cabinClass == "economy") {
+            if (outerObj.postObj.cabinClass == "economy") { /*国际*/
               ele.querySelector('dt').className = "clo";
             } else {
               ele.querySelector('dt').className = "";
@@ -388,7 +388,7 @@ var footer = (function () {
             } else {
               var ele_ = document.querySelector('#Sort'), sort_ul = document.querySelectorAll('.f_foot_sort li');
               sort_ul[0].className = "cur";
-              //ele_.querySelector('dt').className = "";
+              ele_.querySelector('dt').className = "";
             }
           } else {
             var ele = document.querySelector('#Screen');
