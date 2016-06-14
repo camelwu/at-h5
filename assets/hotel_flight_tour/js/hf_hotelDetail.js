@@ -123,7 +123,6 @@ var data2 = '', roomdata = '';
 		var jhf_star = ejs.render(str, data2.hotelInfo);
 		$('.jhf_star').html(jhf_star);
 	}
-
 	//客房部分
 	function room() {
 		var str = $('#jhf_room').html();
@@ -135,7 +134,6 @@ var data2 = '', roomdata = '';
 				console.log('true')
 				$('.jhf-mes li.showh .slide').eq(i).find('b').addClass('cur');
 			}
-
 			$('.jhf-mes li.showh .slide').eq(i).click(function() {
 				$(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
 				var roomID = roomdata[i].roomID;
