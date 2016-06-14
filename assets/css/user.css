@@ -1719,7 +1719,7 @@ a.foot-homes, a.foot-users {
 
 }
 .header{
-  z-index: auto;
+  display: block;
 }
 
 /*填写姓名说明页结束*/
