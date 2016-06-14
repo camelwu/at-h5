@@ -58,7 +58,7 @@ var lsf_myweb = {
     }, false);
     vlm.loadend();
   });
-
+  console.log(lsf_myweb.url2json(url).TAReviewCount);
   lsf_myweb.getbyid('TAAvgRating').innerHTML = Rating.toFixed(1);
   lsf_myweb.getbyid('TAReviewCount').innerHTML = lsf_myweb.url2json(url).TAReviewCount + '人点评';
   //alert(HotelID);
