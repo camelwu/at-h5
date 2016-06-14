@@ -762,7 +762,9 @@ li.order_tlist2 {
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
 }
-
+.border_light>li:last-child{
+  margin-bottom: 0;
+}
 .fht_order_tab.border_light {
   border-bottom: none;
 }
