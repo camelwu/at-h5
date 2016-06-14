@@ -208,7 +208,7 @@ var footer = (function() {
 								//单击
 								break;
 							}
-							if (theme == 1 || theme == 3) {// 显示类型确认操作
+							if (theme == 1) {// 显示类型确认操作，2016-06-14将航空公司操作theme==3屏蔽
 								that.request();
 							}
 						}
