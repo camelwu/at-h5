@@ -140,7 +140,7 @@
 </script>
 <script id="template_flight_cost_seat" type="text/template">
   <p><%= flightInfo.segmentsLeave[0]["cabinClassName"] %>
-    <%if(flightInfo.segmentsReturn){%>
+    <%if(flightInfo.segmentsReturn&&flightInfo.segmentsReturn[0]["cabinClassName"]!=flightInfo.segmentsLeave[0]["cabinClassName"]){%>
     +<%=flightInfo.segmentsReturn[0]["cabinClassName"] %>
     <%}%>
   </p>

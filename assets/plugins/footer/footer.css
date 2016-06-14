@@ -417,9 +417,18 @@ section.flight_company li.cur b.hft_icon {
 
 footer dl.flight_company dt {
   background-position: -4.34rem -2.38rem;
-  width: 0.44rem;
+  width: 0.44rem;position: relative;
 }
-
+ dl.flight_company dt:after{
+  content: "";
+  width: .1rem;
+  height: .1rem;
+  position: absolute;
+  right: -0.18rem;
+  top: .05rem;
+  border-radius: .05rem;
+  background: #fd7530;
+ }
 
 /*航空公司 结束*/
 footer dl.classname{

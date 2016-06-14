@@ -1,7 +1,6 @@
 /*Calendar*/
 
 .calendar {
-    font-family: Tahoma;
     position: relative;
     margin-bottom: 0;
     width: 100%;
@@ -129,7 +128,7 @@
 }
 
 .calendar dd a span.live_txt {
-    color:#7bc300;
+    color: #7bc300;
     font-size: 12px;
     line-height: 21px;
 }
