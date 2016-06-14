@@ -144,7 +144,9 @@
     +<%=flightInfo.segmentsReturn[0]["cabinClassName"] %>
     <%}%>
   </p>
-  <p>往返票价<span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
+  <p>
+    <%if(flightInfo.segmentsReturn){%>往返票价<%}else{%>单程票价<%}%>
+    <span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
     <span class="explain">退改签说明</span>
   </p>
 </script>
