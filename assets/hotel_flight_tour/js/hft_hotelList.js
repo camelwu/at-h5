@@ -114,7 +114,7 @@
 			parametersStorage.hotelID = hotelID;
 			parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
 			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
-			window.location.href = 'hft_hotel_detail.html';
+			window.location.href = 'hft_hotel_detail.html'+chooseUrl;
 		});
 		}else{
 			jAlert("数据为空！");

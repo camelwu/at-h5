@@ -213,6 +213,14 @@ a:link {
   position: relative;
   z-index: 30;
 }
+.jhf_star .star{
+  font-size: 0.24rem;
+}
+.jhf_star .star .detail{
+  position: absolute;
+  right: 0.36rem;
+  color: #999;
+}
 .gm-style-cc{
   display: none;
 }
@@ -242,7 +250,7 @@ a:link {
   right: 0.28rem;
 }
 .jhf-ul li:nth-of-type(1) .arrow {
-  margin-top: -0.12rem;
+  margin-top: -0.14rem;
 }
 .jhf_score{
   position: relative;
