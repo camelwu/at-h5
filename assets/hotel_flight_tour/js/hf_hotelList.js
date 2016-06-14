@@ -4,6 +4,8 @@
  **/
 (function () {
     "use strict";
+    //获取选中的房间id
+    var ulrRoom = window.location.search;
 
     function initFooter(data) {
         var menu_data = {
@@ -199,7 +201,7 @@
                     hotelList.parametersStorage.hotelID = hotelID;
                     hotelList.parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
                     sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(hotelList.parametersStorage));
-                    window.location.href = 'hf_hotel_detail.html';
+                    window.location.href = 'hf_hotel_detail.html'+ ulrRoom;
                 });
 
                 hotelList.updateMoreStatus(data);

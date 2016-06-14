@@ -199,15 +199,19 @@ i,em{
     right:0.38rem;
     top: 50%;
 }
-.hotel_list .price span:nth-child(2){
-    font-size: 0.3rem;
-    margin-left:-0.08rem;
-    margin-right:-0.08rem;
+.hotel_list .price span:nth-child(1),.hotel_list .price span:nth-child(3){
+  font-size: 0.3rem;
+  margin-right:-0.08rem;
 }
-.hotel_list .price span:nth-child(1),.hotel_list .price span:nth-child(2){
-    position: relative;
-    top: -0.02rem;
-}
+/*.hotel_list .price span:nth-child(2){*/
+    /*font-size: 0.3rem;*/
+    /*margin-left:-0.08rem;*/
+    /*margin-right:-0.08rem;*/
+/*}*/
+/*.hotel_list .price span:nth-child(1),.hotel_list .price span:nth-child(2){*/
+    /*position: relative;*/
+    /*top: -0.02rem;*/
+/*}*/
 /*酒店footer*/
 .hotel_footer{
     width: 100%;
