@@ -4,6 +4,7 @@
   var chooseUrl = sessionStorage.getItem("hftHotelChooseUrl");
   //添加当前选中样式  资源选择页有roomId、列表页没有，所以用判断
   var ulrRoom = window.location.search;
+  var dataTransferObj = null, flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
   if(ulrRoom){
     var ulrRoomId = ulrRoom.substring(40);
   }
@@ -47,11 +48,9 @@
           hftFlightHotelTourInfo =JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
       console.log(data)
       //酒店详情描述 存本地session
+      dataTransferObj = result;
       fhtHotelCharacteristic.hotelDesc = data.hotelInfo.hotelDesc;
       sessionStorage.setItem("fhtHotelCharacteristic",JSON.stringify(fhtHotelCharacteristic));
-
-      hftFlightHotelTourInfo['hotelInfo'] = data['hotelInfo']; //替换酒店信息
-      window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(hftFlightHotelTourInfo));
       banner(data);
       ulList(data);
       hotelName(data);
@@ -96,16 +95,21 @@
         }
       });
     }
-
     //点击事件  跳转
     $('.hotel_detail_rooms li').on('click',function(){
       var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
-      if(ulrRoom){
-        window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'&selectedRoomId='+roomID;
-      }else{
-        window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
-      }
+      flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;
+       window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
+       window.timer2 = setTimeout(function () {
+        window.clearTimeout(window.timer2);
+        window.timer2 = null;
+        if(ulrRoom){
+          window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'&selectedRoomId='+roomID;
+        }else{
+          window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
+        }
+      }, 500);
     });
   }
   //hotelName
