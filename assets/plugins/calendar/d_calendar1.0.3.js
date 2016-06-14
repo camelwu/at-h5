@@ -124,6 +124,7 @@
             this.minDuration = options.minDuration; //日期选择的最小间隔  如果是3天 那么选中的第一个日期的第二天不可选；
             this.ableDateRange = options.ableDateRange; //初始化可选择日期时间段，配合num参数使用   
             this.startAbleDate = options.startAbleDate;
+            this.ableWeekRange = options.ableWeekRange; //日期根据wenken 可选不可选 '1,2,3,4,5,6,0'
             this.prefix = options.prefix || "calendar";
             this.op = 0; //已操作次数
             this.theLastAbleDay = options.theLastAbleDay;
@@ -242,10 +243,14 @@
                     rangeEndDate = new Date(rangeEndDate.replace(/-/g, "/"));
 
                     if (tempDate <= rangeEndDate && tempDate >= rangeStartDate) {
-                        if (tims[year + '-' + m + '-' + d]) {
-                            ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                        if (this.ableWeekRange && this.ableWeekRange.indexOf(tempDate.getDay()) < 0) {
+                            ddHtml.push('<a class="disabled">' + i + '</a>');
                         } else {
-                            ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                            if (tims[year + '-' + m + '-' + d]) {
+                                ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                            } else {
+                                ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                            }
                         }
                     } else {
                         ddHtml.push('<a class="disabled">' + i + '</a>');
@@ -342,11 +347,16 @@
                     rangeStartDate = new Date(rangeStartDate.replace(/-/g, "/"));
                     rangeEndDate = new Date(rangeEndDate.replace(/-/g, "/"));
                     if ((tempDate <= rangeEndDate) && (tempDate >= rangeStartDate)) {
-                        if (tims[year + '-' + m + '-' + d]) {
-                            ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                        if (this.ableWeekRange && this.ableWeekRange.indexOf(tempDate.getDay()) < 0) {
+                            ddHtml.push('<a class="disabled">' + i + '</a>');
                         } else {
-                            ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                            if (tims[year + '-' + m + '-' + d]) {
+                                ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                            } else {
+                                ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                            }
                         }
+
                     } else {
                         ddHtml.push('<a class="disabled">' + i + '</a>');
                     }

@@ -322,18 +322,18 @@ uoHisData();
             uo_c3_peoBox.innerHTML += '<div class="uo_c3_peo hotel_user_detail_border">' +
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                '<input type="text" value="" placeholder="姓（如：Zhang）" class="uo_lastname"  />' +
-                '<span class = "line"></span>'+
-                '<input type="text" value="" placeholder="名（如：San）" class="uo_firstname"  />' +
+                '<input type="text" value="" placeholder="姓（如：Li）" class="uo_lastname"  />' +
+                '<span class = "line"></span>' +
+                '<input type="text" value="" placeholder="名（如：Shimin）" class="uo_firstname"  />' +
                 '</div>' +
                 '</div>';
         } else if (hoPos == 'dom') {
             uo_c3_peoBox.innerHTML += '<div class="uo_c3_peo">' +
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                '<input type="text"  placeholder="姓（如：李）" class="uo_lastname"  />' +
-                '<span class = "line"></span>'+
-                '<input type="text"  placeholder="名（如：世民）" class="uo_firstname"  />' +
+                '<input type="text"  placeholder="姓（如：Li）" class="uo_lastname"  />' +
+                '<span class = "line"></span>' +
+                '<input type="text"  placeholder="名（如：Shimin）" class="uo_firstname"  />' +
                 '</div>' +
                 '</div>';
         }
@@ -369,7 +369,7 @@ uoHisData();
         if (hoPos == 'inter') {
             var uo_c3_email = document.getElementById('uo_c3_email');
             if (fake_data.GuestEmail && fake_data.GuestEmail != '') {
-              uo_c3_email.value = fake_data.GuestEmail;
+                uo_c3_email.value = fake_data.GuestEmail;
             }
         }
     }
@@ -379,11 +379,11 @@ uoHisData();
     //判断是国际酒店搜索还是国内酒店搜索
     if (hoPos == 'inter') {
         styleChange('uo_c3_email', '用于接收邮件通知');
-        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Zhang）');
-        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：San）');
+        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
     } else if (hoPos == 'dom') {
-        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
-        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
+        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
     }
     //$('#uo_c3_tele').bind('focus',function(){
     //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
@@ -464,11 +464,11 @@ uoHisData();
             }*/
             //输入框默认字体设置
             if (hoPos == 'inter') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Zhang）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：San）');
+                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
             } else if (hoPos == 'dom') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：张）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：三）');
+                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
             }
         }
         if (parseInt(uo_c2_num.innerHTML) <= 1) {
@@ -502,16 +502,16 @@ uoHisData();
                 if (hoPos == 'inter') {
                     oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                         '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                        '<input type="text"  value="" placeholder="姓（如：Zhang）" class="uo_lastname"  />' +
-                        '<span class = "line"></span>'+
-                        '<input type="text"  value="" placeholder="名（如：San）" class="uo_firstname"  />' +
+                        '<input type="text"  value="" placeholder="姓（如：Li）" class="uo_lastname"  />' +
+                        '<span class = "line"></span>' +
+                        '<input type="text"  value="" placeholder="名（如：Shimin）" class="uo_firstname"  />' +
                         '</div>';
                 } else if (hoPos == 'dom') {
                     oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                         '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                        '<input type="text" value="姓（如：张）" class="uo_lastname"  />' +
-                        '<span class = "line"></span>'+
-                        '<input type="text" value="名（如：三）" class="uo_firstname"  />' +
+                        '<input type="text" value="姓（如：Li）" class="uo_lastname"  />' +
+                        '<span class = "line"></span>' +
+                        '<input type="text" value="名（如：Shimin）" class="uo_firstname"  />' +
                         '</div>';
                 }
                 uo_c3_peoBox.appendChild(oDiv);
@@ -530,11 +530,11 @@ uoHisData();
             }*/
             //输入框默认字体设置
             if (hoPos == 'inter') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Zhang）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：San）');
+                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
             } else if (hoPos = 'dom') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：张）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：三）');
+                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
             }
         }
         if (parseInt(uo_c2_num.innerHTML) > 1) {
@@ -599,7 +599,7 @@ uoHisData();
         //判断是国内搜索还是国际搜索
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-                if (aUo_lastname[i].value == '姓（如：Zhang）') {
+                if (aUo_lastname[i].value == '姓（如：Li）') {
                     jAlert('请输入英文姓或名');
                     //alert('请输入姓');
                     return;
@@ -612,7 +612,7 @@ uoHisData();
                     jAlert('请输入英文姓或名');
                     return;
                 }
-                if (aUo_firstname[i].value == '名（如：San）') {
+                if (aUo_firstname[i].value == '名（如：Shimin）') {
                     jAlert('请输入英文姓或名');
                     return;
                 }
@@ -623,11 +623,11 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-                if (aUo_lastname[i].value == '姓（如：李）') {
+                if (aUo_lastname[i].value == '姓（如：Li）') {
                     jAlert('请输入姓');
                     return;
                 }
-                if (aUo_firstname[i].value == '名（如：世民）') {
+                if (aUo_firstname[i].value == '名（如：Shimin）') {
                     jAlert('请输入名');
                     return;
                 }
