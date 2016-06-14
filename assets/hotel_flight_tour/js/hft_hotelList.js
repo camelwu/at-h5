@@ -99,10 +99,11 @@
 	function list(result) {
 		if(result.data.hotels.length>0){
 		//curList
-		var strCur = $('#curList').html();
-		var curList = ejs.render(strCur, result.data);
-		$('.hotel_list').append(curList);
-
+		if (result.data.pageNo === 1) {
+			var strCur = $('#curList').html();
+			var curList = ejs.render(strCur, result.data);
+			$('.hotel_list').append(curList);
+		}
 		var str = $('#templateList').html();
 		var hotels = ejs.render(str,result.data);
 		$('.hotel_list').append(hotels);
