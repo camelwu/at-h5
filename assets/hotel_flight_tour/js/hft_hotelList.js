@@ -98,24 +98,24 @@
 	//数据加载部分
 	function list(result) {
 		if(result.data.hotels.length>0){
-			//curList
-			var strCur = $('#curList').html();
-			var curList = ejs.render(strCur, result.data);
-			$('.hotel_list').append(curList);
-	
-			var str = $('#templateList').html();
-			var hotels = ejs.render(str,result.data);
-			$('.hotel_list').append(hotels);
-			//去掉loading
-			//$('.status').fadeOut('fast');
-			$('.hotel_list li').on('click', function() {
-				$(this).addClass('cur').siblings().removeClass('cur');
-				var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
-				parametersStorage.hotelID = hotelID;
-				parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
-				sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
-				window.location.href = 'hft_hotel_detail.html';
-			});
+		//curList
+		var strCur = $('#curList').html();
+		var curList = ejs.render(strCur, result.data);
+		$('.hotel_list').append(curList);
+
+		var str = $('#templateList').html();
+		var hotels = ejs.render(str,result.data);
+		$('.hotel_list').append(hotels);
+		//去掉loading
+		//$('.status').fadeOut('fast');
+		$('.hotel_list li').on('click', function() {
+			$(this).addClass('cur').siblings().removeClass('cur');
+			var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
+			parametersStorage.hotelID = hotelID;
+			parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
+			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+			window.location.href = 'hft_hotel_detail.html';
+		});
 		}else{
 			jAlert("数据为空！");
 		}
