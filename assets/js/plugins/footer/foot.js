@@ -139,8 +139,8 @@ var footer = (function() {
           } else if (target.className == "sure") {// 筛选确定
             that.request();
           }  else if (target.className == "button") {//航空公司的确定
-            var box = target.parentNode;
-            var li = box.getElementsByTagName('li');
+          var air = target.parentNode;
+          var li = air.getElementsByTagName('li');
             for(var k = 0;k < li.length;k++){
               if(li[k].className == 'cur'){
                 var nod = li[k];
@@ -220,12 +220,9 @@ var footer = (function() {
                 if (theme == 1) {// 显示类型确认操作，2016-06-14将航空公司操作theme==3屏蔽
                   that.request();
                 }
-                if (theme == 3) {// 航空公司操作
-                  target.className = target.className == "cur" ? "cur" : "";
                 }
               }
             }
-          }
 
         });
         // 遮罩层|返回按钮点击，包括隐藏
