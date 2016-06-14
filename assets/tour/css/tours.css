@@ -446,6 +446,14 @@ a.hotel_detail_pic{
   font-size: 0.36rem;
   font-weight: 700;
 }
+.hotel_detail_list.hdl_down li span.seeDetail{
+    position: absolute;
+    right:0.6rem;
+    font-size: 0.24rem;
+    color: #999;
+    top: 0;
+    font-weight: normal;
+}
 .hotel_detail_list>li.last{
     height: auto;
     padding: 0;
@@ -463,7 +471,7 @@ a.hotel_detail_pic{
     position: absolute;
     right:0.28rem;
     top: 50%;
-    margin-top: -.11rem;
+    margin-top: -.10rem;
     background-position: -1.13rem -.63rem;
     background-size: 7.9rem 5.13rem;
 }

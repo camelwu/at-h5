@@ -267,6 +267,7 @@ var fDoubleList = {
     } else {
       if (arguments[1].id == "Price") {
         var dd = arguments[1].querySelector('dd');
+        document.querySelector('#Sort dt').className = "clo";
         if (dd.innerHTML == "价格") {
           that.postObj.priorityRule = 2;
           that.pageHandler();
@@ -282,7 +283,11 @@ var fDoubleList = {
         that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
         that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
         that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
+        that.postObj.airCorpCode = transferData[0].filters[4].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
+        if (that.postObj.airCorpCode == undefined) {
+          delete that.postObj.airCorpCode;
+        }
         that.pageHandler();
         that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
@@ -468,6 +473,13 @@ var fDoubleList = {
               ],
               sortNumber: 3,
               title: "舱位"
+            },
+            {
+              allowMultiSelect: 0,
+              filterType: 0,
+              item: tempArray,
+              sortNumber: 3,
+              title: "航空公司"
             }]
         },
         Price: {
