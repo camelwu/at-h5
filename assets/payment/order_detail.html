@@ -183,10 +183,10 @@
     <div class="fht_order_detail">
       <div class="fht_hd">出游人信息</div>
       <ul class="fht_order_tab border_light">
-        <% if(travelers.length>0){ %>
+        <% var i=1;if(travelers.length>0){ %>
         <% travelers.forEach(function(info){%>
         <li>
-          <p class="clearfix"><span class="fl"></span>出游人<span
+          <p class="clearfix"><span class="fl"></span>出游人<%= i++%><span
             class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
 
           <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
@@ -337,12 +337,12 @@
       </ul>
     </div>
     <div class="fht_order_detail">
-      <div class="fht_hd">出游人信息</div>
+      <div class="fht_hd">出xinf信息</div>
       <ul class="fht_order_tab">
         <% var i=1 ;if(travelers.length>0){ %>
         <% travelers.forEach(function(info){%>
         <li>
-          <p class="clearfix"><span class="fl"></span>出游人<%=i%><span
+          <p class="clearfix"><span class="fl"></span>出游人<%=i++%><span
             class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
 
           <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>

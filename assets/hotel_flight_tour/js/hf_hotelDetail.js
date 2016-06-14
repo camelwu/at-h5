@@ -41,6 +41,8 @@ var data2 = '', roomdata = '';
 				window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
 			data2 = result.data;
 			console.log(data2);
+      // 星级转换为汉字
+      data2.hotelInfo.starRating = handleData(data2.hotelInfo.starRating);
 			roomdata = data2.hotelInfo.rooms;
 			nav();
 			banner();
@@ -131,6 +133,33 @@ var data2 = '', roomdata = '';
 			})
 		});
 	}
+
+  /**
+   *@desc 预处理数据，将星级信息转换
+   *@para result
+   *@return result
+   **/
+  function handleData(result) {
+    switch (result) {
+      case "1":
+        result = '一星级';
+        break;
+      case "2":
+        result = '二星级';
+        break;
+      case "3":
+        result = '三星级';
+        break;
+      case "4":
+        result = '四星级';
+        break;
+      case "5":
+        result = '五星级';
+        break;
+    }
+    return result;
+  }
+
 
 })();
 

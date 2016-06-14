@@ -223,7 +223,7 @@ var flight_list = {
 							filterText : "不限",
 							filterValue : "0"
 						}, {
-							filterText : "只选直飞",
+							filterText : "仅看直飞",
 							filterValue : "1"
 						}]
 					}, {
@@ -233,7 +233,7 @@ var flight_list = {
 							filterText : "不限",
 							filterValue : "0"
 						}, {
-							filterText : "不选共享航班",
+							filterText : "隐藏共享航班",
 							filterValue : "1"
 						}]
 					}, {

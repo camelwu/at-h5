@@ -107,7 +107,7 @@
 .citybox_content_lettername {
   line-height: 0.96rem;
   padding-left: 0.1rem;
-  border-bottom: 0.01rem solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   font-size: 0.28rem;
   color: #333;
 }

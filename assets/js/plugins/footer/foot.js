@@ -93,6 +93,7 @@ var footer = (function() {
 				_str += "<a href='" + menus[k][1] + "' class='" + cn + "'><i></i>" + menus[k][0] + "</a>";
 			}
 			menuer.innerHTML = _str;
+			menuer.innerHTML = _str;
 		}
 		//return this;
 	},
@@ -138,6 +139,14 @@ var footer = (function() {
 				} else if (target.className == "sure") {// 筛选确定
 					that.request();
 				}  else if (target.className == "button") {//航空公司的确定
+          var box = target.parentNode;
+          var li = box.getElementsByTagName('li');
+          for(var k = 0;k < li.length;k++){
+            if(li[k].className == 'cur'){
+              var nod = li[k];
+            }
+          }
+          nod.parentNode.insertBefore(nod, nod.parentNode.firstChild);
 					that.request();
 				} else {
 					if (target.tagName == "I" || src.tagName == "LI") {// 非LI向上冒泡
@@ -208,9 +217,12 @@ var footer = (function() {
 								//单击
 								break;
 							}
-							if (theme == 1 || theme == 3) {// 显示类型确认操作
+							if (theme == 1) {// 显示类型确认操作，2016-06-14将航空公司操作theme==3屏蔽
 								that.request();
 							}
+              if (theme == 3) {// 航空公司操作
+                target.className = target.className == "cur" ? "cur" : "";
+              }
 						}
 					}
 				}
@@ -309,6 +321,8 @@ var footer = (function() {
 			right = ['<div class="screen_rg">', '</div>'],
 			// 列表容器
 			ulstr = '',
+			// 航司确认按钮
+			button = '<div class="button">确认</div>',
 			// 新建section
 			mysec = document.createElement('section');
 			c ? mysec.className = c : null;
@@ -319,7 +333,7 @@ var footer = (function() {
 					css = d[i].additionalPrice == 0 ? ' class="cur"' : '';
 					listr += '<li' + css + ' data-val="' + d[i].airwayCacheID + '" airwayCacheID="' + d[i].airwayCacheID + '" airwaySetID="' + d[i].airwaySetID + '"><div><img src="' + d[i].airwayLogo + '"></div><span class="airway_name">' + d[i].chineseName + '</span><div class="aw_price"><span>+￥</span><span>' + d[i].additionalPrice + '</span></div><b class="hft_icon"></b></li>';
 				}
-				ulstr = wrapper[0] + listr + wrapper[1];
+				ulstr = wrapper[0] + listr + wrapper[1] + button;
 				break;
 			case "filters":
 				// 筛选
