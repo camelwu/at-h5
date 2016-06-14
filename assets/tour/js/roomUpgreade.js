@@ -132,7 +132,7 @@ var roomUpGrade = {
 				$('#room-list').html(tpl_GetRooms);
 				var travelersInput = resultData.data.bookingFormInfo.travelersInput;
         hotelID = resultData.data.hotels[0].hotelID;
-        window.localStorage.hotelDetailData = resultData;
+        window.localStorage.hotelDetailData = JSON.stringify(resultData);
 				that.chooseRoom(travelersInput);
 				that.dateDeal().delayLoadImage().addEvent(travelersInput);
 				//map
