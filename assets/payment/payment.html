@@ -48,24 +48,18 @@
         <div class="content payment-type-list"></div>
     </div>
     <!--2信用卡信息-->
-    <div class="credit-session android-relative" style="display: none" id="order_pay_price">
+    <div class="credit-session android-relative" style="display: none">
         <div class="header">
             <a href="javascript:;" class="header_back">
                 <i class="icon_back"></i>
             </a>
-            {% if(vlm.getpara("type")=="Hotle"){ if(paymentModeID==2) { %}
-              <h3>担保</h3>
-            {% }else{ %}
-              <h3>支付</h3>
-            {% } }else{ %}
             <h3>支付</h3>
-            {% } %}
         </div>
         <!-- Page Content-->
         <div class="content pay_detail_order">
-
             <!--   总价   -->
-            <ul>
+            <ul id="order_pay_price">
+
                 {% if(vlm.getpara("type")=="Hotle" ){ if(paymentModeID==2) { %}
                 <div class="p-price p-price2">
                     <p class="p-price-descript">您将根据付款当天的汇率以及酒店当地的货币付费给酒店。Asiatravel不提供发票，如需消费凭证，请向酒店前台索取消费清单</p>
@@ -268,10 +262,10 @@
                     <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
                     <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
                     <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalAdult%}</i>成人</span>
-                     {% if(hotelDetails.roomDetails.totalChild>0){ %}
-                         <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalChild%}</i>儿童</span>
-                     {% } %}
-                     <span class="hf-f"><i>{%=hotelDetails.roomDetails.numRoom%}</i>间</span>
+                    {% if(hotelDetails.roomDetails.totalChild>0){ %}
+                    <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalChild%}</i>儿童</span>
+                    {% } %}
+                    <span class="hf-f"><i>{%=hotelDetails.roomDetails.numRoom%}</i>间</span>
                 </li>
                 {% } %}
 
