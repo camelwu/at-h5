@@ -155,6 +155,10 @@
     $('li.score').on('click',function(){
       window.location.href = "../hotel/hotel_reviews.html?HotelID="+data.hotelInfo.hotelID+"&TAAvgRating="+data.hotelInfo.hotelReviewScore+"&TAReviewCount="+data.hotelInfo.hotelReviewCount;
     })
+    //点击跳转到酒店介绍页面
+    $('li.star').on('click',function(){
+      window.location.href = "hft_hotel_summary.html";
+    })
   }
 
   //根据模板需要提前处理好data

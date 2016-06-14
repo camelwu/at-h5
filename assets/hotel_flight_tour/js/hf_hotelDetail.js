@@ -10,6 +10,16 @@ var data2 = '', roomdata = '';
 	if (!ulrRoomId) {
 		delete temObj.selectedRoomID
 	}
+
+	//酒店详情页的入参 存入session
+	var fhtHotelCharacteristic = {};
+	//酒店详情特色
+	fhtHotelCharacteristic.parameters = {};
+	fhtHotelCharacteristic.parameters.cultureName = "zh-CN";
+	fhtHotelCharacteristic.parameters.hotelID = temObj.hotelID;
+	fhtHotelCharacteristic.foreEndType = 2;
+	fhtHotelCharacteristic.code = "10100003";
+
 	//data中入住离店时间必须去掉时分秒
 	var data = {
 		"Code" : "50100009",
@@ -79,7 +89,7 @@ var data2 = '', roomdata = '';
 			}
 			// 酒店情况
 			$('#h_star').on('click', function() {
-				window.location.href = '../hotel/hotel_summary.html?HotelID='+data2.hotelInfo.hotelID;
+				window.location.href = "hft_hotel_summary.html";
 			});
 			//map end
 			$('.jhf-date').show();
