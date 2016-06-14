@@ -107,7 +107,7 @@
             <div><i></i>{%= tours[i].tourName %}</div>
             {% if(tours[i].travelDateMandatory){ %}
             <!-- 日期部分-->
-            <div id="dateContent{%= i %}">
+            <div id="dateContent{%= i %}" data-frequency="{%= tours[i].tourFrequency %}">
                 <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= start %}" class="content3_CheckInDate" readonly="readonly">
                 <span id="content0_week_span1" class="week-tour">{%= week %}</span>
                 <i></i>
