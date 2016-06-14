@@ -38,9 +38,9 @@
 				<!--输入框-->
 				<ul class="flight_ul"></ul>
 				<div id="loadMore">点击加载更多信息...</div>
-				<P id="no_flight_data">没有找到符合条件的航班!</P>
 			</div>
 		</div>
+    <P id="no_flight_data">没有找到符合条件的航班!</P>
 	</body>
 	<script id="template_flight_single_list" type="text/template">
 		<% flightInfos.forEach(function(item, index){%>
@@ -60,7 +60,7 @@
       <% }%>
       <% }else{%>
       <p class="priceNumber domi">
-        <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+        <span class="money">￥</span><%= item["totalFareAmountADT"] %>
       </p>
       <% }%>
 		</div>

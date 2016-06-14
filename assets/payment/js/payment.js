@@ -397,6 +397,8 @@
                 $(".payment-type-list").append(html);
                 if(data.data.paymentModeID==2) {
                   $(".paymentype-session .header h3").html("订单担保");
+                  $(".credit-session .header h3").html("担保");
+
                 }
             }
             //机票详情tpl
@@ -485,9 +487,6 @@
             type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
             bookingRefNo=vlm.getpara("bookingRefNo");//订单code
 
-            //绑定页面事件
-            _init.expityDateInit();
-
             //获取订单详情数据
             _getOrderData(type,bookingRefNo,3,function(data){
                 vlm.init();
@@ -498,6 +497,9 @@
                     jAlert("网络请求错误！");
                 }
             });
+
+            //绑定页面事件
+            _init.expityDateInit();
         };
         /*接口*/
         return{

@@ -147,6 +147,11 @@ i, em {
   background-color: #f7f7f7;
   position: relative;
 }
+.addtra_title > span {
+  display: inline-block;
+  vertical-align: top;
+  /*margin-top: .1rem;*/
+}
 .addtra_info {
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: .2rem;
@@ -266,8 +271,8 @@ i, em {
 }
 
 .traveler_sex2 {
-  width: .22rem;
-  height: .22rem;
+  width: .24rem;
+  height: .24rem;
   margin-right: .1rem;
   background-position: 4.8% 38%;
 }
@@ -284,6 +289,7 @@ i, em {
   margin-left: .1rem;
   background-size: 7rem 4.66rem;
   background-position: -3.6rem -1.36rem;
+  /*margin-top:.08rem;*/
 }
 
 .name_text {

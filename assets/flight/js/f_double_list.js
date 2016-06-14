@@ -67,6 +67,7 @@ var fDoubleList = {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
+        $(".flight_ul").eq(0).html("");
         that.first == true ? that.filterHandler().dateCalender() : that.dateCalender();
         that.first = false;
       } else {
@@ -266,12 +267,13 @@ var fDoubleList = {
     } else {
       if (arguments[1].id == "Price") {
         var dd = arguments[1].querySelector('dd');
+        document.querySelector('#Sort dt').className = "clo";
         if (dd.innerHTML == "价格") {
           that.postObj.priorityRule = 2;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         } else if (dd.innerHTML == "从低到高") {
-          that.postObj.priorityRule = 0;
+          that.postObj.priorityRule = 2;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
@@ -281,12 +283,10 @@ var fDoubleList = {
         that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
         that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
         that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
-        if (transferData[0].sortTypes[0].indexOf('isDesc') > -1) {
-          that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
-          that.postObj.priorityRule = 0;
-        } else {
-          that.postObj.priorityRule = transferData[0].sortTypes[0];
-          delete that.postObj.isDesc;
+        that.postObj.airCorpCode = transferData[0].filters[4].FilterValues[0];
+        that.postObj.priorityRule = transferData[0].sortTypes[0];
+        if (that.postObj.airCorpCode == undefined) {
+          delete that.postObj.airCorpCode;
         }
         that.pageHandler();
         that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
@@ -390,15 +390,13 @@ var fDoubleList = {
     } else {
       f_data = {
         Sort: {
-          title: "起飞早到晚",
+          title: "优选",
           c: "f_foot_sort",
           type: 1,
           key: "sortTypes",
           listData: [
-            {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
-            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
-            {sortText: "起飞晚到早", sortValue: "isDesc_true"}
-          ]
+            {sortText: "不限", sortValue: 0}, {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+            {sortText: "耗时短优先", sortValue: 3}]
         },
         Screen: {
           title: "筛选", /*名字*/
@@ -475,6 +473,13 @@ var fDoubleList = {
               ],
               sortNumber: 3,
               title: "舱位"
+            },
+            {
+              allowMultiSelect: 0,
+              filterType: 0,
+              item: tempArray,
+              sortNumber: 3,
+              title: "航空公司"
             }]
         },
         Price: {
@@ -538,10 +543,10 @@ var fDoubleList = {
 
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
+    postObj.hasTax = postObj.internationalOrDomestic == "domestic"?0:1;
     this.postObj = postObj;
     this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
-    //this.renderHandler(data4)
   }
 };
 fDoubleList.init();

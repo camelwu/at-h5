@@ -142,8 +142,8 @@
                 </div>
             </div>
         <div class="price">
-            <span>+</span><span><% if(hotels[i].currencyCode=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>
-            <span class="price-num"><%= hotels[i].avgRatePerPaxInCNY %></span>
+            <span><% if(hotels[i].currencyCode=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>
+            <span class="price-num"><%= hotels[i].avgRatePerPaxInCNY %></span><span>起/人</span>
             </div>
         </li>
     <% } %>

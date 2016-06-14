@@ -572,8 +572,10 @@ var fIndexModal = {
     }
     cityEle[0].querySelector('b').innerHTML = data.fromCity;
     cityEle[0].setAttribute('data-code', data.cityCodeFrom);
+    cityEle[0].setAttribute('data-city-type', that.getCityType(data.cityCodeFrom));
     cityEle[1].querySelector('b').innerHTML = data.toCity;
     cityEle[1].setAttribute('data-code', data.cityCodeTo);
+    cityEle[1].setAttribute('data-city-type', that.getCityType(data.cityCodeTo));
     singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
     singleDateSet.setAttribute('date-full-value', defaultDate[0]);
     weeks[0].innerHTML = this.setWeekItems(defaultDate[0]);

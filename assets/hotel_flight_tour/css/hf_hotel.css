@@ -288,22 +288,13 @@ a:link {
   height: 2rem;
 }
 
-
-
-
-
-
-
-
-
-
-
 .jhf-score li span.wifi {
   background-position: -1.95rem -0.33rem;
   background-size: 10rem 4.33rem;
   width: 0.4rem;
   height: 0.5rem;
   top: 0.2rem;
+  left: 0.1rem;
 }
 
 .jhf-score li span.park {

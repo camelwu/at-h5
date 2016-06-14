@@ -240,7 +240,7 @@
                             <div class="end_time_info">
                                 <span class="time_number"><%=selectedFlight.flightReturnEndDate.substr(11,5)%></span>
                                 <span class="air_port_word"><%=selectedFlight.segmentsReturn[selectedFlight.segmentsReturn.length-1].airportNameTo%></span>
-                                <% if(selectedFlight.flightLeaveSpacingDay!=0){ %>
+                                <% if(selectedFlight.flightReturnSpacingDay!=0){ %>
                                 <span class="tip_add_days">+<%=selectedFlight.flightReturnSpacingDay%>天</span>
                                 <% } %>
                             </div>
@@ -317,7 +317,7 @@
                           <div class="end_time_info">
                               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightReturnEndDate.substr(11,5)%></span>
                               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[flightInfoListGroup[i].flightInfoList[j].segmentsReturn.length-1].airportNameTo%></span>
-                              <% if(flightInfoListGroup[i].flightInfoList[j].flightLeaveSpacingDay!=0){ %>
+                              <% if(flightInfoListGroup[i].flightInfoList[j].flightReturnSpacingDay!=0){ %>
                               <span class="tip_add_days">+<%=flightInfoListGroup[i].flightInfoList[j].flightReturnSpacingDay%>天</span>
                               <% } %>
                           </div>

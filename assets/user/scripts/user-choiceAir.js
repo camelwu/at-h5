@@ -331,14 +331,14 @@
     $(".addAir_page .postCard").attr("data-code",model.listTravellerIdInfo[0].idType);
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
-    $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','年').replace('/','月')+'号');
+    $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
     $(".addAir_page .cardCountry").attr("data-code",model.listTravellerIdInfo[0].idCountry);
     $(".addAir_page .cardCountry").html(model.listTravellerIdInfo[0].idCountryName);
     $(".addAir_page .country").attr("data-code",model.traveller.countryCode);
     $(".addAir_page .country").html(model.traveller.countryName);
     $(".addAir_page .telephone").val(model.traveller.mobilePhone);
     $(".addAir_page .email").val(model.traveller.email);
-    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('/','年').replace('/','月')+'号');
+    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('/','-').replace('/','-')+'');
     $(".addAir_page .phone_pre").html(model.traveller.mobilePhoneAreaCode);
 
     $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2");
@@ -369,11 +369,11 @@
     month=newDate.getMonth()+1;
     day=newDate.getDate();
 
-    $(".addAir_page .cardDateLimit").attr("data-cache",  year+"年-"+month+"月-"+day+"日");
-    $(".addAir_page .cardDateLimit").val(year+"年"+month+"月"+day+"号");
+    $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
+    $(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
 
-    $(".addAir_page .birthDay").attr("data-cache","1990年-1月-1日");
-    $(".addAir_page .birthDay").val("1990年1月9号");
+    $(".addAir_page .birthDay").attr("data-cache","1990-01-01");
+    $(".addAir_page .birthDay").val("1990-01-09");
 
     $(".addAir_page .postCard").attr("data-cache","1");
     $(".addAir_page .postCard").val("护照");
@@ -731,7 +731,7 @@
          for(var index in cardList){
            if(cardList[index].idType==cardId){
              addOrEditPassagePage.find(".cardNumber").val(cardList[index].idNumber);
-             addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
+             addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate);
              addOrEditPassagePage.find(".cardCountry").html(cardList[index].idCountryName);
              addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry);
              return;
@@ -750,8 +750,8 @@
              month=newDate.getMonth()+1;
              day=newDate.getDate();
 
-             $(".addAir_page .cardDateLimit").attr("data-cache",  year+"年-"+month+"月-"+day+"日");
-             $(".addAir_page .cardDateLimit").val(year+"年"+month+"月"+day+"号");
+             $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
+             $(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
            }
          }
     }
