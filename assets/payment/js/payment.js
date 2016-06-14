@@ -395,6 +395,9 @@
                 }
                 var html = template("tpl_hotel_detail", data.data);
                 $(".payment-type-list").append(html);
+                if(data.data.paymentModeID==2) {
+                  $(".paymentype-session .header h3").html("订单担保");
+                }
             }
             //机票详情tpl
             else if(type.id==2){

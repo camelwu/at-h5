@@ -48,21 +48,27 @@
         <div class="content payment-type-list"></div>
     </div>
     <!--2信用卡信息-->
-    <div class="credit-session android-relative" style="display: none">
+    <div class="credit-session android-relative" style="display: none" id="order_pay_price">
         <div class="header">
             <a href="javascript:;" class="header_back">
                 <i class="icon_back"></i>
             </a>
+            {% if(vlm.getpara("type")=="Hotle"){ if(paymentModeID==2) { %}
+              <h3>担保</h3>
+            {% }else{ %}
+              <h3>支付</h3>
+            {% } }else{ %}
             <h3>支付</h3>
+            {% } %}
         </div>
         <!-- Page Content-->
         <div class="content pay_detail_order">
 
             <!--   总价   -->
-            <ul id="order_pay_price">
+            <ul>
                 {% if(vlm.getpara("type")=="Hotle" ){ if(paymentModeID==2) { %}
                 <div class="p-price p-price2">
-                    <p class="p-price-descript">该产品不可变更且不可取消，如果入住，扣除全额房费</p>
+                    <p class="p-price-descript">您将根据付款当天的汇率以及酒店当地的货币付费给酒店。Asiatravel不提供发票，如需消费凭证，请向酒店前台索取消费清单</p>
                     <p class="p-p1 p-p2" id="jp_price_sum">订单总价：
                         <span class="coin_type">{%=currency%}</span><span class="total_price">{%=totalPrice%}</span>
                         <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
