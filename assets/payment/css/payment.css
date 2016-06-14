@@ -308,7 +308,9 @@ i {
 .p-home .hf-f {
   display: inline-block;
   line-height: 18px;
-  margin-right: .4rem;
+  margin-right: .1rem;
+  color: #999;
+
 }
 
 .p-home .hf-f p {
