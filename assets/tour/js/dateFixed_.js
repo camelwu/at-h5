@@ -320,7 +320,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             })
           }
           else if(childNumValue==2){
-            $(this).unbind("click");
+            target.parent().parent().siblings(".spenumbList").find(".bedList b").unbind("click");
           }
           else{
             target.parent().parent().siblings(".spenumbList").hide();
