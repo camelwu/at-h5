@@ -1,15 +1,15 @@
 var oldInfo= JSON.parse(localStorage.getItem('info'));
-console.log(oldInfo)
-var newPara = {
-	"StarRating": "",
-	"Location": "",
-	"SortType": 1,
-	"PackageID": oldInfo.packageID,
-	"CheckinDate": oldInfo.CheckInDate,
-	"CheckoutDate": oldInfo.CheckOutDate,
-	"RoomDetails":oldInfo.roomDetails,
-	"Tours":oldInfo.tours
-};
+console.log(oldInfo);
+//var newPara = {
+//	"StarRating": "",
+//	"Location": "",
+//	"SortType": 1,
+//	"PackageID": oldInfo.packageID,
+//	"CheckinDate": oldInfo.CheckInDate,
+//	"CheckoutDate": oldInfo.CheckOutDate,
+//	"RoomDetails":oldInfo.roomDetails,
+//	"Tours":oldInfo.tours
+//};
 var hotelList = {
 
 	CultureName : "zh-CN",
@@ -178,30 +178,30 @@ var hotelList = {
 				//footer  end
 
 
-				//  恢复上次选中的酒店星级
-				if(newPara.StarRating != ''){
-					var li = document.getElementById('h-level').getElementsByTagName('li');
-					var star = newPara.StarRating.split('$');
-					for(var i = 0;i < li.length;i++){
-						for(var j = 0;j < star.length-1;j++){
-							if(li[i].innerHTML == star[j]){
-								li[0].className = 's_li';
-								li[i].className = 's_li1';
-							}
-						}
-					}
-				}
-				// 恢复上次选中的酒店位置
-				var oldLocation = newPara.Location.replace('$', '');
-				oldLocation = oldLocation ? oldLocation : '不限';
-				$('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
-				$('#l-ul .l-li').each(function (index, item) {
-					var $item = $(item);
-					if($item.text().trim() === oldLocation){
-						$item.find('b').addClass('l_icon1').removeClass('l_icon');
-						return;
-					}
-				});
+				////  恢复上次选中的酒店星级
+				//if(newPara.StarRating != ''){
+				//	var li = document.getElementById('h-level').getElementsByTagName('li');
+				//	var star = newPara.StarRating.split('$');
+				//	for(var i = 0;i < li.length;i++){
+				//		for(var j = 0;j < star.length-1;j++){
+				//			if(li[i].innerHTML == star[j]){
+				//				li[0].className = 's_li';
+				//				li[i].className = 's_li1';
+				//			}
+				//		}
+				//	}
+				//}
+				//// 恢复上次选中的酒店位置
+				//var oldLocation = newPara.Location.replace('$', '');
+				//oldLocation = oldLocation ? oldLocation : '不限';
+				//$('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
+				//$('#l-ul .l-li').each(function (index, item) {
+				//	var $item = $(item);
+				//	if($item.text().trim() === oldLocation){
+				//		$item.find('b').addClass('l_icon1').removeClass('l_icon');
+				//		return;
+				//	}
+				//});
 
 				that.delayLoadImage().addEvent()
 			}
