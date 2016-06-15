@@ -63,7 +63,7 @@ var data2 = '', roomdata = '';
 			//map begin
 			var latitude = data2.hotelInfo.latitude - 0;
 			var longitude = data2.hotelInfo.longitude - 0;
-			at.map.createMap(latitude, longitude);
+			at.map.createMap(latitude, longitude,false);
 			at.map.markHotel(latitude, longitude, "");
 			at.map.moveCenterToHotelLocation(latitude, longitude);
 			sessionStorage.setItem('latitude', latitude);
