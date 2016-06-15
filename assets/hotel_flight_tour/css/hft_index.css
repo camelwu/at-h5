@@ -609,6 +609,11 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   text-overflow: ellipsis;
   margin: .05rem auto;
 }
+.total_time_info .arrow_time{
+  width: 1.65rem;
+  height: .24rem;
+  background-position: 10.5% 69%;
+}
 /*.total_time_info i{*/
   /*position: absolute;*/
   /*display: block;*/
