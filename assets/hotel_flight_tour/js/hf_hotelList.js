@@ -201,6 +201,7 @@
                     hotelList.parametersStorage.hotelID = hotelID;
                     hotelList.parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
                     sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(hotelList.parametersStorage));
+                    sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
                     window.location.href = 'hf_hotel_detail.html'+ ulrRoom;
                 });
 

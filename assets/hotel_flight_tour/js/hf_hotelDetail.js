@@ -52,6 +52,8 @@ var data2 = '', roomdata = '';
 			console.log(data2);
       // 星级转换为汉字
       data2.hotelInfo.starRating = handleData(data2.hotelInfo.starRating);
+      fhtHotelCharacteristic.hotelDesc = data2.hotelInfo.hotelDesc;
+      sessionStorage.setItem("fhtHotelCharacteristic",JSON.stringify(fhtHotelCharacteristic));
 			roomdata = data2.hotelInfo.rooms;
 			nav();
 			banner();

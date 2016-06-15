@@ -1332,6 +1332,8 @@ input.name{
   box-shadow: 0 1px 1px #e6e6e6;
   z-index: 16;
   display: none;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .country_lists ul li , .country-list-searched-order li{
   height: .96rem;
@@ -1476,6 +1478,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   font-size: .28rem;
   color: #333;
   background: #fff;
+  -webkit-overflow-scrolling: touch;
 }
 .city_outer .hTab{
   padding-top: .88rem;

@@ -705,6 +705,10 @@ a.hotel_detail_pic{
     width:45%;
 }
 
+#personal_data{
+  border-bottom: 1px solid #e6e6e6;
+}
+
 .order_per_data ul.order_trave span.list_con2:nth-child(1),.order_data_box .list_con2:nth-child(1){
     width:50%;
     /*padding-right: 1%;*/
@@ -720,7 +724,6 @@ a.hotel_detail_pic{
     font-size: 0.3rem;
     background: #fff;
     margin-bottom:0.32rem;
-    border-bottom:1px solid #e6e6e6;
 }
 .content > section:last-child{
   margin-bottom: 1.4rem;
@@ -737,7 +740,7 @@ a.hotel_detail_pic{
     padding: 0 0.24rem 0 0.48rem;
     position: relative;
 }
-.order_data_box ul li:last-child {
+#ht_contact li:last-child {
     border: none;
 }
 .order_reserve{
@@ -1250,7 +1253,16 @@ order-data-people  page   end
 /*
 数据错误显示页面  end
 */
-
+.icon_arw{
+  position: absolute;
+  right: .28rem;
+  top: .3rem;
+  background: url("../../images/ui/icon_common.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .28rem;
+  height: .28rem;
+  background-position: -1.12rem -.57rem;
+}
 
 
 
