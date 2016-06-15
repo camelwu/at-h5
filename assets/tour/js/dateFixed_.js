@@ -374,6 +374,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                     var temChildNum = parseInt(temEle.querySelector('.child-number').innerHTML);
                     var extraChild = temEle.querySelector('.extraChild');
                     var childChooseParent = temEle.querySelectorAll('.spenumbList');
+
                     if (temAdultNum == 1 && temChildNum == 1) {
                         childWithBed.push(temEle.querySelector('input').value);
                     } else if (temAdultNum == 1 && temChildNum == 2) {
