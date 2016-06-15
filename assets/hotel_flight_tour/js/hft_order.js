@@ -289,7 +289,7 @@ var hftTool ={
           tra.idType=traInfo_sel[i].CertificateInfo.IdType;
           tra.idActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
           person.certificateInfo=tra;
-          person.sexCode=traInfo_sel[i].SexCode;
+          person.sexCode=traInfo_sel[i].SexCode.toLowerCase()=="mrs"?"MS":traInfo_sel[i].SexCode;
           person.countryCode=traInfo_sel[i].CountryCode;
           traveller.push(person);
         }
