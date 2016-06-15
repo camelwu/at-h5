@@ -130,7 +130,7 @@
   function map(data){
     latitude = data.hotelInfo.latitude-0;
     longitude = data.hotelInfo.longitude-0;
-    at.map.createMap(latitude,longitude);
+    at.map.createMap(latitude,longitude,false);
     at.map.markHotel(latitude,longitude,"");
     at.map.moveCenterToHotelLocation(latitude,longitude);
     // 增加参数

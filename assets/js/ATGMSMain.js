@@ -34,6 +34,14 @@ var at = (function () {
 			zoom = Math.min(20, Math.max(1, zoomLevel));
 			return this;
 		},
+		draggabletmp:function(tmp){
+			if( tmp !== undefined){
+				draggabletmp = tmp;
+			}else{
+				draggabletmp = true;
+			}
+			return this;
+		},
 
 		create: function () {
 			if (!node) {
@@ -41,6 +49,7 @@ var at = (function () {
 			} else {
 				instance = new google.maps.Map(node, {
 					zoom: zoom,
+					draggable:draggabletmp,
 					center: new google.maps.LatLng(lat, lng),
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					disableDefaultUI: true
@@ -51,9 +60,10 @@ var at = (function () {
 		},
 
 		// map
-		createMap: function (latitude, longitude, zoom) {
+		createMap: function (latitude, longitude,tmp, zoom) {
+			console.log(tmp)
 			if (latitude != null && longitude != null) {
-				return this.latitude(latitude).longitude(longitude).zoom(zoom || 15).create(); // default zoom level is 15.
+				return this.latitude(latitude).longitude(longitude).zoom(zoom || 15).draggabletmp(tmp).create(); // default zoom level is 15.
 			} else {
 				return false;
 			}
