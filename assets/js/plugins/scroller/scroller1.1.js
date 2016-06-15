@@ -276,38 +276,38 @@ Scroller.prototype = {
       if (opeater.innerHTML == "") {
         switch (t) {
           case 'card':
-            var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp1'].join('');
+            var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp'][1];
             Creatwaprer(str);
             break;
           case 'cardInte':
-            var str = that._template['comp'].join('') + that._template['cardInte'].join('') + that._template['comp1'].join('');
+            var str = that._template['comp'].join('') + that._template['cardInte'].join('') + that._template['comp'][1];
             Creatwaprer(str);
             break;
           case 'cardDom':
-            var str = that._template['comp'].join('') + that._template['cardDom'].join('') + that._template['comp1'].join('');
+            var str = that._template['comp'].join('') + that._template['cardDom'].join('') + that._template['comp'][1];
             Creatwaprer(str);
             break;
           case 'seat':
-            var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp1'].join('');
+            var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp'][1];
             Creatwaprer(str);
             break;
           case 'dateTime':
             for (var i = 0, d = that._template['dateTime'], len = d.length; i < len; i++) {
               var str = setDateTime(i, d[i]);
-              Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+              Creatwaprer(that._template['comp'].join('') + str + that._template['comp'][1]);
             }
             break;
           case 'cardExpirationDate':
             for (var i = 0, d = that._template['cardExpirationDate'], len = d.length; i < len; i++) {
               var str = setTime(i, d[i]);
-              Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+              Creatwaprer(that._template['comp'].join('') + str + that._template['comp'][1]);
             }
             break;
           default:
             //time
             for (var i = 0, d = that._template['date'], len = d.length; i < len; i++) {
               var str = setTime(i, d[i]);
-              Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+              Creatwaprer(that._template['comp'].join('') + str + that._template['comp'][1]);
             }
             break;
         }
@@ -438,9 +438,11 @@ Scroller.prototype = {
           values.push(box[j].getAttribute("data-temp"));
         }
         if (ele.nodeName == 'DIV') {
-          ele.innerHTML = values.join("/");
+          //ele.value = values.join("/");
+          ele.value = values[0]+" "+values[1]+":"+values[2];
         } else if (ele.nodeName == 'INPUT') {
-          ele.value = values.join("-");
+          //ele.value = values.join("-");
+          ele.value = values[0]+" "+values[1]+":"+values[2];
         }
       } else {
         $(ele).attr("data-code", $(box).attr("data-code")) //添加data-code属性
@@ -569,7 +571,7 @@ Scroller.prototype = {
       for (var i = 1; i < day + 1; i++) {
         arr3.push('<span>' + i + '日</span>');
       }
-      oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp1'].join(''));
+      oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'][1]);
       if (pos / 49 - page > 0.5) {
         page += 3;
       } else {
