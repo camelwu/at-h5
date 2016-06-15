@@ -491,12 +491,18 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.flight_detail span{position: relative;padding-left: .10rem}
+.flight_detail span.airCropIcon,.flight_detail span.airCropName{padding-left: 0}
 
 .flight_detail span:before {
-  content: "|";
-  display: inline-block;
-  font-size: .08rem;
-  margin: 0 .08rem 0 0;
+  content: "";
+  width: 1px;
+  height: .22rem;
+  margin-top: -.11rem;
+  background: #999;
+  position: absolute;
+  top: 50%;
+  left: 0;
 }
 
 .airCropIcon {
@@ -1098,18 +1104,18 @@ input.name{
   height: .96rem;
   line-height: .96rem;
   color:rgb(51, 51, 51);
-  font-size: .22rem;
+  font-size: .28rem;
   position: relative;
   padding: 0 .28rem;
 }
 
 .contact_wrap p input {
-  height: .96rem;
-  line-height: .96rem;
-  color:rgb(51, 51, 51);
-  font-size: .22rem;
+  color: rgb(51, 51, 51);
+  font-size: .28rem;
   width: 49%;
-  font-family: "microsoft yahei", Arial, sans-serif
+  font-family: "microsoft yahei", Arial, sans-serif;
+  position: relative;
+  top: 28%;
 }
 
 .input_line .first_name, .padding_has {
@@ -1283,10 +1289,11 @@ input.name{
   z-index: 1000;
   background-color: #fff;
   display: none;
-  overflow-x: hidden !important;
   font-size: .28rem;
   color: #333;
+  overflow-x: hidden !important;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .jto_letter_list li {
@@ -1333,7 +1340,7 @@ input.name{
   z-index: 16;
   display: none;
   overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  /*-webkit-overflow-scrolling: touch;*/
 }
 .country_lists ul li , .country-list-searched-order li{
   height: .96rem;
@@ -1377,6 +1384,11 @@ input.name{
   z-index: 1000;
 }
 
+/*#jto_area_code{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}*/
 .country-cho-wrap ul, .country-cho-wrap ol {
   margin: 0;
   padding: 0;
@@ -1450,6 +1462,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   background-color: #f7f7f7;
   padding-left: .35rem;
   font-size: .20rem;
+  letter-spacing: .02rem;
   top: 0;
   left: -0.8rem;
   width: 92%;
