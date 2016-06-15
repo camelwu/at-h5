@@ -147,7 +147,7 @@ var flight_list = {
         //  页面跳转
         $(".seat_detail").click(function () {
           $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
-          var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+          var hftFlightHotelTourInfo = JSON.parse(sessionStorage.getItem('hftFlightHotelTourInfo'));
           var setid = $(this).attr('data-setID');
           for (var i = 0; i < data.flightInfoListGroup.length; i++) {
             for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
@@ -159,7 +159,7 @@ var flight_list = {
             }
           }
           sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
-          hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+          hftFlightHotelTourInfo = JSON.parse(sessionStorage.getItem('hftFlightHotelTourInfo'));
           window.location.href = 'hft_choose.html' + window.location.search;
         });
         //$('.flight_company ul li').eq(0).addClass('cur');
@@ -259,7 +259,17 @@ var flight_list = {
 				}
 			};
 			var menu_call = function(back) {
-				var filter = [], n = 0, startTime;
+        var filter = [], n = 0, startTime = 0;
+        var filterToInt = function (arr) {
+          arr.airways.airwayCacheID = parseInt(arr.airways.airwayCacheID);
+          arr.airways.airwaySetID = parseInt(arr.airways.airwaySetID);
+          arr.filters.forEach(function (item, index) {
+            item.FilterType = parseInt(item.FilterType);
+            item.FilterValues[0] = parseInt(item.FilterValues[0]);
+          });
+          arr.sortTypes[0] = parseInt(arr.sortTypes[0]);
+        }
+        filterToInt(back);
 				for (var i = 0; i < back.filters.length; i++) {
 					if (back.filters[i].FilterValues[0] == '0') {
 						n++;
@@ -277,22 +287,7 @@ var flight_list = {
 					}
 					if (back.filters[2].FilterValues[0] != '0') {
 						filter.push(3);
-						switch(back.filters[2].FilterValues[0]) {
-						case '1':
-							startTime = 1;
-							break;
-						case '2':
-							startTime = 2;
-							break;
-						case '3':
-							startTime = 3;
-							break;
-						case '4':
-							startTime = 4;
-							break;
-						default :
-							void (0);
-						}
+            startTime = back.filters[2].FilterValues[0];
 					}
 				}
 				console.log(back);
@@ -333,7 +328,7 @@ var flight_list = {
 
 	//  排序or筛选结束
 	init : function() {
-		changeFlightInfo = JSON.parse(sessionStorage.hftChangeFlightPara);
+		changeFlightInfo = JSON.parse(sessionStorage.getItem('hftChangeFlightPara'));
 		delete changeFlightInfo.filterFields;
 		delete changeFlightInfo.tours;
 		delete changeFlightInfo.packageID;
