@@ -709,6 +709,10 @@ a.hotel_detail_pic{
     width:45%;
 }
 
+.list_con2 input, .list_con input{
+  font-size: .28rem;
+}
+
 #personal_data{
   border-bottom: 1px solid #e6e6e6;
 }
