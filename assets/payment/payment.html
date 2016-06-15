@@ -363,7 +363,7 @@
                         单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     </li>
                     <li>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"YmdHi")%}</p></span>
+                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
                     </li>
 
                     {% } else{ %}
@@ -372,8 +372,8 @@
 
                     </li>
                     <li>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"YmdHi")%}</p></span>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"YmdHi")%}</p></span>
+                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
+                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"cymd")%}</p></span>
                     </li>
                     {% } %}
                 </li>
@@ -381,7 +381,9 @@
                     <div class="hf-anum">
                         <span>人数:</span>
                         <span><i>{%=numofAdult%}</i>成人</span>
+                        {% if( numofChild >0 ){ %}
                         <span><i>{%=numofChild%}</i>儿童</span>
+                        {%  } %}
                     </div>
                 </li>
                 <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
