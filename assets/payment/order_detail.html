@@ -874,19 +874,15 @@
       %>
        <a href="../tour/packages_detail.html?packageID=<%=packageID%>&productPrice=<%=totalAmount%>&status=0"><i class="tourdetail_icon"></i></a>
     </div>
-    <div class="tour_productinfo tour_ticketinfo">
-      <p>使用日期：<%=vlm.Utils.format_date(tours[0].travelDate,"Ymd")%> <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%><%=TourTimer[tours[0].tourSession]%></p>
       <% var numAdult=0; numchild=0;
-        chargeDetails.forEach(function(info){
-        if(info.category=="ADULT"){
-            numAdult=info.quantity
-        }
-        else if(info.category=="CHILD"){
-             numchild=info.quantity
-        }
+      chargeDetails.forEach(function(info){
+      if(info.category=="ADULT"){
+      numAdult=info.quantity
+      }
+      else if(info.category=="CHILD"){
+      numchild=info.quantity
+      }
       }) %>
-      <p><span>成人票：<%=numAdult%>张 <% if(numchild>0){%>;</span> <span>儿童票：<%=numchild%>张</span><%}%></p>
-    </div>
   </section>
 
   <section id="tour_info" class="tour_list" style="clear:both">
