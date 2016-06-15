@@ -146,8 +146,8 @@ var roomUpGrade = {
 				at.map.markHotel(latitude,longitude,"");
 				at.map.moveCenterToHotelLocation(latitude,longitude);
 				$('#map, li.map_address').on('click',function(){
-					window.location.href = 'hotel_detail_map.html?latitude='+latitude+'&longitude='+longitude;
-				})
+					window.location.href = 'hotel_detail_map.html?HotelName='+dataMap.hotelNameLocale+'('+dataMap.hotelName+') '+dataMap.hotelAddress+'&Latitude='+latitude+'&Longitude='+longitude;
+				});
 
 				$('#room').html(room);
 				$('#adult').html(adult);

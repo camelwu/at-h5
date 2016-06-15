@@ -480,6 +480,8 @@ var hftChoose = {
       resultData = resultJSON.data;
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
+      originAirIds.flightSetID = resultData.flightInfo.setID;
+      originAirIds.flightCacheID = resultData.flightInfo.cacheID;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
       that.operationData = resultData;
@@ -781,7 +783,10 @@ var hftChoose = {
       roomNumber:temObj['RoomInfo'].length
     };
     if (originAirIds && hftFlightHotelTourInfo){
-      if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] || originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']) {
+      if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] ||
+       originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']||
+   originAirIds['flightSetID'] != hftFlightHotelTourInfo['flightInfo']['setID']||
+ originAirIds['flightCacheID'] != hftFlightHotelTourInfo['flightInfo']['cacheID']) {
         this.initParaObj.selectedHotelID = hftFlightHotelTourInfo['hotelInfo']['hotelID'];
         if (this.type == "2") {
           this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwaySetID'];
