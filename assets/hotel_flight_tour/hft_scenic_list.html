@@ -76,7 +76,7 @@
     <% if(recommendCities.length > 1){ %>
         <ul class = "city_box">
             <% for(var i=0;i< recommendCities.length;i++){%>
-                <li class="city_list1">
+                <li class="city_list1" data-code="<%=recommendCities[i].cityCode%>">
                     <%= recommendCities[i].cityName %><i></i></li>
                 <% } %>
         </ul>
@@ -104,7 +104,7 @@
                         <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
                             •
                             <%= lists[i].inclusiveItems[j]%>
-                                <% } %>
+                      <% } %>
                     </p>
                 </div>
             </li>

@@ -44,6 +44,30 @@
 				var htmlc = $("#CityDetile").html();
 				var htmlC = ejs.render(htmlc, data.data);
 				$("#CityList").html(htmlC);
+        $("#CityList").click(function(e){
+          var e = e || window.event,
+            tar = e.target || e.srcElement;
+          if(tar.nodeName.toLowerCase() === 'li'){
+            var cityCode = $(tar).attr("data-code");
+            SParameter = {
+              "Parameters" : {
+                "departCityCode" : searchInfo.FromCity,
+                "destCityCode" : cityCode,
+                "departDate" : searchInfo.DepartDate,
+                "returnDate" : searchInfo.ReturnDate,
+                // Android Request Arguments
+                "roomDetails" : searchInfo.RoomInfo,
+                "FilterFields" : [],
+                "sortType" : 0,
+                "PageIndex" : "1",
+                "pageSize" : "20"
+              },
+              "ForeEndType" : 3,
+              "Code" : "60100002"
+            };
+            vlm.loadJson('', JSON.stringify(SParameter), callback);
+          }
+        });
 				PWidth(data);
 				var packageid = $(".scenic-detile_list").attr("data-packageid");
 				console.log(packageid);
