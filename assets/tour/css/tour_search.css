@@ -131,6 +131,7 @@
 .nav2-tour input {
   display: inline-block;
   width: 22%;
+  font-size: .28rem;
 }
 
 .nav2-center input {
@@ -1122,6 +1123,7 @@ section.hotelInfo_numb_room .title {
 
 .hotelInfo_numb_people .childAge input {
   width: 60%;
+  font-size: .28rem;
 }
 
 .zy_price_control span{
