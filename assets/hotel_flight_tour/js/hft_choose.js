@@ -321,7 +321,7 @@ var hftChoose = {
         "roomDetails": that.initParaObj.roomDetails,
         "flightCacheID":that.curData.flightInfo.cacheID,
         "flightSetID":that.curData.flightInfo.setID,
-        "hotelAdditionalPrice":that.hotelAdditionalPrice
+        "hotelAdditionalPrice":JSON.parse(window.sessionStorage.getItem('hotelAdditionalPrice'))||0
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -675,7 +675,6 @@ var hftChoose = {
   fixRoomOrder:function(){
          var that = this,allInfoData = that.operationData,roomsData = [], temp = {},selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
          roomsData = allInfoData.hotelInfo.rooms;
-         that.hotelAdditionalPrice = 0;
          for(var i = 0;i<roomsData.length;i++){
                   if(roomsData[i].roomID == selectedRoomId){
                     temp = roomsData[i];
@@ -694,7 +693,6 @@ var hftChoose = {
     $(".all_elements").eq(0).html(outputStr);
     /*房间数据*/
     tempStringRoom = $("#template_roomList").html();
-    console.log(that.selectedRoomId)
     outputStrRoom = ejs.render(tempStringRoom, that.fixRoomOrder(that.selectedRoomId));
     $(".roomUl").eq(0).html(outputStrRoom);
     /*景点数据*/
