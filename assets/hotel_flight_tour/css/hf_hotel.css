@@ -1,5 +1,10 @@
 @charset "utf-8";
 /*ji+jiu hotel-detail jyj*/
+.contents{
+   overflow-x: hidden;
+   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
 li {
   list-style: none;
 }
@@ -77,6 +82,7 @@ a:link {
 }
 
 .jhf-box {
+  overflow-y: scroll;
   color: #333;
 }
 
