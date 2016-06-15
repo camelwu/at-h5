@@ -111,8 +111,12 @@
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
                 $(".add-passager" + k).on("click", function () {
-                    var id = $(this).attr("data-c-id");
-                    vlm.f_choice('ht_trave' + id, "ht", 'traver', '', false, false, null, null, null, null);
+                     var urlObj = vlm.parseUrlPara(window.location.href);
+                      var sign=vlm.checkLogin("../tour/fill-in-order-new.html?hotelID="+urlObj["hotelID"]+"&travelersInput="+urlObj["travelersInput"]+"&airportTransferType="+urlObj["airportTransferType"]+"&totailPrice="+urlObj["totailPrice"]+"&roomID="+urlObj["roomID"]+"&travelersInput="+urlObj["travelersInput"]+"");
+                      if(sign) {
+                        var id = $(this).attr("data-c-id");
+                        vlm.f_choice('ht_trave' + id, "ht", 'traver', '', false, false, null, null, null, null);
+                      }
                 })
             }
 
@@ -259,7 +263,11 @@
         //    })
         //});
         $('.add-contact').click(function () {
+          var urlObj = vlm.parseUrlPara(window.location.href);
+          var sign=vlm.checkLogin("../tour/fill-in-order-new.html?hotelID="+urlObj["hotelID"]+"&travelersInput="+urlObj["travelersInput"]+"&airportTransferType="+urlObj["airportTransferType"]+"&totailPrice="+urlObj["totailPrice"]+"&roomID="+urlObj["roomID"]+"&travelersInput="+urlObj["travelersInput"]+"");
+          if(sign) {
             vlm.f_choice('personal_data', "ht", 'contact', '', false, false, null, null, null, null);
+          }
         });
 
         sentPackage(oReserve);

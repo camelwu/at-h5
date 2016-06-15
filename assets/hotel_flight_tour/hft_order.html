@@ -395,16 +395,9 @@
         for (var key in modle) {
           if(modle[key].traveller.PassengerType=="CHILD"){
             childNum++;
-
           }
           else{
             adultNum++
-          }
-          if(i==0) {
-            $(".contact_link_wrap .hft_con_lastname").val(modle[key].traveller.firstName);
-            $(".contact_link_wrap .hft_con_firstname").val(modle[key].traveller.lastName);
-            $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
-            $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
           }
           i++;
         }
@@ -431,7 +424,7 @@
         function editPassager(obj) {
              var id = $(obj).find("input").eq(0).val();
              var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
-             vlm.f_choice('orderTraveller','f','traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false)
+             vlm.f_choice('passenger-list','f','traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false)
         }
 
     </script>
