@@ -142,9 +142,11 @@
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
-              <% if(selectedFlight.transferListLeave){%>
+              <% if(selectedFlight.transferListLeave&&selectedFlight.transferListLeave.length==1){%>
               <span class="air_port_word"><%= selectedFlight.transferListLeave[0] %></span>
-              <% }%>
+              <% }else if(selectedFlight.transferListLeave&&selectedFlight.transferListLeave.length>1){%>
+              <span class="air_port_word"><%= selectedFlight.transferListLeave.length %>次</span>
+              <%}%>
             </div>
             <div class="end_time_info">
               <span class="time_number"><%= selectedFlight.flightLeaveEndDate.substr(11,5) %></span>
@@ -173,8 +175,10 @@
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
-              <%if(selectedFlight.transferListReturn){%>
+              <%if(selectedFlight.transferListReturn&&selectedFlight.transferListReturn.length==1){%>
               <span class="air_port_word"><%=selectedFlight.transferListReturn[0]%></span>
+              <%}else if(selectedFlight.transferListReturn&&selectedFlight.transferListReturn.length>1){%>
+               <span class="air_port_word"><%=selectedFlight.transferListReturn.length%>次</span>
               <%}%>
             </div>
             <div class="end_time_info">
@@ -221,8 +225,10 @@
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
-              <% if(flightInfoListGroup[i].flightInfoList[j].transferListLeave){%>
+              <% if(flightInfoListGroup[i].flightInfoList[j].transferListLeave&&flightInfoListGroup[i].flightInfoList[j].transferListLeave.length==1){%>
               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave[0]%></span>
+              <% }else if(flightInfoListGroup[i].flightInfoList[j].transferListLeave&&flightInfoListGroup[i].flightInfoList[j].transferListLeave.length>1){%>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave.length%>次</span>
               <% }%>
             </div>
             <div class="end_time_info">
@@ -252,8 +258,10 @@
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>
               <% } %>
-              <%if(flightInfoListGroup[i].flightInfoList[j].transferListReturn){%>
+              <%if(flightInfoListGroup[i].flightInfoList[j].transferListReturn&&flightInfoListGroup[i].flightInfoList[j].transferListReturn.length==1){%>
               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListReturn[0]%></span>
+              <%}else if(flightInfoListGroup[i].flightInfoList[j].transferListReturn&&flightInfoListGroup[i].flightInfoList[j].transferListReturn.length>1){%>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListReturn.length%>次</span>
               <%}%>
             </div>
             <div class="end_time_info">

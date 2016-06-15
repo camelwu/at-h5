@@ -105,8 +105,7 @@
     font-size: 15px;
     font-weight: 700;
     color: #999;
-    width: 100%;
-    padding: 13px 0;
+    margin: 13px auto;
 }
 
 #popup_panel .d-ok {
@@ -115,8 +114,8 @@
     font-size: 15px;
     font-weight: 700;
     color: #7bc300;
-    width: 100%;
-    padding: 13px 0;
+    width: 80px;
+    margin: 13px auto;
 }
 
 #popup_panel .half:last-child {
