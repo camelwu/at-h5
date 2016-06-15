@@ -74,7 +74,7 @@
         <li class="fli_cont clearfix">
           <div class="fli_cir_left fl">
             <i class="back_tip"></i>
-            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"")%></span>
+            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%></span>
             <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
             <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
           </div>
@@ -108,7 +108,7 @@
         <h3><%=hotelDetails.hotelName%></h3>
         <ul>
           <li class="hotel_check_wrap">
-            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"")%>至<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"")%></span>
+            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
             <% function getDayNum(arg1,arg2){
             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
@@ -130,18 +130,33 @@
       <div class="fht_hd clearfix">
         <span class="fht_hd_tit tour fl"><i></i>景点</span>
       </div>
+
+      <!--<ul class="tour_wrap">-->
+        <!--<% if(tours.length>0){ %>-->
+        <!--<% tours.forEach(function(info){%>-->
+        <!--<li>-->
+          <!--<p class="mb_ten"><%=info.tourName%></p>-->
+          <!--<% if(info.travelDate){%>-->
+          <!--<p><%=vlm.Utils.format_date(info.travelDate,"md")%> </p>-->
+          <!--<% } %>-->
+        <!--</li>-->
+        <!--<%})%>-->
+        <!--<% } %>-->
+      <!--</ul>-->
+      <% for(var i=0;i < tours.length;i++){%>
       <ul class="tour_wrap">
-        <% if(tours.length>0){ %>
-        <% tours.forEach(function(info){%>
+
         <li>
-          <p class="mb_ten"><%=info.tourName%></p>
-          <% if(info.travelDate){%>
-          <p><%=vlm.Utils.format_date(info.travelDate,"md")%> </p>
-          <% } %>
+          <p class="mb_ten"><%=tours[i].tourName%></p>
+          <% if(tours[i].travelDate){ %>
+          <p><%=vlm.Utils.format_date(tours[i].travelDate,"md")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%>
+            <% } %>
+          </p>
         </li>
-        <%})%>
-        <% } %>
+
       </ul>
+      <% } %>
+
     </div>
 
   </section>
