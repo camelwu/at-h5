@@ -130,6 +130,7 @@
 			parametersStorage.hotelID = hotelID;
 			parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
 			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+      sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
 			window.location.href = 'hft_hotel_detail.html'+chooseUrl;
 		});
 		}else{
