@@ -86,6 +86,7 @@
   padding-top: 0.9rem;
   background: #ffffff;
   overflow: scroll;
+  overflow-scrolling: touch;
   -webkit-overflow-scrolling: touch;
   height: 100%;
 }
@@ -183,6 +184,7 @@
 @media only screen and (max-height: 480px) {
   .citybox_index {
     overflow: scroll;
+    overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
     /*background: #000000;*/
   }
@@ -301,7 +303,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  overflow: scroll;
+  /*overflow: scroll;*/
   /*-webkit-overflow-scrolling: touch;*/
   /*display: none;*/
 }
@@ -315,6 +317,7 @@
 .citybox_search_suggest{
   background: #fcfcfc;
   overflow: scroll;
+  overflow-scrolling: touch;
   -webkit-overflow-scrolling: touch;
   height: 100%;
 }
