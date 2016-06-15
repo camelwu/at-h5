@@ -318,11 +318,23 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
       if (adultNumValue >= 2 && childNumValue > 0) {
         target.parent().parent().siblings(".spenumbList").show();
         if(childNumValue == 1){
+          target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect").css({
+            opacity: 1
+          });
+          var eveclick =$._data(target.parent().parent().siblings(".spenumbList").find(".bedList b")[0], "events");
+            if(eveclick && eveclick["click"]){
+              return ;
+            }
           target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click", function () {
-            $(this).toggleClass("ico_select noselect");
+            $(this).toggleClass("ico_select noselect").css({
+              opacity: 1
+            });
           })
         }else{
-          target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select");
+          target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select").css({
+            opacity: 0.5
+          });
+          target.parent().parent().siblings(".spenumbList").find(".bedList b").unbind("click");
         }
       }
       if(childNumValue == 0){
@@ -333,6 +345,26 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         target.parent().parent().siblings(".spenumbList").hide();
         target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect");
       }
+
+
+      //if (adultNumValue >= 2 && childNumValue > 0) {
+      //  target.parent().parent().siblings(".spenumbList").show();
+      //  if(childNumValue == 1){
+      //    target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click", function () {
+      //      $(this).toggleClass("ico_select noselect");
+      //    })
+      //  }else{
+      //    target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select");
+      //  }
+      //}
+      //if(childNumValue == 0){
+      //  target.parent().parent().siblings(".spenumbList").hide();
+      //  target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect");
+      //}
+      //if(adultNumValue == 1){
+      //  target.parent().parent().siblings(".spenumbList").hide();
+      //  target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect");
+      //}
     },
     bindChilWithBed = function (child, adult) {
 
