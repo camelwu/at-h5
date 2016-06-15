@@ -1,5 +1,5 @@
 var infoObj = parseUrlPara(document.location.href, true);
-var latitude = Number(infoObj["Latitude"]), longitude = Number(infoObj["Longitude"]), label = infoObj["HotelName"]+" "+ infoObj["hotelAddress"];
+var latitude = Number(infoObj["Latitude"]), longitude = Number(infoObj["Longitude"]), label = infoObj["HotelName"]+" "+ infoObj["hotelAddress"]?infoObj["hotelAddress"]:"";
 
 function parseUrlPara(url, isEncode) {
 	var isEncode = isEncode || false;
