@@ -67,17 +67,21 @@
 					listData : data.locationList
 				}
 			}, menu_call = function(data) {
-				console.log(data)
+
 				//格式化排数入参数据
 				var sort = data.sortTypes[0]- 0,
 					sorttypes = [];
-				sorttypes.push(2)
+				sorttypes.push(sort)
 				////如果筛选FilterValues值为空，则传空数组
-				//for(var i=0;i<data.filters.length;i++){
-				//	if(data.filters[i].FilterValues = )
-				//}
+				var dataFilters = data.filters;
+				for(var i=0;i<dataFilters.length;i++){
+					if(dataFilters[i].FilterValues < 1 ){
+						dataFilters.length = 0;
+						console.log(111)
+					}
+				}
 
-				console.log(sorttypes)
+				console.log(data.filters)
 				parametersStorage.sortFields = sorttypes;
 				parametersStorage.location = data.locationList;
 				parametersStorage.filterFields = data.filters;

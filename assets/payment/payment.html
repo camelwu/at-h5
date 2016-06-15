@@ -363,29 +363,25 @@
                         单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     </li>
                     <li>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
+                      <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
+                      <span class="hf-f"><i>{%=numofAdult%}</i>成人</span>
+                      {% if( numofChild >0 ){ %}
+                      <span class="hf-f"><i>{%=numofChild%}</i>儿童</span>
+                      {%  } %}
                     </li>
-
                     {% } else{ %}
                     <li>
                         往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
-
                     </li>
                     <li>
                         <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
                         <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"cymd")%}</p></span>
-                    </li>
-                    {% } %}
-                </li>
-                <li>
-                    <div class="hf-anum">
-                        <span>人数:</span>
-                        <span><i>{%=numofAdult%}</i>成人</span>
+                        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span>
                         {% if( numofChild >0 ){ %}
-                        <span><i>{%=numofChild%}</i>儿童</span>
-                        {%  } %}
-                    </div>
-                </li>
+                        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span>
+                      {%  } %}
+                    {% } %}
+                     </li>
                 <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
             </ul>
         </div>
@@ -512,22 +508,19 @@
                 <li>机票+酒店+景点</li>
                 {% if(flightInfo.segmentsReturn==null){ %}
                 <li>
-                    <span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
+                    <span>去程：</span><span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
                 </li>
                 {% }else{ %}
                 <li>
-
-                    <span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate.replace('T',' ').substring(0,16)%}</p></span>
-                    <span class="hf-f"><p>{%=flightInfo.flightReturnStartDate.replace('T',' ').substring(0,16)%}</p></span>
+                    <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
+                    <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
+                    <span class="hf-f"><i>{%=numofAdult%}</i>成人</span>
+                      {% if(numofChild >0){ %}
+                      <span class="hf-f"><i>{%=numofChild %}</i>儿童</span>
+                      {% } %}
+                      <span class="hf-f"><i>{%=numofRoom %}</i>间</span>
                 </li>
-                {% } %}
-                <li>
-                    <div class="hf-anum">
-                        <span>人数:</span>
-                        <span><i>{%=numofAdult%}</i>成人</span>
-                        <span><i>{%=numofChild%}</i>儿童</span>
-                    </div>
-                </li>
+              {% } %}
                 <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
             </ul>
         </div>

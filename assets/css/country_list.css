@@ -3,7 +3,7 @@
 #country_index_wrap{
   display: none;
 }
-.country_header {
+.country_header.header {
   z-index: 1100;
   opacity: 1;
   display: none;
