@@ -61,7 +61,7 @@
     <div>
       <img class="img" src=<%= selectedHotel.hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
-        <h3><%= selectedHotel.hotelNameLocale %></h3>
+        <h3><%= selectedHotel.hotelNameLocale %><%= selectedHotel.hotelName %></h3>
         <p>
           <% if(selectedHotel.hotelReviewScore && selectedHotel.hotelReviewScore!=0){ %>
           <span class="score"><%= selectedHotel.hotelReviewScore %></span>分&nbsp;
@@ -93,7 +93,7 @@
     <div>
       <img class="img" src=<%= hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
-        <h3><%= hotels[i].hotelNameLocale %></h3>
+        <h3><%= hotels[i].hotelNameLocale %><%= hotels[i].hotelName %></h3>
         <p>
           <% if(hotels[i].hotelReviewScore && hotels[i].hotelReviewScore!=0){ %>
           <span class="score"><%= hotels[i].hotelReviewScore %></span>分&nbsp;

@@ -165,14 +165,17 @@ var flightList = {
           $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
           var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
           var setid = $(this).attr('data-setID');
+          hftFlightHotelTourInfo.airwaySetID = data.selectedAirway.airwaySetID;
+          hftFlightHotelTourInfo.airwayCacheID =data.selectedAirway.airwayCacheID;
           for (var i = 0; i < data.flightInfoListGroup.length; i++) {
             for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
               if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                 hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
-                hftFlightHotelTourInfo.airwaySetID = data.selectedAirway.airwaySetID;
-                hftFlightHotelTourInfo.airwayCacheID =data.selectedAirway.airwayCacheID;
               }
             }
+          }
+          if(data.selectedFlight&&data.selectedFlight.setID == setid){
+            hftFlightHotelTourInfo.flightInfo = data.selectedFlight;
           }
           sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
           hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
