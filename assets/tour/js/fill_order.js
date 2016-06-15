@@ -382,6 +382,7 @@
                 //添加旅客姓名等信息
                 var traveler = [];
                 for (var i = 0; i < roomNum.length; i++) {
+                    var rommSqeNo=i+1;
                     //每个房间的成人信息
                     var oLiAdult = roomNum[i].querySelectorAll('.trave-li-adu');
                     for (var n = 0; n < oLiAdult.length; n++) {
@@ -397,7 +398,7 @@
                             return;
                         }
                         var tra = {};
-                        tra.RoomSeqNo = i + 1;
+                        tra.RoomSeqNo = rommSqeNo;
                         tra.TravelerType = "Adult";
                         tra.Salutation = "Mr";
                         tra.FirstName = firstNameAdu;
@@ -405,6 +406,23 @@
                         tra.NationalityCode="CN";
                         traveler.push(tra);
                     }
+
+                  var birthDay=[];//重新计算小孩年龄
+                  for(var p=0;p<=jsonPackage.roomDetails[i].childWithBed.length-1;p++){
+                    var b = getBirthday(jsonPackage.CheckInDate,jsonPackage.roomDetails[i].childWithBed[p])
+                    birthDay.push({
+                      birth: b,
+                      age: jsonPackage.roomDetails[i].childWithBed[p]
+                    })
+
+                  }
+                  for(var p=0;p<=jsonPackage.roomDetails[i].childWithOutBed.length-1;p++){
+                    var b = getBirthday(jsonPackage.CheckInDate,jsonPackage.roomDetails[i].childWithOutBed[p])
+                    birthDay.push({
+                      birth: b,
+                      age: jsonPackage.roomDetails[i].childWithOutBed[p]
+                    })
+                  }
 
                     //每个房间的儿童信息
                     var oLiChild = roomNum[i].querySelectorAll('.trave-li-child');
@@ -421,15 +439,15 @@
                             return;
                         }
                         var tra = {};
-                        tra.RoomSeqNo = (m + 1);
+                        tra.RoomSeqNo =rommSqeNo;
                         tra.TravelerType = "Child";
                         tra.Salutation = "None";
                         tra.FirstName = firstNameChi;
                         tra.LastName = lastNameChi;
-                        tra.DOB = "2009-2-1";
+                        tra.DOB = birthDay.pop().birth;
                         traveler.push(tra);
-                    }
 
+                    }
                 }
                 Parmeters.Parameters.Travelers = traveler;
                 Parmeters.Parameters.Travelers[0].NationalityCode = $('.countries-wrap .country-btn').attr('data-code');
@@ -518,6 +536,15 @@
                 }
             }
         };
+
+        function getBirthday(departDate,age){
+            var newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+            newDate.setFullYear(newDate.getFullYear()-age);
+            var year=newDate.getFullYear();
+            var month=newDate.getMonth()+1;
+            var day=newDate.getDate();
+            return year+"-"+month+"-"+day;
+        }
     }
     init();
 
