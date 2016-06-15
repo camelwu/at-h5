@@ -28,7 +28,6 @@
     //  点击链接页面跳转
     var link_page = $("#link_page")[0];
     var shade = $("#shade")[0];
-    var setting = $("#setting")[0];
     var verifyName = $("#verifyName")[0];
     var noSignal = $("noSignal")[0];
     var u_setting = $("#u_setting")[0];
@@ -41,13 +40,11 @@
       obj1.onclick = function(){
         link_page.style.display = "block";
         shade.style.display = "none";
-        u_setting.style.display = "none";
         contactus.style.display = "none";
         title.innerHTML = obj2;
         obj3.style.display = "block";
       }
     }
-    link(setting,head[0],u_setting);
     link(verifyName,head[1],contactus);
     function close(obj){
       obj.onclick = function(){
@@ -136,14 +133,14 @@
     });
   });
   //设置里的消息开关
-  function ifOpen(){
-    var b = window.event.srcElement;
-    if(b.className == "icon set_chose1"){
-      b.className = "icon set_chose2";
-    }else{
-      b.className = "icon set_chose1";
-    }
-  }
+  //function ifOpen(){
+  //  var b = window.event.srcElement;
+  //  if(b.className == "icon set_chose1"){
+  //    b.className = "icon set_chose2";
+  //  }else{
+  //    b.className = "icon set_chose1";
+  //  }
+  //}
 
   //电话
   $('.service_tel').click(function(){

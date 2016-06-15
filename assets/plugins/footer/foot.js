@@ -223,9 +223,9 @@ var footer = (function() {
               }
             }
           }
-
         });
         // 遮罩层|返回按钮点击，包括隐藏
+        $("body").children().click(function () {});  //解决iPhone safari中Document事件不触发
         on(document, 'click', function(event) {
           event = event || window.event;
           var target = event.target || event.srcElement, src = target.parentNode;
@@ -359,7 +359,7 @@ var footer = (function() {
           case "sortTypes":
             // 排序
             for (; i < l; i++) {
-              css = i == 0 ? ' class="cur"' : '';//2016-6-14&& i == "不限" 
+              css = i == 0 ? ' class="cur"' : '';//2016-6-14&& i == "不限"
               listr += '<li' + css + ' data-val="' + d[i].sortValue + '">' + d[i].sortText + '<i></i></li>';
             }
             ulstr = wrapper[0] + listr + wrapper[1];

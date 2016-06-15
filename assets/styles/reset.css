@@ -309,11 +309,11 @@ a {
 }
 
 .content {
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     padding-top: .88rem;
     width: 100%;
     height: auto;
-    -webkit-overflow-scrolling: touch;
+    /*-webkit-overflow-scrolling: touch;*/
 }
 
 .content.no_header {

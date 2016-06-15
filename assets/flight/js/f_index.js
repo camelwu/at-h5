@@ -438,10 +438,10 @@ var fIndexModal = {
         if (that.type == "oneWay") { /*单程*/
           paraObj.departDate = singleDateSet.getAttribute('date-full-value');
           storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
-          for (var att_ in paraObj) {
-            urlStr += "&" + att_ + "=" + paraObj[att_];
+          for (var att in paraObj) {
+            urlStr += "&" + att + "=" + paraObj[att];
           }
-          document.location.href = 'f_single_list.html?' + urlStr;
+          window.location.href = 'f_single_list.html?' + urlStr;
         } else {   /*往返*/
           paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
           paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
@@ -449,7 +449,7 @@ var fIndexModal = {
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
           }
-          document.location.href = 'f_double_list.html?' + urlStr;
+          window.location.href = 'f_double_list.html?' + urlStr;
         }
       }
     })
