@@ -2,7 +2,6 @@
  * Created byon 2016/5/5.
  */
 (function() {
-	var webkit = this;
 	var filterSign = false;
 	var core = function() {
 		//获取缓存内容
@@ -107,7 +106,7 @@
 				console.log(width);
 				num += width;
 			}
-			num = num + sum * 32;
+			num = num + sum * 60;
 			console.log(num);
 			$(".city_box").css({
 				'width' : num + 'px'
