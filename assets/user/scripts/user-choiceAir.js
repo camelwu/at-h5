@@ -324,6 +324,24 @@
     }
   }
 
+  //证件生日有效期缓存函数
+  function dueCache(str1){
+
+    var str=str1.split('-');
+    if(str[1].charAt(0) == 0 && str[2].charAt(0) == 0){
+
+      str=str[0]+'年-'+str[1].charAt(1)+'月-'+str[2].charAt(1)+'日';
+    }else if(str[1].charAt(0) == 0 && str[2].charAt(0) != 0){
+
+      str=str[0]+'年-'+str[1].charAt(1)+'月-'+str[2]+'日';
+    }else if(str[1].charAt(0) != 0 && str[2].charAt(0) == 0){
+
+      str=str[0]+'年-'+str[1]+'月-'+str[2].charAt(1)+'日';
+    }else{
+      str=str[0]+'年-'+str[1]+'月-'+str[2]+'日';
+    }
+    return str;
+  }
   var _model2UI=function(model){
     $(".addAir_page .cnName").val(model.traveller.idName);
     $(".addAir_page .lastName").val(model.traveller.lastName);
@@ -339,6 +357,8 @@
     $(".addAir_page .telephone").val(model.traveller.mobilePhone);
     $(".addAir_page .email").val(model.traveller.email);
     $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('/','-').replace('/','-')+'');
+    var dateCacheEdit=model.traveller.dateOfBirth.substring(0,10)
+    $(".addAir_page .birthDay").attr('data-cache',dueCache(dateCacheEdit));
     $(".addAir_page .phone_pre").html(model.traveller.mobilePhoneAreaCode);
 
     $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2");
