@@ -56,7 +56,7 @@ var lsf_myweb = {
     window.addEventListener('load', function() {
       FastClick.attach(document.body);
     }, false);
-    vlm.loadend();
+    //vlm.loadend();
   });
 
   lsf_myweb.getbyid('TAAvgRating').innerHTML = Rating.toFixed(1);

@@ -77,7 +77,7 @@
       <p class="input_line clearfix">
         <span class="tel more_black fl">手机号<span class="mis_right">+<span class="nation_code_value country-trigger"
                                                                           class="country-code">86</span><i
-          class="arrow_right"></i> </span> </span>
+          class="nation_arrow_right"></i> </span> </span>
         <span class="s_line fl"></span>
         <input class="tel_number padding_has fl" id="tel-num" placeholder="用于接收通知" data-elementname="mobilePhone"/>
       </p>
@@ -144,7 +144,9 @@
     +<%=flightInfo.segmentsReturn[0]["cabinClassName"] %>
     <%}%>
   </p>
-  <p>往返票价<span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
+  <p>
+    <%if(flightInfo.segmentsReturn){%>往返票价<%}else{%>单程票价<%}%>
+    <span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
     <span class="explain">退改签说明</span>
   </p>
 </script>
@@ -169,7 +171,7 @@
       </a>
 
       <h3>
-        <div class="cl_search"><input type="text" placeholder="新加坡/XinJiaPo/Singapore/XJP/SGP"
+        <div class="cl_search"><input type="text" placeholder="新加坡/XinJiaPo/Singapore/XJP"
                                       id="country-input-zone"><i></i></div>
       </h3>
     </header>

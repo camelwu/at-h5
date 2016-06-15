@@ -210,6 +210,8 @@
         outString = ejs.render(tplString,{lists:json.data.lists});
         if(json.data.lists.length == 0){
           $(".scenic_list_error").show();
+        }else{
+        	$(".scenic_list_error").hide();//20160614修复bug
         }
         $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
