@@ -541,7 +541,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
           var paraObj = {
             "StarRating": "",
             "Location": "",
-            "SortType": 1,
+            "SortType": 0,
             packageID: localStorage.packageID,
             CheckInDate: CheckInDate,
             CheckOutDate: CheckOutDate,
