@@ -119,7 +119,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
           var checkInDateEle = $("#CheckInDate");
           var checkOutDateEle = $("#CheckOutDate");
           var checkInWeekEle = $("#week_span1");
-          var checkOutWeekEle = $("week_span2");
+          var checkOutWeekEle = $("#week_span2");
           var totalDayEle = $("#total_day");
 
           checkInDateEle.val(vlm.Utils.format_date(data[0], 'md'));
