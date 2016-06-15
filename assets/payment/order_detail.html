@@ -61,7 +61,7 @@
         <li class="fli_cont clearfix">
           <div class="fli_cir_left fl">
             <i class="go_tip"></i>
-            <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"")%></span>
+            <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%></span>
             <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
             <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
           </div>
@@ -74,7 +74,7 @@
         <li class="fli_cont clearfix">
           <div class="fli_cir_left fl">
             <i class="back_tip"></i>
-            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"")%></span>
+            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%></span>
             <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
             <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
           </div>
@@ -108,7 +108,7 @@
         <h3><%=hotelDetails.hotelName%></h3>
         <ul>
           <li class="hotel_check_wrap">
-            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"")%>至<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"")%></span>
+            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>至<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
             <% function getDayNum(arg1,arg2){
             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
