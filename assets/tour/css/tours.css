@@ -569,6 +569,10 @@ a.hotel_detail_pic{
     border-bottom:1px solid #e6e6e6;
     margin-bottom: 0.32rem;
 }
+.sc-content{
+  margin-bottom: .2rem;
+  overflow: hidden;
+}
 .order_ticket,.hotel_detail,.tour_detail{
     background-color: #fff;
     padding-bottom: 0.15rem;

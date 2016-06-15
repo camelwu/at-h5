@@ -387,13 +387,13 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
               var tt = $(ty).children().find('b');
               if (temChildNum == 1 && tt != null) {
                 if (tt.hasClass("ico_select")) {
-                  childWithBed.push(ty.parentNode.querySelector('input').value);
+                  childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 } else {
-                  childWithOutBed.push(ty.parentNode.querySelector('input').value);
+                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 }
               } else if (temChildNum == 2 && tt != null) {
-                childWithBed.push(temEle.querySelectorAll('input')[0].value);
-                childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+                childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
+                childWithOutBed.push(ty.parentNode.querySelectorAll('input')[2].value);
               }
             }
           }
