@@ -112,7 +112,7 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
   height: .8rem;
   line-height: .4rem;
   display: block;
-  font-size: .26rem;
+  font-size: .28rem;
   /*white-space: nowrap;*/
   /*text-overflow: ellipsis;*/
   overflow: hidden;
@@ -129,14 +129,15 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
   display: inline-block;
 }
 .scenic_detile_content_after{
-  font-size: .3rem;
+  font-size: .28rem;
   color:#fb7530;
   display: block;
   margin-top: 0.22rem;
 }
+.scenic_detile_content_after span{
+  font-size:.3rem ;
+}
 .scenic_detile_project{
-
-  line-height: .6rem;
   font-size: .2rem;
 }
 .scenic_detile_project li{
@@ -160,7 +161,9 @@ li.scenic_detile_project_first{
   margin-left: 0;
 }
 .scenic_detile_project p{
-  line-height: .6rem;
+  font-size: .2rem;
+  padding:.2rem 0;
+  color:#999;
 }
 .scenic-detile_privilege{
   font: 700 .2rem/.6rem "FZLTXHK";
