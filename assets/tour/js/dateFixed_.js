@@ -130,7 +130,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
           checkInWeekEle.html(vlm.Utils.getWeek(data[0]));
           checkOutWeekEle.html(vlm.Utils.getWeek(data[1]));
 
-          totalDayEle.html(new Date(data[1].replace(/-/g, "/")).getDate() - new Date(data[0].replace(/-/g, "/")).getDate());
+          totalDayEle.html(getDayNum(new Date(data[1].replace(/-/g, "/")),new Date(data[0].replace(/-/g, "/")),"d"));
           //修改日期后重新初始化景点日历
           var rangesDate = $("#date-range").attr("data-selectedTime") ? $("#date-range").attr("data-selectedTime") : vlm.Utils.format_date(day_start, "Ymd") + "," + vlm.Utils.format_date(day_end, "Ymd");
           rangesDate = rangesDate.split(",");
