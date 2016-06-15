@@ -454,6 +454,7 @@
             else if(type.id==6){
               var numofAdult=0;
               var numofChild=0;
+              var numofRoom = 0;
               for (var i = 0;i<data.data.chargeDetails.length;i++){
                 if(data.data.chargeDetails[i].category=="ADULT"){
                   numofAdult+=parseInt(data.data.chargeDetails[i].quantity)
@@ -463,7 +464,7 @@
               }
               data.data.numofAdult=numofAdult;
               data.data.numofChild=numofChild;
-
+              data.data.numofRoom=data.data.hotelDetails.roomDetails.numRoom;
               var html = template("tpl_flighthoteltour_detail", data.data);
               $(".payment-type-list").append(html);
             }

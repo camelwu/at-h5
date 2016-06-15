@@ -87,7 +87,7 @@
        * @returns {Array}
        */
       m_scenic_list:function(param){
-        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode}, "ForeEndType" : 3, "Code" : "0207"};
+        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode,"priceSortType":"LowToHigh"}, "ForeEndType" : 3, "Code" : "40100007"};
         vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_listCallback"]);
       }
     }

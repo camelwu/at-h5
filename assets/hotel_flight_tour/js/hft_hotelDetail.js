@@ -188,6 +188,10 @@
   }
   //日期
   function date(){
+    var departDate = new Date(sStorage.departDate.substring(0,10)).getTime();
+    var returnDate = new Date(sStorage.returnDate.substring(0,10)).getTime();
+    var numberNeight = (returnDate-departDate)/1000/60/60/24;
+    $('.numberNeight').html(numberNeight);
     $('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
     $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
   }
