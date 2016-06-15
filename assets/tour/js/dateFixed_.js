@@ -1,648 +1,680 @@
-/**
- *@desc fastclick 绑定
- *@time
- **/
-(function ($) {
+var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+//儿童年龄纯数字
+  setAge = function (obj) {
+    obj.value = obj.value.replace(/\D/ig, '');
+  },
+//时间差，两时间的 月|天 差
+  getDayNum = function (d1, d2, t) {
+    var time1 = Date.parse(d1.replace(/-/g, "/")),
+      time2 = Date.parse(d2.replace(/-/g, "/")),
+      Count;
+    if (t == "m") {
+      d2 = new Date(d2);
+      d1 = new Date(d1);
+      Count = (d2.getFullYear() - d1.getFullYear()) * 12;
+      Count -= d1.getMonth();
+      Count += d2.getMonth() + 1;
+      Count = Count <= 0 ? 1 : Count;
+      //Count = Count > 12 ? 12 : Count;
+    } else {
+      Count = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
+    }
+    return Count;
+  };
+// 立即执行
+(function () {
   "use strict";
-  $(document).ready(function () {
-    window.addEventListener('load', function () {
-      window.FastClick ? FastClick.attach(document.body) : '';
-    }, false);
-  });
-}(jQuery));
-/**
- * @name Slider Widget   depend on jquery scrollstop   vlm
- * @constructor
- * @created by wusong
- * */
-function Scroller() {
-  if (!arguments.length)
-    return;
-  if (jQuery) {
-    this.init.apply(this, arguments);
-  } else {
-    alert("需要jQuery!");
-  }
-}
+  // 定义全局，打包产品基础信息
+  var packageID = localStorage.packageID,
+    minPaxType = 0,
+    minPax = 0,
+    maxAdult = 0,
+    onlyForAdult = false,
+    childAgeMin = 2,
+    childAgeMax = 12,
+    roomMinNum = 1,
+    roomMaxNum = 5,
+    maxExtensionNight = 10,
+    minDuration = 2,
+    maxAdultNum = 3,
+    minAdultNum = 1,
+    maxChildNum = 2,
+    minChildNum = 0,
 
-Scroller.prototype = {
-  constructor: Scroller,
-  // 缓存
-  cache: {},
-  // 按钮数组
-  _btn: ['<span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span>', '<span class="fr cabin-sure" style="margin-right: 10px;color: #7bc300;">确定</span>'],
-  // 模板数组
-  _template: {
-    dateTime: ['date', 'h', 'm'],
-    card: ['<span data-code="1">护照</span>', '<span data-code="2">身份证</span>'],
-    cardInte: ['<span data-code="1">护照</span>'],
-    cardDom: ['<span data-code="2">身份证</span>'],
-    date: ['年', '月', '日'],
-    time: ['<span>上午</span>', '<span>下午</span>'],
-    comp: ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
-    comp1: ['<span>&nbsp;</span>'],
-    seat: ['<span>经济舱</span>', '<span>超级经济舱</span>', '<span>商务舱</span>', '<span>头等舱</span>'],
-    cardExpirationDate: ['年', '月']
 
-  },
-  _time: ['birth', 'validity', "cardExpirationDate", "dateTime"],
-  days: [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-  week: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-  // 初始化对象
-  init: function (options) {
-    this.id = options.id;
-    this.type = options.type;
-    this.cont = options.cont;
-    this.cache[options.id] = "";
-    this.num = options.num || 100; //日期默认显示日期的天数
-    this.startDate = options.startDate; //默认显示的起始日期
-    this.callback = options.callback;
-    this.inputEvent(options.id, options.type, options.cont);
-    this.outClick();
-    // 区域外事件绑定
-  },
-  // 创建最外层盒子，并设置盒子的样式&定位，绑定头部按钮事件
-  createContainer: function (t) {
-    var that = this,
-      odiv = document.getElementById("selbox"),
-      wrapContainer = document.createElement("div");
-    wrapContainer.id = "atPluginsScroller";
-    if (!!odiv) {
-      this.masker = document.getElementById("overlay");
-      this.container = odiv;
-      this.opeater = document.getElementById("opeater");
-    } else { //不存在
+    dateHandler = {},
+    tourCalendar,
+  // 时间相关参数
+    day_Num, day_start, day_end, calendar_end, day_weekday, tourData, noon = [],
+    initTourCalendar = function () {
+      //多个景点日历初始化
+      var contentList = $("[id*='dateContent']");
+      var dateContentId;
+      var initTourDate = {};
+      //获取景点可选择日期时间段
+      var rangesDate = $("#date-range").attr("data-selectedTime") ? $("#date-range").attr("data-selectedTime") : vlm.Utils.format_date(day_start, "Ymd") + "," + vlm.Utils.format_date(day_end, "Ymd");
+      rangesDate = rangesDate.split(",");
 
-      //新增容器层并设定样式、属性
-      var container = this.container = document.createElement('div');
-      container.id = "selbox";
-      container.className = "selbox-footer";
-      //新增头部按钮层并设定样式
-      var header = document.createElement('div');
-      header.id = "header";
-      header.innerHTML = that._btn.join('');
-      container.appendChild(header);
-      //新增选择框并设定样式
-      var opeater = this.opeater = document.createElement('ul');
-      opeater.id = "opeater";
-      opeater.className = 'selbox-ul';
-      opeater.setAttribute("data-id", t);
-      opeater.setAttribute("data-type", that.type);
-      //新增遮罩层并设定样式
-      var masker = this.masker = document.createElement('div');
-      masker.id = "overlay";
-      masker.className = "mask";
-      masker.style.top = '0';
-      document.body.appendChild(masker);
-      document.body.style.overflowY = 'hidden';
-      //自定义属性
-      container.appendChild(opeater);
-      document.body.appendChild(container);
-      //头部按钮绑定
-      this.btnEvent();
+      //景点的默认选中日期为开始日期+1天
+      var firstDate = new Date(rangesDate[0].replace(/-/g, '/'));
+      var defaultDate = new Date(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate() + 1);
+      var defaultSelectedDate = defaultDate.getFullYear() + "-" + (defaultDate.getMonth() + 1) + "-" + defaultDate.getDate();
+      initTourDate[vlm.Utils.format_date(defaultSelectedDate, "Ymd")] = "initDate";
+      for (var i = 0, len = contentList.length; i < len; i++) {
 
-    }
-  },
-  stopEvent: function () {
-    $("#overlay").on("touchstart", function (event) {
-      event.stopPropagation();
-      event.preventDefault();
-    });
-    //H5-1617
-    var payModule = $('.android-relative');
-    if (payModule.length > 0) {
-      payModule.each(function (index, ele) {
-        $(ele).addClass("android_absolute");
-      });
-    }
-    if (this._checkIosSafari()) {
-      var touchX, touchY;
-      var popupContainer = $("#opeater")[0];
-      var scrollerEle = $("#opeater .sel-time");
-      window.ontouchstart = function (e) {
-        if ($("#opeater").length === 0 || !(popupContainer.contains(e.target))) {
-          return;
-        }
-        var touch = e.changedTouches[0];
-
-        touchX = touch.screenX;
-        touchY = touch.screenY;
-        if (!popupContainer.contains(e.target)) {
-          e.preventDefault();
-        }
-        scrollerEle.each(function (index, ele) {
-          if (ele.scrollTop === 0 || ele.scrollTop === ele.scrollHeight - ele.clientHeight) {
-            e.preventDefault();
+        dateContentId = $(contentList[i]).attr("id");
+        var ableWeekRange = $("#" + dateContentId).attr("data-frequency");
+        tourCalendar = null;
+        tourCalendar = new ATplugins.Calender({
+          id: dateContentId,
+          num: getDayNum(rangesDate[0], rangesDate[1], "m"),
+          time: initTourDate,
+          selectTime: 1,
+          ableDateRange: {
+            rangeStartDate: rangesDate[0],
+            rangeEndDate: rangesDate[1]
+          },
+          ableWeekRange: ableWeekRange,
+          //                    ableWeekRange: '1,2,3,',
+          type: 'hotel',
+          callback: function (data, instance) {
+            console.info(data);
+            console.info(instance);
+            var containerId = instance.id;
+            $("#" + containerId).find("input").val(data[0]);
+            $("#" + containerId).find(".week-tour").html(vlm.Utils.getWeek(data[0]));
           }
         });
-      };
+      }
+    },
+  // 定义方法，日历
+    initHotelCalendar = function () {
+      var initTime = {};
+      // 计算离店
+      var dd = new Date(day_start);
+      dd.setDate(dd.getDate() + day_Num - 1);
+      day_end = dd.getFullYear() + "-" + (dd.getMonth() + 1) + "-" + dd.getDate();
+      initTime[vlm.Utils.format_date(day_start, "Ymd")] = "startDate";
+      initTime[vlm.Utils.format_date(day_end, "Ymd")] = "endDate";
+      var myDate = new ATplugins.Calender({
+        id: 'date-range',
+        num: getDayNum(day_start, calendar_end, "m"),
+        time: initTime,
+        theLastAbleDay: new Date(calendar_end),
+        disableDateAfterLength: maxExtensionNight,
+        minDuration: minDuration,
+        startAbleDate: day_start,
+        sClass1: 'CheckInDateI',
+        type: 'hotel',
+        dateObj: {
+          //start : paraObj.start,
+          //end : paraObj.end
+        },
+        range: [],
+        _word: {
+          tip: ['入住', '离店']
+        },
+        callback: function (data) {
+          //重新赋值
+          var checkInDateEle = $("#CheckInDate");
+          var checkOutDateEle = $("#CheckOutDate");
+          var checkInWeekEle = $("#week_span1");
+          var checkOutWeekEle = $("week_span2");
+          var totalDayEle = $("#total_day");
 
-      window.ontouchend = function (e) {
-        var touch = e.changedTouches[0];
+          checkInDateEle.val(vlm.Utils.format_date(data[0], 'md'));
+          checkOutDateEle.val(vlm.Utils.format_date(data[1], 'md'));
+          checkInDateEle.attr("data-date", data[0]);
+          checkOutDateEle.attr("data-date", data[1]);
 
-        if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
-          return;
-        touchX = 0;
-        touchY = 0;
-      };
+          checkInWeekEle.html(vlm.Utils.getWeek(data[0]));
+          checkOutWeekEle.html(vlm.Utils.getWeek(data[1]));
 
-      window.ontouchcancel = function (e) {
-        touchX = 0;
-        touchY = 0;
-      };
+          totalDayEle.html(new Date(data[1].replace(/-/g, "/")).getDate() - new Date(data[0].replace(/-/g, "/")).getDate());
+          //修改日期后重新初始化景点日历
+          var rangesDate = $("#date-range").attr("data-selectedTime") ? $("#date-range").attr("data-selectedTime") : vlm.Utils.format_date(day_start, "Ymd") + "," + vlm.Utils.format_date(day_end, "Ymd");
+          rangesDate = rangesDate.split(",");
 
-      var padding = 1;
-      requestAnimationFrame(function frame() {
-        for (var i = 0, len = scrollerEle.length; i < len; i++) {
-          var min = 0,
-            max = scrollerEle[i].scrollHeight - scrollerEle[i].clientHeight;
-
-          var val = scrollerEle[i].scrollTop;
-
-          if (val === min) {
-            scrollerEle[i].scrollTop += padding;
-          } else if (val === max) {
-            scrollerEle[i].scrollTop -= padding;
-          }
+          //景点的默认选中日期为开始日期+1天
+          var firstDate = new Date(rangesDate[0].replace(/-/g, '/'));
+          var defaultDate = new Date(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate() + 1);
+          var defaultSelectedDate = defaultDate.getFullYear() + "-" + (defaultDate.getMonth() + 1) + "-" + defaultDate.getDate();
+          $("#tourTime").find("input").each(function (index, ele) {
+            $(ele).val(defaultSelectedDate);
+          });
+          $("#tourTime").find(".week-tour").each(function (index, ele) {
+            $(ele).html(vlm.Utils.getWeek(defaultSelectedDate));
+          });
+          initTourCalendar();
         }
-
-        requestAnimationFrame(frame);
       });
-    }
-  },
-  _checkIosSafari: function () {
-    var ua = navigator.userAgent;
-    return !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) && ua.indexOf('AppleWebKit') > -1;
-  },
-  // 渲染内容
-  drawData: function (id, t) {
-    var that = this,
-      Warper, dataNode, lineNode, opeater;
+      initTourCalendar();
+    },
+  // 定义点击事件
+    initEvent = function () {
+      // 提交预订
+      $("#order_btn").click(function () {
+        sendInfo();
+      });
 
-    function setTime(t, s) {
-      var Y = [];
-      var m = new Date().getMonth(),
-        d = new Date().getDate();
-      if (s == "年") {
-        if (that.type == that._time[0]) {
-          t = 0;
+      //景点上午下午晚上 周末选择
+      $("#tourTime").on("click", ".tourSelect", function (event) {
+        var target = $(event.target);
+        target.addClass("tourcho");
+        target.siblings().each(function (index, ele) {
+          $(ele).removeClass("tourcho");
+        });
+      });
+
+      //房间增减
+      $("#roomNumber .down_btn").click(function (event) {
+
+        var addBtn = $("#roomNumber .up_btn");
+        var target = $(event.target);
+        var roomNumber = parseInt($("#roomNum").html());
+        var hotelInfoNumbPeopleSections = $(".hotelInfo_numb_people").length;
+
+        //房间减少逻辑
+        if (roomNumber > roomMinNum) {
+          $("#roomNum").html(roomNumber - 1);
+          roomNumber = roomNumber - 1;
+
         }
-        if (that.type == that._time[1] || that.type == that._time[2]) {
-          t = 1;
-        }
-        var years = new Date().getFullYear();
-        if (t <= 0) { //生日
-          var i = 1900,
-            l = years;
-          for (; i <= l; i++) {
-            Y.push("<span>" + i + s + "</span>");
+        if (target.hasClass("cur")) {
+          //可点击状态
+          if (hotelInfoNumbPeopleSections > roomNumber) {
+            $(".hotelInfo_numb_people").eq(hotelInfoNumbPeopleSections - 1).remove();
+            addBtn.addClass("cur");
           }
-        } else if (t == 1) { //有效期
-          var i = years,
-            l = years + 30;
-        } else { //游玩时间
-          var i = years,
-            l = years + 1;
+          //设置按钮不可点击
+          if (roomNumber == roomMinNum) {
+            target.removeClass("cur");
+          }
         }
-        for (; i <= l; i++) {
-          Y.push("<span>" + i + s + "</span>");
+
+
+      });
+      $("#roomNumber .up_btn").click(function (event) {
+        var downBtn = $("#roomNumber .down_btn");
+        var target = $(event.target);
+        var roomNumber = parseInt($("#roomNum").html());
+        var newRoomHtml = "";
+        var allRoomEle = $(".hotelInfo_numb_people");
+        var allRoomEleLen = $(".hotelInfo_numb_people").length;
+        //更新房间数量
+        if (roomNumber < roomMaxNum) {
+          $("#roomNum").html(roomNumber + 1);
+          roomNumber = roomNumber + 1;
         }
-      } else if (s == "月") {
-        for (var i = 1; i <= 12; i++) {
-          Y.push("<span>" + i + s + "</span>");
+
+        if (target.hasClass("cur")) {
+          //可点击状态
+          var section = document.createElement("section");
+          section.className = "hotelInfo_numb_people";
+          var newRoomHtml = addNewRoomHtml(allRoomEleLen + 1, 2);
+          section.innerHTML = newRoomHtml;
+          allRoomEle.eq(allRoomEleLen - 1).after(section);
+          //设置按钮不可点击
+          if (roomNumber == roomMaxNum) {
+            target.removeClass("cur");
+          }
+          downBtn.addClass("cur");
+        }
+
+
+      });
+
+      //成人 儿童加减逻辑
+      $("#roomList").on("click", ".down_btn", function (event) {
+        var target = $(event.target);
+        var type = target.parent().attr("data-type");
+        var adultNumEle = target.siblings(".adult-people-number");
+        var adultNumValue = parseInt(adultNumEle.html());
+        var childNumEle = target.siblings(".child-number");
+        var childNumValue = parseInt(childNumEle.html());
+        var allExtraChild = target.parents(".numbList").siblings(".extraChild");
+        var upBtn = target.siblings(".up_btn");
+        switch (type) {
+          case "adult":
+            if (target.hasClass("cur")) {
+              adultNumValue = adultNumValue - 1;
+              adultNumEle.html(adultNumValue);
+              if (adultNumValue === minAdultNum) {
+                target.removeClass("cur");
+              }
+              if (adultNumValue < maxAdultNum) {
+                upBtn.addClass("cur");
+              }
+              addBedShowOrHide(target);
+            }
+            break;
+          case "extraChild":
+            if (target.hasClass("cur")) {
+              childNumValue = childNumValue - 1;
+              childNumEle.html(childNumValue);
+              if (childNumValue === minChildNum) {
+                target.removeClass("cur");
+              }
+              if (childNumValue < maxChildNum) {
+                upBtn.addClass("cur");
+              }
+              if (allExtraChild.length > childNumValue) {
+                allExtraChild.eq(allExtraChild.length - 1).remove();
+                upBtn.addClass("cur");
+              }
+              addBedShowOrHide(target);
+            }
+            break;
+        }
+      });
+      $("#roomList").on("click", ".up_btn", function (event) {
+        var target = $(event.target);
+        var type = target.parent().attr("data-type");
+        var adultNumEle = target.siblings(".adult-people-number");
+        var adultNumValue = parseInt(adultNumEle.html());
+        var childNumEle = target.siblings(".child-number");
+        var childNumValue = parseInt(childNumEle.html());
+        var allExtraChild = target.parents(".numbList").siblings(".extraChild");
+        var downBtn = target.siblings(".down_btn");
+        var extraChildHtml = "";
+        switch (type) {
+          case "adult":
+            if (target.hasClass("cur")) {
+              adultNumValue = adultNumValue + 1;
+              adultNumEle.html(adultNumValue);
+              if (adultNumValue === maxAdultNum) {
+                target.removeClass("cur");
+              }
+              downBtn.addClass("cur");
+              addBedShowOrHide(target);
+
+
+            }
+            break;
+          case "extraChild":
+            if (target.hasClass("cur")) {
+              childNumValue = childNumValue + 1;
+              childNumEle.html(childNumValue);
+              extraChildHtml = addNewChildHtml(allExtraChild.length + 1);
+
+              addBedShowOrHide(target)
+              //target.parents(".hotelInfo_numb_people").append(extraChildHtml);
+              target.parents(".hotelInfo_numb_people").find(".spenumbList").before(extraChildHtml);
+
+              if (childNumValue === maxChildNum) {
+                target.removeClass("cur");
+              }
+              downBtn.addClass("cur");
+            }
+            break;
+        }
+      });
+    },
+
+  //是否显示加床项
+    addBedShowOrHide = function (target) {
+      var adultNumValue = parseInt(target.parent().parent().parent().find(".adult-people-number").html());
+      var childNumValue = parseInt(target.parent().parent().parent().find(".child-number").html());
+      if (adultNumValue >= 2 && childNumValue > 0) {
+        target.parent().parent().siblings(".spenumbList").show();
+        if(childNumValue == 1){
+          target.parent().parent().siblings(".spenumbList").find(".bedList b").on("click", function () {
+            $(this).toggleClass("ico_select noselect");
+          })
+        }else{
+          target.parent().parent().siblings(".spenumbList").find("b").removeClass("noselect").addClass("ico_select");
+        }
+      }
+      if(childNumValue == 0){
+        target.parent().parent().siblings(".spenumbList").hide();
+        target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect");
+      }
+      if(adultNumValue == 1){
+        target.parent().parent().siblings(".spenumbList").hide();
+        target.parent().parent().siblings(".spenumbList").find("b").removeClass("ico_select").addClass("noselect");
+      }
+    },
+    bindChilWithBed = function (child, adult) {
+
+    },
+
+    addNewChildHtml = function (i) {
+      if (onlyForAdult) {
+        return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童1年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
+      } else {
+        return '<div class="extraChild" style="display: block;"><span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span><div class="childAge"><input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i></div></div>';
+      }
+
+
+    },
+    addNewRoomHtml = function (i, minAdultNum) {;
+      if (onlyForAdult) {
+        return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn"></span></div>' + '</div>';
+      } else {
+        return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: none; float: left">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
+      }
+
+
+    },
+    sendInfo = function () {
+      var CheckInDate = document.getElementById('CheckInDate').getAttribute("data-date") + 'T00:00:00';
+      var CheckOutDate = document.getElementById('CheckOutDate').getAttribute("data-date") + 'T00:00:00';
+      var roomNum = parseInt(document.getElementById('roomNum').innerHTML);
+      var roomDetails = [],
+        tours = [];
+      var roomDetailSection = document.querySelectorAll('.hotelInfo_numb_people');
+      var tourEle = document.querySelectorAll('.tour-out-div');
+      for (var hn = 0, len = roomDetailSection.length; hn < len; hn++) {
+        var temEle = roomDetailSection[hn],
+          temObj = {},
+          childWithOutBed = [],
+          childWithBed = [];
+        var temAdultNum = parseInt(temEle.querySelector('#adult-people-number').innerHTML);
+        if (!onlyForAdult) {
+          var temChildNum = parseInt(temEle.querySelector('.child-number').innerHTML);
+          var extraChild = temEle.querySelector('.extraChild');
+          var childChooseParent = temEle.querySelectorAll('.spenumbList');
+
+          if (temAdultNum == 1 && temChildNum == 1) {
+            childWithBed.push(temEle.querySelector('input').value);
+          } else if (temAdultNum == 1 && temChildNum == 2) {
+            childWithBed.push(temEle.querySelectorAll('input')[0].value);
+            childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+          }
+          if (temAdultNum == 2 || temAdultNum == 3) {
+            for (var s = 0; s < childChooseParent.length; s++) {
+              var ty = childChooseParent[s];
+              var tt = $(ty).children().find('b');
+              if (temChildNum == 1 && tt != null) {
+                if (tt.hasClass("ico_select")) {
+                  childWithBed.push(ty.parentNode.querySelector('input').value);
+                } else {
+                  childWithOutBed.push(ty.parentNode.querySelector('input').value);
+                }
+              } else if (temChildNum == 2 && tt != null) {
+                childWithBed.push(temEle.querySelectorAll('input')[0].value);
+                childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+              }
+            }
+          }
+          childWithBed.length > 0 ? temObj.childWithBed = childWithBed :
+            void(0);
+          childWithOutBed.length > 0 ? temObj.childWithOutBed = childWithOutBed :
+            void(0);
+        }
+        temObj.adult = temAdultNum;
+        roomDetails.push(temObj);
+      }
+      for (var fg = 0; fg < tourEle.length; fg++) {
+        var id = tourEle[fg].getAttribute('data-tour-id'),
+          dateStr = '',
+          temp = {};
+        if (tourEle[fg].querySelector('.content3_CheckInDate')) {
+          dateStr = tourEle[fg].querySelector('.content3_CheckInDate').value + 'T00:00:00';
+          temp.tourID = id;
+          temp.travelDate = dateStr;
+          if (tourData.hasOwnProperty("tours") && tourData.tours.length > 0) {
+            temp.tourSession = tourData.tours[fg].tourSession;
+          }
+          tours.push(temp);
+        } else {
+          temp.tourID = id;
+          tours.push(temp);
+        }
+      }
+      var allNum = 0,
+        adultNum = 0,
+        childNum = 0;
+      for (var kl = 0; kl < roomNum; kl++) {
+        adultNum = adultNum + roomDetails[kl].adult;
+        if (roomDetails[kl]['childWithBed']) {
+          childNum = childNum + roomDetails[kl]['childWithBed'].length;
+        }
+        if (roomDetails[kl]['childWithOutBed']) {
+          childNum = childNum + roomDetails[kl]['childWithOutBed'].length;
+        }
+      }
+      //   tourSession存取
+      noon = [];
+      var weekday = [];
+      var weekinfo;
+      for (var i = 0; i < tourData.tours.length; i++) {
+        if (tourData.tours[i].tourSession.length == 1) {
+          if (tourData.tours[i].tourSession[0] == 0) {
+            noon.push('上午');
+          } else if (tourData.tours[i].tourSession[0] == 1) {
+            noon.push('下午');
+          } else if (tourData.tours[i].tourSession[0] == 2) {
+            noon.push('晚上');
+          } else if (tourData.tours[i].tourSession[0] == 3) {
+            noon.push(' ');
+          } else if (tourData.tours[i].tourSession[0] == 4) {
+            noon.push(' ');
+          }
+        } else {
+          var tournoon = tourEle[i].getElementsByClassName('tourSelect');
+          for (var n = 0; n < tournoon.length; n++) {
+            if (tournoon[n].className == 'tourSelect tourcho') {
+              noon.push(tournoon[n].innerHTML);
+            }
+          }
+        }
+        if (tourData.tours[i].travelDateMandatory) {
+          weekinfo = tourEle[i].querySelector('.week-tour');
+          weekday.push(weekinfo.innerHTML);
+        } else {
+          weekday.push('');
+        }
+      }
+      localStorage.noon = JSON.stringify(noon);
+      localStorage.week = JSON.stringify(weekday);
+      //   判断页面能否跳转
+      var tipBox = document.querySelector('#show-result-tip');
+      var InfoData = {};
+      var nightnum = document.getElementById('total_day').innerHTML;
+      if (onlyForAdult) {
+        allNum = adultNum;
+        if (adultNum > maxAdult && maxAdult != -1) {
+          jAlert('最多选择' + maxAdult + '名成人!');
+        } else if (adultNum < minPax) {
+          jAlert(minPax + '人起订，请添加更多出行人!');
+        } else {
+          var paraObj = {
+            packageID: localStorage.packageID,
+            CheckInDate: CheckInDate,
+            CheckOutDate: CheckOutDate,
+            nightNum: nightnum,
+            roomDetails: roomDetails,
+            tours: tours
+          };
+          localStorage.setItem('info', JSON.stringify(paraObj));
+          //获得数据
+          var getHotel = function () {
+            var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
+            $("#preloader").show();
+            $("#status").show();
+            var tmp = {
+              Parameters: paraObj,
+              ForeEndType: 3,
+              Code: "40100008"
+            };
+            console.log(tmp);
+            vlm.loadJson("", JSON.stringify(tmp), function (json) {
+              localStorage.setItem('init', '1');
+              console.log(json);
+              if (json.success) {
+                localStorage.setItem('info', JSON.stringify(paraObj));
+                localStorage.setItem('hotelResultData', JSON.stringify(json.data));
+                window.location.href = "hotel_list.html";
+              } else {
+                console.log(json);
+                jAlert(json.message, "提示");
+              }
+            });
+          };
+          getHotel();
         }
       } else {
-        for (var i = 1; i <= that.days[1]; i++) {
-          Y.push("<span>" + i + s + "</span>");
-        }
-      }
-      return Y.join('');
-    }
-    //design for dateTime
-    function setDateTime(t, type) {
-      var Y = [];
-      var num = that.num;
-      var now = that.startDate ? that.startDate : new Date();
-      var year = now.getFullYear();
-      var month = now.getMonth();
-      var day = now.getDate();
-      var munites = ["00", '10', '20', '30', '40', '50'];
-      switch (type) {
-        case "date":
-          for (var i = 0; i < num; i++) {
-            var date = new Date(year, month, day + i);
-            var yearNew = date.getFullYear();
-            var monthNew = date.getMonth() + 1;
-            var dayNew = date.getDate();
-            var monthNewZero = monthNew < 10 ? "0" + monthNew : monthNew;
-            var dayNewZero = dayNew < 10 ? "0" + dayNew : dayNew;
-            var weekNew = date.getDay();
-            Y.push("<span data-temp=" + yearNew + "-" + monthNewZero + "-" + dayNewZero + ">" + monthNew + "月" + dayNew + "日<i>" + that.week[weekNew] + "</i></span>");
-          }
-          break;
-        case "h":
-          for (var i = 0; i < 24; i++) {
-            var hour = i < 10 ? "0" + i : i;
-            Y.push("<span data-temp=" + hour + ">" + hour + "时</span>");
-          }
-          break;
-        case "m":
-          for (var i = 0; i < munites.length; i++) {
-            Y.push("<span data-temp=" + munites[i] + ">" + munites[i] + "分</span>");
-          }
-          break;
-      }
-      return Y.join('');
-    }
-
-    function Creatwaprer(str) {
-      Warper = document.createElement('li');
-      // 添加内容
-      dataNode = document.createElement('div');
-      dataNode.className = 'sel-time';
-      dataNode.innerHTML = str;
-      Warper.appendChild(dataNode);
-      // 添加横线
-      lineNode = document.createElement('div');
-      lineNode.className = 'sel-box';
-      Warper.appendChild(lineNode);
-      that.opeater.appendChild(Warper);
-    }
-    opeater = document.getElementById("opeater");
-    if (opeater.getAttribute("data-id") != id && opeater.innerHTML != "") { //类型不同需缓存
-      this.selCache(id);
-    }
-    if (that.selGetC(id) == "") {
-      if (opeater.innerHTML == "") {
-        switch (t) {
-          case 'card':
-            var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp1'].join('');
-            Creatwaprer(str);
-            break;
-          case 'cardInte':
-            var str = that._template['comp'].join('') + that._template['cardInte'].join('') + that._template['comp1'].join('');
-            Creatwaprer(str);
-            break;
-          case 'cardDom':
-            var str = that._template['comp'].join('') + that._template['cardDom'].join('') + that._template['comp1'].join('');
-            Creatwaprer(str);
-            break;
-          case 'seat':
-            var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp1'].join('');
-            Creatwaprer(str);
-            break;
-          case 'dateTime':
-            for (var i = 0, d = that._template['dateTime'], len = d.length; i < len; i++) {
-              var str = setDateTime(i, d[i]);
-              Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+        var exaddChild = document.getElementsByClassName('extraChild');
+        for (var v = 0; v < exaddChild.length; v++) {
+          if (exaddChild[v].style.display != 'none') {
+            var input = exaddChild[v].getElementsByClassName("inp-cage");
+            for (var w = 0; w < input.length; w++) {
+              if (input[w].value == '') {
+                jAlert('请输入儿童年龄!');
+                return;
+              } else if (input[w].value < childAgeMin || input[w].value > childAgeMax) {
+                jAlert('儿童年龄不符合标准!');
+                return;
+              }
             }
-            break;
-          case 'cardExpirationDate':
-            for (var i = 0, d = that._template['cardExpirationDate'], len = d.length; i < len; i++) {
-              var str = setTime(i, d[i]);
-              Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
-            }
-            break;
-          default:
-            //time
-            for (var i = 0, d = that._template['date'], len = d.length; i < len; i++) {
-              var str = setTime(i, d[i]);
-              Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
-            }
-            break;
-        }
-      }
-      dataNode = $('.sel-time');
-      // 默认选中
-      for (var j = 0, length = dataNode.length; j < length; j++) {
-        var _s = dataNode[j].childNodes,
-          tem = false;
-        for (var g = 0, lengt = _s.length; g < lengt; g++) {
-          if (_s[g] && _s[g].className == 'date-selected') {
-            tem = true;
-            break;
           }
         }
-        if (!tem) {
-          _s[2].className = "date-selected";
+        allNum = adultNum + childNum;
+        if (adultNum > maxAdult && maxAdult != -1) {
+          jAlert('最多选择' + maxAdult + '名成人!', "提示");
+        } else if (allNum < minPax) {
+          jAlert(minPax + '人起订，请添加更多出行人!', "提示");
+        } else if (minPax > 1 && adultNum == 1 && childNum == 0) {
+          jAlert('人数太少，不能预订!', "提示");
+        } else {
+          var paraObj = {
+            "StarRating": "",
+            "Location": "",
+            "SortType": 1,
+            packageID: localStorage.packageID,
+            CheckInDate: CheckInDate,
+            CheckOutDate: CheckOutDate,
+            nightNum: nightnum,
+            roomDetails: roomDetails,
+            adultNum: adultNum,
+            childNum: childNum,
+            tours: tours
+          };
+          //获得数据
+          var getHotel = function () {
+            var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
+            $("#preloader").show();
+            $("#status").show();
+            var tmp = {
+              Parameters: paraObj,
+              ForeEndType: 3,
+              Code: "40100008"
+            };
+            console.log(tmp);
+            vlm.loadJson("", JSON.stringify(tmp), function (ret) {
+              localStorage.setItem('init', '1');
+              var json = ret;
+              if (json.success) {
+                localStorage.setItem('info', JSON.stringify(paraObj));
+                localStorage.setItem('hotelResultData', JSON.stringify(json.data));
+                window.location.href = "hotel_list.html";
+              } else {
+                $("#preloader").fadeOut("medium");
+                jAlert(json.message, "提示");
+              }
+            });
+          };
+          getHotel();
         }
       }
-    } else {
-      opeater.innerHTML = that.selGetC(id);
-      dataNode = $('.date-selected');
-      // 默认选中
-      for (var j = 0, len = dataNode.length; j < len; j++) {
-        var pNode = dataNode[j].parentNode,
-          pos = dataNode[j].offsetTop - 49 * 2;
-        $(pNode).scrollTop(pos);
+    },
+  // 房间
+    initRoom = function () {
+      var parent = document.getElementById('roomList'),
+        hotelInfo = document.querySelector('.hotelInfo_numb_room'),
+        roomNum = document.getElementById('roomNum'),
+      // 要操作的对象
+        section, nums = Math.ceil(minPax / 3),
+      // 插入的成人
+        ary_a = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
+      // 儿童
+        ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
+      //  默认房间数为1人，如有最少起订人数，则更换
+      roomNum.innerHTML = nums;
+      for (var i = 0; i < nums; i++) {
+        var n = minPax - 3 * (i + 1) >= 0 ? 3 : minPax - 3 * i,
+          initStr = '<span class="title">房间' + (i + 1) + '</span>';
+        initStr += ary_a[0] + n + ary_a[1];
+        if (!onlyForAdult) {
+          initStr += ary_c.join('');
+        }
+        section = document.createElement('section');
+        section.innerHTML = initStr;
+        section.className = 'hotelInfo_numb_people init-hotel-room-detail';
+        parent.insertBefore(section, hotelInfo.nextSibling);
       }
-    }
-    // 事件绑定
-    this.scrollOn();
-    //内容更新完毕，重定义属性
-    opeater.setAttribute("data-id", id);
-    opeater.setAttribute("data-type", t);
-    this.selShow(1);
-  },
-  selCache: function (t) {
-    var that = this,
-      opeater = document.getElementById("opeater");
-    if (opeater.innerHTML != "") { //原来有内容需缓存
-      that.cache[opeater.getAttribute("data-id")] = opeater.innerHTML;
-      opeater.innerHTML = "";
-    }
-  },
-  // 显示隐藏
-  selShow: function (s) {
-    var that = this,
-      masker = document.getElementById("overlay"),
-      container = document.getElementById("selbox");
-    if (!that.masker) {
-      that.masker = masker;
-    }
-    if (!that.container) {
-      that.container = container;
-    }
-    if (s) {
-      that.masker.style.display = 'block';
-      that.container.style.bottom = 0;
-      document.body.style.overflowY = 'hidden';
-    } else {
-      that.masker.style.display = 'none';
-      that.container.setAttribute("style", "");
-      setTimeout(function () {
-        $('#selbox').remove();
-        $('#overlay').remove();
-      }, 200)
-      document.body.style.overflowY = 'auto';
-    }
-  },
-  // 重置
-  selResetDay: function () {
-    var that = this;
-  },
-  //选择结束
-  selOver: function () {
-    var that = this;
-    var box = $('.sel-time .date-selected'),
-      i = 0,
-      len = box.length,
-      opeater = document.getElementById("opeater"),
-      arr = [];
-    var ele = document.getElementById('' + opeater.getAttribute("data-id"));
-    for (; i < len; i++) {
-      arr.push(box[i].innerHTML);
-    }
-    //缓存用户选择的内容
-    ele.setAttribute("data-cache", arr.join("-"));
-    ele.innerHTML = arr.join("-");
-    if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
-      if (that.type == "birth") {
-        var birthstr = arr.join("").replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
-
-        arr[0] = arr[0].replace('年', '');
-        arr[1] = that.addZero(parseInt(arr[1]));
-        arr[2] = that.addZero(parseInt(arr[2]));
-        if (ele.nodeName == 'DIV') {
-          ele.innerHTML = arr.join("-");
-        } else if (ele.nodeName == 'INPUT') {
-          ele.value = arr.join("-");
-        }
-      } else if (that.type == "validity") {
-
-        arr[0] = arr[0].replace('年', '');
-        arr[1] = that.addZero(parseInt(arr[1]));
-        arr[2] = that.addZero(parseInt(arr[2]));
-        if (ele.nodeName == 'DIV') {
-          ele.innerHTML = arr.join("-");
-        } else if (ele.nodeName == 'INPUT') {
-          ele.value = arr.join("-");
-        }
-
-      } else if (that.type == 'cardExpirationDate') {
-        ele.setAttribute("data-expire", arr[0].replace('年', '') + "-" + that.addZero(parseInt(arr[1])) + "-01");
-        var sYear = arr[0];
-        arr[0] = that.addZero(parseInt(arr[1]));
-        arr[1] = parseInt(sYear.substring(2));
-
-        if (ele.nodeName == 'DIV') {
-          ele.innerHTML = arr.join("/");
-        } else if (ele.nodeName == 'INPUT') {
-          ele.value = arr.join("/");
-        }
-
-      } else if (that.type == 'dateTime') {
-        //TODO 其他组件页面显示内容与实际值分离
-        var values = [];
-        for (var j = 0; j < len; j++) {
-          values.push(box[j].getAttribute("data-temp"));
-        }
-        if (ele.nodeName == 'DIV') {
-          ele.innerHTML = values.join("/");
-        } else if (ele.nodeName == 'INPUT') {
-          ele.value = values.join("-");
-        }
-      } else {
-        $(ele).attr("data-code", $(box).attr("data-code")) //添加data-code属性
-        ele.innerHTML = arr.join("");
-      }
-    }
-    //编辑常旅中证件类型回调
-    if (that.callback && typeof that.callback == 'function') {
-      that.callback();
-    }
-    this.selShow(0);
-  },
-  //选择重置
-  selGetC: function (t) {
-    var that = this,
-      str = '';
-    for (var i in that.cache) {
-      if (i == t) {
-        str = that.cache[i];
-        break;
-      }
-    }
-    return str;
-  },
-  //时间缓存
-  scrollTo: function () {
-    var opeater = document.getElementById("opeater");
-    var time = document.getElementById('' + opeater.getAttribute("data-id")).getAttribute("data-cache");
-    console.log(time);
-    if (!time) {
-      return
+      initEvent();
     };
-    var arr = time.split("-");
-    var year = arr[0];
-    var month = arr[1];
-    var day = arr.length > 2 ? arr[2] : "";
+  // 原来就有的，不知道干嘛用
+  localStorage.setItem('init', '0');
+  // 获取详情
+  vlm.loadJson("", JSON.stringify({
+    Parameters: {
+      PackageID: packageID
+    },
+    ForeEndType: 3,
+    Code: "40100002"
+  }), function (json) {
+    if (json.success) {
 
-    var sels = $(".sel-time");
-    for (var i = 0; i < sels.length; i++) {
-      var nodes = sels[i].childNodes;
-      for (var j = 0; j < nodes.length; j++) {
-        var h = (j - 2) * 49; //减去两个空节点
-        switch (nodes[j].innerText) {
-          case year:
-            $(sels[0]).animate({
-              scrollTop: h
-            });
-            break;
-          case month:
-            $(sels[1]).animate({
-              scrollTop: h
-            });
-            break;
-          case day:
-            if (i == 2) {
-              $(sels[2]).animate({
-                scrollTop: h
-              });
-            }
-            break;
-        }
-      }
-    }
+      var data = json.data,
+        total_day = document.querySelector('#total_day');
+      tourData = data;
+      console.log(data);
+      dateHandler.dataInfomation = data;
+      day_start = data.defaultDepartStartDate.substring(0, 10).replace(/-/g, "/");
+      calendar_end = data.departValidTo.substring(0, 10).replace(/-/g, "/");
+      day_Num = parseInt(data.minDuration ? data.minDuration : data.packageName.substr(2, 1));
+      minDuration = data.minDuration;
+      minPaxType = parseInt(data.minPaxType);
+      minPax = parseInt(data.minPax);
+      maxAdult = parseInt(data.maxAdult);
+      onlyForAdult = data.onlyForAdult;
+      maxExtensionNight = data.maxExtensionNight + minDuration - 1;
 
-  },
-  // 滑动事件
-  scrollOn: function () {
-    var sels = $('.sel-time'),
-      i = 0,
-      l = sels.length,
-      that = this,
-      m = 1;
-    $(".sel-time").bind("scrollstart", function () {
-
-    });
-    //绑定滑动
-    $(".sel-time").bind("scrollstop", function (event) {
-      var obj = $(this),
-        Nodes = this.childNodes,
-        posY = this.scrollTop,
-        p = parseInt(posY / 49),
-        h = posY / 49 - p <= 0.5 ? p * 49 : (p + 1) * 49;
-      if (posY / 49 - p > 0.5) {
-        p++;
+      dateHandler.dateInfomation = {
+        minDuration: parseInt(data.minDuration) - 1,
+        maxExtensionNight: parseInt(data.maxExtensionNight),
+        departValidFrom: /(.*)(T.*)/g.exec(data.departValidFrom)[1],
+        departValidTo: /(.*)(T.*)/g.exec(data.departValidTo)[1]
+      };
+      //儿童年龄限制
+      childAgeMin = parseInt(data.childAgeMin);
+      childAgeMax = parseInt(data.childAgeMax);
+      // 酒店，默认开始时间
+      document.getElementById("CheckInDate").value = vlm.Utils.format_date(day_start, 'md');
+      document.getElementById("CheckInDate").setAttribute("data-date", vlm.Utils.format_date(day_start, 'Ymd'));
+      document.getElementById("week_span1").innerHTML = day_ary[new Date(day_start).getDay()];
+      // 共几晚
+      total_day.innerHTML = day_Num - 1;
+      // 计算离店
+      var dd = new Date(day_start),
+        etim;
+      dd.setDate(dd.getDate() + day_Num - 1);
+      etim = dd.getFullYear() + "-" + (dd.getMonth() + 1) + "-" + dd.getDate();
+      // 插入离店
+      document.getElementById("CheckOutDate").value = vlm.Utils.format_date(etim, 'md');
+      document.getElementById("CheckOutDate").setAttribute("data-date", vlm.Utils.format_date(etim, 'Ymd'));
+      document.getElementById("week_span2").innerHTML = day_ary[dd.getDay()];
+      // 房间
+      initRoom();
+      // 景点
+      // var tpl_g = $("tpl_GetTour").html(), tpl_GetTour = ejs.render(tpl_g, data);
+      var tpl_GetTour = template("tpl_GetTour", data);
+      $('#tourTime').html(tpl_GetTour);
+      // 日历date-range
+      initHotelCalendar();
+      // loadend
+      //事件绑定
+      //tagAndEvent();
+      //vlm.init();
+      if (localStorage.getItem('init') != '1') {
+        localStorage.setItem('init', 1);
       }
-      $(this).animate({
-        scrollTop: h
-      }, 300);
-      for (var i = 0, l = Nodes.length; i < l; i++) {
-        //console.log(i);
-        if (Nodes[i])
-          Nodes[i].className = i == p + 2 ? "date-selected" : "";
-      }
-      // 类型为时间，进行闰年闰月判定
-      if (that.type == "birth" || that.type == "time") {
-        //年滑动时
-        if (obj.parent().index() == 0) {
-          var oYear = parseInt(obj.children('span').eq((p + 2)).html());
-          var oMonth = sels.eq(1).scrollTop() == 0 ? 1 : parseInt(sels.eq(1).children(".date-selected").html());
-          var oDay = sels.eq(2).scrollTop() == 0 ? 1 : parseInt(sels.eq(2).children(".date-selected").html());
-          // 闰年
-          if ((oYear % 4 == 0 && oYear % 100 != 0) || oYear % 400 == 0) {
-            m = 0;
-          }
-          if (oMonth == 2 && m == 0)
-            ResetDay(that.days[0]);
-          else
-            ResetDay(that.days[oMonth]);
-        }
-        //月滑动时
-        else if (obj.parent().index() == 1) {
-          var oMonth = parseInt(obj.children("span").eq(p + 2).html());
-          if (oMonth == 2 && m == 0)
-            ResetDay(that.days[0]);
-          else
-            ResetDay(that.days[oMonth]);
-        }
-      }
-    });
-    //
-    function ResetDay(day) {
-      var oLiDay = sels.eq(2),
-        pos = oLiDay.scrollTop(),
-        page = parseInt(pos / 49),
-        arr3 = [];
-      for (var i = 1; i < day + 1; i++) {
-        arr3.push('<span>' + i + '日</span>');
-      }
-      oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp1'].join(''));
-      if (pos / 49 - page > 0.5) {
-        page += 3;
-      } else {
-        page += 2;
-      }
-      oLiDay.children("span").eq(page).toggleClass('date-selected');
-    }
-
-  },
-  // 确认和取消按钮事件
-  btnEvent: function () {
-    var that = this;
-    var payModule = $('.android-relative');
-    $('.cabin-cancel').on("click", function () {
-      that.selShow(0);
-      $(document.body).css('overflowY', 'auto');
-      //华为穿透问题
-      if (payModule.length > 0) {
-        payModule.each(function (index, ele) {
-          $(ele).removeClass("android_absolute");
-        });
-      }
-    });
-    $('.cabin-sure').on("click", function () {
-      if ($(".android-relative").length > 0) {
-
-      }
-      that.selOver();
-      if ($('#popup_overlay')) {
-        $(document.body).css('overflowY', 'hidden');
-      }
-      $(document.body).css('overflowY', 'auto');
-      //华为穿透问题
-      if (payModule.length > 0) {
-        payModule.each(function (index, ele) {
-          $(ele).removeClass("android_absolute");
-        });
-      }
-    });
-  },
-  // 绑定操作对象的事件
-  inputEvent: function (id, t, cid) {
-    var that = this,
-      cont;
-    if (document.getElementById(cid)) {
-      cont = cid;
     } else {
-      cont = id;
+      $('.amy_error_box').show();
+      $('.all_elements').hide();
     }
-    $("#" + cont).bind('click', function () {
-      that.createContainer(id, t);
-      that.drawData(id, t);
-      that.type = t;
-      that.scrollTo();
-      //阻止滑动遮挡层事件
-      that.stopEvent();
-    });
-  },
-  // 对象区域外点击，隐藏
-  outClick: function () {
-    var that = this;
-    $(document).bind('click', function (event) {
-      event = event || window.event;
-      var target = event.target || event.srcElement;
-      if (target.className.indexOf("mask") > -1) {
-        that.selShow(0);
-      }
-    });
-  },
-
-
-  //补零
-  addZero: function (n) {
-    return n < 10 ? '0' + n : '' + n;
-  }
-};
+  });
+}).call(this);
