@@ -1959,6 +1959,9 @@
               var cityData = {};
               var cityName = this.getAttribute("data-name");
               var cityCode = this.getAttribute("data-code");
+              if(cityName.indexOf("(") > -1 ){
+                cityName = cityName.substring(0,cityName.indexOf("("));
+              }
               cityData.returnType = returnType;
               cityData.returnAttr = returnAttr;
               cityData.returnStrType = returnStrType;
@@ -2014,10 +2017,16 @@
       dom.appendChild(citybox_content_container_ul);
 
       for(var i = 0;i<data.length;i++){
+
+        var nltitle = data[i].cityName;
+        if(data[i].cityName.indexOf("(") > -1 ){
+          nltitle = data[i].cityName.substring(0,data[i].cityName.indexOf("("));
+        }
+
         var citybox_content_item_li = document.createElement("li");
         citybox_content_item_li.setAttribute("class","citybox_content_item");
         citybox_content_item_li.setAttribute("data-code",data[i].cityCode);
-        citybox_content_item_li.setAttribute("data-name",data[i].cityName);
+        citybox_content_item_li.setAttribute("data-name",nltitle);
         citybox_content_item_li.onclick = function(){
           var cityData = {};
           var cityName = this.getAttribute("data-name");
@@ -2032,9 +2041,10 @@
           dataCityExec().callCityExec(""+globalType+"Exec",cityData);
           Method['hideAllCityBox']();
         }
+
         var citybox_content_itemtitle_div = document.createElement("div");
         citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-        citybox_content_itemtitle_div.innerHTML = data[i].cityName;
+        citybox_content_itemtitle_div.innerHTML = nltitle;
         citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
         citybox_content_container_ul.appendChild(citybox_content_item_li);
       }
@@ -2078,6 +2088,9 @@
           var cityData = {};
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
+          if(cityName.indexOf("(") > -1 ){
+            cityName = cityName.substring(0,cityName.indexOf("("));
+          }
           cityData.returnType = returnType;
           cityData.returnAttr = returnAttr;
           cityData.returnStrType = returnStrType;

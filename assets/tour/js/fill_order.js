@@ -106,7 +106,7 @@
                     //+'<span class="list_tit2 ">姓：</span>'
                     + '<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="姓（如：Li）" data-elementName="firstName" /></span>'
                     //+'<span class="list_tit2 ">名：</span>'
-                    + '<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementname="lastName" /></span>' + '</li>' + '<li class="countries-wrap"><b class="icon_arw open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn" data-code="CN" data-tel-code="86">中国</div></li>' + "</ul>"
+                    + '<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementname="lastName" /></span>' + '</li></ul>';
                     //}
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
@@ -150,7 +150,7 @@
         }
         //第一个房间的第一个人添加国籍
         var oCountry = $('<li class="clearFix countries-wrap">' + '<b class="icon_arw open-pho-tour"></b>' + '<span class="list_country fl">国籍：</span>' + '<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>' + '</li>')
-        oCountry.appendTo($('#trave0'));
+        oCountry.appendTo($('#ht_trave0'));
 
         //处理地址栏信息
         function urlShow() {
