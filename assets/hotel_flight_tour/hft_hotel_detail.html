@@ -129,9 +129,7 @@
 </script>
 <!--酒店名-->
 <script id="hotelName" type="text/template">
-  <h3>
-    <%= hotelNameLocale<% if(){ %>（<%= hotelName %>）<% } %> %>
-  </h3>
+  <h3><%= hotelNameLocale %><% if(hotelName){ %>（<%= hotelName %>）<% } %></h3>
 </script>
 <!--hotelAddress-->
 <script id="hotelAddress" type="text/template">
