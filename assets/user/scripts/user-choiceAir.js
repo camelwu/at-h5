@@ -370,10 +370,10 @@
     day=newDate.getDate();
 
     $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
-    $(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
+    //$(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
 
     $(".addAir_page .birthDay").attr("data-cache","1990-01-01");
-    $(".addAir_page .birthDay").val("1990-01-09");
+    $(".addAir_page .birthDay").val("1990-01-01");
 
     $(".addAir_page .postCard").attr("data-cache","1");
     $(".addAir_page .postCard").val("护照");
