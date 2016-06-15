@@ -74,7 +74,7 @@
         <li class="fli_cont clearfix">
           <div class="fli_cir_left fl">
             <i class="back_tip"></i>
-            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%></span>
+            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"")%></span>
             <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
             <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
           </div>
@@ -108,7 +108,7 @@
         <h3><%=hotelDetails.hotelName%></h3>
         <ul>
           <li class="hotel_check_wrap">
-            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>至<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
+            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"")%>至<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"")%></span>
             <% function getDayNum(arg1,arg2){
             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
@@ -907,24 +907,40 @@
            </ul>
          </div>
      </div>
-    <% var i=0; tours.forEach(function(info){ %>
-      <div class="tour-item line">
-        <div class="title"><i></i><%=info.tourName%></div>
-        <div class="item">
-          <% if(tours[i].hasOwnProperty("travelDate")){ %>
-          <ul class="col">
-            <li>游玩时间：</li>
-            <li><%=vlm.Utils.format_date(info.travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%> <%=TourTimer[tours[0].tourSession]%></li>
-          </ul>
-          <% i++ ;} %>
+    <!--<% var i=0; tours.forEach(function(info){ %>-->
+      <!--<div class="tour-item line">-->
+        <!--<div class="title"><i></i><%=info.tourName%></div>-->
+        <!--<div class="item">-->
+          <!--<% if(tours[i].hasOwnProperty("travelDate")){ %>-->
+          <!--<ul class="col">-->
+            <!--<li>游玩时间：</li>-->
+            <!--<li><%=vlm.Utils.format_date(info.travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%></li>-->
+          <!--</ul>-->
+          <!--<% i++ ;} %>-->
+          <!--<ul class="col">-->
+            <!--<li>成人票：</li>-->
+            <!--<li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--<% });%>-->
+    <% for(var i=0;i < tours.length;i++){%>
+    <div class="tour-item line">
+      <div class="title"><i></i><%=tours[i].tourName%></div>
+      <div class="item">
+              <ul class="col">
+              <% if(tours[i].hasOwnProperty("travelDate")){ %>
+              <li>游玩时间：</li>
+              <li><%=vlm.Utils.format_date(tours[i].travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%></li>
+              </ul>
+              <%}%>
           <ul class="col">
             <li>成人票：</li>
             <li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>
           </ul>
         </div>
       </div>
-    <% });%>
-
+    <% } %>
   </section>
 
   <section id="order_detail" style="clear:both">
