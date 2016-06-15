@@ -19,9 +19,9 @@
 	//footer插件方法必须写
 	function tAjax(questUrl, data, Code, ForeEndType, Callback) {
 		var that = this, dataObj = {
-			Parameters : data,
-			ForeEndType : ForeEndType,
-			Code : Code
+			parameters : data,
+			foreEndType : ForeEndType,
+			code : Code
 		};
 		questUrl = questUrl || that.requestUrl;
 		vlm.loadJson("", JSON.stringify(dataObj), Callback);
@@ -67,10 +67,21 @@
 					listData : data.locationList
 				}
 			}, menu_call = function(data) {
-				parametersStorage.sortFields = data.sortTypes;
+				console.log(data)
+				//格式化排数入参数据
+				var sort = data.sortTypes[0]- 0,
+					sorttypes = [];
+				sorttypes.push(2)
+				////如果筛选FilterValues值为空，则传空数组
+				//for(var i=0;i<data.filters.length;i++){
+				//	if(data.filters[i].FilterValues = )
+				//}
+
+				console.log(sorttypes)
+				parametersStorage.sortFields = sorttypes;
 				parametersStorage.location = data.locationList;
 				parametersStorage.filterFields = data.filters;
-				tAjax("", parametersStorage, "60100007", "3", list);
+				tAjax("", parametersStorage, "60100007", "3", screenList);
 			};
 			if (footer) {
 				footer.data = menu_data;
@@ -94,7 +105,11 @@
 		var title = ejs.render(str, data);
 		$('.header h3 span').html(title);
 	}
-
+	//筛选后加数据
+	function screenList(result){
+		$('.hotel_list').empty();
+		list(result)
+	}
 	//数据加载部分
 	function list(result) {
 		if(result.data.hotels.length>0){
