@@ -135,7 +135,7 @@ var flightList = {
 
         $("#fligtList").html('');
         //航班列表选中项
-        if(data.selectedFlight) {
+        if(data.selectedFlight){
           var str2 = $("#flightCur").html();
           var flightCur = ejs.render(str2, data);
           $('#fligtList').append(flightCur);
@@ -169,8 +169,8 @@ var flightList = {
             for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
               if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                 hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
-                hftFlightHotelTourInfo.airwaySetID = data.flightInfoListGroup[i].flightInfoList[j].setID;
-                hftFlightHotelTourInfo.airwayCacheID = data.flightInfoListGroup[i].flightInfoList[j].cacheID;
+                hftFlightHotelTourInfo.airwaySetID = data.selectedAirway.airwaySetID;
+                hftFlightHotelTourInfo.airwayCacheID =data.selectedAirway.airwayCacheID;
               }
             }
           }

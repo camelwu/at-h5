@@ -186,10 +186,24 @@
     }
     return data;
   }
-  //日期
+  //日期  房间
   function date(){
+    var departDate = new Date(sStorage.departDate.substring(0,10)).getTime();
+    var returnDate = new Date(sStorage.returnDate.substring(0,10)).getTime();
+    var numberNeight = (returnDate-departDate)/1000/60/60/24;
+    $('.numberNeight').html(numberNeight);
     $('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
     $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
+
+  //  房间
+    var searchInfo = JSON.parse(localStorage.getItem("searchInfo"));
+    var roomNumber = searchInfo.RoomInfo.length;
+    var adultNumber = searchInfo.AdultNum;
+    var childNumber = searchInfo.ChildNum;
+    $('.roomNumber').html(roomNumber);
+    $('.adultNumber').html(adultNumber);
+    $('.childNumber').html(childNumber);
+    console.log(searchInfo)
   }
 
 })();

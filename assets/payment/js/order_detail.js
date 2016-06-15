@@ -92,9 +92,15 @@
         else{
            html = ejs.render($("#"+type.tplKey).html(), data.data);
         }
-
         $("#order_detail").html(html);
         vlm.init();
+
+        if(type.id==4){
+          $(".tour_productinfo").on("click",function(){
+            var url=$(this).parent().find("a").attr("href")
+            location.href=url;
+          })
+        }
         bindEvent();
       }
       else{
@@ -105,7 +111,10 @@
   return {
     init: init()
   };
+
 })();
+
+
 
 
 

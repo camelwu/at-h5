@@ -18,6 +18,13 @@
     cacheHotCityList:{},
     cacheCityList:{}
   };
+  var tips = {
+    GEO_UNKNOWN_DATA:"尚无旅行产品,请切换其他城市。",
+    GEO_UNKNOWN_ERROR:"由于未知原因，无法获取地理定位信息，请重新尝试。",
+    GEO_PERMISSION_DENIED:"您的当前位置不可用,请开启设备上的\"定位服务\"。",
+    GEO_TIMEOUT:"获取信息超时，请重新尝试。",
+    GEO_POSITION_UNAVAILABLE:"由于网络或信号等问题，地理定位失败，请检查网络或信号。"
+  }
   /**
    * 排序
    * @param a
@@ -28,6 +35,8 @@
   var ByCitylist = function(a,b){
     return a.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
   };
+
+
 
   /**
    * 数据通信策略层
@@ -723,6 +732,143 @@
       }
     }
   };
+
+  var geo = function(){
+    var Adapter = {
+      Location:function(param){
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(function(e) {
+            Adapter.LocationSuccess({
+              lat: e.coords.latitude,
+              lng: e.coords.longitude,
+              type:param.type,
+              list:param.list
+            });
+          }, function(e) {
+            Adapter.LocationError(e);
+          },{
+            enableHighAccuracy: true, // 是否获取高精度结果
+            timeout: 6000, //超时,毫秒
+            maximumAge: 0 //可以接受多少毫秒的缓存位置
+          })
+        }else{
+          alert('抱歉！您的浏览器无法使用地位功能');
+        }
+      },
+      LocationSuccess:function(param){
+        var geoinfo = new google.maps.Geocoder;
+        var latlng = {lat:param.lat,lng:param.lng};
+        var cityname = "未知";
+        geoinfo.geocode({"location":latlng},function(result,status){
+          if(status == google.maps.GeocoderStatus.OK){
+            cityname = result[0].address_components[3].long_name;
+            for(var i= 0;i<param.list.length;i++){
+              if(cityname.indexOf(param.list[i].cityName) > -1 ){
+                console.log(param.list[i]);
+                $(""+param.type+"").attr("data-code",param.list[i].cityCode);
+                $(""+param.type+"").attr("data-name",param.list[i].cityName);
+                $(""+param.type+"").find("div").html(param.list[i].cityName);
+                return;
+              }
+            }
+
+            //未找到城市
+            $(""+param.type+"").attr("data-code","");
+            $(""+param.type+"").attr("data-name","");
+            $(""+param.type+"").find("div").html(cityname);
+            console.log(cityname);
+          }
+        });
+      },
+      LocationError:function(error){
+        console.log(error);
+        switch(error.code) {
+          case error.TIMEOUT://地理位置获取超时
+            jAlert(tips.GEO_TIMEOUT, "提示");
+            break;
+          case error.POSITION_UNAVAILABLE://地理位置获取失败（可能是用户没网或卫星搜不到等原因）
+            jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
+            break;
+          case error.PERMISSION_DENIED://用户拒绝
+            jAlert(tips.GEO_PERMISSION_DENIED, "提示");
+            break;
+          case error.UNKNOWN_ERROR://其他出错原因
+            jAlert(tips.GEO_UNKNOWN_ERROR, "提示");
+            break;
+        }
+      },
+      createlocation:function(param){
+        var dom = param.dom;
+        var data = param.data;
+        dom.innerHTML = "";
+        var citybox_content_title = document.createElement("div");
+        citybox_content_title.setAttribute("class","citybox_content_title");
+        citybox_content_title.setAttribute("id","js_location");
+        citybox_content_title.innerHTML = "当前";
+        dom.appendChild(citybox_content_title);
+
+        var citybox_content_itemtitle_div = document.createElement("div");
+        citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
+        citybox_content_itemtitle_div.innerHTML = "未知";
+
+        var citybox_content_item_li = document.createElement("li");
+        citybox_content_item_li.setAttribute("class","citybox_content_item selected");
+        citybox_content_item_li.setAttribute("id","js_d_location");
+        citybox_content_item_li.setAttribute("data-code","");
+        citybox_content_item_li.setAttribute("data-name","");
+        citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
+        citybox_content_item_li.onclick = function(){
+          var cityData = {};
+          var cityName = this.getAttribute("data-name");
+          var cityCode = this.getAttribute("data-code");
+          if(cityCode == ""){
+            jAlert(tips.GEO_UNKNOWN_DATA, "提示");
+            return;
+          }
+          cityData.returnType = returnType;
+          cityData.returnAttr = returnAttr;
+          cityData.returnStrType = returnStrType;
+          cityData.returnStrAttr = returnStrAttr;
+          cityData.cityName = cityName;
+          cityData.cityCode = cityCode;
+          Method["setcityboxHistory"](this,cityCode,cityName);
+          dataCityExec().callCityExec(""+globalType+"Exec",cityData);
+          Method['hideAllCityBox']();
+        }
+
+
+        var citybox_content_container_ul = document.createElement("ul");
+        citybox_content_container_ul.setAttribute("class","citybox_content_container");
+        citybox_content_container_ul.appendChild(citybox_content_item_li);
+        dom.appendChild(citybox_content_container_ul);
+      }
+
+    }
+
+    return {
+      /**
+       * 调用数据过滤方法
+       * @param type
+       * @param data
+       * @returns {string}
+       */
+      callMethod:function(type,data){
+        return Adapter[type]?Adapter[type](data):'';
+      },
+      /**
+       * 添加策略
+       * @param type
+       * @param fn
+       */
+      addCommand:function(type,fn){
+        Adapter[type] = fn;
+      },
+      callMultipleMethod:function(msg){
+        msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
+        return Adapter[msg.command].apply(Adapter,msg.param);
+      }
+    }
+  };
   /**
    * 城市列表 生成策略 (globalType)id+HotCity = t_desHotCity & id+CityList = t_desCityList
    * @returns {{callCityList: callCityList, addCityList: addCityList, multiCityList: multiCityList}}
@@ -1122,6 +1268,9 @@
 
 
   var Method = {
+    geolocationview:function(){
+      geo().callMethod("Location",{"type":"#js_d_location","list":config["CityListData"]});
+    },
     /**
      * 显示城市列表 并 隐藏城市搜索列表
      */
@@ -1185,7 +1334,9 @@
       show2 = 0;
       $("#preloader").show();
       Method["showCityBox"]();
+
       VM("citybox_location");//当前城市
+
       VM("citybox_history");//显示历史纪录
 
       config["cacheHotCityList"] = localStorage.getItem(globalType+"_cacheHotcitylist")||"";
@@ -1648,29 +1799,19 @@
      * @param data
      */
     cityboxLocation:function(dom,data){
+
+      if(globalType.indexOf("h_in") > -1){
+        geo().callMethod("createlocation",{"dom":dom,"data":data});
+        return;
+      }
+
+      if(globalType.indexOf("h_out") > -1){
+        geo().callMethod("createlocation",{"dom":dom,"data":data});
+        return;
+      }
+
       $(dom).hide();
-      //dom.innerHTML = "";
-      //var citybox_content_title = document.createElement("div");
-      //citybox_content_title.setAttribute("class","citybox_content_title");
-      //citybox_content_title.setAttribute("id","js_location");
-      //citybox_content_title.innerHTML = "当前";
-      //dom.appendChild(citybox_content_title);
-      //
-      //var citybox_content_itemtitle_div = document.createElement("div");
-      //citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-      //citybox_content_itemtitle_div.innerHTML = "北京";
-      //
-      //var citybox_content_item_li = document.createElement("li");
-      //citybox_content_item_li.setAttribute("class","citybox_content_item selected");
-      //citybox_content_item_li.setAttribute("data-code","200");
-      //citybox_content_item_li.setAttribute("data-name","北京");
-      //citybox_content_item_li.setAttribute("data-letter","bj");
-      //citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
-      //
-      //var citybox_content_container_ul = document.createElement("ul");
-      //citybox_content_container_ul.setAttribute("class","citybox_content_container");
-      //citybox_content_container_ul.appendChild(citybox_content_item_li);
-      //dom.appendChild(citybox_content_container_ul);
+
     },
     /**
      * 城市历史记录
@@ -1818,6 +1959,9 @@
               var cityData = {};
               var cityName = this.getAttribute("data-name");
               var cityCode = this.getAttribute("data-code");
+              if(cityName.indexOf("(") > -1 ){
+                cityName = cityName.substring(0,cityName.indexOf("("));
+              }
               cityData.returnType = returnType;
               cityData.returnAttr = returnAttr;
               cityData.returnStrType = returnStrType;
@@ -1861,6 +2005,7 @@
     cityboxHotCityList:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
+
       var citybox_content_title_div = document.createElement("div");
       citybox_content_title_div.setAttribute("class","citybox_content_title");
       citybox_content_title_div.setAttribute("id","js_hotcity");
@@ -1872,11 +2017,16 @@
       dom.appendChild(citybox_content_container_ul);
 
       for(var i = 0;i<data.length;i++){
+
+        var nltitle = data[i].cityName;
+        if(data[i].cityName.indexOf("(") > -1 ){
+          nltitle = data[i].cityName.substring(0,data[i].cityName.indexOf("("));
+        }
+
         var citybox_content_item_li = document.createElement("li");
         citybox_content_item_li.setAttribute("class","citybox_content_item");
         citybox_content_item_li.setAttribute("data-code",data[i].cityCode);
-        citybox_content_item_li.setAttribute("data-name",data[i].cityName);
-        //citybox_content_item_li.setAttribute("data-letter",data[i].fullSpellingName);
+        citybox_content_item_li.setAttribute("data-name",nltitle);
         citybox_content_item_li.onclick = function(){
           var cityData = {};
           var cityName = this.getAttribute("data-name");
@@ -1891,9 +2041,10 @@
           dataCityExec().callCityExec(""+globalType+"Exec",cityData);
           Method['hideAllCityBox']();
         }
+
         var citybox_content_itemtitle_div = document.createElement("div");
         citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-        citybox_content_itemtitle_div.innerHTML = data[i].cityName;
+        citybox_content_itemtitle_div.innerHTML = nltitle;
         citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
         citybox_content_container_ul.appendChild(citybox_content_item_li);
       }
@@ -1937,6 +2088,9 @@
           var cityData = {};
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
+          if(cityName.indexOf("(") > -1 ){
+            cityName = cityName.substring(0,cityName.indexOf("("));
+          }
           cityData.returnType = returnType;
           cityData.returnAttr = returnAttr;
           cityData.returnStrType = returnStrType;
@@ -1952,6 +2106,9 @@
         dom.appendChild(fragment);
         old_letter = new_letter;
       }
+      if(globalType=="h_in"||globalType=="h_out"){
+        Method["geolocationview"]();
+      }
       VM("citybox_letterindex");
     },
     /**
@@ -1962,19 +2119,38 @@
     cityboxLetterIndex:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
-      //var citybox_summary_item_litop1 = document.createElement("li");
-      //citybox_summary_item_litop1.setAttribute("class","citybox_summary_item");
-      //citybox_summary_item_litop1.setAttribute("data-key","location");
-      //citybox_summary_item_litop1.innerHTML = "当前";
-      //citybox_summary_item_litop1.onclick = function(){
-      //  var key = this.getAttribute("data-key");
-      //  var a = $("#js_"+key);
-      //  if (a.length != 0) {
-      //    i = a.offset().top - scrollTopPx;
-      //  }
-      //  $(window).scrollTop(i);
-      //}
-      //dom.appendChild(citybox_summary_item_litop1);
+      var citybox_summary_item_litop1="";
+      if(globalType=="h_in") {
+        citybox_summary_item_litop1 = document.createElement("li");
+        citybox_summary_item_litop1.setAttribute("class", "citybox_summary_item");
+        citybox_summary_item_litop1.setAttribute("data-key", "location");
+        citybox_summary_item_litop1.innerHTML = "当前";
+        citybox_summary_item_litop1.onclick = function () {
+          var key = this.getAttribute("data-key");
+          var a = $("#js_" + key);
+          if (a.length != 0) {
+            i = a.offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $(".citybox_content").scrollTop();
+          }
+          $(".citybox_content").scrollTop(i);
+        }
+        dom.appendChild(citybox_summary_item_litop1);
+      }
+
+      if(globalType=="h_out") {
+        citybox_summary_item_litop1 = document.createElement("li");
+        citybox_summary_item_litop1.setAttribute("class", "citybox_summary_item");
+        citybox_summary_item_litop1.setAttribute("data-key", "location");
+        citybox_summary_item_litop1.innerHTML = "当前";
+        citybox_summary_item_litop1.onclick = function () {
+          var key = this.getAttribute("data-key");
+          var a = $("#js_" + key);
+          if (a.length != 0) {
+            i = a.offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $(".citybox_content").scrollTop();
+          }
+          $(".citybox_content").scrollTop(i);
+        }
+        dom.appendChild(citybox_summary_item_litop1);
+      }
 
       if(!isHistory){
         var citybox_summary_item_litop2 = document.createElement("li");

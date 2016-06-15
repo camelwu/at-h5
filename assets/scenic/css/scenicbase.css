@@ -1051,7 +1051,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .booking_package_linkman_input{
   font-size: .28rem;
   width: 3rem;
-  height: .8rem;
+  height: .7rem;
 }
 
 .booking_package_linkman_contact{
@@ -1515,13 +1515,12 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 .pickup_pop_suggest_item{
-  height: .96rem;
-  line-height: .96rem;
+  padding: .2rem 0;
+  line-height: .4rem;
   list-style: none;
   font-size: .28rem;
   color: #333333;
   text-overflow: ellipsis;
-  overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
 }
 

@@ -191,16 +191,21 @@ i {
 }
 
 .p-ul2 li {
-
   border-bottom: 1px solid #e6e6e6;
   font-size: 0.4rem;
   line-height: 0.96rem;
   height: 0.96rem;
+  overflow: hidden;
 }
 
 .p-ul2 li div {
   float: left;
   font-size: 0.28rem;
+  height: 100%;
+}
+
+.p-ul2 li >div:last-child {
+  width: 65%;
 }
 
 .p-ul2 li:last-child {
@@ -223,7 +228,15 @@ i {
 
 .p-ul2 li input {
   font-size: 0.28rem;
+  float: left;
+  height: 100%;
+  width: 100%;
+}
 
+.p-ul2 li .MobilePhone {
+  width: 3rem;
+  height: 100%;
+  vertical-align: top;
 }
 
 .p-ul2 li span {
@@ -231,12 +244,6 @@ i {
   height: .36rem;
   margin-right: 1px;
   font-size: 0.28rem;
-  vertical-align: top;
-}
-
-.MobilePhone {
-  width: 2.5rem;
-  padding-top: .26rem;
   vertical-align: top;
 }
 

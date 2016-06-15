@@ -223,6 +223,7 @@ var footer = (function() {
               }
             }
           }
+
         });
         // 遮罩层|返回按钮点击，包括隐藏
         $("body").children().click(function () {});  //解决iPhone safari中Document事件不触发
@@ -327,7 +328,7 @@ var footer = (function() {
           case "airways":
             // 航空公司
             for (; i < l; i++) {
-              css = d[i].additionalPrice == 0 ? ' class="cur"' : '';
+              css = i == 0 ? ' class="cur"' : '';
               listr += '<li' + css + ' data-val="' + d[i].airwayCacheID + '" airwayCacheID="' + d[i].airwayCacheID + '" airwaySetID="' + d[i].airwaySetID + '"><div><img src="' + d[i].airwayLogo + '"></div><span class="airway_name">' + d[i].chineseName + '</span><div class="aw_price"><span>+￥</span><span>' + d[i].additionalPrice + '</span></div><b class="hft_icon"></b></li>';
             }
             ulstr = wrapper[0] + listr + wrapper[1] + button;
