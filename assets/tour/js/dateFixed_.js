@@ -628,6 +628,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         section, nums = Math.ceil(minPax / 3),
       // 插入的成人
         ary_a = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
+        ary_as = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
       // 儿童
         ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
       //  默认房间数为1人，如有最少起订人数，则更换
@@ -635,7 +636,11 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
       for (var i = 0; i < nums; i++) {
         var n = minPax - 3 * (i + 1) >= 0 ? 3 : minPax - 3 * i,
           initStr = '<span class="title">房间' + (i + 1) + '</span>';
-        initStr += ary_a[0] + n + ary_a[1];
+        if(n == 2){
+          initStr += ary_as[0] + n + ary_a[1];
+        }else{
+          initStr += ary_a[0] + n + ary_a[1];
+        }
         if (!onlyForAdult) {
           initStr += ary_c.join('');
         }

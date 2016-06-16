@@ -134,11 +134,12 @@ i.right {
 }
 
 .hotel_user_detail_name2 input {
+    padding: 0 .28rem;
     width: 50%;
-    font-size: .28rem;
-    box-sizing: border-box;
-    padding: .15rem 0 .15rem .28rem;
     height: .88rem;
+    line-height: .88rem;
+    font-size: 0.28rem;
+    box-sizing: border-box;
     vertical-align: middle;
 }
 
