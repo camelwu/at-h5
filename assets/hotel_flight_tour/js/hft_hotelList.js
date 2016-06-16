@@ -83,6 +83,7 @@
 
 				console.log(data.filters)
 				parametersStorage.sortFields = sorttypes;
+				parametersStorage.pageNo = 1;
 				parametersStorage.location = data.locationList;
 				parametersStorage.filterFields = data.filters;
 				tAjax("", parametersStorage, "60100007", "3", screenList);
