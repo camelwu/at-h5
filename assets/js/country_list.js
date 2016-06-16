@@ -105,8 +105,9 @@ var arrCountry = localStorage.arrCountry;
 
     //国家选择弹层返回按钮
     $('.country-hidden').click(function(){
-      $('.gj-header').css('visibility','hidden');
-      $('.country-cho-wrap').css('visibility','hidden');
+      countryMask.hide();
+      $('.gj-header').hide();
+      $('.country-cho-wrap').hide();
       $('.country_header').hide();
       $('#country_index_wrap').hide();
       if($('.country-list-searched').show()){
@@ -114,12 +115,12 @@ var arrCountry = localStorage.arrCountry;
       }
 
       $('#addtra_page').css({
-        'visibility':'visible',
+        'display':'block',
         'position':'relative'
       });
       $('#content').show();
       $('#uptra_page').css({
-        'visibility':'visible',
+        'display':'block',
         'position':'relative'
       });
     });
@@ -187,12 +188,18 @@ var arrCountry = localStorage.arrCountry;
 
     //点击
     var  targetEle = null;
+
+    //点击时加遮罩，safari防止滑动看见上一步数据
+    var countryMask=$('<div class="country_mask" ></div>');
+    countryMask.appendTo($(document.body));
+
     $("body").children().click(function () {});
     document.onclick=function(e){
 
       var e = e || window.event, target = e.target|| e.srcElement;
       if(target.className == "countries-wrap" || target.parentNode.className == 'countries-wrap'){
 
+        countryMask.show();
         targetEle = target.className == "countries-wrap"?target:target.parentNode;
 
         //国籍hot
@@ -208,10 +215,8 @@ var arrCountry = localStorage.arrCountry;
         oDiv.style.display='block';
         $('.country_header').show();
         $('#country_index_wrap').show();
-        $('.country-cho-wrap').css('visibility','visible');
-        $('.gj-header').css('visibility','visible');
-        $('#content-wrap').css('visibility','hidden');
-        $('#uptra_page').css('visibility','hidden');
+        $('.country-cho-wrap').show();
+        $('.gj-header').show();
 
 
       }else if(target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == 'country_list' || target.className == "country-list-searched-item" || target.parentNode.className == 'country-list-searched-item' || target.parentNode.className == "country_list_hot"){
@@ -222,29 +227,26 @@ var arrCountry = localStorage.arrCountry;
           $('.country_header').hide();
           $('#country_index_wrap').hide();
           if(document.querySelector("#addtra_page .user-content")!=null) {
-            $('.gj-header').css('visibility','hidden');
-            $('.country-cho-wrap').css('visibility','hidden');
+            $('.gj-header').hide();
+            $('.country-cho-wrap').hide();
             $('#addtra_page').css({
-              'visibility':'visible',
+              'display':'block',
               'height':n,
               'position':'relative'
             });
             $('#uptra_page').css({
-              'visibility':'visible',
+              'display':'block',
               'height':n,
               'position':'relative'
             });
           }
           oInput.value='';
 
-          if($('#uptra_page').length >0){
-            $('#uptra_page').css('visibility','visible');
-          }
-
         },500)
 
         //列表点击赋值
         console.log(targetEle);
+        countryMask.hide();
         if(targetEle.className == 'countries-wrap'){
           //国籍赋值
           $(targetEle).find('.country-btn').html($(target).html());
@@ -281,6 +283,8 @@ var arrCountry = localStorage.arrCountry;
         }
 
       }else if(target.className == "con_phone fl" || target.parentNode.className == 'con_phone fl' || target.className == "p_86 tel-btn" || target.parentNode.className == "p_86 tel-btn" || target.className == "tel-btn coun-find" || target.parentNode.className == "tel-btn coun-find"){
+        countryMask.show();
+
         //手机区号
         if( target.className == "con_phone fl" || target.className == "p_86 tel-btn" || target.className == "tel-btn coun-find"){
           targetEle = target;
@@ -300,10 +304,9 @@ var arrCountry = localStorage.arrCountry;
         oDiv.style.display='block';
         $('.country_header').show();
         $('#country_index_wrap').show();
-        $('.country-cho-wrap').css('visibility','visible');
-        $('.gj-header').css('visibility','visible');
-        $('#content-wrap').css('visibility','hidden');
-        $('#uptra_page').css('visibility','hidden');
+        $('.country-cho-wrap').show();
+        $('.gj-header').show();
+        $('#content-wrap').hide();
       }
     };
 

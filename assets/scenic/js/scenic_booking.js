@@ -573,6 +573,12 @@
               jAlert(tips[i], "提示");
               return false;
             }
+
+            if(rules[i] == "max" && param.extenddata.toString() == "86" && data.length == 11){
+              jAlert(tips[i], "提示");
+              return false;
+            }
+
             if(rules[i] == "phone" && !vlm.Utils.validate.mobileNo(data)){
               jAlert(tips[i], "提示");
               return false;
@@ -746,14 +752,14 @@
           return false;
         }
         //取区号信息
-        CountryCode = $("#booking_package_linkman_phoneselect").attr("data-tel-code");
+        CountryCode = $("#booking_package_linkman_phoneselect").find("span").attr("data-tel-code");
         if(!T.Command().execCommand({command:"validate", param:{type:"text",data:CountryCode,rules:"required",tips:"电话区号信息不能为空"}})){
           return false;
         }
 
         //验证联系人信息
         var phone = $(".booking_package_linkman_inputphone").val().trim();
-        if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,rules:"required|phone",tips:"联系电话不能为空|联系电话格式不正确"}})){
+        if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,extenddata:CountryCode,rules:"required|phone|max",tips:"联系电话不能为空|联系电话格式不正确|联系电话格式不正确"}})){
           return false;
         }
         //验证联系人信息

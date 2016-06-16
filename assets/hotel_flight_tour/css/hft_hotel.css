@@ -425,7 +425,7 @@ li.cur .h_choose {
 }
 
 .hotel_detail_rooms .slide {
-    padding: 0.16rem 0.28rem 0.1rem;
+    padding: 0.2rem 0.28rem 0.2rem;
     position: relative;
 }
 
@@ -435,6 +435,7 @@ li.cur .h_choose {
 .hotel_detail_rooms .slide .lfword p span{
     width: 70%;
     display: inline-block;
+    line-height: 0.4rem;
 }
 .hotel_detail_rooms .gray {
     color: #999;

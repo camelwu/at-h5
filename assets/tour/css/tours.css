@@ -1,3 +1,4 @@
+
 .pr{
     position: relative;
 }
@@ -701,7 +702,8 @@ a.hotel_detail_pic{
     font-size: 0.3rem;
 }
 .order_per_data ul.order_trave li,.personal_data ul.order_trave li{
-    margin:0 0 0 0.24rem
+    margin:0 0 0 0.24rem;
+    overflow: hidden;
 }
 .order_per_data ul.order_trave span.list_con2,.order_data_box .list_con2{
     display: inline-block;
@@ -1084,6 +1086,14 @@ a.hotel_detail_pic{
     border-radius: .3rem;
     padding-left: .48rem;
     background-color: #e6e6e6;
+}
+
+.cl_search input {
+  width: 5.5rem;
+  height: .5rem;
+  border-radius: .3rem;
+  padding-left: .48rem;
+  background-color: #e6e6e6;
 }
 
 .cl_search i {

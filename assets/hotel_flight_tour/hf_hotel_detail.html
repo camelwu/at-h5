@@ -137,18 +137,12 @@
     <li class="showh">
         <div class="slide jpr">
             <div class="lfword">
-                <p><span class="name"> <%= roomdata[i].roomName %></span></p>
-                <p><% if(roomdata[i].includedBreakfast){%>
-                    双早
-                    <% }else{ %>
-                    无早
-                    <% } %>
-                </p>
+                <p><span class="name"> <%= roomdata[i].roomName %><% if(roomdata[i].includedBreakfast){%>（双早）<% }else{ %>（无早）<% } %></span></p>
             </div>
             <div class="jhf-drg">
-                <% if(roomdata[i].addtionalPrice>=0){ %><p><% }else{ %><p class="reduce"><% } %>
+                <% if(roomdata[i].addtionalPrice>=0){ %><p class="price"><% }else{ %><p class="price reduce"><% } %>
                     <span><% if(roomdata[i].addtionalPrice>=0){ %>+<% }else{ %>-<% } %></span>
-                    <span>￥</span>
+                <span>￥</span>
                     <span>
                         <% if(roomdata[i].addtionalPrice>=0){ %>
                             <%=roomdata[i].addtionalPrice%>
