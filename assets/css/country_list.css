@@ -81,22 +81,22 @@
 
 .country_index {
   position: fixed;
-  top: 1.6rem;
-  right: .06rem;
-  width: 0.6rem;
-  color: #7bc300;
-  font-size: 0.2rem;
-  text-align: center;
+  right: 0;
+  top: 1.2rem;
+  background: rgba(255, 255, 255, .5);
+  padding: 0 .16rem;
+  height: 100%;
   z-index: 1000;
 }
 
 .country_index li {
-  margin-bottom: .08rem;
+  line-height: .4rem;
+  font-size: .24rem;
+  text-align: center;
 }
 
 .country_index li a {
   color: #7bc300;
-  text-underline: none
 }
 
 .country-cho-wrap h4 {

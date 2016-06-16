@@ -15,13 +15,19 @@
                     s: 1,
                     type: 1,
                     key: 'sortTypes',
-                    listData: [{
-                        sortText: "价格从高至低",
-                        sortValue: 4
-                        }, {
+                    listData: [
+                        {
+                            sortText: "推荐排序",
+                            sortValue: 0
+                        },
+                        {
                         sortText: "价格从低至高",
                         sortValue: 3
-                        }, {
+                        },
+                        {sortText: "价格从高至低",
+                            sortValue: 4
+                        },
+                        {
                         sortText: "星级从高到低",
                         sortValue: 2
                         }, {
@@ -167,6 +173,7 @@
          **/
         list: function (result, more) {
             if (result.code === 200 && result.success) {
+                $('.all_elements').scrollTop(0);
                 //更新酒店数量
                 var data = result.data;
                 var str = $('#title').html();

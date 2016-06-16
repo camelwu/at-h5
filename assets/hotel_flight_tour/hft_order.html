@@ -389,25 +389,31 @@
 
 
       function callback(){
-
         var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_orderTraveller"));
-        var i= 0, adultNum= 0,childNum=0;
+        var i= 0, adultNum= 0,childNum= 0,arr1=[];
         for (var key in modle) {
           if(modle[key].traveller.PassengerType=="CHILD"){
             childNum++;
-
+            arr1.push('chi');
           }
           else{
-            adultNum++
+            adultNum++;
+            arr1.push('adu');
           }
           if(i==0) {
             $(".contact_link_wrap .hft_con_lastname").val(modle[key].traveller.firstName);
             $(".contact_link_wrap .hft_con_firstname").val(modle[key].traveller.lastName);
-            $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
-            $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
+//            $(".contact_link_wrap .hft_con_email").val(modle[key].traveller.email);
+//            $(".contact_link_wrap .tel_code_tip ").val(modle[key].traveller.mobilePhone);
           }
           i++;
         }
+
+        //给删除联系人添加成人或者儿童
+        for(var i=0; i<arr1.length; i++){
+          $('.tra_delete').eq(i+1).attr('data-elementName',arr1[i]);
+        }
+
         $(".adu_choose").html(adultNum);
         $(".chi_choose").html(childNum);
 
@@ -415,6 +421,12 @@
         //删除出行人
         function delPassager(obj) {
           $(obj).parent().parent().remove();
+
+          if($(obj).attr('data-elementName') == 'adu'){
+            $('.adu_choose').html($('.adu_choose').html()-1);
+          }else{
+            $('.chi_choose').html($('.chi_choose').html()-1);
+          }
 
           var id=$(obj).parent().find(".itemId").val();
           var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
@@ -431,7 +443,7 @@
         function editPassager(obj) {
              var id = $(obj).find("input").eq(0).val();
              var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
-             vlm.f_choice('orderTraveller','f','traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false)
+          vlm.f_choice('orderTraveller', 'fx', 'traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false);
         }
 
     </script>
