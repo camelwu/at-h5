@@ -724,6 +724,7 @@
       var json={data:choiceAir_AddPassagerArray};
       var html = template(tpl_traveler,json) ;
       document.getElementById("allList").innerHTML = html;
+      vlm.init();
 
 
       choiceAir_AddPassagerArray.forEach(function(info){
