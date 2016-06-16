@@ -14,6 +14,8 @@ var htf_search = {
         var search_hotel = document.getElementsByClassName('search_hotel');
         var hotelInfo_hf = search_hotel[0].querySelector('.hotelInfo_numb_room');
         var hotelInfo_hft = search_hotel[1].querySelector('.hotelInfo_numb_room');
+        var adultbox;
+        var adultplus;
         if (localStorage.cacheSearch) {
             var cacheSearch = JSON.parse(localStorage.cacheSearch);
             switch (cacheSearch.Box) {
@@ -134,6 +136,22 @@ var htf_search = {
             section.innerHTML = initStr_hft;
             section.className = 'hotelInfo_numb_people init-hotel-room-detail';
             search_hotel[1].insertBefore(section, hotelInfo_hft.nextSibling);
+        }
+        adultbox = search_hotel[0].getElementsByClassName('per_price_control');
+        for(var n=0;n < adultbox.length;n++) {
+            if (adultbox[n].getAttribute('data-type') == 'adult') {
+                if (adultbox[n].getElementsByTagName('i')[0].innerHTML == 3) {
+                  adultbox[n].lastChild.style.backgroundPosition = '29.5% 68%';
+                }
+            }
+        }
+        adultbox = search_hotel[1].getElementsByClassName('per_price_control');
+        for(var k=0;k < adultbox.length;k++) {
+          if (adultbox[k].getAttribute('data-type') == 'adult') {
+            if (adultbox[k].getElementsByTagName('i')[0].innerHTML == 3) {
+              adultbox[k].lastChild.style.backgroundPosition = '29.5% 68%';
+            }
+          }
         }
         $('.tab').click(function () {
             $(this).addClass('active').siblings().removeClass('active');
