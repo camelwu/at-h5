@@ -76,7 +76,7 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><span><%=  leaveItem["planeName"] %></span>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%><% if(flightInfo.isLeaveStop == 1){%><span class="share_word">经停</span><%}%>
           </p>
         </li>
         <%if(item
@@ -128,7 +128,7 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%><% if(flightInfo.isReturnStop == 1){%><span class="share_word">经停</span><%}%>
           </p>
         </li>
         <%if(item_
