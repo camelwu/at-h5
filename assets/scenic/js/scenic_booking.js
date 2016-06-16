@@ -370,31 +370,31 @@
         $(".js_booking_package_date").click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
-            tar = $(tar).parent()[0];
-            if(tar.nodeName.toLowerCase() === 'div'){
-              var tid = $(tar).attr("id");
-              var defaultdate= $(tar).attr("data-defaultdate");
-              var outid = $(tar).find(".js_booking_package_date_p").attr("id");
-              var obj = {};
-              obj[defaultdate] = "fristDate";
+          tar = $(tar).parent()[0];
+          if(tar.nodeName.toLowerCase() === 'div'){
+            var tid = $(tar).attr("id");
+            var defaultdate= $(tar).attr("data-defaultdate");
+            var outid = $(tar).find(".js_booking_package_date_p").attr("id");
+            var obj = {};
+            obj[defaultdate] = "fristDate";
 
-              var myTime = new ATplugins.Calender({
-                id: tid,
-                selectTime: 1,
-                time: obj,
-                //checkInTimeOptId: outid,
-                callback: function(result) {
-                  var out_date="",out_day = "";
-                  var currentDay = result.toString();
-                  out_day = result.toString()+"T00:00:00";
-                  out_date = Adapter.formatDate({date:out_day,format:"MM月dd日"});
-                  $("#"+tid+"").attr("data-defaultdate",currentDay);
-                  $("#"+tid+"").attr("data-value",out_day);
-                  $("#"+outid+"").html(out_date);
-                  console.info(result.toString());
-                }
-              });
-            }
+            var myTime = new ATplugins.Calender({
+              id: tid,
+              selectTime: 1,
+              time: obj,
+              //checkInTimeOptId: outid,
+              callback: function(result) {
+                var out_date="",out_day = "";
+                var currentDay = result.toString();
+                out_day = result.toString()+"T00:00:00";
+                out_date = Adapter.formatDate({date:out_day,format:"MM月dd日"});
+                $("#"+tid+"").attr("data-defaultdate",currentDay);
+                $("#"+tid+"").attr("data-value",out_day);
+                $("#"+outid+"").html(out_date);
+                console.info(result.toString());
+              }
+            });
+          }
 
         });
       },
@@ -403,7 +403,7 @@
         $(""+id+"").innerHTML = "";
         tplString = $("#tpl_BookingPackageCount").html();
         outString = ejs.render(tplString,{lists:ExtendData,count:count});
-       $(""+id+":last").append(outString);
+        $(""+id+":last").append(outString);
       },
       removeChildInput:function(id){
         $(""+id+" li:last").remove();
@@ -457,30 +457,30 @@
         var tplString="",outString="";
         $(".js_booking_footer_popprice_list").empty();
 
-          if($(".js_booking_package_pre_adult_num").html() !== undefined){
-            for(var i =0;i<ExtendData.SearchPriceData.data.prices.length;i++){
-              if(ExtendData.SearchPriceData.data.prices[i].category == "ADULT"){
-                tplString = $("#tpl_BookingPackagePriceDetail").html();
-                outString = ejs.render(tplString,{tourCategory:"成人票",
-                  tourAmount:ExtendData.SearchPriceData.data.prices[i].amount,
-                  tourNum:$(".js_booking_package_pre_adult_num").html()});
-                $(".js_booking_footer_popprice_list").append(outString);
-                //console.log(ExtendData.SearchPriceData.data.prices[i].amount);
-              }
+        if($(".js_booking_package_pre_adult_num").html() !== undefined){
+          for(var i =0;i<ExtendData.SearchPriceData.data.prices.length;i++){
+            if(ExtendData.SearchPriceData.data.prices[i].category == "ADULT"){
+              tplString = $("#tpl_BookingPackagePriceDetail").html();
+              outString = ejs.render(tplString,{tourCategory:"成人票",
+                tourAmount:ExtendData.SearchPriceData.data.prices[i].amount,
+                tourNum:$(".js_booking_package_pre_adult_num").html()});
+              $(".js_booking_footer_popprice_list").append(outString);
+              //console.log(ExtendData.SearchPriceData.data.prices[i].amount);
             }
           }
-          if($(".js_booking_package_pre_child_num").html() !== undefined){
-            for(var i =0;i<ExtendData.SearchPriceData.data.prices.length;i++){
-              if(ExtendData.SearchPriceData.data.prices[i].category == "CHILD"){
-                tplString = $("#tpl_BookingPackagePriceDetail").html();
-                outString = ejs.render(tplString,{tourCategory:"儿童票",
-                  tourAmount:ExtendData.SearchPriceData.data.prices[i].amount,
-                  tourNum:$(".js_booking_package_pre_child_num").html()});
-                $(".js_booking_footer_popprice_list").append(outString);
-                //console.log(ExtendData.SearchPriceData.data.prices[i].amount);
-              }
+        }
+        if($(".js_booking_package_pre_child_num").html() !== undefined){
+          for(var i =0;i<ExtendData.SearchPriceData.data.prices.length;i++){
+            if(ExtendData.SearchPriceData.data.prices[i].category == "CHILD"){
+              tplString = $("#tpl_BookingPackagePriceDetail").html();
+              outString = ejs.render(tplString,{tourCategory:"儿童票",
+                tourAmount:ExtendData.SearchPriceData.data.prices[i].amount,
+                tourNum:$(".js_booking_package_pre_child_num").html()});
+              $(".js_booking_footer_popprice_list").append(outString);
+              //console.log(ExtendData.SearchPriceData.data.prices[i].amount);
             }
           }
+        }
 
 
 
@@ -568,18 +568,19 @@
         }
 
         if(type == "phone"){
+          var reg = /^[0-9]+$/;
           for (var i = 0;i<rules.length;i++){
             if(rules[i] == "required" && !vlm.Utils.validate.isNoEmpty(data)){
               jAlert(tips[i], "提示");
               return false;
             }
 
-            if(rules[i] == "max" && param.extenddata.toString() == "86" && data.length == 11){
+            if(rules[i] == "CN" && param.extenddata.toString() == "86" && data.length != 11){
               jAlert(tips[i], "提示");
               return false;
             }
 
-            if(rules[i] == "phone" && !vlm.Utils.validate.mobileNo(data)){
+            if(rules[i] == "phone" && !reg.test(data)){
               jAlert(tips[i], "提示");
               return false;
             }
@@ -589,12 +590,12 @@
         if(type == "email"){
           for (var i = 0;i<rules.length;i++){
             if(rules[i] == "required" && !vlm.Utils.validate.isNoEmpty(data)){
-                jAlert(tips[i], "提示");
-                return false;
+              jAlert(tips[i], "提示");
+              return false;
             }
             if(rules[i] == "email" && !vlm.Utils.validate.email(data)){
-                jAlert(tips[i], "提示");
-                return false;
+              jAlert(tips[i], "提示");
+              return false;
             }
           }
         }
@@ -759,7 +760,7 @@
 
         //验证联系人信息
         var phone = $(".booking_package_linkman_inputphone").val().trim();
-        if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,extenddata:CountryCode,rules:"required|phone|max",tips:"联系电话不能为空|联系电话格式不正确|联系电话格式不正确"}})){
+        if(!T.Command().execCommand({command:"validate", param:{type:"phone",data:phone,extenddata:CountryCode,rules:"required|phone|CN",tips:"联系电话不能为空|联系电话格式不正确|联系电话格式不正确"}})){
           return false;
         }
         //验证联系人信息
@@ -882,12 +883,12 @@
 
       },
       researchBookingPackage:function(SearchPrice){
-          $("<div id=\"preloadertmp\"><div id=\"statustmp\"><p class=\"center-text\"></p></div></div>").appendTo("body").show();
-          $(".all-elements").hide();
-          vlm.loadJson("",JSON.stringify(SearchPrice),Method["callbackReSearchPrice"],"","",true);
+        $("<div id=\"preloadertmp\"><div id=\"statustmp\"><p class=\"center-text\"></p></div></div>").appendTo("body").show();
+        $(".all-elements").hide();
+        vlm.loadJson("",JSON.stringify(SearchPrice),Method["callbackReSearchPrice"],"","",true);
       },
       createBookingPackage:function(Order){
-          vlm.loadJson(vlm.apiWithDeviceID,JSON.stringify(Order),Method["callbackCreateBookingPackage"],"","",true);
+        vlm.loadJson(vlm.apiWithDeviceID,JSON.stringify(Order),Method["callbackCreateBookingPackage"],"","",true);
       }
     }
 
