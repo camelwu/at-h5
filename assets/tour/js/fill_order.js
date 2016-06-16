@@ -51,7 +51,7 @@
       day = strTime.substring(8, 10);
     }
     dateTime = meetYear + '-' + month + '-' + day + ' ' + hour;
-    console.log(dateTime)
+    //console.log(dateTime)
     return dateTime;
   }
   $('#content3_CheckInDate').attr('value', timeChong(jsonPackageJie));
