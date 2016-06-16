@@ -2,49 +2,49 @@
 <html>
 
 <head lang="zh-cn">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="browsermode" content="application">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="x5-fullscreen" content="true">
-    <meta name="x5-page-mode" content="app">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚程旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <title>景点列表页</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>景点列表页</title>
 
-    <link rel="stylesheet" href="../styles/reset.css" />
-    <link rel="stylesheet" href="css/hft_scenic_list.css" />
-    <link rel="stylesheet" href="../css/plugins/footer/footer.css" />
+  <link rel="stylesheet" href="../styles/reset.css" />
+  <link rel="stylesheet" href="css/hft_scenic_list.css" />
+  <link rel="stylesheet" href="../css/plugins/footer/footer.css" />
 </head>
 
 <body data-statp="productList">
-    <div id="preloader">
-        <div id="status">
-        </div>
+<div id="preloader">
+  <div id="status">
+  </div>
+</div>
+<div class="all_elements">
+  <div class="header">
+    <a href="index.html?type=2" class="header_back" id="g_back" data-statl="back">
+      <i class="icon_back"></i>
+    </a>
+    <h3 id="tour_city">自由行</h3>
+  </div>
+  <div class="contents">
+    <div class="snap-content">
+      <section class="time_people_list" id="TimeList">
+      </section>
+      <section class="city_list" id="CityList">
+      </section>
+      <section class="scenic-detile" id="scenicList">
+      </section>
     </div>
-    <div class="all_elements">
-        <div class="header">
-            <a href="index.html?type=2" class="header_back" id="g_back" data-statl="back">
-                <i class="icon_back"></i>
-            </a>
-            <h3 id="tour_city">自由行</h3>
-        </div>
-        <div class="contents">
-            <div class="snap-content">
-                <section class="time_people_list" id="TimeList">
-                </section>
-                <section class="city_list" id="CityList">
-                </section>
-                <section class="scenic-detile" id="scenicList">
-                </section>
-            </div>
-        </div>
-    </div>
-    <!--底部-->
+  </div>
+</div>
+<!--底部-->
 </body>
 <script src="../js/lib/logRecord.js" type="text/javascript"></script>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
@@ -53,14 +53,14 @@
 <script src="js/hft_scenic_list.js"></script>
 <script src="../js/plugins/footer/foot.js"></script>
 <script id="tpl_head" type="text/template">
-    <span><%=departCity%></span><i class="arrowDouble"></i><span><%=destCity%></span>
+  <span><%=departCity%></span><i class="arrowDouble"></i><span><%=destCity%></span>
 </script>
 <script id="timeDetile" type="text/template">
-    <span class="time_people_list_time">
+  <span class="time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>
             </span>
 
-    <span class="time_people_list_number" id="Time">
+  <span class="time_people_list_number" id="Time">
       <%if(AdultNum >0){%>
       <span><%= AdultNum %>成人</span>
       <%}%>
@@ -73,45 +73,45 @@
       <i></i></span>
 </script>
 <script id="CityDetile" type="text/template">
-    <% if(recommendCities.length > 1){ %>
-        <ul class = "city_box">
-            <% for(var i=0;i< recommendCities.length;i++){%>
+  <% if(recommendCities.length > 1){ %>
+  <ul class = "city_box">
+    <% for(var i=0;i< recommendCities.length;i++){%>
 
-                <li class="city_list1 <% if(i==0){%>current<%} %>" data-code="<%=recommendCities[i].cityCode%>">
-                    <%= recommendCities[i].cityName %><i></i></li>
-                <% } %>
-        </ul>
-        <% } %>
+    <li class="city_list1 <% if(i==0){%>current<%} %>" data-code="<%=recommendCities[i].cityCode%>">
+      <%= recommendCities[i].cityName %><i></i></li>
+    <% } %>
+  </ul>
+  <% } %>
 </script>
 <script id="scenicDetile" type="text/template">
-    <ul>
-        <% if(lists){ for( var i=0;i< lists.length; i++){ %>
-            <li class="scenic-detile_list" data-packageID="<%= lists[i].packageID%>">
-                <div class="scenic-detile_list_matter clearfix">
-                    <div class="scenic_detile_img ">
-                        <img src="<%= lists[i].pictureURL%>" alt="丹嫩沙多水上市场" class="scenic_detile_img_po" />
-                        <!--<p class = "scenic-detile_list_theme">主题</p>-->
-                    </div>
+  <ul>
+    <% if(lists){ for( var i=0;i< lists.length; i++){ %>
+    <li class="scenic-detile_list" data-packageID="<%= lists[i].packageID%>">
+      <div class="scenic-detile_list_matter clearfix">
+        <div class="scenic_detile_img ">
+          <img src="<%= lists[i].pictureURL%>" alt="丹嫩沙多水上市场" class="scenic_detile_img_po" />
+          <!--<p class = "scenic-detile_list_theme">主题</p>-->
+        </div>
 
-                    <div class="scenic_detile_content">
-                        <p class="scenic_detile_content_name">
-                            <%= lists[i].packageName %>
-                        </p>
-                        <p class="scenic_detile_content_after">￥<span><%= lists[i].leadinPrice %></span>/人起</p>
-                    </div>
-                </div>
-                <div class="scenic_detile_project">
-                    <p>
-                        <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
-                            •
-                            <%= lists[i].inclusiveItems[j]%>
-                      <% } %>
-                    </p>
-                </div>
-            </li>
-            <% }} %>
-      <li class = "loadMore">没有更多数据了</li>
-    </ul>
+        <div class="scenic_detile_content">
+          <p class="scenic_detile_content_name">
+            <%= lists[i].packageName %>
+          </p>
+          <p class="scenic_detile_content_after">￥<span><%= lists[i].leadinPrice %></span>/人起</p>
+        </div>
+      </div>
+      <div class="scenic_detile_project">
+        <p>
+          <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
+          •
+          <%= lists[i].inclusiveItems[j]%>
+          <% } %>
+        </p>
+      </div>
+    </li>
+    <% }} %>
+    <li class = "loadMore">没有更多数据了</li>
+  </ul>
 </script>
 
 </html>
