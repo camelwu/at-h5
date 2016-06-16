@@ -107,7 +107,7 @@ var hotelList = {
 						$(this).addClass('cur').siblings().removeClass('cur');
 						var hotelId = $(this).attr('data-id');
 						document.location.href = 'room-upgrade.html?' + 'hotelID=' + hotelId + '&travelersInput=' + that.bookingFormInfo.travelersInput + '&airportTransferType=' + that.bookingFormInfo.airportTransferType;
-					})
+					});
           that.delayLoadImage().addEvent();
 				}
 
