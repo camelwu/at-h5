@@ -2,13 +2,13 @@
 var arrCountry = localStorage.arrCountry;
 
   (function(){
-    var Parameters = {
-    "Parameters": {"LastUpdateTime": "2010-01-01"},
-    "ForeEndType": 3,
-    "Code":"70100008"
-  };
-    console.log(Parameters);
-    vlm.loadJson("", JSON.stringify(Parameters), countryback);
+  //  var Parameters = {
+  //  "Parameters": {"LastUpdateTime": "2010-01-01"},
+  //  "ForeEndType": 3,
+  //  "Code":"70100008"
+  //};
+  //  console.log(Parameters);
+    //vlm.loadJson("", JSON.stringify(Parameters), countryback);
 
     //在原型链定义distinct
     //Array.prototype.distinct = function () {
@@ -51,17 +51,16 @@ var arrCountry = localStorage.arrCountry;
       });
       return result;
     };
-
-    function countryback(ret){
-    var json=ret;
-      console.log(json);
-    if(json.success){
-      arrCountry=json.data;
-    }else{
-      console.log(json.message);
-      arrCountry = JSON.parse(localStorage.arrCountry);
-    }
-
+    //function countryback(ret){
+    //var json=ret;
+    //  console.log(json);
+    //if(json.success){
+    //  arrCountry=json.data;
+    //}else{
+    //  console.log(json.message);
+    //  arrCountry = JSON.parse(localStorage.arrCountry);
+    //}
+    arrCountry = JSON.parse(localStorage.arrCountry);
     //改造数组
     countryArray = returnRArray(arrCountry);
     arrCountry.forEach(function (itemValue) {
@@ -309,7 +308,19 @@ var arrCountry = localStorage.arrCountry;
     };
 
 
-  }
+    //右侧a-z点击显示字母
+    var targetDiv=$('<div class="a_target" ></div>'),targetTimer;
+    targetDiv.appendTo($(document.body));
+    $('#country_index_wrap a').click(function(){
+      clearTimeout(targetTimer);
+      targetDiv.css('visibility','visible');
+      targetDiv.html($(this).html());
+      targetTimer=setTimeout(function(){
+        targetDiv.css('visibility','hidden');
+      },500);
+    });
+  //}
+
 })();
 
 //根据countryCode获得CountryName

@@ -408,8 +408,16 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
           var childChooseParent = temEle.querySelectorAll('.spenumbList');
 
           if (temAdultNum == 1 && temChildNum == 1) {
-            childWithBed.push(temEle.querySelector('input').value);
+            //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
+            if(temEle.querySelectorAll('input').length>1){
+              childWithBed.push(temEle.querySelectorAll('input')[1].value);
+            }
+            else{
+              childWithBed.push(temEle.querySelector('input').value);
+            }
+
           } else if (temAdultNum == 1 && temChildNum == 2) {
+            //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
             childWithBed.push(temEle.querySelectorAll('input')[0].value);
             childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
           }
@@ -421,10 +429,9 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 if (tt.hasClass("ico_select")) {
                   childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 } else {
-                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[1].value);
+                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[0].value);
                 }
               } else if (temChildNum == 2 && tt != null) {
-                debugger;
                 childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 childWithOutBed.push(ty.parentNode.querySelectorAll('input')[2].value);
               }

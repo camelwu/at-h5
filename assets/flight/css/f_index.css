@@ -118,7 +118,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   overflow: hidden;
 }
 .share_word{
-  color:#55bfb7;
+  color:#55bfb7!important;
 }
 .share_word:before{
   color:#999;
