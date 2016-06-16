@@ -840,10 +840,10 @@ var hftChoose = {
           this.getNewPricePara.packageID = this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "60100006", 3, this.renderHandler_f);
         } else if (this.type == "1") {
-          this.initParaObj.airwaySetID = hftFlightHotelTourInfo['airwaySetID'];
-          this.initParaObj.airwayCacheID = hftFlightHotelTourInfo['airwayCacheID'];
-          this.initParaObj.flightSetID = hftFlightHotelTourInfo.flightInfo.setID;
-          this.initParaObj.flightCacheID = hftFlightHotelTourInfo.flightInfo.cacheID;
+          this.initParaObj.airwaySetID = hftFlightHotelTourInfo.flightInfo.setID;
+          this.initParaObj.airwayCacheID = hftFlightHotelTourInfo.flightInfo.cacheID;
+          /*this.initParaObj.flightSetID = hftFlightHotelTourInfo.flightInfo.setID;
+          this.initParaObj.flightCacheID = hftFlightHotelTourInfo.flightInfo.cacheID;*/
           delete this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
         }
