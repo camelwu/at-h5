@@ -362,10 +362,12 @@ a:link {
   position: absolute;
   top: 0;
   right: 0;
-  background: url(../../images/ui/ticket_hotel.png) no-repeat -182px -61px;
-  width: 21px;
-  height: 21px;
-  background-size: 300px 229px;
+  width: 0.42rem;
+  height: 0.42rem;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-size: 7.90rem 7.83rem;
+  background-repeat: no-repeat;
+  background-position: -4.73rem -1.47rem;
 }
 
 .jhf-mes .jhf-drg p {
