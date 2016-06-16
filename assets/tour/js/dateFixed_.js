@@ -82,7 +82,9 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             console.info(instance);
             var containerId = instance.id;
             $("#" + containerId).find("input").val(data[0]);
-            $("#" + containerId).find(".week-tour").html(vlm.Utils.getWeek(data[0]));
+            var tmp = data[0];
+            tmp = tmp.replace(/-/g,"/");
+            $("#" + containerId).find(".week-tour").html(vlm.Utils.getWeek(tmp));
           }
         });
       }
