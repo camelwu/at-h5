@@ -168,7 +168,6 @@ var hftChoose = {
             }
           }
           that.curChosenTourInfo.chosenDate = that.curChooseDate;
-          console.log( that.curChosenTourInfo)
           storage.setItem('tourChosenInfo', JSON.stringify(that.curChosenTourInfo));
           that.dateWrap.innerHTML = '<span data-date="' + that.curChooseDate + '">' + that.returnDay(that.curChooseDate) + '</span><i></i>';
           shadowEle.style.display = "none";
@@ -192,7 +191,7 @@ var hftChoose = {
           that.getNewPricePara.flightSetID = that.curData.flightInfo.setID;
           that.getNewPricePara.selectedHotelID = that.curData.hotelInfo.hotelID;
           that.getNewPricePara.selectedRoomID = that.roomPriceInfo.roomID;
-          // that.tAjax("", that.getNewPricePara, "60100009", 3, that.renderHandler_);//重新计价
+          that.tAjax("", that.getNewPricePara, "60100009", 3, that.renderHandler_);//重新计价
         } else if (target.tagName == "SPAN" && target.getAttribute('data-m')) {
           temEles = target.parentNode.querySelectorAll('.month-title');
           for (var h = 0; h < temEles.length; h++) {
