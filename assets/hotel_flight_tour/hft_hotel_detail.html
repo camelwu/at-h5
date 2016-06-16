@@ -108,14 +108,15 @@
   <li data-hotelId="<%= rooms[i].roomID %>">
     <div class="slide">
       <div class="lfword">
-        <p><span class="name"><%= rooms[i].roomName %></span><i class="book"></i></p>
-        <p class="gray">
+        <p><span class="name"><%= rooms[i].roomName %>
           <% if(rooms[i].includedBreakfast){%>
-          含早
+          （含早）
           <% }else{ %>
-          无早
-          <% } %>
-        </p>
+          （不含早）
+          <% } %></span><i class="book"></i></p>
+        <!--<p class="gray">-->
+
+        <!--</p>-->
       </div>
       <div class="price">
         <span class="word">+</span>
