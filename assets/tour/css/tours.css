@@ -701,7 +701,8 @@ a.hotel_detail_pic{
     font-size: 0.3rem;
 }
 .order_per_data ul.order_trave li,.personal_data ul.order_trave li{
-    margin:0 0 0 0.24rem
+    margin:0 0 0 0.24rem;
+    overflow: hidden;
 }
 .order_per_data ul.order_trave span.list_con2,.order_data_box .list_con2{
     display: inline-block;
