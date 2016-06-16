@@ -143,5 +143,5 @@
 	core.ScenicList();
 	//清空历史数据
 	window.sessionStorage.removeItem('hftFlightHotelTourInfo');
+    window.sessionStorage.removeItem('tourChosenInfo');
 })();
-
