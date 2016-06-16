@@ -545,7 +545,6 @@ var hftChoose = {
     $(".all_elements").eq(0).html(outputStrc);
     backFun();
   },
-
   createPriceEle: function () {
     var selectedRoomId = arguments[0], priceRoom = arguments[1]||null, that = hftChoose, temEle = null, str = '';
     var priceE = document.querySelector('.priceTotal span'), priceOuter = document.querySelector('.priceDetailInfo');
