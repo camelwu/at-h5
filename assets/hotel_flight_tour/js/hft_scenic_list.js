@@ -125,7 +125,7 @@
 			var sum = data.data.recommendCities.length;
 			var num = 0;
 			var width = 0;
-			for (var i = 0; i < sum; i++) {
+			for (var i = 0; i < sum-1; i++) {
 				width = $(".city_list1").eq(i).width();
 				console.log(width);
 				num += width;
