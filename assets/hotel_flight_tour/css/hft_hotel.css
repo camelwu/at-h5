@@ -430,14 +430,10 @@ li.cur .h_choose {
 }
 
 .hotel_detail_rooms .slide .lfword p {
-    height: 0.4rem;
-    line-height: 0.4rem;
+    padding-bottom: 0.04rem;
 }
 .hotel_detail_rooms .slide .lfword p span{
-    width: 60%;
-    overflow: hidden;
-    white-space:nowrap;
-    text-overflow: ellipsis;
+    width: 70%;
     display: inline-block;
 }
 .hotel_detail_rooms .gray {
