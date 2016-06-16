@@ -619,7 +619,7 @@
     </div>
   </section>
   <% if(orderStatus==1 ){ %>
-  <div class="p-but cancelOrder"><a href="#">取消订单</a></div>
+  <div class="p-but cancelOrder"><a href="javascript:;">取消订单</a></div>
   <% } else if(orderStatus==0){ %>
   <div class="p-but payOrder"><a href="payment.html?bookingRefNo=<%=bookingReferenceNo%>&type=Hotle">支付订单</a></div>
   <% } %>
@@ -818,7 +818,7 @@
     </div>
   </section>
 
-  <section id="order_detail" style="clear:both">
+  <section id="order_detail" style="clear:both" >
     <% if(voucher!=null && voucher.length>=1){ %>
     <div class="fht_order_detail">
       <div class="fht_hd">电子确认单（景点入园时出示）</div>
