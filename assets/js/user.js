@@ -42,6 +42,7 @@
         return;
       }
       $('#addtra_page').show();
+      $('#content-wrap').hide();
     });
 
     //   增加常旅客
@@ -176,6 +177,7 @@
         }
 
         addtra_page.style.display='none';
+        $('#content-wrap').show();
       };
       function conAdd(arg){
         if(arg == true)
@@ -193,7 +195,7 @@
           $('#man').attr('class','per_man sex_act');
           $('#woman').attr('class','per_man');
           addtra_page.style.display='none';
-          $('#content-wrap').css('visibility','visible');
+          $('#content-wrap').show();
         }
       }
     }
@@ -442,7 +444,7 @@
               ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
             }
           }*/
-          
+
           var ul_li3 = document.createElement("li");
           ul_li3.innerHTML = "手机号" + " " + travJson.data[i].traveller.mobilePhone;
           ul.appendChild(ul_li3);
@@ -467,6 +469,7 @@
     }
     var uptra_page = $("#uptra_page")[0];
     uptra_page.style.display = "block";
+    $('#content-wrap').hide();
     var input = document.getElementById("updateForm").getElementsByTagName("input");
     var cardType = $("#cardType")[0];
     var countryName = $("#countryName")[0];
@@ -563,7 +566,6 @@
         }
       }
       //证件类型、发证国家、国籍、性别
-      console.log(oldsendName +":"+ $('#countryName').html());
       if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ){
         jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
         return;
@@ -575,14 +577,15 @@
         return;
       }
       uptra_page.style.display='none';
+      $('#content-wrap').show();
 
     };
 
     function conEdit(arg){
       if(arg == true)
       {
-        $('#content-wrap').css('visibility','visible');
         uptra_page.style.display='none';
+        $('#content-wrap').show();
       }
     }
   }
@@ -666,29 +669,27 @@
 
   //姓名说明新增
   $('#anameState').click(function(){
-    $('#content-wrap').css('visibility','hidden');
-    $('#addtra_page').css('visibility','hidden');
+    $('#addtra_page').hide();
     $('#fillName_page').show();
+    $('#closeName').click(function(){
+      $('#addtra_page').show();
+      $('#fillName_page').hide();
+    });
   })
 
-  $('#closeName').click(function(){
-    $('#content-wrap').css('visibility','visible');
-    $('#addtra_page').css('visibility','visible');
-    $('#fillName_page').hide();
-  });
-
-  //编辑
+  //姓名说明编辑
   $('#nameState').click(function(){
-    $('#content-wrap').css('visibility','hidden');
-    $('#uptra_page').css('visibility','hidden');
-    $('#fillName_page').show();
+    $('#uptra_page').hide();
+    $('#fillName_page_edit').show();
+
+    $('#closeName_edit').click(function(){
+      $('#uptra_page').show();
+      $('#fillName_page_edit').hide();
+    });
+
   })
 
-  $('#closeName').click(function(){
-    $('#content-wrap').css('visibility','visible');
-    $('#uptra_page').css('visibility','visible');
-    $('#fillName_page').hide();
-  });
+
 
 })();
 

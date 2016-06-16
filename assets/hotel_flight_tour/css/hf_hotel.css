@@ -194,6 +194,7 @@ a:link {
 }
 .jhf_score li.li_first{
   background: #fff;
+  line-height: 1.2rem;
 }
 .jhf_score li.last_child{
   position: relative;
@@ -213,6 +214,9 @@ a:link {
 .jhf_star,.jhf-mes {
   background: #fff;
 }
+.jhf-mes{
+  margin-top: 0.2rem;
+}
 .jhf_star{
   padding: 0 0.3rem;
   border-bottom: 1px solid #dfdfdd;
@@ -221,6 +225,7 @@ a:link {
 }
 .jhf_star .star{
   font-size: 0.24rem;
+  line-height: 1.2rem;
 }
 .jhf_star .star .detail{
   position: absolute;
@@ -235,10 +240,10 @@ a:link {
   margin-bottom: 0;
 }
 
-.jhf-ul li {
+.jhf-ul li.jhf-date {
   height: 1.2rem;
   line-height: 1.2rem;
-  margin-bottom: 0;
+  /*margin-bottom: 0;*/
 }
 
 .jhf-ul li .arrow {
@@ -322,11 +327,6 @@ a:link {
   top: 5px;
   margin-left: 3px;
 }
-
-.jhf-mes li {
-  height: auto;
-}
-
 .jhf-mes li .arrow {
   right: 15px;
 }
@@ -336,20 +336,16 @@ a:link {
 }
 
 .jhf-mes > li:nth-child(1) {
-  padding: 0 15px;
-  border-bottom: 1px solid #dfdfdd;
+  padding: 0 0.28rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
-.jhf-mes > li {
-  border-bottom: 0;
+.jhf-mes li.showh {
+  border-bottom: 1px solid #e6e6e6;
 }
-
-.jhf-mes div.slide {
-  width: 100%;
-  height: 1.2rem;
-  border-bottom: 1px solid #dfdfdd;
+.jhf-mes li.showh .slide{
+  padding: 0.2rem 0.28rem 0.2rem;
 }
-
 .jhf-mes .jhf-drg {
   position: absolute;
   right: 0;
@@ -367,7 +363,7 @@ a:link {
   background-image: url(../../images/ui.1.0/icon_common.png);
   background-size: 7.90rem 7.83rem;
   background-repeat: no-repeat;
-  background-position: -4.73rem -1.47rem;
+  background-position: -4.73rem -1.5rem;
 }
 
 .jhf-mes .jhf-drg p {
@@ -380,11 +376,6 @@ a:link {
 .jhf-mes .jhf-drg p.reduce,
 .reduce {
   color: #5abfb6;
-}
-
-.jhf-mes .jhf-drg p span {
-  display: inline-block;
-  line-height: 0.96rem;
 }
 
 .jhf-mes .jhf-drg p i {
@@ -409,23 +400,27 @@ a:link {
 
 .jhf-mes .slide .lfword {
   margin-right: 90px;
-  padding-left: 15px;
+}
+.jhf-mes .slide .lfword span{
+  line-height: 0.46rem;
+}
+.jhf-mes .slide p.price{
+  position: absolute;
+  right: 0.28rem;
+  top: 50%;
+  color: #ff5b13;
+  height: 0.46rem;
+  line-height: 0.46rem;
+  margin-top: -0.23rem;
 }
 
 .jhf-mes .show .lfword p {
   margin-right: 80px;
 }
 
-.jhf-mes .lfword p:nth-child(1) {
-  font-size: 0.28rem;
-  margin-bottom: -0.4rem;
-  padding-top: 0.06rem;
-  height: 0.62rem;
+.jhf-mes .lfword p{
+  padding-bottom: 0.04rem;
   overflow: hidden;
-}
-
-.jhf-mes .lfword p:nth-child(2) {
-  color: #999;
 }
 
 .jhf-mes ol.show {
@@ -476,10 +471,6 @@ a:link {
   font-size: 0.24rem;
 }
 
-.jhf-mes .jhf-drg p span:nth-child(3) {
-  margin-left: -6px;
-}
-
 .jhf-mes .jhf-drg p.reduce span:nth-child(1) {
   top: 0px;
 }
@@ -511,15 +502,6 @@ a:link {
 .jhf-mes .lfword span.name,
 .jhf-mes .lfword i.book {
   float: left;
-}
-
-.jhf-mes .lfword span.name {
-  height: 0.48rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 90%;
-  line-height: 0.7rem;
 }
 
 /*ji+jiu hotel seach list jyj*/

@@ -1625,6 +1625,7 @@ a.foot-homes, a.foot-users {
 /*填写姓名说明页css*/
 .fillName_page {
   display: none;
+  background-color: #fff;
 }
 
 .ch_account {
