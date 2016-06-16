@@ -1,3 +1,11 @@
+.cl_search input {
+  width: 5.5rem;
+  height: .5rem;
+  border-radius: .3rem;
+  padding-left: .48rem;
+  background-color: #e6e6e6;
+}
+
 .pr{
     position: relative;
 }
