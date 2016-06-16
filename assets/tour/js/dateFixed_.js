@@ -429,7 +429,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 if (tt.hasClass("ico_select")) {
                   childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 } else {
-                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[1].value);
+                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[0].value);
                 }
               } else if (temChildNum == 2 && tt != null) {
                 childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
