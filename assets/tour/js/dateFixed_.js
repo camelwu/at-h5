@@ -424,6 +424,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                   childWithOutBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 }
               } else if (temChildNum == 2 && tt != null) {
+                debugger;
                 childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 childWithOutBed.push(ty.parentNode.querySelectorAll('input')[2].value);
               }

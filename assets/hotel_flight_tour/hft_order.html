@@ -429,7 +429,7 @@
         function editPassager(obj) {
              var id = $(obj).find("input").eq(0).val();
              var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
-             vlm.f_choice('orderTraveller','f','traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false)
+          vlm.f_choice('orderTraveller', 'fx', 'traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false);
         }
 
     </script>
