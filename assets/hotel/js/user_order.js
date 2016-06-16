@@ -585,6 +585,7 @@ uoHisData();
         var aUo_firstname = lsf_myweb.getbyclass(uo_form, 'uo_firstname');
         var uo_c3_tele = document.getElementById('uo_c3_tele');
         var uo_c3_email = document.getElementById('uo_c3_email');
+
         fake_data.guestName = [];
         //验证名字
         function checkCN(val) {
@@ -596,23 +597,22 @@ uoHisData();
                 }
             }
         }
-        //判断是国内搜索还是国际搜索
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-                if (aUo_lastname[i].value == '姓（如：Li）') {
-                    jAlert('请输入英文姓或名');
-                    //alert('请输入姓');
-                    return;
-                }
+              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
+                jAlert('请输入英文姓或名');
+                return;
+              }
+              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
+                jAlert('请输入英文姓或名');
+                return;
+              }
+              console.log(aUo_firstname[i].value);
                 if (checkCN(aUo_lastname[i].value)) {
                     jAlert('请输入英文姓或名');
                     return;
                 }
                 if (checkCN(aUo_firstname[i].value)) {
-                    jAlert('请输入英文姓或名');
-                    return;
-                }
-                if (aUo_firstname[i].value == '名（如：Shimin）') {
                     jAlert('请输入英文姓或名');
                     return;
                 }
@@ -623,14 +623,14 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-                if (aUo_lastname[i].value == '姓（如：Li）') {
-                    jAlert('请输入姓');
-                    return;
-                }
-                if (aUo_firstname[i].value == '名（如：Shimin）') {
-                    jAlert('请输入名');
-                    return;
-                }
+              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
+                jAlert('请输入英文姓或名');
+                return;
+              }
+              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
+                jAlert('请输入英文姓或名');
+                return;
+              }
                 fake_data.guestName.push({
                     "GuestFirstName": aUo_firstname[i].value,
                     "GuestLastName": aUo_lastname[i].value
