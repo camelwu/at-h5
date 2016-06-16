@@ -558,7 +558,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .start_time_info .air_port_word {
   display: block;
   margin-top: .4rem;
-  width: 1.9rem;
+  width: 3.9rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -645,7 +645,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .end_time_info .air_port_word {
   display: block;
   margin-top: .4rem;
-  width: 1.9rem;
+  width: 3.9rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
