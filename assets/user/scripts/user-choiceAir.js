@@ -167,7 +167,7 @@
           o.PassengerType= "CHILD";  //乘客类型
         }
         else{
-            o.PassengerType= "ADULT";  //乘客类型
+          o.PassengerType= "ADULT";  //乘客类型
         }
         selectedPassagerArray[key]=passagerArray[key];
       }
@@ -270,7 +270,7 @@
           "countryName": $(".addAir_page .country").html(),
           "sexCode": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code"),
           "sexName": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name"),
-          "dateOfBirth": $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
+          "dateOfBirth": $(".addAir_page .birthDay").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
           "email": $(".addAir_page .email").val(),
           //"createTime":"2016-05-25T18:53:09",
           "memberId": memberId,
@@ -285,7 +285,7 @@
             "idNumber": $(".addAir_page .cardNumber").val(),
             "idCountry": $(".addAir_page .cardCountry").attr("data-code"),
             "idCountryName": $(".addAir_page .cardCountry").html(),
-            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
+            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
             "nationalityCode": $(".addAir_page .cardCountry").attr("data-code")
           }
         ]
@@ -309,7 +309,7 @@
       modle.traveller.countryName=$(".addAir_page .country").html();
       modle.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
       modle.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
-      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.traveller.email=$(".addAir_page .email").val();
       modle.traveller.mobilePhone=$(".addAir_page .telephone").val();
       modle.traveller.mobilePhoneAreaCode= $(".addAir_page .phone_pre").html();
@@ -317,7 +317,7 @@
       modle.listTravellerIdInfo[0].idNumber=$(".addAir_page .cardNumber").val();
       modle.listTravellerIdInfo[0].idCountry= $(".addAir_page .cardCountry").attr("data-code");
       modle.listTravellerIdInfo[0].idCountryName= $(".addAir_page .cardCountry").html();
-      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.listTravellerIdInfo[0].nationalityCode= $(".addAir_page .cardCountry").attr("data-code");
 
       return modle;
@@ -327,6 +327,9 @@
   //证件生日有效期缓存函数
   function dueCache(str1){
 
+    if(str1==""){
+      return;
+    }
     var str=str1.split('-');
     if(str[1].charAt(0) == 0 && str[2].charAt(0) == 0){
 
@@ -349,7 +352,7 @@
     $(".addAir_page .postCard").attr("data-code",model.listTravellerIdInfo[0].idType);
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
-    debugger;
+
     $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
 
     var dateCacheEditDateLimit=model.listTravellerIdInfo[0].idActivatedDate.substring(0,10);
@@ -398,8 +401,9 @@
     $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
     //$(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
 
-    $(".addAir_page .birthDay").attr("data-cache","1990-01-01");
+    $(".addAir_page .birthDay").attr("data-cache",dueCache("1990-01-01"));
     $(".addAir_page .birthDay").val("1990-01-01");
+
 
     $(".addAir_page .postCard").attr("data-cache","1");
     $(".addAir_page .postCard").val("护照");
@@ -749,49 +753,49 @@
   var truncateCardInfo=function(){
     var cardId= $(".postCard").attr("data-code");
     if(editIDKey!=null){
-        var modle=passagerArray[editIDKey];
-        var cardList=modle.listTravellerIdInfo;
-        addOrEditPassagePage.find(".cardNumber").val("");
-        addOrEditPassagePage.find(".cardDateLimit").val("");
-        addOrEditPassagePage.find(".cardCountry").html("中国");
-        addOrEditPassagePage.find(".cardCountry").attr("data-code","CN")
+      var modle=passagerArray[editIDKey];
+      var cardList=modle.listTravellerIdInfo;
+      addOrEditPassagePage.find(".cardNumber").val("");
+      addOrEditPassagePage.find(".cardDateLimit").val("");
+      addOrEditPassagePage.find(".cardCountry").html("中国");
+      addOrEditPassagePage.find(".cardCountry").attr("data-code","CN")
 
-         for(var index in cardList){
-           if(cardList[index].idType==cardId){
-             addOrEditPassagePage.find(".cardNumber").val(cardList[index].idNumber);
-             addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate);
-             addOrEditPassagePage.find(".cardCountry").html(cardList[index].idCountryName);
-             addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry);
-             return;
-           }
-           else{
-             var newDate,year,month,day
-             if(departDate==null || departDate=="null"){
-               newDate = new Date();
-             }
-             else{
-               newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
-             }
+      for(var index in cardList){
+        if(cardList[index].idType==cardId){
+          addOrEditPassagePage.find(".cardNumber").val(cardList[index].idNumber);
+          addOrEditPassagePage.find(".cardDateLimit").val(cardList[index].idActivatedDate);
+          addOrEditPassagePage.find(".cardCountry").html(cardList[index].idCountryName);
+          addOrEditPassagePage.find(".cardCountry").attr("data-code",cardList[index].idCountry);
+          return;
+        }
+        else{
+          var newDate,year,month,day
+          if(departDate==null || departDate=="null"){
+            newDate = new Date();
+          }
+          else{
+            newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+          }
 
-             newDate.setMonth(newDate.getMonth()+6);
-             year=newDate.getFullYear();
-             month=newDate.getMonth()+1;
-             day=newDate.getDate();
+          newDate.setMonth(newDate.getMonth()+6);
+          year=newDate.getFullYear();
+          month=newDate.getMonth()+1;
+          day=newDate.getDate();
 
-             $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
-             $(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
-           }
-         }
+          $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
+          $(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
+        }
+      }
     }
   }
 
   /*页面初始化方法*/
   var _initPage=function(){
 
-     new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
-     new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
-     var cardType=isNeedPassport==true? "cardInte":"card"
-     new Scroller({id: "postCard", type:cardType,cont:"uuu","callback":truncateCardInfo});
+    new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
+    new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
+    var cardType=isNeedPassport==true? "cardInte":"card"
+    new Scroller({id: "postCard", type:cardType,cont:"uuu","callback":truncateCardInfo});
 
     _clearDate();
     //免登陆，如果缓存没有数据，自己显示添加页面
