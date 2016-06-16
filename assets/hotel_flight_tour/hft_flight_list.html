@@ -253,9 +253,12 @@
                     </div>
                 </div>
             </li>
-          <b class="hft_icon cho_gou"></b>
+          <%if(flightList.hftFlightHotelTourInfo.flightInfo.setID ==selectedFlight.setID){%>
+             <b class="hft_icon cho_gou"></b>
+          <%}else{%>
+             <b class="hft_icon"></b>
+          <%}%>
         </ul>
-
     </script>
     <script id="tplFlightList" type="text/template">
         <% for(var i = 0;i < flightInfoListGroup.length;i++){ %>

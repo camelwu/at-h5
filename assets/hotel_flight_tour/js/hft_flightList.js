@@ -120,10 +120,11 @@ var flightList = {
     $('#departWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.departDate,"d")));
     $('#returnWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.returnDate,"d")));
 		var flightListBack = function(ret) {
-      var json = ret, that = flightList;
+      var json = ret, that = flightList, sessionStorage = window.sessionStorage;
       var data = json.data;
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
         var tmp = json.data.airways,tmpto=json.data.selectedAirway;
+        that.hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
         tmp.unshift(tmpto);
         data.airways = tmp;
         $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
@@ -163,7 +164,7 @@ var flightList = {
         //  页面跳转
         $(".seat_detail").click(function () {
           $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
-          var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+          var hftFlightHotelTourInfo = flightList.hftFlightHotelTourInfo ;
           var setid = $(this).attr('data-setID');
           hftFlightHotelTourInfo.airwaySetID = data.selectedAirway.airwaySetID;
           hftFlightHotelTourInfo.airwayCacheID =data.selectedAirway.airwayCacheID;
