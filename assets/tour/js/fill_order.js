@@ -456,6 +456,7 @@
             var tra = {};
             tra.RoomSeqNo =rommSqeNo;
             tra.TravelerType = "Child";
+            tra.nationalityCode="CN";
             tra.Salutation = "None";
             tra.FirstName = firstNameChi;
             tra.LastName = lastNameChi;
