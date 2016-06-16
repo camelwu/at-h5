@@ -421,6 +421,7 @@
 
   //数据保存
   var _saveDb=function(){
+    debugger;
     if(!_validate()){
       return false;
     }
