@@ -76,7 +76,8 @@
     <% if(recommendCities.length > 1){ %>
         <ul class = "city_box">
             <% for(var i=0;i< recommendCities.length;i++){%>
-                <li class="city_list1" data-code="<%=recommendCities[i].cityCode%>">
+
+                <li class="city_list1 <% if(i==0){%>current<%} %>" data-code="<%=recommendCities[i].cityCode%>">
                     <%= recommendCities[i].cityName %><i></i></li>
                 <% } %>
         </ul>
