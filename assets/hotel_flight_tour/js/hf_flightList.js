@@ -10,7 +10,6 @@ var flight_list = {
 		return document.getElementsByClassName(obj);
 	},
 	getWeekDay : function(date) {
-		console.log(typeof date)
 		switch (date){
 			case "0":
 				date = "周日";
@@ -293,13 +292,11 @@ var flight_list = {
             startTime = back.filters[2].FilterValues[0];
 					}
 				}
-				console.log(back);
 				changeFlightInfo.airwaySetID = back.airways.airwaySetID;
 				changeFlightInfo.airwayCacheID = back.airways.airwayCacheID;
 				changeFlightInfo.SortFields = back.sortTypes;
 				changeFlightInfo.ScreenFields = filter;
 				changeFlightInfo.FlightStartTime = startTime;
-				console.log(changeFlightInfo);
 				that.tAjax("", changeFlightInfo, "50100002", "3", flightListBack);
 			};
 			if (footer) {
@@ -336,7 +333,6 @@ var flight_list = {
 		delete changeFlightInfo.tours;
 		delete changeFlightInfo.packageID;
 		oldFlightInfo = changeFlightInfo;
-		console.log(oldFlightInfo);
 		this.getFlightList();
 	}
 };

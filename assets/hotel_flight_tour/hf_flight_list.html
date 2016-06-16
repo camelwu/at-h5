@@ -125,9 +125,7 @@
       </div>
       <b class="hft_icon cho_gou"></b>
     </li>
-
   </ul>
-
 </script>
 <script id="tplFlightList" type="text/template">
   <% for(var i = 0;i < flightInfoListGroup.length;i++){ %>
@@ -144,10 +142,7 @@
           <div class="go_info">
             <div class="start_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveStartDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%>
-              <% if(selectedFlight.segmentsLeave){ %>
-                <%=selectedFlight.segmentsLeave[0].termDepart%>
-              <% } %>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].termDepart%>
               </span>
             </div>
             <div class="total_time_info">
