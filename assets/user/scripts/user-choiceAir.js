@@ -270,7 +270,7 @@
           "countryName": $(".addAir_page .country").html(),
           "sexCode": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code"),
           "sexName": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name"),
-          "dateOfBirth": $(".addAir_page .birthDay").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
+          "dateOfBirth": $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
           "email": $(".addAir_page .email").val(),
           //"createTime":"2016-05-25T18:53:09",
           "memberId": memberId,
@@ -285,7 +285,7 @@
             "idNumber": $(".addAir_page .cardNumber").val(),
             "idCountry": $(".addAir_page .cardCountry").attr("data-code"),
             "idCountryName": $(".addAir_page .cardCountry").html(),
-            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
+            "idActivatedDate": $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', ''),
             "nationalityCode": $(".addAir_page .cardCountry").attr("data-code")
           }
         ]
@@ -309,7 +309,7 @@
       modle.traveller.countryName=$(".addAir_page .country").html();
       modle.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
       modle.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
-      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.traveller.email=$(".addAir_page .email").val();
       modle.traveller.mobilePhone=$(".addAir_page .telephone").val();
       modle.traveller.mobilePhoneAreaCode= $(".addAir_page .phone_pre").html();
@@ -317,7 +317,7 @@
       modle.listTravellerIdInfo[0].idNumber=$(".addAir_page .cardNumber").val();
       modle.listTravellerIdInfo[0].idCountry= $(".addAir_page .cardCountry").attr("data-code");
       modle.listTravellerIdInfo[0].idCountryName= $(".addAir_page .cardCountry").html();
-      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).attr("data-cache").replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.listTravellerIdInfo[0].nationalityCode= $(".addAir_page .cardCountry").attr("data-code");
 
       return modle;
@@ -353,7 +353,7 @@
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
 
-    $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
+    $(".addAir_page .cardDateLimit").html(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
 
     var dateCacheEditDateLimit=model.listTravellerIdInfo[0].idActivatedDate.substring(0,10);
     $(".addAir_page .cardDateLimit").attr('data-cache',dueCache(dateCacheEditDateLimit));
@@ -364,7 +364,7 @@
     $(".addAir_page .country").html(model.traveller.countryName);
     $(".addAir_page .telephone").val(model.traveller.mobilePhone);
     $(".addAir_page .email").val(model.traveller.email);
-    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('/','-').replace('/','-')+'');
+    $(".addAir_page .birthDay").html(model.traveller.dateOfBirth.substring(0,10).replace('/','-').replace('/','-')+'');
 
     var dateCacheEdit=model.traveller.dateOfBirth.substring(0,10)
     $(".addAir_page .birthDay").attr('data-cache',dueCache(dateCacheEdit));
@@ -399,10 +399,10 @@
     day=newDate.getDate();
 
     $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
-    //$(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
+    $(".addAir_page .cardDateLimit").html();
 
     $(".addAir_page .birthDay").attr("data-cache",dueCache("1990-01-01"));
-    $(".addAir_page .birthDay").val("1990-01-01");
+    $(".addAir_page .birthDay").html("1990-01-01");
 
 
     $(".addAir_page .postCard").attr("data-cache","1");
