@@ -55,6 +55,11 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
   border: 1px solid #D1D1D1;
 }
 
+.city_list1.current{
+  color:#7bc300;
+  border-color: #7bc300;
+}
+
 .city_list .active{
   border:1px solid #FFB413;
   color:#FFB413;

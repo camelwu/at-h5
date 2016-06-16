@@ -228,7 +228,7 @@
       <ul class="hft_pri_details">
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%> </span>
         </li>
-        <% if(hotelDetails.roomDetails.totalChild > 0){ %>
+        <% if(parseInt(hotelDetails.roomDetails.totalChild) > 0){ %>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>×<%=hotelDetails.roomDetails.totalChild%> </span>
           <% }%>
         </li>
@@ -384,7 +384,7 @@
       <ul class="hft_pri_details">
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%>人 </span>
         </li>
-         <% if(hotelDetails.roomDetails.totalChild>0){%>
+         <% if(parseInt(hotelDetails.roomDetails.totalChild)>0){%>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>×<%=hotelDetails.roomDetails.totalChild%>人 </span>
         </li>
         <% } %>
@@ -772,8 +772,10 @@
       <ul class="hft_pri_details">
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=flightInfo.totalFareAmountADT%>×<%=numofAdult%> </span></li>
         <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountADT%>×<%=numofAdult%> </span></li>
+        <%if(parseInt(numofChild)>0){%>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=flightInfo.totalFareAmountCHD%>×<%=numofChild%> </span>
         <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountCHD%>×<%=numofChild%> </span></li>
+        <%}%>
         </li>
       </ul>
     </div>
@@ -809,12 +811,14 @@
          numChild=info.quantity
       }
       }) %>
-      <p><span>成人票：<%=numAdult%>张;</span> <span>儿童票：<%=numChild%>张</span></p>
+      <p><span>成人票：<%=numAdult%>张;</span>
+        <%if(parseInt(numChild)>0){%>
+          <span>儿童票：<%=numChild%>张</span></p>
+        <%}%>
     </div>
   </section>
 
   <section id="order_detail" style="clear:both">
-
     <% if(voucher!=null && voucher.length>=1){ %>
     <div class="fht_order_detail">
       <div class="fht_hd">电子确认单（景点入园时出示）</div>
@@ -857,7 +861,7 @@
         <% chargeDetails.forEach(function(info){ %>
         <% if(info.category=="ADULT"){ %>
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%>人</span></li>
-        <% } else if(info.category=="CHILD") {%>
+        <% } else if(info.category=="CHILD"&&parseInt(info.quantity)>0) {%>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%>人</span></li>
         <% } %>
         <% })%>
@@ -948,7 +952,7 @@
               <% }%>
           <ul class="col">
             <li>成人票：</li>
-            <li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>
+            <li><%=numAdult%>张<% if(parseInt(numchild)>0){%>;儿童票：<%=numchild%>张<%}%></li>
           </ul>
         </div>
       </div>
@@ -1009,7 +1013,7 @@
         <% chargeDetails.forEach(function(info){ %>
         <% if(info.category=="ADULT"){ %>
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span></li>
-        <% } else if(info.category=="CHILD") {%>
+        <% } else if(info.category=="CHILD"&&parseInt(info.quantity)>0) {%>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span></li>
         <% } %>
         <% })%>
