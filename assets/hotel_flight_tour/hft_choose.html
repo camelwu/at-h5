@@ -203,7 +203,6 @@
     <div class="months">
         <%data.forEach(function(yd){ %>
             <span class="month-title" data-m="<%=yd['name']%>"><%=yd['name'].substring(6,7)%>月</span>
-
             <div class="monthsDate" data-md="<%=yd['name']%>">
                 <%yd['values'].forEach(function(yv){ %>
                     <span data-date="<%=yv%>"><%=hftChoose.returnDay(yv)%></span>
@@ -222,7 +221,15 @@
                 <li data-tour-id="<%=tour['tourID']%>" data-tour-type="<%=tour['tourType']%>" class="<%= tour.tourType!=1?'tourList':''%>">
                     <h3 class="tour-list-title"><%= tour.tourName %></h3>
                   <% if(tour.tourType!=1){%>
-                  <p class="choose-tour-date"><span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span><i></i>
+                  <p class="choose-tour-date">
+                    <%if(hftChoose.tourChosenInfo){%>
+                    <%if(hftChoose.tourChosenInfo.tourId==tour.tourID){%>
+                           <span data-date="<%= hftChoose.tourChosenInfo.chosenDate%>"><%= hftChoose.returnDay(hftChoose.tourChosenInfo.chosenDate)%></span>
+                    <% }%>
+                    <% }else{%>
+                           <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
+                    <% } %>
+                    <i></i>
                   </p>
                   <div class="after-noon">
                     <%if(tour["tourSessions"]){ %>

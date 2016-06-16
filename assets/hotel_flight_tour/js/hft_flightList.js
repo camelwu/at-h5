@@ -164,7 +164,7 @@ var flightList = {
         //  页面跳转
         $(".seat_detail").click(function () {
           $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
-          var hftFlightHotelTourInfo = flightList.hftFlightHotelTourInfo ;
+          var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo) ;
           var setid = $(this).attr('data-setID');
           hftFlightHotelTourInfo.airwaySetID = data.selectedAirway.airwaySetID;
           hftFlightHotelTourInfo.airwayCacheID =data.selectedAirway.airwayCacheID;
@@ -172,15 +172,19 @@ var flightList = {
             for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
               if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                 hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
+                break;
               }
             }
           }
           if(data.selectedFlight&&data.selectedFlight.setID == setid){
             hftFlightHotelTourInfo.flightInfo = data.selectedFlight;
           }
-          sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
-          hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
-          window.location.href = 'hft_choose.html' + window.location.search;
+          sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(hftFlightHotelTourInfo));
+          that.timer1 = setTimeout(function () {
+            window.clearTimeout(that.timer1);
+            that.timer1 = null;
+            window.location.href = 'hft_choose.html' + window.location.search;
+          }, 500);
         });
       } else {
         that.noResult();
