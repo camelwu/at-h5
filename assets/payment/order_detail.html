@@ -958,6 +958,22 @@
         </div>
       </div>
     <% } %>
+
+    <!--酒景接送机-->
+    <div class="tour-item line">
+      <div class="title"><i></i>接机服务</div>
+      <div class="item">
+        <ul class="ht_send_travel">
+          <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime), fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ') %>
+          <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime), fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+' ') %>
+          <li class="clearfix"><span class="fl"></span>接机航班号<span class="fr"><%=flightDetails.arrivalFlightNo%></span></li>
+          <li class="clearfix"><span class="fl"></span>接机时间<span class="fr"><%=fdTime%></span></li>
+          <li class="clearfix"><span class="fl"></span>送机航班号<span class="fr"><%=flightDetails.departFlightNo%></span></li>
+          <li class="clearfix"><span class="fl"></span>送机时间<span class="fr"><%=fdTime2%></span></li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <section id="order_detail" style="clear:both">

@@ -697,6 +697,7 @@ li.order_tlist2 {
 #order_detail {
   margin-bottom: 1rem;
   overflow-x: hidden;
+  position: relative;
 }
 
 .hft_pri_details {
@@ -1003,6 +1004,7 @@ li.order_tlist2 {
   left: 0;
   bottom: 0;
   width: 100%;
+  z-index: 1000;
 }
 
 .p-but a {
@@ -1261,3 +1263,6 @@ li.order_tlist2 {
   color: #999999;
 }
 
+.ht_send_travel li{
+  line-height: .6rem;
+}
