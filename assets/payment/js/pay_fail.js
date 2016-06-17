@@ -80,8 +80,16 @@
                         data.data.totalPrice=totalprice;
                     }
                     else if(type.id==5){
-                        data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
+                        data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
+                        data.data.Day = data.data.flightInfo.cityNameFrom;
+                        data.data.Night = data.data.flightInfo.cityNameFrom;
+                       function getDayNum(arg1,arg2){
+                           var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
+                           return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+                         }
+                       //var dayNum = getDayNum(departDate.substring(0,10),returnDate.substring(0,10));
+
                     }
                     else if(type.id==6){
                       data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;

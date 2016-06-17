@@ -1439,6 +1439,7 @@ a.foot-homes, a.foot-users {
 .traveler_contect li {
   margin-left: .28rem;
   border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
 }
 
 .traveler_contect li:last-child {
@@ -1625,6 +1626,7 @@ a.foot-homes, a.foot-users {
 /*填写姓名说明页css*/
 .fillName_page {
   display: none;
+  background-color: #fff;
 }
 
 .ch_account {

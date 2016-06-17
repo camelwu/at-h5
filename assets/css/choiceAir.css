@@ -204,7 +204,8 @@ i, em {
 }
 
 .addAir_info li {
-  padding: .32rem 0;
+  height: .96rem;
+  line-height: .96rem;
   margin-left: .3rem;
   border-bottom: 1px solid #e6e6e6;
   overflow: hidden;
@@ -218,6 +219,12 @@ i, em {
 .addAir_info div {
   float: left;
   width: 1.6rem;
+}
+
+.addAir_info .birth-cont{
+  width: 60%;
+  height: 100%;
+  margin-left: 12%;
 }
 
 .addAir_info .sex_cho_wrap {
@@ -283,8 +290,8 @@ i, em {
 }
 
 .user_must {
-  width: .32rem;
-  height: .32rem;
+  width: .38rem;
+  height: .38rem;
   position: absolute;
   margin-left: .1rem;
   background-size: 7rem 4.66rem;

@@ -225,9 +225,14 @@ body {
 }
 
 .flightDetailInfo {
-    margin: .28rem 0 .08rem 0;
-    color: #999999;
-    line-height: .40rem;
+  margin: .28rem 0 .08rem 0;
+  color: #999999;
+  line-height: .40rem;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: .28rem;
 }
 
 .flightDetailInfo span:before {

@@ -82,7 +82,9 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             console.info(instance);
             var containerId = instance.id;
             $("#" + containerId).find("input").val(data[0]);
-            $("#" + containerId).find(".week-tour").html(vlm.Utils.getWeek(data[0]));
+            var tmp = data[0];
+            tmp = tmp.replace(/-/g,"/");
+            $("#" + containerId).find(".week-tour").html(vlm.Utils.getWeek(tmp));
           }
         });
       }
@@ -408,8 +410,16 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
           var childChooseParent = temEle.querySelectorAll('.spenumbList');
 
           if (temAdultNum == 1 && temChildNum == 1) {
-            childWithBed.push(temEle.querySelector('input').value);
+            //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
+            if(temEle.querySelectorAll('input').length>1){
+              childWithBed.push(temEle.querySelectorAll('input')[1].value);
+            }
+            else{
+              childWithBed.push(temEle.querySelector('input').value);
+            }
+
           } else if (temAdultNum == 1 && temChildNum == 2) {
+            //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
             childWithBed.push(temEle.querySelectorAll('input')[0].value);
             childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
           }
@@ -421,12 +431,11 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 if (tt.hasClass("ico_select")) {
                   childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
                 } else {
-                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[1].value);
+                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[0].value);
                 }
               } else if (temChildNum == 2 && tt != null) {
-                debugger;
                 childWithBed.push(ty.parentNode.querySelectorAll('input')[1].value);
-                childWithOutBed.push(ty.parentNode.querySelectorAll('input')[2].value);
+                childWithOutBed.push(ty.parentNode.querySelectorAll('input')[0].value);
               }
             }
           }
@@ -621,6 +630,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
         section, nums = Math.ceil(minPax / 3),
       // 插入的成人
         ary_a = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
+        ary_as = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
       // 儿童
         ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
       //  默认房间数为1人，如有最少起订人数，则更换
@@ -628,7 +638,11 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
       for (var i = 0; i < nums; i++) {
         var n = minPax - 3 * (i + 1) >= 0 ? 3 : minPax - 3 * i,
           initStr = '<span class="title">房间' + (i + 1) + '</span>';
-        initStr += ary_a[0] + n + ary_a[1];
+        if(n == 2){
+          initStr += ary_as[0] + n + ary_a[1];
+        }else{
+          initStr += ary_a[0] + n + ary_a[1];
+        }
         if (!onlyForAdult) {
           initStr += ary_c.join('');
         }

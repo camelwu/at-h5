@@ -189,12 +189,12 @@ ol {
 }
 
 .drop_down i {
-    width: .4rem;
-    height: .4rem;
-    bottom: 0.8rem;
-    /*background: url("../../images/ui.1.0/icon_common.png") -2.22rem -0.64rem no-repeat;*/
-    /*background-size: 7.9rem 7.83rem;*/
-    right: .4rem;
+    width: .32rem;
+    height: .32rem;
+    bottom: 0.7rem;
+    background: url("../../images/ui.1.0/icon_common.png") -2.22rem -0.64rem no-repeat;
+    background-size: 7.9rem 7.83rem;
+    left:48%;
     position: absolute;
 }
 

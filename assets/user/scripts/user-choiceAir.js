@@ -255,6 +255,15 @@
       return false;
     }
 
+    if(! $(addOrEditPassagePage).find("#time-cont").html()){
+      jAlert("请选择证件有效期！","",null,"确认");
+      return false;
+    }
+
+    if(! $(addOrEditPassagePage).find("#birth-cont").html()){
+      jAlert("请选择出生日期！","",null,"确认");
+      return false;
+    }
 
     return true;
   }
@@ -309,6 +318,7 @@
       modle.traveller.countryName=$(".addAir_page .country").html();
       modle.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
       modle.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
+      console.log($(".addAir_page .birthDay").eq(0).html());
       modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       modle.traveller.email=$(".addAir_page .email").val();
       modle.traveller.mobilePhone=$(".addAir_page .telephone").val();
@@ -349,8 +359,7 @@
     $(".addAir_page .postCard").attr("data-code",model.listTravellerIdInfo[0].idType);
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
-    debugger;
-    $(".addAir_page .cardDateLimit").val(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
+    $(".addAir_page .cardDateLimit").html(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
 
     var dateCacheEditDateLimit=model.listTravellerIdInfo[0].idActivatedDate.substring(0,10);
     $(".addAir_page .cardDateLimit").attr('data-cache',dueCache(dateCacheEditDateLimit));
@@ -361,7 +370,7 @@
     $(".addAir_page .country").html(model.traveller.countryName);
     $(".addAir_page .telephone").val(model.traveller.mobilePhone);
     $(".addAir_page .email").val(model.traveller.email);
-    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('/','-').replace('/','-')+'');
+    $(".addAir_page .birthDay").html(model.traveller.dateOfBirth.substring(0,10).replace('/','-').replace('/','-')+'');
 
     var dateCacheEdit=model.traveller.dateOfBirth.substring(0,10)
     $(".addAir_page .birthDay").attr('data-cache',dueCache(dateCacheEdit));
@@ -724,6 +733,7 @@
       var json={data:choiceAir_AddPassagerArray};
       var html = template(tpl_traveler,json) ;
       document.getElementById("allList").innerHTML = html;
+      vlm.init();
 
 
       choiceAir_AddPassagerArray.forEach(function(info){

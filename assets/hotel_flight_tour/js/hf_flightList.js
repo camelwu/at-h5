@@ -10,7 +10,6 @@ var flight_list = {
 		return document.getElementsByClassName(obj);
 	},
 	getWeekDay : function(date) {
-		console.log(typeof date)
 		switch (date){
 			case "0":
 				date = "周日";
@@ -122,6 +121,9 @@ var flight_list = {
       var json = ret;
       var data = json.data;
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
+        // 有数据和无数据互斥，清理无数据内容
+        $('.flight_hotel_no_result').remove();
+
         // 数据过滤，research情况下，selectedFlight字段有可能不存在
         data.selectedFlight = data.selectedFlight ? data.selectedFlight : false;
         // 增加打包产品默认选中的航空公司
@@ -155,17 +157,20 @@ var flight_list = {
             for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
               if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                 hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
+                break;
               }
             }
           }
           if(data.selectedFlight&&data.selectedFlight.setID == setid){
             hftFlightHotelTourInfo.flightInfo = data.selectedFlight;
           }
-          sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
-          hftFlightHotelTourInfo = JSON.parse(sessionStorage.getItem('hftFlightHotelTourInfo'));
-          window.location.href = 'hft_choose.html' + window.location.search;
+          sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(hftFlightHotelTourInfo));
+          that.timer1 = setTimeout(function () {
+            window.clearTimeout(that.timer1);
+            that.timer1 = null;
+            window.location.href = 'hft_choose.html' + window.location.search;
+          }, 500);
         });
-        //$('.flight_company ul li').eq(0).addClass('cur');
       } else {
         that.noResult();
         bottom(data);
@@ -293,13 +298,11 @@ var flight_list = {
             startTime = back.filters[2].FilterValues[0];
 					}
 				}
-				console.log(back);
 				changeFlightInfo.airwaySetID = back.airways.airwaySetID;
 				changeFlightInfo.airwayCacheID = back.airways.airwayCacheID;
 				changeFlightInfo.SortFields = back.sortTypes;
 				changeFlightInfo.ScreenFields = filter;
 				changeFlightInfo.FlightStartTime = startTime;
-				console.log(changeFlightInfo);
 				that.tAjax("", changeFlightInfo, "50100002", "3", flightListBack);
 			};
 			if (footer) {
@@ -336,7 +339,6 @@ var flight_list = {
 		delete changeFlightInfo.tours;
 		delete changeFlightInfo.packageID;
 		oldFlightInfo = changeFlightInfo;
-		console.log(oldFlightInfo);
 		this.getFlightList();
 	}
 };

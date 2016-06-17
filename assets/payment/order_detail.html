@@ -352,12 +352,12 @@
       </ul>
     </div>
     <div class="fht_order_detail">
-      <div class="fht_hd">出xinf信息</div>
+      <div class="fht_hd">出游人信息</div>
       <ul class="fht_order_tab">
-        <% var i=1 ;if(travelers.length>0){ %>
+        <% var i=0 ;if(travelers.length>0){ %>
         <% travelers.forEach(function(info){%>
         <li>
-          <p class="clearfix"><span class="fl"></span>出游人<%=i++%><span
+          <p class="clearfix"><span class="fl"></span>出游人<%=i+1%><span
             class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
 
           <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
@@ -912,6 +912,7 @@
            <ul class="col">
              <li>房型：</li>
              <li><%=hotelDetails.rooms[0].roomName%></li>
+             <li>&nbsp<%=hotelDetails.rooms.length%>&nbsp间</li>
            </ul>
            <ul class="col">
              <li>时间：</li>
@@ -957,6 +958,22 @@
         </div>
       </div>
     <% } %>
+
+    <!--酒景接送机-->
+    <div class="tour-item line">
+      <div class="title"><i></i>接机服务</div>
+      <div class="item">
+        <ul class="ht_send_travel">
+          <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime), fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ') %>
+          <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime), fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+' ') %>
+          <li class="clearfix"><span class="fl"></span>接机航班号<span class="fr"><%=flightDetails.arrivalFlightNo%></span></li>
+          <li class="clearfix"><span class="fl"></span>接机时间<span class="fr"><%=fdTime%></span></li>
+          <li class="clearfix"><span class="fl"></span>送机航班号<span class="fr"><%=flightDetails.departFlightNo%></span></li>
+          <li class="clearfix"><span class="fl"></span>送机时间<span class="fr"><%=fdTime2%></span></li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <section id="order_detail" style="clear:both">
@@ -1034,11 +1051,11 @@
 <script type="application/javascript">
 
   var TourTimer={
-     0:"早上",
-     1:"上午",
+     0:"上午",
+     1:"下午",
      2:"晚上",
      3:"全天",
-     4:""
+     4:"全天"
   }
 </script>
 

@@ -69,15 +69,14 @@
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%= selectedFlight.segmentsLeaveTotalTravelTimeString%></span>
-              <% if(selectedFlight.directFlight==1){ %>
-              <div class="arrow_word"></div>
-              <% }else{ %>
-              <span class="hft_icon arrow_time"></span>
-              <% } %>
               <% if(selectedFlight.transferListLeave&&selectedFlight.transferListLeave.length==1){%>
+              <span class="arrow_word"></span>
               <span class="air_port_word"><%= selectedFlight.transferListLeave[0] %></span>
               <% }else if(selectedFlight.transferListLeave&&selectedFlight.transferListLeave.length>1){%>
+              <span class="arrow_word"></span>
               <span class="air_port_word"><%= selectedFlight.transferListLeave.length %>次</span>
+              <%}else{%>
+              <span class="hft_icon arrow_time"></span>
               <%}%>
             </div>
             <div class="end_time_info">
@@ -125,9 +124,7 @@
       </div>
       <b class="hft_icon cho_gou"></b>
     </li>
-
   </ul>
-
 </script>
 <script id="tplFlightList" type="text/template">
   <% for(var i = 0;i < flightInfoListGroup.length;i++){ %>
@@ -144,24 +141,20 @@
           <div class="go_info">
             <div class="start_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveStartDate.substr(11,5)%></span>
-              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%>
-              <% if(selectedFlight.segmentsLeave){ %>
-                <%=selectedFlight.segmentsLeave[0].termDepart%>
-              <% } %>
+              <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].airportNameFrom%><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].termDepart%>
               </span>
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeaveTotalTravelTimeString%></span>
-              <% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %>
-              <div class="arrow_word"></div>
-              <% }else{ %>
-              <span class="hft_icon arrow_time"></span>
-              <% } %>
               <% if(flightInfoListGroup[i].flightInfoList[j].transferListLeave&&flightInfoListGroup[i].flightInfoList[j].transferListLeave.length==1){%>
+              <span class="arrow_word"></span>
               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave[0]%></span>
               <% }else if(flightInfoListGroup[i].flightInfoList[j].transferListLeave&&flightInfoListGroup[i].flightInfoList[j].transferListLeave.length>1){%>
+              <span class="arrow_word"></span>
               <span class="air_port_word"><%=flightInfoListGroup[i].flightInfoList[j].transferListLeave.length%>次</span>
-              <% }%>
+              <% }else{%>
+                <span class="hft_icon arrow_time"></span>
+              <%}%>
             </div>
             <div class="end_time_info">
               <span class="time_number"><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveEndDate.substr(11,5)%></span>

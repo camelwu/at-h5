@@ -358,7 +358,7 @@ input.inp_cage:-ms-input-placeholder {
    position: absolute;
    right: .1rem;
    top: .24rem;
-  width: .42rem;
+  width: .48rem;
   height: .5rem;
   background-position: 66% 16.5%;
 }
@@ -368,7 +368,7 @@ input.inp_cage:-ms-input-placeholder {
     position: absolute;
     right: .1rem;
     top: .24rem;
-    width: .42rem;
+    width: .48rem;
     height: .42rem;
     background-position: 68% 11.5%;
 }
