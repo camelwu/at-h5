@@ -166,9 +166,9 @@
             vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
         },
         //筛选排序
-        sortList:function(){
+        sortList:function(result, more){
             $('.all_elements').scrollTop(0);
-            list();
+            hotelList.list(result, more);
         },
         /**
          *@desc 渲染酒店列表
