@@ -179,6 +179,12 @@ li.scenic_detile_project_first{
   line-height: 1rem;
   text-align: center;
 }
+.noMore{
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  display: none;
+}
 /*景点详情页开始*/
 .header_scenic{
   height: .66rem;

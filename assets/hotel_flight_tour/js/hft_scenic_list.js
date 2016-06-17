@@ -82,6 +82,12 @@
           $('#Time').on("click", function() {
             window.location.href = 'index.html';
           });
+          //点击加载更多
+          $('#LoadMore').on("click", function () {
+            console.log('111');
+            loadMore();
+          });
+          clickMore(data);
           if (!filterSign) {
             filterSign = true;
             initFilter(data);
@@ -120,6 +126,29 @@
         footer.filters.init();
       }
     };
+    //加载更多
+    var  loadMore=function() {
+      //设置参数
+      var loadMoreBtn = $("#LoadMore");
+      if (loadMoreBtn.attr("data-more") == "no") {
+        return;
+      }
+      loadMoreBtn.attr("data-more", "yes");
+      SParameter.Parameters.PageIndex = PageIndex + 1;
+      $("#LoadMore").html("正在加载...");
+      vlm.loadJson('', JSON.stringify(SParameter), callback);
+    };
+    //点击加载更多
+   var  clickMore= function(data){
+     var PageIndex = SParameter.Parameters.PageIndex;
+     console.log(data.data.lists.length);
+       //var pageCount = (data.data.lists.length) % 20;
+      if (data.data.lists.length>0) {
+        $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
+      } else{
+        $("#LoadMore").attr("data-more", "no").html("没有更多数据了！").show();
+      }
+    }
     //城市列表父宽
     var PWidth = function(data) {
       var sum = data.data.recommendCities.length;
@@ -145,3 +174,5 @@
   window.sessionStorage.removeItem('hftFlightHotelTourInfo');
   window.sessionStorage.removeItem('tourChosenInfo');
 })();
+
+
