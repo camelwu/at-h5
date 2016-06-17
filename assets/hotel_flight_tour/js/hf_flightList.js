@@ -121,6 +121,9 @@ var flight_list = {
       var json = ret;
       var data = json.data;
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
+        // 有数据和无数据互斥，清理无数据内容
+        $('.flight_hotel_no_result').remove();
+
         // 数据过滤，research情况下，selectedFlight字段有可能不存在
         data.selectedFlight = data.selectedFlight ? data.selectedFlight : false;
         // 增加打包产品默认选中的航空公司
