@@ -274,7 +274,7 @@ var hftChoose = {
       that.timer1 = setTimeout(function () {
         window.clearTimeout(that.timer1);
         that.timer1 = null;
-        window.location.href = that.type == 2 ? "hft_flight_list.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "hf_flight_list.html?type=" + that.type;
+        window.location.href = that.type == 2 ? "hft_flight_list.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID+"&selectedRoomId=" + that.roomPriceInfo.roomID : "hf_flight_list.html?type=" + that.type+"&selectedRoomId=" + that.roomPriceInfo.roomID;
       }, 500);
     });
     /*更换酒店*/
@@ -841,8 +841,8 @@ var hftChoose = {
         } else if (this.type == "1") {
           this.initParaObj.airwaySetID = hftFlightHotelTourInfo.flightInfo.setID;
           this.initParaObj.airwayCacheID = hftFlightHotelTourInfo.flightInfo.cacheID;
-          /*this.initParaObj.flightSetID = hftFlightHotelTourInfo.flightInfo.setID;
-           this.initParaObj.flightCacheID = hftFlightHotelTourInfo.flightInfo.cacheID;*/
+          this.initParaObj.flightSetID = hftFlightHotelTourInfo.flightInfo.setID;
+          this.initParaObj.flightCacheID = hftFlightHotelTourInfo.flightInfo.cacheID;
           delete this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
         }
