@@ -123,6 +123,9 @@ var flightList = {
       var json = ret, that = flightList, sessionStorage = window.sessionStorage;
       var data = json.data;
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
+        // 有数据和无数据互斥，清理无数据内容
+        $('.flight_hotel_no_result').remove();
+
         var tmp = json.data.airways,tmpto=json.data.selectedAirway;
         that.hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
         tmp.unshift(tmpto);
