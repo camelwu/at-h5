@@ -96,7 +96,7 @@
       });
     }
     //点击事件  跳转
-    $('.hotel_detail_rooms li').on('click',function(){
+    $('.hotel_detail_rooms ul.ul_room li').on('click',function(){
       var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
       flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;

@@ -293,14 +293,14 @@ a {
 .header h3 .arrowDouble,
 .header h3 .arrowSingle {
     display: inline-block;
-    height: .4rem;
+    height: .34rem;
     width: .4rem;
     background: url(../images/ui/icon_hft.png) no-repeat;
     background-size: 7.50rem 4.54rem;
-    background-position: 8% 10.4%;
+    background-position:-0.55rem -0.48rem;
     position: relative;
     left: 0;
-    top: .1rem;
+    top:0.05rem;
     margin: 0 .18rem;
 }
 

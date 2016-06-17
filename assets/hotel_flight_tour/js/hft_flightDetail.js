@@ -56,6 +56,26 @@ var  hftFlightDetail = {
     return week;
   },
 
+  reSeat:function (arg) {
+    var cabinStr = "";
+    switch (String(arg)) {
+      case "0":
+        cabinStr = "经济舱";
+        break;
+      case "1":
+        cabinStr = "超级经济舱";
+        break;
+      case "2":
+        cabinStr = "商务舱";
+        break;
+      case "3":
+        cabinStr = "头等舱";
+        break;
+      default :
+        void (0);
+    }
+    return cabinStr;
+  },
   getMinutes:function (arg1, arg2) {
   var time1 = Date.parse(arg1.replace(/-/g, "/").replace(/T/," ")), time2 = Date.parse(arg2.replace(/-/g, "/").replace(/T/," ")), dayCount;
   return dayCount = (Math.abs(time2 - time1)) / 1000 / 60;
