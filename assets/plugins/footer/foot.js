@@ -131,18 +131,41 @@ var footer = (function() {
           var target = event.target || event.srcElement, src, index, cur;
           src = target.parentNode;
           if (target.className == "cancel") {// 取消
+            if(target.parentNode.nextSibling){
+              var screenLi = target.parentNode.nextSibling.getElementsByTagName('li');
+              for(var j = 0;j < screenLi.length;j++){
+                if(screenLi[j].className == 'cur choose'){
+                  screenLi[j].className = '';
+                }
+                if(screenLi[j].className == 'chose'||screenLi[j].className == 'cur chose'){
+                  screenLi[j].className = 'cur';
+                }
+              }
+            }
             that.remove();
           } else if (target.className == "clears") {// 清初筛选
             var node = src.parentNode;
             //previousSibling
             that.resec(node);
           } else if (target.className == "sure") {// 筛选确定
+            if(target.parentNode.nextSibling){
+              var screenLi_ = target.parentNode.nextSibling.getElementsByTagName('li');
+              for(var p = 0;p < screenLi_.length;p++){
+                if(screenLi_[p].className == 'cur choose'||screenLi_[p].className == 'cur chose'){
+                  screenLi_[p].className = 'cur';
+                }
+                if(screenLi_[p].className == 'choose'||screenLi_[p].className == 'chose'){
+                  screenLi_[p].className = '';
+                }
+              }
+            }
             that.request();
           }  else if (target.className == "button") {//航空公司的确定
             var air = target.parentNode;
             var li = air.getElementsByTagName('li');
             for(var k = 0;k < li.length;k++){
-              if(li[k].className == 'cur'){
+              if(li[k].className == 'cur choose'){
+                li[k].className = 'cur';
                 var nod = li[k];
               }
             }
@@ -185,11 +208,21 @@ var footer = (function() {
                     var cur = src.getElementsByClassName("cur");
                     for (var i = 0; i < cur.length; i++) {
                       if (cur[i].className == "cur") {
+                        cur[i].className = "chose";
+                        //break;
+                      } else{
                         cur[i].className = "";
-                        break;
                       }
                     }
-                    target.className = "cur";
+                    if(target.className == "cur choose"){
+                      target.className = "choose";
+                    }else if(target.className == "cur"){
+                      target.className = "chose";
+                    }else if(target.className == "chose") {
+                      target.className = "cur chose";
+                    } else{
+                      target.className = "cur choose";
+                    }
                     break;
                   case 2:
                     //多选
@@ -199,18 +232,52 @@ var footer = (function() {
                         var cur = src.getElementsByTagName("li");
                         for (var i = 1; i < cur.length; i++) {
                           //if (cur[i].className == "cur") {
-                          cur[i].className = "";
+                          if(cur[i].className == "cur"){
+                            cur[i].className = "chose";
+                          }else if(cur[i].className == "cur choose"){
+                            cur[i].className = "choose";
+                          }else{
+                            cur[i].className = "";
+                          }
                           // break;
                           //}
                         }
-                        target.className = target.className == "cur" ? "" : "cur";
+                        if(target.className == "cur choose"){
+                          target.className = "choose";
+                        }else if(target.className == "cur"){
+                          target.className = "chose";
+                        }else if(target.className == "chose") {
+                          target.className = "cur chose";
+                        } else{
+                          target.className = "cur choose";
+                        }
                       } else {//点击是其他（非不限选项）
-                        src.firstChild.className == "cur" ? src.firstChild.className = "" : null;
+                        if(src.firstChild.className == "cur choose"){
+                          src.firstChild.className = "choose";
+                        }else if(src.firstChild.className == "cur"){
+                          src.firstChild.className = "chose";
+                        }
                         //判断比直接赋空值内存性能优化方面好
-                        target.className = target.className == "cur" ? "" : "cur";
+                        if(target.className == "cur choose"){
+                          target.className = "choose";
+                        }else if(target.className == "cur"){
+                          target.className = "chose";
+                        }else if(target.className == "chose") {
+                          target.className = "cur chose";
+                        } else{
+                          target.className = "cur choose";
+                        }
                       }
                     } else {
-                      target.className = target.className == "cur" ? "" : "cur";
+                      if(target.className == "cur choose"){
+                        target.className = "choose";
+                      }else if(target.className == "cur"){
+                        target.className = "chose";
+                      }else if(target.className == "chose") {
+                        target.className = "cur chose";
+                      } else{
+                        target.className = "cur choose";
+                      }
                     }
                     break;
                   default:
@@ -232,6 +299,13 @@ var footer = (function() {
           var target = event.target || event.srcElement, src = target.parentNode;
           if (target.className.indexOf("header_back") > -1 || src.className.indexOf("header_back") > -1) {
             if (masker.style.display == "none" && sec.firstChild.style.top == "1.48rem") {
+              var airwaylist = document.querySelector(".flight_company").getElementsByTagName('li');
+              for(var mm = 0;mm < airwaylist.length;mm++){
+                if(airwaylist[mm].className == 'cur choose'){
+                  airwaylist[mm].className = '';
+                }
+                airwaylist[0].className = 'cur';
+              }
               that.showItems(0, 3);
               // 阻止默认链接跳转
               if (event && event.preventDefault) {
@@ -243,6 +317,15 @@ var footer = (function() {
             }
           }
           if (target == masker || target == sec) {
+            var screenLi = target.nextSibling.getElementsByTagName('li');
+            for(var j = 0;j < screenLi.length;j++) {
+              if (screenLi[j].className == 'cur choose') {
+                screenLi[j].className = '';
+              }
+              if (screenLi[j].className == 'chose'||screenLi[j].className == 'cur chose') {
+                screenLi[j].className = 'cur';
+              }
+            }
             that.remove();
           }
         });
@@ -505,13 +588,15 @@ var footer = (function() {
             var li = ul[i].getElementsByTagName("li"), fst = li[0].innerHTML;
             // 第一个判断
             if (fst.indexOf("不限") > -1) {
-              li[0].className = 'cur';
+              li[0].className = 'cur choose';
             } else {
               li[0].className = '';
             }
             // 后续循环
             for (var j = 1; j < li.length; j++) {
-              li[j].className == 'cur' ? li[j].className = '' : null;
+              if(li[j].className == 'cur'||li[j].className == 'cur choose'|| li[j].className == 'cur chose'){
+                li[j].className = '';
+              }
             }
           }
         }
@@ -556,7 +641,7 @@ var footer = (function() {
         } else {
           return "没找到section。";
         }
-      },
+      }
     };
 
   return {
