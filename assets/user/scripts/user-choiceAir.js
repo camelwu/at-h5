@@ -255,6 +255,15 @@
       return false;
     }
 
+    if(! $(addOrEditPassagePage).find("#time-cont").html()){
+      jAlert("请选择证件有效期！","",null,"确认");
+      return false;
+    }
+
+    if(! $(addOrEditPassagePage).find("#birth-cont").html()){
+      jAlert("请选择出生日期！","",null,"确认");
+      return false;
+    }
 
     return true;
   }
