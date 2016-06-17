@@ -173,7 +173,7 @@
          **/
         list: function (result, more) {
             if (result.code === 200 && result.success) {
-                $('.all_elements').scrollTop(0);
+                // $('.all_elements').scrollTop(0);
                 //更新酒店数量
                 var data = result.data;
                 var str = $('#title').html();
