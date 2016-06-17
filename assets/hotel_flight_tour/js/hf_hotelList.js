@@ -80,7 +80,7 @@
                 hotelList.parametersStorage.StarRating = filter;
                 hotelList.parametersStorage.pageNo = 1;
 
-                hotelList.tAjax("", hotelList.parametersStorage, "50100003", "2", hotelList.list);
+                hotelList.tAjax("", hotelList.parametersStorage, "50100003", "2", hotelList.sortList);
             };
         if (footer) {
             footer.data = menu_data;
@@ -165,7 +165,11 @@
             questUrl = questUrl || "";
             vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
         },
-
+        //筛选排序
+        sortList:function(){
+            $('.all_elements').scrollTop(0);
+            list();
+        },
         /**
          *@desc 渲染酒店列表
          *@para result 酒店列表
@@ -173,7 +177,6 @@
          **/
         list: function (result, more) {
             if (result.code === 200 && result.success) {
-                // $('.all_elements').scrollTop(0);
                 //更新酒店数量
                 var data = result.data;
                 var str = $('#title').html();
