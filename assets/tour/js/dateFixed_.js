@@ -434,7 +434,12 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                     childWithBed.push(ty.parentNode.querySelectorAll('input')[0].value);
                   }
                 } else {
-                  childWithOutBed.push(ty.parentNode.querySelectorAll('input')[0].value);
+                  if(ty.parentNode.querySelectorAll('input').length>1) {
+                    childWithOutBed.push(ty.parentNode.querySelectorAll('input')[1].value);
+                  }
+                  else{
+                    childWithOutBed.push(ty.parentNode.querySelectorAll('input')[0].value);
+                  }
                 }
               } else if (temChildNum == 2 && tt != null) {
                 if(ty.parentNode.querySelectorAll('input').length==3) {
