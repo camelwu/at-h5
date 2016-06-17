@@ -154,17 +154,20 @@ var flight_list = {
             for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
               if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                 hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
+                break;
               }
             }
           }
           if(data.selectedFlight&&data.selectedFlight.setID == setid){
             hftFlightHotelTourInfo.flightInfo = data.selectedFlight;
           }
-          sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
-          hftFlightHotelTourInfo = JSON.parse(sessionStorage.getItem('hftFlightHotelTourInfo'));
-          window.location.href = 'hft_choose.html' + window.location.search;
+          sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(hftFlightHotelTourInfo));
+          that.timer1 = setTimeout(function () {
+            window.clearTimeout(that.timer1);
+            that.timer1 = null;
+            window.location.href = 'hft_choose.html' + window.location.search;
+          }, 500);
         });
-        //$('.flight_company ul li').eq(0).addClass('cur');
       } else {
         that.noResult();
         bottom(data);

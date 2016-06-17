@@ -541,12 +541,13 @@ var fDoubleList = {
     return tem.length > 1 ? 1 : 0
   },
 
-  init: function () {
+  init: function (){
     var postObj = this.parseUrlHandler(window.location.href, true);
     postObj.hasTax = postObj.internationalOrDomestic == "domestic"?0:1;
     this.postObj = postObj;
     this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    /*this.renderHandler(data1)*/
   }
 };
 fDoubleList.init();
