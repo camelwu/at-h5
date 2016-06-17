@@ -75,9 +75,9 @@
           <!--<span class="park"></span>-->
           <!--<span class="car"></span>-->
         </p>
-        <p class="address"><%= selectedHotel.city %>
+        <p class="address">
           <% if(selectedHotel.location){ %>
-               (<%= selectedHotel.location %>)
+            <%= selectedHotel.location %>
           <% } %>
         </p>
         <div class="price">
@@ -112,9 +112,9 @@
           <!--<span class="park"></span>-->
           <!--<span class="car"></span>-->
         </p>
-        <p class="address"><%= hotels[i].city %>
+        <p class="address">
           <%if(hotels[i].location){%>
-            (<%= hotels[i].location %>)
+            <%= hotels[i].location %>
           <% }%>
         </p>
         <div class="price">

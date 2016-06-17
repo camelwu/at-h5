@@ -227,8 +227,8 @@ var lsf_myweb = {
           if(dropDown.length > 0){
             dropDown[0].onclick = function(ev) {
               var oEvent = ev || event;
-              //this.style.display = 'none';
-              //$(".up").addClass("down");
+              this.style.display = 'none';
+              $(".up").addClass("down");
               var oSpan = oP.firstElementChild || oP.firstChild;
               oSpan.innerHTML = comments[index].comments;
             };
