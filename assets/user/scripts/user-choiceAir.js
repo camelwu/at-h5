@@ -816,9 +816,14 @@
     }
     if(!isShowChinaName){
       uc_cnName.hide();
+    }else{
+      uc_cnName.show();
     }
     if(!isShowContact){
       ul_contect.hide();
+    }
+    else{
+      ul_contect.show();
     }
 
     _getPassagerList();

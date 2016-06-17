@@ -143,9 +143,13 @@
           + '<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="名（如：ShiMin）" data-elementName="firstName" /></span>' + '</li>' + "</ul>" + '</section>';
         oRoomNum[i].querySelector('ul').appendChild(oSection);
         $(".add-cpassage-r" +i+"-"+j).on("click", function () {
-          var id = $(this).attr("data-c-id");
-          var roomId=$(this).attr("date-roomId");
-          vlm.f_choice('traveC-r'+roomId+"-"+id, "ht", 'traver', '', false, false, null, null, null, null);
+          var urlObj = vlm.parseUrlPara(window.location.href);
+          var sign=vlm.checkLogin("../tour/fill-in-order-new.html?hotelID="+urlObj["hotelID"]+"&travelersInput="+urlObj["travelersInput"]+"&airportTransferType="+urlObj["airportTransferType"]+"&totailPrice="+urlObj["totailPrice"]+"&roomID="+urlObj["roomID"]+"&travelersInput="+urlObj["travelersInput"]+"");
+          if(sign) {
+            var id = $(this).attr("data-c-id");
+            var roomId = $(this).attr("date-roomId");
+            vlm.f_choice('traveC-r' + roomId + "-" + id, "ht", 'traver', '', false, false, null, null, null, null);
+          }
         })
 
       }
