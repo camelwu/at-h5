@@ -1544,3 +1544,9 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   overflow: visible;
 }
 /*国籍样式补充*/
+
+
+/*防止ios 滑动失效*/
+.scenic_order_content{
+  position: relative;
+}
