@@ -506,7 +506,7 @@
             var arrivalFlightNo = document.querySelector('#content3 .input_flight input').value;
             var arrivalDateTime = document.querySelector('#content3_CheckInDate').value;
             var dateTime = arrivalDateTime ? arrivalDateTime.split("-") : checkInDate;
-            if (arrivalFlightNo = '') {
+            if (arrivalFlightNo == '') {
               fli.ArrivalFlightNo = "None";
             } else {
 
@@ -524,7 +524,7 @@
             var departFlightNo = document.querySelector('#content4 .input_flight input').value;
             var departDateTime = document.querySelector('#content4_CheckInDate').value;
             var departDate = departDateTime ? departDateTime.split("-") : checkOutDate;
-            if (departFlightNo = '') {
+            if (departFlightNo == '') {
               fli.ArrivalFlightNo = "None";
             } else {
               fli.DepartFlightNo = departFlightNo;
