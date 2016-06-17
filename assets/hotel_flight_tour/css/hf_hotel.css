@@ -348,9 +348,9 @@ a:link {
 }
 .jhf-mes .jhf-drg {
   position: absolute;
-  right: 0;
+  right: 0.28rem;
   top: 0;
-  width: 90px;
+  width: 1.88rem;
   height: 100%;
 }
 
@@ -370,7 +370,7 @@ a:link {
   font-size: 0.32rem;
   color: #fe4716;
   text-align: right;
-  padding-right: 0.3rem;
+  /*padding-right: 0.3rem;*/
 }
 
 .jhf-mes .jhf-drg p.reduce,
@@ -399,17 +399,18 @@ a:link {
 }
 
 .jhf-mes .slide .lfword {
-  margin-right: 90px;
+  margin-right: 1.6rem;
 }
 .jhf-mes .slide .lfword span{
   line-height: 0.46rem;
 }
 .jhf-mes .slide p.price{
   position: absolute;
-  right: 0.28rem;
+  right: 0;
   top: 50%;
   color: #ff5b13;
   height: 0.46rem;
+  width: 100%;
   line-height: 0.46rem;
   margin-top: -0.23rem;
 }
