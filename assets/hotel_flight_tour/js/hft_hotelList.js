@@ -40,6 +40,18 @@
 			});
 			clickMore(data);
 
+      //处理星级格式化
+      data.filters[0].item.unshift({
+        "filterText": '不限',
+        "filterValue": 0
+      });
+      data.filters[0].item = data.filters[0].item.map(function (item) {
+        return {
+          filterText:handleDate(item.filterText),
+          filterValue:item.filterValue
+        }
+      });
+
 			//footer  begin
 			var menu_data = {
 				hotelSort : {
