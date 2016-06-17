@@ -315,7 +315,7 @@
 			},
 			//获取星期几
 			getWeek : function(dtime, format) {
-				var date = new Date(dtime.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")), reslut;
+				var date = new Date(dtime.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?(.*)/, "$1/$2/$3 $4")), reslut;
 				switch (date.getDay()) {
 				case 0:
 					reslut = "日";
