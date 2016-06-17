@@ -663,7 +663,7 @@ var hftChoose = {
     return week;
   },
 
-  setChineseStar: function () {
+  /*setChineseStar: function () {
     var strNumber = arguments[0].substr(0, 1), resultNum = '';
     switch (strNumber.charCodeAt(0)) {
       case 49:
@@ -691,7 +691,7 @@ var hftChoose = {
         void (0);
     }
     return resultNum;
-  },
+  },*/
 
   fixRoomOrder:function(){
     var that = this,allInfoData = that.operationData,roomsData = [], temp = {},selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;

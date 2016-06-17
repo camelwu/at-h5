@@ -156,7 +156,7 @@
                          <% if(parseInt(hotelInfo['hotelReviewCount'])>0){%>
                          <span class="commit"><%= hotelInfo['hotelReviewCount'] %></span>人点评</p>
                        <%}%>
-                    <p class="starWifi"><span class="star"><%= hftChoose.setChineseStar(hotelInfo['starRating']) %></span><span class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
+                    <p class="starWifi"><span class="star"><%= hotelInfo['starRating'] %></span><span class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
                     <p><%= hotelInfo['location'] %></p>
                 </div>
                 <i></i>
