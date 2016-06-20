@@ -84,7 +84,6 @@
           });
           //点击加载更多
           $('#LoadMore').on("click", function () {
-            console.log('111');
             loadMore();
           });
           clickMore(data);
@@ -134,20 +133,24 @@
         return;
       }
       loadMoreBtn.attr("data-more", "yes");
-      SParameter.Parameters.PageIndex = PageIndex + 1;
+      SParameter.Parameters.PageIndex = PageIndex;
+      console.log(SParameter.Parameters.PageIndex);
       $("#LoadMore").html("正在加载...");
       vlm.loadJson('', JSON.stringify(SParameter), callback);
     };
     //点击加载更多
    var  clickMore= function(data){
-     var PageIndex = SParameter.Parameters.PageIndex;
-     console.log(data.data.lists.length);
-       //var pageCount = (data.data.lists.length) % 20;
-      if (data.data.lists.length>0) {
+     PageIndex = parseInt(SParameter.Parameters.PageIndex)+1;
+      if (data.data.lists.length>0 && PageIndex==data.data.pageCount) {
         $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
-      } else{
+        console.log("aaa")
+      } else if(PageIndex > data.data.pageCount){
         $("#LoadMore").attr("data-more", "no").html("没有更多数据了！").show();
+      }else{
+        $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
+        console.log("aaa")
       }
+
     }
     //城市列表父宽
     var PWidth = function(data) {
@@ -156,11 +159,9 @@
       var width = 0;
       for (var i = 0; i < sum-1; i++) {
         width = $(".city_list1").eq(i).width();
-        console.log(width);
         num += width;
       }
       num = num + sum * 60;
-      console.log(num);
       $(".city_box").css({
         'width' : num + 'px'
       });
