@@ -555,7 +555,11 @@ var hftChoose = {
     var backFun = function () {
       var backEle = document.querySelector('.header_back');
       that.addHandler(backEle, 'click', function () {
-        window.location.href ="index.html?type=" + that.type
+        if(that.type == 1) {
+          window.location.href = "index.html?type=" + that.type
+        }else{
+          window.location.href = "hft_scenic_list.html?type=" + that.type
+        }
       });
     }, tempStrc="", outputStrc="", that = hftChoose;
     tempStrc = $("#template_no_result").html();
