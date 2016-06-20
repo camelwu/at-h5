@@ -139,8 +139,8 @@
       vlm.loadJson('', JSON.stringify(SParameter), callback);
     };
     //点击加载更多
-   var  clickMore= function(data){
-     PageIndex = parseInt(SParameter.Parameters.PageIndex)+1;
+    var  clickMore= function(data){
+      PageIndex = parseInt(SParameter.Parameters.PageIndex)+1;
       if (data.data.lists.length>0 && PageIndex==data.data.pageCount) {
         $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
         console.log("aaa")
@@ -173,8 +173,10 @@
   core.ScenicList();
   //清空资源选择页历史数据
   window.sessionStorage.removeItem('hftFlightHotelTourInfo');
+  window.localStorage.removeItem('hftFlightHotelTourInfo');
   window.sessionStorage.removeItem('tourChosenInfo');
   window.sessionStorage.removeItem('hftCreateOrderPara');
+  window.localStorage.removeItem('hftCreateOrderPara');
   window.sessionStorage.removeItem('hotelAdditionalPrice');
   window.sessionStorage.removeItem('tempChooseTourDate');
 })();
