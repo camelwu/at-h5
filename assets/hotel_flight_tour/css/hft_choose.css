@@ -691,15 +691,16 @@ body {
 }
 
 .after-noon button {
-    display: inline-block;
-    font-size: .28rem;
-    border-radius: .04rem;
-    color: rgb(51, 51, 51);
-    padding: .12rem 0;
-    width: 29%;
-    margin-right: .28rem;
-    background: #FFF;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  font-size: .28rem;
+  border-radius: .04rem;
+  color: rgb(51, 51, 51);
+  padding: .12rem 0;
+  width: 28%;
+  margin-right: .28rem;
+  margin-bottom: .14rem;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .after-noon button.active {

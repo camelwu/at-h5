@@ -173,4 +173,6 @@
   //清空资源选择页历史数据
   window.sessionStorage.removeItem('hftFlightHotelTourInfo');
   window.sessionStorage.removeItem('tourChosenInfo');
+  window.sessionStorage.removeItem('hftCreateOrderPara');
+  window.sessionStorage.removeItem('tempChooseTourDate');
 })();
