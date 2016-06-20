@@ -549,7 +549,8 @@
   <!--酒店-->
   <section id="hotel">
     <div class="hotel_section">
-      <a href="javascript:;" class="hotel_link_wrap" onclick="hotel_link();"><i class="hotel_tip_link"></i></a>
+      <% var checkIn=checkInDate.split("T")[0],checkOut=checkOutDate.split("T")[0];%>
+      <a href="../hotel/hotel_detail.html?HotelID=<%=hotelCode%>&HotelCode=<%=hotelCode%>&InstantConfirmation=false&AllOccupancy=false&CheckInDate=<%=checkIn%>&CheckOutDate=<%=checkOut%>&NumRoom=<%=noOfRooms%>&NumAdult=<%=noOfAdults%>&NumChild=<%=noOfChild%>" class="hotel_link_wrap"><i class="hotel_tip_link"></i></a>
       <!--<div class="fht_hd clearfix">-->
       <!--<span class="fht_hd_tit hotel fl"><i></i>酒店</span>-->
       <!--</div>-->

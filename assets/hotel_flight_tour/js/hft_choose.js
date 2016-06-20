@@ -36,6 +36,7 @@ var hftChoose = {
     var storage = window.sessionStorage, that = hftChoose;
     that.createOrderPara.memberID = window.localStorage.getItem('memberid');
     storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
+    window.localStorage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
     that.timer0 = setTimeout(function () {
       window.clearTimeout(that.timer0);
       that.timer0 = null;
@@ -484,15 +485,19 @@ var hftChoose = {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
-      var hftCreateOrderParaInfo = JSON.parse(storage.getItem('tempChooseTourDate'));
+      var hftCreateOrderParaInfo = JSON.parse(storage.getItem('hftCreateOrderPara')), tempChooseTourDate = JSON.parse(storage.getItem('tempChooseTourDate'));
       if(hftCreateOrderParaInfo){
-        that.hftCreateOrderParaInfo = hftCreateOrderParaInfo
-      };
+        that.hftCreateOrderParaInfo = hftCreateOrderParaInfo.tours;
+      }
+      if(tempChooseTourDate){
+        that.tempChooseTourDate = tempChooseTourDate;
+      }
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
       originAirIds.flightSetID = resultData.flightInfo.setID;
       originAirIds.flightCacheID = resultData.flightInfo.cacheID;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
+      window.localStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
       that.operationData = resultData;
       that.selectedRoomHandler(resultData).createTags(resultData).delayLoadImage().createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
@@ -783,14 +788,10 @@ var hftChoose = {
     return cabinStr;
   },
   init: function () {
-    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {},hftCreateOrderParaInfo = {}, urlParseObj = {}, storage = window.sessionStorage, originAirIds = {}, hftFlightHotelTourInfo = {};
+    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj = {}, storage = window.sessionStorage, originAirIds = {}, hftFlightHotelTourInfo = {};
     originAirIds = JSON.parse(storage.getItem('originAirIds'));
-    hftCreateOrderParaInfo = JSON.parse(storage.getItem('hftCreateOrderPara'));
     hftFlightHotelTourInfo = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
     urlParseObj = this.parseUrlPara(document.location.search, true);
-    if(hftCreateOrderParaInfo){
-      this.hftCreateOrderParaInfo = hftCreateOrderParaInfo;
-    }
     var paraObj = {
       "cityCodeFrom": temObj['FromCity'],
       "cityCodeTo": temObj['ToCity'],

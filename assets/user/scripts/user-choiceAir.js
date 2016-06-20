@@ -255,9 +255,14 @@
       return false;
     }
 
+    //证件有效期验证
+    var card_validity=$('#time-cont').html();
     if(! $(addOrEditPassagePage).find("#time-cont").html()){
       jAlert("请选择证件有效期！","",null,"确认");
       return false;
+    }else if( ! vlm.Utils.compareTime(card_validity)){
+      jAlert('证件有效期无效，请重新选择!');
+      return;
     }
 
     if(! $(addOrEditPassagePage).find("#birth-cont").html()){

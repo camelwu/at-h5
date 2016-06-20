@@ -34,16 +34,15 @@ var hftTool ={
   "use strict";
   //加载动画
   function package_detail() {
-
     $(window).load(function () {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     });
-  };
+  }
   package_detail();
-  var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+  var hftFlightHotelTourInfo=JSON.parse(localStorage.hftFlightHotelTourInfo);
   console.log(hftFlightHotelTourInfo);
-  var hftCreateOrderPara=JSON.parse(sessionStorage.hftCreateOrderPara);
+  var hftCreateOrderPara=JSON.parse(localStorage.hftCreateOrderPara);
   hftCreateOrderPara.hotelName=hftFlightHotelTourInfo.hotelInfo.hotelName;
   hftCreateOrderPara.hotelNameLocale=hftFlightHotelTourInfo.hotelInfo.hotelNameLocale;
   var freetype=vlm.getpara('type');
