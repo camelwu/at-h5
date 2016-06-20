@@ -1408,7 +1408,6 @@ a.foot-homes, a.foot-users {
 }
 
 .addtra_page {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -1416,7 +1415,9 @@ a.foot-homes, a.foot-users {
   height: 100%;
   background-color: #f7f7f7;
 }
-
+#addtra_page,#uptra_page{
+  visibility: hidden;
+}
 .addtra_title {
   width: 100%;
   padding: .2rem .28rem;
@@ -1625,7 +1626,7 @@ a.foot-homes, a.foot-users {
 
 /*填写姓名说明页css*/
 .fillName_page {
-  display: none;
+  visibility: hidden;
   background-color: #fff;
 }
 
