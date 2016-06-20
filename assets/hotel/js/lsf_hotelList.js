@@ -836,12 +836,16 @@ function styleChange(id, mytext) {
             }else if(json.Message== '远程服务器返回错误: (500) 内部服务器错误。'){
               document.getElementById("loadMore").style.display = "none";
               var oLi = document.createElement('li');
-              oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+              oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询</p><a href = "index.html" class="hotelConSorry2">点击页面 进入搜索页</a></div>';
               oLi.className = 'hotelConNo';
               oUl.style.width = '100%';
-              oUl.style.height = '100%';
+              oUl.style.height = '90%';
               oUl.appendChild(oLi);
               oLi.style.display="block";
+              //var Onclick = document.getElementsByClassName("hotelConSorry2");
+              //Onclick.onclick=function(){
+              //  window.location.href = '../index.html';
+              //}
             } else {
                 //alert(json.message);
                 //console.log(json.message);
