@@ -605,6 +605,14 @@
       var data = json.data;
       var weekday = JSON.parse(localStorage.week);
       var noon = JSON.parse(localStorage.noon);
+      //由于返回的数据顺序和存储的数据顺序不一致，格式化
+      var wekday1 = weekday[0],noon1 = noon[0];
+      var wekday2 = weekday[1],noon2 = noon[1];
+      weekday[0] = wekday2;
+      weekday[1] = wekday1;
+      noon[0] = noon2;
+      noon[1] = noon1;
+      console.log(weekday)
       data = $.extend({
         "weekday": weekday,
         "noon": noon

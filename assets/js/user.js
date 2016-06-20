@@ -631,12 +631,11 @@
   var myDate6 = new Scroller({id: "cardType", type:"card",cont:"eee3",callback:cardcallback});
 
   function cardcallback(){
-
-    if($('.date-selected').html() == '护照')
-    {
-      function cardnum(){
-        if(travJson != undefined){
-          var arr1=travJson.data[index].listTravellerIdInfo;
+    var idnumber;
+    function cardnum(){
+      if(travJson != undefined){
+        var arr1=travJson.data[index].listTravellerIdInfo;
+        if($('.date-selected').html() == '护照'){
           for(var i=0;i<arr1.length; i++)
           {
             if(arr1[i].idType == 1)
@@ -644,26 +643,20 @@
               return arr1[i].idNumber;
             }
           }
-
-        }
-      }
-      var idnumber=cardnum();
-      $('.postNum').val(idnumber);
-
-    }else if($('.date-selected').html() == '身份证'){
-      function cardnum(){
-        if(travJson != undefined) {
-          var arr1 = travJson.data[index].listTravellerIdInfo;
-          for (var i = 0; i < arr1.length; i++) {
-            if (arr1[i].idType == 2) {
+        }else if($('.date-selected').html() == '身份证'){
+          for(var i=0;i<arr1.length; i++)
+          {
+            if(arr1[i].idType == 2)
+            {
               return arr1[i].idNumber;
             }
           }
         }
       }
-      var idnumber=cardnum();
-      $('.postNum').val(idnumber);
     }
+
+    idnumber=cardnum();
+    $('.postNum').val(idnumber);
 
   }
 

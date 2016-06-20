@@ -393,13 +393,11 @@
         <div class="txt">
           <%= tourInfos[i].tourName %>
         </div>
-        <% if(tourInfos[i].travelDateSpecified){ %>
-        <div class="detail_span">游玩时间
-          <%= tourInfos[i].travelDate.substr(0,10) %>
+        <div class="detail_span">
+            <% if(tourInfos[i].travelDateSpecified){ %>游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %><% } %>
           <%= weekday[i] %>
           <%= noon[i] %>
         </div>
-        <% } %>
         <div class="detail_span">成人票
           <%= info.adultNum %>张
         </div>
