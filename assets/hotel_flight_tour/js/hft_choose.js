@@ -499,6 +499,8 @@ var hftChoose = {
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       window.localStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
+      resultData.hotelInfo.starRating = hftChoose.starRatingStorage(resultData.hotelInfo.starRating);
+
       that.operationData = resultData;
       that.selectedRoomHandler(resultData).createTags(resultData).delayLoadImage().createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
       $("#status").fadeOut(resultData);
@@ -655,29 +657,53 @@ var hftChoose = {
     }
     return week;
   },
-
-  setChineseStar: function () {
-    var strNumber = arguments[0].substr(0, 1), resultNum = '';
-    switch (strNumber.charCodeAt(0)) {
-      case 49:
+  starRatingStorage: function (starStr) {
+    var star = {
+      '1': 1,
+      '2': 2,
+      '3': 3,
+      '4': 4,
+      '5': 5,
+      '一星级': 1,
+      '二星级': 2,
+      '三星级': 3,
+      '四星级': 4,
+      '五星级': 5,
+      '1 星级': 1,
+      '2 星级': 2,
+      '3 星级': 3,
+      '4 星级': 4,
+      '5 星级': 5,
+      '1 stars': 1,
+      '2 stars': 2,
+      '3 stars': 3,
+      '4 stars': 4,
+      '5 stars': 5
+    }
+    return star[starStr];
+  },
+  setChineseStar: function (starRating) {
+    var resultNum;
+    switch (starRating) {
+      case 1:
         resultNum = '一星级';
         break;
-      case 50:
+      case 2:
         resultNum = '二星级';
         break;
-      case 51:
+      case 3:
         resultNum = '三星级';
         break;
-      case 52:
+      case 4:
         resultNum = '四星级';
         break;
-      case 53:
+      case 5:
         resultNum = '五星级';
         break;
-      case 54:
+      case 6:
         resultNum = '六星级';
         break;
-      case 55:
+      case 7:
         resultNum = '七星级';
         break;
       default:
