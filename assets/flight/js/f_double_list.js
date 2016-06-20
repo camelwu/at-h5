@@ -543,6 +543,7 @@ var fDoubleList = {
 
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
+    postObj.hasTax = postObj.internationalOrDomestic == "domestic"?1:0;
     this.postObj = postObj;
     this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);

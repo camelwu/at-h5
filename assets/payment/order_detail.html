@@ -619,7 +619,7 @@
     </div>
   </section>
   <% if(orderStatus==1 ){ %>
-  <div class="p-but cancelOrder"><a href="#">取消订单</a></div>
+  <div class="p-but cancelOrder"><a href="javascript:;">取消订单</a></div>
   <% } else if(orderStatus==0){ %>
   <div class="p-but payOrder"><a href="payment.html?bookingRefNo=<%=bookingReferenceNo%>&type=Hotle">支付订单</a></div>
   <% } %>
@@ -796,7 +796,7 @@
   <section id="tour">
     <div class="tour_wrap">
       <p class="tour_productinfo">
-        <span class="productName"><%=packageName%></span><span class="productCode">(产品编号 <%=bookingRefNo%>)</span>
+        <span class="productName"><%=packageName%></span><span class="productCode">(产品编号 <%=packageRefNo%>)</span>
       </p>
       <a href="../scenic/scenic_detail.html?packageID=<%=packageID%>"><i class="tourdetail_icon"></i></a>
     </div>
@@ -818,7 +818,7 @@
     </div>
   </section>
 
-  <section id="order_detail" style="clear:both">
+  <section id="order_detail" style="clear:both" >
     <% if(voucher!=null && voucher.length>=1){ %>
     <div class="fht_order_detail">
       <div class="fht_hd">电子确认单（景点入园时出示）</div>
@@ -958,7 +958,7 @@
         </div>
       </div>
     <% } %>
-
+    <% if(flightDetails!=null){ %>
     <!--酒景接送机-->
     <div class="tour-item line">
       <div class="title"><i></i>接机服务</div>
@@ -973,7 +973,7 @@
         </ul>
       </div>
     </div>
-
+    <% } %>
   </section>
 
   <section id="order_detail" style="clear:both">

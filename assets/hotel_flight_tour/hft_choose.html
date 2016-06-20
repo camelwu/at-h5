@@ -20,10 +20,10 @@
 </head>
 
 <body data-statp="choose">
-    <div id="preloader">
+<div id="preloader">
         <div id="status"> </div>
-    </div>
-    <div class="all_elements"></div>
+</div>
+<div class="all_elements"></div>
 </body>
 <script id="template" type="text/template">
     <header class="header">
@@ -91,7 +91,7 @@
                       <%}else{%>
                       <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %></span>
                       <% }%>
-                      <span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsLeave"][0]["cabinClass"]) %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
+            <span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsLeave"][0]["cabinClass"]) %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
                     </p>
                 </li>
                 <p class="flightDetailArrow"><i></i></p>
@@ -137,7 +137,7 @@
                       <%}else{%>
                       <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %></span>
                       <% }%>
-                      </span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsReturn"][0]["cabinClass"])%></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
+            </span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsReturn"][0]["cabinClass"])%></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
                     </p>
                 </li>
             </ul>
@@ -221,29 +221,29 @@
                 <li data-tour-id="<%=tour['tourID']%>" data-tour-type="<%=tour['tourType']%>" class="<%= tour.tourType!=1?'tourList':''%>">
                     <h3 class="tour-list-title"><%= tour.tourName %></h3>
                   <% if(tour.tourType!=1){%>
-                  <p class="choose-tour-date">
-                    <%if(hftChoose.tourChosenInfo){%>
-                    <%if(hftChoose.tourChosenInfo.tourId==tour.tourID){%>
-                           <span data-date="<%= hftChoose.tourChosenInfo.chosenDate%>"><%= hftChoose.returnDay(hftChoose.tourChosenInfo.chosenDate)%></span>
-                    <% }%>
-                    <% }else{%>
-                           <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
-                    <% } %>
-                    <i></i>
+        <p class="choose-tour-date">
+          <%if(hftChoose.tourChosenInfo){%>
+          <%if(hftChoose.tourChosenInfo.tourId==tour.tourID){%>
+          <span data-date="<%= hftChoose.tourChosenInfo.chosenDate%>"><%= hftChoose.returnDay(hftChoose.tourChosenInfo.chosenDate)%></span>
+          <% }%>
+          <% }else{%>
+          <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
+          <% } %>
+          <i></i>
                   </p>
                   <div class="after-noon">
                     <%if(tour["tourSessions"]){ %>
                     <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-                    <% if(hftChoose.urlParseObj.enumvalue){ %>
-                    <button class="<%= tourSession['tourSessionEnumValue'] == hftChoose.urlParseObj.enumvalue ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
-                      <%=tourSession["tourSessionName"] %>
-                    </button>
-                    <%}else{ %>
+          <% if(hftChoose.urlParseObj.enumvalue){ %>
+          <button class="<%= tourSession['tourSessionEnumValue'] == hftChoose.urlParseObj.enumvalue ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
+            <%=tourSession["tourSessionName"] %>
+          </button>
+          <%}else{ %>
                     <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
-                     <%=
-                     tourSession["tourSessionName"] %>
-                   </button>
-                    <%} %>
+            <%=
+            tourSession["tourSessionName"] %>
+          </button>
+          <%} %>
                     <% }) %>
                     <% } %>
                   </div>
