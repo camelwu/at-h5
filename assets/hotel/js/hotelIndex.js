@@ -143,17 +143,28 @@
                 history.go(-1);
             });
 
+
             $('#arr1 .i_address').on('touchend',function () {
-              hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
-              //$('#h_in').text(localAddress['city']);
-              GEOIKIT().callMethod("CurrentLocation",{});
-              return false;
+                hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
+                // GEOIKIT().callMethod("CurrentLocation",{});
+                var province = localAddress['province'];
+                var city = localAddress['city'];
+                if (province === '北京市' || province === '上海市' || province === '天津市' || province === '重庆市') {
+                    $('#h_in').text(province);
+                } else {
+                    $('#h_in').text(province + city);
+                }
+                return false;
             });
             $('#arr2 .i_address').on('touchend',function () {
-              //$('#h_in').text(localAddress['city']);
-              GEOIKIT().callMethod("CurrentLocation",{});
-              //$('#h_in').text(localAddress['province']+localAddress['city']);
-
+                // GEOIKIT().callMethod("CurrentLocation",{});
+                var province = localAddress['province'];
+                var city = localAddress['city'];
+                if (province === '北京市'|| province === '上海市' || province === '天津市' || province === '重庆市') {
+                    $('#h_in').text(province);
+                } else {
+                    $('#h_in').text(province + city);
+                }
             });
 
             //城市列表
