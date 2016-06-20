@@ -23,16 +23,13 @@
 <div id="preloader">
   <div id="status"> </div>
 </div>
+<header class="header" id="header">
+
+</header>
 <div class="all_elements"></div>
+<div class="bottomPrice"></div>
 </body>
 <script id="template" type="text/template">
-  <header class="header">
-    <a href="#" class="header_back" data-statl="back">
-      <i class="icon_back"></i>
-    </a>
-    <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
-    </h3>
-  </header>
   <div class="content">
     <div class="top_info">
       <span>去程:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
@@ -176,12 +173,19 @@
     <p>儿童<span class="price-num-price">￥<span>56X2</span></span>
     </p>
   </div>
-  <div class="bottomPrice">
-    <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
-    <span class="preserve">立即预订</span>
-  </div>
-</script>
 
+</script>
+<script id="template_footer" type=text/template">
+          <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
+  <span class="preserve">立即预订</span>
+</script>
+<script id="template_header" type=text/template">
+  <a href="#" class="header_back" data-statl="back">
+    <i class="icon_back"></i>
+  </a>
+  <h3><span id="city1"><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span class="city2"><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
+  </h3>
+</script>
 <script id="template_roomList" type="text/template">
   <% hotelInfo["rooms"].forEach(function(room, item){%>
   <li class="hasChosen" data-room-id="<%= room['roomID'] %>">

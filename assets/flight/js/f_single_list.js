@@ -251,7 +251,7 @@ var fSingleList = {
     var transferData = arguments, that = fSingleList;
     if (that.postObj.internationalOrDomestic == "international"){
       if (arguments[1].id == "Tax"){
-        that.fadeHandler('show')
+        that.fadeHandler('show');
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
           that.postObj.hasTax = 1;
@@ -282,7 +282,9 @@ var fSingleList = {
       }
     } else {
       if (arguments[1].id == "Price") {
-        var dd = arguments[1].querySelector('dd');
+        var dd = arguments[1].querySelector('dd'),  sortDd = document.querySelector('#Sort').querySelector('dd'),sortDt =document.querySelector('#Sort').querySelector('dt');
+        sortDd.innerHTML = "时间";
+        sortDt.className = "clo";
         if (dd.innerHTML == "价格"){
           that.postObj.priorityRule = 2;
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
@@ -292,7 +294,10 @@ var fSingleList = {
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       }else if(arguments[1].id == "Sort"){
-        var dd = arguments[1].querySelector('dd');
+        var dd = arguments[1].querySelector('dd'), sortDd = document.querySelector('#Price').querySelector('dd'),sortDt =document.querySelector('#Price').querySelector('dt');
+        arguments[1].querySelector('dt').className = "";
+        sortDd.innerHTML = "价格";
+        sortDt.className = "clo";
         if (dd.innerHTML == "起飞早到晚") {
           dd.innerHTML = "起飞晚到早";
           that.postObj.isDesc = "true";
@@ -304,7 +309,13 @@ var fSingleList = {
           that.postObj.priorityRule = 0;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        }
+        }else{
+          dd.innerHTML = "起飞早到晚";
+          that.postObj.isDesc = "false";
+          that.postObj.priorityRule = 0;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+         }
       }else {
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
         that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
@@ -563,7 +574,7 @@ var fSingleList = {
         errorFunc();
       }
     };
-    images = Array.prototype.slice.call(images)
+    images = Array.prototype.slice.call(images);
     images.forEach(function(array){
       var re_url = array.getAttribute('data-src'), error_url = "../images/loading_def_big.png";
       loadImage(re_url,error_url, function() {
