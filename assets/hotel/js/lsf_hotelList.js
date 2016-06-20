@@ -131,39 +131,7 @@ function styleChange(id, mytext) {
         }
     };
 }
-////解决位置搜索部分确定按钮太靠下的问题
-//;(function(){
-////		var inst = document.getElementById("fo_lo");
-////		var submit = document.getElementById("l_but");
-//	$("#fo_lo").on("click",function(){
-//		$("#l_but").addClass("s-but-checked");
-//		$("#s_but1").addClass("s-but-checked");
-//		console.log("111");
-//	});
-//	$("#l_but").on("click",function(){
-//		$("#l_but").removeClass("s-but-checked");
-//		$("#s_but1").removeClass("s-but-checked");
-//	});
-//
-//})();
 (function () {
-    //function checked() {
-    //    $("#fo_lo").on("click", function () {
-    //        $("#l_but").addClass("s-but-checked");
-    //        $("#s_but1").addClass("s-but-checked");
-    //        console.log("111");
-    //    });
-    //}
-    //
-    //function submit() {
-    //    $("#l_but").on("click", function () {
-    //        $("#l_but").removeClass("s-but-checked");
-    //        $("#s_but1").removeClass("s-but-checked");
-    //    });
-    //}
-    //checked();
-    //submit();
-
     //贾燕云的js
     function h_l_s() {
         var rli = [],
@@ -398,14 +366,6 @@ function styleChange(id, mytext) {
 
     h_l_s();
     //贾燕云的js结束
-
-    //返回按钮事件
-    //var hl_back = document.getElementById('hl_back');
-    //lsf_myweb.bind(hl_back, 'click', function() {
-    //   //清空筛选条件
-    //   lsf_myweb.setSession('asiaHlHistory', {});
-    //	window.location.href = 'index.html';
-    //});
     //页面没有展示前页面展示的页面
     var oUl = document.getElementById('lsf_list');
     $(window).load(function () {
@@ -873,6 +833,15 @@ function styleChange(id, mytext) {
                     'locationList': []
                 };
                 V(data);
+            }else if(json.Message== '远程服务器返回错误: (500) 内部服务器错误。'){
+              document.getElementById("loadMore").style.display = "none";
+              var oLi = document.createElement('li');
+              oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+              oLi.className = 'hotelConNo';
+              oUl.style.width = '100%';
+              oUl.style.height = '100%';
+              oUl.appendChild(oLi);
+              oLi.style.display="block";
             } else {
                 //alert(json.message);
                 //console.log(json.message);
