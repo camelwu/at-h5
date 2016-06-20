@@ -728,6 +728,15 @@ var hftChoose = {
 
   createTags: function () {
     var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "", tempStringRoom = "",outputStrRoom = "";
+    //头部数据
+    var template_header = $("#template_header").html();
+    var header = ejs.render(template_header,data);
+    $('#header').html(header);
+    //底部价钱部分
+    var template_footer = $('#template_footer').html();
+    var footer = ejs.render(template_footer,data);
+    $('.bottomPrice').html(footer);
+  //template部分
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr, data);
     $(".all_elements").eq(0).html(outputStr);
