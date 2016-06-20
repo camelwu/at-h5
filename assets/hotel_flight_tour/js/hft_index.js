@@ -138,10 +138,17 @@ var htf_search = {
       search_hotel[1].insertBefore(section, hotelInfo_hft.nextSibling);
     }
     adultbox = search_hotel[0].getElementsByClassName('per_price_control');
+    var bed;
     for(var n=0;n < adultbox.length;n++) {
       if (adultbox[n].getAttribute('data-type') == 'adult') {
         if (adultbox[n].getElementsByTagName('i')[0].innerHTML == 3) {
           adultbox[n].lastChild.style.backgroundPosition = '29.5% 68%';
+        }
+        if (adultbox[n].getElementsByTagName('i')[0].innerHTML == 1) {
+          bed = adultbox[n].parentNode.parentNode.parentNode.getElementsByClassName('spenumbList')[0];
+          if(bed != undefined){
+            bed.parentNode.removeChild(bed);
+          }
         }
       }
     }
@@ -150,6 +157,12 @@ var htf_search = {
       if (adultbox[k].getAttribute('data-type') == 'adult') {
         if (adultbox[k].getElementsByTagName('i')[0].innerHTML == 3) {
           adultbox[k].lastChild.style.backgroundPosition = '29.5% 68%';
+        }
+        if (adultbox[k].getElementsByTagName('i')[0].innerHTML == 1) {
+          bed = adultbox[k].parentNode.parentNode.parentNode.getElementsByClassName('spenumbList')[0];
+          if(bed != undefined){
+            bed.parentNode.removeChild(bed);
+          }
         }
       }
     }

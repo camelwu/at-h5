@@ -430,14 +430,14 @@
           }
 
           var id=$(obj).parent().find(".itemId").val();
-          var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+          var list= JSON.parse(sessionStorage.getItem("choiceAir_select_orderTraveller"));
           var temp={};
           for(var key in list){
             if(key !=id){
               temp[key]=list[key];
             }
           }
-          sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
+          sessionStorage.setItem('choiceAir_select_orderTraveller',JSON.stringify(temp));
         }
 
         // 编辑出行人

@@ -174,5 +174,3 @@
   window.sessionStorage.removeItem('hftFlightHotelTourInfo');
   window.sessionStorage.removeItem('tourChosenInfo');
 })();
-
-
