@@ -42,6 +42,7 @@
         return;
       }
       $('#addtra_page').css('visibility','visible');
+      $('#uptra_page').hide();
       $('#content-wrap').css('visibility','hidden');
     });
 
@@ -468,7 +469,7 @@
       index= $(e.target).attr('index');
     }
     var uptra_page = $("#uptra_page")[0];
-    $("#uptra_page").css('visibility','visible');
+    $("#uptra_page").show().css('visibility','visible');
     $('#content-wrap').css('visibility','hidden');
     var input = document.getElementById("updateForm").getElementsByTagName("input");
     var cardType = $("#cardType")[0];
