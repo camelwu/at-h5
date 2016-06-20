@@ -46,7 +46,7 @@
                 {% if(totalprice){ %}
                   <li class="tra_live">{%=productName%}</li>
                 {% }else{ %}
-                <li class="tra_live">{%=productCode%}{%= Day%}天{%= Night %}夜&nbps&nbps自由行</li>
+                <li class="tra_live">{%=productCode%}{%= Day%}天{%= Night%}夜&nbps&nbps自由行</li>
                 {% } %}
                 {% if(vlm.getpara("type")=="Hotle" ){ %}
                 <li class="tra_price" id="tdPrice">订单总额：<span>{%=currency%}{%=totalPrice%}</span></li>
