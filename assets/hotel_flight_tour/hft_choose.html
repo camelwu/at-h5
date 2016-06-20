@@ -245,15 +245,17 @@
                       </div>
               <%}else{%>
                               <p class="choose-tour-date">
-                                <% hftChoose.hftCreateOrderParaInfo.forEach(function(array_,ite_){%>
-                                <% if(array_.tourID ==tour.tourID){%>
-                                <span data-date="<%= array_["travelDate"]%>"><%= hftChoose.returnDay(array_["travelDate"])%></span>
-                                <%return false;
-                                  }
-                                  })%>
+                                <%if(hftChoose.tempChooseTourDate){
+                                hftChoose.tempChooseTourDate.forEach(function(item){
+                                if(item.tourID ==tour.tourID){console.log(item["travelDate"])%>
+                                <span data-date="<%= item["travelDate"]%>"><%= hftChoose.returnDay(item["travelDate"])%></span>
+                                <%}
+                                })
+                                }else{%>
+                                <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
+                                <%}%>
                                 <i></i>
                               </p>
-
                               <div class="after-noon">
                                 <%  hftChoose.hftCreateOrderParaInfo.forEach(function(arr_, it_){
                                   if(arr_.tourID ==tour.tourID){

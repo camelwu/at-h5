@@ -34,12 +34,11 @@ var hftTool ={
   "use strict";
   //加载动画
   function package_detail() {
-
     $(window).load(function () {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     });
-  };
+  }
   package_detail();
   var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
   console.log(hftFlightHotelTourInfo);

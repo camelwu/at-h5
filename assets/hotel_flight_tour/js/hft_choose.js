@@ -484,10 +484,13 @@ var hftChoose = {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
-      var hftCreateOrderParaInfo = JSON.parse(storage.getItem('tempChooseTourDate'));
+      var hftCreateOrderParaInfo = JSON.parse(storage.getItem('hftCreateOrderPara')), tempChooseTourDate = JSON.parse(storage.getItem('tempChooseTourDate'));
       if(hftCreateOrderParaInfo){
-        that.hftCreateOrderParaInfo = hftCreateOrderParaInfo
-      };
+        that.hftCreateOrderParaInfo = hftCreateOrderParaInfo.tours;
+      }
+      if(tempChooseTourDate){
+        that.tempChooseTourDate = tempChooseTourDate;
+      }
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
       originAirIds.flightSetID = resultData.flightInfo.setID;
@@ -783,14 +786,10 @@ var hftChoose = {
     return cabinStr;
   },
   init: function () {
-    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {},hftCreateOrderParaInfo = {}, urlParseObj = {}, storage = window.sessionStorage, originAirIds = {}, hftFlightHotelTourInfo = {};
+    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj = {}, storage = window.sessionStorage, originAirIds = {}, hftFlightHotelTourInfo = {};
     originAirIds = JSON.parse(storage.getItem('originAirIds'));
-    hftCreateOrderParaInfo = JSON.parse(storage.getItem('hftCreateOrderPara'));
     hftFlightHotelTourInfo = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
     urlParseObj = this.parseUrlPara(document.location.search, true);
-    if(hftCreateOrderParaInfo){
-      this.hftCreateOrderParaInfo = hftCreateOrderParaInfo;
-    }
     var paraObj = {
       "cityCodeFrom": temObj['FromCity'],
       "cityCodeTo": temObj['ToCity'],

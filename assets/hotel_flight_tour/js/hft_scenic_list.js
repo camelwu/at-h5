@@ -174,5 +174,6 @@
   window.sessionStorage.removeItem('hftFlightHotelTourInfo');
   window.sessionStorage.removeItem('tourChosenInfo');
   window.sessionStorage.removeItem('hftCreateOrderPara');
+  window.sessionStorage.removeItem('hotelAdditionalPrice');
   window.sessionStorage.removeItem('tempChooseTourDate');
 })();
