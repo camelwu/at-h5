@@ -1,30 +1,25 @@
 .all-element-other {
   position: relative;
 }
-
 .tra_con1 {
   margin-top: .92rem;
   text-align: center;
   overflow: hidden;
   padding: .5rem 0 .4rem;
 }
-
 .tra_c1_inbox {
   font-size: .36rem;
   color: #333;
   font-weight: bold;
 }
-
 .tra_c1_inbox span {
   vertical-align: middle;
 }
-
 .tra_c2_inbox {
   background-color: #fff;
   padding: 0 .4rem;
   border-bottom: 2px solid #e6e6e6;
 }
-
 .tra_c2_inbox li {
   border-bottom: 1px solid #e6e6e6;
   height: .96rem;
@@ -33,7 +28,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
 .tra_c2_inbox li:last-child {
   border-bottom: none;
 }
@@ -43,25 +37,23 @@
   font-weight: bold;
   display: inline-block;
 }
-
 .tra_c2_inbox li >span {
   font-size: .28rem;
   font-weight: bold;
 }
-
+.tra_price span{
+  font-size: .4rem;
+}
 .tra_c2_inbox .tra_price {
   margin-top: .1rem;
   font-size: .36rem;
 }
-
 .tra_price span {
   color: #fb7530;
 }
-
 .tra_btn {
   padding: .4rem .28rem;
 }
-
 .tra_btn input {
   width: 46.8%;
   height: .88rem;
