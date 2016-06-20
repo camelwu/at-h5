@@ -1161,8 +1161,8 @@ input.name{
   font-size: .28rem;
   position: fixed;
   background-color: #fff;
-  height: 1.12rem;
-  line-height: 1.12rem;
+  height: .88rem;
+  line-height: .88rem;
   bottom: 0;
   border-top: 1px solid #dedede;
   z-index: 105;
@@ -1183,13 +1183,8 @@ input.name{
   margin: 0 auto;
 }
 /*结束*/
-.total_word,.totalPersonNumber{
-  display: block;
-  width: 100%;
-  line-height: .22rem;
-  margin-top: .28rem;
-  text-align: center;
-  font-size: .28rem;
+.total_word{
+  position: relative;
 }
 .totalPersonNumber{
   font-size: .20rem;
@@ -1200,7 +1195,6 @@ input.name{
 .totalPersonNumber b{font-weight: normal}
 .total_word b{color: #FF5B13}
 .total_word i{
-  float: right;
   background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
   background-size: .24rem .14rem;
   width: .24rem;
@@ -1208,8 +1202,9 @@ input.name{
   margin-left: .20rem;
   transition: 0.3s all ease;
   -webkit-transition: 0.3s all ease;
-  position: relative;
-  top: .24rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -.075rem
 }
 .total_word i.toDown{
   transform: rotate(180deg);
