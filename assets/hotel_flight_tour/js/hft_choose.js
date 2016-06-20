@@ -497,6 +497,7 @@ var hftChoose = {
       originAirIds.flightSetID = resultData.flightInfo.setID;
       originAirIds.flightCacheID = resultData.flightInfo.cacheID;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
+      window.localStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
       that.operationData = resultData;
       that.selectedRoomHandler(resultData).createTags(resultData).delayLoadImage().createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
