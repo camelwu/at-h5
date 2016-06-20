@@ -36,6 +36,7 @@ var hftChoose = {
     var storage = window.sessionStorage, that = hftChoose;
     that.createOrderPara.memberID = window.localStorage.getItem('memberid');
     storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
+    window.localStorage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
     that.timer0 = setTimeout(function () {
       window.clearTimeout(that.timer0);
       that.timer0 = null;
