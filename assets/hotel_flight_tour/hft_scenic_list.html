@@ -39,7 +39,9 @@
       </section>
       <section class="city_list" id="CityList">
       </section>
-      <section class="scenic-detile" id="scenicList">
+      <section class="scenic-detile">
+        <ul  id="scenicList"></ul>
+        <div class = "loadMore" id = "LoadMore">点击加载更多</div>
       </section>
     </div>
   </div>
@@ -84,7 +86,6 @@
   <% } %>
 </script>
 <script id="scenicDetile" type="text/template">
-  <ul>
     <% if(lists){ for( var i=0;i< lists.length; i++){ %>
     <li class="scenic-detile_list" data-packageID="<%= lists[i].packageID%>">
       <div class="scenic-detile_list_matter clearfix">
@@ -110,8 +111,5 @@
       </div>
     </li>
     <% }} %>
-    <li class = "loadMore" id = "LoadMore">点击加载更多</li>
-  </ul>
 </script>
-
 </html>

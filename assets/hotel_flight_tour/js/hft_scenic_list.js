@@ -34,15 +34,20 @@
           vlm.init();
           filterData = data;
           //var htmlT = ;
-          $("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
+         $("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
           var htmlt = $("#timeDetile").html();
           var htmlT = ejs.render(htmlt, searchInfo);
           $("#TimeList").html(htmlT);
-          var htmlp = $("#scenicDetile").html();
-          var html = ejs.render(htmlp, data.data);
-          $("#scenicList").html(html);
+          if(SParameter.Parameters.PageIndex == 1){
+            var htmlp = $("#scenicDetile").html();
+            var html = ejs.render(htmlp, data.data);
+            $("#scenicList").html(html);
+          }else{
+            var htmlp = $("#scenicDetile").html();
+            var html = ejs.render(htmlp, data.data);
+            $("#scenicList").append(html);
+          }
           var htmlc = $("#CityDetile").html();
-          console.log(data.data)
           var htmlC = ejs.render(htmlc, data.data);
           $("#CityList").html(htmlC);
           $("#CityList").click(function(e){
@@ -85,6 +90,9 @@
           //点击加载更多
           $('#LoadMore').on("click", function () {
             loadMore();
+            var htmlm = $("#scenicDetile").html();
+            var htmlM = ejs.render(htmlm, data.data);
+            $("#scenicList").append(htmlM);
           });
           clickMore(data);
           if (!filterSign) {
@@ -120,6 +128,7 @@
         footer.callback = function(obj) {
           SParameter.Parameters.sortType = obj.sortTypes[0];
           SParameter.Parameters.filterFields = obj.filters;
+          SParameter.Parameters.PageIndex = "1";
           ScenicList();
         };
         footer.filters.init();
@@ -134,7 +143,6 @@
       }
       loadMoreBtn.attr("data-more", "yes");
       SParameter.Parameters.PageIndex = PageIndex;
-      console.log(SParameter.Parameters.PageIndex);
       $("#LoadMore").html("正在加载...");
       vlm.loadJson('', JSON.stringify(SParameter), callback);
     };
@@ -143,14 +151,11 @@
       PageIndex = parseInt(SParameter.Parameters.PageIndex)+1;
       if (data.data.lists.length>0 && PageIndex==data.data.pageCount) {
         $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
-        console.log("aaa")
       } else if(PageIndex > data.data.pageCount){
         $("#LoadMore").attr("data-more", "no").html("没有更多数据了！").show();
       }else{
         $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
-        console.log("aaa")
       }
-
     }
     //城市列表父宽
     var PWidth = function(data) {
