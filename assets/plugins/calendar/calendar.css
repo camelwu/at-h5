@@ -23,7 +23,6 @@
     width: 100%;
     min-height: .88rem;
     max-height: 100%;
-    border-bottom: solid 2px rgba(0, 0, 0, .1);
 }
 
 .calendar_header .header_back {
@@ -50,7 +49,7 @@
     font-size: .36rem;
     line-height: .88rem;
     text-align: center;
-    color: #484848;
+    color: #333333;
 }
 
 .calendar_header .tip_header h3 {
@@ -58,7 +57,7 @@
 }
 
 .calendar_header .tip_header .tiper {
-    display: inline-block;
+    float: left;
     width: 100%;
     line-height: .30rem;
     font-size: .28rem;
@@ -83,7 +82,7 @@
     height: 100%;
     width: 100%;
     left: 0px;
-    top: 3.06rem;
+    top: 2.86rem;
     padding-bottom: 1.18rem;
     background: rgb(255, 255, 255);
     -webkit-overflow-scrolling: touch;
@@ -102,7 +101,6 @@
     top: .88rem;
     width: 100%;
     /*    box-sizing: border-box;*/
-    background-color: #f7f7f7;
     /*    margin-top: 1.4rem;
     */
     /*    border-bottom: 1px solid #e6e6e6;*/
@@ -158,9 +156,7 @@
     height: 1.18rem;
     width: 50%;
     background-color: #666666;
-    padding-left: .3rem;
-    font-size: .3rem;
-    color: #fff;
+    padding-left: .28rem;
     position: relative;
 }
 
@@ -177,29 +173,36 @@
     content: " ";
     width: 0;
     height: 0;
-    border-left: .15rem solid transparent;
-    border-right: .15rem solid transparent;
-    border-bottom: .15rem solid #fff;
+    border-left: .16rem solid transparent;
+    border-right: .16rem solid transparent;
+    border-bottom: .16rem solid #fff;
     position: absolute;
     bottom: 0;
-    left: 45%;
+    left: .92rem;
 }
 
 .calendar_tiper .title {
     float: left;
-    padding: .1rem 0;
+    padding: .24rem 0 .05rem 0;
+    font-size: .24rem;
+    color: #fff;
+    opacity: .6;
 }
 
 .calendar_tiper .date_wrap {
     float: left;
     clear: left;
-    font-size: .38rem;
+    height: .36rem;
+    font-size: .36rem;
+    line-height: .36rem;
+    font-weight: bold;
     color: #fff;
 }
 
 .calendar_tiper .date_wrap .week {
     padding-left: .2rem;
-    font-size: .28rem;
+    font-size: .24rem;
+    font-weight: normal;
 }
 
 
@@ -235,7 +238,6 @@
     position: fixed;
     top: 2.26rem;
     width: 100%;
-    background: #f7f7f7;
     overflow: hidden;
     z-index: 120;
 }
