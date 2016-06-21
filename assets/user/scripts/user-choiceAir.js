@@ -394,8 +394,8 @@
   }
 
   var _clearDate=function(){
-    //selectAdultNum=0;
-    //selectChildNum=0;
+    selectAdultNum=0;
+    selectChildNum=0;
     currentOperationType="new";
     editIDKey=null;
     addOrEditPassagePage.find("input").val("");
@@ -596,7 +596,6 @@
     //_clearDate();
     $(".user_choice").on("click",function(){
       var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
-      if(selectPassagerList==null) {
         if (isMulSelect) {
           var age = $(this).attr("data-age"), step = 1
           if (age < 2) {
@@ -651,10 +650,7 @@
           }
         }
         $(this).toggleClass("choiced");
-      }
-      else {
-        $(this).toggleClass("choiced");
-      }
+
     })
 
     //编辑按钮
@@ -765,6 +761,7 @@
 
         }
       }
+      _setTitleTip();
 
     }
 
