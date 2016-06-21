@@ -124,6 +124,7 @@
 	}
 	//筛选后加数据
 	function screenList(result){
+		$('.all_elements').scrollTop(0);
 		$('.hotel_list').empty();
 		list(result)
 	}
