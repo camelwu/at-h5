@@ -396,6 +396,9 @@ function styleChange(id, mytext) {
     var status_h = document.getElementById('status');
     //交互部分
     function M(json) {
+        console.log('这是传入的数据');
+        console.log(json);
+        var hoPos = localStorage.getItem('hoPos');
         preloader.style.display = 'block';
         //status_h.style.display = 'block';
         var lsf_list = document.getElementById('lsf_list');
@@ -411,7 +414,7 @@ function styleChange(id, mytext) {
         json.Category = json.Category || '';
         json.StarRating = json.StarRating || '';
         json.LocationList = json.LocationList || '';
-        json.CountryISOCode = decodeURIComponent(json.InterCountryISOCode) || 'SG';
+        json.CountryISOCode =   hoPos == 'inter'? json.InterCountryISOCode || 'SG' :json.DomCountryISOCode || 'CN';
         json.pageIndex = json.pageIndex || 1;
         json.pageSize = json.pageSize || 20;
         var oDate = new Date();
@@ -420,7 +423,7 @@ function styleChange(id, mytext) {
         var d = oDate.getDate();
         json.InterCheckInDate = json.InterCheckInDate || y + '-' + m + '-' + d;
         json.InterCheckOutDate = json.InterCheckOutDate || y + '-' + m + '-' + (d + 1);
-        var hoPos = localStorage.getItem('hoPos');
+
         //获得的目的地名字在城市列表里面进行搜索，然后获得英文名字
         var hl_cityListInfo = JSON.parse(window.localStorage.getItem('cityListInfo'));
 
