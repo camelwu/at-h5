@@ -232,8 +232,8 @@ uoHisData();
 
     var all_elements = document.getElementById("all_elements");
     var uo_back = document.getElementById('uo_back');
-    var uo_c2_i1 = document.getElementById('uo_c2_i1');
-    var uo_c2_i2 = document.getElementById('uo_c2_i2');
+    // var uo_c2_i1 = document.getElementById('uo_c2_i1');
+    // var uo_c2_i2 = document.getElementById('uo_c2_i2');
     var uo_c1_info = document.getElementById('uo_c1_info');
     //var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
     var uo_c2_num = document.getElementById('uo_c2_num');
@@ -311,10 +311,10 @@ uoHisData();
     //房间数列表
     uo_c2_num.innerHTML = fake_data.NumOfRoom;
     //初始化房间数减号状态
-    if (parseInt(fake_data.NumOfRoom) > 1 && parseInt(fake_data.NumOfRoom) < 10) {
-        uo_c2_i1.style.background = 'url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
-        uo_c2_i1.style.backgroundSize = '7.9rem 7.83rem';
-    }
+    // if (parseInt(fake_data.NumOfRoom) > 1 && parseInt(fake_data.NumOfRoom) < 10) {
+    //     uo_c2_i1.style.background = 'url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+    //     uo_c2_i1.style.backgroundSize = '7.9rem 7.83rem';
+    // }
 
     var uo_c3_peoBox = document.getElementById('uo_c3_peoBox');
     for (var i = 0; i < parseInt(uo_c2_num.innerHTML); i++) {
@@ -445,115 +445,115 @@ uoHisData();
     uo_detail('uo_hid_p2', 'uo_hid_span2', 'uo_hid_span3', 'uo_hid_met', 'uo_or_sum', 'uo_or_sum2', 'uo_or_sum2CNY', fake_data);
 
     //减少房间
-    lsf_myweb.bind(uo_c2_i1, 'click', function () {
-        var uo_c3_peoBox = document.getElementById('uo_c3_peoBox');
-        uo_c2_num.innerHTML = parseInt(uo_c2_num.innerHTML) - 1;
-        if (parseInt(uo_c2_num.innerHTML) < 1) {
-            uo_c2_num.innerHTML = 1;
-        } else {
-            uo_c3_peoBox.removeChild(uo_c3_peoBox.children[uo_c3_peoBox.children.length - 1]);
-            /*uo_c3_peoBox.innerHTML='';
-            for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
-                uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
-                    '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                    '<div class="uo_c3_infor">'+
-                    '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
-                    '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
-                    '</div>'+
-                    '</div>';
-            }*/
-            //输入框默认字体设置
-            if (hoPos == 'inter') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
-            } else if (hoPos == 'dom') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
-            }
-        }
-        if (parseInt(uo_c2_num.innerHTML) <= 1) {
-            uo_c2_i1.style.background = 'url("../images/ui.1.0/icon_common.png") -0.48rem -3.12rem no-repeat';
-            uo_c2_i1.style.backgroundSize = '7.9rem 7.83rem';
-        }
-        if (parseInt(uo_c2_num.innerHTML) <= 10) {
-            uo_c2_i2.style.background = 'url("../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat';
-            uo_c2_i2.style.backgroundSize = '7.9rem 7.83rem';
-        }
-        //修改数据并存储数据
-        fake_data.NumOfRoom = parseInt(uo_c2_num.innerHTML);
-        localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
-        //console.log(localStorage.getItem('user_order_storage12345'));
-        //明细部分
-        uo_detail('uo_hid_p2', 'uo_hid_span2', 'uo_hid_span3', 'uo_hid_met', 'uo_or_sum', 'uo_or_sum2', 'uo_or_sum2CNY', fake_data);
-    });
-    //增加房间
-    lsf_myweb.bind(uo_c2_i2, 'click', function () {
-        var uo_c3_peoBox = document.getElementById('uo_c3_peoBox');
-        var myNum = uo_c2_num.innerHTML;
-        uo_c2_num.innerHTML = parseInt(uo_c2_num.innerHTML) + 1;
-        //房间数不能超过10
-        if (parseInt(uo_c2_num.innerHTML) > 10) {
-            uo_c2_num.innerHTML = 10;
-        } else {
-            for (var i = parseInt(myNum); i < parseInt(uo_c2_num.innerHTML); i++) {
-                var oDiv = document.createElement('div');
-                oDiv.className = 'uo_c3_peo';
-                //判断是国际酒店搜索还是国内酒店搜索
-                if (hoPos == 'inter') {
-                    oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
-                        '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                        '<input type="text"  value="" placeholder="姓（如：Li）" class="uo_lastname"  />' +
-                        '<span class = "line"></span>' +
-                        '<input type="text"  value="" placeholder="名（如：Shimin）" class="uo_firstname"  />' +
-                        '</div>';
-                } else if (hoPos == 'dom') {
-                    oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
-                        '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                        '<input type="text" value="姓（如：李）" class="uo_lastname"  />' +
-                        '<span class = "line"></span>' +
-                        '<input type="text" value="名（如：世民）" class="uo_firstname"  />' +
-                        '</div>';
-                }
-                uo_c3_peoBox.appendChild(oDiv);
-            }
-
-
-            /*uo_c3_peoBox.innerHTML='';
-            for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
-                uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
-                    '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                    '<div class="uo_c3_infor">'+
-                    '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
-                    '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
-                    '</div>'+
-                    '</div>';
-            }*/
-            //输入框默认字体设置
-            if (hoPos == 'inter') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
-            } else if (hoPos = 'dom') {
-                styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
-                styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
-            }
-        }
-        if (parseInt(uo_c2_num.innerHTML) > 1) {
-            uo_c2_i1.style.background = 'url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
-            uo_c2_i1.style.backgroundSize = '7.9rem 7.83rem';
-        }
-        if (parseInt(uo_c2_num.innerHTML) >= 10) {
-            uo_c2_i2.style.background = 'url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
-            uo_c2_i2.style.backgroundSize = '7.9rem 7.83rem';
-        }
-
-        //修改数据并存储数据
-        fake_data.NumOfRoom = parseInt(uo_c2_num.innerHTML);
-        localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
-        //console.log(localStorage.getItem('user_order_storage12345'));
-        //明细部分
-        uo_detail('uo_hid_p2', 'uo_hid_span2', 'uo_hid_span3', 'uo_hid_met', 'uo_or_sum', 'uo_or_sum2', 'uo_or_sum2CNY', fake_data);
-
-    });
+    // lsf_myweb.bind(uo_c2_i1, 'click', function () {
+    //     var uo_c3_peoBox = document.getElementById('uo_c3_peoBox');
+    //     uo_c2_num.innerHTML = parseInt(uo_c2_num.innerHTML) - 1;
+    //     if (parseInt(uo_c2_num.innerHTML) < 1) {
+    //         uo_c2_num.innerHTML = 1;
+    //     } else {
+    //         uo_c3_peoBox.removeChild(uo_c3_peoBox.children[uo_c3_peoBox.children.length - 1]);
+    //         /*uo_c3_peoBox.innerHTML='';
+    //         for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
+    //             uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
+    //                 '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+    //                 '<div class="uo_c3_infor">'+
+    //                 '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
+    //                 '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
+    //                 '</div>'+
+    //                 '</div>';
+    //         }*/
+    //         //输入框默认字体设置
+    //         if (hoPos == 'inter') {
+    //             styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+    //             styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
+    //         } else if (hoPos == 'dom') {
+    //             styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
+    //             styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
+    //         }
+    //     }
+    //     if (parseInt(uo_c2_num.innerHTML) <= 1) {
+    //         uo_c2_i1.style.background = 'url("../images/ui.1.0/icon_common.png") -0.48rem -3.12rem no-repeat';
+    //         uo_c2_i1.style.backgroundSize = '7.9rem 7.83rem';
+    //     }
+    //     if (parseInt(uo_c2_num.innerHTML) <= 10) {
+    //         uo_c2_i2.style.background = 'url("../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat';
+    //         uo_c2_i2.style.backgroundSize = '7.9rem 7.83rem';
+    //     }
+    //     //修改数据并存储数据
+    //     fake_data.NumOfRoom = parseInt(uo_c2_num.innerHTML);
+    //     localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
+    //     //console.log(localStorage.getItem('user_order_storage12345'));
+    //     //明细部分
+    //     uo_detail('uo_hid_p2', 'uo_hid_span2', 'uo_hid_span3', 'uo_hid_met', 'uo_or_sum', 'uo_or_sum2', 'uo_or_sum2CNY', fake_data);
+    // });
+    // //增加房间
+    // lsf_myweb.bind(uo_c2_i2, 'click', function () {
+    //     var uo_c3_peoBox = document.getElementById('uo_c3_peoBox');
+    //     var myNum = uo_c2_num.innerHTML;
+    //     uo_c2_num.innerHTML = parseInt(uo_c2_num.innerHTML) + 1;
+    //     //房间数不能超过10
+    //     if (parseInt(uo_c2_num.innerHTML) > 10) {
+    //         uo_c2_num.innerHTML = 10;
+    //     } else {
+    //         for (var i = parseInt(myNum); i < parseInt(uo_c2_num.innerHTML); i++) {
+    //             var oDiv = document.createElement('div');
+    //             oDiv.className = 'uo_c3_peo';
+    //             //判断是国际酒店搜索还是国内酒店搜索
+    //             if (hoPos == 'inter') {
+    //                 oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
+    //                     '<div class="uo_c3_infor hotel_user_detail_name2">' +
+    //                     '<input type="text"  value="" placeholder="姓（如：Li）" class="uo_lastname"  />' +
+    //                     '<span class = "line"></span>' +
+    //                     '<input type="text"  value="" placeholder="名（如：Shimin）" class="uo_firstname"  />' +
+    //                     '</div>';
+    //             } else if (hoPos == 'dom') {
+    //                 oDiv.innerHTML = '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
+    //                     '<div class="uo_c3_infor hotel_user_detail_name2">' +
+    //                     '<input type="text" value="姓（如：李）" class="uo_lastname"  />' +
+    //                     '<span class = "line"></span>' +
+    //                     '<input type="text" value="名（如：世民）" class="uo_firstname"  />' +
+    //                     '</div>';
+    //             }
+    //             uo_c3_peoBox.appendChild(oDiv);
+    //         }
+    //
+    //
+    //         /*uo_c3_peoBox.innerHTML='';
+    //         for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
+    //             uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
+    //                 '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+    //                 '<div class="uo_c3_infor">'+
+    //                 '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
+    //                 '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
+    //                 '</div>'+
+    //                 '</div>';
+    //         }*/
+    //         //输入框默认字体设置
+    //         if (hoPos == 'inter') {
+    //             styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+    //             styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
+    //         } else if (hoPos = 'dom') {
+    //             styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
+    //             styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
+    //         }
+    //     }
+    //     if (parseInt(uo_c2_num.innerHTML) > 1) {
+    //         uo_c2_i1.style.background = 'url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+    //         uo_c2_i1.style.backgroundSize = '7.9rem 7.83rem';
+    //     }
+    //     if (parseInt(uo_c2_num.innerHTML) >= 10) {
+    //         uo_c2_i2.style.background = 'url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
+    //         uo_c2_i2.style.backgroundSize = '7.9rem 7.83rem';
+    //     }
+    //
+    //     //修改数据并存储数据
+    //     fake_data.NumOfRoom = parseInt(uo_c2_num.innerHTML);
+    //     localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
+    //     //console.log(localStorage.getItem('user_order_storage12345'));
+    //     //明细部分
+    //     uo_detail('uo_hid_p2', 'uo_hid_span2', 'uo_hid_span3', 'uo_hid_met', 'uo_or_sum', 'uo_or_sum2', 'uo_or_sum2CNY', fake_data);
+    //
+    // });
     lsf_myweb.bind(uo_or_infor, 'click', function () {
         var oI = this.getElementsByTagName('i')[0];
         if (bOk2) {
@@ -701,14 +701,14 @@ uoHisData();
 })();
 (function () {
     var numHtml = document.getElementById("uo_c2_num").innerHTML;
-    var reduce = document.getElementById("uo_c2_i1");
-    var add = document.getElementById("uo_c2_i2");
-    if (parseInt(numHtml) > 1) {
-        reduce.style.background = 'url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
-        reduce.style.backgroundSize = '7.9rem 7.83rem';
-    }
-    if (parseInt(numHtml) >= 10) {
-        add.style.background = 'url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
-        add.style.backgroundSize = '7.9rem 7.83rem';
-    }
+    // var reduce = document.getElementById("uo_c2_i1");
+    // var add = document.getElementById("uo_c2_i2");
+    // if (parseInt(numHtml) > 1) {
+    //     reduce.style.background = 'url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+    //     reduce.style.backgroundSize = '7.9rem 7.83rem';
+    // }
+    // if (parseInt(numHtml) >= 10) {
+    //     add.style.background = 'url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
+    //     add.style.backgroundSize = '7.9rem 7.83rem';
+    // }
 })();
