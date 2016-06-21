@@ -38,11 +38,16 @@
           var htmlt = $("#timeDetile").html();
           var htmlT = ejs.render(htmlt, searchInfo);
           $("#TimeList").html(htmlT);
-          var htmlp = $("#scenicDetile").html();
-          var html = ejs.render(htmlp, data.data);
-          $("#scenicList").html(html);
+          if(SParameter.Parameters.PageIndex == 1){
+            var htmlp = $("#scenicDetile").html();
+            var html = ejs.render(htmlp, data.data);
+            $("#scenicList").html(html);
+          }else{
+            var htmlp = $("#scenicDetile").html();
+            var html = ejs.render(htmlp, data.data);
+            $("#scenicList").append(html);
+          }
           var htmlc = $("#CityDetile").html();
-          console.log(data.data)
           var htmlC = ejs.render(htmlc, data.data);
           $("#CityList").html(htmlC);
           $("#CityList").click(function(e){
@@ -120,6 +125,7 @@
         footer.callback = function(obj) {
           SParameter.Parameters.sortType = obj.sortTypes[0];
           SParameter.Parameters.filterFields = obj.filters;
+          SParameter.Parameters.PageIndex = "1";
           ScenicList();
         };
         footer.filters.init();
@@ -134,7 +140,6 @@
       }
       loadMoreBtn.attr("data-more", "yes");
       SParameter.Parameters.PageIndex = PageIndex;
-      console.log(SParameter.Parameters.PageIndex);
       $("#LoadMore").html("正在加载...");
       vlm.loadJson('', JSON.stringify(SParameter), callback);
     };
@@ -143,14 +148,11 @@
       PageIndex = parseInt(SParameter.Parameters.PageIndex)+1;
       if (data.data.lists.length>0 && PageIndex==data.data.pageCount) {
         $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
-        console.log("aaa")
       } else if(PageIndex > data.data.pageCount){
         $("#LoadMore").attr("data-more", "no").html("没有更多数据了！").show();
       }else{
         $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
-        console.log("aaa")
       }
-
     }
     //城市列表父宽
     var PWidth = function(data) {
@@ -180,3 +182,8 @@
   window.sessionStorage.removeItem('hotelAdditionalPrice');
   window.sessionStorage.removeItem('tempChooseTourDate');
 })();
+(function(){
+  $(".all_elements")[0].addEventListener("scroll",function(){
+    $(".header")[0].style.position="fixed";
+    });
+})()

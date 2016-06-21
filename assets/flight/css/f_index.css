@@ -655,7 +655,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .for_bottom {
-  height: 1.46rem;
+  height: 1.38rem;
   padding: 0 .28rem;
   background: #FFFFFF;
   margin: 0.20rem 0 .40rem 0;
@@ -665,8 +665,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .for_bottom .right_button_zone {
   float: right;
   width: 1.4rem;
-  line-height: 1.46rem;
-  height: 1.46rem;
+  line-height: 1.38rem;
+  height: 1.38rem;
   margin-left: .32rem;
   color: rgb(153, 153, 153);
   position: relative;
@@ -675,7 +675,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .for_bottom .left_small_word {
   margin: 0 1.72rem 0 0;
   height: 1.46rem;
-  padding-top: .20rem;
+  padding-top: .32rem;
 }
 
 .for_bottom .left_small_word div:nth-child(1) {
@@ -726,7 +726,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .left_small_word p:first-child {
-  margin-bottom: .20rem;
+  margin-bottom: .08rem;
+  font-weight: 600;
 }
 
 /*摘抄hft开始*/
@@ -1582,7 +1583,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   float: right;
   width: .34rem;
   height: .34rem;
-  background-position: -3.81rem -2.41999992rem;
+  background-position: -3.7999rem -2.39rem;
   margin-top: .23rem;
   position: static;
   margin-right: .28rem;

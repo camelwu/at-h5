@@ -21,7 +21,22 @@ a:link {
 .jpa {
   position: absolute;
 }
-
+.header{
+  position: absolute;
+  background-color: transparent;
+  opacity: 0;
+  box-shadow: 0 0 0 ;
+}
+.goback {
+  width: 0.64rem;
+  height: 0.64rem;
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  z-index: 10;
+  background: url(../../images/ui/icon_common.png);
+  background-size: 7.9rem 5.13rem;
+  background-position: -3.19rem -0.44rem;}
 .jpop_box_tic {
   position: fixed;
   top: 0;
@@ -154,10 +169,10 @@ a:link {
 
 .j-content {
   z-index: 1;
-  padding-top: 38px;
+  /*padding-top: 38px;*/
   font-size: 0.3rem;
 }
-
+.content{padding-top:0;}
 .j-content .more {
   text-align: center;
   height: 30px;
@@ -165,7 +180,7 @@ a:link {
 }
 
 .jhf-banner {
-  height: 200px;
+  height: 5rem;
   width: 100%;
 }
 
