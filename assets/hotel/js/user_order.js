@@ -169,8 +169,10 @@ for (var name in url2json(myUrl)) {
         //alert(RoomCode);
     }
 }
+
 //默认房间数量 从搜索列表页获取
-fake_data.NumOfRoom = JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom || 1;
+fake_data.NumOfRoom = sessionStorage.getItem("hotelStorage12345") ? JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom : 1;
+
 var user_order_storage2 = localStorage.getItem('hotelDetailData');
 console.log(JSON.parse(user_order_storage2));
 console.log(999999999999);
@@ -202,6 +204,7 @@ var hoPos = window.localStorage.getItem('hoPos');
 //localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
 //获取user_order_storage12345,实现历史选择记忆功能
+
 
 function uoHisData() {
     var localData = JSON.parse(window.localStorage.getItem('user_order_storage12345'));
@@ -599,15 +602,15 @@ uoHisData();
         }
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
-                jAlert('请输入英文姓或名');
-                return;
-              }
-              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
-                jAlert('请输入英文姓或名');
-                return;
-              }
-              console.log(aUo_firstname[i].value);
+                if (!vlm.Utils.validate.engName(aUo_firstname[i].value)) {
+                    jAlert('请输入英文姓或名');
+                    return;
+                }
+                if (!vlm.Utils.validate.engName(aUo_lastname[i].value)) {
+                    jAlert('请输入英文姓或名');
+                    return;
+                }
+                console.log(aUo_firstname[i].value);
                 if (checkCN(aUo_lastname[i].value)) {
                     jAlert('请输入英文姓或名');
                     return;
@@ -623,14 +626,14 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
-                jAlert('请输入姓或名');
-                return;
-              }
-              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
-                jAlert('请输入姓或名');
-                return;
-              }
+                if (!vlm.Utils.validate.engName(aUo_firstname[i].value)) {
+                    jAlert('请输入姓或名');
+                    return;
+                }
+                if (!vlm.Utils.validate.engName(aUo_lastname[i].value)) {
+                    jAlert('请输入姓或名');
+                    return;
+                }
                 fake_data.guestName.push({
                     "GuestFirstName": aUo_firstname[i].value,
                     "GuestLastName": aUo_lastname[i].value
