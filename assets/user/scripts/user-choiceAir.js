@@ -394,8 +394,8 @@
   }
 
   var _clearDate=function(){
-    selectAdultNum=0;
-    selectChildNum=0;
+    //selectAdultNum=0;
+    //selectChildNum=0;
     currentOperationType="new";
     editIDKey=null;
     addOrEditPassagePage.find("input").val("");
@@ -595,62 +595,66 @@
   var _bindSelectChoice=function(){
     //_clearDate();
     $(".user_choice").on("click",function(){
-
-      if(isMulSelect){
-        var age=$(this).attr("data-age"),step=1
-        if(age<2){
-          jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
-          return;
-        }
-
-        //选择操作 choiced 选择下个操作取消
-        if($(this).hasClass("choiced")) {
-          step=-1 //选择加1个
-        }
-        else{
-          step=1;//取消减一个
-        }
-        if(age>=12){
-          if(selectAdultNum+step>numofAdult || selectChildNum>numofChlid ){
-
-            jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"儿童");
-            return;
-          }
-          else if(selectAdultNum+step>numofAdult){
-            jAlert("只能选择"+numofAdult+"成人");
-            return;
-          }
-        }
-        else
-        {
-          if(selectAdultNum>numofAdult || selectChildNum+step>numofChlid ){
-            jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"儿童");
-            return;
-          }
-          else if(selectChildNum+step>numofChlid){
-            jAlert("只能选择"+numofAdult+"儿童");
+      var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
+      if(selectPassagerList==null) {
+        if (isMulSelect) {
+          var age = $(this).attr("data-age"), step = 1
+          if (age < 2) {
+            jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
             return;
           }
 
-        }
+          //选择操作 choiced 选择下个操作取消
+          if ($(this).hasClass("choiced")) {
+            step = -1 //选择加1个
+          }
+          else {
+            step = 1;//取消减一个
+          }
+          if (age >= 12) {
+            if (selectAdultNum + step > numofAdult || selectChildNum > numofChlid) {
 
-        if (age >= 2 && age < 12) {
-          selectChildNum=selectChildNum+step;
+              jAlert("只能选择" + numofAdult + "成人," + numofChlid + "儿童");
+              return;
+            }
+            else if (selectAdultNum + step > numofAdult) {
+              jAlert("只能选择" + numofAdult + "成人");
+              return;
+            }
+          }
+          else {
+            if (selectAdultNum > numofAdult || selectChildNum + step > numofChlid) {
+              jAlert("只能选择" + numofAdult + "成人," + numofChlid + "儿童");
+              return;
+            }
+            else if (selectChildNum + step > numofChlid) {
+              jAlert("只能选择" + numofAdult + "儿童");
+              return;
+            }
+
+          }
+
+          if (age >= 2 && age < 12) {
+            selectChildNum = selectChildNum + step;
+          }
+          else if (age >= 12) {
+            selectAdultNum = selectAdultNum + step;
+          }
+          _setSelectPessageTip();
         }
-        else if (age >= 12) {
-          selectAdultNum=selectAdultNum+step;
+        else {
+          var len = $(".list-traveler .choiced").length;
+          if (len >= 1 && !$(this).hasClass("choiced")) {
+            $(this).removeClass("choiced");
+            jAlert("对不起，只能单选！");
+            return;
+          }
         }
-        _setSelectPessageTip();
+        $(this).toggleClass("choiced");
       }
-      else{
-        var len= $(".list-traveler .choiced").length;
-        if(len>=1 && !$(this).hasClass("choiced")){
-          $(this).removeClass("choiced");
-          jAlert("对不起，只能单选！");
-          return;
-        }
+      else {
+        $(this).toggleClass("choiced");
       }
-      $(this).toggleClass("choiced");
     })
 
     //编辑按钮
