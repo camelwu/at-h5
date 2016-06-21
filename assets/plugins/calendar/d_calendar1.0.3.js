@@ -82,10 +82,6 @@
             hotel: ['入住', '离店'],
             flight: ['去程', '回程']
         },
-        _tempmonth: [
-        '<span class="prevmonth">prevmonth</span>',
-        '<span class="nextmonth">nextmonth</span>',
-    ],
         _tempweek: [
         '<dl class="ca_week clearfix">',
         '<dt class="date_title">日</dt>',
@@ -96,9 +92,15 @@
         '<dt class="date_title">五</dt>',
         '<dt class="date_title">六</dt>',
         '</dl>'
-    ],
-        _flightTemptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="electedTime0"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="electedTime1"></span><i class="icon_close"></i></div><p class="info">点击日期选择出发日期</p><p class="info second_info">请选择返回日期</p>',
-
+        ],
+        //        _flightTemptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="electedTime0"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="electedTime1"></span><i class="icon_close"></i></div><p class="info">点击日期选择出发日期</p><p class="info second_info">请选择返回日期</p>',
+        _hotelTemptiper: '<div class="first_select tiper current"><span class="title">入住</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div><div class="second_select tiper"><span class="title">离店</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div>',
+        _flightTemptiper: '<div class="first_select tiper current"><span class="title">去程</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div><div class="second_select tiper"><span class="title">返程</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div>',
+        _header: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><h3>选择日期</h3>',
+        _tipHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div>',
+        _tipCleanHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div><a href="javascript:void(0);" class="header_clean">清除</a>',
+        //确认按钮
+        _confirmBtn: '<div class="btn"><p>选择完毕</p><span class="total">06月28日至06月30日(2晚)</span></div>',
         // 模板数组
         _template: [
         //'<dl class="ca_month">',
@@ -111,6 +113,7 @@
         initialize: function (options) {
             //默认使用机票模板   flight
             this.type = options.type || 'flight';
+            this.headerSign = options.headerSign || 'default'; //header type: default tip tipClean
             //选择日期数量  默认选择出发日期和返回日期两个 2/1
             this.selectTime = options.selectTime || 2;
             this.format = options.format || "yyyy-mm-dd"; //TODO用于显示用的日期格式 yyyy-mm-dd,mm-dd
@@ -118,6 +121,7 @@
             this.num = options.num || 13; //显示数量
             this.sClass1 = options.sClass1;
             this.callback = options.callback;
+            this.noComfirmBtn = options.noComfirmBtn; //选择完毕后自动保存数据 不显示确认按钮
             this.time = options.time || {}; //已有时间  默认选中时间   默认时间必须是大于今天日期
             this.disableDate = options.disableDate || []; //默认不可用的日期
             this.disableDateAfterLength = options.disableDateAfterLength; // 选中一个日期后，后延多少天内日期可选，其他时间不可选   int 
@@ -130,7 +134,7 @@
             this.theLastAbleDay = options.theLastAbleDay;
             this.checkInTimeOptId = options.checkInTimeOptId;
             this.checkOutTimeOptId = options.checkOutTimeOptId;
-            this.input = _CalF.$('#' + this.id); // 获取INPUT元素
+            this.input = $('#' + this.id); // 获取INPUT元素
             this.eventBind();
             //this.inputEvent(); // input的事件绑定，获取焦点事件
             // this.outClick(); // 区域外事件绑定
@@ -162,12 +166,29 @@
                 var header = this.header = document.createElement('div');
                 header.id = this.id + "Header";
                 header.className = this.prefix + '_header';
-                header.innerHTML = '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><h3>选择日期</h3>';
+                switch (this.headerSign) {
+                    case 'tip':
+                        header.innerHTML = this._tipHeader;
+                        break;
+                    case 'tipClean':
+                        header.innerHTML = this._tipCleanHeader;
+                        break;
+                    default:
+                        header.innerHTML = this._header;
+                        break;
+                }
                 calendarWrap.appendChild(header);
-                if (this.selectTime === 2 && this.type === "flight") {
+                if (this.selectTime === 2) {
                     var tiperWrap = document.createElement("div");
                     tiperWrap.className = "calendar_tiper";
-                    tiperWrap.innerHTML = this._flightTemptiper;
+                    switch (this.type) {
+                        case 'hotel':
+                            tiperWrap.innerHTML = this._hotelTemptiper;
+                            break;
+                        default:
+                            tiperWrap.innerHTML = this._flightTemptiper;
+                            break;
+                    }
                     header.appendChild(tiperWrap);
                 } else {
                     header.className = header.className + " no_tiper";
@@ -182,7 +203,7 @@
                 var comfirmBtn = this.tiper = document.createElement('div');
                 comfirmBtn.id = 'comfirmBtn';
                 comfirmBtn.className = 'calendar_comfirm';
-                comfirmBtn.innerHTML = "<span class='btn'>确定</span>";
+                comfirmBtn.innerHTML = this._confirmBtn;
                 container.appendChild(comfirmBtn);
                 // 增加容器，减少dom操作
                 var Warpper = this.Warpper = document.createElement('div');
@@ -191,6 +212,24 @@
             }
             calendarWrap.appendChild(container);
             document.body.appendChild(calendarWrap);
+        },
+        //初始化日期
+        initDate: function () {
+            var dates = [];
+            var calendar = $("#calendarWrap");
+            var firstDate = calendar.find(".first_select .date");
+            var firstWeek = calendar.find(".first_select .week");
+            var secondDate = calendar.find(".second_select .date");
+            var secondWeek = calendar.find(".second_select .week");
+            if (this.selectTime === 2 && this.time) {
+                for (var key in this.time) {
+                    dates.push(key);
+                }
+                firstDate.html(dates[0]);
+                firstWeek.html(vlm.Utils.getWeek(dates[0]))
+                secondDate.html(dates[1]);
+                secondWeek.html(vlm.Utils.getWeek(dates[1]));
+            }
         },
         // 渲染日期
         drawDate: function (odate) { // 参数 odate 为日期对象格式
@@ -296,8 +335,8 @@
             // 添加
             this.Warpper.appendChild(dateWarp);
             //IE6 select遮罩
-            var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
-            if (ie6) dateWarp.appendChild(this.createIframe());
+            //            var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
+            //            if (ie6) dateWarp.appendChild(this.createIframe());
             // A link事件绑定
             //this.linkOn();
         },
@@ -374,43 +413,45 @@
             // 添加
             this.Warpper.appendChild(dateWarp);
             //IE6 select遮罩
-            var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
-            if (ie6) dateWarp.appendChild(this.createIframe());
+            //            var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
+            //            if (ie6) dateWarp.appendChild(this.createIframe());
             // A link事件绑定
             //this.linkOn();
         },
-        createIframe: function () {
-            var myIframe = document.createElement('iframe');
-            myIframe.src = 'about:blank';
-            myIframe.style.position = 'absolute';
-            myIframe.style.zIndex = '-1';
-            myIframe.style.left = '-1px';
-            myIframe.style.top = 0;
-            myIframe.style.border = 0;
-            myIframe.style.filter = 'alpha(opacity= 0 )';
-            myIframe.style.width = this.container.offsetWidth + 'px';
-            myIframe.style.height = this.container.offsetHeight + 'px';
-            return myIframe;
-        },
+        //        createIframe: function () {
+        //            var myIframe = document.createElement('iframe');
+        //            myIframe.src = 'about:blank';
+        //            myIframe.style.position = 'absolute';
+        //            myIframe.style.zIndex = '-1';
+        //            myIframe.style.left = '-1px';
+        //            myIframe.style.top = 0;
+        //            myIframe.style.border = 0;
+        //            myIframe.style.filter = 'alpha(opacity= 0 )';
+        //            myIframe.style.width = this.container.offsetWidth + 'px';
+        //            myIframe.style.height = this.container.offsetHeight + 'px';
+        //            return myIframe;
+        //        },
         // 移除日期DIV.calendar
         removeDate: function () {
-            var odiv = _CalF.$('#calendarWrap');
-            if (!!odiv) odiv.parentNode.removeChild(odiv);
+            var odiv = $('#calendarWrap');
+            if (odiv.length > 0) {
+                odiv.remove();
+            }
         },
-        // 上一月，下一月按钮事件
-        btnEvent: function () {
-            var that = this,
-                prevmonth = _CalF.$('.prevmonth', this.dateWarp)[0],
-                nextmonth = _CalF.$('.nextmonth', this.dateWarp)[0];
-            prevmonth.onclick = function () {
-                var idate = new Date(that.year, that.month - 2, that.date);
-                that.drawDate(idate);
-            };
-            nextmonth.onclick = function () {
-                var idate = new Date(that.year, that.month, that.date);
-                that.drawDate(idate);
-            };
-        },
+        //        // 上一月，下一月按钮事件
+        //        btnEvent: function () {
+        //            var that = this,
+        //                prevmonth = _CalF.$('.prevmonth', this.dateWarp)[0],
+        //                nextmonth = _CalF.$('.nextmonth', this.dateWarp)[0];
+        //            prevmonth.onclick = function () {
+        //                var idate = new Date(that.year, that.month - 2, that.date);
+        //                that.drawDate(idate);
+        //            };
+        //            nextmonth.onclick = function () {
+        //                var idate = new Date(that.year, that.month, that.date);
+        //                that.drawDate(idate);
+        //            };
+        //        },
         // A 的事件
         linkOn: function () {
             var that = this;
@@ -508,37 +549,46 @@
          **/
         showSelected: function () {
             var values = this.result;
-            var firstEle = $("#" + this.id + "Header" + " #electedTime0");
-            var secondEle = $("#" + this.id + "Header" + " #electedTime1");
-            var infoEle = $("#" + this.id + "Header" + " .info");
-            var secondInfoEle = $("#" + this.id + "Header" + " .second_info");
-
-            for (var i = 0; i < values.length; i++) {
-                $("#" + this.id + "Header" + " #electedTime" + i).html(values[i]).parent().show();;
-            }
+            var calendar = $("#calendarWrap");
+            var tipers = calendar.find(".calendar_tiper .tiper");
+            var firstDate = calendar.find(".first_select .date");
+            var firstWeek = calendar.find(".first_select .week");
+            var secondDate = calendar.find(".second_select .date");
+            var secondWeek = calendar.find(".second_select .week");
             if (values.length === 1) {
-                secondEle.parent().hide();
-                infoEle.hide();
-                secondInfoEle.show();
+                firstDate.html(values[0]);
+                firstWeek.html(vlm.Utils.getWeek(values[0]));
+                secondDate.html('');
+                secondWeek.html('');
+                tipers.eq(1).addClass("current").siblings().removeClass("current");
             } else if (values.length === 0) {
-                firstEle.parent().hide();
-                secondEle.parent().hide();
-                infoEle.show();
-                secondInfoEle.hide();
+                firstDate.html('');
+                firstWeek.html('');
+                secondDate.html('');
+                secondWeek.html('');
+                tipers.eq(0).addClass("current").siblings().removeClass("current");
             } else {
-                infoEle.hide();
-                secondInfoEle.hide();
+                firstDate.html(values[0]);
+                firstWeek.html(vlm.Utils.getWeek(values[0]));
+                secondDate.html(values[1]);
+                secondWeek.html(vlm.Utils.getWeek(values[1]));
             }
         },
         /**
          *控制确认按钮显示
          **/
         showComfirmBtn: function (sign) {
-            var comfirmBtn = _CalF.$("#comfirmBtn");
+            var selectDate = this.result;
+            var comfirmBtn = $("#comfirmBtn");
+            var totelEle = comfirmBtn.find(".total");
             if (sign) {
-                comfirmBtn.style.display = "block";
+                var firstDate = vlm.Utils.format_date(selectDate[0], 'md');
+                var secondDate = vlm.Utils.format_date(selectDate[1], 'md');
+                var days = (new Date(selectDate[1].replace(/-/g, "/")).getDate()) - (new Date(selectDate[0].replace(/-/g, "/")).getDate());
+                totelEle.html(firstDate + "至" + secondDate + '(' + days + '晚)');
+                comfirmBtn.slideDown();
             } else {
-                comfirmBtn.style.display = "none";
+                comfirmBtn.slideUp();
             }
         },
         /**
@@ -609,7 +659,8 @@
                 this.result = [];
                 this.result.push(selectValue);
                 if (this.selectTime === 1) {
-                    this.showComfirmBtn(1);
+                    //this.showComfirmBtn(1);
+                    this.saveSelectDate();
                 } else {
                     this.showComfirmBtn(0);
                 }
@@ -648,6 +699,10 @@
 
             //显示选中日期到页面顶端
             this.showSelected();
+            //控制确认按钮是否显示
+            if (this.noComfirmBtn && this.result.length === this.selectTime) {
+                this.saveSelectDate();
+            }
         },
         linkReset: function (ele) {
             var that = this,
@@ -678,40 +733,44 @@
             this.outClick();
 
         },
+        saveSelectDate: function () {
+            var that = this;
+            var obj = {};
+            if (that.selectTime === 2) {
+                if ($('#' + that.checkInTimeOptId).length > 0 && $("#" + that.checkOutTimeOptId).length > 0) {
+                    _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
+                    _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
+                }
+                var times = [that.result[0], that.result[1]];
+                obj[that.result[0]] = that._word[that.type][0];
+                obj[that.result[1]] = that._word[that.type][1];
+                that.time = obj;
+            } else {
+                if ($('#' + that.checkInTimeOptId).length > 0) {
+                    _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
+                }
+                var times = [that.result[0]];
+                obj[that.result[0]] = that._word[that.type][0];
+                that.time = obj;
+            }
+            _CalF.$('#' + that.id).setAttribute("data-selectedTime", times);
+            //修改calendar传入的参数time的值
+
+            that.removeDate();
+
+            //执行回调函数 将选择的日期作为参数传入
+            if (typeof that.callback === 'function') {
+                that.callback(that.result, that);
+            }
+            //清空result
+            that.result = [];
+        },
         //确认事件
         comfirmClick: function () {
+            var btn = $("#comfirmBtn");
             var that = this;
-            var btn = _CalF.$("#comfirmBtn");
-            var obj = {};
-            _CalF.bind(btn, "click", function (event) {
-                if (that.selectTime === 2) {
-                    if ($('#' + that.checkInTimeOptId).length > 0 && $("#" + that.checkOutTimeOptId).length > 0) {
-                        _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
-                        _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
-                    }
-                    var times = [that.result[0], that.result[1]];
-                    obj[that.result[0]] = that._word[that.type][0];
-                    obj[that.result[1]] = that._word[that.type][1];
-                    that.time = obj;
-                } else {
-                    if ($('#' + that.checkInTimeOptId).length > 0) {
-                        _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
-                    }
-                    var times = [that.result[0]];
-                    obj[that.result[0]] = that._word[that.type][0];
-                    that.time = obj;
-                }
-                _CalF.$('#' + that.id).setAttribute("data-selectedTime", times);
-                //修改calendar传入的参数time的值
-
-                that.removeDate();
-
-                //执行回调函数 将选择的日期作为参数传入
-                if (typeof that.callback === 'function') {
-                    that.callback(that.result, that);
-                }
-                //清空result
-                that.result = [];
+            btn.click(function () {
+                that.saveSelectDate();
             });
         },
         //格式化日期
@@ -767,8 +826,9 @@
                 nowM = startDate.getMonth();
                 nowD = startDate.getDate();
             }
-            _CalF.bind(this.input, 'click', function () {
+            this.input.click(function (event) {
                 that.createContainer();
+                that.initDate();
                 for (var i = 0; i < that.num; i++) {
                     if (i == (that.num - 1) && that.num > 1) {
                         var idate = new Date(nowY, nowM + i, 01);
