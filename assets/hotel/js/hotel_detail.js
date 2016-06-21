@@ -870,17 +870,10 @@
     }
 
 })(window, document);
-(function () {
-    $(window)[0].addEventListener("scroll", function () {
-        var header = $(".h-header")[0];
-        if (!$(".all_elements").scrollTop == 0) {
-            header.style.position = "fixed";
-            header.style.opacity = "1";
-            $("#oldHeader")[0].style.opacity = "0";
-            console.log("111")
-        } else {
-            header.style.position = "absolute";
-            header.style.opacity = "0";
-        }
-    });
+(function(){
+  $(".all_elements")[0].onscroll = function(){
+    var header = $(".h-header")[0];
+    header.style.position = "fixed";
+    header.style.opacity = "1";
+  }
 })()

@@ -24,12 +24,12 @@
 
 </div>
 </div>
+<div class="header_scenic">
+  <a href="javascript:window.history.go(-1)" class="icon_go_back" id = "g_back">
+  </a>
+  <h3 id="icon_go_back">景点详情</h3>
+</div>
 <div class="contents">
-    <div class="header_scenic">
-        <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
-        <div class="icon_go_back"></div>
-            </a>
-    </div>
     <div>
         <section class="bar_img" id = "barImg">
         </section>
@@ -53,7 +53,7 @@
     <!--<% }%>-->
 <!--</script>-->
 <script type="text/template" id="Barimg2">
-  <span class="bar_img_theme">景点详情</span>
+  <div class="icon_go_back" id = "oldHeader"></div>
   <% if(images.length==0){ %>
     <% for(var i = 0;i<tours.length;i++){ %>
       <% if(tours[i].tourID == vlm.getpara("tourId") ){%>
