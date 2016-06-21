@@ -299,7 +299,6 @@ function styleChange(id, mytext) {
                 //清空缓存记录
                 // window.sessionStorage.removeItem("asiaHlHistory");
                 var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
-                console.log(myAsiaHlHistory);
                 if (myAsiaHlHistory.hlSort) {
                     window.sessionStorage.removeItem("asiaHlHistory");
                 }
@@ -392,7 +391,6 @@ function styleChange(id, mytext) {
     var oBody = document.getElementsByTagName('body')[0];
     var oBtn = document.getElementById('s_but');
     var addressBok = true;
-    console.log(url_json);
 
     var preloader = document.getElementById('preloader');
     var status_h = document.getElementById('status');
@@ -400,6 +398,7 @@ function styleChange(id, mytext) {
     function M(json) {
         console.log('这是传入的数据');
         console.log(json);
+        var hoPos = localStorage.getItem('hoPos');
         preloader.style.display = 'block';
         //status_h.style.display = 'block';
         var lsf_list = document.getElementById('lsf_list');
@@ -415,7 +414,7 @@ function styleChange(id, mytext) {
         json.Category = json.Category || '';
         json.StarRating = json.StarRating || '';
         json.LocationList = json.LocationList || '';
-        json.CountryISOCode = decodeURIComponent(json.InterCountryISOCode) || 'SG';
+        json.CountryISOCode =   hoPos == 'inter'? json.InterCountryISOCode || 'SG' :json.DomCountryISOCode || 'CN';
         json.pageIndex = json.pageIndex || 1;
         json.pageSize = json.pageSize || 20;
         var oDate = new Date();
@@ -424,7 +423,7 @@ function styleChange(id, mytext) {
         var d = oDate.getDate();
         json.InterCheckInDate = json.InterCheckInDate || y + '-' + m + '-' + d;
         json.InterCheckOutDate = json.InterCheckOutDate || y + '-' + m + '-' + (d + 1);
-        var hoPos = localStorage.getItem('hoPos');
+
         //获得的目的地名字在城市列表里面进行搜索，然后获得英文名字
         var hl_cityListInfo = JSON.parse(window.localStorage.getItem('cityListInfo'));
 
@@ -523,7 +522,6 @@ function styleChange(id, mytext) {
     function V(data) {
         if (!data)
             return;
-        //console.log(data);
         var data_address = data.locationList;
         var data = data.hotelList;
         var timer = null;
@@ -726,7 +724,6 @@ function styleChange(id, mytext) {
     function sortHistory() {
         var hlSortLi = lsf_myweb.getbyid('rank').children;
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
-        console.log(myAsiaHlHistory);
         if (!myAsiaHlHistory.hlSort)
             return;
         for (var i = 0; i < hlSortLi.length; i++) {
@@ -751,7 +748,6 @@ function styleChange(id, mytext) {
     //筛选实现记忆功能
     function filterHistory() {
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
-        console.log(myAsiaHlHistory.hlFilter);
         if (!myAsiaHlHistory.hlFilter)
             return;
         var hLevel = document.getElementById('h-level');
@@ -809,24 +805,13 @@ function styleChange(id, mytext) {
     }
 
     locationHistory();
-
-
-    console.log(url_json);
     M(url_json);
 
     function mycallback(d) {
-        //console.log(d);
         var json = d;
-        console.log(json);
-        //console.log(1);
-        //alert(arr.Success);
         if (json.success) {
-            //console.log(json.Data);
             var data = json.data[0];
-            console.log(data);
-            //console.log(data.HotelList);
             V(data);
-
         } else {
             if (json.message == 'There is no hotel on the selected destination.') {
                 var data = {
@@ -848,8 +833,6 @@ function styleChange(id, mytext) {
               //  window.location.href = '../index.html';
               //}
             } else {
-                //alert(json.message);
-                //console.log(json.message);
                 var data = {
                     'hotelList': [],
                     'locationList': []

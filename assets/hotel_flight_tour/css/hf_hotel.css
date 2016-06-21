@@ -21,7 +21,7 @@ a:link {
 .jpa {
   position: absolute;
 }
-.header{
+.j-header{
   position: absolute;
   background-color: transparent;
   opacity: 0;
@@ -372,7 +372,7 @@ a:link {
 .jhf-mes .jhf-drg b.cur {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -0.28rem;
   width: 0.42rem;
   height: 0.42rem;
   background-image: url(../../images/ui.1.0/icon_common.png);

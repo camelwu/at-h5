@@ -693,10 +693,12 @@ li.order_tlist2 {
 }
 
 /*电话拨号结束*/
-
-#order_detail {
-  overflow-x: hidden;
+#order_details{
   position: relative;
+  overflow-x: hidden;
+}
+#order_detail {
+  padding-bottom: 1.4rem;
 }
 
 .hft_pri_details {
@@ -776,7 +778,7 @@ li.order_tlist2 {
   transition: 0.3s all ease;
 }
 .fht_order_tab {
-  padding: .25rem 0 0 .28rem;
+  padding-top: .25rem;
   background-color: #fff;
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
@@ -794,7 +796,7 @@ li.order_tlist2 {
 
 .fht_order_tab > li {
   margin-bottom: .3rem;
-  padding-right: .28rem;
+  padding:0 .28rem;
 }
 
 .fht_order_tab p {
@@ -1007,7 +1009,7 @@ li.order_tlist2 {
 }
 
 .p-but a {
-  color: white;
+  color: #fff;
 }
 
 /*机票详情*/
@@ -1201,9 +1203,17 @@ li.order_tlist2 {
   padding-top: .1rem
 }
 
-.elecheck {
+.fht_order_tab .elecheck {
   line-height: .7rem;
-  height: .4rem;
+  height: .7rem;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0;
+}
+.fht_order_tab .elecheck a{
+  color: #333;
+}
+.fht_order_tab .elecheck:last-child {
+  border-bottom: none;
 }
 
 .icon_left {
