@@ -90,9 +90,6 @@
           //点击加载更多
           $('#LoadMore').on("click", function () {
             loadMore();
-            var htmlm = $("#scenicDetile").html();
-            var htmlM = ejs.render(htmlm, data.data);
-            $("#scenicList").append(htmlM);
           });
           clickMore(data);
           if (!filterSign) {
