@@ -531,7 +531,8 @@ span.money{
   width: 100%;
   overflow: hidden;
   position: fixed;
-  top: 3.6rem;
+  top: 50%;
+  margin-top: -2.5rem;
   background: #000000;
 }
 #imageContainer .showZone .imgUl {
