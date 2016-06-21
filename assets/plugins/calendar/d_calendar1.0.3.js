@@ -93,11 +93,15 @@
         '<dt class="date_title">六</dt>',
         '</dl>'
         ],
-        //        _flightTemptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="electedTime0"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="electedTime1"></span><i class="icon_close"></i></div><p class="info">点击日期选择出发日期</p><p class="info second_info">请选择返回日期</p>',
+        //酒店日期提示
         _hotelTemptiper: '<div class="first_select tiper current"><span class="title">入住</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div><div class="second_select tiper"><span class="title">离店</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div>',
+        //机票日期提示
         _flightTemptiper: '<div class="first_select tiper current"><span class="title">去程</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div><div class="second_select tiper"><span class="title">返程</span><div class="date_wrap"><span class="date"></span><span class="week"></span></div></div>',
+        //默认header
         _header: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><h3>选择日期</h3>',
+        //带提示的header
         _tipHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div>',
+        //带清除按钮和提示的header
         _tipCleanHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div><a href="javascript:void(0);" class="header_clean">清除</a>',
         //确认按钮
         _confirmBtn: '<div class="btn"><p>选择完毕</p><span class="total">06月28日至06月30日(2晚)</span></div>',
@@ -434,8 +438,13 @@
         // 移除日期DIV.calendar
         removeDate: function () {
             var odiv = $('#calendarWrap');
+            var timer = null;
             if (odiv.length > 0) {
-                odiv.remove();
+                timer = setTimeout(function () {
+                    odiv.remove();
+                    clearTimeout(timer);
+                }, 500);
+
             }
         },
         //        // 上一月，下一月按钮事件
@@ -658,18 +667,16 @@
             if (this.result.length === 0 || this.result.length === this.selectTime) {
                 this.result = [];
                 this.result.push(selectValue);
-                if (this.selectTime === 1) {
-                    //this.showComfirmBtn(1);
-                    this.saveSelectDate();
-                } else {
-                    this.showComfirmBtn(0);
-                }
+                this.showComfirmBtn(0);
             } else {
                 var oneSelect = new Date(this.result[0]);
                 var twoSelect = new Date(selectValue);
                 if (twoSelect > oneSelect) {
                     this.result.push(selectValue);
-                    this.showComfirmBtn(1);
+                    //控制确认按钮是否显示
+                    if (!this.noComfirmBtn) {
+                        this.showComfirmBtn(1);
+                    }
                 } else {
                     this.result[0] = selectValue;
                 }
@@ -700,7 +707,7 @@
             //显示选中日期到页面顶端
             this.showSelected();
             //控制确认按钮是否显示
-            if (this.noComfirmBtn && this.result.length === this.selectTime) {
+            if ((this.noComfirmBtn && this.result.length === this.selectTime) || this.selectTime === 1) {
                 this.saveSelectDate();
             }
         },

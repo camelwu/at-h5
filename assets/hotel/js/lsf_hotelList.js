@@ -406,7 +406,8 @@ function styleChange(id, mytext) {
         //lsf_list.innerHTML = '';
         json = json || {};
         json.rank = json.rank || ''; //使用默认排序
-        json.InterCityName = decodeURIComponent(json.InterCityName) || 'Singapore';
+        // json.InterCityName = decodeURIComponent(json.InterCityName.replace(/\+/g, "%20")) || 'Singapore';
+        json.InterCityName = json.InterCityName.replace(/\+/g, " ") || 'Singapore';
         json.DomCityName = decodeURIComponent(json.DomCityName) || '北京';
         json.NumRoom = json.NumRoom || '1';
         json.NumChild = json.NumChild || '1';
@@ -414,7 +415,7 @@ function styleChange(id, mytext) {
         json.Category = json.Category || '';
         json.StarRating = json.StarRating || '';
         json.LocationList = json.LocationList || '';
-        json.CountryISOCode = json.CountryISOCode || 'SG';
+        json.CountryISOCode = decodeURIComponent(json.InterCountryISOCode) || 'SG';
         json.pageIndex = json.pageIndex || 1;
         json.pageSize = json.pageSize || 20;
         var oDate = new Date();
