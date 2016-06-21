@@ -95,7 +95,7 @@ input{
 .iconTip span{
   position: absolute;
   height: .56rem;
-  width: .56rem;
+  width: .6rem;
   background: url(../../images/ui/fly-roll.png) no-repeat;
   background-size: .56rem .56rem;
   overflow: hidden;
