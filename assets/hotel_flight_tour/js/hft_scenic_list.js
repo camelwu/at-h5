@@ -34,7 +34,7 @@
           vlm.init();
           filterData = data;
           //var htmlT = ;
-         $("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
+          $("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
           var htmlt = $("#timeDetile").html();
           var htmlT = ejs.render(htmlt, searchInfo);
           $("#TimeList").html(htmlT);
