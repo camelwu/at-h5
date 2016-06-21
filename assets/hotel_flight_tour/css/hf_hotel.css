@@ -26,6 +26,23 @@ a:link {
   background-color: transparent;
   opacity: 0;
   box-shadow: 0 0 0 ;
+  height: .88rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+}
+.j-header h3 {
+  color: #333;
+  text-align: center;
+  line-height: .88rem;
+  height: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 1.15rem;
+  white-space: nowrap;
+  font-size: 0.36rem;
 }
 .goback {
   width: 0.64rem;
