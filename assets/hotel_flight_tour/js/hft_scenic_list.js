@@ -185,3 +185,12 @@
   window.sessionStorage.removeItem('hotelAdditionalPrice');
   window.sessionStorage.removeItem('tempChooseTourDate');
 })();
+(function(){
+  $(".all_elements").addEventListener(function(){
+    var scroll = $(".all_elements")[0];
+    if( !scroll== 0 ){
+      $(".header")[0].style.position="fixed";
+
+    }
+  });
+})()
