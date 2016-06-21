@@ -188,6 +188,5 @@
 (function(){
   $(".all_elements")[0].addEventListener("scroll",function(){
     $(".header")[0].style.position="fixed";
-    console.log(bbb)
     });
 })()
