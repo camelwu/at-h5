@@ -186,11 +186,8 @@
   window.sessionStorage.removeItem('tempChooseTourDate');
 })();
 (function(){
-  $(".all_elements").addEventListener(function(){
-    var scroll = $(".all_elements")[0];
-    if( !scroll== 0 ){
-      $(".header")[0].style.position="fixed";
-
-    }
-  });
+  $(".all_elements")[0].addEventListener("scroll",function(){
+    $(".header")[0].style.position="fixed";
+    console.log(bbb)
+    });
 })()
