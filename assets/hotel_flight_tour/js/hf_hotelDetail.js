@@ -179,7 +179,7 @@ var data2 = '', roomdata = '';
 })();
 (function(){
   $(window)[0].addEventListener("scroll",function(){
-    var header = $(".header")[0];
+    var header = $(".j-header")[0];
     if(!$(".all_elements").scrollTop == 0){
       header.style.position="fixed";
       header.style.opacity="1";
