@@ -17,8 +17,14 @@ i {
 
 .jpa {
     position: absolute;
-}
 
+}
+.header{
+  position: absolute;
+  background-color: transparent;
+  opacity: 0;
+  box-shadow: 0 0 0 ;
+}
 
 /*loading*/
 .contents{
@@ -271,7 +277,7 @@ li.cur .h_choose {
     z-index: 10;
 }
 
-.hotel_dbanner a.goback {
+a.goback {
     width: 0.64rem;
     height: 0.64rem;
     position: absolute;

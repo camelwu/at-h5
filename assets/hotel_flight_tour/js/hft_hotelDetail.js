@@ -29,7 +29,7 @@
     '<a style="display:none;" href="<%= images[i].imageFileName%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
     '<img src="<%= images[i].imageFileName%>" alt="image"/></a>',
     '<% } %>',
-    '<a class="goback" href="javascript:window.history.go(-1);"></a>',
+    '<a class="goback" href="javascript:window.history.go(-1);" id = "oldHeader"></a>',
     '<% if(images.length>0) %>',
     '<p class = "bar_img_page"><%=(images.length)%>张</p>',
     '<% } %>'
@@ -233,4 +233,16 @@
   }
 
 })();
-
+(function(){
+  $(window)[0].addEventListener("scroll",function(){
+    var header = $(".header")[0];
+    if(!$(".contents").scrollTop == 0){
+      header.style.position="fixed";
+      header.style.opacity="1";
+      $("#oldHeader")[0].style.opacity = "0";
+    }else{
+      header.style.position="absolute";
+      header.style.opacity="0";
+    }
+  });
+})()

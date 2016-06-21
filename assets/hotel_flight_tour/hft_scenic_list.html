@@ -26,20 +26,22 @@
   <div id="status">
   </div>
 </div>
+<div class="header">
+  <a href="index.html?type=2" class="header_back" id="g_back" data-statl="back">
+    <i class="icon_back"></i>
+  </a>
+  <h3 id="tour_city">自由行</h3>
+</div>
 <div class="all_elements">
-  <div class="header">
-    <a href="index.html?type=2" class="header_back" id="g_back" data-statl="back">
-      <i class="icon_back"></i>
-    </a>
-    <h3 id="tour_city">自由行</h3>
-  </div>
   <div class="contents">
     <div class="snap-content">
       <section class="time_people_list" id="TimeList">
       </section>
       <section class="city_list" id="CityList">
       </section>
-      <section class="scenic-detile" id="scenicList">
+      <section class="scenic-detile">
+        <ul  id="scenicList"></ul>
+        <div class = "loadMore" id = "LoadMore">点击加载更多</div>
       </section>
     </div>
   </div>
@@ -84,7 +86,6 @@
   <% } %>
 </script>
 <script id="scenicDetile" type="text/template">
-  <ul>
     <% if(lists){ for( var i=0;i< lists.length; i++){ %>
     <li class="scenic-detile_list" data-packageID="<%= lists[i].packageID%>">
       <div class="scenic-detile_list_matter clearfix">
@@ -110,8 +111,5 @@
       </div>
     </li>
     <% }} %>
-    <li class = "loadMore" id = "LoadMore">点击加载更多</li>
-  </ul>
 </script>
-
 </html>

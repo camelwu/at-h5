@@ -89,25 +89,53 @@
          *@
          **/
         initCalendar: function (obj, obj2) {
-            var myDate1 = new Calender({
+            var myDate1 = new ATplugins.Calender({
                 id: "nav2-center1",
                 num: 13,
                 time: obj,
-                id2: "total_day",
-                fn: function (date) {
-                    //选择日期后的回调事件
-                    //@param ['2016-06-01','2016-06-02']
-                    var startDate = date[0],
-                        endDate = date[1];
-                    $('#week_span1').html(vlm.Utils.getWeek(startDate, "Ymd"));
-                    $('#week_span2').html(vlm.Utils.getWeek(endDate, "Ymd"));
+                type: "hotel",
+                headerSign: 'tip', //tipClean  tip
+                noComfirmBtn: true,
+                callback: function (result) {
+                    var checkInDateEle = $("#CheckInDate");
+                    var checkInWeekEle = $("#week_span1");
+
+                    var checkOutDateEle = $("#CheckOutDate");
+                    var checkOutWeekEle = $("#week_span2");
+                    var totalDayEle = $("#total_day");
+
+                    //                    checkInDateEle.val(vlm.Utils.format_date(result[0], 'md'));
+                    checkInDateEle.val(result[0]);
+                    checkInWeekEle.html(vlm.Utils.getWeek(result[0]));
+                    checkOutDateEle.val(result[1]);
+                    //                    checkOutDateEle.val(vlm.Utils.format_date(result[1], 'md'));
+                    checkOutWeekEle.html(vlm.Utils.getWeek(result[1]));
+                    totalDayEle.html((new Date(result[1].replace(/-/g, "/")).getDate()) - (new Date(result[0].replace(/-/g, "/")).getDate()));
                 }
             });
-            var domestic_calender = new Calender({
+            var domestic_calender = new ATplugins.Calender({
                 id: "nav2-center2",
                 num: 13,
                 time: obj2,
-                id2: "domeTotalDay"
+                headerSign: 'tip', //tipClean  tip
+                noComfirmBtn: true,
+                type: "hotel",
+                callback: function (result) {
+                    var checkInDateEle = $("#DomCheckInDate");
+                    var checkInWeekEle = $("#weekSpan3");
+
+                    var checkOutDateEle = $("#DomCheckOutDate");
+                    var checkOutWeekEle = $("#weekSpan4");
+                    var totalDayEle = $("#domeTotalDay");
+
+                    checkInDateEle.val(result[0]);
+                    //                    checkInDateEle.val(vlm.Utils.format_date(result[0], 'md'));
+                    checkInWeekEle.html(vlm.Utils.getWeek(result[0]));
+                    //                    checkOutDateEle.val(vlm.Utils.format_date(result[1], 'md'));
+                    checkOutDateEle.val(result[1]);
+                    checkOutWeekEle.html(vlm.Utils.getWeek(result[1]));
+                    totalDayEle.html((new Date(result[1].replace(/-/g, "/")).getDate()) - (new Date(result[0].replace(/-/g, "/")).getDate()));
+                }
             });
         },
         initEvent: function () {
@@ -144,7 +172,7 @@
             });
 
 
-            $('#arr1 .i_address').on('touchend',function () {
+            $('#arr1 .i_address').on('touchend', function () {
                 hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
                 // GEOIKIT().callMethod("CurrentLocation",{});
                 var province = localAddress['province'];
@@ -156,11 +184,11 @@
                 }
                 return false;
             });
-            $('#arr2 .i_address').on('touchend',function () {
+            $('#arr2 .i_address').on('touchend', function () {
                 // GEOIKIT().callMethod("CurrentLocation",{});
                 var province = localAddress['province'];
                 var city = localAddress['city'];
-                if (province === '北京市'|| province === '上海市' || province === '天津市' || province === '重庆市') {
+                if (province === '北京市' || province === '上海市' || province === '天津市' || province === '重庆市') {
                     $('#h_in').text(province);
                 } else {
                     $('#h_in').text(province + city);
@@ -278,7 +306,9 @@
                 //如果历史搜索入住日期早于最早入住日期
                 console.info(new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')));
                 if (new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')) < oDate1) {
+                    //                    checkIn.val(vlm.Utils.format_date(beginDate, 'md'));
                     checkIn.val(beginDate);
+                    //                    checkOut.val(vlm.Utils.format_date(leaveDate, 'md'));
                     checkOut.val(leaveDate);
                     week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
                     week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -288,7 +318,9 @@
 
                 } else {
                     checkIn.val(hotelStorage.InterBeginDate);
+                    //                    checkIn.val(vlm.Utils.format_date(hotelStorage.InterBeginDate, 'md'));
                     checkOut.val(hotelStorage.InterLeaveDate);
+                    //                    checkOut.val(vlm.Utils.format_date(hotelStorage.InterLeaveDate, 'md'));
                     $("#total_day").html(hotelStorage.InterTotalDay);
                     week_span1.html(hotelStorage.InterBeginDateWeek);
                     week_span2.html(hotelStorage.InterLeaveDateWeek);
@@ -381,105 +413,111 @@
     hotelIndex.init();
 })();
 
-(function(){
-  var geokit = this || (0, eval)('this');
+(function () {
+    var geokit = this || (0, eval)('this');
 
-  var tips = {
-    GEO_UNKNOWN_DATA:"尚无旅行产品,请切换其他城市。",
-    GEO_UNKNOWN_ERROR:"由于未知原因，无法获取地理定位信息，请重新尝试。",
-    GEO_PERMISSION_DENIED:"您的当前位置不可用,请开启设备上的\"定位服务\"。",
-    GEO_TIMEOUT:"获取信息超时，请重新尝试。",
-    GEO_POSITION_UNAVAILABLE:"由于网络或信号等问题，地理定位失败，请检查网络或信号。"
-  }
+    var tips = {
+        GEO_UNKNOWN_DATA: "尚无旅行产品,请切换其他城市。",
+        GEO_UNKNOWN_ERROR: "由于未知原因，无法获取地理定位信息，请重新尝试。",
+        GEO_PERMISSION_DENIED: "您的当前位置不可用,请开启设备上的\"定位服务\"。",
+        GEO_TIMEOUT: "获取信息超时，请重新尝试。",
+        GEO_POSITION_UNAVAILABLE: "由于网络或信号等问题，地理定位失败，请检查网络或信号。"
+    }
 
-  var currgeo = function(){
-    var Adapter = {
-      CurrentLocation:function(param){
-        if(navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(function(e) {
-            Adapter.CurrentLocationSuccess({
-              lat: e.coords.latitude,
-              lng: e.coords.longitude,
-              type:param.type,
-              list:param.list
-            });
-          }, function(e) {
-            Adapter.CurrentLocationError(e);
-          },{
-            enableHighAccuracy: true, // 是否获取高精度结果
-            timeout: 6000, //超时,毫秒
-            maximumAge: 0 //可以接受多少毫秒的缓存位置
-          })
-        }else{
-          jAlert('抱歉！您的浏览器无法使用地位功能');
-        }
+    var currgeo = function () {
+        var Adapter = {
+            CurrentLocation: function (param) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (e) {
+                        Adapter.CurrentLocationSuccess({
+                            lat: e.coords.latitude,
+                            lng: e.coords.longitude,
+                            type: param.type,
+                            list: param.list
+                        });
+                    }, function (e) {
+                        Adapter.CurrentLocationError(e);
+                    }, {
+                        enableHighAccuracy: true, // 是否获取高精度结果
+                        timeout: 6000, //超时,毫秒
+                        maximumAge: 0 //可以接受多少毫秒的缓存位置
+                    })
+                } else {
+                    jAlert('抱歉！您的浏览器无法使用地位功能');
+                }
 
-      },
-      CurrentLocationSuccess:function(param){
-        var geoinfo = new google.maps.Geocoder;
-        var latlng = {lat:param.lat,lng:param.lng};
-        var cityname = "未知",citypinyin = "none";
-        return geoinfo.geocode({"location":latlng},function(result,status){
-          if(status == google.maps.GeocoderStatus.OK) {
-            cityname = result[0].address_components[3].long_name;
-            if(cityname.indexOf("市") > -1){
-              cityname = cityname.replace("市","");
+            },
+            CurrentLocationSuccess: function (param) {
+                var geoinfo = new google.maps.Geocoder;
+                var latlng = {
+                    lat: param.lat,
+                    lng: param.lng
+                };
+                var cityname = "未知",
+                    citypinyin = "none";
+                return geoinfo.geocode({
+                    "location": latlng
+                }, function (result, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        cityname = result[0].address_components[3].long_name;
+                        if (cityname.indexOf("市") > -1) {
+                            cityname = cityname.replace("市", "");
+                        }
+                        citypinyin = pinyin.getFullChars(cityname);
+                        $("#h_in").text(cityname);
+                        $("#DomCity").attr("value", citypinyin);
+                        return;
+                    }
+                    $("#h_in").text(cityname);
+                    $("#DomCity").attr("value", citypinyin);
+                    return;
+                });
+            },
+            CurrentLocationError: function (error) {
+                console.log(error);
+                switch (error.code) {
+                    case error.TIMEOUT: //地理位置获取超时
+                        jAlert(tips.GEO_TIMEOUT, "提示");
+                        break;
+                    case error.POSITION_UNAVAILABLE: //地理位置获取失败（可能是用户没网或卫星搜不到等原因）
+                        jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
+                        break;
+                    case error.PERMISSION_DENIED: //用户拒绝
+                        jAlert(tips.GEO_PERMISSION_DENIED, "提示");
+                        break;
+                    case error.UNKNOWN_ERROR: //其他出错原因
+                        jAlert(tips.GEO_UNKNOWN_ERROR, "提示");
+                        break;
+                }
             }
-            citypinyin = pinyin.getFullChars(cityname);
-            $("#h_in").text(cityname);
-            $("#DomCity").attr("value",citypinyin);
-            return ;
-          }
-          $("#h_in").text(cityname);
-          $("#DomCity").attr("value",citypinyin);
-          return ;
-        });
-      },
-      CurrentLocationError:function(error){
-        console.log(error);
-        switch(error.code) {
-          case error.TIMEOUT://地理位置获取超时
-            jAlert(tips.GEO_TIMEOUT, "提示");
-            break;
-          case error.POSITION_UNAVAILABLE://地理位置获取失败（可能是用户没网或卫星搜不到等原因）
-            jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
-            break;
-          case error.PERMISSION_DENIED://用户拒绝
-            jAlert(tips.GEO_PERMISSION_DENIED, "提示");
-            break;
-          case error.UNKNOWN_ERROR://其他出错原因
-            jAlert(tips.GEO_UNKNOWN_ERROR, "提示");
-            break;
+
         }
-      }
 
-    }
+        return {
+            /**
+             * 调用数据过滤方法
+             * @param type
+             * @param data
+             * @returns {string}
+             */
+            callMethod: function (type, data) {
+                return Adapter[type] ? Adapter[type](data) : '';
+            },
+            /**
+             * 添加策略
+             * @param type
+             * @param fn
+             */
+            addCommand: function (type, fn) {
+                Adapter[type] = fn;
+            },
+            callMultipleMethod: function (msg) {
+                msg.param = Object.prototype.toString.call(msg.param) === "[object Array]" ? msg.param : [msg.param];
+                return Adapter[msg.command].apply(Adapter, msg.param);
+            }
+        }
+    };
 
-    return {
-      /**
-       * 调用数据过滤方法
-       * @param type
-       * @param data
-       * @returns {string}
-       */
-      callMethod:function(type,data){
-        return Adapter[type]?Adapter[type](data):'';
-      },
-      /**
-       * 添加策略
-       * @param type
-       * @param fn
-       */
-      addCommand:function(type,fn){
-        Adapter[type] = fn;
-      },
-      callMultipleMethod:function(msg){
-        msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
-        return Adapter[msg.command].apply(Adapter,msg.param);
-      }
-    }
-  };
-
-  geokit.VM = geokit.VM || {};
-  geokit.GEOIKIT = currgeo;
+    geokit.VM = geokit.VM || {};
+    geokit.GEOIKIT = currgeo;
 })();
