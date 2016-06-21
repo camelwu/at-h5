@@ -590,11 +590,17 @@ var footer = (function() {
             if (fst.indexOf("不限") > -1) {
               li[0].className = 'cur choose';
             } else {
-              li[0].className = '';
+              if(li[0].className == 'cur'|| li[0].className == 'cur chose'){
+                li[0].className = 'chose';
+              }else{
+                li[0].className = '';
+              }
             }
             // 后续循环
             for (var j = 1; j < li.length; j++) {
-              if(li[j].className == 'cur'||li[j].className == 'cur choose'|| li[j].className == 'cur chose'){
+              if(li[j].className == 'cur'|| li[j].className == 'cur chose'){
+                li[j].className = 'chose';
+              }else if(li[j].className == 'cur choose'){
                 li[j].className = '';
               }
             }

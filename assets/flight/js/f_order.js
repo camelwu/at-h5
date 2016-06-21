@@ -341,7 +341,7 @@ var fOrder = {
       } else {
         shadow.style.display = "block";
         iArrow.className = "toDown";
-        priceDetailInfo.style.bottom = ".89rem";
+        priceDetailInfo.style.bottom = ".88rem";
       }
     });
     $("body").children().click(function () {});  //解决iPhone safari中Document事件不触发
@@ -409,7 +409,6 @@ editPassager:function(obj){
     $(".priceDetailInfo").eq(0).html(outputString1);
     console.log(data)
     moneyNumber.innerHTML = "￥"+data.priceTotal;
-    personNum.innerHTML = parseInt(data.numofAdult)+parseInt(data.numofChild);
     return this;
   },
 

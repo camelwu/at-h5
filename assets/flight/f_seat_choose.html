@@ -62,9 +62,15 @@
               class="startPort"><%= leaveItem["airportNameFrom"] %><%= leaveItem["termDepart"] %></span>
             </div>
             <div class="middle">
-              <div class="timeCost"><%= leaveItem["segmentsLeaveTotalTravelTimeString"] %></div>
-              <div class="arrow"></div>
-              <div class="transferCity"></div>
+              <% if(Number(leaveItem.techStopTotal)){%>
+                  <div class="timeCost share_word">经停</div>
+                  <div class="arrow"></div>
+                  <div class="transferCity"><%= leaveItem["techStopAirportName"] %></div>
+              <%}else{%>
+                  <div class="timeCost"></div>
+                  <div class="arrow"></div>
+                  <div class="transferCity"></div>
+              <% }%>
             </div>
             <div class="right">
               <span class="arriveTime"><%= leaveItem["arriveDate"].substring(11, 16) %></span>
@@ -76,7 +82,7 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%><% if(flightInfo.isLeaveStop == 1){%><span class="share_word">经停</span><%}%>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
           </p>
         </li>
         <%if(item
@@ -114,9 +120,15 @@
               class="startPort"><%= returnItem["airportNameFrom"] %><%= returnItem["termDepart"] %></span>
             </div>
             <div class="middle">
-              <div class="timeCost"><%= returnItem["segmentsLeaveTotalTravelTimeString"] %></div>
-              <div class="arrow"></div>
-              <div class="transferCity"></div>
+              <% if(Number(returnItem.techStopTotal)){%>
+                <div class="timeCost share_word">经停</div>
+                <div class="arrow"></div>
+                <div class="transferCity"><%= returnItem["techStopAirportName"] %></div>
+              <%}else{%>
+                <div class="timeCost"></div>
+                <div class="arrow"></div>
+                <div class="transferCity"></div>
+              <% }%>
             </div>
             <div class="right">
               <span class="arriveTime"><%= returnItem["arriveDate"].substring(11, 16) %></span>
@@ -128,7 +140,7 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%><% if(flightInfo.isReturnStop == 1){%><span class="share_word">经停</span><%}%>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
           </p>
         </li>
         <%if(item_

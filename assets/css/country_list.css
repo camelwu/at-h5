@@ -98,6 +98,8 @@
 
 .country_index li a {
   color: #7bc300;
+  display: block;
+  height: 100%;
 }
 
 .country-cho-wrap h4 {

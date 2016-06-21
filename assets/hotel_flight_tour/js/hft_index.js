@@ -415,7 +415,7 @@ var htf_search = {
         } else {
           m.innerHTML = str;
         }
-        that.extraChild(n.parentNode.parentNode, str);
+        that.extraChild(n.parentNode.parentNode, str,'up');
         str == 2 ? n.style.backgroundPosition = '29.5% 68%' : n.style.backgroundPosition = '41.2% 68%';
       } else if (_type == "extraRoom") {
         str = m.innerHTML;
@@ -533,8 +533,8 @@ var htf_search = {
         str == 0 ? n.style.backgroundPosition = '6.7% 68%' : n.style.backgroundPosition = '17.5% 68%';
         str == 2 ? plus.style.backgroundPosition = '29.5% 68%' : plus.style.backgroundPosition = '41.2% 68%';
       }
-      _type == "extraChild" && that.extraChild(n.parentNode.parentNode, str);
-      _type == "extraRoom" && that.extraRoom(n.parentNode.parentNode, str);
+      _type == "extraChild" && that.extraChild(n.parentNode.parentNode, str,'down');
+      _type == "extraRoom" && that.extraRoom(n.parentNode.parentNode, str,'down');
     };
   },
   //  加床按钮
@@ -581,7 +581,7 @@ var htf_search = {
     this.addbed();
   },
   //   加减儿童
-  extraChild: function (dom, numb) {
+  extraChild: function (dom, numb,type) {
     var _bedBox = dom.parentNode.getElementsByClassName('extraChild'),
       _html = '';
     var adultPeople = parseInt(dom.parentNode.getElementsByClassName('adult_people_number')[0].innerHTML);
@@ -590,14 +590,14 @@ var htf_search = {
     } else {
       var _listHtml;
       _bedBox[0].style.display = 'block';
-      _listHtml = this.extraChildTemp(numb, adultPeople, _bedBox[0]);
+      _listHtml = this.extraChildTemp(numb, adultPeople, _bedBox[0],type);
       if (_bedBox.length == 0) {
         _html = '<div class="extraChild">';
         domAfter(dom, _html + _listHtml + '</div>');
-        _listHtml = this.extraChildTemp(numb, adultPeople, _html);
+        _listHtml = this.extraChildTemp(numb, adultPeople, _html,type);
       } else {
         _bedBox[0].innerHTML = _listHtml;
-        _listHtml = this.extraChildTemp(numb, adultPeople, _bedBox[0]);
+        _listHtml = this.extraChildTemp(numb, adultPeople, _bedBox[0],type);
       }
     }
     this.add_subtract();
@@ -631,17 +631,25 @@ var htf_search = {
     this.add_subtract();
   },
   //   儿童逻辑
-  extraChildTemp: function (i, n, box) {
+  extraChildTemp: function (i, n, box,type) {
     var age = box.getElementsByClassName('inp_cage')[0].value;
     if (age != '') {
       if (n == 1) {
         if (i == 2) {
           return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "' + age + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '"><i class="child_sui">岁</i>' + '</div>';
         } else {
-          return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "' + age + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>';
+          if(type=='up'){
+            return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>';
+          }else if(type=='down'){
+            return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "' + age + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>';
+          }
         }
       } else if (i == 1) {
-        return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "' + age + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>加一床</i><b class="com_icon noselect"></b></span>' + '</div>';
+        if(type=='up'){
+          return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>加一床</i><b class="com_icon noselect"></b></span>' + '</div>';
+        }else if(type=='down'){
+          return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "' + age + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>加一床</i><b class="com_icon noselect"></b></span>' + '</div>';
+        }
       } else if (i == 2) {
         return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "' + age + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>加一床</i><b class="com_icon ico_select_disabled"></b></span>' + '</div>';
       }

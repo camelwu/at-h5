@@ -100,6 +100,7 @@
       var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
       flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;
+      flightHotelAllData.hotelInfo.starRating = starRatingStorage(flightHotelAllData.hotelInfo.starRating);
        window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
        window.timer2 = setTimeout(function () {
         window.clearTimeout(window.timer2);
@@ -185,6 +186,31 @@
         break;
     }
     return data;
+  }
+  function starRatingStorage(starStr) {
+    var star = {
+      '1': 1,
+      '2': 2,
+      '3': 3,
+      '4': 4,
+      '5': 5,
+      '一星级': 1,
+      '二星级': 2,
+      '三星级': 3,
+      '四星级': 4,
+      '五星级': 5,
+      '1 星级': 1,
+      '2 星级': 2,
+      '3 星级': 3,
+      '4 星级': 4,
+      '5 星级': 5,
+      '1 stars': 1,
+      '2 stars': 2,
+      '3 stars': 3,
+      '4 stars': 4,
+      '5 stars': 5
+    }
+    return star[starStr];
   }
   //日期  房间
   function date(){

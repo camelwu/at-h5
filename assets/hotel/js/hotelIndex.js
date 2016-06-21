@@ -143,13 +143,28 @@
                 history.go(-1);
             });
 
+
             $('#arr1 .i_address').on('touchend',function () {
-              hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
-              $('#h_in').text(localAddress['province']+localAddress['city']);
-              return false;
+                hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
+                // GEOIKIT().callMethod("CurrentLocation",{});
+                var province = localAddress['province'];
+                var city = localAddress['city'];
+                if (province === '北京市' || province === '上海市' || province === '天津市' || province === '重庆市') {
+                    $('#h_in').text(province);
+                } else {
+                    $('#h_in').text(province + city);
+                }
+                return false;
             });
             $('#arr2 .i_address').on('touchend',function () {
-              $('#h_in').text(localAddress['province']+localAddress['city']);
+                // GEOIKIT().callMethod("CurrentLocation",{});
+                var province = localAddress['province'];
+                var city = localAddress['city'];
+                if (province === '北京市'|| province === '上海市' || province === '天津市' || province === '重庆市') {
+                    $('#h_in').text(province);
+                } else {
+                    $('#h_in').text(province + city);
+                }
             });
 
             //城市列表
@@ -364,4 +379,107 @@
         }
     };
     hotelIndex.init();
+})();
+
+(function(){
+  var geokit = this || (0, eval)('this');
+
+  var tips = {
+    GEO_UNKNOWN_DATA:"尚无旅行产品,请切换其他城市。",
+    GEO_UNKNOWN_ERROR:"由于未知原因，无法获取地理定位信息，请重新尝试。",
+    GEO_PERMISSION_DENIED:"您的当前位置不可用,请开启设备上的\"定位服务\"。",
+    GEO_TIMEOUT:"获取信息超时，请重新尝试。",
+    GEO_POSITION_UNAVAILABLE:"由于网络或信号等问题，地理定位失败，请检查网络或信号。"
+  }
+
+  var currgeo = function(){
+    var Adapter = {
+      CurrentLocation:function(param){
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(function(e) {
+            Adapter.CurrentLocationSuccess({
+              lat: e.coords.latitude,
+              lng: e.coords.longitude,
+              type:param.type,
+              list:param.list
+            });
+          }, function(e) {
+            Adapter.CurrentLocationError(e);
+          },{
+            enableHighAccuracy: true, // 是否获取高精度结果
+            timeout: 6000, //超时,毫秒
+            maximumAge: 0 //可以接受多少毫秒的缓存位置
+          })
+        }else{
+          jAlert('抱歉！您的浏览器无法使用地位功能');
+        }
+
+      },
+      CurrentLocationSuccess:function(param){
+        var geoinfo = new google.maps.Geocoder;
+        var latlng = {lat:param.lat,lng:param.lng};
+        var cityname = "未知",citypinyin = "none";
+        return geoinfo.geocode({"location":latlng},function(result,status){
+          if(status == google.maps.GeocoderStatus.OK) {
+            cityname = result[0].address_components[3].long_name;
+            if(cityname.indexOf("市") > -1){
+              cityname = cityname.replace("市","");
+            }
+            citypinyin = pinyin.getFullChars(cityname);
+            $("#h_in").text(cityname);
+            $("#DomCity").attr("value",citypinyin);
+            return ;
+          }
+          $("#h_in").text(cityname);
+          $("#DomCity").attr("value",citypinyin);
+          return ;
+        });
+      },
+      CurrentLocationError:function(error){
+        console.log(error);
+        switch(error.code) {
+          case error.TIMEOUT://地理位置获取超时
+            jAlert(tips.GEO_TIMEOUT, "提示");
+            break;
+          case error.POSITION_UNAVAILABLE://地理位置获取失败（可能是用户没网或卫星搜不到等原因）
+            jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
+            break;
+          case error.PERMISSION_DENIED://用户拒绝
+            jAlert(tips.GEO_PERMISSION_DENIED, "提示");
+            break;
+          case error.UNKNOWN_ERROR://其他出错原因
+            jAlert(tips.GEO_UNKNOWN_ERROR, "提示");
+            break;
+        }
+      }
+
+    }
+
+    return {
+      /**
+       * 调用数据过滤方法
+       * @param type
+       * @param data
+       * @returns {string}
+       */
+      callMethod:function(type,data){
+        return Adapter[type]?Adapter[type](data):'';
+      },
+      /**
+       * 添加策略
+       * @param type
+       * @param fn
+       */
+      addCommand:function(type,fn){
+        Adapter[type] = fn;
+      },
+      callMultipleMethod:function(msg){
+        msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
+        return Adapter[msg.command].apply(Adapter,msg.param);
+      }
+    }
+  };
+
+  geokit.VM = geokit.VM || {};
+  geokit.GEOIKIT = currgeo;
 })();

@@ -28,7 +28,6 @@ var hftChoose = {
       ForeEndType: ForeEndType,
       Code: Code
     };
-    //questUrl = questUrl ? questUrl : "";
     vlm.loadJson("", JSON.stringify(dataObj), callBack);
   },
 
@@ -37,10 +36,11 @@ var hftChoose = {
     var storage = window.sessionStorage, that = hftChoose;
     that.createOrderPara.memberID = window.localStorage.getItem('memberid');
     storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
+    window.localStorage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
     that.timer0 = setTimeout(function () {
       window.clearTimeout(that.timer0);
       that.timer0 = null;
-      window.location.href = that.type == 2 ? "hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID + "&selectedRoomId=" + that.roomPriceInfo.roomID+"&enumvalue=" + that.enumvalue : "hft_order.html?type=" + that.type + "&selectedRoomId=" + that.roomPriceInfo.roomID;
+      window.location.href = that.type == 2 ? "hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID + "&selectedRoomId=" + that.roomPriceInfo.roomID : "hft_order.html?type=" + that.type + "&selectedRoomId=" + that.roomPriceInfo.roomID;
     }, 500);
     /*  }*/
   },
@@ -61,20 +61,21 @@ var hftChoose = {
     var priceTotal = document.querySelector('.priceTotal'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.header_back');
     var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo'),temArray = [];
     var roomUl = document.querySelector('.roomUl'), checkMoreData = document.querySelector('.check-more-room'), shadowEle = document.querySelector('.shadow'), storage = window.sessionStorage;
-    that.curChosenTourInfo = {tourId:'', chosenDate:''};
+   // that.curChosenTourInfo = {tourId:'', chosenDate:''};
     if (that.type == 2) {
       tourOuter = document.querySelector('.tourOuter');
       chooseDateOuter = document.querySelector('.chooseDate');
       this.addHandler(tourOuter, 'click', function (e) {
         var e = e || window.event, target = e.target || e.srcElement;
         if (target.tagName == "I") {
-          that.curChosenTourInfo.tourId = target.parentNode.parentNode.getAttribute('data-tour-id');
           chooseDateOuter.style.transition = 'all 400ms ease-in';
           chooseDateOuter.style.webkitTransition = 'all 400ms linear';
           shadowEle.style.display = "block";
           chooseDateOuter.style.bottom = ".90rem";
           that.dateWrap = target.parentNode;
-          var temSession = [], temDates = [], tempString = '', outputString = '', tours = that.curData.tours, tarRooId = target.parentNode.parentNode.getAttribute('data-tour-id'), resultEnd = [];
+          var temSession = [], temDates = [], tempString = '', outputString = '', tours = that.curData.tours,
+            highLightDate = target.parentNode.querySelector('span').getAttribute('data-date'),
+            tarRooId = target.parentNode.parentNode.getAttribute('data-tour-id'), resultEnd = [];
           Array.prototype.distinct = function () {
             var sameObj = function (a, b) {
               var tag = true;
@@ -128,10 +129,12 @@ var hftChoose = {
             }
           }
           resultEnd = classification(temDates);
+          console.log(resultEnd)
+          console.log(highLightDate)
           tempString = $("#template_date_session").html();
-          outputString = ejs.render(tempString, {data: resultEnd});
+          outputString = ejs.render(tempString, {data: {dataArray:resultEnd,chooseDate:highLightDate}});
           $(".chooseDate").eq(0).html(outputString);
-          that.dateArrayShow();
+          that.dateArrayShow(highLightDate);
         } else if (target.tagName == "BUTTON") {
           var buttons = target.parentNode.querySelectorAll('button');
           for(var k = 0;k<buttons.length;k++){
@@ -145,8 +148,7 @@ var hftChoose = {
           document.location.href = "../hotel_flight_tour/hft_scenic_content.html?tourId=" + target.parentNode.getAttribute('data-tour-id') + "&packageId=" + that.initParaObj.packageID;
         }
       });
-
-      this.addHandler(chooseDateOuter, 'click', function (e) {
+      this.addHandler(chooseDateOuter, 'click', function (e){
         var e = e || window.event, target = e.target || e.srcElement, temEles, allMdouter, allSpan_, spans_;
         allMdouter = document.querySelectorAll('.monthsDate');
         chooseDateOuter.style.transition = 'all 400ms ease-in';
@@ -167,8 +169,6 @@ var hftChoose = {
               break;
             }
           }
-          that.curChosenTourInfo.chosenDate = that.curChooseDate;
-          storage.setItem('tourChosenInfo', JSON.stringify(that.curChosenTourInfo));
           that.dateWrap.innerHTML = '<span data-date="' + that.curChooseDate + '">' + that.returnDay(that.curChooseDate) + '</span><i></i>';
           shadowEle.style.display = "none";
           chooseDateOuter.style.bottom = '-126%';
@@ -177,6 +177,7 @@ var hftChoose = {
           tempTours.forEach(function (array) {
             var temObj = {};
             temObj['tourID'] = array['tourID'];
+            temObj['tourType'] = array['tourType'];
             temObj['optionCode'] = array['selectOptionCode'];
             temObj['travelDateSpecified'] = array['travelDateMandatory'];
             if (chooseDTour == array['tourID']) {
@@ -186,6 +187,7 @@ var hftChoose = {
             }
             toursArray.push(temObj);
           });
+          sessionStorage.setItem('tempChooseTourDate', JSON.stringify(toursArray));
           that.getNewPricePara.tours = toursArray;
           that.getNewPricePara.flightCacheID = that.curData.flightInfo.cacheID;
           that.getNewPricePara.flightSetID = that.curData.flightInfo.setID;
@@ -205,11 +207,7 @@ var hftChoose = {
               allMdouter[v].className = 'monthsDate';
             }
           }
-          //只要出发日期高亮
-          //for (var u = 0; u < spans_.length; u++) {
-          //  spans_[u].className = u == 0 ? "active" : "";
-          //}
-        } else if (target.tagName == "SPAN" && target.getAttribute('data-date')) {
+        } else if (target.tagName == "SPAN" && target.getAttribute('data-date')){
           that.curChooseDate = target.getAttribute('data-date');
           temEles = target.parentNode.querySelectorAll('span');
           for (var j = 0; j < temEles.length; j++) {
@@ -389,12 +387,12 @@ var hftChoose = {
             button.forEach(function(item_){
               if(item_.className == "active"){
                 temOuterObj.enumvalue =  item_.getAttribute('data-enumvalue');
-                that.enumvalue = temOuterObj.enumvalue
               }
             });
           }
           temArray.push(temOuterObj)
         });
+        console.log(temArray);
         hftCreateOrder.tours = temArray;
         hftCreateOrder.packageID = that.initParaObj.packageID;
       }
@@ -448,17 +446,12 @@ var hftChoose = {
   },
 
   dateArrayShow: function () {
-    var monthTitle = document.querySelectorAll('.month-title'),storage = window.sessionStorage, monthsDate = document.querySelectorAll('.monthsDate'), spans, that = hftChoose;
-    that.tourChosenInfo = JSON.parse(storage.getItem('tourChosenInfo'));
+    var monthTitle = document.querySelectorAll('.month-title'),highLightDate= arguments[0],storage = window.sessionStorage, monthsDate = document.querySelectorAll('.monthsDate'), spans, that = hftChoose;
     for (var i = 0; i < monthTitle.length; i++) {
-      if(that.tourChosenInfo){
-        monthTitle[i].className = that.tourChosenInfo.chosenDate.substring(0,7)== monthTitle[i].getAttribute('data-m') ? "month-title active" : "month-title";
-      }else{
-        monthTitle[i].className = i == 0 ? "month-title active" : "month-title";
-      }
+      monthTitle[i].className = highLightDate.substring(0,7)== monthTitle[i].getAttribute('data-m') ? "month-title active" : "month-title";
     }
     for (var j = 0; j < monthsDate.length; j++) {
-      if (monthsDate[j].getAttribute('data-md') == monthTitle[0].getAttribute('data-m')) {
+      if (monthsDate[j].getAttribute('data-md') == highLightDate.substring(0,7)) {
         monthsDate[j].className = "monthsDate show";
         spans = monthsDate[j].querySelectorAll('span');
       } else {
@@ -466,19 +459,14 @@ var hftChoose = {
       }
     }
     for (var k = 0; k < spans.length; k++){
-      if(that.tourChosenInfo){
-        spans[k].className =  spans[k].getAttribute('data-date') == that.tourChosenInfo.chosenDate?"active":""
-      }else{
-        spans[0].className = "active";
-      }
+        spans[k].className =  spans[k].getAttribute('data-date') ==highLightDate?"active":""
     }
-
   },
 
   selectedRoomHandler:function(){
     var data = arguments[0], that = this;
     this.curData = data;
-    if(that.urlParseObj.selectedRoomId){
+    if(that.urlParseObj&&that.urlParseObj.selectedRoomId){
       that.selectedRoomId = that.urlParseObj.selectedRoomId;
       data.hotelInfo.rooms.forEach(function(item, array){
         if(item.roomID == that.selectedRoomId){
@@ -497,12 +485,22 @@ var hftChoose = {
     var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds = {}, tempStrc = "", outputStrc = "";
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
+      var hftCreateOrderParaInfo = JSON.parse(storage.getItem('hftCreateOrderPara')), tempChooseTourDate = JSON.parse(storage.getItem('tempChooseTourDate'));
+      if(hftCreateOrderParaInfo){
+        that.hftCreateOrderParaInfo = hftCreateOrderParaInfo.tours;
+      }
+      if(tempChooseTourDate){
+        that.tempChooseTourDate = tempChooseTourDate;
+      }
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
       originAirIds.flightSetID = resultData.flightInfo.setID;
       originAirIds.flightCacheID = resultData.flightInfo.cacheID;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
+      window.localStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
+      resultData.hotelInfo.starRating = hftChoose.starRatingStorage(resultData.hotelInfo.starRating);
+
       that.operationData = resultData;
       that.selectedRoomHandler(resultData).createTags(resultData).delayLoadImage().createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
       $("#status").fadeOut(resultData);
@@ -516,15 +514,8 @@ var hftChoose = {
   renderHandler_: function () {
     var result = arguments[0], that = hftChoose;
     if (result.code == 200 && result.success == 1) {
-      var priceNum = result.data.totalAmount, tourTem = [],tourChosenInfo = JSON.parse(window.sessionStorage.getItem('tourChosenInfo'));
+      var priceNum = result.data.totalAmount, tourTem = [];
       tourTem = that.curData.tours;
-      if(tourChosenInfo){
-        tourTem.forEach(function(arrayItem){
-          if(arrayItem['tourID'] == tourChosenInfo["tourId"]){
-            arrayItem['selectTravelDate'] = tourChosenInfo["chosenDate"];
-          }
-        })
-      }
       that.curData.tours = tourTem;
       that.roomPriceInfo = result.data.prices;
       that.curData.hotelInfo.rooms = result.data.roomsPrice;
@@ -555,7 +546,11 @@ var hftChoose = {
     var backFun = function () {
       var backEle = document.querySelector('.header_back');
       that.addHandler(backEle, 'click', function () {
-        window.location.href ="index.html?type=" + that.type
+        if(that.type == 1) {
+          window.location.href = "index.html?type=" + that.type
+        }else{
+          window.location.href = "hft_scenic_list.html?type=" + that.type
+        }
       });
     }, tempStrc="", outputStrc="", that = hftChoose;
     tempStrc = $("#template_no_result").html();
@@ -662,36 +657,60 @@ var hftChoose = {
     }
     return week;
   },
-
-  /*setChineseStar: function () {
-    var strNumber = arguments[0].substr(0, 1), resultNum = '';
-    switch (strNumber.charCodeAt(0)) {
-      case 49:
+  starRatingStorage: function (starStr) {
+    var star = {
+      '1': 1,
+      '2': 2,
+      '3': 3,
+      '4': 4,
+      '5': 5,
+      '一星级': 1,
+      '二星级': 2,
+      '三星级': 3,
+      '四星级': 4,
+      '五星级': 5,
+      '1 星级': 1,
+      '2 星级': 2,
+      '3 星级': 3,
+      '4 星级': 4,
+      '5 星级': 5,
+      '1 stars': 1,
+      '2 stars': 2,
+      '3 stars': 3,
+      '4 stars': 4,
+      '5 stars': 5
+    }
+    return star[starStr];
+  },
+  setChineseStar: function (starRating) {
+    var resultNum;
+    switch (starRating) {
+      case 1:
         resultNum = '一星级';
         break;
-      case 50:
+      case 2:
         resultNum = '二星级';
         break;
-      case 51:
+      case 3:
         resultNum = '三星级';
         break;
-      case 52:
+      case 4:
         resultNum = '四星级';
         break;
-      case 53:
+      case 5:
         resultNum = '五星级';
         break;
-      case 54:
+      case 6:
         resultNum = '六星级';
         break;
-      case 55:
+      case 7:
         resultNum = '七星级';
         break;
       default:
         void (0);
     }
     return resultNum;
-  },*/
+  },
 
   fixRoomOrder:function(){
     var that = this,allInfoData = that.operationData,roomsData = [], temp = {},selectedRoomId = arguments[0]||allInfoData.hotelInfo.rooms[0].roomID;
@@ -709,6 +728,15 @@ var hftChoose = {
 
   createTags: function () {
     var data = arguments[0], that = hftChoose, tempStr = "", outputStr = "", _tempStr = "", _outputStr = "", tempStringRoom = "",outputStrRoom = "";
+    //头部数据
+    var template_header = $("#template_header").html();
+    var header = ejs.render(template_header,data);
+    $('#header').html(header);
+    //底部价钱部分
+    var template_footer = $('#template_footer').html();
+    var footer = ejs.render(template_footer,data);
+    $('.bottomPrice').html(footer);
+  //template部分
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr, data);
     $(".all_elements").eq(0).html(outputStr);
@@ -718,7 +746,7 @@ var hftChoose = {
     $(".roomUl").eq(0).html(outputStrRoom);
     /*景点数据*/
     if (that.type == 2) {
-      _tempStr = $("#template_tour").html();
+      _tempStr = $("#template_tour_").html();
       _outputStr = ejs.render(_tempStr, data);
       $(_outputStr).insertAfter("#hotel");
     }
@@ -795,14 +823,10 @@ var hftChoose = {
     return cabinStr;
   },
   init: function () {
-    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj = {}, storage = window.sessionStorage, originAirIds = {},tourChosenInfo=null, hftFlightHotelTourInfo = {};
+    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj = {}, storage = window.sessionStorage, originAirIds = {}, hftFlightHotelTourInfo = {};
     originAirIds = JSON.parse(storage.getItem('originAirIds'));
-    tourChosenInfo = JSON.parse(storage.getItem('tourChosenInfo'));
     hftFlightHotelTourInfo = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
     urlParseObj = this.parseUrlPara(document.location.search, true);
-    if(tourChosenInfo){
-      this.tourChosenInfo = tourChosenInfo;
-    }
     var paraObj = {
       "cityCodeFrom": temObj['FromCity'],
       "cityCodeTo": temObj['ToCity'],

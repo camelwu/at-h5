@@ -115,12 +115,12 @@ var arrCountry = localStorage.arrCountry;
       }
 
       $('#addtra_page').css({
-        'display':'block',
+        'visibility':'visible',
         'position':'relative'
       });
       $('#content').show();
       $('#uptra_page').css({
-        'display':'block',
+        'visibility':'visible',
         'position':'relative'
       });
     });
@@ -230,12 +230,12 @@ var arrCountry = localStorage.arrCountry;
             $('.gj-header').hide();
             $('.country-cho-wrap').hide();
             $('#addtra_page').css({
-              'display':'block',
+              'visibility':'visible',
               'height':n,
               'position':'relative'
             });
             $('#uptra_page').css({
-              'display':'block',
+              'visibility':'visible',
               'height':n,
               'position':'relative'
             });
@@ -306,7 +306,7 @@ var arrCountry = localStorage.arrCountry;
         $('#country_index_wrap').show();
         $('.country-cho-wrap').show();
         $('.gj-header').show();
-        $('#content-wrap').hide();
+        $('#content-wrap').css('visibility','hidden');
       }
     };
 
