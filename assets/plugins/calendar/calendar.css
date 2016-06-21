@@ -71,6 +71,9 @@
     height: 100%;
     top: 0;
     right: 0;
+    line-height: .88rem;
+    text-align: center;
+    color: #666666;
 }
 
 .calendar_date {

@@ -798,12 +798,8 @@
         //清除选中日期
         clearClick: function () {
             var that = this;
-            $(".calendar_tiper").on("click", ".icon_close", function (event) {
-                if ($(this).parent().index() === 0) {
-                    that.result.length = 0; //清空选择记录
-                } else {
-                    that.result.length = 1; //清空选择记录
-                }
+            $(".calendar_header").on("click", ".header_clean", function (event) {
+                that.result.length = 0;
                 console.info(that.result);
                 that.resetSelected();
                 that.showSelected();
