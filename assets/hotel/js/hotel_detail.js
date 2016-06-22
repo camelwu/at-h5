@@ -873,7 +873,6 @@
   $(".all_elements").scroll(function(){
     var header = $(".h_header")[0];
     var scroll = $(".all_elements").scrollTop();
-    console.log(scroll);
     if(!scroll== 0){
       header.style.position="fixed";
       header.style.opacity="1";

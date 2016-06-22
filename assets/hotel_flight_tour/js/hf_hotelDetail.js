@@ -174,20 +174,20 @@ var data2 = '', roomdata = '';
     }
     return result;
   }
-
-
 })();
-//(function(){
-//  $(window)[0].addEventListener("scroll",function(){
-//    var header = $(".hft_header")[0];
-//    if(!$(".contents").scrollTop == 0){
-//      header.style.position="fixed";
-//      header.style.opacity="1";
-//      $("#oldHeader")[0].style.opacity = "0";
-//    }else{
-//      header.style.position="absolute";
-//      header.style.opacity="0";
-//    }
-//  });
-//})()
+(function(){
+$(".all_elements").scroll(function(){
+  var header = $(".hf_header")[0];
+  var scroll = $(".all_elements").scrollTop();
+  if(!scroll== 0){
+    header.style.position="fixed";
+    header.style.opacity="1";
+    header.style.backgroundColor = "#f7f7f7";
+  }else{
+    header.style.position="absolute";
+    header.style.opacity="0";
+    header.style.backgroundColor = "transparent";
+  }
+});
+})()
 
