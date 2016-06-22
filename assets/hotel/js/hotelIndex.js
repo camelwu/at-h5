@@ -110,7 +110,8 @@
                     checkOutDateEle.val(result[1]);
                     //                    checkOutDateEle.val(vlm.Utils.format_date(result[1], 'md'));
                     checkOutWeekEle.html(vlm.Utils.getWeek(result[1]));
-                    totalDayEle.html((new Date(result[1].replace(/-/g, "/")).getDate()) - (new Date(result[0].replace(/-/g, "/")).getDate()));
+
+                    totalDayEle.html(Math.round(((new Date(result[1].replace(/-/g, "/"))) - new Date(result[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)));
                 }
             });
             var domestic_calender = new ATplugins.Calender({
@@ -134,7 +135,7 @@
                     //                    checkOutDateEle.val(vlm.Utils.format_date(result[1], 'md'));
                     checkOutDateEle.val(result[1]);
                     checkOutWeekEle.html(vlm.Utils.getWeek(result[1]));
-                    totalDayEle.html((new Date(result[1].replace(/-/g, "/")).getDate()) - (new Date(result[0].replace(/-/g, "/")).getDate()));
+                    totalDayEle.html(Math.round(((new Date(result[1].replace(/-/g, "/"))) - new Date(result[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)));
                 }
             });
         },
@@ -171,28 +172,17 @@
                 history.go(-1);
             });
 
-
             $('#arr1 .i_address').on('touchend', function () {
                 hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
-                // GEOIKIT().callMethod("CurrentLocation",{});
-                var province = localAddress['province'];
-                var city = localAddress['city'];
-                if (province === '北京市' || province === '上海市' || province === '天津市' || province === '重庆市') {
-                    $('#h_in').text(province);
-                } else {
-                    $('#h_in').text(province + city);
-                }
+                //$('#h_in').text(localAddress['city']);
+                GEOIKIT().callMethod("CurrentLocation", {});
                 return false;
             });
             $('#arr2 .i_address').on('touchend', function () {
-                // GEOIKIT().callMethod("CurrentLocation",{});
-                var province = localAddress['province'];
-                var city = localAddress['city'];
-                if (province === '北京市' || province === '上海市' || province === '天津市' || province === '重庆市') {
-                    $('#h_in').text(province);
-                } else {
-                    $('#h_in').text(province + city);
-                }
+                //$('#h_in').text(localAddress['city']);
+                GEOIKIT().callMethod("CurrentLocation", {});
+                //$('#h_in').text(localAddress['province']+localAddress['city']);
+
             });
 
             //城市列表
@@ -435,6 +425,7 @@
                             type: param.type,
                             list: param.list
                         });
+
                     }, function (e) {
                         Adapter.CurrentLocationError(e);
                     }, {
@@ -480,15 +471,35 @@
                         jAlert(tips.GEO_TIMEOUT, "提示");
                         break;
                     case error.POSITION_UNAVAILABLE: //地理位置获取失败（可能是用户没网或卫星搜不到等原因）
-                        jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
+                        if (!Adapter.CurrentNetLocation()) { //如果却少gms信息,改用网络获取地址
+                            jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
+                        }
                         break;
                     case error.PERMISSION_DENIED: //用户拒绝
-                        jAlert(tips.GEO_PERMISSION_DENIED, "提示");
+                        if (!Adapter.CurrentNetLocation()) { //如果却少gms信息,改用网络获取地址
+                            jAlert(tips.GEO_PERMISSION_DENIED, "提示");
+                        }
                         break;
                     case error.UNKNOWN_ERROR: //其他出错原因
                         jAlert(tips.GEO_UNKNOWN_ERROR, "提示");
                         break;
                 }
+            },
+            CurrentNetLocation: function () {
+                var cityname = localAddress['city'],
+                    citypinyin = "";
+                if (cityname) {
+                    if (cityname.indexOf("市") > -1) {
+                        cityname = cityname.replace("市", "");
+                    }
+                    citypinyin = pinyin.getFullChars(cityname);
+                    $("#h_in").text(cityname);
+                    $("#DomCity").attr("value", citypinyin);
+                    return true;
+                } else {
+                    return false;
+                }
+
             }
 
         }
