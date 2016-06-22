@@ -593,7 +593,6 @@ var hftChoose = {
     array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
     return array[1] + '月' + array[2] + '日';
   },
-
   airCompanyHandler: function () {
     var data = arguments[0], tag = 0, tem = [], that = hftChoose;
     Array.prototype.distinct = function () {
