@@ -242,4 +242,11 @@ function showHotelInfo(){
 function showHotelComment(){
   window.location.href = 'hotel_reviews.html?HotelID='+hotelID+'&TAAvgRating='+Avgrating+'&TAReviewCount='+TAReviewCount+'';
 }
-
+(function(){
+  $(".all_elements")[0].onscroll = function(){
+    var header = $(".room_header")[0];
+    header.style.position = "fixed";
+    header.style.opacity = "1";
+    console.log(2)
+  }
+})()
