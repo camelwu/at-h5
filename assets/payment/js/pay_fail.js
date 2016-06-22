@@ -10,7 +10,7 @@
             "Scenic":{id: 3,detailCode: "0095",name:"Scenic"},
             "Tour":{id: 4,detailCode: "0095",name:"Tour"},
             "FlightHotle":{id: 5,detailCode: "50100007",name:"FlightHotle"},
-            "FlightHotelTour":{id: 6,detailCode: "60100013", name:"FlightHotelTour"}
+            "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011"}
         };
         //页面初始化
         var _init = {
@@ -52,13 +52,7 @@
                         data.data[0].productName=data.data[0].hotelName;
                         data.data[0].totalPrice=data.data[0].totalRoomRate;
                     }else if(type.id==2){
-                        if(data.data.flightInfo.segmentsReturn !=null && data.data.flightInfo.segmentsReturn.length>=1){
-                          data.data.productName = "往返 "+data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
-                        }
-                      else{
-                          data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
-                        }
-
+                        data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     else if(type.id==3){

@@ -9,8 +9,6 @@
   var returnAttr = "";
   var returnStrType = "";
   var returnStrAttr = "";
-  var returnCountryType = "";
-  var returnCountryAttr = "";
   var cityboxCache = 1;
   var config = {
     HistoryData:{},
@@ -736,10 +734,8 @@
   };
 
   var geo = function(){
-    var params= {};
     var Adapter = {
       Location:function(param){
-        params = param;
         if(navigator.geolocation){
           navigator.geolocation.getCurrentPosition(function(e) {
             Adapter.LocationSuccess({
@@ -771,7 +767,6 @@
                 console.log(param.list[i]);
                 $(""+param.type+"").attr("data-code",param.list[i].cityCode);
                 $(""+param.type+"").attr("data-name",param.list[i].cityName);
-                $(""+param.type+"").attr("data-countrycode",param.list[i].countryCode);
                 $(""+param.type+"").find("div").html(param.list[i].cityName);
                 return;
               }
@@ -780,7 +775,6 @@
             //未找到城市
             $(""+param.type+"").attr("data-code","");
             $(""+param.type+"").attr("data-name","");
-            $(""+param.type+"").attr("data-countrycode","");
             $(""+param.type+"").find("div").html(cityname);
             console.log(cityname);
           }
@@ -793,46 +787,15 @@
             jAlert(tips.GEO_TIMEOUT, "提示");
             break;
           case error.POSITION_UNAVAILABLE://地理位置获取失败（可能是用户没网或卫星搜不到等原因）
-            if(!Adapter.CurrentNetLocation()){
-              jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
-            }
+            jAlert(tips.GEO_POSITION_UNAVAILABLE, "提示");
             break;
           case error.PERMISSION_DENIED://用户拒绝
-            if(!Adapter.CurrentNetLocation()) {
-              jAlert(tips.GEO_PERMISSION_DENIED, "提示");
-            }
+            jAlert(tips.GEO_PERMISSION_DENIED, "提示");
             break;
           case error.UNKNOWN_ERROR://其他出错原因
             jAlert(tips.GEO_UNKNOWN_ERROR, "提示");
             break;
         }
-      },
-      CurrentNetLocation:function(){
-        var cityname = localAddress['city'];
-        if(cityname){
-          if(cityname.indexOf("市") > -1){
-            cityname = cityname.replace("市","");
-          }
-          for(var i= 0;i<params.list.length;i++) {
-            if (cityname.indexOf(params.list[i].cityName) > -1) {
-              $(""+params.type+"").attr("data-code",params.list[i].cityCode);
-              $(""+params.type+"").attr("data-name",params.list[i].cityName);
-              $(""+params.type+"").attr("data-countrycode",params.list[i].countryCode);
-              $(""+params.type+"").find("div").html(params.list[i].cityName);
-              return true;
-            }
-          }
-
-          $(""+params.type+"").attr("data-code","");
-          $(""+params.type+"").attr("data-name","");
-          $(""+params.type+"").attr("data-countrycode","");
-          $(""+params.type+"").find("div").html(cityname);
-
-          return true;
-        }else{
-          return false;
-        }
-
       },
       createlocation:function(param){
         var dom = param.dom;
@@ -853,13 +816,11 @@
         citybox_content_item_li.setAttribute("id","js_d_location");
         citybox_content_item_li.setAttribute("data-code","");
         citybox_content_item_li.setAttribute("data-name","");
-        citybox_content_item_li.setAttribute("data-countrycode","");
         citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
         citybox_content_item_li.onclick = function(){
           var cityData = {};
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
-          var countryCode = this.getAttribute("data-countrycode");
           if(cityCode == ""){
             jAlert(tips.GEO_UNKNOWN_DATA, "提示");
             return;
@@ -870,10 +831,7 @@
           cityData.returnStrAttr = returnStrAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
-          cityData.returnCountryType = returnCountryType;
-          cityData.returnCountryAttr = returnCountryAttr;
-          cityData.countryCode = countryCode;
-          Method["setcityboxHistory"](this,cityCode,cityName,countryCode);
+          Method["setcityboxHistory"](this,cityCode,cityName);
           dataCityExec().callCityExec(""+globalType+"Exec",cityData);
           Method['hideAllCityBox']();
         }
@@ -1182,16 +1140,6 @@
         }else{
           $(data.returnType).html(data.cityName);
         }
-
-        if(data.returnCountryType != ""){
-          if(data.returnCountryAttr != ""){
-            $(data.returnCountryType).attr(""+data.returnCountryAttr+"",data.countryCode);
-          }else{
-            $(data.returnCountryType).html(data.countryCode);
-          }
-        }else{
-          $(data.returnCountryType).html(data.countryCode);
-        }
         $(".citybox_search_suggestBG").css("display","none");
       },
       /**
@@ -1264,6 +1212,7 @@
        * @returns {Array}
        */
       h_inExec:function(data){
+
         cityexec.pub_Exec(data);
 
       },
@@ -1380,8 +1329,6 @@
       returnAttr = data.returnAttr || "";
       returnStrType = data.returnStrId || "";
       returnStrAttr = data.returnStrVal || "";
-      returnCountryType = data.returnCountryId || "";
-      returnCountryAttr = data.returnCountryVal || "";
       cityboxCache = data.cache || 1;
       show1 = 0;
       show2 = 0;
@@ -1892,29 +1839,24 @@
             var citybox_content_item_li = document.createElement("li");
             citybox_content_item_li.setAttribute("class","citybox_content_item");
             citybox_content_item_li.setAttribute("data-code",cityboxHistoryData[i].toString().split(":")[0]);
-            citybox_content_item_li.setAttribute("data-name",cityboxHistoryData[i].toString().split(":")[1].split("|")[0]);
-            citybox_content_item_li.setAttribute("data-countrycode",cityboxHistoryData[i].toString().split(":")[1].split("|")[1]);
+            citybox_content_item_li.setAttribute("data-name",cityboxHistoryData[i].toString().split(":")[1]);
             citybox_content_item_li.onclick = function(){
               var cityData = {};
               var cityName = this.getAttribute("data-name");
               var cityCode = this.getAttribute("data-code");
-              var countryCode = this.getAttribute("data-countrycode");
               cityData.returnType = returnType;
               cityData.returnAttr = returnAttr;
               cityData.returnStrType = returnStrType;
               cityData.returnStrAttr = returnStrAttr;
               cityData.cityName = cityName;
               cityData.cityCode = cityCode;
-              cityData.returnCountryType = returnCountryType;
-              cityData.returnCountryAttr = returnCountryAttr;
-              cityData.countryCode = countryCode;
-              Method["setcityboxHistory"](this,cityCode,cityName,countryCode);
+              Method["setcityboxHistory"](this,cityCode,cityName);
               dataCityExec().callCityExec(""+globalType+"Exec",cityData);
               Method['hideAllCityBox']();
             }
             var citybox_content_itemtitle_div = document.createElement("div");
             citybox_content_itemtitle_div.setAttribute("class","citybox_content_itemtitle");
-            citybox_content_itemtitle_div.innerHTML = cityboxHistoryData[i].toString().split(":")[1].split("|")[0];
+            citybox_content_itemtitle_div.innerHTML = cityboxHistoryData[i].toString().split(":")[1];
             citybox_content_item_li.appendChild(citybox_content_itemtitle_div);
             citybox_content_container_ul.appendChild(citybox_content_item_li);
 
@@ -1929,9 +1871,9 @@
      * @param dom
      * @param data
      */
-    setcityboxHistory:function(dom,cityCode,cityName,countryCode){
+    setcityboxHistory:function(dom,cityCode,cityName){
       var tmpdata = [];
-      var newHistoryCityData = [cityCode+":"+cityName+"|"+countryCode];
+      var newHistoryCityData = [cityCode+":"+cityName];
       var cityboxHistoryData = localStorage.getItem(""+globalType+"_history");
       if(!cityboxHistoryData){
         tmpdata.push(newHistoryCityData);
@@ -2011,13 +1953,12 @@
             citybox_searchactive_li_p.setAttribute("class","citybox_searchactive_li_p");
             citybox_searchactive_li_p.setAttribute("data-code",data[i].cityCode);
             citybox_searchactive_li_p.setAttribute("data-name",data[i].cityName);
-            citybox_searchactive_li_p.setAttribute("data-countrycode",data[i].countryCode);
+            citybox_searchactive_li_p.setAttribute("data-letter",data[i].fullSpellingName);
             citybox_searchactive_li_p.innerHTML = data[i].cityName;
             citybox_searchactive_li_p.onclick = function(){
               var cityData = {};
               var cityName = this.getAttribute("data-name");
               var cityCode = this.getAttribute("data-code");
-              var countryCode = this.getAttribute("data-countrycode");
               if(cityName.indexOf("(") > -1 ){
                 cityName = cityName.substring(0,cityName.indexOf("("));
               }
@@ -2027,10 +1968,7 @@
               cityData.returnStrAttr = returnStrAttr;
               cityData.cityName = cityName;
               cityData.cityCode = cityCode;
-              cityData.returnCountryType = returnCountryType;
-              cityData.returnCountryAttr = returnCountryAttr;
-              cityData.countryCode = countryCode;
-              Method["setcityboxHistory"](this,cityCode,cityName,countryCode);
+              Method["setcityboxHistory"](this,cityCode,cityName);
               dataCityExec().callCityExec(""+globalType+"Exec",cityData);
               Method['hideAllCityBox']();
             }
@@ -2089,22 +2027,17 @@
         citybox_content_item_li.setAttribute("class","citybox_content_item");
         citybox_content_item_li.setAttribute("data-code",data[i].cityCode);
         citybox_content_item_li.setAttribute("data-name",nltitle);
-        citybox_content_item_li.setAttribute("data-countrycode",data[i].countryCode);
         citybox_content_item_li.onclick = function(){
           var cityData = {};
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
-          var countryCode = this.getAttribute("data-countrycode");
           cityData.returnType = returnType;
           cityData.returnAttr = returnAttr;
           cityData.returnStrType = returnStrType;
           cityData.returnStrAttr = returnStrAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
-          cityData.returnCountryType = returnCountryType;
-          cityData.returnCountryAttr = returnCountryAttr;
-          cityData.countryCode = countryCode;
-          Method["setcityboxHistory"](this,cityCode,cityName,countryCode);
+          Method["setcityboxHistory"](this,cityCode,cityName);
           dataCityExec().callCityExec(""+globalType+"Exec",cityData);
           Method['hideAllCityBox']();
         }
@@ -2149,14 +2082,12 @@
         citybox_content_lettername_li.setAttribute("class","citybox_content_lettername");
         citybox_content_lettername_li.setAttribute("data-code",data[i].cityCode);
         citybox_content_lettername_li.setAttribute("data-name",data[i].cityName);
-        citybox_content_lettername_li.setAttribute("data-countrycode",data[i].countryCode);
         //citybox_content_lettername_li.setAttribute("data-letter",data[i].fullSpellingName);
         citybox_content_lettername_li.innerHTML = data[i].cityName;
         citybox_content_lettername_li.onclick = function(){
           var cityData = {};
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
-          var countryCode = this.getAttribute("data-countrycode");
           if(cityName.indexOf("(") > -1 ){
             cityName = cityName.substring(0,cityName.indexOf("("));
           }
@@ -2166,10 +2097,7 @@
           cityData.returnStrAttr = returnStrAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
-          cityData.returnCountryType = returnCountryType;
-          cityData.returnCountryAttr = returnCountryAttr;
-          cityData.countryCode = countryCode;
-          Method["setcityboxHistory"](this,cityCode,cityName,countryCode);
+          Method["setcityboxHistory"](this,cityCode,cityName);
           dataCityExec().callCityExec(""+globalType+"Exec",cityData);
           Method['hideAllCityBox']();
         }

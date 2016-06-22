@@ -228,7 +228,9 @@
 
         subRoomList: function (arg) {
             var str = '<ul class="roomDetailList hotel_content_roomDetail">';
+            console.log("arg=");
             arg.sort(getSortFun('asc', "avgPriceCNY"));
+            console.log(arg);
             for (var i = 0; i < arg.length; i++) {
                 str += hotelDetail.subRoomListNoService(arg[i]); // + hotelDetail.subRoomListHasService(arg[i]);
             }
@@ -236,11 +238,11 @@
             return str;
         },
 
-        //showName: function (result) {
-        //    var htmlStr = this.sTools.hotelName(result.data[0].hotelGenInfo.hotelName)
-        //    $(".header h3").html(htmlStr);
-        //
-        //},
+        showName: function (result) {
+            var htmlStr = this.sTools.hotelName(result.data[0].hotelGenInfo.hotelName)
+            $(".header h3").html(htmlStr);
+
+        },
 
         eventHandle: function () {
 
@@ -263,7 +265,7 @@
             var toMap = this.$Id('map');
             toMap.onclick = function () {
                 var dataObj = {
-                    HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelNameLocale + "(" + hotelDetail.sourceData.data[0].hotelGenInfo.hotelName + ") " + hotelDetail.sourceData.data[0].hotelGenInfo.hotelAddress,
+                    HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelNameLocale +"("+hotelDetail.sourceData.data[0].hotelGenInfo.hotelName+") "+hotelDetail.sourceData.data[0].hotelGenInfo.hotelAddress,
                     Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
                     Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
                 }
@@ -379,13 +381,14 @@
             //result = JSON.parse(result);
             console.log('callback函数得到的数据');
             hotelDetail.myData.createAllback = result;
+            console.log(hotelDetail.myData);
             if (result.success == true) {
                 hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
                 //data = hotelDetail.myData[0];
                 // var locatdata = sessionStorage.getItem("hotelStorage12345").ToCity;
                 // console.log(locatdata);
             } else {
-                alert(result.Message);
+                alert(result.message);
                 return;
                 //return false;
             }
@@ -410,6 +413,9 @@
             all0 = content0;
             hotelDetail.$CN('all_elements')[0].innerHTML = all0;
             hotelDetail.sourceData = result;
+            console.log(hotelDetail.sourceData);
+
+
             var isFreeWifi = '',
                 isFreeTransfer = '',
                 isCashRebate = '',
@@ -434,11 +440,10 @@
             frontImgStr += '<a class="goback" href="javascript:window.history.go(-1);"></a> <div class="d-div1 faceImg hotel_img"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum hotel_imgBox"><div class="d-p4 hotel_imgBog_num">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
             //H5-410 点评为0时不显示该模块
             rateStr = result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li class = "score" onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分 /' + '<b>' + result.data[0].hotelGenInfo.hotelReviewCount + '</b>' + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
-
-            var rege = result.data[0].hotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g, '');
-            console.log(rege);
-
+            var rege =result.data[0].hotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g,'');
+          console.log(rege);
             firstUl += '<div class="maps"><h3><p class="d-p1">' + rege + "(" + result.data[0].hotelGenInfo.hotelName + ")" + '</p></h3><div id="map"></div><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></div><ul class="d-ul1 hotel_shoulder">' + '' + rateStr + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>' + isFreeWifi + isFreeTransfer + '<b class="icons open-arg hotel_shoulder_icon"></b>' + hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList) + '</li></ul>';
+
             secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
             //footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
@@ -466,6 +471,7 @@
 
             //没有图片时候显示默认图片
             var amyImagesList = hotelDetail.sourceData.data[0].hotelImagesList.length;
+            console.log(amyImagesList);
             if (hotelDetail.sourceData.data[0].hotelImagesList.length == 0) {
                 $('img.hotelPic').attr('src', '../images/loading_def_big.png');
                 $('.totalNum').css({
@@ -507,21 +513,13 @@
             var dateInitObj = new Object();
             dateInitObj[hotelDetail.gdataInfo.CheckInDate] = '入住';
             dateInitObj[hotelDetail.gdataInfo.CheckOutDate] = '离店';
-            var myDate2 = new ATplugins.Calender({
+            var myDate2 = new Calender({
                 id: 'chooseDate',
                 num: 13,
                 time: dateInitObj,
-                headerSign: 'tip',
-                noComfirmBtn: true,
-                type: "hotel",
                 sClass1: 'enterDate',
                 id2: 'nightNum',
-                callback: function (result) {
-                    document.getElementsByClassName('enterDate')[0].innerHTML = result[0];
-                    document.getElementsByClassName('enterDate')[1].innerHTML = result[1];
-                    $('#nightNum').html((new Date(result[1].replace(/-/g, "/")).getDate()) - (new Date(result[0].replace(/-/g, "/")).getDate()))
-                    hotelDetail.upDateContent();
-                }
+                fn: hotelDetail.upDateContent
             });
 
             result.data[0].dateInfo = {
@@ -680,6 +678,8 @@
         },
 
         updateSubRoomModal: function (arg) {
+            console.log(arg);
+            console.log(1);
             var modalStr = '',
                 couponStr = '',
                 adultNumStr = '',
@@ -854,7 +854,9 @@
             var dataObj = arg || this.parseUrlPara(document.location.search, true);
             this.gdataInfo = dataObj;
             this.myData.getByUrl = dataObj;
-
+            console.log(this.myData);
+            console.log('url得到的数据');
+            console.log(this.gdataInfo);
             this.jAjax(this.requestUrl, dataObj, "0008", 3, this.createAll);
 
             window.hotelDetail = hotelDetail;
@@ -870,10 +872,3 @@
     }
 
 })(window, document);
-(function(){
-  $(".all_elements")[0].onscroll = function(){
-    var header = $(".h-header")[0];
-    header.style.position = "fixed";
-    header.style.opacity = "1";
-  }
-})()

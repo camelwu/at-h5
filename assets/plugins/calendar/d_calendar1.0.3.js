@@ -593,7 +593,7 @@
             if (sign) {
                 var firstDate = vlm.Utils.format_date(selectDate[0], 'md');
                 var secondDate = vlm.Utils.format_date(selectDate[1], 'md');
-                var days = (Math.round(((new Date(selectDate[1].replace(/-/g, "/"))) - new Date(selectDate[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)))
+                var days = (new Date(selectDate[1].replace(/-/g, "/")).getDate()) - (new Date(selectDate[0].replace(/-/g, "/")).getDate());
                 totelEle.html(firstDate + "至" + secondDate + '(' + days + '晚)');
                 comfirmBtn.slideDown();
             } else {

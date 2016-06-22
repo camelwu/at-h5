@@ -92,7 +92,7 @@
         else{
            html = ejs.render($("#"+type.tplKey).html(), data.data);
         }
-        $("#order_details").html(html);
+        $("#order_detail").html(html);
         vlm.init();
 
         if(type.id==4){

@@ -178,16 +178,16 @@ var data2 = '', roomdata = '';
 
 })();
 (function(){
-  $(".all_elements")[0].onscroll = function(){
-    var header = $(".j-header")[0];
-    var height = $(".jhf-banner")[0].height;
-    var scrollTop = $(".all_elements").scrollTop();
-        header.style.position="fixed";
-        header.style.opacity="1";
-        $("#oldHeader")[0].style.opacity = "0";
-    if(scrollTop>height){
-      header.style.backgroundColor = "#fcfcfc";
+  $(window)[0].addEventListener("scroll",function(){
+    var header = $(".header")[0];
+    if(!$(".all_elements").scrollTop == 0){
+      header.style.position="fixed";
+      header.style.opacity="1";
+      $("#oldHeader")[0].style.opacity = "0";
+    }else{
+      header.style.position="absolute";
+      header.style.opacity="0";
     }
-  }
+  });
 })()
 
