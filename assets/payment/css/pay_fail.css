@@ -41,6 +41,11 @@
   font-size: .28rem;
   font-weight: bold;
 }
+.tra_c2_inbox li >span.hft_days_num{
+  display: inline-block;
+  margin: 0 .2rem;
+  font-weight: normal;
+}
 .tra_price span{
   font-size: .4rem;
 }
