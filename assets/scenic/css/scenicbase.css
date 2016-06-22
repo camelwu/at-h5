@@ -359,14 +359,32 @@ li.scenic_detile_project_first{
 }
 .scenic-detile_privilege{
   font: 700 .2rem/.6rem "FZLTXHK";
-  color:#FFBF4B
+  color:#FFBF4B;
 }
 /*列表页*/
 /*景点详情页开始*/
 .header_scenic{
-  height: .66rem;
   position: absolute;
-  z-index: 1;
+  background-color: transparent;
+  opacity: 0;
+  box-shadow: 0 0 0;
+  height: .88rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+}
+.header_scenic h3{
+  color: #333;
+  text-align: center;
+  line-height: .88rem;
+  height: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 1.15rem;
+  white-space: nowrap;
+  font-size: 0.36rem;
 }
 .icon_go_back{
   width: .65rem;
@@ -378,6 +396,7 @@ li.scenic_detile_project_first{
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
   background-position: -3.15rem -0.45rem;
+  z-index: 999;
 }
 .bar_img{
   width: 100%;
