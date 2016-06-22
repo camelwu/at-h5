@@ -3,6 +3,11 @@
 .calendar dl dt.title-date{
   font-size: .28rem;
 }
+.h_header{
+  position: absolute;
+  opacity: 0;
+  background-color: transparent;
+}
 /*header*/
 .header{
   background: white;

@@ -66,6 +66,9 @@ element::-webkit-scrollbar{
 }
 .content_detail{
   background-color: #ffffff;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
 }
 .content_booking{
   padding:.88rem 0 .9rem;
@@ -367,13 +370,6 @@ li.scenic_detile_project_first{
   position: absolute;
   background-color: transparent;
   opacity: 0;
-  box-shadow: 0 0 0;
-  height: .88rem;
-  top: 0;
-  left: 0;
-  right: 0;
-  pointer-events: all;
-  z-index: 99;
 }
 .header_scenic h3{
   color: #333;

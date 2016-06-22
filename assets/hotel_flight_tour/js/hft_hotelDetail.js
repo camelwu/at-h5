@@ -234,18 +234,18 @@
 
 })();
 (function(){
-  $(window)[0].addEventListener("scroll",function(){
-    var header = $(".hft_header")[0];
-    var scroll = $(".contents")[0].scrollTop();
-    console.log(scroll);
-    if(!$(".contents").scrollTop == 0){
-      header.style.position="fixed";
-      header.style.opacity="1";
-      header.style.backgroundColor = "#f7f7f7";
-    }else{
-      header.style.position="absolute";
-      header.style.opacity="0";
-      header.style.backgroundColor = "transparent";
-    }
-  });
+    $(".div").scroll(function(){
+      var header = $(".hft_header")[0];
+      var scroll = $(".div").scrollTop();
+      console.log(scroll);
+      if(!scroll== 0){
+        header.style.position="fixed";
+        header.style.opacity="1";
+        header.style.backgroundColor = "#f7f7f7";
+      }else{
+        header.style.position="absolute";
+        header.style.opacity="0";
+        header.style.backgroundColor = "transparent";
+      }
+    });
 })()

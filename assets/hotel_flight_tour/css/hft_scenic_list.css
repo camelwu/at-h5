@@ -3,13 +3,10 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
   padding:.88rem 0 .9rem;
   background-color: white;
 }
-body{overflow-y: scroll
-overflow: scroll;
-  position: absolute;
+body{
+  overflow: scroll;
   height: 100%;
   width: 100%;
-  top:0;
-  left:0;
 }
 .div{
   overflow: scroll;
