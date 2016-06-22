@@ -248,31 +248,33 @@ var hftTool ={
         }
         if(Parmeters.Parameters.RoomDetails[i].hasOwnProperty("childWithBed")) {
           for(var j=0; j<=Parmeters.Parameters.RoomDetails[i].childWithBed.length-1;j++) {
-            var b = getBirthday(hftCreateOrderPara.departDate, Parmeters.Parameters.RoomDetails[i].childWithBed[j])
+            var b = getBirthday(hftCreateOrderPara.departDate, Parmeters.Parameters.RoomDetails[i].childWithBed[j]);
             birthDay.push({
-                birth: b,
-                age: Parmeters.Parameters.RoomDetails[i].childWithBed[j]
-              }
-            )
+              birth : b,
+              age : Parmeters.Parameters.RoomDetails[i].childWithBed[j]
+            });
           }
-          }
+
+        }
       }
+
       //出行人
       var traveller=[];
+
       if(localStorage.travellerInfo_selected){
         var traInfo_sel=JSON.parse(localStorage.travellerInfo_selected);
         for(var i=0;i<traInfo_sel.length; i++)
         {
           var tra={};
           var person={};
+          var age=vlm.Utils.ages(traInfo_sel[i].DateOfBirth.substring(0,10));
 
-          var age=vlm.Utils.getAge(traInfo_sel[i].DateOfBirth);
           if(age<=12){
             var tempAge=birthDay.pop();
-            if(age !=tempAge.age) {
-              person.dateOfBirth =tempAge.birth ;
-            }
-            else{
+            if(age !=parseInt(tempAge.age)) {
+              jAlert("儿童年龄与出生日期不匹配");
+              return;
+            }else{
               person.dateOfBirth=traInfo_sel[i].DateOfBirth;
             }
           }
