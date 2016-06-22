@@ -159,7 +159,22 @@ var fIndexModal = {
         }
         return this
     },
-
+   distinct:function(){
+     var obj={},ary=[], arr = arguments[0];
+     for (var i = 0; i < arr.length; i++) {
+       var str="";
+       for(var key in arr[i]){
+         str+=key+":"+arr[i][key]+",";
+       }
+       var cur=str;
+       if(obj[cur]==cur){
+         continue;
+       }
+       obj[cur]=cur;
+       ary.push(arr[i]);
+     }
+     return ary;
+   },
     cityChooseHistory: function () {
         var data = arguments[0] || [],
             storage = window.sessionStorage,
@@ -167,33 +182,7 @@ var fIndexModal = {
             internationalHistory = JSON.parse(storage.getItem('internationalHistory')) || [],
             that = this,
             domesticHistory = JSON.parse(storage.getItem('domesticHistory')) || [];
-        Array.prototype.distinct = function () {
-            var sameObj = function (a, b) {
-                var tag = true;
-                if (!a || !b) return false;
-                for (var x in a) {
-                    if (!b[x])
-                        return false;
-                    if (typeof (a[x]) === 'object') {
-                        tag = sameObj(a[x], b[x]);
-                    } else {
-                        if (a[x] !== b[x])
-                            return false;
-                    }
-                }
-                return tag;
-            };
-            var newArr = [],
-                obj = {};
-            for (var i = 0, len = this.length; i < len; i++) {
-                if (!sameObj(obj[typeof (this[i]) + this[i]], this[i])) {
-                    newArr.push(this[i]);
-                    obj[typeof (this[i]) + this[i]] = this[i];
-                }
-            }
-            return newArr;
-        };
-        var historyTag = function () {
+            var historyTag = function () {
             var data = arguments[0].str = "";
             if (data.length >= 1) {
                 for (var i = 0; i < data.length; i++) {
@@ -206,7 +195,7 @@ var fIndexModal = {
         };
         if (data.type == "international") {
             internationalHistory.unshift(data);
-            internationalHistory = internationalHistory.distinct();
+            internationalHistory = that.distinct(internationalHistory);
             if (internationalHistory.length > 3) {
                 internationalHistory = internationalHistory.slice(0, 3)
             }
@@ -214,7 +203,7 @@ var fIndexModal = {
             historyTag(internationalHistory)
         } else {
             domesticHistory.unshift(data);
-            domesticHistory = domesticHistory.distinct();
+            domesticHistory = that.distinct(domesticHistory);
             if (domesticHistory.length > 3) {
                 domesticHistory = domesticHistory.slice(0, 3)
             }
@@ -225,10 +214,7 @@ var fIndexModal = {
 
     citySearchEvent: function () {
         var cityOuter = document.querySelector('.city_outer'),
-            that = this,
-            tempString1 = "",
-            outputString1 = "",
-            outputString1 = "";
+            that = this, tempString1 = "",outputString1 = "";
         var cityInputZone = document.querySelector('#city-input-zone');
         this.addHandler(cityOuter, "click", function (e) {
             var e = e || window.event,
@@ -292,32 +278,6 @@ var fIndexModal = {
                     })
                 }
                 allCityData = tempArray;
-                Array.prototype.distinct = function () {
-                    var sameObj = function (a, b) {
-                        var tag = true;
-                        if (!a || !b) return false;
-                        for (var x in a) {
-                            if (!b[x])
-                                return false;
-                            if (typeof (a[x]) === 'object') {
-                                tag = sameObj(a[x], b[x]);
-                            } else {
-                                if (a[x] !== b[x])
-                                    return false;
-                            }
-                        }
-                        return tag;
-                    };
-                    var newArr = [],
-                        obj = {};
-                    for (var i = 0, len = this.length; i < len; i++) {
-                        if (!sameObj(obj[typeof (this[i]) + this[i]], this[i])) {
-                            newArr.push(this[i]);
-                            obj[typeof (this[i]) + this[i]] = this[i];
-                        }
-                    }
-                    return newArr;
-                };
                 if (reg.test(valueStr)) {
                     var mb = String(valueStr).toLowerCase();
                     allCityData.forEach(function (array) {
@@ -331,7 +291,7 @@ var fIndexModal = {
                         }
                     });
                 };
-                searchResult = searchResult.distinct();
+                searchResult = that.distinct(searchResult);
                 if (!searchResult.length) {
                     resultStr += '<li>无搜索结果</li>';
                 } else {
@@ -353,12 +313,6 @@ var fIndexModal = {
         }
         shadowThin.style.transition = '0.6s all ease';
         shadowThin.style.webkitTransition = '0.6s all ease';
-        /* cityInputZone.onblur = function(){
-           shadowThin.style.bottom = "-100%";
-         };
-         cityInputZone.onfocus = function(){
-           shadowThin.style.bottom = "-.88rem"
-         }*/
     },
 
     eventHandler: function () {

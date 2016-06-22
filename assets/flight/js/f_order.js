@@ -139,31 +139,6 @@ var fOrder = {
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
       var searchResult_ = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
-      Array.prototype.distinct=function(){
-        var sameObj=function(a,b){
-          var tag = true;
-          if(!a||!b)return false;
-          for(var x in a){
-            if(!b[x])
-              return false;
-            if(typeof(a[x])==='object'){
-              tag=sameObj(a[x],b[x]);
-            }else{
-              if(a[x]!==b[x])
-                return false;
-            }
-          }
-          return tag;
-        };
-        var newArr=[],obj={};
-        for(var i=0,len=this.length;i<len;i++){
-          if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
-            newArr.push(this[i]);
-            obj[typeof(this[i])+this[i]]=this[i];
-          }
-        }
-        return newArr;
-      };
       if(reg.test(valueStr)){
         var mb = String(valueStr).toLowerCase();
         dataArray.forEach(function (array) {
@@ -177,7 +152,7 @@ var fOrder = {
           }
         });
       }
-      searchResult_ = searchResult_.distinct();
+      searchResult_ =that.distinct(searchResult_);
       if(!searchResult_.length){
         resultStr +='<li>无搜索结果</li>';
       }else{
@@ -388,6 +363,22 @@ editPassager:function(obj){
   var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
   vlm.f_choice('passenger-list','f','traver','',!fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), !fOrder.isInternationalTrip())
 },
+  distinct:function(){
+    var obj={},ary=[], arr = arguments[0];
+    for (var i = 0; i < arr.length; i++) {
+      var str="";
+      for(var key in arr[i]){
+        str+=key+":"+arr[i][key]+",";
+      }
+      var cur=str;
+      if(obj[cur]==cur){
+        continue;
+      }
+      obj[cur]=cur;
+      ary.push(arr[i]);
+    }
+    return ary;
+  },
 
   createTags: function () {
     var data = arguments[0];
