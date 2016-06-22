@@ -365,22 +365,22 @@
   T.Load("js_scenic_detail");
 
 })();
-(function(){
-  $(window)[0].addEventListener("scroll",function(){
-    var header = $(".header_scenic")[0];
-    //var height = $(".bar_img")[0].height;
-    //var scroll = $(".contents").scrollTop();
-    console.log(scroll);
-    if(!$(".content_detail").scrollTop == 0){
-      header.style.position="fixed";
-      header.style.opacity="1";
-      //$("#oldHeader")[0].style.opacity = "0";
-    }else{
-      header.style.position="absolute";
-      header.style.opacity="0";
-    }
-    //if(scroll>height){
-    //  header.style.backgroundColor = "#f7f7f7";
-    //}
-  });
-})()
+//(function(){
+//  $(window)[0].addEventListener("scroll",function(){
+//    var header = $(".header_scenic")[0];
+//    //var height = $(".bar_img")[0].height;
+//    //var scroll = $(".contents").scrollTop();
+//    console.log(scroll);
+//    if(!$(".content_detail").scrollTop == 0){
+//      header.style.position="fixed";
+//      header.style.opacity="1";
+//      //$("#oldHeader")[0].style.opacity = "0";
+//    }else{
+//      header.style.position="absolute";
+//      header.style.opacity="0";
+//    }
+//    //if(scroll>height){
+//    //  header.style.backgroundColor = "#f7f7f7";
+//    //}
+//  });
+//})()
