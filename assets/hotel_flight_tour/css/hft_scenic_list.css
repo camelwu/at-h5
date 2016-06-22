@@ -3,6 +3,22 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
   padding:.88rem 0 .9rem;
   background-color: white;
 }
+body{overflow-y: scroll
+overflow: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+}
+.div{
+  overflow: scroll;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+}
 /*出发返回开始*/
 .time_people_list{
   /*width: 100%;*/
@@ -186,12 +202,12 @@ li.scenic_detile_project_first{
   display: none;
 }
 /*景点详情页开始*/
-.header_scenic{
-  height: .66rem;
-  opacity: 0.5;
-  position: absolute;
-  z-index: 1;
-}
+/*.header_scenic{*/
+  /*height: .66rem;*/
+  /*opacity: 0.5;*/
+  /*position: absolute;*/
+  /*z-index: 1;*/
+/*}*/
 .icon_go_back{
   width: .6rem;
   height: .6rem;
@@ -202,6 +218,11 @@ li.scenic_detile_project_first{
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
   background-position:  -3.2rem -0.45rem;
+}
+.hft_header{
+  position: absolute;
+  opacity: 0;
+  background-color: transparent;
 }
 .bar_img{
   width: 100%;
