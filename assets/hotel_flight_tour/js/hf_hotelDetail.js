@@ -143,7 +143,7 @@ var data2 = '', roomdata = '';
         window.timer2 = setTimeout(function () {
           window.clearTimeout(window.timer2);
           window.timer2 = null;
-          window.location.href = window.location.href = 'hft_choose.html?type=1&selectedRoomId=' + roomID;
+          //window.location.href = window.location.href = 'hft_choose.html?type=1&selectedRoomId=' + roomID;
         }, 500);
 			})
 		});
