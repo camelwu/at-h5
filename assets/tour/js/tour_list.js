@@ -144,7 +144,7 @@
     // 添加底部筛选
     var f_data = {
       sortTypes : {
-        title : "推荐排序",
+        title : "价格排序",
         c : "foot_sort",
         s : 1,
         type : 1,
