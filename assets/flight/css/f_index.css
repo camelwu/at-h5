@@ -655,7 +655,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .for_bottom {
-  height: 1.46rem;
+  height: 1.38rem;
   padding: 0 .28rem;
   background: #FFFFFF;
   margin: 0.20rem 0 .40rem 0;
@@ -665,8 +665,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .for_bottom .right_button_zone {
   float: right;
   width: 1.4rem;
-  line-height: 1.46rem;
-  height: 1.46rem;
+  line-height: 1.38rem;
+  height: 1.38rem;
   margin-left: .32rem;
   color: rgb(153, 153, 153);
   position: relative;
@@ -675,7 +675,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .for_bottom .left_small_word {
   margin: 0 1.72rem 0 0;
   height: 1.46rem;
-  padding-top: .20rem;
+  padding-top: .32rem;
 }
 
 .for_bottom .left_small_word div:nth-child(1) {
@@ -726,7 +726,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .left_small_word p:first-child {
-  margin-bottom: .20rem;
+  margin-bottom: .08rem;
+  font-weight: 600;
 }
 
 /*摘抄hft开始*/
@@ -1161,8 +1162,8 @@ input.name{
   font-size: .28rem;
   position: fixed;
   background-color: #fff;
-  height: 1.12rem;
-  line-height: 1.12rem;
+  height: .88rem;
+  line-height: .88rem;
   bottom: 0;
   border-top: 1px solid #dedede;
   z-index: 105;
@@ -1183,13 +1184,8 @@ input.name{
   margin: 0 auto;
 }
 /*结束*/
-.total_word,.totalPersonNumber{
-  display: block;
-  width: 100%;
-  line-height: .22rem;
-  margin-top: .28rem;
-  text-align: center;
-  font-size: .28rem;
+.total_word{
+  position: relative;
 }
 .totalPersonNumber{
   font-size: .20rem;
@@ -1200,7 +1196,6 @@ input.name{
 .totalPersonNumber b{font-weight: normal}
 .total_word b{color: #FF5B13}
 .total_word i{
-  float: right;
   background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
   background-size: .24rem .14rem;
   width: .24rem;
@@ -1208,8 +1203,9 @@ input.name{
   margin-left: .20rem;
   transition: 0.3s all ease;
   -webkit-transition: 0.3s all ease;
-  position: relative;
-  top: .24rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -.075rem
 }
 .total_word i.toDown{
   transform: rotate(180deg);
@@ -1413,7 +1409,7 @@ input.name{
   width: 0.34rem;
   height: 0.37rem;
   background: url(../../images/ui/price.png);
-  background-size: .40rem .40rem;
+  background-size: .38rem .38rem;
   background-position: -.04rem 0;
   position: relative;
 }
@@ -1587,7 +1583,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   float: right;
   width: .34rem;
   height: .34rem;
-  background-position: -3.81rem -2.41999992rem;
+  background-position: -3.7999rem -2.39rem;
   margin-top: .23rem;
   position: static;
   margin-right: .28rem;

@@ -95,7 +95,7 @@ input{
 .iconTip span{
   position: absolute;
   height: .56rem;
-  width: .56rem;
+  width: .6rem;
   background: url(../../images/ui/fly-roll.png) no-repeat;
   background-size: .56rem .56rem;
   overflow: hidden;
@@ -558,7 +558,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .start_time_info .air_port_word {
   float: left;
   margin-top: .4rem;
-  width: 1.9rem;
+  width: 3.9rem;
 
   /*2行文字溢出省略号*/
   overflow: hidden;
@@ -650,7 +650,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .end_time_info .air_port_word {
   float: right;
   margin-top: .4rem;
-  width: 1.9rem;
+  width: 3.9rem;
   font-size:.24rem;
   /*2行文字溢出省略号*/
   overflow: hidden;

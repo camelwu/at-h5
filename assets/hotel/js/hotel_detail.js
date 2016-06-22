@@ -870,5 +870,17 @@
         var sortFun = new Function('a', 'b', 'return a.' + sortBy + ordAlpah + 'b.' + sortBy + '?1:-1');
         return sortFun;
     }
-
+  $(".all_elements").scroll(function(){
+    var header = $(".h_header")[0];
+    var scroll = $(".all_elements").scrollTop();
+    if(!scroll== 0){
+      header.style.position="fixed";
+      header.style.opacity="1";
+      header.style.backgroundColor = "#f7f7f7";
+    }else{
+      header.style.position="absolute";
+      header.style.opacity="0";
+      header.style.backgroundColor = "transparent";
+    }
+  });
 })(window, document);

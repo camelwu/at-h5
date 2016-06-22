@@ -38,11 +38,16 @@
           var htmlt = $("#timeDetile").html();
           var htmlT = ejs.render(htmlt, searchInfo);
           $("#TimeList").html(htmlT);
-          var htmlp = $("#scenicDetile").html();
-          var html = ejs.render(htmlp, data.data);
-          $("#scenicList").html(html);
+          if(SParameter.Parameters.PageIndex == 1){
+            var htmlp = $("#scenicDetile").html();
+            var html = ejs.render(htmlp, data.data);
+            $("#scenicList").html(html);
+          }else{
+            var htmlp = $("#scenicDetile").html();
+            var html = ejs.render(htmlp, data.data);
+            $("#scenicList").append(html);
+          }
           var htmlc = $("#CityDetile").html();
-          console.log(data.data)
           var htmlC = ejs.render(htmlc, data.data);
           $("#CityList").html(htmlC);
           $("#CityList").click(function(e){
@@ -82,6 +87,11 @@
           $('#Time').on("click", function() {
             window.location.href = 'index.html';
           });
+          //点击加载更多
+          $('#LoadMore').on("click", function () {
+            loadMore();
+          });
+          clickMore(data);
           if (!filterSign) {
             filterSign = true;
             initFilter(data);
@@ -115,11 +125,35 @@
         footer.callback = function(obj) {
           SParameter.Parameters.sortType = obj.sortTypes[0];
           SParameter.Parameters.filterFields = obj.filters;
+          SParameter.Parameters.PageIndex = "1";
           ScenicList();
         };
         footer.filters.init();
       }
     };
+    //加载更多
+    var  loadMore=function() {
+      //设置参数
+      var loadMoreBtn = $("#LoadMore");
+      if (loadMoreBtn.attr("data-more") == "no") {
+        return;
+      }
+      loadMoreBtn.attr("data-more", "yes");
+      SParameter.Parameters.PageIndex = PageIndex;
+      $("#LoadMore").html("正在加载...");
+      vlm.loadJson('', JSON.stringify(SParameter), callback);
+    };
+    //点击加载更多
+    var  clickMore= function(data){
+      PageIndex = parseInt(SParameter.Parameters.PageIndex)+1;
+      if (data.data.lists.length>0 && PageIndex==data.data.pageCount) {
+        $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
+      } else if(PageIndex > data.data.pageCount){
+        $("#LoadMore").attr("data-more", "no").html("没有更多数据了！").show();
+      }else{
+        $("#LoadMore").attr("data-more", "").html("点击加载更多").show();
+      }
+    }
     //城市列表父宽
     var PWidth = function(data) {
       var sum = data.data.recommendCities.length;
@@ -127,11 +161,9 @@
       var width = 0;
       for (var i = 0; i < sum-1; i++) {
         width = $(".city_list1").eq(i).width();
-        console.log(width);
         num += width;
       }
       num = num + sum * 60;
-      console.log(num);
       $(".city_box").css({
         'width' : num + 'px'
       });
@@ -143,5 +175,15 @@
   core.ScenicList();
   //清空资源选择页历史数据
   window.sessionStorage.removeItem('hftFlightHotelTourInfo');
+  window.localStorage.removeItem('hftFlightHotelTourInfo');
   window.sessionStorage.removeItem('tourChosenInfo');
+  window.sessionStorage.removeItem('hftCreateOrderPara');
+  window.localStorage.removeItem('hftCreateOrderPara');
+  window.sessionStorage.removeItem('hotelAdditionalPrice');
+  window.sessionStorage.removeItem('tempChooseTourDate');
 })();
+(function(){
+  $(".all_elements")[0].addEventListener("scroll",function(){
+    $(".header")[0].style.position="fixed";
+    });
+})()

@@ -70,7 +70,15 @@
         <div class="content">
             <code></code>
             <div class="select_time clearfix">
-                <h2>选择日期</h2>
+                <h2>双选日期--酒店</h2>
+                <div id="hotelDouble">
+                    <div id="checkInTime" class="check_in"></div>
+                    <div id="checkOutTime" class="check_out"></div>
+                    <div class="time_icon"></div>
+                </div>
+            </div>
+            <div class="select_time clearfix">
+                <h2>单选日期</h2>
                 <div id="timeClickWrap">
                     <div id="checkInTime" class="check_in"></div>
                     <div id="checkOutTime" class="check_out"></div>
@@ -78,7 +86,7 @@
                 </div>
             </div>
             <div class="select_time clearfix">
-                <h2>选择日期</h2>
+                <h2>双选日期--机票</h2>
                 <div id="timeClickWrap1">
                     <div id="checkInTime" class="check_in"></div>
                     <div id="checkOutTime" class="check_out"></div>
@@ -86,7 +94,7 @@
                 </div>
             </div>
             <div class="select_time clearfix">
-                <h2>选择日期</h2>
+                <h2>单选日期--机票</h2>
                 <div id="timeClickWrap2">
                     <div id="checkInTime" class="check_in"></div>
                     <div id="checkOutTime" class="check_out"></div>
@@ -102,8 +110,25 @@
         </footer>
     </div>
     <script src="../../js/lib/jquery.js"></script>
+    <script src="../../js/lib/vlm.js"></script>
     <script src="../../plugins/calendar/d_calendar1.0.3.js"></script>
     <script>
+        //酒店双选
+
+        var hotelDouble = new ATplugins.Calender({
+            id: "hotelDouble",
+            headerSign: 'tip', //tipClean  tip
+            noComfirmBtn: true,
+            time: {
+                "2016-06-25": "checkinTime",
+                "2016-06-27": "checkoutTime"
+            },
+            checkInTimeOptId: 'checkInTime',
+            checkOutTimeOptId: 'checkOutTime',
+            callback: function(result) {
+                console.info(result);
+            }
+        });
         //默认选择两个日期
 
         var myTime = new ATplugins.Calender({
@@ -121,7 +146,6 @@
         var myTime1 = new ATplugins.Calender({
             id: "timeClickWrap",
             selectTime: 1,
-
             time: {
                 "2016-05-17": "checkinTime"
             },
@@ -135,6 +159,8 @@
             id: "timeClickWrap2",
             selectTime: 1,
             disableDateAfterLength: 10,
+            headerSign: 'tipClean', //tipClean  tip
+            noComfirmBtn: true,
             time: {
                 "2016-05-17": "checkinTime"
             },

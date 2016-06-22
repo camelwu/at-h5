@@ -3,6 +3,11 @@
 .calendar dl dt.title-date{
   font-size: .28rem;
 }
+.h_header{
+  position: absolute;
+  opacity: 0;
+  background-color: transparent;
+}
 /*header*/
 .header{
   background: white;
@@ -531,7 +536,8 @@ span.money{
   width: 100%;
   overflow: hidden;
   position: fixed;
-  top: 3.6rem;
+  top: 50%;
+  margin-top: -2.5rem;
   background: #000000;
 }
 #imageContainer .showZone .imgUl {

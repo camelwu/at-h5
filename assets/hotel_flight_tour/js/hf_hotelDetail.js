@@ -55,7 +55,7 @@ var data2 = '', roomdata = '';
       fhtHotelCharacteristic.hotelDesc = data2.hotelInfo.hotelDesc;
       sessionStorage.setItem("fhtHotelCharacteristic",JSON.stringify(fhtHotelCharacteristic));
 			roomdata = data2.hotelInfo.rooms;
-			nav();
+			//nav();
 			banner();
 			adress();
 			room();
@@ -101,9 +101,9 @@ var data2 = '', roomdata = '';
 	}
 
 	//nav标题部分
-	function nav() {
-		$('.header h3').html(data2.hotelInfo.hotelNameLocale);
-	}
+	//function nav() {
+	//	$('.header h3').html(data2.hotelInfo.hotelNameLocale);
+	//}
 
 	//banner
 	function banner() {
@@ -174,7 +174,20 @@ var data2 = '', roomdata = '';
     }
     return result;
   }
-
-
 })();
+(function(){
+$(".all_elements").scroll(function(){
+  var header = $(".hf_header")[0];
+  var scroll = $(".all_elements").scrollTop();
+  if(!scroll== 0){
+    header.style.position="fixed";
+    header.style.opacity="1";
+    header.style.backgroundColor = "#f7f7f7";
+  }else{
+    header.style.position="absolute";
+    header.style.opacity="0";
+    header.style.backgroundColor = "transparent";
+  }
+});
+})()
 

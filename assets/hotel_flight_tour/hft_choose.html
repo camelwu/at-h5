@@ -1,42 +1,39 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="browsermode" content="application">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="x5-fullscreen" content="true">
-    <meta name="x5-page-mode" content="app">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚程旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <title>资源选择页 - 亚程旅行网</title>
-    <link href="../styles/reset.css" rel="stylesheet" type="text/css" />
-    <link href="../styles/tips.css" rel="stylesheet" type="text/css" />
-    <link href="css/hft_choose.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>资源选择页 - 亚程旅行网</title>
+  <link href="../styles/reset.css" rel="stylesheet" type="text/css" />
+  <link href="../styles/tips.css" rel="stylesheet" type="text/css" />
+  <link href="css/hft_choose.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body data-statp="choose">
-    <div id="preloader">
-        <div id="status"> </div>
-    </div>
-    <div class="all_elements"></div>
+<div id="preloader">
+  <div id="status"> </div>
+</div>
+<header class="header" id="header">
+
+</header>
+<div class="all_elements"></div>
+<div class="bottomPrice"></div>
 </body>
 <script id="template" type="text/template">
-    <header class="header">
-        <a href="#" class="header_back" data-statl="back">
-            <i class="icon_back"></i>
-        </a>
-        <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
-        </h3>
-    </header>
-    <div class="content">
-        <div class="top_info">
-            <span>去程:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
-            <span>返程:<span class="arrive"> <%=hftChoose.returnDay(hftChoose.initParaObj.returnDate)%></span></span>
+  <div class="content">
+    <div class="top_info">
+      <span>去程:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
+      <span>返程:<span class="arrive"> <%=hftChoose.returnDay(hftChoose.initParaObj.returnDate)%></span></span>
             <span class="person_number">
               <span><%=hftChoose.cacheOtherInfo.adult%></span>成人
              <% if(parseInt(hftChoose.cacheOtherInfo.child)>0){%>
@@ -44,144 +41,151 @@
              <% }%>
               <span><%=hftChoose.cacheOtherInfo.roomNumber%></span>间
             </span>
-            <i></i>
-        </div>
-        <div class="ticket" data-statm="ticket">
-            <div class="statusMoreFlight">
-                <span>机票</span> <a data-statl="change" href="javascript:void(0);" class="moreFlight" title="更多航班">更换航班</a>
-            </div>
-            <ul class="flightOuter" data-statl="detail">
-                <li class="tripGo">
-                    <div class="dateWeekCity">
-                        <span class="icon"></span>
-                        <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span><!--<span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>-->
-                    </div>
-                    <div class="timeAirport">
-                        <div class="left">
-                            <span class="startTime"><%= flightInfo["flightLeaveStartDate"].substring(11, 16) %></span><span class="startPort"><%= flightInfo["segmentsLeave"][0]["airportNameFrom"] %><%= flightInfo["segmentsLeave"][0]["termDepart"] %></span>
-                        </div>
-                        <div class="middle">
-                            <div class="timeCost"><%= flightInfo["segmentsLeaveTotalTravelTimeString"]%></div>
-                            <%if(!flightInfo["transferListLeave"]){%>
-                                <div class="arrow"></div>
-                                <%}else{%>
-                                    <div class="arrowWord"></div>
-                                    <%if(flightInfo["transferListLeave"].length == 1){%>
-                                        <div class="transferCity">
-                                            <%= flightInfo.segmentsLeave[0].cityNameTo %>
-                                        </div>
-                                        <%}else{%>
-                                            <div class="transferCity">
-                                                <%= flightInfo["transferListLeave"].length %>次</div>
-                                            <%}%>
-                                                <%}%>
-                        </div>
-                        <div class="right">
-                            <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %></span>
-                            <% if(flightInfo["flightLeaveSpacingDay"] >= 1){ %>
-                                <span class="plusDay">+<%=flightInfo["flightLeaveSpacingDay"]%>天</span>
-                                <% }%>
-                                    <span class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
-                        </div>
-                    </div>
-                    <p class="flightDetailInfo">
-                        <span><img src="../images/loading_def_big.png" data-src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span>
-                      <%if(hftChoose.airCompanyHandler(flightInfo["segmentsLeave"])){%>
-                      <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %>等</span>
-                      <%}else{%>
-                      <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %></span>
-                      <% }%>
-                      <span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsLeave"][0]["cabinClass"]) %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
-                    </p>
-                </li>
-                <p class="flightDetailArrow"><i></i></p>
-                <li class="tripBack">
-                    <div class="dateWeekCity">
-                        <span class="icon"></span>
-                        <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span><!--<span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>-->
-                    </div>
-                    <div class="timeAirport">
-                        <div class="left">
-                            <span class="startTime"><%= flightInfo["flightReturnStartDate"].substring(11, 16) %></span>
-                            <span class="startPort"><%= flightInfo["segmentsReturn"][0]["airportNameFrom"] %><%= flightInfo["segmentsReturn"][0]["termDepart"] %></span>
-                        </div>
-                        <div class="middle">
-                            <div class="timeCost">
-                                <%= flightInfo["segmentsReturnTotalTravelTimeString"] %>
-                            </div>
-                            <%if(!flightInfo["transferListReturn"]){%>
-                                <div class="arrow"></div>
-                                <%}else{%>
-                                    <div class="arrowWord"></div>
-                                    <%if(flightInfo["transferListReturn"].length == 1){%>
-                                        <div class="transferCity">
-                                          <%= flightInfo.segmentsReturn[0].cityNameTo%>
-                                        </div>
-                                      <%}else{%>
-                                            <div class="transferCity"><%= flightInfo["transferListReturn"].length %>次</div>
-                                          <%}%>
-                                   <%}%>
-                        </div>
-                        <div class="right">
-                            <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>
-                            <% if(flightInfo["flightReturnSpacingDay"] >=1 ){ %>
-                                <span class="plusDay">+<%=flightInfo["flightReturnSpacingDay"]%>天</span>
-                                <% }%>
-                                    <span class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
-                        </div>
-                    </div>
-                    <p class="flightDetailInfo">
-                        <span><img src="../images/loading_def_big.png" data-src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span>
-                        <%if(hftChoose.airCompanyHandler(flightInfo["segmentsReturn"])){%>
-                      <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %>等</span>
-                      <%}else{%>
-                      <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %></span>
-                      <% }%>
-                      </span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsReturn"][0]["cabinClass"])%></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="hotel" id="hotel" data-statm="hotel">
-            <div class="statusMoreHotel"><span>酒店</span> <a href="javascript:void(0);" class="moreHotel" title="更多酒店" data-statl="change">更换酒店</a>
-            </div>
-            <div class="hotelImgInfo">
-                <img src="../images/loading_def_big.png" data-src="<%= hotelInfo['hotelPictureURL'] %>">
-                <div class="hotelRightPart" data-statl="detail">
-                    <h3><%= hotelInfo["hotelNameLocale"] %>(<%= hotelInfo["hotelName"]%>)</h3>
-                       <p class="scorePersonNumber">
-                         <% if(parseInt(hotelInfo['hotelReviewScore'])>0){%>
-                         <span class="score"><%= hotelInfo['hotelReviewScore'] %></span>分
-                         <% }%>
-                         <% if(parseInt(hotelInfo['hotelReviewCount'])>0){%>
-                         <span class="commit"><%= hotelInfo['hotelReviewCount'] %></span>人点评</p>
-                       <%}%>
-                    <p class="starWifi"><span class="star"><%= hftChoose.setChineseStar(hotelInfo['starRating']) %></span><span class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
-                    <p><%= hotelInfo['location'] %></p>
-                </div>
-                <i></i>
-            </div>
-              <ul class="<%= hotelInfo["rooms"].length>2?'roomUl cut':'roomUl'%>"></ul>
-            <%if(hotelInfo["rooms"].length>=3){%>
-                <div class="check-more-room">查看更多房型<span class="letter-space">(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
-                <% }%>
-        </div>
-        <div class="addMarginBottom"></div>
+      <i></i>
     </div>
-    <div class="shadow"></div>
-    <div class="priceDetailInfo">
-        <p>成人<span class="price-num-price">￥<span>56X2</span></span>
-        </p>
+    <div class="ticket" data-statm="ticket">
+      <div class="statusMoreFlight">
+        <span>机票</span> <a data-statl="change" href="javascript:void(0);" class="moreFlight" title="更多航班">更换航班</a>
+      </div>
+      <ul class="flightOuter" data-statl="detail">
+        <li class="tripGo">
+          <div class="dateWeekCity">
+            <span class="icon"></span>
+            <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span><!--<span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></span><i class="clock"></i>-->
+          </div>
+          <div class="timeAirport">
+            <div class="left">
+              <span class="startTime"><%= flightInfo["flightLeaveStartDate"].substring(11, 16) %></span><span class="startPort"><%= flightInfo["segmentsLeave"][0]["airportNameFrom"] %><%= flightInfo["segmentsLeave"][0]["termDepart"] %></span>
+            </div>
+            <div class="middle">
+              <div class="timeCost"><%= flightInfo["segmentsLeaveTotalTravelTimeString"]%></div>
+              <%if(!flightInfo["transferListLeave"]){%>
+              <div class="arrow"></div>
+              <%}else{%>
+              <div class="arrowWord"></div>
+              <%if(flightInfo["transferListLeave"].length == 1){%>
+              <div class="transferCity">
+                <%= flightInfo.segmentsLeave[0].cityNameTo %>
+              </div>
+              <%}else{%>
+              <div class="transferCity">
+                <%= flightInfo["transferListLeave"].length %>次</div>
+              <%}%>
+              <%}%>
+            </div>
+            <div class="right">
+              <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %></span>
+              <% if(flightInfo["flightLeaveSpacingDay"] >= 1){ %>
+              <span class="plusDay">+<%=flightInfo["flightLeaveSpacingDay"]%>天</span>
+              <% }%>
+              <span class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
+            </div>
+          </div>
+          <p class="flightDetailInfo">
+            <span><img src="../images/loading_def_big.png" data-src="<%= flightInfo["segmentsLeave"][0]["airwayLogo"] %>" /></span>
+            <%if(hftChoose.airCompanyHandler(flightInfo["segmentsLeave"])){%>
+            <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %>等</span>
+            <%}else{%>
+            <span class="airCropName"><%= flightInfo["segmentsLeave"][0].airCorpName %></span>
+            <% }%>
+            <span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsLeave"][0]["cabinClass"]) %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
+          </p>
+        </li>
+        <p class="flightDetailArrow"><i></i></p>
+        <li class="tripBack">
+          <div class="dateWeekCity">
+            <span class="icon"></span>
+            <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftChoose.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span><!--<span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span><i class="clock"></i>-->
+          </div>
+          <div class="timeAirport">
+            <div class="left">
+              <span class="startTime"><%= flightInfo["flightReturnStartDate"].substring(11, 16) %></span>
+              <span class="startPort"><%= flightInfo["segmentsReturn"][0]["airportNameFrom"] %><%= flightInfo["segmentsReturn"][0]["termDepart"] %></span>
+            </div>
+            <div class="middle">
+              <div class="timeCost">
+                <%= flightInfo["segmentsReturnTotalTravelTimeString"] %>
+              </div>
+              <%if(!flightInfo["transferListReturn"]){%>
+              <div class="arrow"></div>
+              <%}else{%>
+              <div class="arrowWord"></div>
+              <%if(flightInfo["transferListReturn"].length == 1){%>
+              <div class="transferCity">
+                <%= flightInfo.segmentsReturn[0].cityNameTo%>
+              </div>
+              <%}else{%>
+              <div class="transferCity"><%= flightInfo["transferListReturn"].length %>次</div>
+              <%}%>
+              <%}%>
+            </div>
+            <div class="right">
+              <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>
+              <% if(flightInfo["flightReturnSpacingDay"] >=1 ){ %>
+              <span class="plusDay">+<%=flightInfo["flightReturnSpacingDay"]%>天</span>
+              <% }%>
+              <span class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
+            </div>
+          </div>
+          <p class="flightDetailInfo">
+            <span><img src="../images/loading_def_big.png" data-src="<%= flightInfo["segmentsReturn"][0]["airwayLogo"] %>" /></span>
+            <%if(hftChoose.airCompanyHandler(flightInfo["segmentsReturn"])){%>
+            <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %>等</span>
+            <%}else{%>
+            <span class="airCropName"><%= flightInfo["segmentsReturn"][0].airCorpName %></span>
+            <% }%>
+            </span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= hftChoose.reSeat(flightInfo["segmentsReturn"][0]["cabinClass"])%></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="hotel" id="hotel" data-statm="hotel">
+      <div class="statusMoreHotel"><span>酒店</span> <a href="javascript:void(0);" class="moreHotel" title="更多酒店" data-statl="change">更换酒店</a>
+      </div>
+      <div class="hotelImgInfo">
+        <img src="../images/loading_def_big.png" data-src="<%= hotelInfo['hotelPictureURL'] %>">
+        <div class="hotelRightPart" data-statl="detail">
+          <h3><%= hotelInfo["hotelNameLocale"] %>(<%= hotelInfo["hotelName"]%>)</h3>
+          <p class="scorePersonNumber">
+            <% if(parseInt(hotelInfo['hotelReviewScore'])>0){%>
+            <span class="score"><%= hotelInfo['hotelReviewScore'] %></span>分
+            <% }%>
+            <% if(parseInt(hotelInfo['hotelReviewCount'])>0){%>
+            <span class="commit"><%= hotelInfo['hotelReviewCount'] %></span>人点评</p>
+          <%}%>
+          <p class="starWifi"><span class="star"><%= hftChoose.setChineseStar(hotelInfo['starRating']) %></span><span class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
+          <p><%= hotelInfo['location'] %></p>
+        </div>
+        <i></i>
+      </div>
+      <ul class="<%= hotelInfo["rooms"].length>2?'roomUl cut':'roomUl'%>"></ul>
+      <%if(hotelInfo["rooms"].length>=3){%>
+      <div class="check-more-room">查看更多房型<span class="letter-space">(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
+      <% }%>
+    </div>
+    <div class="addMarginBottom"></div>
+  </div>
+  <div class="shadow"></div>
+  <div class="priceDetailInfo">
+    <p>成人<span class="price-num-price">￥<span>56X2</span></span>
+    </p>
 
-        <p>儿童<span class="price-num-price">￥<span>56X2</span></span>
-        </p>
-    </div>
-    <div class="bottomPrice">
-        <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
-        <span class="preserve">立即预订</span>
-    </div>
+    <p>儿童<span class="price-num-price">￥<span>56X2</span></span>
+    </p>
+  </div>
+
 </script>
-
+<script id="template_footer" type=text/template">
+          <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
+  <span class="preserve">立即预订</span>
+</script>
+<script id="template_header" type=text/template">
+  <a href="#" class="header_back" data-statl="back">
+    <i class="icon_back"></i>
+  </a>
+  <h3><span id="city1"><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span class="city2"><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
+  </h3>
+</script>
 <script id="template_roomList" type="text/template">
   <% hotelInfo["rooms"].forEach(function(room, item){%>
   <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
@@ -196,92 +200,113 @@
   <%})%>
 </script>
 <script id="template_date_session" type="text/template">
-    <div class="confirm">
+  <div class="confirm">
+    <span>取消</span>
+    <span>确定</span>
+  </div>
+  <div class="months">
+    <%data.dataArray.forEach(function(yd){ %>
+    <span class="month-title" data-m="<%=yd['name']%>"><%=yd['name'].substring(6,7)%>月</span>
+    <div class="monthsDate" data-md="<%=yd['name']%>">
+      <%yd['values'].forEach(function(yv){ %>
+      <span class="<%= yv==data.chooseDate?'active':'' %>" data-date="<%=yv%>"><%=hftChoose.returnDay(yv)%></span>
+      <% }) %>
+    </div>
+    <% }) %>
+  </div>
+</script>
+<script id="template_tour_" type="text/template">
+  <div class="tour">
+    <div class="tourListHeader">
+      <span>景点</span>
+    </div>
+    <ul class="tourOuter">
+      <% tours.forEach(function(tour, item){%>
+      <li data-tour-id="<%=tour['tourID']%>" data-tour-type="<%=tour['tourType']%>" class="<%= tour.tourType!=1?'tourList':''%>">
+        <h3 class="tour-list-title"><%= tour.tourName %></h3>
+        <%if(tour.tourType!=1){%>
+         <%if(!hftChoose.hftCreateOrderParaInfo){%>
+                      <p class="choose-tour-date">
+                        <%if(hftChoose.tempChooseTourDate){
+                             hftChoose.tempChooseTourDate.forEach(function(item){
+                                        if(item.tourID ==tour.tourID){console.log(item["travelDate"])%>
+                                              <span data-date="<%= item["travelDate"]%>"><%= hftChoose.returnDay(item["travelDate"])%></span>
+                                                  <%}
+                                    })
+                         }else{%>
+                                             <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
+                         <%}%>
+                        <i></i>
+                      </p>
+                      <div class="after-noon">
+                        <%if(tour["tourSessions"]){
+                           tour["tourSessions"].forEach(function(tourSession, ite){ %>
+                        <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
+                          <%=tourSession["tourSessionName"] %>
+                        </button>
+                        <% })
+                           } %>
+                      </div>
+              <%}else{%>
+                              <p class="choose-tour-date">
+                                <%if(hftChoose.tempChooseTourDate){
+                                hftChoose.tempChooseTourDate.forEach(function(item){
+                                if(item.tourID ==tour.tourID){console.log(item["travelDate"])%>
+                                <span data-date="<%= item["travelDate"]%>"><%= hftChoose.returnDay(item["travelDate"])%></span>
+                                <%}
+                                })
+                                }else{%>
+                                <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
+                                <%}%>
+                                <i></i>
+                              </p>
+                              <div class="after-noon">
+                                <%  hftChoose.hftCreateOrderParaInfo.forEach(function(arr_, it_){
+                                  if(arr_.tourID ==tour.tourID){
+                                      tour.tourSessions.forEach(function(tourSession, i_){%>
+                                    <button class="<%= arr_['enumvalue'] == tourSession.tourSessionEnumValue ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
+                                      <%=tourSession["tourSessionName"] %>
+                                    </button>
+                                <%})
+                                }
+                                }) %>
+                              </div>
+                      <%}
+               }%>
+      </li>
+      <% })%>
+    </ul>
+    <div class="chooseDate">
+      <div class="confirm">
         <span>取消</span>
         <span>确定</span>
+      </div>
+      <div class="months">
+        <span>4月</span>
+        <span class="active">5月</span>
+      </div>
+      <div class="monthsDate">
+        <span>5月1日</span>
+        <span class="active">5月2日</span>
+        <span>5月3日</span>
+        <span>5月4日</span>
+      </div>
     </div>
-    <div class="months">
-        <%data.forEach(function(yd){ %>
-            <span class="month-title" data-m="<%=yd['name']%>"><%=yd['name'].substring(6,7)%>月</span>
-            <div class="monthsDate" data-md="<%=yd['name']%>">
-                <%yd['values'].forEach(function(yv){ %>
-                    <span data-date="<%=yv%>"><%=hftChoose.returnDay(yv)%></span>
-                    <% }) %>
-            </div>
-            <% }) %>
-    </div>
-</script>
-<script id="template_tour" type="text/template">
-    <div class="tour">
-        <div class="tourListHeader">
-            <span>景点</span><!--<span class="letter-space">(<%= tours.length %>)</span>-->
-        </div>
-        <ul class="tourOuter">
-            <% tours.forEach(function(tour, item){%>
-                <li data-tour-id="<%=tour['tourID']%>" data-tour-type="<%=tour['tourType']%>" class="<%= tour.tourType!=1?'tourList':''%>">
-                    <h3 class="tour-list-title"><%= tour.tourName %></h3>
-                  <% if(tour.tourType!=1){%>
-                  <p class="choose-tour-date">
-                    <%if(hftChoose.tourChosenInfo){%>
-                    <%if(hftChoose.tourChosenInfo.tourId==tour.tourID){%>
-                           <span data-date="<%= hftChoose.tourChosenInfo.chosenDate%>"><%= hftChoose.returnDay(hftChoose.tourChosenInfo.chosenDate)%></span>
-                    <% }%>
-                    <% }else{%>
-                           <span data-date="<%= tour["selectTravelDate"]%>"><%= hftChoose.returnDay(tour["selectTravelDate"])%></span>
-                    <% } %>
-                    <i></i>
-                  </p>
-                  <div class="after-noon">
-                    <%if(tour["tourSessions"]){ %>
-                    <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-                    <% if(hftChoose.urlParseObj.enumvalue){ %>
-                    <button class="<%= tourSession['tourSessionEnumValue'] == hftChoose.urlParseObj.enumvalue ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
-                      <%=tourSession["tourSessionName"] %>
-                    </button>
-                    <%}else{ %>
-                    <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
-                     <%=
-                     tourSession["tourSessionName"] %>
-                   </button>
-                    <%} %>
-                    <% }) %>
-                    <% } %>
-                  </div>
-                  <% }%>
-                </li>
-                <% }) %>
-        </ul>
-        <div class="chooseDate">
-            <div class="confirm">
-                <span>取消</span>
-                <span>确定</span>
-            </div>
-            <div class="months">
-                <span>4月</span>
-                <span class="active">5月</span>
-            </div>
-            <div class="monthsDate">
-                <span>5月1日</span>
-                <span class="active">5月2日</span>
-                <span>5月3日</span>
-                <span>5月4日</span>
-            </div>
-        </div>
-    </div>
+  </div>
 </script>
 <script id="template_no_result" type="text/template">
-    <header class="header">
-        <a href="#" class="header_back" data-statl="back">
-            <i class="icon_back"></i>
-        </a>
-        <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
-        </h3>
-    </header>
-    <div class="content">
-        <div class="no-result-search">
-            <p>没有找到符合条件的产品</p>
-        </div>
+  <header class="header">
+    <a href="#" class="header_back" data-statl="back">
+      <i class="icon_back"></i>
+    </a>
+    <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
+    </h3>
+  </header>
+  <div class="content">
+    <div class="no-result-search">
+      <p>没有找到符合条件的产品</p>
     </div>
+  </div>
 </script>
 <script src="../js/lib/logRecord.js" type="text/javascript"></script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>

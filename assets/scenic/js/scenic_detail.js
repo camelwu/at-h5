@@ -365,3 +365,21 @@
   T.Load("js_scenic_detail");
 
 })();
+(function(){
+  $(".content_detail").scroll(function(){
+    var header = $(".header_scenic")[0];
+    var scroll = $(".content_detail").scrollTop();
+    var oldgo = $(".icon_go_back")[0];
+    if(!scroll== 0){
+      header.style.position="fixed";
+      header.style.opacity="1";
+      header.style.backgroundColor = "#f7f7f7";
+      oldgo.style.zIndex = 98;
+    }else{
+      header.style.position="absolute";
+      header.style.opacity="0";
+      header.style.backgroundColor = "transparent";
+      oldgo.style.zIndex = 998;
+    }
+  });
+})();

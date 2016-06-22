@@ -21,6 +21,12 @@
 		<div id="preloader">
 			<div id="status"></div>
 		</div>
+    <div class="header tour_header">
+      <a href="javascript:window.history.go(-1);" class="header_back">
+        <i class="icon_back"></i>
+      </a>
+      <h3>景点详情</h3>
+    </div>
 		<div class="all_elements" id="package">
 			<!-- 产品详情内容   -->
 			<section class="pic_box" id="packageBox">
@@ -86,7 +92,7 @@
 		<script src="../js/lib/jquery.alert.js"></script>
 		<script src="../js/lib/vlm.js"></script>
 		<script src="../js/lib/ejs.js"></script>
-		<script src="../js/scenic.js"></script>
+		<!--<script src="../js/scenic.js"></script>-->
 		<script id="tpl_GetSpotOverview" type="text/template">
 			<% for(var i=0;i < tours.length;i++){ %>
 			<strong class="viewTitel"><%- tours[i].tourName %></strong><li class="viewContent"><%- tours[i].overview %></li>
@@ -190,6 +196,19 @@
 				};
 				package_detail();
 			})();
+$(".all_elements").scroll(function(){
+        var header = $(".tour_header")[0];
+        var scroll = $(".all_elements").scrollTop();
+        if(!scroll== 0){
+          header.style.position="fixed";
+          header.style.opacity="1";
+          header.style.backgroundColor = "#f7f7f7";
+        }else{
+          header.style.position="absolute";
+          header.style.opacity="0";
+          header.style.backgroundColor = "transparent";
+        }
+      });
 		</script>
 	</body>
 

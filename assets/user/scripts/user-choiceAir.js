@@ -255,9 +255,14 @@
       return false;
     }
 
+    //证件有效期验证
+    var card_validity=$('#time-cont').html();
     if(! $(addOrEditPassagePage).find("#time-cont").html()){
       jAlert("请选择证件有效期！","",null,"确认");
       return false;
+    }else if( ! vlm.Utils.compareTime(card_validity)){
+      jAlert('证件有效期无效，请重新选择!');
+      return;
     }
 
     if(! $(addOrEditPassagePage).find("#birth-cont").html()){
@@ -337,6 +342,9 @@
   //证件生日有效期缓存函数
   function dueCache(str1){
 
+    if(str1==""){
+      return;
+    }
     var str=str1.split('-');
     if(str[1].charAt(0) == 0 && str[2].charAt(0) == 0){
 
@@ -359,6 +367,8 @@
     $(".addAir_page .postCard").attr("data-code",model.listTravellerIdInfo[0].idType);
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
+    $(".addAir_page .cardDateLimit").html(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
+
     $(".addAir_page .cardDateLimit").html(model.listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('/','-').replace('/','-')+'');
 
     var dateCacheEditDateLimit=model.listTravellerIdInfo[0].idActivatedDate.substring(0,10);
@@ -405,10 +415,11 @@
     day=newDate.getDate();
 
     $(".addAir_page .cardDateLimit").attr("data-cache",  year+"-"+month+"-"+day+"");
-    //$(".addAir_page .cardDateLimit").val(year+"-"+month+"-"+day+"");
+    $(".addAir_page .cardDateLimit").html();
 
-    $(".addAir_page .birthDay").attr("data-cache","1990-01-01");
-    $(".addAir_page .birthDay").val("1990-01-01");
+    $(".addAir_page .birthDay").attr("data-cache",dueCache("1990-01-01"));
+    $(".addAir_page .birthDay").html("1990-01-01");
+
 
     $(".addAir_page .postCard").attr("data-cache","1");
     $(".addAir_page .postCard").val("护照");
@@ -821,9 +832,14 @@
     }
     if(!isShowChinaName){
       uc_cnName.hide();
+    }else{
+      uc_cnName.show();
     }
     if(!isShowContact){
       ul_contect.hide();
+    }
+    else{
+      ul_contect.show();
     }
 
     _getPassagerList();

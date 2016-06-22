@@ -29,7 +29,7 @@
     '<a style="display:none;" href="<%= images[i].imageFileName%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
     '<img src="<%= images[i].imageFileName%>" alt="image"/></a>',
     '<% } %>',
-    '<a class="goback" href="javascript:window.history.go(-1);"></a>',
+    '<a class="goback" href="javascript:window.history.go(-1);" id = "oldHeader"></a>',
     '<% if(images.length>0) %>',
     '<p class = "bar_img_page"><%=(images.length)%>张</p>',
     '<% } %>'
@@ -100,6 +100,7 @@
       var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
       flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;
+      flightHotelAllData.hotelInfo.starRating = starRatingStorage(flightHotelAllData.hotelInfo.starRating);
        window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
        window.timer2 = setTimeout(function () {
         window.clearTimeout(window.timer2);
@@ -186,6 +187,31 @@
     }
     return data;
   }
+  function starRatingStorage(starStr) {
+    var star = {
+      '1': 1,
+      '2': 2,
+      '3': 3,
+      '4': 4,
+      '5': 5,
+      '一星级': 1,
+      '二星级': 2,
+      '三星级': 3,
+      '四星级': 4,
+      '五星级': 5,
+      '1 星级': 1,
+      '2 星级': 2,
+      '3 星级': 3,
+      '4 星级': 4,
+      '5 星级': 5,
+      '1 stars': 1,
+      '2 stars': 2,
+      '3 stars': 3,
+      '4 stars': 4,
+      '5 stars': 5
+    }
+    return star[starStr];
+  }
   //日期  房间
   function date(){
     var departDate = new Date(sStorage.departDate.substring(0,10)).getTime();
@@ -207,4 +233,19 @@
   }
 
 })();
-
+(function(){
+    $(".div").scroll(function(){
+      var header = $(".hft_header")[0];
+      var scroll = $(".div").scrollTop();
+      console.log(scroll);
+      if(!scroll== 0){
+        header.style.position="fixed";
+        header.style.opacity="1";
+        header.style.backgroundColor = "#f7f7f7";
+      }else{
+        header.style.position="absolute";
+        header.style.opacity="0";
+        header.style.backgroundColor = "transparent";
+      }
+    });
+})()

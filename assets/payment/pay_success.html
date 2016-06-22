@@ -43,10 +43,10 @@
           <div class="tra_con2" id = "vlm_login">
               <ul class="tra_c2_inbox">
                   <li><h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span></li>
-                {% if(totalprice){ %}
-                  <li class="tra_live">{%=productName%}</li>
+                {% if(vlm.getpara("type")=="FlightHotle" ||  vlm.getpara("type")=="FlightHotelTour"){ %}
+                <li class="tra_live">{%=productCode%}<span class="hft_days_num">{%= Day%}天{%= Night %}夜</span>自由行</li>
                 {% }else{ %}
-                <li class="tra_live">{%=productCode%}{%= Day%}天{%= Night %}夜&nbps&nbps自由行</li>
+                <li class="tra_live">{%=productName%}</li>
                 {% } %}
                 {% if(vlm.getpara("type")=="Hotle" ){ %}
                 <li class="tra_price" id="tdPrice">订单总额：<span>{%=currency%}{%=totalPrice%}</span></li>

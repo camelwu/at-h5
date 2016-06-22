@@ -196,7 +196,7 @@
                             </div>
                             <div class="total_time_info">
                                 <span class="time_hour_minute"><%= selectedFlight.segmentsLeaveTotalTravelTimeString%></span>
-                                <% if(selectedFlight.directFlight==1){ %>
+                                <% if(selectedFlight.transferListLeave&&selectedFlight.transferListLeave.length>=1){ %>
                                 <img src="../images/ui/change-arrow.png">
                                 <% }else{ %>
                                 <span class="hft_icon arrow_time"></span>
@@ -230,7 +230,7 @@
                             </div>
                             <div class="total_time_info">
                                 <span class="time_hour_minute"><%=selectedFlight.segmentsReturnTotalTravelTimeString%></span>
-                                <% if(selectedFlight.directFlight==1){ %>
+                                <% if(selectedFlight.transferListReturn&&selectedFlight.transferListReturn.length>=1){ %>
                                 <img src="../images/ui/change-arrow.png">
                                 <% }else{ %>
                                 <span class="hft_icon arrow_time"></span>
@@ -279,7 +279,7 @@
                             </div>
                           <div class="total_time_info">
                               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsLeaveTotalTravelTimeString%></span>
-                              <% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %>
+                              <% if(flightInfoListGroup[i].flightInfoList[j].transferListLeave&&flightInfoListGroup[i].flightInfoList[j].transferListLeave.length>=1){ %>
                               <img src="../images/ui/change-arrow.png">
                               <% }else{ %>
                               <span class="hft_icon arrow_time"></span>
@@ -313,7 +313,7 @@
                           </div>
                           <div class="total_time_info">
                               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturnTotalTravelTimeString%></span>
-                              <% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %>
+                              <% if(flightInfoListGroup[i].flightInfoList[j].transferListReturn&&flightInfoListGroup[i].flightInfoList[j].transferListReturn.length>=1){ %>
                               <img src="../images/ui/change-arrow.png">
                               <% }else{ %>
                               <span class="hft_icon arrow_time"></span>

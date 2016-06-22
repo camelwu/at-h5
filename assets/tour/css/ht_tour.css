@@ -18,8 +18,12 @@ input {
   background-size: 4.5rem 2.8rem;
   display: inline-block;
 }
-
-
+/*景点详情页头部*/
+.tour_header{
+  position: absolute;
+  background-color: transparent;
+  opacity: 0;
+}
 
 /*资料输入页开始*/
 
@@ -781,7 +785,7 @@ header.header .header_more i.location_tip {
     height: 100%;
 }
 
-.pic_box .go_back {
+.go_back {
     position: absolute;
     width: .68rem;
     height: .68rem;
@@ -789,7 +793,6 @@ header.header .header_more i.location_tip {
     top: .36rem;
     background-position: 44% 10%;
 }
-
 .pic_box .title {
     position: absolute;
     left: 50%;
