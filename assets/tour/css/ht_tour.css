@@ -18,8 +18,29 @@ input {
   background-size: 4.5rem 2.8rem;
   display: inline-block;
 }
-
-
+/*景点详情页头部*/
+.tour_header{
+  position: absolute;
+  background-color: transparent;
+  opacity: 0;
+  box-shadow: 0 0 0;
+  height: .88rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+}
+.tour_header h3  {
+  color: #333;
+  text-align: center;
+  line-height: .88rem;
+  height: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 1.15rem;
+  white-space: nowrap;
+  font-size: 0.36rem;}
 
 /*资料输入页开始*/
 
@@ -781,7 +802,7 @@ header.header .header_more i.location_tip {
     height: 100%;
 }
 
-.pic_box .go_back {
+.go_back {
     position: absolute;
     width: .68rem;
     height: .68rem;
@@ -789,7 +810,6 @@ header.header .header_more i.location_tip {
     top: .36rem;
     background-position: 44% 10%;
 }
-
 .pic_box .title {
     position: absolute;
     left: 50%;
