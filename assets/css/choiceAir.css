@@ -268,20 +268,21 @@ i, em {
   background: url(../images/ui/icon-h.png) no-repeat;
   background-size: 8.04rem 3.48rem;
   display: inline-block;
+  vertical-align: top;
 }
 
 .traveler_sex1 {
-  width: .22rem;
-  height: .22rem;
-  margin-right: .1rem;
-  background-position: 10% 38%;
+  width: .3rem;
+  height: .3rem;
+  margin: .32rem .1rem 0 0;
+  background-position: -.72rem -1.2rem;
 }
 
 .traveler_sex2 {
-  width: .24rem;
-  height: .24rem;
-  margin-right: .1rem;
-  background-position: 4.8% 38%;
+  width: .3rem;
+  height: .3rem;
+  margin: .32rem .1rem 0 0;
+  background-position: -.34rem -1.2rem;
 }
 
 .chn_eng_wrap {
