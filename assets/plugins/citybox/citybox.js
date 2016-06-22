@@ -790,7 +790,9 @@
         console.log(error);
         switch(error.code) {
           case error.TIMEOUT://地理位置获取超时
-            jAlert(tips.GEO_TIMEOUT, "提示");
+            if(!Adapter.CurrentNetLocation()) {
+              jAlert(tips.GEO_TIMEOUT, "提示");
+            }
             break;
           case error.POSITION_UNAVAILABLE://地理位置获取失败（可能是用户没网或卫星搜不到等原因）
             if(!Adapter.CurrentNetLocation()){
