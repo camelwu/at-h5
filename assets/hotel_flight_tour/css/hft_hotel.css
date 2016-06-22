@@ -25,7 +25,42 @@ i {
   opacity: 0;
   box-shadow: 0 0 0 ;
 }
-
+.hft_header{
+  position: absolute;
+  background-color: transparent;
+  opacity: 0;
+  box-shadow: 0 0 0 ;
+  height: .88rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+  /* opacity: .95; */
+  /*box-shadow: 0 1px 1px #e6e6e6;*/
+}
+.hft_header h3{
+  color: #333;
+  text-align: center;
+  line-height: .88rem;
+  height: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 1.15rem;
+  white-space: nowrap;
+  font-size: 0.36rem;
+}
+.hft_header .icon_back{
+  position: absolute;
+  left: .48rem;
+  top: 50%;
+  margin-top: -.24rem;
+  height: .48rem;
+  width: .25rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -0.55rem -0.50rem;
+}
 /*loading*/
 .contents{
   overflow-x: hidden;
