@@ -170,7 +170,7 @@ var  hftFlightDetail = {
           "Code": type.detailCode
         };
       vlm.loadJson("", JSON.stringify(para),function(data){
-        hftFlightDetail.createTags({flightInfo:data.data.flightInfo});
+        hftFlightDetail.createTags({flightInfo:data.data.flightInfo}).delayLoadImage();
         $("#status").fadeOut();
         $("#preloader").delay(400).fadeOut("medium");
       })
