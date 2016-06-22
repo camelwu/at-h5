@@ -44,6 +44,11 @@
                     "Code": type.detailCode
                 };
             }
+            //计算天数函数
+            function getDayNum(arg1,arg2){
+              var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
+              return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+            }
             console.log(JSON.stringify(para));
             vlm.loadJson("", JSON.stringify(para),function(data){
                 if (data.success) {
@@ -83,10 +88,6 @@
                         data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
 
-                       function getDayNum(arg1,arg2){
-                           var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
-                           return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
-                         }
                         Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))-1;
                         Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
                         data.data.Day = Day;
@@ -96,10 +97,6 @@
                       data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                       data.data.totalPrice=data.data.totalFlightPrice;
 
-                      function getDayNum(arg1,arg2){
-                        var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
-                        return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
-                      }
                       Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))-1;
                       Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
                       data.data.Day = Day;
