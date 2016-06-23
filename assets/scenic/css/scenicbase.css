@@ -1549,7 +1549,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 /*国籍样式补充*/
 .cl_search {
   height: .6rem;
-  width: 5.5rem;
+  /*width: 5.5rem;*/
   padding-left: 1.04rem;
   padding-right: .28rem;
   margin-top: .16rem;
@@ -1557,6 +1557,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   left: 0;
   top: 0;
   overflow: visible;
+  box-sizing: border-box;
 }
 /*国籍样式补充*/
 
