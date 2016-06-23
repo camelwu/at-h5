@@ -116,6 +116,13 @@ i.right {
     position: relative;
 }
 
+.hotel_user_detail_phone >div{
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  padding: 0 .28rem;
+}
+
 .hotel_user_detail_name1 {
     padding-left: .28rem;
     line-height: .68rem;
@@ -181,7 +188,7 @@ i.right {
     width: 50%;
     box-sizing: border-box;
     font-size: .28rem;
-    padding-left: .28rem;
+    padding: 0 .28rem;
     display: inline-block;
     vertical-align: middle;
 }
@@ -480,4 +487,23 @@ i.right {
 #popup_ok {
     text-align: center;
     width: 100%;
+}
+
+
+/*手机区号*/
+.p_86.tel-btn{
+  position: relative;
+}
+.p_86.tel-btn >span{
+  margin: 0 10% 0 25%;
+}
+.int_tel{
+  display: inline-block;
+  vertical-align: top;
+  width: .28rem;
+  height: .32rem;
+  margin-top: .225rem;
+  background: url("../../images/ui/icon_common.png") no-repeat;
+  background-position: -1.12rem -.57rem;
+  background-size: 8.4rem 5.2rem;
 }

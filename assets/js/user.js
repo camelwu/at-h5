@@ -335,6 +335,13 @@
             aSpan[i].className = 'per_man';
           }
           this.className = 'per_man sex_act';
+          var Parameters = {
+            "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"" + $('#uptra_page .country-btn').eq(1).attr('data-code') + "\",\"CountryName\":\"" + $('#uptra_page .country-btn').eq(1).html() + "\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"" + $('#birth-cont-edit').html() + "\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":" + cardId + ",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"" + $('#uptra_page .country-btn').eq(0).attr('data-code') + "\",\"IdActivatedDate\":\"" + $('#time-cont-edit').html() + "\"}]}",
+            "ForeEndType": 3,
+            "Code": "0072"
+          };
+          console.log(Parameters);
+          vlm.loadJson("", JSON.stringify(Parameters), mycallback_uptrav);
         }
       }
     })(i);
