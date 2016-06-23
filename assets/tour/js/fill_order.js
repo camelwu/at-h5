@@ -506,18 +506,16 @@
             var arrivalFlightNo = document.querySelector('#content3 .input_flight input').value;
             var arrivalDateTime = document.querySelector('#content3_CheckInDate').value;
             var dateTime = arrivalDateTime ? arrivalDateTime.split("-") : checkInDate;
+            console.log(dateTime);
             if (arrivalFlightNo == '') {
               fli.ArrivalFlightNo = "None";
             } else {
-
               fli.ArrivalFlightNo = arrivalFlightNo;
-
-              if (dateTime.indexOf("T") > -1) {
-                fli.ArrivalDateTime = dateTime;
-              } else {
-                fli.ArrivalDateTime = arrivalDateTime.replace(" ","T");
-              }
-
+            }
+            if (dateTime.indexOf("T") > -1) {
+              fli.ArrivalDateTime = dateTime;
+            } else {
+              fli.ArrivalDateTime = arrivalDateTime.replace(" ","T");
             }
           }
           if ($('#content4').css('display') == 'block') {
@@ -528,18 +526,17 @@
               fli.ArrivalFlightNo = "None";
             } else {
               fli.DepartFlightNo = departFlightNo;
-              if (departDate.indexOf("T") > -1) {
-                fli.DepartDateTime = departDate;
-              } else {
-                fli.DepartDateTime = departDateTime.replace(" ","T");
-              }
+            }
 
+            if (departDate.indexOf("T") > -1) {
+              fli.DepartDateTime = departDate;
+            } else {
+              fli.DepartDateTime = departDateTime.replace(" ","T");
             }
           }
           Parmeters.Parameters.FlightDetails = fli;
         }
 
-        console.log(Parmeters);
         setOrderTime();
         vlm.loadJson(vlm.apiWithDeviceID, JSON.stringify(Parmeters), package_back);
       }
