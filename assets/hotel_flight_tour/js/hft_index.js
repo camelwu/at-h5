@@ -924,6 +924,12 @@ var htf_search = {
         this.add_subtract();
         //清空历史数据
         window.sessionStorage.removeItem('hftFlightHotelTourInfo');
+        window.localStorage.removeItem('hftFlightHotelTourInfo');
+        window.sessionStorage.removeItem('tourChosenInfo');
+        window.sessionStorage.removeItem('hftCreateOrderPara');
+        window.localStorage.removeItem('hftCreateOrderPara');
+        window.sessionStorage.removeItem('hotelAdditionalPrice');
+        window.sessionStorage.removeItem('tempChooseTourDate');
     }
 };
 htf_search.init();
