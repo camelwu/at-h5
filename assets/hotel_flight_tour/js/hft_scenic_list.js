@@ -159,11 +159,11 @@
       var sum = data.data.recommendCities.length;
       var num = 0;
       var width = 0;
-      for (var i = 0; i < sum-1; i++) {
-        width = $(".city_list1").eq(i).width();
-        num += width;
+      for (var i = 0; i < sum; i++) {
+        width = $(".city_list1").eq(i).outerWidth();
+        num += width+10;
       }
-      num = num + sum * 60;
+      //num = num + sum * 60;
       $(".city_box").css({
         'width' : num + 'px'
       });

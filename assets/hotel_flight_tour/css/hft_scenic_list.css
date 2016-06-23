@@ -78,7 +78,7 @@ body{
   color:#FFB413;
 }
 .city_list ul{
-  width: 500%;
+  /*width: 500%;*/
   height: 1.36rem;
 }
 /*景点信息开始*/
