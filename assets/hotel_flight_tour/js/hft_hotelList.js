@@ -118,9 +118,11 @@
 
 	//title
 	function title(data) {
-		var str = $('#title').html();
-		var title = ejs.render(str, data);
-		$('.header h3 span').html(title);
+    if(data.pageNo === 1){
+      var str = $('#title').html();
+      var title = ejs.render(str, data);
+      $('.header h3 span').html(title);
+    }
 	}
 	//筛选后加数据
 	function screenList(result){
