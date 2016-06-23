@@ -126,20 +126,11 @@ var data2 = '', roomdata = '';
 		$('.jhf_star').html(jhf_star);
 	}
   function num(){
-    var numofAdult=0;
-    var numofChild=0;
-    var roomNum = 0;
-    for (var i = 0;i<data2.hotelInfo.rooms.length;i++){
-      if(data2.hotelInfo.rooms[i].prices.category=="2"){
-        numofAdult=data2.hotelInfo.rooms[i].prices.quantity;
-      }else if(data2.hotelInfo.rooms[i].prices.category=="1"){
-        numofChild=data2.hotelInfo.rooms[i].prices.quantity;
-      }
-    }
-    roomNum = data2.hotelInfo.rooms.length;
+    var searchInfo = JSON.parse(localStorage.getItem("searchInfo"));
+    roomNum = searchInfo.RoomInfo.length;
     data2.hotelInfo.roomNum=roomNum;
-    data2.hotelInfo.numofAdult=numofAdult;
-    data2.hotelInfo.numofChild=numofChild;
+    data2.hotelInfo.numofAdult=searchInfo.AdultNum;
+    data2.hotelInfo.numofChild=searchInfo.ChildNum;
 
     var str = $('#num').html();
     var jhf_star = ejs.render(str, data2.hotelInfo);
