@@ -579,8 +579,8 @@
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
-        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingReferenceNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createdTime,"YmdHi")%></span>
+        <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingReferenceNo%></span></li>
+        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(createdTime,"YmdHi")%></span>
         </li>
       </ul>
     </div>
@@ -735,8 +735,8 @@
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
-        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
+        <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingRefNo%></span></li>
+        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
         </li>
       </ul>
     </div>
@@ -746,9 +746,8 @@
         <% if(travelers.length>0){  var i=1;%>
         <% travelers.forEach(function(info){%>
         <li>
-          <p class="clearfix"><span class="fl"></span>登机人<%=i%><span
-            class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
-          <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
+          <p class="clearfix"><span class="fl">登机人<%=i%></span><span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+          <p class="clearfix"><span class="fl">护照</span><span class="fr"><%=info.idNumber%></span></p>
           <% i++ %>
         </li>
         <%})%>
@@ -756,10 +755,10 @@
       </ul>
       <ul class="order_cont_way">
         <li class="clearfix">
-          <span class="fl"></span>联系电话<span class="fr"><%=contactNumber%></span>
+          <span class="fl">联系电话</span><span class="fr"><%=contactNumber%></span>
         </li>
         <li class="clearfix">
-          <span class="fl"></span>邮箱<span class="fr"><%=email%></span>
+          <span class="fl">邮箱</span><span class="fr"><%=email%></span>
         </li>
       </ul>
     </div>
@@ -836,12 +835,11 @@
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
-        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span>
-        <li class="clearfix"><span class="fl"></span>联系人<span class="fr"><%=contactDetails.contactNo%></span>
-        <li class="clearfix"><span class="fl"></span>联系电话<span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span>
-        <li class="clearfix"><span class="fl"></span>邮箱<span class="fr"><%=contactDetails.email%></span>
-        </li>
+        <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingRefNo%></span></li>
+        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span></li>
+        <li class="clearfix"><span class="fl">联系人</span><span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span></li>
+        <li class="clearfix"><span class="fl">联系电话</span><span class="fr"><%=contactDetails.contactNo%></span></li>
+        <li class="clearfix"><span class="fl">邮箱</span><span class="fr"><%=contactDetails.email%></span></li>
       </ul>
     </div>
     <!--订单总额-->
@@ -967,10 +965,10 @@
         <ul class="ht_send_travel">
           <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime), fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ') %>
           <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime), fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+' ') %>
-          <li class="clearfix"><span class="fl"></span>接机航班号<span class="fr"><%=flightDetails.arrivalFlightNo%></span></li>
-          <li class="clearfix"><span class="fl"></span>接机时间<span class="fr"><%=fdTime%></span></li>
-          <li class="clearfix"><span class="fl"></span>送机航班号<span class="fr"><%=flightDetails.departFlightNo%></span></li>
-          <li class="clearfix"><span class="fl"></span>送机时间<span class="fr"><%=fdTime2%></span></li>
+          <li class="clearfix"><span class="fl">接机航班号</span><span class="fr"><%=flightDetails.arrivalFlightNo%></span></li>
+          <li class="clearfix"><span class="fl">接机时间</span><span class="fr"><%=fdTime%></span></li>
+          <li class="clearfix"><span class="fl">送机航班号</span><span class="fr"><%=flightDetails.departFlightNo%></span></li>
+          <li class="clearfix"><span class="fl">送机时间</span><span class="fr"><%=fdTime2%></span></li>
         </ul>
       </div>
     </div>
@@ -1007,10 +1005,11 @@
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab ">
-        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span>
-        <li class="clearfix"><span class="fl"></span>联系电话<span class="fr"><%=contactDetails.contactNo%></span>
-        </li>
+        <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingRefNo%></span></li>
+        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span></li>
+        <li class="clearfix"><span class="fl">联系人</span><span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span></li>
+        <li class="clearfix"><span class="fl">联系电话</span><span class="fr"><%=contactDetails.contactNo%></span></li>
+        <li class="clearfix"><span class="fl">邮箱</span><span class="fr"><%=contactDetails.email%></span></li>
       </ul>
     </div>
     <!--订单总额-->
