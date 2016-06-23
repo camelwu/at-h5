@@ -215,6 +215,13 @@ a:link {
   position: relative;
   z-index: 20;
 }
+.jhf_score li.hotel_name{
+  font-size: 0.32rem;
+  font-weight: bold;
+  line-height: 0.32rem;
+  padding: .26rem;
+  /*margin: 0;*/
+}
 .hf_map{
   height:2.4rem;
   margin-top:-0.6rem;
