@@ -28,8 +28,8 @@ var data2 = '', roomdata = '';
 		"Parameters" : temObj
 	};
   console.log(data)
-	var departDateHtml = temObj.departDate.substring(5);
-	var enterDateHtml = temObj.returnDate.substring(5);
+  var departDateHtml = vlm.Utils.format_date(temObj.departDate ,"md");
+  var enterDateHtml = vlm.Utils.format_date(temObj.returnDate ,"md")
 	$('.jhf-mes span.departDate').html(departDateHtml);
 	$('.jhf-mes span.returnDate').html(enterDateHtml);
 
