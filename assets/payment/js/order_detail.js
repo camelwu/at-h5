@@ -28,7 +28,7 @@
       $('.all_elements').scrollTop($('.all_elements').height());
     });
     $("#tip").on("click",function(){
-      $(".fare_tip") .toggleClass("tip");
+      $(".fare_tip") .toggleClass("on");
     });
     $(".cancelOrder").on("click",function(){
         var Parameters = {
@@ -92,7 +92,7 @@
         else{
            html = ejs.render($("#"+type.tplKey).html(), data.data);
         }
-        $("#order_detail").html(html);
+        $("#order_details").html(html);
         vlm.init();
 
         if(type.id==4){
