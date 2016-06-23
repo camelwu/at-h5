@@ -267,9 +267,14 @@ a:link {
   line-height: 0.5rem;
   /*margin-bottom: 0;*/
 }
-.num{
+.jhf-mes li.jhf-date span.num{
   display: block;
   margin-top: .2rem;
+  font-size:.24rem;color:#333;
+}
+.jhf-mes li.jhf-date span.num span{
+  font-size: 0.32rem;
+  color:#7bc300;;
 }
 .li_first{
   padding-top: .2rem;
@@ -283,7 +288,7 @@ a:link {
   height: 0.28rem;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 54%;
   margin-top: -0.16rem;
   background-position: -1.13rem -0.63rem;
   background-size: 7.9rem 5.13rem;
@@ -311,7 +316,7 @@ a:link {
 
 .jhf-score li span.score {
   font-size: 0.44rem;
-  color: #55bfb7;
+  font-weight: 500;
 }
 
 .jhf-ul.jhf_score li.last_child {
@@ -369,8 +374,12 @@ a:link {
 .jhf-mes > li:nth-child(1) {
   padding: 0.3rem 0.28rem;
   border-bottom: 1px solid #e6e6e6;
+  font-size:0.2rem;
 }
-
+.jhf-mes > li:nth-child(1)>span{
+  color: #7bc300;
+  font-size: .32rem;
+}
 .jhf-mes li.showh {
   border-bottom: 1px solid #e6e6e6;
 }
