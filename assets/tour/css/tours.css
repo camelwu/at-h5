@@ -886,14 +886,14 @@ a.hotel_detail_pic{
     display: none;
 }
 .order_data_box .send_btn{
-    display: inline-block;
-    position: relative;
-    top:0.08rem;
-    width:0.4rem;
-    height:0.4rem;
-    background-image: url(../../images/ui/icon.png);
-    background-size:7.93rem 2.36rem;
-    background-position: -2.12rem -0.68rem;
+  display: inline-block;
+  position: relative;
+  top: 0.1rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-image: url(../../images/ui/icon_common.png);
+  background-size: 7.96rem 5.2rem;
+  background-position: -4.08rem -1.5rem;
 }
 .order_data_box .content2{
     height: 1.8rem;
@@ -987,7 +987,6 @@ a.hotel_detail_pic{
     height:7rem;
     margin-top:-3.5rem;
     box-sizing: border-box;
-    border:1px solid #d1d1d1;
     border-radius:0.1rem;
     background: #fff;
     position: absolute;
