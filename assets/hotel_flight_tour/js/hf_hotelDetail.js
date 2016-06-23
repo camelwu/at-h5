@@ -60,6 +60,7 @@ var data2 = '', roomdata = '';
 			adress();
 			room();
 			star();
+      num();
 			//map begin
 			var latitude = data2.hotelInfo.latitude - 0;
 			var longitude = data2.hotelInfo.longitude - 0;
@@ -124,6 +125,26 @@ var data2 = '', roomdata = '';
 		var jhf_star = ejs.render(str, data2.hotelInfo);
 		$('.jhf_star').html(jhf_star);
 	}
+  function num(){
+    var numofAdult=0;
+    var numofChild=0;
+    var roomNum = 0;
+    for (var i = 0;i<data2.hotelInfo.rooms.length;i++){
+      if(data2.hotelInfo.rooms[i].prices.category=="2"){
+        numofAdult=data2.hotelInfo.rooms[i].prices.quantity;
+      }else if(data2.hotelInfo.rooms[i].prices.category=="1"){
+        numofChild=data2.hotelInfo.rooms[i].prices.quantity;
+      }
+    }
+    roomNum = data2.hotelInfo.rooms.length;
+    data2.hotelInfo.roomNum=roomNum;
+    data2.hotelInfo.numofAdult=numofAdult;
+    data2.hotelInfo.numofChild=numofChild;
+
+    var str = $('#num').html();
+    var jhf_star = ejs.render(str, data2.hotelInfo);
+    $('#Num').html(jhf_star);
+  }
 	//客房部分
 	function room() {
 		var str = $('#jhf_room').html();

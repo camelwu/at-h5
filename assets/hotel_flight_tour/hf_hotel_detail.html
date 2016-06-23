@@ -64,7 +64,12 @@
         </ul>
         <!--hotel detail message-->
         <ul class="jhf-ul jhf-mes">
-            <li class="jpr jhf-date" style="display: none;"><span class="enterDate departDate"></span>入住&nbsp;&nbsp;<span class="enterDate returnDate"></span>离店&nbsp;&nbsp;共<span id="nightNum">4</span>晚<!--<i class="arrow"></i>--></li>
+            <li class="jpr jhf-date" style="display: none;"><span class="enterDate departDate"></span>入住&nbsp;&nbsp;<span class="enterDate returnDate"></span>离店&nbsp;&nbsp;共<span id="nightNum">4</span>晚<!--<i class="arrow"></i>-->
+              <span class = "num"  id = "Num" >
+                  <span>1</span>&nbsp;间&nbsp;<span>1</span>&nbsp;成人&nbsp;<span>1</span>&nbsp;儿童
+               </span>
+            </li>
+
             <!-- room list-->
             <!--<li class="showh">-->
                 <!--<div class="slide jpr">-->
@@ -115,11 +120,11 @@
 <script id="banner" type="text/template">
     <img class="hotelPic" src=<%=hotelPictureURL%> alt="">
 </script>
-<!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
     <li class="hotel_name"><%=hotelNameLocale%></li>
     <li class="last_child"><%=hotelAddress%></li>
 </script>
+<!--评分、星级、wifi-->
 <script id="jhf_star" type="text/template">
   <% if( hotelReviewScore!=0 || hotelReviewCount!=0){ %>
   <li class="jpr li_first" id="h_reviews">
@@ -132,6 +137,9 @@
     <i class="arrow"></i></li>
   <% } %>
     <li id="h_star" class="star"><%=starRating%><% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span>--><span class="detail">酒店详情</span><i class="arrow"></i></li>
+</script>
+<script id = "num"type="text/template">
+       <span><%= roomNum%></span>&nbsp;间&nbsp;<span><%= numofAdult%></span>&nbsp;成人&nbsp;<span><%= numofChild%></span>&nbsp;儿童
 </script>
 <!--房间列表页-->
 <script id="jhf_room" type="text/template">

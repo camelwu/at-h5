@@ -263,11 +263,14 @@ a:link {
 }
 
 .jhf-ul li.jhf-date {
-  height: 1.2rem;
-  line-height: 1.2rem;
+  /*height: 1.2rem;*/
+  line-height: 0.5rem;
   /*margin-bottom: 0;*/
 }
-
+.num{
+  display: block;
+  margin-top: 0.1rem;
+}
 .jhf-ul li .arrow {
   background: url(../../images/ui/icon_common.png) no-repeat;
   width: 0.2rem;
@@ -358,7 +361,7 @@ a:link {
 }
 
 .jhf-mes > li:nth-child(1) {
-  padding: 0 0.28rem;
+  padding: 0.3rem 0.28rem;
   border-bottom: 1px solid #e6e6e6;
 }
 
