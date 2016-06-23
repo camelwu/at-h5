@@ -420,8 +420,15 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
 
                     } else if (temAdultNum == 1 && temChildNum == 2) {
                         //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
+                      if(temEle.querySelectorAll('.extraChild').length == 0){
+
                         childWithBed.push(temEle.querySelectorAll('input')[0].value);
                         childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+
+                      }else if(temEle.querySelectorAll('.extraChild')[0].style.display == 'none'){
+                        childWithBed.push(temEle.querySelectorAll('input')[1].value);
+                        childWithOutBed.push(temEle.querySelectorAll('input')[2].value);
+                      }
                     }
                     if (temAdultNum == 2 || temAdultNum == 3) {
                         for (var s = 0; s < childChooseParent.length; s++) {
