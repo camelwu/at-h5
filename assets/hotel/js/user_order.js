@@ -304,7 +304,8 @@ uoHisData();
     uo_c1_info.innerHTML = fake_data.cancellationDesc;
     //酒店名称/时间/房型
     var uo_con2_chil1 = document.getElementById('uo_con2_chil1');
-    uo_con2_chil1.innerHTML = '<h3>' + fake_data.HotelGenInfo.hotelName + '</h3>' +
+  var rege =fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g,'');
+    uo_con2_chil1.innerHTML = '<h3>' + rege +" ( "+fake_data.HotelGenInfo.hotelName +" )"+ '</h3>' +
         '<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
         '<p class="uo_house hotel_user_container_type">房型：' + fake_data.RoomTypeName + '</p>';
 
