@@ -82,27 +82,6 @@ var lsf_myweb = {
 };
 
 
-//页面没有展示前页面展示的页面
-$(window).load(function () {
-    //$("#status-h").fadeOut();
-    //$("#preloader").delay(400).fadeOut("medium");
-    var oP = document.getElementById('uo_c1_info');
-    var timer = null;
-    timer = setInterval(function () {
-        if (oP.innerHTML != '') {
-            $("#status-h").fadeOut();
-            $("#preloader").delay(400).fadeOut("medium");
-            clearInterval(timer);
-        }
-        //console.log($('#lsf_list').children().length);
-    }, 30);
-
-});
-
-
-
-
-
 //输入框默认字体设置
 function styleChange(id, mytext) {
     var oInp = document.getElementById(id);
@@ -170,10 +149,8 @@ for (var name in url2json(myUrl)) {
     }
 }
 //默认房间数量 从搜索列表页获取
-fake_data.NumOfRoom = JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom || 1;
+fake_data.NumOfRoom = sessionStorage.getItem("hotelStorage12345") ? JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom : 1;
 var user_order_storage2 = localStorage.getItem('hotelDetailData');
-console.log(JSON.parse(user_order_storage2));
-console.log(999999999999);
 fake_data.HotelGenInfo = JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
 fake_data.dateInfo = JSON.parse(user_order_storage2).data.data[0].dateInfo;
 var HotelRoomsList = JSON.parse(user_order_storage2).data.data[0].hotelRoomsList;
@@ -189,8 +166,6 @@ for (var i = 0; i < HotelRoomsList.length; i++) {
         }
     }
 }
-console.log(fake_data);
-console.log(1);
 var hoPos = window.localStorage.getItem('hoPos');
 //hoPos='dom';
 //国际酒店有邮箱，国内酒店没有邮箱
@@ -212,13 +187,11 @@ function uoHisData() {
         fake_data.GuestContactNo = localData.GuestContactNo;
         fake_data.GuestEmail = localData.GuestEmail;
         fake_data.guestName = localData.guestName;
-        console.log(fake_data);
-        console.log('hahahahhahahahah');
-        return;
     } else {
         fake_data.guestName = [];
-        return;
     }
+    $("#status-h").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
 }
 uoHisData();
 
@@ -352,7 +325,6 @@ uoHisData();
         //        uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
         //    }
         //}
-        console.log(fake_data.guestName);
         var uo_lastname = lsf_myweb.getbyclass(uo_c3_peoBox, 'uo_lastname');
         var uo_firstname = lsf_myweb.getbyclass(uo_c3_peoBox, 'uo_firstname');
         for (var j = 0; j < uo_lastname.length; j++) {
@@ -412,8 +384,6 @@ uoHisData();
     }
     // 明细部分展示
     function uo_detail(id1, id2, id3, id4, id5, id6, id7, json) {
-        console.log(json);
-        console.log(222);
         var oId1 = document.getElementById(id1);
         var oId2 = document.getElementById(id2);
         var oId3 = document.getElementById(id3);
@@ -608,7 +578,6 @@ uoHisData();
                 jAlert('请输入英文姓或名');
                 return;
               }
-              console.log(aUo_firstname[i].value);
                 if (checkCN(aUo_lastname[i].value)) {
                     jAlert('请输入英文姓或名');
                     return;
@@ -663,7 +632,6 @@ uoHisData();
                 return;
             }
         }
-        console.log(fake_data);
         if (uo_c3_email) {
             if (uo_c3_email.value == '用于接收邮件通知') {
                 jAlert('请输入邮箱');
@@ -678,7 +646,6 @@ uoHisData();
             }
         }
         window.localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
-        console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
 
         //uo_form.submit();
