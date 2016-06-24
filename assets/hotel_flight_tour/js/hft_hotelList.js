@@ -35,22 +35,20 @@
 			list(result);
 			//点击加载更多
 			$('#loadMore').on("click", function () {
-				console.log('111');
+				//console.log('111');
 				loadMore();
 			});
-			clickMore(data);
-
-      //处理星级格式化
-      data.filters[0].item.unshift({
-        "filterText": '不限',
-        "filterValue": 0
-      });
-      data.filters[0].item = data.filters[0].item.map(function (item) {
-        return {
-          filterText:handleDate(item.filterText),
-          filterValue:item.filterValue
-        }
-      });
+			//处理星级格式化
+			data.filters[0].item.unshift({
+				"filterText": '不限',
+				"filterValue": 0
+			});
+			data.filters[0].item = data.filters[0].item.map(function (item) {
+				return {
+				  filterText:handleDate(item.filterText),
+				  filterValue:item.filterValue
+				}
+			});
 
 			//footer  begin
 			var menu_data = {
@@ -126,32 +124,37 @@
 	}
 	//筛选后加数据
 	function screenList(result){
+		$('.all_elements').scrollTop(0);
 		$('.hotel_list').empty();
 		list(result)
 	}
 	//数据加载部分
 	function list(result) {
+		var data = result.data;
 		if(result.data.hotels.length>0){
-		//curList
-		if (result.data.pageNo === 1) {
-			var strCur = $('#curList').html();
-			var curList = ejs.render(strCur, result.data);
-			$('.hotel_list').append(curList);
-		}
-		var str = $('#templateList').html();
-		var hotels = ejs.render(str,result.data);
-		$('.hotel_list').append(hotels);
-		//去掉loading
-		//$('.status').fadeOut('fast');
-		$('.hotel_list li').on('click', function() {
-			$(this).addClass('cur').siblings().removeClass('cur');
-			var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
-			parametersStorage.hotelID = hotelID;
-			parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
-			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
-      sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
-			window.location.href = 'hft_hotel_detail.html'+chooseUrl;
-		});
+			//curList
+			if (result.data.pageNo === 1) {
+				var strCur = $('#curList').html();
+				var curList = ejs.render(strCur, result.data);
+				$('.hotel_list').append(curList);
+			}
+			var str = $('#templateList').html();
+			var hotels = ejs.render(str,result.data);
+			$('.hotel_list').append(hotels);
+			//去掉loading
+			//$('.status').fadeOut('fast');
+			$('.hotel_list li').on('click', function() {
+				$(this).addClass('cur').siblings().removeClass('cur');
+				var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
+				parametersStorage.hotelID = hotelID;
+				parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
+				sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+		  sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
+				window.location.href = 'hft_hotel_detail.html'+chooseUrl;
+			});
+
+			//加载更多按钮
+			clickMore(data);
 		}else{
 			jAlert("数据为空！");
 		}
