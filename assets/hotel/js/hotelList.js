@@ -73,13 +73,39 @@ var utils = {
 // asiaHlHistory存储排序相关
 var hlHis = utils.getSession('asiaHlHistory') || {};
 utils.setSession('asiaHlHistory', hlHis);
+
+
+/*每隔30毫秒，读取DOM，以隐藏preloader。此段代码优化后删除*/
+var oUl = document.getElementById('hotelList');
+$(window).load(function () {
+  var timer = null;
+  timer = setInterval(function () {
+    if ($('#hotelList').children().length) {
+      $("#status-h").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+      clearInterval(timer);
+    }
+  }, 30);
+});
+
+
 (function () {
+  // 获取href中的参数
+  var str = window.location.href;
+  var urlArgs = url2json(str);
+
+  var list_oUl = utils.getbyid('hotelList');
+
+  var oBody = document.getElementsByTagName('body')[0];
+  var addressBok = true;
+
+  var preloader = document.getElementById('preloader');
+
     // 筛选相关（事件绑定）
-    (function h_l_s() {
+    function filterSettings() {
         var rli = [],
             sli1 = [],
-            sli2 = [],
-            lb = [];
+            sli2 = [];
         var mb;
 
         function _(s) {
@@ -95,7 +121,6 @@ utils.setSession('asiaHlHistory', hlHis);
         var s_but = _("s_but");
         var l_but = _("l_but");
         var s_cancelBtn = _("cancelBtn");
-        var s_clearBtn = _("clearBtn");
         var l_cancelBtn = _("l_cancelBtn");
         var l_clearBtn = _("l_clearBtn");
 
@@ -118,7 +143,6 @@ utils.setSession('asiaHlHistory', hlHis);
 
         function mb_close() {
             var windowHeight = window.innerHeight;
-            mb = document.getElementById("r-mb");
             mb = document.getElementById("r-mb");
             mb.style.display = "none";
             if (rank.style.display == "" || rank.style.display == "block") {
@@ -218,7 +242,36 @@ utils.setSession('asiaHlHistory', hlHis);
         }
 
 
-        var init = function (s) {
+        var init = function () {
+
+            /*   排序筛选   */
+            function selectRank() {
+              var obj = window.event.srcElement;
+              var rank = document.getElementById("rank");
+              var mb = document.getElementById("r-mb");
+              var color = obj.style.color;
+              if (color == "rgb(123, 195, 0)") {
+                mb.style.display = "none";
+                rank.style.bottom = -550 + 'px';
+                rank.style.transition = "all 350ms";
+              } else {
+                for (var i = 0; i < rli.length; i++) {
+                  if (rli[i].style.color == "rgb(123, 195, 0)") {
+                    var bb = rli[i].getElementsByTagName("b")[0];
+                    rli[i].removeChild(bb);
+                  }
+                  rli[i].style.color = "#333333";
+                }
+                obj.style.color = "#7bc300";
+                var b = document.createElement("b");
+                b.className = "hl-icon4";
+                obj.appendChild(b);
+                mb.style.display = "none";
+                rank.style.bottom = -550 + 'px';
+                rank.style.transition = "all 350ms";
+              }
+            }
+
             //insert
             sli1 = document.getElementById("h-level").childNodes;
             for (var j = 0; j < sli1.length; j++) {
@@ -243,66 +296,22 @@ utils.setSession('asiaHlHistory', hlHis);
             });
         };
         init();
+
+        // 推荐顺序、筛选、位置点击事件
         openClick(fo_ra, rank);
         openClick(fo_sc, screen);
         openClick(fo_lo, location);
+
+        // 筛选取消按钮、确定按钮
         closeClick(s_but, screen);
         closeClick(s_cancelBtn, screen);
+
+        // 地理位置取消按钮、确定按钮
         closeClick(l_cancelBtn, location);
         closeClick(l_but, location);
-        /*   排序筛选   */
-        function selectRank() {
-            var obj = window.event.srcElement;
-            var rank = document.getElementById("rank");
-            var mb = document.getElementById("r-mb");
-            var color = obj.style.color;
-            if (color == "rgb(123, 195, 0)") {
-                mb.style.display = "none";
-                rank.style.bottom = -550 + 'px';
-                rank.style.transition = "all 350ms";
-            } else {
-                for (var i = 0; i < rli.length; i++) {
-                    if (rli[i].style.color == "rgb(123, 195, 0)") {
-                        var bb = rli[i].getElementsByTagName("b")[0];
-                        rli[i].removeChild(bb);
-                    }
-                    rli[i].style.color = "#333333";
-                }
-                obj.style.color = "#7bc300";
-                var b = document.createElement("b");
-                b.className = "hl-icon4";
-                obj.appendChild(b);
-                mb.style.display = "none";
-                rank.style.bottom = -550 + 'px';
-                rank.style.transition = "all 350ms";
-            }
-        }
-    })()
 
-
-    /*每隔30毫秒，读取DOM，以隐藏preloader。此段代码优化后删除*/
-    var oUl = document.getElementById('hotelList');
-    $(window).load(function () {
-      var timer = null;
-      timer = setInterval(function () {
-        if ($('#hotelList').children().length) {
-          $("#status-h").fadeOut();
-          $("#preloader").delay(400).fadeOut("medium");
-          clearInterval(timer);
-        }
-      }, 30);
-    });
-
-    // 获取href中的参数
-    var str = window.location.href;
-    var url_json = url2json(str);
-
-    var list_oUl = utils.getbyid('hotelList');
-    
-    var oBody = document.getElementsByTagName('body')[0];
-    var addressBok = true;
-
-    var preloader = document.getElementById('preloader');
+    }
+    filterSettings();
 
     function M(json) {
         preloader.style.display = 'block';
@@ -416,6 +425,47 @@ utils.setSession('asiaHlHistory', hlHis);
         //设置pageIndex 在酒店列表容器上 用于判断是加载更多还是正常加载
         document.getElementById("hotelList").setAttribute("data-index", json.pageIndex);
 
+
+
+        function mycallback(d) {
+          var json = d;
+          if (json.success) {
+            var data = json.data[0];
+            V(data);
+
+          } else {
+            if (json.message == 'There is no hotel on the selected destination.') {
+              var data = {
+                'hotelList': [],
+                'locationList': []
+              };
+              V(data);
+            }else if(json.Message== '远程服务器返回错误: (500) 内部服务器错误。'){
+              document.getElementById("loadMore").style.display = "none";
+              var oLi = document.createElement('li');
+              oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询</p><a href = "index.html" class="hotelConSorry2">点击页面 进入搜索页</a></div>';
+              oLi.className = 'hotelConNo';
+              oUl.style.width = '100%';
+              oUl.style.height = '90%';
+              oUl.appendChild(oLi);
+              oLi.style.display="block";
+              //var Onclick = document.getElementsByClassName("hotelConSorry2");
+              //Onclick.onclick=function(){
+              //  window.location.href = '../index.html';
+              //}
+            } else {
+              //alert(json.message);
+              var data = {
+                'hotelList': [],
+                'locationList': []
+              };
+              V(data);
+            }
+            //window.history.go(-1);
+          }
+
+        }
+
         if (json.pageIndex == 1) {
             return vlm.loadJson("", JSON.stringify(data), mycallback);
         } else {
@@ -484,7 +534,7 @@ utils.setSession('asiaHlHistory', hlHis);
 
                 var moreEle = document.getElementById("loadMore");
                 moreEle.style.display = "block";
-                if (data.length < url_json.pageSize) {
+                if (data.length < urlArgs.pageSize) {
                     moreEle.setAttribute("data-more", "no");
                     moreEle.innerHTML = "没有更多数据了";
                 } else {
@@ -498,6 +548,39 @@ utils.setSession('asiaHlHistory', hlHis);
 
                 //懒加载
                 var c = new lazyLoad('hotelList');
+
+              //获取酒店详情
+              function getDetail(data) {
+                var hotelRefers = document.getElementsByClassName('ho_list');
+                var toDetail = function (that) {
+                  var paraObj = new Object();
+                  paraObj.HotelID = that.getAttribute('data-hotelCode');
+                  paraObj.HotelCode = that.getAttribute('data-hotelCode');
+
+                  // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
+                  paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
+                  paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
+
+                  paraObj.CheckInDate = urlArgs.InterCheckInDate;
+                  paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
+                  paraObj.NumRoom = urlArgs.NumRoom;
+                  paraObj.NumAdult = urlArgs.NumAdult;
+                  paraObj.NumChild = urlArgs.NumChild;
+
+                  var paramStr = "";
+                  for (var attr in paraObj) {
+                    paramStr += "&" + attr + "=" + paraObj[attr];
+                  }
+                  paramStr = paramStr.slice(1);
+                  window.location.href = 'hotel_detail.html?' + paramStr;
+                }
+                for (var i = 0; i < hotelRefers.length; i++) {
+                  hotelRefers[i].onclick = function () {
+                    var that = this;
+                    toDetail(that);
+                  }
+                }
+              }
 
                 //绑定跳转事件
                 getDetail(data);
@@ -524,7 +607,7 @@ utils.setSession('asiaHlHistory', hlHis);
 
 
         } else {
-            if (url_json.pageIndex > 1) {
+            if (urlArgs.pageIndex > 1) {
                 document.getElementById("loadMore").innerHTML = "没有更多数据了";
             } else {
                 document.getElementById("loadMore").style.display = "none";
@@ -551,8 +634,6 @@ utils.setSession('asiaHlHistory', hlHis);
             }
             var liFirst = utils.getbyclass(oUl, 'l-liFirst')[0];
             var aLi = utils.getbyclass(oUl, 'l-li');
-            var aB = utils.getbyclass(oUl, 'l-icon1');
-            var oB = utils.getbyclass(oUl, 'l-icon1First')[0];
             var bOk = true;
             var aOk = {};
             for (var i = 1; i < aLi.length; i++) {
@@ -625,6 +706,7 @@ utils.setSession('asiaHlHistory', hlHis);
 
     //历史记忆功能
     //推荐排序实现记忆功能
+  
     function sortHistory() {
         var hlSortLi = utils.getbyid('rank').children;
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -632,7 +714,7 @@ utils.setSession('asiaHlHistory', hlHis);
             return;
         for (var i = 0; i < hlSortLi.length; i++) {
             if (myAsiaHlHistory.hlSort.chinese && hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort.chinese) != -1) {
-                url_json.rank = myAsiaHlHistory.hlSort.english;
+                urlArgs.rank = myAsiaHlHistory.hlSort.english;
                 for (var j = 0; j < hlSortLi.length; j++) {
                     hlSortLi[j].style.color = '#333333';
                     var oB = hlSortLi[j].getElementsByTagName('b');
@@ -647,8 +729,9 @@ utils.setSession('asiaHlHistory', hlHis);
             }
         }
     }
-
     sortHistory();
+  
+  
     //筛选实现记忆功能
     function filterHistory() {
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -676,12 +759,12 @@ utils.setSession('asiaHlHistory', hlHis);
 
         filterAli(hLevelLi);
         filterAli(hTypeLi);
-        url_json.StarRating = myAsiaHlHistory.hlFilter.star;
-        url_json.Category = myAsiaHlHistory.hlFilter.hotelType;
+        urlArgs.StarRating = myAsiaHlHistory.hlFilter.star;
+        urlArgs.Category = myAsiaHlHistory.hlFilter.hotelType;
     }
-
     filterHistory();
 
+  
     //位置信息实现记忆功能   获取到数据后  再执行一次
     function locationHistory() {
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -705,52 +788,12 @@ utils.setSession('asiaHlHistory', hlHis);
             }
         }
         resetStatus(hLocationLi);
-        url_json.LocationList = myAsiaHlHistory.hlLocation.list;
+        urlArgs.LocationList = myAsiaHlHistory.hlLocation.list;
     }
-
     locationHistory();
 
 
-    M(url_json);
-
-    function mycallback(d) {
-        var json = d;
-        if (json.success) {
-            var data = json.data[0];
-            V(data);
-
-        } else {
-            if (json.message == 'There is no hotel on the selected destination.') {
-                var data = {
-                    'hotelList': [],
-                    'locationList': []
-                };
-                V(data);
-            }else if(json.Message== '远程服务器返回错误: (500) 内部服务器错误。'){
-              document.getElementById("loadMore").style.display = "none";
-              var oLi = document.createElement('li');
-              oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询</p><a href = "index.html" class="hotelConSorry2">点击页面 进入搜索页</a></div>';
-              oLi.className = 'hotelConNo';
-              oUl.style.width = '100%';
-              oUl.style.height = '90%';
-              oUl.appendChild(oLi);
-              oLi.style.display="block";
-              //var Onclick = document.getElementsByClassName("hotelConSorry2");
-              //Onclick.onclick=function(){
-              //  window.location.href = '../index.html';
-              //}
-            } else {
-                //alert(json.message);
-                var data = {
-                    'hotelList': [],
-                    'locationList': []
-                };
-                V(data);
-            }
-            //window.history.go(-1);
-        }
-
-    }
+    M(urlArgs);
 
     //推荐排序里面的点击事件（交互）
     utils.bind(oBody, 'click', function (ev) {
@@ -763,26 +806,26 @@ utils.setSession('asiaHlHistory', hlHis);
         if (oSrc.className == 'r-li') {
             var oSrc_str = oSrc.innerHTML;
             if (oSrc_str.indexOf('推荐排序') != -1) {
-                url_json.rank = 'PriorityDESC';
+                urlArgs.rank = 'PriorityDESC';
                 hlHis.hlSort.chinese = '推荐排序';
                 hlHis.hlSort.english = 'PriorityDESC';
             } else if (oSrc_str.indexOf('价格升序') != -1) {
-                url_json.rank = 'PriceASC';
+                urlArgs.rank = 'PriceASC';
                 hlHis.hlSort.chinese = '价格升序';
                 hlHis.hlSort.english = 'PriceASC';
             } else if (oSrc_str.indexOf('价格降序') != -1) {
-                url_json.rank = 'PriceDESC';
+                urlArgs.rank = 'PriceDESC';
                 hlHis.hlSort.chinese = '价格降序';
                 hlHis.hlSort.english = 'PriceDESC';
             } else if (oSrc_str.indexOf('好评优先') != -1) {
-                url_json.rank = 'ReviewscoreDESC';
+                urlArgs.rank = 'ReviewscoreDESC';
                 hlHis.hlSort.chinese = '好评优先';
                 hlHis.hlSort.english = 'ReviewscoreDESC';
             }
             utils.setSession('asiaHlHistory', hlHis);
             //页码重置
-            url_json.pageIndex = 1;
-            M(url_json);
+            urlArgs.pageIndex = 1;
+            M(urlArgs);
         }
     });
     //筛选里面确定按钮的点击事件（交互）
@@ -915,11 +958,11 @@ utils.setSession('asiaHlHistory', hlHis);
             hlHis.hlFilter.star = hl_filter_star.substring(0, (hl_filter_star.length - 1));
             utils.setSession('asiaHlHistory', hlHis);
 
-            url_json.StarRating = hl_star_str;
-            url_json.Category = hl_type_str;
+            urlArgs.StarRating = hl_star_str;
+            urlArgs.Category = hl_type_str;
             //页码重置
-            url_json.pageIndex = 1;
-            M(url_json);
+            urlArgs.pageIndex = 1;
+            M(urlArgs);
             //alert(hl_star_str+'---'+hl_type_str);
         };
         if (oSrc.getAttribute("id") == "clearBtn") {
@@ -963,10 +1006,10 @@ utils.setSession('asiaHlHistory', hlHis);
             }
             hlHis.hlLocation.list = locationList;
             utils.setSession('asiaHlHistory', hlHis);
-            url_json.LocationList = locationList;
+            urlArgs.LocationList = locationList;
             //页码重置
-            url_json.pageIndex = 1;
-            M(url_json);
+            urlArgs.pageIndex = 1;
+            M(urlArgs);
         };
         if (oSrc.getAttribute("id") == 'l_clearBtn') {
             var oUl = document.getElementById("l-ul");
@@ -986,57 +1029,21 @@ utils.setSession('asiaHlHistory', hlHis);
             }
         };
     });
-    //获取酒店详情
-    function getDetail(data) {
-        var hotelRefers = document.getElementsByClassName('ho_list');
-        var toDetail = function (that) {
-            var paraObj = new Object();
-            paraObj.HotelID = that.getAttribute('data-hotelCode');
-            paraObj.HotelCode = that.getAttribute('data-hotelCode');
 
-            // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
-            paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
-            paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
-
-            paraObj.CheckInDate = url_json.InterCheckInDate;
-            paraObj.CheckOutDate = url_json.InterCheckOutDate;
-            paraObj.NumRoom = url_json.NumRoom;
-            paraObj.NumAdult = url_json.NumAdult;
-            paraObj.NumChild = url_json.NumChild;
-
-            var paramStr = "";
-            for (var attr in paraObj) {
-                paramStr += "&" + attr + "=" + paraObj[attr];
-            }
-            paramStr = paramStr.slice(1);
-            window.location.href = 'hotel_detail.html?' + paramStr;
-        }
-        for (var i = 0; i < hotelRefers.length; i++) {
-            hotelRefers[i].onclick = function () {
-                var that = this;
-                toDetail(that);
-            }
-        }
-    }
   
     //加载更多
-    function loadMore() {
-        var loadMore = document.getElementById("loadMore");
-        var pageIndex = url_json.pageIndex + 1;
-        //没有更多 数据加载标识
-        var loadMoreSign = loadMore.getAttribute("data-more");
-        if (loadMoreSign == "no") {
-            return;
-        }
+    utils.bind(document.getElementById("loadMore"), 'click', function() {
+      var loadMore = document.getElementById("loadMore");
+      var pageIndex = urlArgs.pageIndex + 1;
+      //没有更多 数据加载标识
+      var loadMoreSign = loadMore.getAttribute("data-more");
+      if (loadMoreSign == "no") {
+        return;
+      }
 
-        loadMore.innerHTML = "正在加载..."
-        url_json.pageIndex = pageIndex;
-        //TODO set page size  defualt set 20
-        //url_json.pageSize;
-        M(url_json);
-    }
-    utils.bind(document.getElementById("loadMore"), 'click', function (event) {
-        loadMore();
+      loadMore.innerHTML = "正在加载..."
+      urlArgs.pageIndex = pageIndex;
+      M(urlArgs);
     });
 })();
 
@@ -1079,21 +1086,4 @@ function url2json(url) {
     json[arr3[0]] = arr3[1];
   }
   return json;
-}
-
-//输入框获得焦点和失去焦点的变化
-function styleChange(id, mytext) {
-  var oInp = document.getElementById(id);
-  oInp.onfocus = function () {
-    if (this.value == mytext) {
-      this.value = '';
-      this.style.color = '#484848';
-    }
-  };
-  oInp.onblur = function () {
-    if (!this.value) {
-      this.value = mytext;
-      this.style.color = '#d1d1d1';
-    }
-  };
 }
