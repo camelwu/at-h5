@@ -1068,7 +1068,18 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   width: 3rem;
   height: .7rem;
 }
-
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 0.24rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
 .booking_package_linkman_contact{
   height: .96rem;
   line-height: .96rem;
