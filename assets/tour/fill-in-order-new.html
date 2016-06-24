@@ -50,12 +50,6 @@
                             <!--<div class="detail-span">成人票 2张</div>-->
                             <!--<div class="detail-span">儿童票 1张</div>-->
                             <!--</div>-->
-                            <!--<div>-->
-                            <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
-                            <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
-                            <!--<div class="detail-span">成人票 2张</div>-->
-                            <!--<div class="detail-span">儿童票 1张</div>-->
-                            <!--</div>-->
                         </section>
                     </div>
                     <div class="open-close order_toggle_btn">
@@ -391,9 +385,11 @@
           <%= tourInfos[i].tourName %>
         </div>
         <div class="detail_span">
-            <% if(tourInfos[i].travelDateSpecified){ %>游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %><% } %>
-          <%= weekday[i] %>
-          <%= noon[i] %>
+            <% if(tourInfos[i].travelDateSpecified){ %>
+              游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %>
+              <%= weekday[i] %>
+              <%= noon[i] %>
+            <% } %>
         </div>
         <div class="detail_span">成人票
           <%= info.adultNum %>张
