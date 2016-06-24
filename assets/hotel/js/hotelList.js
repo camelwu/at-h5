@@ -313,7 +313,9 @@ $(window).load(function () {
     }
     filterSettings();
 
+    // 拼接参数，请求数据
     function M(json) {
+        // json就是地址栏参数urlArgs。
         preloader.style.display = 'block';
         //status_h.style.display = 'block';
         var hotelList = document.getElementById('hotelList');
@@ -374,21 +376,21 @@ $(window).load(function () {
         json.InterCityName = cityNameChange(json.InterCityName);
         json.DomCityName = cityNameChange(json.DomCityName);
         //对得到的汉字名字进行处理，得到英文名字和三字码
-        /*for(var i=0;i<hl_cityListInfo.length;i++){
+        /*for (var i = 0; i < hl_cityListInfo.length; i++) {
 
-        if(json.DomCityName==hl_cityListInfo[i].cityNameCN){
-        json.DomCityName=hl_cityListInfo[i].cityNameEN;
-        json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
-        }
-        if((json.InterCityName==hl_cityListInfo[i].cityNameEN)||(json.DomCityName==hl_cityListInfo[i].cityNameEN)){
-        json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
-        }
+          if (json.DomCityName == hl_cityListInfo[i].cityNameCN) {
+            json.DomCityName = hl_cityListInfo[i].cityNameEN;
+            json.CountryISOCode = hl_cityListInfo[i].countryISOCode;
+          }
+          if ((json.InterCityName == hl_cityListInfo[i].cityNameEN) || (json.DomCityName == hl_cityListInfo[i].cityNameEN)) {
+            json.CountryISOCode = hl_cityListInfo[i].countryISOCode;
+          }
         }*/
 
         //判断点击的是国际酒店按钮还是国内酒店按钮
+        var pattern = /^([\u4e00-\u9fa5])*$/;
         if (hoPos == 'inter') {
-            var pattern = /^([\u4e00-\u9fa5])*$/
-                //中文,需要匹配
+            //中文,需要匹配
             if (pattern.test(json.InterCityName)) {
                 for (var i = 0; i < hl_cityListInfo.length; i++) {
                     if (json.InterCityName == hl_cityListInfo[i].cityNameCN) {
@@ -404,8 +406,7 @@ $(window).load(function () {
                 "ForeEndType": 3
             };
         } else if (hoPos = 'dom') {
-            var pattern = /^([\u4e00-\u9fa5])*$/
-                //中文,需要匹配
+            //中文,需要匹配
             if (pattern.test(json.DomCityName)) {
                 for (var i = 0; i < hl_cityListInfo.length; i++) {
                     if (json.DomCityName == hl_cityListInfo[i].cityNameCN) {
@@ -426,21 +427,14 @@ $(window).load(function () {
         document.getElementById("hotelList").setAttribute("data-index", json.pageIndex);
 
 
-
         function mycallback(d) {
           var json = d;
           if (json.success) {
             var data = json.data[0];
             V(data);
-
           } else {
-            if (json.message == 'There is no hotel on the selected destination.') {
-              var data = {
-                'hotelList': [],
-                'locationList': []
-              };
-              V(data);
-            }else if(json.Message== '远程服务器返回错误: (500) 内部服务器错误。'){
+            // 请求失败报错
+            if (json.Message == '远程服务器返回错误: (500) 内部服务器错误。') {
               document.getElementById("loadMore").style.display = "none";
               var oLi = document.createElement('li');
               oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询</p><a href = "index.html" class="hotelConSorry2">点击页面 进入搜索页</a></div>';
@@ -448,11 +442,13 @@ $(window).load(function () {
               oUl.style.width = '100%';
               oUl.style.height = '90%';
               oUl.appendChild(oLi);
-              oLi.style.display="block";
-              //var Onclick = document.getElementsByClassName("hotelConSorry2");
-              //Onclick.onclick=function(){
-              //  window.location.href = '../index.html';
-              //}
+              oLi.style.display = "block";
+            } else if (json.message == 'There is no hotel on the selected destination.') {
+              var data = {
+                'hotelList': [],
+                'locationList': []
+              };
+              V(data);
             } else {
               //alert(json.message);
               var data = {
@@ -463,7 +459,6 @@ $(window).load(function () {
             }
             //window.history.go(-1);
           }
-
         }
 
         if (json.pageIndex == 1) {
