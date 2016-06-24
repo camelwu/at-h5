@@ -124,7 +124,7 @@ var fSingleList = {
   },
 
   dateCalender: function () {
-    var tem = {start: this.postObj.departDate}, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage;
+    var tem = {start: this.postObj.departDate}, timeObj = {}, fIndexInfoObj = {},that = this, storage = window.sessionStorage;
     fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     var dates = document.querySelectorAll('#timeSingle .monthDay'), weeks = document.querySelectorAll('#timeSingle .weekWord');
@@ -146,6 +146,7 @@ var fSingleList = {
     dates[0].setAttribute('date-full-value', this.postObj.departDate);
     dates[0].innerHTML = this.returnDay(this.postObj.departDate);
     weeks[0].innerHTML = this.setWeekItems(this.postObj.departDate);
+    return this;
   },
   loadMoreHandler: function () {
     var loadMore = document.querySelector("#loadMore"), that = fSingleList, tag = arguments[0];
@@ -623,7 +624,7 @@ var fSingleList = {
     var postObj = this.parseUrlHandler(window.location.href, true);
     this.postObj = postObj;
     this.first = true;
-    this.titleInit().dateChangeHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    this.titleInit().dateCalender().dateChangeHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 };
 fSingleList.init();
