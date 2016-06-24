@@ -314,7 +314,7 @@ $(window).load(function () {
     filterSettings();
 
     // 拼接参数，请求数据
-    function M(json) {
+    function getListByPage(json) {
         // json就是地址栏参数urlArgs。
         preloader.style.display = 'block';
         //status_h.style.display = 'block';
@@ -466,7 +466,7 @@ $(window).load(function () {
         function mycallback(json) {
           if (json.success) {
             var data = json.data[0];
-            V(data);
+            renderList(data);
           } else {
             // 请求失败报错
             if (json.message == '远程服务器返回错误: (500) 内部服务器错误。') {
@@ -484,14 +484,14 @@ $(window).load(function () {
                 'hotelList': [],
                 'locationList': []
               };
-              V(data);
+              renderList(data);
             } else {
               //alert(json.message);
               var data = {
                 'hotelList': [],
                 'locationList': []
               };
-              V(data);
+              renderList(data);
             }
             //window.history.go(-1);
           }
@@ -507,7 +507,7 @@ $(window).load(function () {
     }
 
     //数据展示部分
-    function V(data) {
+    function renderList(data) {
         if (!data)
             return;
         var data_address = data.locationList;
@@ -717,7 +717,7 @@ $(window).load(function () {
             hlAddress();
         }
         addressBok = false;
-        //位置信息实现记忆功能   获取到数据后  再执行一次
+        //位置信息 恢复缓存中状态   获取到数据后  再执行一次
         locationHistory();
 
       
@@ -736,12 +736,10 @@ $(window).load(function () {
 
     }
 
-    //历史记忆功能
-    //推荐排序实现记忆功能
-  
-    function sortHistory() {
+    //推荐排序 恢复缓存中状态
+    var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+    function sortHistory(myAsiaHlHistory) {
         var hlSortLi = utils.getbyid('rank').children;
-        var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
         if (!myAsiaHlHistory.hlSort)
             return;
         for (var i = 0; i < hlSortLi.length; i++) {
@@ -761,12 +759,11 @@ $(window).load(function () {
             }
         }
     }
-    sortHistory();
+    sortHistory(myAsiaHlHistory);
   
   
-    //筛选实现记忆功能
-    function filterHistory() {
-        var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+    //筛选 恢复缓存中状态
+    function filterHistory(myAsiaHlHistory) {
         if (!myAsiaHlHistory.hlFilter)
             return;
         var hLevel = document.getElementById('h-level');
@@ -794,10 +791,10 @@ $(window).load(function () {
         urlArgs.StarRating = myAsiaHlHistory.hlFilter.star;
         urlArgs.Category = myAsiaHlHistory.hlFilter.hotelType;
     }
-    filterHistory();
+    filterHistory(myAsiaHlHistory);
 
   
-    //位置信息实现记忆功能   获取到数据后  再执行一次
+    //位置信息 恢复缓存中状态   获取到数据后  再执行一次
     function locationHistory() {
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
         if (!myAsiaHlHistory.hlLocation)
@@ -825,7 +822,7 @@ $(window).load(function () {
     locationHistory();
 
 
-    M(urlArgs);
+    getListByPage(urlArgs);
 
     //推荐排序里面的点击事件（交互）
     utils.bind(oBody, 'click', function (ev) {
@@ -857,7 +854,7 @@ $(window).load(function () {
             utils.setSession('asiaHlHistory', hlHis);
             //页码重置
             urlArgs.pageIndex = 1;
-            M(urlArgs);
+            getListByPage(urlArgs);
         }
     });
     //筛选里面确定按钮的点击事件（交互）
@@ -994,7 +991,7 @@ $(window).load(function () {
             urlArgs.Category = hl_type_str;
             //页码重置
             urlArgs.pageIndex = 1;
-            M(urlArgs);
+            getListByPage(urlArgs);
             //alert(hl_star_str+'---'+hl_type_str);
         };
         if (oSrc.getAttribute("id") == "clearBtn") {
@@ -1041,7 +1038,7 @@ $(window).load(function () {
             urlArgs.LocationList = locationList;
             //页码重置
             urlArgs.pageIndex = 1;
-            M(urlArgs);
+            getListByPage(urlArgs);
         };
         if (oSrc.getAttribute("id") == 'l_clearBtn') {
             var oUl = document.getElementById("l-ul");
@@ -1075,7 +1072,7 @@ $(window).load(function () {
 
       loadMore.innerHTML = "正在加载..."
       urlArgs.pageIndex = pageIndex;
-      M(urlArgs);
+      getListByPage(urlArgs);
     });
 })();
 
