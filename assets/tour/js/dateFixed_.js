@@ -298,7 +298,11 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         if (target.hasClass("cur")) {
                             childNumValue = childNumValue + 1;
                             childNumEle.html(childNumValue);
-                            extraChildHtml = addNewChildHtml(allExtraChild.length + 1);
+                            if(target.parents('.hotelInfo_numb_people').hasClass('init-hotel-room-detail')){
+                              extraChildHtml = addNewChildHtml(allExtraChild.length+1);
+                            }else{
+                              extraChildHtml = addNewChildHtml(allExtraChild.length);
+                            }
 
                             addBedShowOrHide(target)
                                 //target.parents(".hotelInfo_numb_people").append(extraChildHtml);
