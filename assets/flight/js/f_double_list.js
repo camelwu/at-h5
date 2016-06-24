@@ -90,7 +90,7 @@ var fDoubleList = {
     var tem = {
       start: this.postObj.departDate,
       end: this.postObj.returnDate
-    }, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage;
+    }, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage, that = this;
     fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     timeObj[tem.end] = tem.end;
@@ -118,6 +118,7 @@ var fDoubleList = {
     dates[1].setAttribute('date-full-value', this.postObj.returnDate);
     dates[1].innerHTML = this.returnDay(this.postObj.returnDate);
     weeks[1].innerHTML = this.setWeekItems(this.postObj.returnDate);
+    return this;
   },
 
   setWeekItems: function () {
@@ -545,7 +546,7 @@ var fDoubleList = {
     var postObj = this.parseUrlHandler(window.location.href, true);
     this.postObj = postObj;
     this.first = true;
-    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    this.titleInit().dateCalender().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 };
 fDoubleList.init();
