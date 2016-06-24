@@ -1,11 +1,7 @@
 //解决300毫秒延迟问题
-(function ($) {
-    $(document).ready(function () {
-        window.addEventListener('load', function () {
-            FastClick.attach(document.body);
-        }, false);
-    });
-}(jQuery));
+window.addEventListener('load', function () {
+  FastClick.attach(document.body);
+}, false);
 
 var utils = {
     "getbyid": function (id) {
@@ -68,69 +64,15 @@ var utils = {
         window.sessionStorage.setItem(name, JSON.stringify(json));
     },
     "getSession": function (name) {
-        return JSON.parse(window.sessionStorage.getItem(name));
+        return sessionStorage.getItem(name) ? JSON.parse(window.sessionStorage.getItem(name)) : null;
     }
 };
-//storage存储
+
+
+
+// asiaHlHistory存储排序相关
 var hlHis = utils.getSession('asiaHlHistory') || {};
 utils.setSession('asiaHlHistory', hlHis);
-//把星级英文数字换成汉字
-function num2chin(num) {
-    switch (num) {
-        case '0':
-            return '零';
-            break;
-        case '1':
-            return '一';
-            break;
-        case '2':
-            return '二';
-            break;
-        case '3':
-            return '三';
-            break;
-        case '4':
-            return '四';
-            break;
-        case '5':
-            return '五';
-            break;
-        default:
-            return '二'; //默认二星级  H5-726
-            break;
-    };
-}
-
-//把url字符串变成json
-function url2json(url) {
-    if (!url)
-        return;
-    var json = {};
-    var arr = url.split('?');
-    var arr2 = arr[1].split('&');
-    for (var i = 0; i < arr2.length; i++) {
-        var arr3 = arr2[i].split('=');
-        json[arr3[0]] = arr3[1];
-    }
-    return json;
-}
-
-//输入框获得焦点和失去焦点的变化
-function styleChange(id, mytext) {
-    var oInp = document.getElementById(id);
-    oInp.onfocus = function () {
-        if (this.value == mytext) {
-            this.value = '';
-            this.style.color = '#484848';
-        }
-    };
-    oInp.onblur = function () {
-        if (!this.value) {
-            this.value = mytext;
-            this.style.color = '#d1d1d1';
-        }
-    };
-}
 (function () {
     //贾燕云的js
     function h_l_s() {
@@ -704,9 +646,9 @@ function styleChange(id, mytext) {
         //位置信息实现记忆功能   获取到数据后  再执行一次
         locationHistory();
 
+      
+        /*每隔30毫秒，读取DOM，以隐藏preloader。此段代码优化后删除*/
         $(function () {
-            //$("#status-h").fadeOut();
-            //$("#preloader").delay(400).fadeOut("medium");
             var timer = null;
             clearInterval(timer);
             timer = setInterval(function () {
@@ -715,7 +657,6 @@ function styleChange(id, mytext) {
                     $("#preloader").delay(400).fadeOut("medium");
                     clearInterval(timer);
                 }
-                //console.log($('#lsf_list').children().length);
             }, 30);
         });
 
@@ -1097,9 +1038,6 @@ function styleChange(id, mytext) {
     });
     //获取酒店详情
     function getDetail(data) {
-        //console.log(url_json);
-        //console.log(data);
-        //data = data.hotelList;
         var hotelRefers = document.getElementsByClassName('ho_list');
         var toDetail = function (that) {
             var paraObj = new Object();
@@ -1130,15 +1068,7 @@ function styleChange(id, mytext) {
             }
         }
     }
-
-    //为了阻止遮罩层下面的内容被滑动
-    /*
-    //这样会导致浮层不能滑动 内容显示不全
-	$('#hl_hiddenBox').bind("touchmove", function(ev) {
-		ev.preventDefault();
-	});
-    */
-
+  
     //加载更多
     function loadMore() {
         var loadMore = document.getElementById("loadMore");
@@ -1158,58 +1088,62 @@ function styleChange(id, mytext) {
     utils.bind(document.getElementById("loadMore"), 'click', function (event) {
         loadMore();
     });
-    /*
-    function loadMore(scrollContainerId){
-        var listContainer = utils.getbyid(scrollContainerId);
-        var listContainerHeight = 0;
-        var loadMore = utils.getbyid("load-more");
-        var loadMoreRect = "";
-        var windowHeight = window.innerHeight;
-        var pageIndex = 1;
-        var loadMoreSign = "";
-        var topAfter = 0;
-        var ua = navigator.userAgent;
-
-        utils.bind(listContainer,'touchstart',function(event){
-            //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
-            //for android
-
-            //如果是android浏览器
-            if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
-                topAfter = loadMore.getBoundingClientRect().top;
-                load();
-            }
-        });
-        utils.bind(listContainer,'touchmove',function(event){
-
-        });
-        utils.bind(listContainer,'touchend',function(event){
-            topAfter = loadMore.getBoundingClientRect().top;
-            load();
-        });
-
-        function load(){
-            //没有更多 数据加载标识
-            loadMoreSign = loadMore.getAttribute("data-more");
-            if(loadMoreSign == "no"){
-                return;
-            }
-
-            //滑动到离底部30px距离使触发加载更多
-            if(windowHeight - topAfter > 44){
-               // alert("topAfter:" + topAfter + "windowHeight:" + windowHeight);
-                loadMore.innerHTML = "加载中..."
-                pageIndex = pageIndex + 1;
-                url_json.pageIndex = pageIndex;
-                //TODO set page size  defualt set 20
-                //url_json.pageSize;
-                M(url_json);
-            }
-        }
-
-        //TODO 页面滚动到底部时选择筛选  页面没有回滚到顶部
-    };
-
-    loadMore("lsf_list");
-    */
 })();
+
+//把星级英文数字换成汉字
+function num2chin(num) {
+  switch (num) {
+    case '0':
+      return '零';
+      break;
+    case '1':
+      return '一';
+      break;
+    case '2':
+      return '二';
+      break;
+    case '3':
+      return '三';
+      break;
+    case '4':
+      return '四';
+      break;
+    case '5':
+      return '五';
+      break;
+    default:
+      return '二'; //默认二星级  H5-726
+      break;
+  };
+}
+
+//把url字符串变成json
+function url2json(url) {
+  if (!url)
+    return;
+  var json = {};
+  var arr = url.split('?');
+  var arr2 = arr[1].split('&');
+  for (var i = 0; i < arr2.length; i++) {
+    var arr3 = arr2[i].split('=');
+    json[arr3[0]] = arr3[1];
+  }
+  return json;
+}
+
+//输入框获得焦点和失去焦点的变化
+function styleChange(id, mytext) {
+  var oInp = document.getElementById(id);
+  oInp.onfocus = function () {
+    if (this.value == mytext) {
+      this.value = '';
+      this.style.color = '#484848';
+    }
+  };
+  oInp.onblur = function () {
+    if (!this.value) {
+      this.value = mytext;
+      this.style.color = '#d1d1d1';
+    }
+  };
+}
