@@ -218,9 +218,10 @@
     var returnDate = new Date(sStorage.returnDate.substring(0,10)).getTime();
     var numberNeight = (returnDate-departDate)/1000/60/60/24;
     $('.numberNeight').html(numberNeight);
-    $('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
-    $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
-
+    //$('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
+    //$('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
+    $('.hotel_detail_rooms .departDate').html(vlm.Utils.format_date(sStorage.departDate ,"md"));
+    $('.hotel_detail_rooms .returnDate').html(vlm.Utils.format_date(sStorage.returnDate ,"md"));
   //  房间
     var searchInfo = JSON.parse(localStorage.getItem("searchInfo"));
     var roomNumber = searchInfo.RoomInfo.length;
