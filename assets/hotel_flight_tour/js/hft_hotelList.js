@@ -26,18 +26,17 @@
 		questUrl = questUrl || that.requestUrl;
 		vlm.loadJson("", JSON.stringify(dataObj), Callback);
 	};
-
+//点击加载更多
+	$('#loadMore').click( function () {
+		console.log('init 111');
+		loadMore();
+	});
 	function dataCallBack(result) {
 		if (result.success && result.code == '200') {
 			console.log(result);
 			var data = result.data;
 			title(data);
 			list(result);
-			//点击加载更多
-			$('#loadMore').on("click", function () {
-				//console.log('111');
-				loadMore();
-			});
 			//处理星级格式化
 			data.filters[0].item.unshift({
 				"filterText": '不限',
@@ -172,7 +171,6 @@
 
 		$("#loadMore").html("正在加载...");
 		vlm.loadJson('', JSON.stringify(dataPull), dataCallBack);
-		//vlm.loadJson("", data, dataCallBack, false, false, true);
 	}
 
 	//点击加载更多
