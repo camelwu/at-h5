@@ -165,6 +165,9 @@
             tar = e.target || e.srcElement;
           if(tar.nodeName.toLowerCase() === 'div'){
             var cityCode = (e.target).getAttribute("data-code");
+            var cityName = (e.target).getAttribute("data-name");
+            var countryCode = (e.target).getAttribute("data-countrycode");
+            VM.Method["setcityboxHistory"](tar,cityCode,cityName,countryCode,"t_des");
             window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
           }
 
@@ -206,7 +209,7 @@
   /**
    * 获取 data-bind 数据并解析
    */
-  var VM = function () {
+  var VMS = function () {
     function getBindData(dom) {
       var data = dom.getAttribute("data-bind");
       return !!data && (new Function("return ({" + data + "})"))();
@@ -221,7 +224,7 @@
 
   //设置公共属性
   webkit.T = webkit.T || {};
-  webkit.T.Load = VM;
+  webkit.T.Load = VMS;
   webkit.T.AjaxAdapter = AjaxAdapter;
 
 })();

@@ -384,14 +384,14 @@ li.scenic_detile_project_first{
 }
 .icon_go_back{
   width: .65rem;
-  height: .65rem;
+  height: .75rem;
   position: absolute;
   left: .28rem;
-  top: .28rem;
+  top: .25rem;
   display: inline-block;
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
-  background-position: -3.15rem -0.45rem;
+  background-position: -3.15rem -0.4rem;
   z-index: 999;
 }
 .bar_img{
@@ -481,7 +481,7 @@ li.scenic_detile_project_first{
 }
 .scenic_content i{
   width: .36rem;
-  height: .35rem;
+  height: .4rem;
   position: absolute;
   left: 0;
   display: inline-block;
@@ -489,8 +489,8 @@ li.scenic_detile_project_first{
   background-size: 7.95rem 1.95rem;
 }
 .scenic_content_feature_start{
-  background-position:  -1.87rem -0.8rem;
-  top: .06rem;
+  background-position:  -1.87rem -0.75rem;
+  top: 0;
 }
 .scenic_content_feature h3{
   margin-bottom: .32rem;
