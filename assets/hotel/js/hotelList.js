@@ -401,9 +401,27 @@ $(window).load(function () {
                 }
             }
             var data = {
-                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"" + json.CountryISOCode + "\",\"CityName\":\"" + json.InterCityName + "\",\"CheckInDate\":\"" + json.InterCheckInDate + "T00:00:00\",\"CheckOutDate\":\"" + json.InterCheckOutDate + "T00:00:00\",\"NumRoom\":" + json.NumRoom + ",\"NumAdult\":" + json.NumAdult + ",\"NumChild\":" + json.NumChild + ",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":\"" + json.pageIndex + "\",\"PageSize\":\"" + json.pageSize + "\",\"sorttype\":\"" + json.rank + "\",\"Category\":\"" + json.Category + "\",\"StarRating\":\"" + json.StarRating + "\",\"LocationList\":\"" + json.LocationList + "\"}",
-                "Code": "0007",
-                "ForeEndType": 3
+              "Parameters": {
+                'CultureName': 'zh-CN',
+                'PartnerCode': '1000',
+                'CountryISOCode': json.CountryISOCode,
+                'CityName': json.InterCityName,
+                'CheckInDate': json.InterCheckInDate + 'T00:00:00',
+                'CheckOutDate': json.InterCheckOutDate + 'T00:00:00',
+                'NumRoom': json.NumRoom,
+                'NumAdult': json.NumAdult,
+                'NumChild': json.NumChild,
+                'InstantConfirmation': true,
+                'AllOccupancy': true,
+                'PageIndex': json.pageIndex,
+                'PageSize': json.pageSize,
+                'sorttype': json.rank,
+                'Category': json.Category,
+                'StarRating': json.StarRating,
+                'LocationList': json.LocationList
+              },
+              "Code": "0007",
+              "ForeEndType": 3
             };
         } else if (hoPos = 'dom') {
             //中文,需要匹配
@@ -417,7 +435,25 @@ $(window).load(function () {
                 }
             }
             var data = {
-                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"ACX98110SG\",\"CountryISOCode\":\"CN\",\"CityName\":\"" + json.DomCityName + "\",\"CheckInDate\":\"" + json.DomCheckInDate + "T00:00:00\",\"CheckOutDate\":\"" + json.DomCheckOutDate + "T00:00:00\",\"NumRoom\":\"1\",\"NumAdult\":\"1\",\"NumChild\":\"0\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":\"" + json.pageIndex + "\",\"PageSize\":\"" + json.pageSize + "\",\"sorttype\":\"" + json.rank + "\",\"Category\":\"" + json.Category + "\",\"StarRating\":\"" + json.StarRating + "\",\"LocationList\":\"" + json.LocationList + "\"}",
+                "Parameters": {
+                  'CultureName': 'zh-CN',
+                  'PartnerCode': 'ACX98110SG',
+                  'CountryISOCode': 'CN',
+                  'CityName': json.DomCityName,
+                  'CheckInDate': json.DomCheckInDate + 'T00:00:00',
+                  'CheckOutDate': json.DomCheckOutDate + 'T00:00:00',
+                  'NumRoom': '1',
+                  'NumAdult': '1',
+                  'NumChild': '0',
+                  'InstantConfirmation': true,
+                  'AllOccupancy': true,
+                  'PageIndex': json.pageIndex,
+                  'PageSize': json.pageSize,
+                  'sorttype': json.rank,
+                  'Category': json.Category,
+                  'StarRating': json.StarRating,
+                  'LocationList': json.LocationList
+                },
                 "Code": "0007",
                 "ForeEndType": 3
             };
@@ -427,14 +463,14 @@ $(window).load(function () {
         document.getElementById("hotelList").setAttribute("data-index", json.pageIndex);
 
 
-        function mycallback(d) {
-          var json = d;
+        function mycallback(json) {
           if (json.success) {
             var data = json.data[0];
             V(data);
           } else {
             // 请求失败报错
-            if (json.Message == '远程服务器返回错误: (500) 内部服务器错误。') {
+            if (json.message == '远程服务器返回错误: (500) 内部服务器错误。') {
+            // if (json.Message == '远程服务器返回错误: (500) 内部服务器错误。') {
               document.getElementById("loadMore").style.display = "none";
               var oLi = document.createElement('li');
               oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">没有找到相关信息，请重新查询</p><a href = "index.html" class="hotelConSorry2">点击页面 进入搜索页</a></div>';
@@ -461,6 +497,7 @@ $(window).load(function () {
           }
         }
 
+        data.Parameters = JSON.stringify(data.Parameters)
         if (json.pageIndex == 1) {
             return vlm.loadJson("", JSON.stringify(data), mycallback);
         } else {
