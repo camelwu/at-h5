@@ -7,7 +7,7 @@
     });
 }(jQuery));
 
-var lsf_myweb = {
+var utils = {
     "getbyid": function (id) {
         return document.getElementById(id);
     },
@@ -72,8 +72,8 @@ var lsf_myweb = {
     }
 };
 //storage存储
-var hlHis = lsf_myweb.getSession('asiaHlHistory') || {};
-lsf_myweb.setSession('asiaHlHistory', hlHis);
+var hlHis = utils.getSession('asiaHlHistory') || {};
+utils.setSession('asiaHlHistory', hlHis);
 //把星级英文数字换成汉字
 function num2chin(num) {
     switch (num) {
@@ -385,7 +385,7 @@ function styleChange(id, mytext) {
     //输入框样式改变
     //styleChange('sousou','酒店名/位置')
 
-    var list_oUl = lsf_myweb.getbyid('lsf_list');
+    var list_oUl = utils.getbyid('lsf_list');
     var pWidth = list_oUl.offsetWidth - 125;
     var str = window.location.href;
     var url_json = url2json(str);
@@ -527,7 +527,7 @@ function styleChange(id, mytext) {
         var data_address = data.locationList;
         var data = data.hotelList;
         var timer = null;
-        var oUl = lsf_myweb.getbyid('lsf_list');
+        var oUl = utils.getbyid('lsf_list');
         var liHtml = "";
         var loadSign = document.getElementById("lsf_list").getAttribute("data-index") > 1 ? true : false; //true 加载更多
         //如果不是加载更多，清空节点内容
@@ -590,7 +590,7 @@ function styleChange(id, mytext) {
 
                 //横屏竖屏时改变酒店名宽度
                 var hl_aLi = list_oUl.children;
-                var hl_hname = lsf_myweb.getbyclass(list_oUl, 'hname');
+                var hl_hname = utils.getbyclass(list_oUl, 'hname');
 
                 //懒加载
                 var c = new lazyLoad('lsf_list');
@@ -646,10 +646,10 @@ function styleChange(id, mytext) {
                 });
                 oUl.innerHTML += str;
             }
-            var liFirst = lsf_myweb.getbyclass(oUl, 'l-liFirst')[0];
-            var aLi = lsf_myweb.getbyclass(oUl, 'l-li');
-            var aB = lsf_myweb.getbyclass(oUl, 'l-icon1');
-            var oB = lsf_myweb.getbyclass(oUl, 'l-icon1First')[0];
+            var liFirst = utils.getbyclass(oUl, 'l-liFirst')[0];
+            var aLi = utils.getbyclass(oUl, 'l-li');
+            var aB = utils.getbyclass(oUl, 'l-icon1');
+            var oB = utils.getbyclass(oUl, 'l-icon1First')[0];
             var bOk = true;
             var aOk = {};
             for (var i = 1; i < aLi.length; i++) {
@@ -658,10 +658,10 @@ function styleChange(id, mytext) {
             //联动选项
             //“不限”点击事件
 
-            lsf_myweb.bind(liFirst, 'click', function () {
-                lsf_myweb.removeClass(liFirst, 'l-li3');
+            utils.bind(liFirst, 'click', function () {
+                utils.removeClass(liFirst, 'l-li3');
                 for (var i = 1; i < aLi.length; i++) {
-                    lsf_myweb.removeClass(aLi[i], 'l-li2')
+                    utils.removeClass(aLi[i], 'l-li2')
                 }
                 for (var i = 1; i < aLi.length; i++) {
                     aOk[i] = true;
@@ -671,24 +671,24 @@ function styleChange(id, mytext) {
             //每个地区的点击事件
             for (var i = 1; i < aLi.length; i++) {
                 (function (index) {
-                    lsf_myweb.bind(aLi[index], 'click', function () {
+                    utils.bind(aLi[index], 'click', function () {
                         if (aOk[index]) {
-                            lsf_myweb.addClass(aLi[index], 'l-li2');
+                            utils.addClass(aLi[index], 'l-li2');
                         } else {
-                            lsf_myweb.removeClass(aLi[index], 'l-li2');
+                            utils.removeClass(aLi[index], 'l-li2');
                         }
                         aOk[index] = !aOk[index];
                         var n = 0;
                         for (var j = 1; j < aLi.length; j++) {
                             if (!aOk[j]) {
-                                lsf_myweb.addClass(liFirst, 'l-li3');
+                                utils.addClass(liFirst, 'l-li3');
                                 bOk = false;
                             } else {
                                 n++;
                             }
                         }
                         if (n == aLi.length - 1) {
-                            lsf_myweb.removeClass(liFirst, 'l-li3');
+                            utils.removeClass(liFirst, 'l-li3');
                             bOk = true;
                         }
                     });
@@ -724,7 +724,7 @@ function styleChange(id, mytext) {
     //历史记忆功能
     //推荐排序实现记忆功能
     function sortHistory() {
-        var hlSortLi = lsf_myweb.getbyid('rank').children;
+        var hlSortLi = utils.getbyid('rank').children;
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
         console.log(myAsiaHlHistory);
         if (!myAsiaHlHistory.hlSort)
@@ -862,7 +862,7 @@ function styleChange(id, mytext) {
     }
 
     //推荐排序里面的点击事件（交互）
-    lsf_myweb.bind(oBody, 'click', function (ev) {
+    utils.bind(oBody, 'click', function (ev) {
         var oEvent = ev || event;
         var oSrc = oEvent.srcElement || oEvent.target;
         hlHis.hlSort = hlHis.hlSort || {};
@@ -888,14 +888,14 @@ function styleChange(id, mytext) {
                 hlHis.hlSort.chinese = '好评优先';
                 hlHis.hlSort.english = 'ReviewscoreDESC';
             }
-            lsf_myweb.setSession('asiaHlHistory', hlHis);
+            utils.setSession('asiaHlHistory', hlHis);
             //页码重置
             url_json.pageIndex = 1;
             M(url_json);
         }
     });
     //筛选里面确定按钮的点击事件（交互）
-    lsf_myweb.bind(oBody, 'click', function (ev) {
+    utils.bind(oBody, 'click', function (ev) {
         var oEvent = ev || event;
         var oFilter = document.getElementById('screen');
         var oSrc = oEvent.srcElement || oEvent.target;
@@ -911,7 +911,7 @@ function styleChange(id, mytext) {
             var hl_filter_star = '';
             var hl_filter_type = '';
 
-            var hl_star_type = lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'), 's-li1');
+            var hl_star_type = utils.getbyclass(utils.getbyid('screen'), 's-li1');
             hlHis.hlFilter = hlHis.hlFilter || {};
             hlHis.hlFilter.chinese = hlHis.hlFilter.chinese || "";
             hlHis.hlFilter.star = hlHis.hlFilter.star || "";
@@ -1022,7 +1022,7 @@ function styleChange(id, mytext) {
             hlHis.hlFilter.chinese = hl_filter_chinese.substring(0, (hl_filter_chinese.length - 1));
             hlHis.hlFilter.hotelType = hl_filter_type.substring(0, (hl_filter_type.length - 1));
             hlHis.hlFilter.star = hl_filter_star.substring(0, (hl_filter_star.length - 1));
-            lsf_myweb.setSession('asiaHlHistory', hlHis);
+            utils.setSession('asiaHlHistory', hlHis);
 
             url_json.StarRating = hl_star_str;
             url_json.Category = hl_type_str;
@@ -1046,7 +1046,7 @@ function styleChange(id, mytext) {
         };
     });
     //位置按钮里面的城市实现筛选交互
-    lsf_myweb.bind(oBody, 'click', function (ev) {
+    utils.bind(oBody, 'click', function (ev) {
         var oEvent = ev || event;
         var oLocation = document.getElementById('location');
         var loca_con = document.getElementById('loca_con');
@@ -1062,7 +1062,7 @@ function styleChange(id, mytext) {
         var oSrc = oEvent.srcElement || oEvent.target;
         var locationList = '';
         if (oSrc.getAttribute('id') == 'l_but') {
-            var targetLi = lsf_myweb.getbyclass(lsf_myweb.getbyid('l-ul'), 'l-li2');
+            var targetLi = utils.getbyclass(utils.getbyid('l-ul'), 'l-li2');
             for (var i = 0; i < targetLi.length; i++) {
                 var cityName = targetLi[i].children[0];
                 locationList += cityName.innerHTML + '$';
@@ -1071,7 +1071,7 @@ function styleChange(id, mytext) {
                 }
             }
             hlHis.hlLocation.list = locationList;
-            lsf_myweb.setSession('asiaHlHistory', hlHis);
+            utils.setSession('asiaHlHistory', hlHis);
             url_json.LocationList = locationList;
             //页码重置
             url_json.pageIndex = 1;
@@ -1079,16 +1079,16 @@ function styleChange(id, mytext) {
         };
         if (oSrc.getAttribute("id") == 'l_clearBtn') {
             var oUl = document.getElementById("l-ul");
-            var liFirst = lsf_myweb.getbyclass(oUl, 'l-liFirst')[0];
-            var aLi = lsf_myweb.getbyclass(oUl, 'l-li');
+            var liFirst = utils.getbyclass(oUl, 'l-liFirst')[0];
+            var aLi = utils.getbyclass(oUl, 'l-li');
             var aOk = {};
             for (var i = 1; i < aLi.length; i++) {
                 aOk[i] = true;
             }
 
-            lsf_myweb.removeClass(liFirst, 'l-li3');
+            utils.removeClass(liFirst, 'l-li3');
             for (var i = 1; i < aLi.length; i++) {
-                lsf_myweb.removeClass(aLi[i], 'l-li2')
+                utils.removeClass(aLi[i], 'l-li2')
             }
             for (var i = 1; i < aLi.length; i++) {
                 aOk[i] = true;
@@ -1155,14 +1155,14 @@ function styleChange(id, mytext) {
         //url_json.pageSize;
         M(url_json);
     }
-    lsf_myweb.bind(document.getElementById("loadMore"), 'click', function (event) {
+    utils.bind(document.getElementById("loadMore"), 'click', function (event) {
         loadMore();
     });
     /*
     function loadMore(scrollContainerId){
-        var listContainer = lsf_myweb.getbyid(scrollContainerId);
+        var listContainer = utils.getbyid(scrollContainerId);
         var listContainerHeight = 0;
-        var loadMore = lsf_myweb.getbyid("load-more");
+        var loadMore = utils.getbyid("load-more");
         var loadMoreRect = "";
         var windowHeight = window.innerHeight;
         var pageIndex = 1;
@@ -1170,7 +1170,7 @@ function styleChange(id, mytext) {
         var topAfter = 0;
         var ua = navigator.userAgent;
 
-        lsf_myweb.bind(listContainer,'touchstart',function(event){
+        utils.bind(listContainer,'touchstart',function(event){
             //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
             //for android
 
@@ -1180,10 +1180,10 @@ function styleChange(id, mytext) {
                 load();
             }
         });
-        lsf_myweb.bind(listContainer,'touchmove',function(event){
+        utils.bind(listContainer,'touchmove',function(event){
 
         });
-        lsf_myweb.bind(listContainer,'touchend',function(event){
+        utils.bind(listContainer,'touchend',function(event){
             topAfter = loadMore.getBoundingClientRect().top;
             load();
         });
