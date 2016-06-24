@@ -546,8 +546,8 @@ a.goback {
     position: absolute;
     top: 0;
     right: 0;
-    background: url(../../images/ui/icon_common.png);
-    background-size: 7.9rem 5.13rem;
+    background: url(../../images/ui.1.0/icon_common.png);
+    background-size: 7.9rem 7.83rem;
     background-position: -4.70rem -1.48rem;
     width: 0.47rem;
     height: 0.47rem;
