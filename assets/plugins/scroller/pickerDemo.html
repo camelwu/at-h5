@@ -12,7 +12,6 @@
 
     <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
     <link href="picker.css" rel="stylesheet" type="text/css">
-    <script src="http://10.6.10.34:1234/target/target-script-min.js#anonymous"></script>
     <style>
         .main {
             margin: 0 auto;
@@ -76,6 +75,7 @@
         </header>
         <div class="content">
             <div id="picker" class="button"></div>
+            <div id="picker2" class="button"></div>
             <ul>
                 <li>item 1</li>
                 <li>item 1</li>
@@ -116,7 +116,26 @@
                 values: ['iPhone 4', 'iPhone 4S', 'iPhone 5']
             }, {
                 values: ['iPhone 4', 'iPhone 4S', 'iPhone 5']
-            }]
+            }],
+            value: ['iPhone 5', 'iPhone 4S', 'iPhone 5'],
+            callback: function(arrayData) {
+                console.info(arrayData);
+                $("#picker").html(arrayData.join(" "));
+            }
+        });
+
+        var myDate2 = new ATplugins.Picker({
+            input: '#picker2',
+            cols: [{
+                values: ["2016", "2015"]
+            }, {
+                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5']
+            }],
+            value: ['2016', 'iPhone 4S'],
+            callback: function(arrayData) {
+                console.info(arrayData);
+                $("#picker2").html(arrayData.join(" "));
+            }
         });
 
     </script>
