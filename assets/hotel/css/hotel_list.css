@@ -322,7 +322,8 @@ li {
 
 .s-ul {
     margin: .2rem 0 0 .4rem;
-    padding: 0 .4rem .4rem 0 list-style-type: none;
+    padding: 0 .4rem .4rem 0;
+    list-style-type: none;
     overflow: hidden;
     border-bottom: 1px solid #dedede;
     /*padding-bottom: .36rem;*/
