@@ -374,8 +374,8 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   position: absolute;
   right: .1rem;
   top: .24rem;
-  width: .42rem;
-  height: .42rem;
+  width: .48rem;
+  height: .48rem;
   background-position: -3.42rem -4.33rem;
 }
 .search_button {
