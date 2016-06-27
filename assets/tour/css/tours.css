@@ -206,8 +206,22 @@ i,em{
 .hotel_list .grade{
     padding-top:0.1rem;
     color: #999;
+  font-size:0.24rem;
 }
-
+.score{
+  color: #999;
+  font-size: 0.24rem;
+  /*margin-top: 0.08rem;*/
+  margin-bottom: 0.1rem;
+}
+.h-address{
+  width: 3rem;
+  color: #999;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-top:0.04rem;
+}
 .hotel_list .score span{
     padding-right: 0.2rem;
 }
@@ -224,7 +238,7 @@ i,em{
     margin-top: -0.4rem;
     position: absolute;
     right:0.38rem;
-    top: 50%;
+    bottom:0rem;
 }
 .hotel_list .price span:nth-child(1),.hotel_list .price span:nth-child(3){
   font-size: 0.3rem;
