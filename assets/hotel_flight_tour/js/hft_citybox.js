@@ -13,7 +13,7 @@
         hf_ori_history = JSON.parse(hf_ori_history);
         hf_ori_history = hf_ori_history[hf_ori_history.length - 1];
         key = hf_ori_history.toString().split(":")[0];
-        val = hf_ori_history.toString().split(":")[1];
+        val = hf_ori_history.toString().split(":")[1].split(":")[0];
         $("#hf_ori").attr("data-code",key);
         $("#hf_ori").attr("data-name",val);
         $("#hf_ori").html(val);
@@ -23,7 +23,7 @@
       hf_des_history = JSON.parse(hf_des_history);
       hf_des_history = hf_des_history[hf_des_history.length - 1];
       key = hf_des_history.toString().split(":")[0];
-      val = hf_des_history.toString().split(":")[1];
+      val = hf_des_history.toString().split(":")[1].split(":")[0];
       $("#hf_des").attr("data-code",key);
       $("#hf_des").attr("data-name",val);
       $("#hf_des").html(val);
@@ -33,7 +33,7 @@
       hft_ori_history = JSON.parse(hft_ori_history);
       hft_ori_history = hft_ori_history[hft_ori_history.length - 1];
       key = hft_ori_history.toString().split(":")[0];
-      val = hft_ori_history.toString().split(":")[1];
+      val = hft_ori_history.toString().split(":")[1].split(":")[0];
       $("#hft_ori").attr("data-code",key);
       $("#hft_ori").attr("data-name",val);
       $("#hft_ori").html(val);
@@ -43,7 +43,7 @@
       hft_des_history = JSON.parse(hft_des_history);
       hft_des_history = hft_des_history[hft_des_history.length - 1];
       key = hft_des_history.toString().split(":")[0];
-      val = hft_des_history.toString().split(":")[1];
+      val = hft_des_history.toString().split(":")[1].split(":")[0];
       $("#hft_des").attr("data-code",key);
       $("#hft_des").attr("data-name",val);
       $("#hft_des").html(val);
