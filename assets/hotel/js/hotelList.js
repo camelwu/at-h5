@@ -319,6 +319,7 @@ $(window).load(function () {
         preloader.style.display = 'block';
         //status_h.style.display = 'block';
         var hotelList = document.getElementById('hotelList');
+        var hoPos = localStorage.getItem('hoPos');
         //hotelList.innerHTML = '';
         json = json || {};
         json.rank = json.rank || ''; //使用默认排序
@@ -331,7 +332,11 @@ $(window).load(function () {
         json.Category = json.Category || '';
         json.StarRating = json.StarRating || '';
         json.LocationList = json.LocationList || '';
-        json.CountryISOCode = decodeURIComponent(json.InterCountryISOCode) || 'SG';
+        if(hoPos=='inter'){
+          json.CountryISOCode = decodeURIComponent(json.InterCountryISOCode) || 'SG';
+        }else{
+          json.CountryISOCode = decodeURIComponent(json.DomCountryISOCode) || 'CN';
+        }
         json.pageIndex = json.pageIndex || 1;
         json.pageSize = json.pageSize || 20;
         var oDate = new Date();
@@ -340,7 +345,7 @@ $(window).load(function () {
         var d = oDate.getDate();
         json.InterCheckInDate = json.InterCheckInDate || y + '-' + m + '-' + d;
         json.InterCheckOutDate = json.InterCheckOutDate || y + '-' + m + '-' + (d + 1);
-        var hoPos = localStorage.getItem('hoPos');
+
         //获得的目的地名字在城市列表里面进行搜索，然后获得英文名字
         var hl_cityListInfo = JSON.parse(window.localStorage.getItem('cityListInfo'));
 
@@ -715,7 +720,7 @@ $(window).load(function () {
         //位置信息 恢复缓存中状态   获取到数据后  再执行一次
         locationHistory();
 
-      
+
         /*每隔30毫秒，读取DOM，以隐藏preloader。此段代码优化后删除*/
         $(function () {
             var timer = null;
@@ -755,8 +760,8 @@ $(window).load(function () {
         }
     }
     sortHistory(myAsiaHlHistory);
-  
-  
+
+
     //筛选 恢复缓存中状态
     function filterHistory(myAsiaHlHistory) {
         if (!myAsiaHlHistory.hlFilter)
@@ -788,7 +793,7 @@ $(window).load(function () {
     }
     filterHistory(myAsiaHlHistory);
 
-  
+
     //位置信息 恢复缓存中状态   获取到数据后  再执行一次
     function locationHistory() {
         var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -1054,7 +1059,7 @@ $(window).load(function () {
         };
     });
 
-  
+
     //加载更多
     utils.bind(document.getElementById("loadMore"), 'click', function() {
       var loadMore = document.getElementById("loadMore");
