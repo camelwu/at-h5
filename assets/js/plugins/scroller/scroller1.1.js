@@ -368,11 +368,13 @@ Scroller.prototype = {
             that.container.style.bottom = 0;
             document.body.style.overflowY = 'hidden';
         } else {
-            that.masker.style.display = 'none';
-            that.container.setAttribute("style", "");
+            if(that.masker){
+              that.masker.style.display = 'none';
+              that.container.setAttribute("style", "");
+            }
             setTimeout(function () {
-                $('#selbox').remove();
-                $('#overlay').remove();
+              $('#selbox').remove();
+              $('#overlay').remove();
             }, 200)
             document.body.style.overflowY = 'auto';
         }
