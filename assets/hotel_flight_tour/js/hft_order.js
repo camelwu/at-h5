@@ -48,7 +48,10 @@ var hftTool ={
   var freetype=vlm.getpara('type');
   //返回资源选择页
   $('#hftFreeBack').click(function(){
+    if( ! $('#choiceAir').length){
       window.location.href='../hotel_flight_tour/hft_choose.html?'+ window.location.search;
+    }
+
   });
   //初始化
   function init() {
