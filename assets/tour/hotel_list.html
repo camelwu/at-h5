@@ -61,11 +61,12 @@
             <div class="grade">
                 <p class="score"><span><i><%= hotels[i].hotelGenInfo.hotelReviewScore %>.0</i>分</span><%= hotels[i].hotelGenInfo.hotelReviewCount %>人点评</p>
                 <span><%= starList(hotels[i].starRating) %></span>
-                <p class="h-address"><%= hotels[i].location %></p>
+              <% if(hotels[i].location != "N/A"){%>
+                <p class="h-address"><%= hotels[i].location %></p><% } %>
                 </div>
             </div>
         <div class="price">
-            <span><% if(hotels[i].currencyCode=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>
+            <span><% if(hotels[i].isBestDeal=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>
             <span class="price-num"><%= hotels[i].avgRatePerPaxInCNY %></span><span>起/人</span>
             </div>
         </li>
