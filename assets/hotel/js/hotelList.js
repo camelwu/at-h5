@@ -690,7 +690,7 @@ $(window).load(function () {
             utils.bind(liFirst, 'click', function () {
                 utils.removeClass(liFirst, 'l-li3');
                 for (var i = 1; i < aLi.length; i++) {
-                    utils.removeClass(aLi[i], 'l-li2')
+                    utils.removeClass(aLi[i], 'l-li-active')
                 }
                 for (var i = 1; i < aLi.length; i++) {
                     aOk[i] = true;
@@ -702,9 +702,9 @@ $(window).load(function () {
                 (function (index) {
                     utils.bind(aLi[index], 'click', function () {
                         if (aOk[index]) {
-                            utils.addClass(aLi[index], 'l-li2');
+                            utils.addClass(aLi[index], 'l-li-active');
                         } else {
-                            utils.removeClass(aLi[index], 'l-li2');
+                            utils.removeClass(aLi[index], 'l-li-active');
                         }
                         aOk[index] = !aOk[index];
                         var n = 0;
@@ -825,7 +825,7 @@ $(window).load(function () {
             for (var i = 0; i < obj.length; i++) {
                 for (var j = 0; j < locationLen; j++) {
                     if (obj[i].firstChild.innerText == locationList[j]) {
-                        obj[i].classList.add('l-li2');
+                        obj[i].classList.add('l-li-active');
                     }
                 }
             }
@@ -1039,7 +1039,7 @@ $(window).load(function () {
         var oSrc = oEvent.srcElement || oEvent.target;
         var locationList = '';
         if (oSrc.getAttribute('id') == 'l_but') {
-            var targetLi = utils.getbyclass(utils.getbyid('l-ul'), 'l-li2');
+            var targetLi = utils.getbyclass(utils.getbyid('l-ul'), 'l-li-active');
             for (var i = 0; i < targetLi.length; i++) {
                 var cityName = targetLi[i].children[0];
                 locationList += cityName.innerHTML + '$';
@@ -1065,7 +1065,7 @@ $(window).load(function () {
 
             utils.removeClass(liFirst, 'l-li3');
             for (var i = 1; i < aLi.length; i++) {
-                utils.removeClass(aLi[i], 'l-li2')
+                utils.removeClass(aLi[i], 'l-li-active')
             }
             for (var i = 1; i < aLi.length; i++) {
                 aOk[i] = true;

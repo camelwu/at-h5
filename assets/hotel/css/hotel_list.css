@@ -487,7 +487,7 @@ li {
     margin-right: .4rem;
 }
 
-.l-li2 .l-icon1 {
+.l-li-active .l-icon1 {
     float: right;
     display: block;
     margin-top: .3rem;
