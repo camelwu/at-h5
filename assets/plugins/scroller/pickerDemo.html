@@ -127,9 +127,11 @@
         var myDate2 = new ATplugins.Picker({
             input: '#picker2',
             cols: [{
-                values: ["2016", "2015"]
+                values: ["2016", "2015"],
+                width: '30%'
             }, {
-                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5']
+                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5'],
+                width: '70%'
             }],
             value: ['2016', 'iPhone 4S'],
             callback: function(arrayData) {
