@@ -89,6 +89,19 @@ $(window).load(function () {
 });
 
 
+/**
+ *  http://jira.asiatravel.net:8088/browse/H5-1397
+ *  问题描述：酒店列表中，根据选中的位置传参，如locationList:'Sentosa Island$City Hall$Bugis Vicinity$Bugis Vicinity'。返回新的地理位置locationList:["Sentosa Island", "City Hall", "Bugis Vicinity"]，这时不应该将选中的位置存起，否则下次刷新页面会造成丢失其他地理位置，导致查询的列表结果不正确
+ *
+ *  解决方式：
+ *  后端
+ *    改为第一次请求，返回一个全量的地理位置信息。
+ *  前端
+ *    进入列表页，缓存全量位置信息
+ *    刷新页面或返回到当前页面，缓存全量位置信息；如果过滤条件未变更(刷新页面、详情页回退)，使用Storage中的全量位置信息
+ *
+ */
+
 (function () {
   // 获取href中的参数
   var str = window.location.href;
@@ -97,7 +110,8 @@ $(window).load(function () {
   var list_oUl = utils.getbyid('hotelList');
 
   var oBody = document.getElementsByTagName('body')[0];
-  var addressBok = true;
+  // 初始化加载列表标记
+  var addressFlag = true;
 
   var preloader = document.getElementById('preloader');
 
@@ -514,8 +528,8 @@ $(window).load(function () {
     //数据展示部分
     function renderList(data) {
         if (!data) return;
-        var data_address = data.locationList;
-        var data = data.hotelList;
+        var locationList = data.locationList;
+        var hotelList = data.hotelList;
         var oUl = utils.getbyid('hotelList');
         var liHtml = "";
         var loadSign = document.getElementById("hotelList").getAttribute("data-index") > 1 ? true : false; //true 加载更多
@@ -523,40 +537,40 @@ $(window).load(function () {
         if (!loadSign) {
             list_oUl.innerHTML = "";
         }
-        if (data.length) {
-            for (var i = 0; i < data.length; i++) {
-                var str1 = data[i].starRating.substring(0, 1);
+        if (hotelList.length) {
+            for (var i = 0; i < hotelList.length; i++) {
+                var str1 = hotelList[i].starRating.substring(0, 1);
                 var str2 = '';
                 var str3 = '';
                 var str4 = '';
-                if (data[i].isFreeWiFi) {
+                if (hotelList[i].isFreeWiFi) {
                     //str2+='<b class="hl-icon1">免费wifi</b>';
                     str2 += '<span class="h-wifi hotel_content_wifi"></span>';
                 }
-                if (data[i].isFreeTransfer) {
+                if (hotelList[i].isFreeTransfer) {
                     //str2+='<b class="hl-icon2">免费接送</b>';
                     str2 += '<span class="h-transfer hotel_content_transfer"></span>';
                 }
-                if (data[i].isCashRebate) {
+                if (hotelList[i].isCashRebate) {
                     //str3 = '<div class="h-div1 hotel_content_div1">返现</div>';
                 }
-                if (data[i].isFreeCityTour) {
+                if (hotelList[i].isFreeCityTour) {
                     //str4 = '<div class="h-div1 hotel_content_div1">免费景点</div>';
                 }
 
                 //有地区地址就给地址加括号，没有就不加
-                /*if (data[i].location) {
-                	data[i].location = '(' + data[i].location + ')';
+                /*if (hotelList[i].location) {
+                	hotelList[i].location = '(' + hotelList[i].location + ')';
                 }*/
 
                 var scoreHtml = "";
-                if (!data[i].hotelReviewScore && !data[i].hotelReviewCount) {
+                if (!hotelList[i].hotelReviewScore && !hotelList[i].hotelReviewCount) {
                     scoreHtml = '<span class="hotel_content_score_span">&nbsp;</span><span>&nbsp;  </span>'
                 } else {
-                    scoreHtml = '<span class="hotel_content_score_span">' + data[i].hotelReviewScore + '分</span><span>' + data[i].hotelReviewCount + '人点评</span>'
+                    scoreHtml = '<span class="hotel_content_score_span">' + hotelList[i].hotelReviewScore + '分</span><span>' + hotelList[i].hotelReviewCount + '人点评</span>'
                 }
-                var namestr = data[i].hotelNameLocale != null && data[i].hotelNameLocale != "" ? data[i].hotelNameLocale + '(' + data[i].hotelName + ')' : data[i].hotelName,
-                    str = '<li class="ho_list hotel_list" data-hotelCode="' + data[i].hotelCode + '" data-InstantConfirmation="' + data[i].InstantConfirmation + '" data-AllOccupancy="' + data[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + scoreHtml + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + data[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + data[i].location + '</p>' + '</div>' + '</li>';
+                var namestr = hotelList[i].hotelNameLocale != null && hotelList[i].hotelNameLocale != "" ? hotelList[i].hotelNameLocale + '(' + hotelList[i].hotelName + ')' : hotelList[i].hotelName,
+                    str = '<li class="ho_list hotel_list" data-hotelCode="' + hotelList[i].hotelCode + '" data-InstantConfirmation="' + hotelList[i].InstantConfirmation + '" hotelList-AllOccupancy="' + hotelList[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + hotelList[i].frontPgImage + '" class="ho_img"/ data-all="' + hotelList[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + scoreHtml + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + hotelList[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + hotelList[i].location + '</p>' + '</div>' + '</li>';
 
                 liHtml += str;
             }
@@ -569,7 +583,7 @@ $(window).load(function () {
 
                 var moreEle = document.getElementById("loadMore");
                 moreEle.style.display = "block";
-                if (data.length < urlArgs.pageSize) {
+                if (hotelList.length < urlArgs.pageSize) {
                     moreEle.setAttribute("data-more", "no");
                     moreEle.innerHTML = "没有更多数据了";
                 } else {
@@ -582,14 +596,14 @@ $(window).load(function () {
                 new lazyLoad('hotelList');
 
                 //获取酒店详情
-                function getDetail(data) {
+                function getDetail(hotelList) {
                   var hotelRefers = document.getElementsByClassName('ho_list');
                   var toDetail = function (that) {
                     var paraObj = {};
                     paraObj.HotelID = that.getAttribute('data-hotelCode');
                     paraObj.HotelCode = that.getAttribute('data-hotelCode');
 
-                    // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
+                    // paraObj.PartnerCode=hotelList[that.index].PartnerCode!=null?hotelList[that.index].PartnerCode:1000;
                     paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
                     paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
 
@@ -615,7 +629,7 @@ $(window).load(function () {
                 }
 
                 //绑定跳转事件
-                getDetail(data);
+                getDetail(hotelList);
 
                 clearTimeout(timer);
             }, 50)
@@ -652,17 +666,16 @@ $(window).load(function () {
             }
         }
         //位置交互部分
-        function hlAddress() {
+        function hlAddress(locationList) {
+            sessionStorage.setItem('hotel-localList', JSON.stringify(locationList));
+
             var oUl = document.getElementById('l-ul');
             //模板添加内容
             oUl.innerHTML = '<li class="l-li l-liFirst">' + '<p class="l-p">不限</p>' + '<b class="l-icon1 l-icon1First"></b>' + '</li>';
 
-            for (var i = 0; i < data_address.length; i++) {
-                var str = '<li class="l-li">' + '<p class="l-p">{$adress$}</p>' + '<b class="l-icon1"></b>' + '</li>';
-                str = str.replace(/\{\$\w+\$\}/g, function (s) {
-                    return data_address[i];
-                });
-                oUl.innerHTML += str;
+            for (var i = 0; i < locationList.length; i++) {
+              var str = '<li class="l-li">' + '<p class="l-p">' + locationList[i] + '</p>' + '<b class="l-icon1"></b>' + '</li>';
+              oUl.innerHTML += str;
             }
             var liFirst = utils.getbyclass(oUl, 'l-liFirst')[0];
             var aLi = utils.getbyclass(oUl, 'l-li');
@@ -712,11 +725,12 @@ $(window).load(function () {
             }
         }
 
+        // 初次请求页面数据成功后，缓存全量地理位置信息
         //如果是第一次执行就加载城市，如果不是第一次执行就不用二次加载了，间接实现历史记忆功能
-        if (addressBok) {
-            hlAddress();
+        if (addressFlag) {
+            hlAddress(locationList);
         }
-        addressBok = false;
+        addressFlag = false;
         //位置信息 恢复缓存中状态   获取到数据后  再执行一次
         locationHistory();
 
@@ -1008,7 +1022,7 @@ $(window).load(function () {
             document.getElementById("h-level").firstElementChild.className = "s-li1";
         };
     });
-    //位置按钮里面的城市实现筛选交互
+    //位置里面的城市实现筛选交互
     utils.bind(oBody, 'click', function (ev) {
         var oEvent = ev || event;
         var oLocation = document.getElementById('location');
