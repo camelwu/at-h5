@@ -463,7 +463,7 @@ $(window).load(function () {
         document.getElementById("hotelList").setAttribute("data-index", json.pageIndex);
 
 
-        function mycallback(json) {
+        function getListByPageCallback(json) {
           if (json.success) {
             var data = json.data[0];
             renderList(data);
@@ -499,20 +499,18 @@ $(window).load(function () {
 
         data.Parameters = JSON.stringify(data.Parameters)
         if (json.pageIndex == 1) {
-            return vlm.loadJson("", JSON.stringify(data), mycallback);
+            return vlm.loadJson("", JSON.stringify(data), getListByPageCallback);
         } else {
-            return vlm.loadJson("", JSON.stringify(data), mycallback, false, false, true);
+            return vlm.loadJson("", JSON.stringify(data), getListByPageCallback, false, false, true);
         }
 
     }
 
     //数据展示部分
     function renderList(data) {
-        if (!data)
-            return;
+        if (!data) return;
         var data_address = data.locationList;
         var data = data.hotelList;
-        var timer = null;
         var oUl = utils.getbyid('hotelList');
         var liHtml = "";
         var loadSign = document.getElementById("hotelList").getAttribute("data-index") > 1 ? true : false; //true 加载更多
@@ -574,45 +572,42 @@ $(window).load(function () {
                     moreEle.innerHTML = "点击加载更多";
                 }
 
-                //横屏竖屏时改变酒店名宽度
-                var hl_aLi = list_oUl.children;
-                var hl_hname = utils.getbyclass(list_oUl, 'hname');
 
                 //懒加载
-                var c = new lazyLoad('hotelList');
+                new lazyLoad('hotelList');
 
-              //获取酒店详情
-              function getDetail(data) {
-                var hotelRefers = document.getElementsByClassName('ho_list');
-                var toDetail = function (that) {
-                  var paraObj = new Object();
-                  paraObj.HotelID = that.getAttribute('data-hotelCode');
-                  paraObj.HotelCode = that.getAttribute('data-hotelCode');
+                //获取酒店详情
+                function getDetail(data) {
+                  var hotelRefers = document.getElementsByClassName('ho_list');
+                  var toDetail = function (that) {
+                    var paraObj = {};
+                    paraObj.HotelID = that.getAttribute('data-hotelCode');
+                    paraObj.HotelCode = that.getAttribute('data-hotelCode');
 
-                  // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
-                  paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
-                  paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
+                    // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
+                    paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
+                    paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
 
-                  paraObj.CheckInDate = urlArgs.InterCheckInDate;
-                  paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
-                  paraObj.NumRoom = urlArgs.NumRoom;
-                  paraObj.NumAdult = urlArgs.NumAdult;
-                  paraObj.NumChild = urlArgs.NumChild;
+                    paraObj.CheckInDate = urlArgs.InterCheckInDate;
+                    paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
+                    paraObj.NumRoom = urlArgs.NumRoom;
+                    paraObj.NumAdult = urlArgs.NumAdult;
+                    paraObj.NumChild = urlArgs.NumChild;
 
-                  var paramStr = "";
-                  for (var attr in paraObj) {
-                    paramStr += "&" + attr + "=" + paraObj[attr];
+                    var paramStr = "";
+                    for (var attr in paraObj) {
+                      paramStr += "&" + attr + "=" + paraObj[attr];
+                    }
+                    paramStr = paramStr.slice(1);
+                    window.location.href = 'hotel_detail.html?' + paramStr;
                   }
-                  paramStr = paramStr.slice(1);
-                  window.location.href = 'hotel_detail.html?' + paramStr;
-                }
-                for (var i = 0; i < hotelRefers.length; i++) {
-                  hotelRefers[i].onclick = function () {
-                    var that = this;
-                    toDetail(that);
+                  for (var i = 0; i < hotelRefers.length; i++) {
+                    hotelRefers[i].onclick = function () {
+                      var that = this;
+                      toDetail(that);
+                    }
                   }
                 }
-              }
 
                 //绑定跳转事件
                 getDetail(data);
