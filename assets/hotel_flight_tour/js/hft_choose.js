@@ -61,7 +61,6 @@ var hftChoose = {
     var priceTotal = document.querySelector('.priceTotal'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.header_back');
     var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo'),temArray = [];
     var roomUl = document.querySelector('.roomUl'), checkMoreData = document.querySelector('.check-more-room'), shadowEle = document.querySelector('.shadow'), storage = window.sessionStorage;
-   // that.curChosenTourInfo = {tourId:'', chosenDate:''};
     if (that.type == 2) {
       tourOuter = document.querySelector('.tourOuter');
       chooseDateOuter = document.querySelector('.chooseDate');
@@ -500,7 +499,6 @@ var hftChoose = {
       window.localStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds', JSON.stringify(originAirIds));
       resultData.hotelInfo.starRating = hftChoose.starRatingStorage(resultData.hotelInfo.starRating);
-
       that.operationData = resultData;
       that.selectedRoomHandler(resultData).createTags(resultData).delayLoadImage().createPriceEle(that.selectedRoomId,that.selectedRoom).addEvent();
       $("#status").fadeOut(resultData);
@@ -541,6 +539,8 @@ var hftChoose = {
   },
 
   noResult:function(){
+    var template_header = $("#template_header").html(), header = ejs.render(template_header,{});
+    $('#header').html(header);
     $("#status").fadeOut();
     $("#preloader").delay(400).fadeOut("medium");
     var backFun = function () {
