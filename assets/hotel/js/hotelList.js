@@ -529,6 +529,11 @@ $(window).load(function () {
     function renderList(data) {
         if (!data) return;
         var locationList = data.locationList;
+        // 未查询过位置，缓存全量位置信息
+        if(urlArgs.LocationList === '') {
+          sessionStorage.setItem('hotel-locationList', JSON.stringify(locationList));
+        }
+
         var hotelList = data.hotelList;
         var oUl = utils.getbyid('hotelList');
         var liHtml = "";
@@ -667,7 +672,8 @@ $(window).load(function () {
         }
         //位置交互部分
         function hlAddress(locationList) {
-            sessionStorage.setItem('hotel-localList', JSON.stringify(locationList));
+            locationList = utils.getSession('hotel-locationList');
+            locationList = locationList ? locationList : [];
 
             var oUl = document.getElementById('l-ul');
             //模板添加内容
@@ -817,14 +823,14 @@ $(window).load(function () {
         var hLocationLi = hLocation.children
 
         function resetStatus(obj) {
-            var locationList = myAsiaHlHistory.hlLocation.list.split("$");
-            var locationLen = locationList.length;
+            var selectedLocationList = myAsiaHlHistory.hlLocation.list.split("$");
+            var locationLen = selectedLocationList.length;
             if (locationLen > 1 && hLocationLi[0]) {
                 hLocationLi[0].classList.add("l-li3");
             }
             for (var i = 0; i < obj.length; i++) {
                 for (var j = 0; j < locationLen; j++) {
-                    if (obj[i].firstChild.innerText == locationList[j]) {
+                    if (obj[i].firstChild.innerText == selectedLocationList[j]) {
                         obj[i].classList.add('l-li-active');
                     }
                 }
