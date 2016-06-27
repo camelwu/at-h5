@@ -65,9 +65,9 @@
 }
 
 .picker_modal .toolbar + .picker_modal_inner {
-    height: -webkit-calc(100% - 44px);
-    height: -moz-calc(100% - 44px);
-    height: calc(100% - 44px);
+    height: -webkit-calc(100% - 0.88rem);
+    height: -moz-calc(100% - 0.88rem);
+    height: calc(100% - 0.88rem);
 }
 
 .picker_items {
@@ -126,9 +126,9 @@
 }
 
 .picker_item {
-    height: 36px;
-    line-height: 36px;
-    padding: 0 10px;
+    height: .72rem;
+    line-height: .72rem;
+    padding: 0 .1rem;
     white-space: nowrap;
     position: relative;
     overflow: hidden;
@@ -158,13 +158,13 @@
 }
 
 .picker_center_highlight {
-    height: 36px;
+    height: .72rem;
     box-sizing: border-box;
     position: absolute;
     left: 0;
     width: 100%;
     top: 50%;
-    margin-top: -18px;
+    margin-top: -.36rem;
     pointer-events: none;
 }
 
