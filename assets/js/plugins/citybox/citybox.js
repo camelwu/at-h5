@@ -1934,10 +1934,11 @@
     setcityboxHistory:function(dom,cityCode,cityName,countryCode,type){
       var tmpdata = [];
       var newHistoryCityData = [cityCode+":"+cityName+"|"+countryCode];
-      var cityboxHistoryData = localStorage.getItem(""+globalType || type+"_history");
+      globalType = globalType || type;
+      var cityboxHistoryData = localStorage.getItem(""+globalType+"_history");
       if(!cityboxHistoryData){
         tmpdata.push(newHistoryCityData);
-        localStorage.setItem(""+globalType || type+"_history",JSON.stringify(tmpdata));
+        localStorage.setItem(""+globalType+"_history",JSON.stringify(tmpdata));
       }else{
         cityboxHistoryData = JSON.parse(cityboxHistoryData);
         for (var i = cityboxHistoryData.length-1;i >= 0;i--){
@@ -1947,7 +1948,7 @@
             Method["remove"](cityboxHistoryData,i);
             cityboxHistoryData.push(tmpdata);
             tmpdata = cityboxHistoryData;
-            localStorage.setItem(""+globalType|| type+"_history",JSON.stringify(tmpdata));
+            localStorage.setItem(""+globalType+"_history",JSON.stringify(tmpdata));
 
             return;
           }
@@ -1959,7 +1960,7 @@
         }
         cityboxHistoryData.push(newHistoryCityData);
         tmpdata = cityboxHistoryData;
-        localStorage.setItem(""+globalType || type+"_history",JSON.stringify(tmpdata));
+        localStorage.setItem(""+globalType+"_history",JSON.stringify(tmpdata));
       }
 
     },
