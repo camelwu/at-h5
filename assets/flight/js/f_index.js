@@ -459,7 +459,7 @@ var fIndexModal = {
                     "pageNo": 1,
                     "pageSize": 10,
                     "internationalOrDomestic": getTripType(),
-                    "hasTax": 1,
+                    "hasTax": getTripType() == "international"?1:0,
                     "isClearAll": 1,
                     "fromCity": cityEles[0].querySelector('b').innerHTML,
                     "toCity": cityEles[1].querySelector('b').innerHTML
