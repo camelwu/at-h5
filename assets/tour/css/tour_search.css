@@ -1122,8 +1122,14 @@ section.hotelInfo_numb_room .title {
 }
 
 .hotelInfo_numb_people .childAge input {
-  width: 60%;
+  width: 100%;
   font-size: .28rem;
+}
+
+.hotelInfo_numb_people .childAge .child-sui {
+  position: absolute;
+  right: .08rem;
+  top: 0;
 }
 
 .zy_price_control span{
