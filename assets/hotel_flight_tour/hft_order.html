@@ -166,7 +166,7 @@
         </div>
     </div>
     <!--预定footer-->
-    <div class="order_footer clearfix">
+    <div class="order_footer clearfix" id="showHide">
       <div class="order_num fl">
         <div class="order_num_tab clearfix">
           <span class="num1 fl">总额：<i></i></span>
@@ -444,7 +444,7 @@
         function editPassager(obj) {
              var id = $(obj).find("input").eq(0).val();
              var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
-          vlm.f_choice('orderTraveller', 'fx', 'traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false);
+          vlm.f_choice('orderTraveller', 'fx', 'traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false,null,'#showHide');
         }
 
     </script>

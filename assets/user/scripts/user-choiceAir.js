@@ -146,6 +146,9 @@
         window.close();
       } else {
         ifrCilent.style.visibility='hidden';
+        if($(ifrCilent.parentNode).find('#showHide')){
+          $(ifrCilent.parentNode).find('#showHide').css('visibility','visible');
+        }
         setTimeout(function(){
           ifrCilent.parentNode.removeChild(ifrCilent);
         },300);

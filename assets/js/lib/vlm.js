@@ -1125,7 +1125,7 @@
 				}
 			}, true);
 			return back;
-		}, _choice = function(elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate, isShowChinaName, isShowContact, callback) {
+		}, _choice = function(elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate, isShowChinaName, isShowContact, callback,showHideId) {
 			//if(arguments.length<1){return ;}
 			//var arg = arguments.callee.slice(this);
 			var type = '', title = '';
@@ -1158,6 +1158,9 @@
 			//var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");isShowChinaName,isShowContact
 			var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callback);
 			document.body.appendChild(choice);
+      if(showHideId){
+        $(showHideId).css('visibility','hidden');
+      }
 
 			//choice.location = urls;
 		}, createIframe = function(urlstr, id) {
