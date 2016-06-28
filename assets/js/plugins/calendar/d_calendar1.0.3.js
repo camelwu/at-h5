@@ -863,4 +863,4 @@
         }
     };
     exports.Calender = Calender;
-}(typeof exports === 'undefined' ? (this.ATplugins = {}) : exports));
+}(typeof exports === 'undefined' ? (this.ATplugins ? this.ATplugins : this.ATplugins = {}) : exports));

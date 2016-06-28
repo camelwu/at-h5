@@ -401,9 +401,9 @@ section.flight_company .aw_price span:last-child {
 
 section.flight_company li.cur b.hft_icon {
   position: absolute;
-  background-image: url(../../../images/ui.1.0/icon_common.png);
-  background-size: 7.90rem 7.83rem;
-  background-position: -4.73rem -1.46rem;
+  background-image: url(../../../images/ui/icon_common.png);
+  background-size: 7.5rem 4.54rem;
+  background-position: -4.47rem -1.29rem;
   width: 0.42rem;
   height: 0.42rem;
   right: 0;
