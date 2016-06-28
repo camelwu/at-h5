@@ -560,7 +560,6 @@ var fIndexModal = {
         endDay = r.getFullYear() + "-" + endStrMonth + "-" + endStrDate;
         return [startDay, endDay];
     },
-
     buttonStatusHandler: function () {
         var adultIs = document.querySelectorAll(".adult i"),
             childIs = document.querySelectorAll(".child i"),

@@ -2,15 +2,15 @@ var data2 = '', roomdata = '';
 (function() {
 	var temObj = JSON.parse(sessionStorage.getItem("hftHotelDetailPara"));
 	var urlIf = window.location.search;
-	var ulrRoomId = urlIf.substring(23) - 0;
+	var ulrRoomId = window.localStorage.getItem('selectedRoomId');
 	var departDate = temObj.departDate.substring(0, 10);
 	var enterDate = temObj.returnDate.substring(0, 10);
   var dataTransferObj = null, flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
 	temObj.departDate = departDate;
 	temObj.returnDate = enterDate;
-	if (!ulrRoomId) {
+	/*if (!ulrRoomId) {
 		delete temObj.selectedRoomID
-	}
+	}*/
 
 	//酒店详情页的入参 存入session
 	var fhtHotelCharacteristic = {};
@@ -152,10 +152,11 @@ var data2 = '', roomdata = '';
 				var roomID = roomdata[i].roomID;
         flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;
         window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
+        window.localStorage.setItem('selectedRoomId',roomID);
         window.timer2 = setTimeout(function () {
           window.clearTimeout(window.timer2);
           window.timer2 = null;
-          window.location.href = window.location.href = 'hft_choose.html?type=1&selectedRoomId=' + roomID;
+          window.location.href = window.location.href = 'hft_choose.html?type=1';
         }, 500);
 			})
 		});

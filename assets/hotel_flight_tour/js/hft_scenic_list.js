@@ -1,6 +1,3 @@
-/**
- * Created byon 2016/5/5.
- */
 (function() {
   var filterSign = false;
   var core = function() {
@@ -184,9 +181,10 @@
   window.localStorage.removeItem('hftCreateOrderPara');
   window.sessionStorage.removeItem('hotelAdditionalPrice');
   window.sessionStorage.removeItem('tempChooseTourDate');
+  window.localStorage.removeItem('selectedRoomId')
 })();
 (function(){
   $(".all_elements")[0].addEventListener("scroll",function(){
     $(".header")[0].style.position="fixed";
-    });
+  });
 })()

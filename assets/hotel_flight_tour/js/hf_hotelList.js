@@ -6,7 +6,6 @@
     "use strict";
     //获取选中的房间id
     var ulrRoom = window.location.search;
-
     function initFooter(data) {
         var menu_data = {
                 hotelSort: {

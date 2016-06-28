@@ -151,7 +151,6 @@
 		  sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
 				window.location.href = 'hft_hotel_detail.html'+chooseUrl;
 			});
-
 			//加载更多按钮
 			clickMore(data);
 		}else{
