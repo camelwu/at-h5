@@ -46,7 +46,11 @@
           }
           var htmlc = $("#CityDetile").html();
           var htmlC = ejs.render(htmlc, data.data);
-          $("#CityList").html(htmlC);
+
+          // (H5-1938)点击周边城市后，上面的周边城市不做改变，下面的机酒列表改变
+          if (!filterSign) {
+            $("#CityList").html(htmlC);
+          }
 
           // 清理上次绑定事件（重复绑定事件造成多次查询接口）
           $("#CityList").off('click');
@@ -71,6 +75,14 @@
                 "ForeEndType" : 3,
                 "Code" : "60100002"
               };
+
+              // 周边城市激活状态切换
+              Array.prototype.forEach.call(tar.parentNode.children, function (el) {
+                el.classList.remove('current');
+              });
+              tar.classList.add('current');
+
+              // 加载机酒列表
               vlm.loadJson('', JSON.stringify(SParameter), callback);
             }
           });
@@ -163,6 +175,8 @@
         width = $(".city_list1").eq(i).outerWidth();
         num += width+10;
       }
+      // rem换算为px会产生小数，导致总和误差为1个像素，顶部菜单会掉下来
+      num += 1;
       //num = num + sum * 60;
       $(".city_box").css({
         'width' : num + 'px'
