@@ -546,7 +546,7 @@ var fIndexModal = {
 
     createDefaultDate: function () {
         var d = arguments[0] ? new Date(arguments[0].replace(/-/g, '/')) : new Date(),
-            s = arguments[0] ? new Date(d.setDate(d.getDate())) : new Date(d.setDate(d.getDate() + 1)),
+            s = arguments[0] ? new Date(d.setDate(d.getDate())) : new Date(d.setDate(d.getDate() + 2)),
             r = new Date(d.setDate(d.getDate() + 2)),
             startDay, endDay, startStrMonth = '',
             startStrDate = '',
