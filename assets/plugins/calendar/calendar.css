@@ -18,7 +18,7 @@
     top: 0;
     left: 0;
     pointer-events: all;
-    z-index: 101;
+    z-index: 999;
     background-color: #fcfcfc;
     width: 100%;
     min-height: .88rem;
@@ -76,20 +76,23 @@
 }
 
 .calendar_date {
-    position: absolute;
-    z-index: 100;
+    position: fixed;
+    z-index: 800;
     overflow: auto;
     height: 100%;
     width: 100%;
     left: 0px;
-    top: 2.86rem;
+    /*    top: 2.86rem;*/
     padding-bottom: 1.18rem;
     background: rgb(255, 255, 255);
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    padding-top: 2.86rem;
 }
 
 .calendar_date.no_tiper {
-    top: 1.48rem;
+    /*    top: 1.48rem;*/
+    padding-top: 1.48rem;
 }
 
 .calendar_header.no_tiper .calendar_week {
@@ -108,7 +111,8 @@
     font-family: Tahoma;
     /*    font-size: .16rem;
     */
-    z-index: 100;
+    z-index: 999;
+    background-color: #fff;
 }
 
 .calendar_tiper .info {
@@ -239,7 +243,8 @@
     top: 2.26rem;
     width: 100%;
     overflow: hidden;
-    z-index: 120;
+    z-index: 999;
+    background-color: #fff;
 }
 
 .calendar_week .date_title {

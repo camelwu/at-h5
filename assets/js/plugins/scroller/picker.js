@@ -378,7 +378,6 @@
                     //col.wrapper.css('transition', 0);
                     Utils.transition(col.wrapper, 0);
                 }
-                e.originalEvent.preventDefault();
 
                 var diff = touchCurrentY - touchStartY;
                 currentTranslate = startTranslate + diff;
