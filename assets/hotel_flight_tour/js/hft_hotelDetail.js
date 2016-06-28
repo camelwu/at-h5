@@ -5,10 +5,6 @@
   //添加当前选中样式  资源选择页有roomId、列表页没有，所以用判断
   var ulrRoom = window.location.search;
   var dataTransferObj = null, flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
-  /*if(ulrRoom){
-   // var ulrRoomId = ulrRoom.substring(40);
-    var ulrRoomId = window.localStorage.getItem('selectedRoomId')
-  }*/
   var ulrRoomId = window.localStorage.getItem('selectedRoomId')
   //酒店详情页的入参 存入session
   var fhtHotelCharacteristic = {};
@@ -109,11 +105,9 @@
         window.clearTimeout(window.timer2);
         window.timer2 = null;
         if(ulrRoom){
-         // window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'&selectedRoomId='+roomID;
           window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24);
         }else{
-         // window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
-         window.location.href = 'hft_choose.html'+chooseUrl;
+           window.location.href = 'hft_choose.html'+chooseUrl;
         }
       }, 500);
     });

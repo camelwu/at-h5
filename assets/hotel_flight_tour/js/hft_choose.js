@@ -128,8 +128,6 @@ var hftChoose = {
             }
           }
           resultEnd = classification(temDates);
-          console.log(resultEnd)
-          console.log(highLightDate)
           tempString = $("#template_date_session").html();
           outputString = ejs.render(tempString, {data: {dataArray:resultEnd,chooseDate:highLightDate}});
           $(".chooseDate").eq(0).html(outputString);
@@ -466,15 +464,6 @@ var hftChoose = {
   selectedRoomHandler:function(){
     var data = arguments[0], that = this, selectedRoomId = window.localStorage.getItem('selectedRoomId');
     this.curData = data;
-    /*if(that.urlParseObj&&that.urlParseObj.selectedRoomId){
-      that.selectedRoomId = that.urlParseObj.selectedRoomId;
-      data.hotelInfo.rooms.forEach(function(item, array){
-        if(item.roomID == that.selectedRoomId){
-          that.selectedRoom = item;
-          return false
-        }
-      })
-    }*/
       if(selectedRoomId){
         that.selectedRoomId = selectedRoomId;
         data.hotelInfo.rooms.forEach(function(item, array){

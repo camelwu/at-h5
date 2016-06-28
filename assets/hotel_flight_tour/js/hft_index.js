@@ -932,6 +932,7 @@ var htf_search = {
       window.localStorage.removeItem('hftCreateOrderPara');
       window.sessionStorage.removeItem('hotelAdditionalPrice');
       window.sessionStorage.removeItem('tempChooseTourDate');
+      window.localStorage.removeItem('selectedRoomId')
     }
 };
 htf_search.init();

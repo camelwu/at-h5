@@ -220,7 +220,6 @@
                 $.alerts.alert(result.message);
             }
         },
-
         check: function () {
             $("#hj_jList li:nth-child(1)").addClass("cur");
         },
