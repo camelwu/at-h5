@@ -656,8 +656,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 #loadMore {
-  height: .48rem;
-  line-height: .48rem;
+  /*height: .48rem;*/
+  line-height: .88rem;
   background: #FFFFFF;
   color: #666666;
   font-size: .28rem;
