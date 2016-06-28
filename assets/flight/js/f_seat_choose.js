@@ -149,7 +149,7 @@ var fSeatChoose = {
   },
 
   init: function () {
-    var flightData = {}, storage = window.sessionStorage;
+    var flightData = {}, storage = window.localStorage;
     flightData = JSON.parse(storage.getItem('currentFlight'));
     this.fadeHandler().createTags({flightInfo: flightData}).delayLoadImage().eventHandler();
 

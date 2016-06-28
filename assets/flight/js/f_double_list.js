@@ -33,7 +33,7 @@ var fDoubleList = {
   },
 
   eventHandler: function () {
-    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage, loadMore = document.querySelector("#loadMore");
+    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.localStorage, loadMore = document.querySelector("#loadMore");
     ;
     for (var i = 0, len = lis.length; i < len; i++) {
       this.addHandler(lis[i], 'click', function () {
@@ -60,7 +60,7 @@ var fDoubleList = {
     return this;
   },
   renderHandler: function () {
-    var result = arguments[0], that = fDoubleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
+    var result = arguments[0], that = fDoubleList, storage = window.localStorage, no_result = document.querySelector('#no_flight_data');
     that.fadeHandler();
     if (result.success && result.code == "200") {
       no_result.style.display = "none";
@@ -90,7 +90,7 @@ var fDoubleList = {
     var tem = {
       start: this.postObj.departDate,
       end: this.postObj.returnDate
-    }, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage, that = this;
+    }, timeObj = {}, fIndexInfoObj = {}, storage = window.localStorage, that = this;
     fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     timeObj[tem.end] = tem.end;
@@ -193,7 +193,7 @@ var fDoubleList = {
   },
 
   loadMoreData: function () {
-    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage;
+    var loadMore = document.querySelector("#loadMore"), storage = window.localStorage;
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {

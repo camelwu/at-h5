@@ -130,7 +130,7 @@ var fIndexModal = {
     historyInitF: function () {
         var str = arguments[0] || "",
             string = "",
-            storage = window.sessionStorage,
+            storage = window.localStorage,
             historyList = document.querySelector('.history_list'),
             historyWrap = document.querySelector('.history_choose_city');
         var hisData = [],
@@ -177,7 +177,7 @@ var fIndexModal = {
    },
     cityChooseHistory: function () {
         var data = arguments[0] || [],
-            storage = window.sessionStorage,
+            storage = window.localStorage,
             historyList = document.querySelector('.history_list'),
             internationalHistory = JSON.parse(storage.getItem('internationalHistory')) || [],
             that = this,
@@ -319,7 +319,7 @@ var fIndexModal = {
         var content = document.querySelector('.content'),
             that = this,
             paraObj = {},
-            storage = window.sessionStorage;
+            storage = window.localStorage;
         var singleWrap = document.querySelector('#timeSingleWrap'),
             doubleWrap = document.querySelector('#timeDoubleWrap');
         that.deg = 0;
@@ -545,7 +545,7 @@ var fIndexModal = {
     },
 
     createDefaultDate: function () {
-        var d = arguments[0] ? new Date(arguments[0].replace(/-/g, '/')) : new Date(),
+        var d = arguments[0]&&new Date(arguments[0].replace(/-/g, '/'))>=new Date()? new Date(arguments[0].replace(/-/g, '/')) : new Date(),
             s = arguments[0] ? new Date(d.setDate(d.getDate())) : new Date(d.setDate(d.getDate() + 2)),
             r = new Date(d.setDate(d.getDate() + 2)),
             startDay, endDay, startStrMonth = '',
@@ -663,7 +663,7 @@ var fIndexModal = {
     },
 
     initHandler: function () {
-        var storage = window.sessionStorage,
+        var storage = window.localStorage,
             fIndexInfoObj = {},
             dateInfoObj = {},
             dateInfo = document.querySelectorAll('.month-day');

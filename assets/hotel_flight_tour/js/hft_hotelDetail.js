@@ -125,7 +125,6 @@
     var hotelAddress = ejs.render(str,data.hotelInfo);
     $('.hotel_detail_msg li.mes2').html(hotelAddress);
   }
-
   //  map
   function map(data){
     latitude = data.hotelInfo.latitude-0;

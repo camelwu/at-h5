@@ -70,7 +70,7 @@ var fSingleList = {
     return this
   },
   eventHandler: function () {
-    var content = document.querySelector('.content'), lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage;
+    var content = document.querySelector('.content'), lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.localStorage;
     for (var i = 0, len = lis.length; i < len; i++) {
       this.addHandler(lis[i], 'click', function () {
         var setId = this.getAttribute('data-set-id');
@@ -97,7 +97,7 @@ var fSingleList = {
   },
 
   renderHandler: function () {
-    var result = arguments[0], that = fSingleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
+    var result = arguments[0], that = fSingleList, storage = window.localStorage, no_result = document.querySelector('#no_flight_data');
     that.fadeHandler();
     if (result.success && result.code == "200") {
       no_result.style.display = "none";
@@ -124,7 +124,7 @@ var fSingleList = {
   },
 
   dateCalender: function () {
-    var tem = {start: this.postObj.departDate}, timeObj = {}, fIndexInfoObj = {},that = this, storage = window.sessionStorage;
+    var tem = {start: this.postObj.departDate}, timeObj = {}, fIndexInfoObj = {},that = this, storage = window.localStorage;
     fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     var dates = document.querySelectorAll('#timeSingle .monthDay'), weeks = document.querySelectorAll('#timeSingle .weekWord');
@@ -164,7 +164,7 @@ var fSingleList = {
   },
 
   loadMoreData: function () {
-    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage, newUrl = "";
+    var loadMore = document.querySelector("#loadMore"), storage = window.localStorage, newUrl = "";
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
