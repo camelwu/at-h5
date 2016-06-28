@@ -50,6 +50,9 @@
           var htmlc = $("#CityDetile").html();
           var htmlC = ejs.render(htmlc, data.data);
           $("#CityList").html(htmlC);
+
+          // 清理上次绑定事件（重复绑定事件造成多次查询接口）
+          $("#CityList").off('click');
           $("#CityList").click(function(e){
             var e = e || window.event,
               tar = e.target || e.srcElement;

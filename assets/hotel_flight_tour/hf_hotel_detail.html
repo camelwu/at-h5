@@ -121,7 +121,7 @@
     <img class="hotelPic" src=<%=hotelPictureURL%> alt="">
 </script>
 <script id="jhf_score" type="text/template">
-    <li class="hotel_name"><%=hotelNameLocale%></li>
+    <li class="hotel_name"><%=hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g,'')%>(<%= hotelName%>)</li>
     <li class="last_child"><%=hotelAddress%></li>
 </script>
 <!--评分、星级、wifi-->

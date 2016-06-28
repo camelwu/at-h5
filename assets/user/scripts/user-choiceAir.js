@@ -145,7 +145,11 @@
       if (window.opener) {
         window.close();
       } else {
-        ifrCilent.parentNode.removeChild(ifrCilent);
+        ifrCilent.style.visibility='hidden';
+        setTimeout(function(){
+          ifrCilent.parentNode.removeChild(ifrCilent);
+        },300);
+
       };
     });
     addPassagerBackBtn.on("click",function(){
