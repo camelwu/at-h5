@@ -80,6 +80,15 @@ var fSeatChoose = {
     }
     return this;
   },
+  parseUrlHandler: function (url, isEncode) {
+    var isEncode = isEncode || false, reg = /([^=&?]+)=([^=&?]+)/g, obj = {}, url = url;
+    url.replace(reg, function () {
+      var arg = arguments;
+      obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+    });
+    return obj;
+  },
+
   delayLoadImage : function() {
     var images = document.getElementsByTagName('img');
     var  loadImage = function(url, error_url,callback,errorFunc) {
@@ -149,7 +158,9 @@ var fSeatChoose = {
   },
 
   init: function () {
-    var flightData = {}, storage = window.localStorage;
+    var flightData = {}, storage = window.localStorage, postObjInfo = this.parseUrlHandler(window.location.href, true);
+    this.postObjInfo = postObjInfo;
+    console.log(this.postObjInfo)
     flightData = JSON.parse(storage.getItem('currentFlight'));
     this.fadeHandler().createTags({flightInfo: flightData}).delayLoadImage().eventHandler();
 

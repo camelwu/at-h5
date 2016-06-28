@@ -45,7 +45,7 @@ var fDoubleList = {
           }
         });
         storage.setItem('currentFlight', JSON.stringify(tem));
-        window.location.href = "f_seat_choose.html?hasTax="+that.postObj.hasTax;
+        window.location.href = "f_seat_choose.html?hasTax="+that.postObj.hasTax+"&internationalOrDomestic="+that.postObj.internationalOrDomestic;
       })
     }
     return this;
