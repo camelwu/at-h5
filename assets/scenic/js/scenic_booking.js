@@ -7,6 +7,36 @@
   var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax,MaxPax,
     OnlyForAdult,MinPaxType, DetailData, SearchPriceData,OrderParam,
     globaldata, ExtendData, pickupInfosData, StartDate, EndDate, recalSearchPrice,historyScrollTop = 0;
+  /**
+   * @description 事件绑定，兼容各浏览器
+   * @param target 事件触发对象
+   * @param type   事件
+   * @param func   事件处理函数
+   */
+  function addEvents(target, type, func) {
+    if (target.addEventListener) {//非ie 和ie9
+        target.addEventListener(type, func, false);
+    }else if (target.attachEvent) { //ie6到ie8
+      target.attachEvent("on" + type, func);
+    }else{//ie5
+      target["on" + type] = func;
+    }
+  };
+  /**
+   * @description 事件移除，兼容各浏览器
+   * @param target 事件触发对象
+   * @param type   事件
+   * @param func   事件处理函数
+   */
+  function removeEvents(target, type, func){
+    if (target.removeEventListener){
+      target.removeEventListener(type, func, false);
+    }else if (target.detachEvent){
+      target.detachEvent("on" + type, func);
+    }else{
+      target["on" + type] = null;
+    }
+  };
 
   /**
    *     监听某个节点属性是否改变
@@ -424,7 +454,9 @@
         $(".js_booking_package_totalprice").html(totalprice);
       },
       priceDetail:function(){
-
+        function stopscroll(e){
+          e.preventDefault();
+        }
         /**
          * 费用明细
          */
@@ -433,13 +465,23 @@
           $("#js_booking_footer_i").addClass("current");
           $(".mask_tips").show();
           $(".js_booking_footer_popprice").animate({bottom: '0rem'},300,function(e){
-
+            var all_elements = document.querySelector(".all_elements");
+            addEvents(all_elements,'touchstart',stopscroll);
+            addEvents(document,'touchmove',stopscroll);
+            //all_elements.addEventListener('touchstart',stopscroll);
+            //document.addEventListener('touchmove',stopscroll);
           });
         },function(e){
           Adapter.updatePriceDetail();
           $("#js_booking_footer_i").removeClass("current");
           $(".js_booking_footer_popprice").animate({bottom: '-7.8rem'},300,function(e){
+            var all_elements = document.querySelector(".all_elements");
+            removeEvents(all_elements,'touchstart',stopscroll);
+            removeEvents(document,'touchmove',stopscroll);
+            //docu.removeEventListener('touchstart',stopscroll,false);
+            //document.removeEventListener('touchmove',stopscroll,false);
             $(".mask_tips").hide();
+
           });
         });
 
