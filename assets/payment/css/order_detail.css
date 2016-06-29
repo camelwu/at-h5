@@ -802,6 +802,8 @@ li.order_tlist2 {
 
 .fht_order_tab .elecheck a{
   color: #333;
+  display: block;
+  height:0.68rem;
 }
 
 .border_light>li:last-child{
