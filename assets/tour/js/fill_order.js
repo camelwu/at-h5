@@ -595,20 +595,16 @@
     "Code": "0208"
   };
   vlm.loadJson("", JSON.stringify(tmp), getDetail_back);
-
   function getDetail_back(ret) {
     var json = ret;
     if (json.success) {
       var data = json.data;
-      console.log(data.tourInfos.length);
       var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
       for( var i=0; i< data.tourInfos.length ; i++) {
         if(data.tourInfos[i].travelDateSpecified){
         var start = data.tourInfos[i].travelDate.substring(0, 10).replace(/-/g, "/"), dd = new Date(start);
         dd.setDate(dd.getDate());
         var week = day_ary[dd.getDay()];
-          console.log(week);
-        start = dd.getFullYear() + "-" + (dd.getMonth() + 1) + "-" + dd.getDate();
           data = $.extend({
             "week": week
           }, data);
@@ -622,7 +618,6 @@
       data = $.extend({
         "noon": noon
       }, data);
-      console.log(data);
       var n;
       for (var k = 0; k < data.hotels[0].rooms.length; k++) {
         if (data.hotels[0].rooms[k].roomID == roomID) {
@@ -685,19 +680,6 @@
       jAlert(json.message, "提示");
     }
   }
-  ////上午下午
-  //var aNoon=$('.travel-noon a');
-  //aNoon.click(function(){
-  //    $(this).addClass('on').siblings().removeClass('on');
-  //    if(aNoon.attr('class') == 'fa-noon on')
-  //    {
-  //        localStorage.noon=0;
-  //    }
-  //    else
-  //    {
-  //        localStorage.noon=1;
-  //    }
-  //});
   $('.open-close').click(function () {
     $('#detailBox').toggle();
     $(this).find('b').toggleClass('cur');
@@ -718,7 +700,4 @@
     var s = oDate.getSeconds();
     localStorage.orderTime = year + '-' + mon + '-' + day + ' ' + h + ':' + m + ':' + s;
   }
-
-
-
 })();
