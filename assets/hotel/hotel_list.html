@@ -110,24 +110,27 @@
     <div id="hl_hiddenBox">
         <!--   排序块   -->
         <div class="r-div" id="r-mb"></div>
-        <ul class="rank" id="rank">
-            <li class="r-li" style="color:rgb(123, 195, 0)">
-                <b class="hl-icon4"></b> 推荐排序
-            </li>
-            <li class="r-li">
-                价格升序
-            </li>
-            <li class="r-li">
-                价格降序
-            </li>
-            <li class="r-li" style="border: none">
-                好评优先
-            </li>
-        </ul>
+        <div class="rank" id="rank">
+            <ul id="rankWrapper">
+                <li class="r-li" style="color:rgb(123, 195, 0)">
+                    <b class="hl-icon4"></b> 推荐排序
+                </li>
+                <li class="r-li">
+                    价格升序
+                </li>
+                <li class="r-li">
+                    价格降序
+                </li>
+                <li class="r-li" style="border: none">
+                    好评优先
+                </li>
+            </ul>
+        </div>
+
         <!--   筛选块   -->
         <div class="r-div" id="s-mb"></div>
         <div class="screen" id="screen">
-            <div class="hl_sc_chil">
+            <div class="hl_sc_chil" id="screenWrapper">
                 <div class="s-but">
                     <p class="cancel" id="cancelBtn">取消</p>
                     <p class="clears" id="clearBtn">清除筛选</p>
@@ -208,18 +211,21 @@
         <div class="r-div" id="l-mb"></div>
         <div class="location" id="location">
             <!--loca_con脱离文档流，p的作用是为了撑开父级-->
-            <p id="loca_conBro"></p>
+            <!--   <p id="loca_conBro"></p>-->
             <div class="loca_con" id="loca_con">
-                <div class="s-but1" id="s_but1">
-                    <div class="s-but">
-                        <p class="cancel" id="l_cancelBtn">取消</p>
-                        <p class="clears" id="l_clearBtn">清除筛选</p>
-                        <p class="sure" id="l_but">确定</p>
+                <div id="locationWrapper">
+                    <div class="s-but1" id="s_but1">
+                        <div class="s-but">
+                            <p class="cancel" id="l_cancelBtn">取消</p>
+                            <p class="clears" id="l_clearBtn">清除筛选</p>
+                            <p class="sure" id="l_but">确定</p>
+                        </div>
                     </div>
-                </div>
-                <ul class="l-ul" id="l-ul">
+                    <ul class="l-ul" id="l-ul">
 
-                </ul>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
@@ -227,8 +233,10 @@
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/lazyLoad.js"></script>
+<script src="../js/plugins/scrollLayer/scrollLayer.js"></script>
 <script src="js/hotelList.js"></script>
 <script src="../js/lib/plugins.js"></script>
+
 
 
 </html>

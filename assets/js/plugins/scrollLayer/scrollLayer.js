@@ -111,7 +111,7 @@
         }
     };
     var scrollLayer = function () {
-        var scrollLayerSelector, scrollContainer;
+        var scrollLayerSelector, wrapperSelector, wrapperContainer, scrollContainer;
         var isTouched, isMoved, touchStartY, touchCurrentY, touchStartTime, touchEndTime, startTranslate, returnTo, currentTranslate, prevTranslate, velocityTranslate, velocityTime;
 
         var animationFrameId;
@@ -120,8 +120,10 @@
 
         var containerHeight, innerColHeight;
 
-        function scroll(scrollLayerSelector) {
+        function scroll(scrollLayerSelector, wrapperSelector) {
             scrollLayerSelector = scrollLayerSelector;
+            wrapperSelector = wrapperSelector;
+            wrapperContainer = $(wrapperSelector);
             scrollContainer = $(scrollLayerSelector);
             _calcSize();
             _eventInit();
@@ -133,17 +135,18 @@
             scrollContainer.children().each(function (index, ele) {
                 innerColHeight += $(ele).height();
             });
+            innerColHeight = wrapperContainer[0].offsetHeight;
             console.info("containerHeight:" + containerHeight);
             console.info("innerColHeight:" + innerColHeight);
-            minTranslate = 5; //default 5px
+            minTranslate = 0; //default 0px
             maxTranslate = innerColHeight > containerHeight ? innerColHeight - containerHeight : 5;
         }
 
         function _eventInit(detach) {
             var method = detach ? 'off' : 'on';
-            scrollContainer[method]('touchstart', handleTouchStart);
-            scrollContainer[method]('touchmove', handleTouchMove);
-            scrollContainer[method]('touchend', handleTouchEnd);
+            wrapperContainer[method]('touchstart', handleTouchStart);
+            wrapperContainer[method]('touchmove', handleTouchMove);
+            wrapperContainer[method]('touchend', handleTouchEnd);
         }
 
         function handleTouchStart(event) {
@@ -156,7 +159,10 @@
 
             touchStartTime = (new Date()).getTime();
 
-            startTranslate = currentTranslate = Utils.getTranslate(scrollContainer[0], 'y');
+            startTranslate = currentTranslate = Utils.getTranslate(wrapperContainer[0], 'y');
+            console.info("touchStartY:" + touchStartY);
+            console.info("touchCurrentY:" + touchCurrentY);
+            console.info("startTranslate:" + startTranslate);
         }
 
         function handleTouchMove(event) {
@@ -170,28 +176,20 @@
             if (!isMoved) {
                 Utils.cancelAnimationFrame(animationFrameId);
                 isMoved = true;
-                startTranslate = currentTranslate = Utils.getTranslate(scrollContainer[0], 'y');
-                Utils.transition(scrollContainer, 0);
+                startTranslate = currentTranslate = Utils.getTranslate(wrapperContainer[0], 'y');
+                Utils.transition(wrapperContainer, 0);
             }
 
             var diff = touchCurrentY - touchStartY;
+
             currentTranslate = startTranslate + diff;
             returnTo = undefined;
-
-            if (currentTranslate < minTranslate) {
-                currentTranslate = minTranslate - Math.pow(minTranslate - currentTranslate, 0.8);
-                returnTo = 'min';
-            }
-            if (currentTranslate > maxTranslate) {
-                currentTranslate = maxTranslate + Math.pow(currentTranslate - maxTranslate, 0.8);
-                returnTo = "max";
-            }
-
-            if (innerColHeight < containerHeight) {
+            console.info("currentTranslate:" + currentTranslate);
+            if (innerColHeight <= containerHeight) {
                 return;
             }
 
-            Utils.transform(scrollContainer, 'translate3d(0,' + currentTranslate + 'px,0)');
+            Utils.transform(wrapperContainer, 'translate3d(0,' + currentTranslate + 'px,0)');
 
             // Calc velocity
             velocityTranslate = currentTranslate - prevTranslate || currentTranslate;
@@ -207,13 +205,7 @@
             isTouched = isMoved = false;
             //                col.wrapper.css('transition', '');
             Utils.transition(scrollContainer, '');
-            if (returnTo) {
-                if (returnTo === 'min') {
-                    Utils.transform(scrollContainer, 'translate3d(0,' + minTranslate + 'px,0)');
-                } else {
-                    Utils.transform(scrollContainer, 'translate3d(0,' + maxTranslate + 'px,0)');
-                }
-            }
+
             touchEndTime = new Date().getTime();
             var velocity, newTranslate;
             if (touchEndTime - touchStartTime > 300) {
@@ -224,10 +216,13 @@
             }
             console.info("velocity:" + velocity);
             console.info("newTranslate:" + newTranslate);
-            newTranslate = Math.max(Math.min(newTranslate, maxTranslate), minTranslate);
-
-            Utils.transform(scrollContainer, 'translate3d(0,' + (parseInt(newTranslate, 10)) + 'px,0)');
-
+            //newTranslate = Math.max(Math.min(newTranslate, maxTranslate), minTranslate);
+            console.info("newTranslate:" + currentTranslate);
+            console.info("newTranslate:" + newTranslate);
+            console.info("maxTranslate:" + maxTranslate);
+            newTranslate = newTranslate > minTranslate ? minTranslate : newTranslate;
+            newTranslate = Math.abs(newTranslate) > maxTranslate ? -maxTranslate : newTranslate;
+            Utils.transform(wrapperContainer, 'translate3d(0,' + (parseInt(newTranslate, 10)) + 'px,0)');
         }
 
         return {

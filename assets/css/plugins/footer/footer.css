@@ -434,19 +434,3 @@ footer dl.flight_company dt {
 footer dl.classname{
   background: #333;
 }
-
-#Screen dt,#sortTypes dt,#filters dt,#locationList dt{position: relative}
-#sortTypes dt,#filters dt{position: relative}
-#sortTypes dt:after, #filters dt:after, #locationList dt:after{
-  content: "";
-  width: .1rem;
-  height: .1rem;
-  position: absolute;
-  right: -0.18rem;
-  top: .05rem;
-  border-radius: .05rem;
-  background: #fd7530;
-}
-#sortTypes dt.clo:after,#filters dt.clo:after, #locationList dt.clo:after{
-  display: none;
-}
