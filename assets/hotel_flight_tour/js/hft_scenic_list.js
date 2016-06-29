@@ -30,15 +30,14 @@
         if (data.success) {
           vlm.init();
           filterData = data;
-          //var htmlT = ;
           $("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
           var htmlt = $("#timeDetile").html();
           var htmlT = ejs.render(htmlt, searchInfo);
           $("#TimeList").html(htmlT);
           if(SParameter.Parameters.PageIndex == 1){
-            var htmlp = $("#scenicDetile").html();
-            var html = ejs.render(htmlp, data.data);
-            $("#scenicList").html(html);
+            document.querySelector('.snap-content').scrollTop = 0; /*H5-2010*/
+            var htmlStr = $("#scenicDetile").html(), outString = ejs.render(htmlStr, data.data);
+            $("#scenicList").html(outString);
           }else{
             var htmlp = $("#scenicDetile").html();
             var html = ejs.render(htmlp, data.data);

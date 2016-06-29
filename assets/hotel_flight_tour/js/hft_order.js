@@ -50,7 +50,7 @@ var hftTool ={
   $('#hftFreeBack').click(function(){
     if( ! $('#choiceAir').length){
       setTimeout(function(){
-        window.location.href='../hotel_flight_tour/hft_choose.html?'+ window.location.search;
+         window.location.href='../hotel_flight_tour/hft_choose.html'+ window.location.search;
       },500);
     }
 
