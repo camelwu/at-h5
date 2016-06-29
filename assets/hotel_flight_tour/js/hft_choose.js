@@ -40,7 +40,7 @@ var hftChoose = {
     that.timer0 = setTimeout(function () {
       window.clearTimeout(that.timer0);
       that.timer0 = null;
-      window.location.href = that.type == 2 ? "hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID + "&selectedRoomId=" + that.roomPriceInfo.roomID : "hft_order.html?type=" + that.type + "&selectedRoomId=" + that.roomPriceInfo.roomID;
+       window.location.href = that.type == 2 ? "hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID: "hft_order.html?type=" + that.type;
     }, 500);
     /*  }*/
   },
@@ -347,7 +347,18 @@ var hftChoose = {
       }, 500);
     });
     this.addHandler(preserve, 'click', function () {
-      var tempTours = null, hftCreateOrder = {}, toursArray = [], tourLis = [];
+      var tempTours = null, hftCreateOrder = {}, toursArray = [], tourLis = [], that = hftChoose;
+      var resetpriceRoomInfo = function(){
+             var selectedRoomId = that.selectedRoomId, temObj = {};
+             that.curData.hotelInfo.rooms.forEach(function(item, array){
+              if(item.roomID == selectedRoomId){
+                that.selectedRoom = item;
+                temObj = item;
+                 return false
+                }
+        })
+        return temObj;
+      };
       hftCreateOrder = {
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
@@ -361,7 +372,7 @@ var hftChoose = {
         "currencyCode": "CNY",
         "totalPrice": that.roomPriceInfo.totalAmount,
         "memberID": "",
-        "priceRoomInfo":that.selectedRoom,
+        "priceRoomInfo":resetpriceRoomInfo(),
         "track": {
           "browserType": "",
           "deviceID": vlm.getDeviceID()
