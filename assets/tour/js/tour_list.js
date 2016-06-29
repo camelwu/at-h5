@@ -131,7 +131,10 @@
 
   //init filter
   var initFilter = function(data){
-    var newdata = [],tmp_data = {};
+    var newdata = [{
+      filterText: '不限',
+      filterValue: ''
+    }],tmp_data = {};
     for(var i = 0;i < data.data.themes.length;i++){
       tmp_data = {
         filterText:data.data.themes[i].themeName,
@@ -165,6 +168,13 @@
       Param.DestCityCode = val.DestCityCode;
       Param.PriceSortType = obj.sortTypes[0] == 1?"HighToLow":"LowToHigh";
       Param.ThemeID = obj.filters[0].FilterValues[0];
+
+      // 筛选-不限，不传ThemeID
+      if (Param.ThemeID === '') {
+        Param.ThemeID = undefined;
+      }
+
+
       console.log(Param);
       tAjax("",Param,"40100007","3",Method["m_scenic_listCallback"]);
     };
