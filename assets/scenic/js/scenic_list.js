@@ -151,7 +151,7 @@
         key : 'sortTypes',
         listData : [{sortText: "推荐排序",sortValue:1},{sortText: "按价格从低到高",sortValue:2},{sortText: "按价格从高到低",sortValue:3}]
       },
-      hotelScreen : {
+      filters : {
         title : "筛选",
         c : "foot_screen",
         s : 1,
@@ -224,7 +224,7 @@
         $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
-            tar = $(tar).closest("li")[0];
+          tar = $(tar).closest("li")[0];
           if(tar.nodeName.toLowerCase() === 'li') {
             var packageid = tar.getAttribute("data-code");
             window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;

@@ -131,7 +131,7 @@
             key : 'sortTypes',
             listData : sortList
           },
-          hotelScreen : {
+          filters : {
             title : "筛选",
             c : "foot_screen",
             s : 1,

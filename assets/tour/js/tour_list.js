@@ -154,7 +154,7 @@
         key : 'sortTypes',
         listData : [{sortText: "推荐排序",sortValue:1},{sortText: "按价格从低到高",sortValue:2},{sortText: "按价格从高到低",sortValue:3}]
       },
-      hotelScreen : {
+      filters : {
         title : "筛选",
         c : "foot_screen",
         s : 1,

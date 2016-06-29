@@ -195,7 +195,7 @@ var flightList = {
     };
     var bottom = function(d){
       var menu_data = {
-        hotelPosition : {
+        airways : {
           title : "航空公司",
           c : "flight_company",
           type : 3,
@@ -203,7 +203,7 @@ var flightList = {
           key : 'airways',
           listData : d.airways
         },
-        hotelSort : {
+        sortTypes : {
           title : "快速排序",
           c : "foot_sort",
           type : 1,
@@ -211,7 +211,7 @@ var flightList = {
           key : 'sortTypes',
           listData : d.sortTypes
         },
-        hotelScreen : {
+        filters : {
           title : "筛选",
           c : "foot_screen",
           type : 2,

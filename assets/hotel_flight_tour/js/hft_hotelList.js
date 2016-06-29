@@ -51,7 +51,7 @@
 
 			//footer  begin
 			var menu_data = {
-				hotelSort : {
+        sortTypes : {
 					title : "推荐排序",
 					c : "foot_sort",
 					s:1,
@@ -59,7 +59,7 @@
 					key : 'sortTypes',
 					listData : data.sortTypes
 				},
-				hotelScreen : {
+        filters : {
 					title : "筛选",
 					c : "foot_screen  aa",
 					s:2,
@@ -67,7 +67,7 @@
 					key : 'filters',
 					listData : data.filters
 				},
-				hotelPosition : {
+        locationList : {
 					title : "位置",
 					c : "foot_position",
 					s:2,//select

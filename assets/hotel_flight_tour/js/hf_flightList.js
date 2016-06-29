@@ -178,7 +178,7 @@ var flight_list = {
     };
 		var bottom = function(d) {
 			var menu_data = {
-				hotelPosition : {
+        airways : {
 					title : "航空公司",
 					c : "flight_company",
 					type : 3,
@@ -186,7 +186,7 @@ var flight_list = {
 					key : 'airways',
 					listData : d.airways
 				},
-				hotelSort : {
+        sortTypes : {
 					title : "快速排序",
 					c : "foot_sort",
 					type : 1,
@@ -218,7 +218,7 @@ var flight_list = {
 						sortValue : 6
 					}]
 				},
-				hotelScreen : {
+        filters : {
 					title : "筛选",
 					c : "foot_screen",
 					type : 2,
@@ -328,7 +328,6 @@ var flight_list = {
 			Code : Code
 		};
 		questUrl = questUrl || that.requestUrl;
-		//questUrl = questUrl?questUrl:that.requestUrl;
 		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 	},
 
