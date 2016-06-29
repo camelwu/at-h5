@@ -27,7 +27,6 @@
     ,isShowChinaName=vlm.getpara("isShowChinaName").toLowerCase()=="false"?false:true
     ,isShowContact=vlm.getpara("isShowContact").toLowerCase()=="false"?false:true
     ,callback=vlm.getpara("callback")
-
   //页面Dom对象
   var saveDbBtn=$(".addFinish");
   var closeWindowBtn=$("#toper .closedWin");
