@@ -149,7 +149,7 @@
         s : 1,
         type : 1,
         key : 'sortTypes',
-        listData : [{sortText: "按价格从低到高",sortValue:0},{sortText: "按价格从高到低",sortValue:1}]
+        listData : [{sortText: "推荐排序",sortValue:1},{sortText: "按价格从低到高",sortValue:2},{sortText: "按价格从高到低",sortValue:3}]
       },
       hotelScreen : {
         title : "筛选",
@@ -163,7 +163,17 @@
       var Param = {};
 
       Param.DestCityCode = val.DestCityCode;
-      Param.PriceSortType = obj.sortTypes[0] == 1?"HighToLow":"LowToHigh";
+      switch (obj.sortTypes[0]){
+        case "1":
+          Param.PriceSortType = "";
+          break;
+        case "2":
+          Param.PriceSortType = "LowToHigh";
+          break;
+        case "3":
+          Param.PriceSortType = "HighToLow";
+          break;
+      }
       Param.ThemeID = obj.filters[0].FilterValues[0];
       console.log(Param);
       tAjax("",Param,"0087","3",Method["m_scenic_listCallback"]);
