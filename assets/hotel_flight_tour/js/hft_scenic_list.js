@@ -113,6 +113,13 @@
       };
     //init filter
     var initFilter = function(data) {
+      var sortList = data.data.sortTypes || {};
+      if(sortList.length > 0){
+        for(var i=0;i < sortList.length;i++){
+          sortList[i].sortValue = i+1;
+        }
+      }
+
       // 添加底部筛选
       if (footer) {
         footer.data = {
@@ -122,7 +129,7 @@
             s : 1,
             type : 1,
             key : 'sortTypes',
-            listData : data.data.sortTypes
+            listData : sortList
           },
           hotelScreen : {
             title : "筛选",
