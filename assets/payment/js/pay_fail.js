@@ -88,16 +88,16 @@
                         data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
 
-                        Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))-1;
+                        Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))+1;
                         Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
-                        data.data.Day = Day;
+                        data.data.Day = Day ;
                         data.data.Night = Night;
                     }
                     else if(type.id==6){
                       data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                       data.data.totalPrice=data.data.totalFlightPrice;
 
-                      Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))-1;
+                      Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))+1;
                       Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
                       data.data.Day = Day;
                       data.data.Night = Night;
