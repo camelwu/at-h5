@@ -13,9 +13,6 @@ function url2json(url) {
     }
     return json;
 }
-
-
-
 var lsf_myweb = {
     "getbyid": function (id) {
         return document.getElementById(id);
@@ -80,8 +77,6 @@ var lsf_myweb = {
         };
     }
 };
-
-
 //输入框默认字体设置
 function styleChange(id, mytext) {
     var oInp = document.getElementById(id);
@@ -103,7 +98,6 @@ function styleChange(id, mytext) {
         }
     };
 }
-
 function styleChange2(parentid, sClass, mytext) {
     var oBox = document.getElementById(parentid);
     //alert(oBox);
@@ -129,7 +123,6 @@ function styleChange2(parentid, sClass, mytext) {
         };
     }
 };
-
 /*
 //输入框默认字体设置
 styleChange('uo_c3_tele','用于接收短信通知');
@@ -137,7 +130,6 @@ styleChange('uo_c3_email','用于接收邮件通知');
 styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
 styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 */
-
 //把得到的数据全部存入到fake_data里面
 var RoomCode;
 var fake_data = {};
@@ -305,9 +297,9 @@ uoHisData();
             uo_c3_peoBox.innerHTML += '<div class="uo_c3_peo">' +
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                '<input type="text"  placeholder="姓（如：李）" class="uo_lastname"  />' +
+                '<input type="text"  placeholder="姓（如：Li）" class="uo_lastname"  />' +
                 '<span class = "line"></span>' +
-                '<input type="text"  placeholder="名（如：世民）" class="uo_firstname"  />' +
+                '<input type="text"  placeholder="名（如：Shimin）" class="uo_firstname"  />' +
                 '</div>' +
                 '</div>';
         }
@@ -355,8 +347,8 @@ uoHisData();
         styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
         styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
     } else if (hoPos == 'dom') {
-        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
-        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
+        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
     }
     //$('#uo_c3_tele').bind('focus',function(){
     //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
