@@ -548,18 +548,7 @@ uoHisData();
         var aUo_firstname = lsf_myweb.getbyclass(uo_form, 'uo_firstname');
         var uo_c3_tele = document.getElementById('uo_c3_tele');
         var uo_c3_email = document.getElementById('uo_c3_email');
-
         fake_data.guestName = [];
-        //验证名字
-        function checkCN(val) {
-            for (var i = 0; i < val.length; i++) {
-                if (val[i].charCodeAt(0) >= 0x4e00 && val[i].charCodeAt(0) <= 0x9fa5) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
               if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
@@ -570,14 +559,6 @@ uoHisData();
                 jAlert('请输入英文姓或名');
                 return;
               }
-                if (checkCN(aUo_lastname[i].value)) {
-                    jAlert('请输入英文姓或名');
-                    return;
-                }
-                if (checkCN(aUo_firstname[i].value)) {
-                    jAlert('请输入英文姓或名');
-                    return;
-                }
                 fake_data.guestName.push({
                     "GuestFirstName": aUo_firstname[i].value,
                     "GuestLastName": aUo_lastname[i].value
@@ -585,11 +566,11 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
+              if(!vlm.Utils.validate.ChineseName(aUo_firstname[i].value)){
                 jAlert('请输入姓或名');
                 return;
               }
-              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
+              if(!vlm.Utils.validate.ChineseName(aUo_lastname[i].value)){
                 jAlert('请输入姓或名');
                 return;
               }
