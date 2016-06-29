@@ -128,7 +128,7 @@ var footer = (function() {
         // 容器里的各种点击：取消，确定按钮
         on(sec, 'click', function(event) {
           event = event || window.event;
-          var target = event.target || event.srcElement, src, index, cur;
+          var target = event.target || event.srcElement, src, index, cur,nod;
           src = target.parentNode;
           if (target.className == "cancel") {// 取消
             if(target.parentNode.nextSibling){
@@ -165,8 +165,13 @@ var footer = (function() {
             var li = air.getElementsByTagName('li');
             for(var k = 0;k < li.length;k++){
               if(li[k].className == 'cur choose'){
-                li[k].className = 'cur';
-                var nod = li[k];
+                li[k].className='cur';
+                nod = li[k];
+              }else if(li[k].className == 'cur chose'){
+                li[k].className='cur';
+                nod = li[k];
+              }else if(li[k].className == 'cur'){
+                nod = li[k];
               }
             }
             nod.parentNode.insertBefore(nod, nod.parentNode.firstChild);
