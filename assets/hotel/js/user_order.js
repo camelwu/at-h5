@@ -272,8 +272,8 @@ uoHisData();
   var rege =fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g,'');
     uo_con2_chil1.innerHTML = '<h3>' + rege +" ( "+fake_data.HotelGenInfo.hotelName +" )"+ '</h3>' +
         //'<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
-      '<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-') + '-' + fake_data.dateInfo.CheckOutDate.split('-') + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
-        '<p class="uo_house hotel_user_container_type">房型：' + fake_data.roomTypeName + '</p>';
+      '<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-') + '-' + fake_data.dateInfo.CheckOutDate.split('-') +'  共'+fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
+        '<p class="uo_house hotel_user_container_type">房型：' + fake_data.RoomTypeName + '</p>';
 
     //房间数列表
     uo_c2_num.innerHTML = fake_data.NumOfRoom;

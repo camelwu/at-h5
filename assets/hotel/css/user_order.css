@@ -260,7 +260,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .hotel_footer_sum_price .sgd_wrap {
-    line-height: .5rem;
+  line-height: .4rem;
+  margin-top: 0.1rem;
 }
 
 .hotel_footer_sum_price1 {
@@ -276,7 +277,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .hotel_footer_sum_price3 {
     font-size: .24rem;
     color: #999;
-    line-height: 0.5rem;
+    line-height: 0.3rem;
+  margin-bottom: 0.1rem;
 }
 
 .hotel_footer_button {
@@ -310,7 +312,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 
-/*费用明细*/
+/*璐圭敤鏄庣粏*/
 
 .hotel_detail {
     display: none;
@@ -336,7 +338,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 
-/*原先*/
+/*鍘熷厛*/
 
 .uo_hid {
     width: 100%;
@@ -501,7 +503,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 
-/*手机区号*/
+/*鎵嬫満鍖哄彿*/
 .p_86.tel-btn{
   position: relative;
 }
