@@ -146,7 +146,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         $(ele).val(defaultSelectedDate);
                     });
                     $("#tourTime").find(".week-tour").each(function (index, ele) {
-                        $(ele).html(vlm.Utils.getWeek(defaultSelectedDate));
+                        $(ele).html(vlm.Utils.getWeek(defaultSelectedDate.replace(/-/g, '/')));
                     });
                     initTourCalendar();
                 }
@@ -298,10 +298,10 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         if (target.hasClass("cur")) {
                             childNumValue = childNumValue + 1;
                             childNumEle.html(childNumValue);
-                            if(target.parents('.hotelInfo_numb_people').hasClass('init-hotel-room-detail')){
-                              extraChildHtml = addNewChildHtml(allExtraChild.length+1);
-                            }else{
-                              extraChildHtml = addNewChildHtml(allExtraChild.length);
+                            if (target.parents('.hotelInfo_numb_people').hasClass('init-hotel-room-detail')) {
+                                extraChildHtml = addNewChildHtml(allExtraChild.length + 1);
+                            } else {
+                                extraChildHtml = addNewChildHtml(allExtraChild.length);
                             }
 
                             addBedShowOrHide(target)
@@ -424,15 +424,15 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
 
                     } else if (temAdultNum == 1 && temChildNum == 2) {
                         //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
-                      if(temEle.querySelectorAll('.extraChild').length == 0){
+                        if (temEle.querySelectorAll('.extraChild').length == 0) {
 
-                        childWithBed.push(temEle.querySelectorAll('input')[0].value);
-                        childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+                            childWithBed.push(temEle.querySelectorAll('input')[0].value);
+                            childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
 
-                      }else if(temEle.querySelectorAll('.extraChild')[0].style.display == 'none'){
-                        childWithBed.push(temEle.querySelectorAll('input')[1].value);
-                        childWithOutBed.push(temEle.querySelectorAll('input')[2].value);
-                      }
+                        } else if (temEle.querySelectorAll('.extraChild')[0].style.display == 'none') {
+                            childWithBed.push(temEle.querySelectorAll('input')[1].value);
+                            childWithOutBed.push(temEle.querySelectorAll('input')[2].value);
+                        }
                     }
                     if (temAdultNum == 2 || temAdultNum == 3) {
                         for (var s = 0; s < childChooseParent.length; s++) {
