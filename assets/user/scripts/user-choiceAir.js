@@ -588,8 +588,10 @@
           }
           if (obj.tagName == "INPUT") {
             $(elementList[i]).val(val);
-          }
-          else {
+          }else if(obj.className == "country-btn"){
+            val=getCountryName(val).chineseName;
+            $(elementList[i]).html(val);
+          }else {
             $(elementList[i]).html(val);
           }
         }

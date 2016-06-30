@@ -1087,17 +1087,21 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   font-size: 0.24rem;
 }
 .booking_package_linkman_contact{
-  height: .96rem;
+  /*height: .96rem;*/
   line-height: .96rem;
   border-bottom: 1px #e6e6e6 solid;
   font-size: .28rem;
 }
 
 .booking_package_linkman_contact:last-child{
-  height: .96rem;
+  /*height: .96rem;*/
   line-height: .96rem;
   border-bottom: 0;
   font-size: .28rem;
+}
+
+.booking_linkman_contact_tab{
+  border-bottom: 1px solid #e6e6e6;
 }
 
 #booking_package_linkman_contact{
