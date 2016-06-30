@@ -486,7 +486,7 @@ li.scenic_detile_project_first{
   border-bottom: 1px solid #E6E6E6;
   padding:0 0 .2rem .6rem;
 }
-.scenic_content i{
+.scenic_content h3 i{
   width: .36rem;
   height: .4rem;
   position: absolute;
@@ -634,15 +634,15 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   overflow-y: hidden;
   margin-top: .4rem;
 }
-.scenic_content_notes i{
+.scenic_content_notes h3 i{
   background-position:  -3.02rem -0.8rem;
   top: .06rem;
 }
-.scenic_content_TOS i{
+.scenic_content_TOS h3 i{
   background-position:  -4.76rem -0.8rem;
   top: .06rem;
 }
-.scenic_content_detail i{
+.scenic_content_detail h3 i{
   background-position:  -5.34rem -0.8rem;
   top: .06rem;
 }
