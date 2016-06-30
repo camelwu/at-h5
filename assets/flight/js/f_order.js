@@ -361,7 +361,7 @@ editPassager:function(obj){
   var id=$(obj).find("input").eq(0).val();
   var numofAdult=JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult;
   var numofChild= JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild;
-  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), !fOrder.isInternationalTrip())
+  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
 },
   distinct:function(){
     var obj={},ary=[], arr = arguments[0];
