@@ -61,7 +61,7 @@ element::-webkit-scrollbar{
 }
 /*通用_content*/
 .content{
-  padding:.88rem 0 .9rem;
+  /*padding:.88rem 0 .9rem;*/
   background-color: #ffffff;
 }
 .content_detail{
@@ -244,22 +244,27 @@ element::-webkit-scrollbar{
 
 /*列表页*/
 .scenic_list_error{
-  height: 3.5rem;
-  margin: 30% 10%;
-  position: relative;
-  background: url(/images/error/error.png) fixed center center no-repeat;
-  background-size: 3rem 2rem;
-  background-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
   display: none;
 }
 .scenic_list_error_div{
   display: inline-block;
-  position: absolute;
-  bottom: 0px;
-  text-align: center;
-  width: 100%;
-  color: #e6e6e6;
-  font-size: .28rem;
+  width: 3.72rem;
+  height: 2.28rem;
+  background: url(/images/error/error.png) center center no-repeat;
+  background-size: 3rem 2rem;
+  background-position: 50% 50%;
+  margin: 40% 25% 0;
+}
+.scenic_list_error p{
+  display: inline-block;
+  margin: 5% 25%;
+   color: #666;
+   font-size: .28rem;
 }
 .scenic-detile{
   background: white;
@@ -267,6 +272,7 @@ element::-webkit-scrollbar{
   position: relative;
   top: 0rem;
   left:0;
+  margin-bottom: 0.9rem;
 }
 .scenic-detile_list_matter{
   height: 1.4rem;
