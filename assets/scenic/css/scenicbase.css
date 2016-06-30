@@ -252,19 +252,20 @@ element::-webkit-scrollbar{
   display: none;
 }
 .scenic_list_error_div{
-  display: inline-block;
   width: 3.72rem;
   height: 2.28rem;
-  background: url(/images/error/error.png) center center no-repeat;
+  background: url(../../images/error/error.png) center center no-repeat;
   background-size: 3rem 2rem;
   background-position: 50% 50%;
   margin: 40% 25% 0;
+  display: none;
 }
-.scenic_list_error p{
+.scenic_list_error_p{
   display: inline-block;
   margin: 5% 25%;
    color: #666;
    font-size: .28rem;
+  display: none;
 }
 .scenic-detile{
   background: white;
