@@ -399,7 +399,7 @@ var footer = (function(){
       createSec : function(s, c, t, k, d) {
         var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = s ? s : 1, cache = [],
         // 容器
-          wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">', '</ul>'],
+          wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k +'" class="special ' + k+ '">', '</ul>'],
         // 左侧容器
           left = ['<ul class="screen_lf">', '</ul>'],
         // 右侧容器
@@ -427,7 +427,7 @@ var footer = (function(){
               css = i == 0 ? ' class="cur"' : '';
               cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
               s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : 1;
-              wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + a.filterType + '">';
+              wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" class="special ' + k + '" data-type="' + a.filterType + '">';
               for (var j = 0; j < item.length; j++) {
                 var o = item[j];
                 css = o.filterText == '不限' ? ' class="cur"' : '';
@@ -541,26 +541,36 @@ var footer = (function(){
         }
       },
       redTip:function(){
-        var allUl = sec.getElementsByTagName("ul"), idStringArray = [],footerDl=[];
-        Array.prototype.slice.call(allUl).forEach(function(element,index){
-          if(element.getAttribute("data-key")){
-            var temLi = element.querySelectorAll('.cur')
-            if(temLi.length==0){
-              var targetDL_ = document.querySelector('#'+element.getAttribute('data-key'));
-              targetDL_.querySelector('dt').className = "clo";
-            }
-            for(var i = 0;i<temLi.length;i++){
-              var targetDl = null, liItem =temLi[i];
-              targetDl = document.querySelector('#'+liItem.parentNode.getAttribute('data-key'));
-              if(!targetDl){return}
-              if(liItem.getAttribute('data-val')==""||liItem.getAttribute('data-val')=="0"){
-                targetDl.querySelector('dt').className = "clo";
-              }else{
-                targetDl.querySelector('dt').className = "";
+           var allSul = sec.querySelectorAll('.special'), temObj = {};
+           Array.prototype.slice.call(allSul).forEach(function(element,index){
+              if(element.getAttribute('data-key')){
+                  temObj[element.getAttribute('data-key')] = [];
               }
-            }
-          }
-        })
+            });
+           Array.prototype.slice.call(allSul).forEach(function(element,index){
+              for(var p in temObj){
+                if(p == element.getAttribute('data-key')){
+                  temObj[element.getAttribute('data-key')].push(element);
+                }
+              }
+           });
+            for(var p in temObj){
+                var targetDl =  document.querySelector('#'+p), tag = false;
+                tag = temObj[p].every(function (value) {
+                  var tag_= false, temLis = value.querySelectorAll('.cur');
+                  if(temLis){
+                    tag_= Array.prototype.slice.call(temLis).some(function(ele){
+                      return  ele.getAttribute('data-val')!=""&&ele.getAttribute('data-val')!="0"&&ele.getAttribute('data-val')!=null;
+                    });
+                  }
+                  return  temLis.length>0&&tag_
+                });
+                if(tag){
+                  targetDl.querySelector('dt').className = "";
+                }else{
+                  targetDl.querySelector('dt').className = "clo";
+                }
+             }
       },
       request : function() {
         // 选中的属性
