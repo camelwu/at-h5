@@ -17,7 +17,7 @@
  }
  *
  */
-var footer = (function() {
+var footer = (function(){
   "use strict";
   // 遮罩容器
   var masker,
@@ -30,7 +30,7 @@ var footer = (function() {
   // 返回结果
     results = {},
   // 对象长度
-    size = function(obj) {
+    size = function(obj){
       var size = 0, key;
       for (key in obj) {
         if (obj.hasOwnProperty(key))
@@ -145,7 +145,6 @@ var footer = (function() {
             that.remove();
           } else if (target.className == "clears") {// 清初筛选
             var node = src.parentNode;
-            //previousSibling
             that.resec(node);
           } else if (target.className == "sure") {// 筛选确定
             if(target.parentNode.nextSibling){
@@ -519,6 +518,7 @@ var footer = (function() {
         } else {
           if (!box)
             this.create();
+          this.redTip();
         }
         //缓存数据&导入
       },
@@ -540,11 +540,33 @@ var footer = (function() {
           box.childNodes[i].style.backgroundColor = "";
         }
       },
+      redTip:function(){
+        var allUl = sec.getElementsByTagName("ul"), idStringArray = [],footerDl=[];
+        Array.prototype.slice.call(allUl).forEach(function(element,index){
+          if(element.getAttribute("data-key")){
+            var temLi = element.querySelectorAll('.cur')
+            if(temLi.length==0){
+              var targetDL_ = document.querySelector('#'+element.getAttribute('data-key'));
+              targetDL_.querySelector('dt').className = "clo";
+            }
+            for(var i = 0;i<temLi.length;i++){
+              var targetDl = null, liItem =temLi[i];
+              targetDl = document.querySelector('#'+liItem.parentNode.getAttribute('data-key'));
+              if(!targetDl){return}
+              if(liItem.getAttribute('data-val')==""||liItem.getAttribute('data-val')=="0"){
+                targetDl.querySelector('dt').className = "clo";
+              }else{
+                targetDl.querySelector('dt').className = "";
+              }
+            }
+          }
+        })
+      },
       request : function() {
         // 选中的属性
         var node = sec.getElementsByTagName("ul"), obj = {};
         for (var i = 0; i < node.length; i++) {
-          if (node[i].getAttribute("data-key")) {
+          if (node[i].getAttribute("data-key")){
             var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
             for (var j = 0; j < chk.length; j++) {
               cache.push(chk[j].getAttribute("data-val"));
@@ -572,6 +594,7 @@ var footer = (function() {
             }
           }
         }
+        this.redTip();
         footer.result = obj;
         this.remove();
         if (box.style.display == 'none') {
@@ -661,4 +684,3 @@ var footer = (function() {
     results : results
   };
 })();
-
