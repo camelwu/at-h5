@@ -267,6 +267,11 @@ element::-webkit-scrollbar{
    font-size: .28rem;
   display: none;
 }
+.loadMore {
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+}
 .scenic-detile{
   background: white;
   padding:0 .26rem ;
