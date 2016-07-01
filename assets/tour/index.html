@@ -182,7 +182,7 @@
 <script type="text/javascript" src="../js/plugins/citybox/citybox.js"></script>
 <script id="tpl_GetHotCity" type="text/template">
    <% for(var i=0;i<9;i++){ %>
-   <li title="<%= data.destCities[i].cityCode %>" ><a href="scenic_list.html?DestCityCode=<%= data.destCities[i].cityCode %>"><%= data.destCities[i].cityName %></a></li>
+   <li title="<%= data.destCities[i].cityCode %>" ><a href="javascript:void(0)" onclick="gocity(this)" data-code="<%= data.destCities[i].cityCode %>" data-name="<%= data.destCities[i].cityName %>" data-countrycode="<%= data.destCities[i].countryCode %>"><%= data.destCities[i].cityName %></a></li>
    <% } %>
 </script>
 <script id="tpl_GetHotSpot" type="text/template">
@@ -329,10 +329,8 @@
          * @constructor
          */
         MT.CurrentPageTolist = function(){
-
-                window.location.href="../scenic/scenic_city.html?citycode=1&callback=tour/scenic_list.html";
-                return false;
-
+            window.location.href="../scenic/scenic_city.html?citycode=1&callback=tour/scenic_list.html";
+            return false;
         }
 
         MT.load();
@@ -341,6 +339,15 @@
     $('#ht-back').click(function(){
         window.location.href='../index.html';
     });
+
+    function gocity(obj){
+      var _cityCode = obj.getAttribute("data-code");
+      var _cityName = obj.getAttribute("data-name");
+      var _cityCountrycode = obj.getAttribute("data-countrycode");
+      VM.Method["setcityboxHistory"](obj,_cityCode,_cityName,_cityCountrycode,"ht_des");
+      var _url = "scenic_list.html?DestCityCode=";
+      window.location.href=_url+_cityCode;
+    }
 </script>
 </body>
 

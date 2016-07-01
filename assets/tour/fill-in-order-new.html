@@ -50,12 +50,6 @@
                             <!--<div class="detail-span">成人票 2张</div>-->
                             <!--<div class="detail-span">儿童票 1张</div>-->
                             <!--</div>-->
-                            <!--<div>-->
-                            <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
-                            <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
-                            <!--<div class="detail-span">成人票 2张</div>-->
-                            <!--<div class="detail-span">儿童票 1张</div>-->
-                            <!--</div>-->
                         </section>
                     </div>
                     <div class="open-close order_toggle_btn">
@@ -202,7 +196,7 @@
         </ul>
     </div>
     <!--   旅行须知and接送须知   -->
-    <!--<div class="tmask js-mask order_mask">-->
+    <div class="tmask js-mask order_mask">
         <!--<div id="traState" class="travelnotes-warp js-travelnotes order_warp">-->
             <!--<div class="travelnotes-header tr_header">旅行须知<i class="travelnotes-header-icon js-travelnotes-close"></i></div>-->
             <!--<ol class="travelnotes-list">-->
@@ -215,17 +209,16 @@
                 <!--<li>更多规定，请您阅读www.asiatravel.com预订条款条约和用户协议。</li>-->
             <!--</ol>-->
         <!--</div>-->
-        <!--<div id="sendState" class="travelnotes-warp js-travelnotes order_warp">-->
-            <!--<div class="travelnotes-header tr_header">接送须知<i class="travelnotes-header-icon js-travelnotes-close"></i>-->
-            <!--</div>-->
-            <!--<ol class="travelnotes-list">-->
-                <!--<li>如果还未预订机票，您可任意填写航班信息，继续您的预订。请您至少在出发3天前，联系我们并提新的航班信息，我们会重新安排您的接送。</li>-->
-                <!--<li>不填写接送信息默认您不需要接送。</li>-->
-                <!--<li>如果您需要修改航班信息，也请在出发前3天联系我们并提供新的航班信息，我们会及时处理。</li>-->
-                <!--<li>接机时间是您抵达的时间，送机时间是您离开的时间。</li>-->
-            <!--</ol>-->
-        <!--</div>-->
-    <!--</div>-->
+        <div id="sendState" class="travelnotes-warp js-travelnotes order_warp">
+            <div class="travelnotes-header tr_header">接送须知<i class="travelnotes-header-icon js-travelnotes-close"></i></div>
+            <ol class="travelnotes-list">
+                <li>如果还未预订机票，您可任意填写航班信息，继续您的预订。请您至少在出发3天前，联系我们并提供新的航班信息，我们会重新安排您的接送。</li>
+                <li>不填写接送信息默认您不需要接送。</li>
+                <li>如果您需要修改航班信息，也请在出发前3天联系我们并提供新的航班信息，我们会及时处理。</li>
+                <li>接机时间是您抵达的时间，送机时间是您离开的时间。</li>
+            </ol>
+        </div>
+    </div>
 
     <!--国籍选择开始-->
     <div class="header country_header">
@@ -313,68 +306,9 @@
 
     <!--国籍选择结束-->
 
-
-
-
-
     <!--同意条款-->
-
     <script src="../js/lib/jquery.js"></script>
-    <!--    <script src="js/dateFixed_.js"></script>-->
-    <script>
-        (function() {
 
-          localStorage.removeItem("travellerInfo_selected");
-          localStorage.removeItem("contact_selected");
-          sessionStorage.removeItem("choiceAir_select_personal_data");
-
-            //阻止在嵌套元素中传播
-            function cancelPropagation(event) {
-                event = window.event || event;
-                if (document.all) {
-                    event.cancelBubble = true;
-                } else {
-                    event.stopPropagation();
-                }
-            }
-            $("#state_btn").click(function() {
-                $(".js-mask").show();
-                $('#traState').show();
-                $('#traState').css({
-                    "height": "50%"
-                });
-                $('#sendState').hide();
-                $('.sc-content').css({
-                    "overflow": "hidden"
-                })
-            });
-            $(".js-travelnotes-close").click(function() {
-                $(".js-mask").hide();
-                $('.sc-content').css({
-                    "overflow": "auto"
-                })
-            });
-            $(".js-mask").click(function() {
-                $(".js-mask").hide();
-                $('.sc-content').css({
-                    "overflow": "auto"
-                })
-            });
-            $(".js-travelnotes").click(function(e) {
-                cancelPropagation(e);
-            });
-            $("#send_btn").click(function() {
-                $(".js-mask").show();
-                $('#traState').hide();
-                $('#sendState').show();
-                //                $('#sendState').css({"height":"35%"});
-                $('.sc-content').css({
-                    "overflow": "hidden"
-                });
-            });
-        })();
-
-    </script>
     <!--填写订单-->
     <script src="../js/scenic.js"></script>
     <script src="../js/plugins/jquery.alert/jqueryAlert.js"></script>
@@ -386,6 +320,63 @@
     <script src="../js/countrydata.js"></script>
     <script src="../js/country_list.js"></script>
 
+    <script>
+      (function() {
+
+        localStorage.removeItem("travellerInfo_selected");
+        localStorage.removeItem("contact_selected");
+        sessionStorage.removeItem("choiceAir_select_personal_data");
+
+        //阻止在嵌套元素中传播
+        function cancelPropagation(event) {
+          event = window.event || event;
+          if (document.all) {
+            event.cancelBubble = true;
+          } else {
+            event.stopPropagation();
+          }
+        }
+        $("#state_btn").click(function() {
+          $(".js-mask").show();
+          $('#traState').show();
+          $('#traState').css({
+            "height": "50%"
+          });
+          $('#sendState').hide();
+          $('.sc-content').css({
+            "overflow": "hidden"
+          })
+        });
+        $(".js-travelnotes-close").click(function() {
+          $(".js-mask").hide();
+          $('.sc-content').css({
+            "overflow": "auto"
+          });
+          $(document.body).css('overflowY','auto');
+        });
+        $(".js-mask").click(function() {
+          $(".js-mask").hide();
+          $('.sc-content').css({
+            "overflow": "auto"
+          });
+          $(document.body).css('overflowY','auto');
+        });
+        $(".js-travelnotes").click(function(e) {
+          cancelPropagation(e);
+        });
+        $("#send_btn").click(function() {
+          $(".js-mask").show();
+          $('#traState').hide();
+          $('#sendState').show();
+          $('.sc-content').css({
+            "overflow": "hidden"
+          });
+          $(document.body).css('overflowY','hidden');
+        });
+      })();
+
+    </script>
+
     <script id="tpl3" type="text/template">
       <% var info = JSON.parse(localStorage.info); %>
       <% for(var i=0;i< tourInfos.length; i++){ %>
@@ -394,9 +385,11 @@
           <%= tourInfos[i].tourName %>
         </div>
         <div class="detail_span">
-            <% if(tourInfos[i].travelDateSpecified){ %>游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %><% } %>
-          <%= weekday[i] %>
-          <%= noon[i] %>
+            <% if(tourInfos[i].travelDateSpecified){ %>
+              游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %>
+              <%= week%>
+              <%= noon[i] %>
+            <% } %>
         </div>
         <div class="detail_span">成人票
           <%= info.adultNum %>张

@@ -13,9 +13,6 @@ function url2json(url) {
     }
     return json;
 }
-
-
-
 var lsf_myweb = {
     "getbyid": function (id) {
         return document.getElementById(id);
@@ -80,29 +77,6 @@ var lsf_myweb = {
         };
     }
 };
-
-
-//页面没有展示前页面展示的页面
-$(window).load(function () {
-    //$("#status-h").fadeOut();
-    //$("#preloader").delay(400).fadeOut("medium");
-    var oP = document.getElementById('uo_c1_info');
-    var timer = null;
-    timer = setInterval(function () {
-        if (oP.innerHTML != '') {
-            $("#status-h").fadeOut();
-            $("#preloader").delay(400).fadeOut("medium");
-            clearInterval(timer);
-        }
-        //console.log($('#lsf_list').children().length);
-    }, 30);
-
-});
-
-
-
-
-
 //输入框默认字体设置
 function styleChange(id, mytext) {
     var oInp = document.getElementById(id);
@@ -124,7 +98,6 @@ function styleChange(id, mytext) {
         }
     };
 }
-
 function styleChange2(parentid, sClass, mytext) {
     var oBox = document.getElementById(parentid);
     //alert(oBox);
@@ -150,7 +123,6 @@ function styleChange2(parentid, sClass, mytext) {
         };
     }
 };
-
 /*
 //输入框默认字体设置
 styleChange('uo_c3_tele','用于接收短信通知');
@@ -158,7 +130,6 @@ styleChange('uo_c3_email','用于接收邮件通知');
 styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
 styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 */
-
 //把得到的数据全部存入到fake_data里面
 var RoomCode;
 var fake_data = {};
@@ -170,10 +141,8 @@ for (var name in url2json(myUrl)) {
     }
 }
 //默认房间数量 从搜索列表页获取
-fake_data.NumOfRoom = JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom || 1;
+fake_data.NumOfRoom = sessionStorage.getItem("hotelStorage12345") ? JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom : 1;
 var user_order_storage2 = localStorage.getItem('hotelDetailData');
-console.log(JSON.parse(user_order_storage2));
-console.log(999999999999);
 fake_data.HotelGenInfo = JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
 fake_data.dateInfo = JSON.parse(user_order_storage2).data.data[0].dateInfo;
 var HotelRoomsList = JSON.parse(user_order_storage2).data.data[0].hotelRoomsList;
@@ -189,8 +158,6 @@ for (var i = 0; i < HotelRoomsList.length; i++) {
         }
     }
 }
-console.log(fake_data);
-console.log(1);
 var hoPos = window.localStorage.getItem('hoPos');
 //hoPos='dom';
 //国际酒店有邮箱，国内酒店没有邮箱
@@ -212,13 +179,11 @@ function uoHisData() {
         fake_data.GuestContactNo = localData.GuestContactNo;
         fake_data.GuestEmail = localData.GuestEmail;
         fake_data.guestName = localData.guestName;
-        console.log(fake_data);
-        console.log('hahahahhahahahah');
-        return;
     } else {
         fake_data.guestName = [];
-        return;
     }
+    $("#status-h").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
 }
 uoHisData();
 
@@ -304,8 +269,10 @@ uoHisData();
     uo_c1_info.innerHTML = fake_data.cancellationDesc;
     //酒店名称/时间/房型
     var uo_con2_chil1 = document.getElementById('uo_con2_chil1');
-    uo_con2_chil1.innerHTML = '<h3>' + fake_data.HotelGenInfo.hotelName + '</h3>' +
-        '<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
+  var rege =fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g,'');
+    uo_con2_chil1.innerHTML = '<h3>' + rege +" ( "+fake_data.HotelGenInfo.hotelName +" )"+ '</h3>' +
+        //'<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
+      '<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-') + '-' + fake_data.dateInfo.CheckOutDate.split('-') +'  共'+fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
         '<p class="uo_house hotel_user_container_type">房型：' + fake_data.RoomTypeName + '</p>';
 
     //房间数列表
@@ -331,9 +298,9 @@ uoHisData();
             uo_c3_peoBox.innerHTML += '<div class="uo_c3_peo">' +
                 '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
-                '<input type="text"  placeholder="姓（如：李）" class="uo_lastname"  />' +
+                '<input type="text"  placeholder="姓（如：Li）" class="uo_lastname"  />' +
                 '<span class = "line"></span>' +
-                '<input type="text"  placeholder="名（如：世民）" class="uo_firstname"  />' +
+                '<input type="text"  placeholder="名（如：Shimin）" class="uo_firstname"  />' +
                 '</div>' +
                 '</div>';
         }
@@ -351,7 +318,6 @@ uoHisData();
         //        uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
         //    }
         //}
-        console.log(fake_data.guestName);
         var uo_lastname = lsf_myweb.getbyclass(uo_c3_peoBox, 'uo_lastname');
         var uo_firstname = lsf_myweb.getbyclass(uo_c3_peoBox, 'uo_firstname');
         for (var j = 0; j < uo_lastname.length; j++) {
@@ -382,8 +348,8 @@ uoHisData();
         styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
         styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
     } else if (hoPos == 'dom') {
-        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：李）');
-        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：世民）');
+        styleChange2('uo_c3_peoBox', 'uo_lastname', '姓（如：Li）');
+        styleChange2('uo_c3_peoBox', 'uo_firstname', '名（如：Shimin）');
     }
     //$('#uo_c3_tele').bind('focus',function(){
     //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
@@ -411,8 +377,6 @@ uoHisData();
     }
     // 明细部分展示
     function uo_detail(id1, id2, id3, id4, id5, id6, id7, json) {
-        console.log(json);
-        console.log(222);
         var oId1 = document.getElementById(id1);
         var oId2 = document.getElementById(id2);
         var oId3 = document.getElementById(id3);
@@ -423,16 +387,18 @@ uoHisData();
         var totalPriceCNY = parseFloat(json.totalPriceCNY) * parseFloat(json.NumOfRoom);
         oId1.innerHTML = json.NumOfRoom + '间×' + json.dateInfo.totalNight + '晚';
         if (parseInt(json.paymentModeID) == 1) {
+            // 在线付
             oId2.innerHTML = '￥' + parseFloat(json.avgPriceCNY) * parseFloat(json.NumOfRoom) * parseInt(json.dateInfo.totalNight);
             oId3.innerHTML = '￥' + (parseFloat(json.taxChargesCNY) * 1000 * parseFloat(json.NumOfRoom) * parseInt(json.dateInfo.totalNight)) / 1000;
             oId4.innerHTML = '付款方式：' + lsf_myweb.payment(json.paymentModeID);
             oId5.innerHTML = parseFloat(json.totalPriceCNY) * parseFloat(json.NumOfRoom);
         } else if (parseInt(json.paymentModeID) == 2) {
+            // 到店付
             var oId6 = document.getElementById(id6);
             var oId7 = document.getElementById(id7);
 
-            oId2.innerHTML = 'SGD' + parseFloat(json.avgPrice) * parseFloat(json.NumOfRoom) * parseInt(json.dateInfo.totalNight);
-            oId3.innerHTML = 'SGD' + (parseFloat(json.taxCharges) * 1000 * parseFloat(json.NumOfRoom) * parseInt(json.dateInfo.totalNight)) / 1000;
+            oId2.innerHTML = '￥' + parseFloat(json.avgPriceCNY) * parseFloat(json.NumOfRoom) * parseInt(json.dateInfo.totalNight);
+            oId3.innerHTML = '￥' + (parseFloat(json.taxChargesCNY) * 1000 * parseFloat(json.NumOfRoom) * parseInt(json.dateInfo.totalNight)) / 1000;
             oId4.innerHTML = '付款方式：' + lsf_myweb.payment(json.paymentModeID);
             //判断服务器给的数据的精度
             oId6.innerHTML = accuracy > 0 ? formatFloat(totalPrice, accuracy) : totalPrice;
@@ -585,18 +551,7 @@ uoHisData();
         var aUo_firstname = lsf_myweb.getbyclass(uo_form, 'uo_firstname');
         var uo_c3_tele = document.getElementById('uo_c3_tele');
         var uo_c3_email = document.getElementById('uo_c3_email');
-
         fake_data.guestName = [];
-        //验证名字
-        function checkCN(val) {
-            for (var i = 0; i < val.length; i++) {
-                if (val[i].charCodeAt(0) >= 0x4e00 && val[i].charCodeAt(0) <= 0x9fa5) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
               if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
@@ -607,15 +562,6 @@ uoHisData();
                 jAlert('请输入英文姓或名');
                 return;
               }
-              console.log(aUo_firstname[i].value);
-                if (checkCN(aUo_lastname[i].value)) {
-                    jAlert('请输入英文姓或名');
-                    return;
-                }
-                if (checkCN(aUo_firstname[i].value)) {
-                    jAlert('请输入英文姓或名');
-                    return;
-                }
                 fake_data.guestName.push({
                     "GuestFirstName": aUo_firstname[i].value,
                     "GuestLastName": aUo_lastname[i].value
@@ -623,11 +569,11 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
+              if(!vlm.Utils.validate.ChineseName(aUo_firstname[i].value)){
                 jAlert('请输入姓或名');
                 return;
               }
-              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
+              if(!vlm.Utils.validate.ChineseName(aUo_lastname[i].value)){
                 jAlert('请输入姓或名');
                 return;
               }
@@ -662,7 +608,6 @@ uoHisData();
                 return;
             }
         }
-        console.log(fake_data);
         if (uo_c3_email) {
             if (uo_c3_email.value == '用于接收邮件通知') {
                 jAlert('请输入邮箱');
@@ -677,7 +622,6 @@ uoHisData();
             }
         }
         window.localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
-        console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
 
         //uo_form.submit();

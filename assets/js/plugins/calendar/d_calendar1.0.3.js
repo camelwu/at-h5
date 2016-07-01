@@ -306,7 +306,7 @@
                             pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
                         }
                     } else {
-                        if (i == nowdate && month == nowmonth + 1) {
+                        if (i == nowdate && month == nowmonth + 1 && year == nowyear) {
                             if (i < ableStartDate) {
                                 pstr = '<a class="live disabled">今天</a>';
                             } else {
@@ -314,7 +314,7 @@
                             }
 
                         } else {
-                            if ((month == nowmonth + 1 && i < nowdate) || (month == nowmonth + 1 && i < ableStartDate)) {
+                            if ((month == nowmonth + 1 && i < nowdate && year == nowyear) || (month == nowmonth + 1 && i < ableStartDate && year == nowyear)) {
                                 pstr = '<a class="live disabled">' + i + '</a>';
                             } else if (disableDate.length > 0) {
                                 for (var j = 0; j < disableDate.length; j++) {
@@ -863,4 +863,4 @@
         }
     };
     exports.Calender = Calender;
-}(typeof exports === 'undefined' ? (this.ATplugins = {}) : exports));
+}(typeof exports === 'undefined' ? (this.ATplugins ? this.ATplugins : this.ATplugins = {}) : exports));

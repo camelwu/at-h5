@@ -54,7 +54,7 @@ var footer = (function () {
         }
       }
       if (menus.hasOwnProperty(_k)) {
-        if (document.getElementById("menu")) {
+        if (document.getElementById("menu")){
           var menuer = document.getElementById("menu");
           menuer.className = "footer-menu-three-icons footer-menu";
         } else {

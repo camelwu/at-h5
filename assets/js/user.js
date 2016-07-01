@@ -8,8 +8,7 @@
   $(function () {
     if (location.href.indexOf('user-oftenInfo') == -1) {
       return;
-    }
-    ;
+    };
     $("#menu").hide();
 
     // 初始化常旅客
@@ -37,6 +36,23 @@
       $('#uptra_page').hide();
       $('#content-wrap').css('visibility', 'hidden');
     });
+
+    //性别
+    var aSel = document.querySelectorAll('.info_sex_tab');
+    var sexCode,sexName;
+    for (var i = 0; i < aSel.length; i++) {
+      (function (index) {
+        var aSpan = aSel[index].querySelectorAll('div');
+        for (j = 0; j < aSpan.length; j++) {
+          aSpan[j].onclick = function () {
+            for (i = 0; i < aSpan.length; i++) {
+              aSpan[i].className = 'per_man';
+            }
+            this.className = 'per_man sex_act';
+          }
+        }
+      })(i);
+    }
 
     //增加常旅客
     var add_finish = $("#add_finish")[0];
@@ -270,7 +286,7 @@
         }
         else {
           cardId = "10";
-        }
+        };
 
         // 手机号邮箱检验
         var oMobile = $('#mobile-cell')[0].value, oEmail = $('#email-cell')[0].value;
@@ -324,23 +340,7 @@
     deleteTra(delTra);
   });
 
-  //性别
-  var aSel = document.querySelectorAll('.info_sex_tab');
-  for (var i = 0; i < aSel.length; i++) {
-    (function (index) {
-      var aSpan = aSel[index].querySelectorAll('div');
-      for (j = 0; j < aSpan.length; j++) {
-        aSpan[j].onclick = function () {
-          for (i = 0; i < aSpan.length; i++) {
-            aSpan[i].className = 'per_man';
-          }
-          this.className = 'per_man sex_act';
-        }
-      }
-    })(i);
-  }
-
-//  页面初始获取常旅客
+  //  页面初始获取常旅客
   function mycallback(ret) {
     travJson = ret;
     var blank = $("#blank")[0];
@@ -394,30 +394,6 @@
             ul_li2.innerHTML = vlm.arr_t[parseInt(IdInfo[j].idType)] + IdInfo[j].idNumber;
             ul.appendChild(ul_li2);
           }
-          /*if(travJson.data[i].listTravellerIdInfo.length != 0)
-           {
-           if (travJson.data[i].listTravellerIdInfo[0].idType == "1") {
-           ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           } else if (travJson.data[i].listTravellerIdInfo[0].idType == "2") {
-           ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           } else if (travJson.data[i].listTravellerIdInfo[0].idType == "3") {
-           ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           } else if (travJson.data[i].listTravellerIdInfo[0].idType == "4") {
-           ul_li2.innerHTML = "港澳通行证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           } else if (travJson.data[i].listTravellerIdInfo[0].idType == "5") {
-           ul_li2.innerHTML = "军官证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           } else if (travJson.data[i].listTravellerIdInfo[0].idType == "6") {
-           ul_li2.innerHTML = "驾驶证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           } else if (travJson.data[i].listTravellerIdInfo[0].idType == "7") {
-           ul_li2.innerHTML = "台胞证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           }
-           else if (travJson.data[i].listTravellerIdInfo[0].idType == "9") {
-           ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           }
-           else {
-           ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-           }
-           }*/
 
           var ul_li3 = document.createElement("li");
           ul_li3.innerHTML = "手机号" + " " + travJson.data[i].traveller.mobilePhone;
@@ -429,9 +405,9 @@
         content.appendChild(UL);
       }
     } else {
-      alert(travJson.message);
+      jAlert(travJson.message);
     }
-  }
+  };
 
   //  编辑常旅客页面
   function updateTra(e) {
@@ -528,11 +504,11 @@
     }
 
     //编辑常旅取消按钮提示
-    $("#update_quit").click(function () {
+    $("#update_quit").one('click',function () {
       var arr = [old0, old1, old2, old3, old4, old5];
       for (var i = 0; i < input.length; i++) {
         if (arr[i] != input[i].value) {
-          jConfirm("当前编辑的内容未保存，确定退出编辑?", "", conEdit);
+          jConfirm("当前编辑的内容未保存???，确定退出编辑?", "", conEdit);
           return;
         }
       }
@@ -558,6 +534,7 @@
       }
     }
   }
+
 
   function mycallback_addtrav(ret) {
     var myJson = ret;

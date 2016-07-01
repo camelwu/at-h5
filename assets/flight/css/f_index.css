@@ -11,7 +11,18 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   /*border-bottom: 1px solid #e6e6e6;*/
   overflow: hidden;
 }
-
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 0.24rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
 .white {
   background: #FFFFFF
 }
@@ -645,8 +656,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 #loadMore {
-  height: .48rem;
-  line-height: .48rem;
+  /*height: .48rem;*/
+  line-height: .88rem;
   background: #FFFFFF;
   color: #666666;
   font-size: .28rem;
@@ -1086,8 +1097,11 @@ input.name{
 .passengers_wrap .tip_word {
   width: 1.2rem;
   height: 100%;
-  letter-spacing: .08rem;
   float: left;
+}
+
+.passengers_wrap .name_infos .tip_word {
+  letter-spacing: .08rem;
 }
 
 .contact_wrap {

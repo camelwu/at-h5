@@ -82,7 +82,13 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span>
+            <span><%=  leaveItem["operatingCarrierName"] %></span>
+            <span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span>
+            <%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
+            <%if(flightInfo["isLeaveShareFlight"]){%>
+            <span class="share_word">共享</span>
+            <%}%>
           </p>
         </li>
         <%if(item
@@ -141,6 +147,9 @@
           </div>
           <p class="flightDetailInfo">
             <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
+            <%if(flightInfo["isLeaveShareFlight"]){%>
+            <span class="share_word">共享</span>
+            <%}%>
           </p>
         </li>
         <%if(item_
@@ -163,13 +172,17 @@
           <button>预订</button>
           </div>
            <div class="left_small_word">
-             <% if(window.location.search.substring(8) == "0"){ %>
+             <% if(fSeatChoose.postObjInfo.internationalOrDomestic == "domestic"){%>
+                 <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
+                 <p><span class="explain">退改签说明</span> <span class="taxFair">价格</span> </p>
+             <% }else{%>
+             <% if(fSeatChoose.postObjInfo.hasTax == "0"){ %>
              <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
              <p><span class="explain">退改签说明</span> <span class="taxFair">￥税费<%= flightInfo["totalTaxAmountADT"]%></span> </p>
              <%}else{ %>
              <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountExc"]%></span> </p>
              <p><span class="explain">退改签说明</span> <span class="taxFair">含税总价</span> </p>
-             <% } %>
+             <% }}%>
            </div>
       </div>
     </div>

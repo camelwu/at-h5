@@ -206,5 +206,21 @@ li.scenic_detile_project_first{
   font: 700 .2rem/.6rem "FZLTXHK";
   color:#FFBF4B
 }
+
+#sortTypes dt,#filters dt{position: relative}
+#sortTypes dt:after, #filters dt:after {
+  content: "";
+  width: .1rem;
+  height: .1rem;
+  position: absolute;
+  right: -0.18rem;
+  top: .05rem;
+  border-radius: .05rem;
+  background: #fd7530;
+}
+#sortTypes dt.clo:after,#filters dt.clo:after{
+   display: none;
+}
+
 /*列表页*/
 

@@ -61,7 +61,7 @@ element::-webkit-scrollbar{
 }
 /*通用_content*/
 .content{
-  padding:.88rem 0 .9rem;
+  /*padding:.88rem 0 .9rem;*/
   background-color: #ffffff;
 }
 .content_detail{
@@ -244,22 +244,33 @@ element::-webkit-scrollbar{
 
 /*列表页*/
 .scenic_list_error{
-  height: 3.5rem;
-  margin: 30% 10%;
-  position: relative;
-  background: url(/images/error/error.png) fixed center center no-repeat;
-  background-size: 3rem 2rem;
-  background-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
   display: none;
 }
 .scenic_list_error_div{
+  width: 3.72rem;
+  height: 2.28rem;
+  background: url(../../images/error/error.png) center center no-repeat;
+  background-size: 3rem 2rem;
+  background-position: 50% 50%;
+  margin: 40% 25% 0;
+  display: none;
+}
+.scenic_list_error_p{
   display: inline-block;
-  position: absolute;
-  bottom: 0px;
+  margin: 5% 25%;
+   color: #666;
+   font-size: .28rem;
+  display: none;
+}
+.loadMore {
+  height: 1rem;
+  line-height: 1rem;
   text-align: center;
-  width: 100%;
-  color: #e6e6e6;
-  font-size: .28rem;
 }
 .scenic-detile{
   background: white;
@@ -267,6 +278,7 @@ element::-webkit-scrollbar{
   position: relative;
   top: 0rem;
   left:0;
+  margin-bottom: 0.9rem;
 }
 .scenic-detile_list_matter{
   height: 1.4rem;
@@ -384,14 +396,14 @@ li.scenic_detile_project_first{
 }
 .icon_go_back{
   width: .65rem;
-  height: .65rem;
+  height: .75rem;
   position: absolute;
   left: .28rem;
-  top: .28rem;
+  top: .25rem;
   display: inline-block;
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
-  background-position: -3.15rem -0.45rem;
+  background-position: -3.15rem -0.4rem;
   z-index: 999;
 }
 .bar_img{
@@ -479,9 +491,9 @@ li.scenic_detile_project_first{
   border-bottom: 1px solid #E6E6E6;
   padding:0 0 .2rem .6rem;
 }
-.scenic_content i{
+.scenic_content h3 i{
   width: .36rem;
-  height: .35rem;
+  height: .4rem;
   position: absolute;
   left: 0;
   display: inline-block;
@@ -489,8 +501,8 @@ li.scenic_detile_project_first{
   background-size: 7.95rem 1.95rem;
 }
 .scenic_content_feature_start{
-  background-position:  -1.87rem -0.8rem;
-  top: .06rem;
+  background-position:  -1.87rem -0.75rem;
+  top: 0;
 }
 .scenic_content_feature h3{
   margin-bottom: .32rem;
@@ -627,15 +639,15 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   overflow-y: hidden;
   margin-top: .4rem;
 }
-.scenic_content_notes i{
+.scenic_content_notes h3 i{
   background-position:  -3.02rem -0.8rem;
   top: .06rem;
 }
-.scenic_content_TOS i{
+.scenic_content_TOS h3 i{
   background-position:  -4.76rem -0.8rem;
   top: .06rem;
 }
-.scenic_content_detail i{
+.scenic_content_detail h3 i{
   background-position:  -5.34rem -0.8rem;
   top: .06rem;
 }
@@ -1068,19 +1080,34 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   width: 3rem;
   height: .7rem;
 }
-
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 0.24rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
 .booking_package_linkman_contact{
-  height: .96rem;
+  /*height: .96rem;*/
   line-height: .96rem;
   border-bottom: 1px #e6e6e6 solid;
   font-size: .28rem;
 }
 
 .booking_package_linkman_contact:last-child{
-  height: .96rem;
+  /*height: .96rem;*/
   line-height: .96rem;
   border-bottom: 0;
   font-size: .28rem;
+}
+
+.booking_linkman_contact_tab{
+  border-bottom: 1px solid #e6e6e6;
 }
 
 #booking_package_linkman_contact{
@@ -1549,7 +1576,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 /*国籍样式补充*/
 .cl_search {
   height: .6rem;
-  width: 5.5rem;
+  /*width: 5.5rem;*/
   padding-left: 1.04rem;
   padding-right: .28rem;
   margin-top: .16rem;
@@ -1557,6 +1584,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   left: 0;
   top: 0;
   overflow: visible;
+  box-sizing: border-box;
 }
 /*国籍样式补充*/
 

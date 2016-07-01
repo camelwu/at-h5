@@ -130,7 +130,7 @@ var fIndexModal = {
     historyInitF: function () {
         var str = arguments[0] || "",
             string = "",
-            storage = window.sessionStorage,
+            storage = window.localStorage,
             historyList = document.querySelector('.history_list'),
             historyWrap = document.querySelector('.history_choose_city');
         var hisData = [],
@@ -177,7 +177,7 @@ var fIndexModal = {
    },
     cityChooseHistory: function () {
         var data = arguments[0] || [],
-            storage = window.sessionStorage,
+            storage = window.localStorage,
             historyList = document.querySelector('.history_list'),
             internationalHistory = JSON.parse(storage.getItem('internationalHistory')) || [],
             that = this,
@@ -319,7 +319,7 @@ var fIndexModal = {
         var content = document.querySelector('.content'),
             that = this,
             paraObj = {},
-            storage = window.sessionStorage;
+            storage = window.localStorage;
         var singleWrap = document.querySelector('#timeSingleWrap'),
             doubleWrap = document.querySelector('#timeDoubleWrap');
         that.deg = 0;
@@ -459,7 +459,7 @@ var fIndexModal = {
                     "pageNo": 1,
                     "pageSize": 10,
                     "internationalOrDomestic": getTripType(),
-                    "hasTax": 1,
+                    "hasTax": getTripType()=="domestic"?0:1,
                     "isClearAll": 1,
                     "fromCity": cityEles[0].querySelector('b').innerHTML,
                     "toCity": cityEles[1].querySelector('b').innerHTML
@@ -545,8 +545,8 @@ var fIndexModal = {
     },
 
     createDefaultDate: function () {
-        var d = arguments[0] ? new Date(arguments[0].replace(/-/g, '/')) : new Date(),
-            s = arguments[0] ? new Date(d.setDate(d.getDate())) : new Date(d.setDate(d.getDate() + 1)),
+        var d = arguments[0]&&new Date(arguments[0].replace(/-/g, '/'))>=new Date()? new Date(arguments[0].replace(/-/g, '/')) : new Date(),
+            s = arguments[0] ? new Date(d.setDate(d.getDate())) : new Date(d.setDate(d.getDate() + 2)),
             r = new Date(d.setDate(d.getDate() + 2)),
             startDay, endDay, startStrMonth = '',
             startStrDate = '',
@@ -560,7 +560,6 @@ var fIndexModal = {
         endDay = r.getFullYear() + "-" + endStrMonth + "-" + endStrDate;
         return [startDay, endDay];
     },
-
     buttonStatusHandler: function () {
         var adultIs = document.querySelectorAll(".adult i"),
             childIs = document.querySelectorAll(".child i"),
@@ -664,7 +663,7 @@ var fIndexModal = {
     },
 
     initHandler: function () {
-        var storage = window.sessionStorage,
+        var storage = window.localStorage,
             fIndexInfoObj = {},
             dateInfoObj = {},
             dateInfo = document.querySelectorAll('.month-day');

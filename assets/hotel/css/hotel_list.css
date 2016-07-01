@@ -139,12 +139,12 @@ li {
 }
 
 .hotel_content_address {
-  width: 3rem;
-  font-size: 0.2rem;
-  color: #999;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+    width: 3rem;
+    font-size: 0.2rem;
+    color: #999;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 
@@ -257,6 +257,10 @@ li {
     z-index: 2000000;
 }
 
+#rankWrapper {
+    min-height: 100%;
+}
+
 .r-li {
     width: 100%;
     height: .96rem;
@@ -305,15 +309,18 @@ li {
     bottom: -550rem;
     z-index: 2000000;
     height: 490rem;
+    overflow: hidden;
 }
 
 .hl_sc_chil {
+    /*
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
     overflow: auto;
+*/
 }
 
 .screen h4 {
@@ -322,7 +329,8 @@ li {
 
 .s-ul {
     margin: .2rem 0 0 .4rem;
-    padding: 0 .4rem .4rem 0 list-style-type: none;
+    padding: 0 .4rem .4rem 0;
+    list-style-type: none;
     overflow: hidden;
     border-bottom: 1px solid #dedede;
     /*padding-bottom: .36rem;*/
@@ -424,14 +432,17 @@ li {
     position: fixed;
     bottom: -555rem;
     z-index: 2000000;
+    overflow: hidden;
 }
 
 .loca_con {
+    /*
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     overflow: auto;
+*/
 }
 
 
@@ -487,7 +498,7 @@ li {
     margin-right: .4rem;
 }
 
-.l-li2 .l-icon1 {
+.l-li-active .l-icon1 {
     float: right;
     display: block;
     margin-top: .3rem;
@@ -523,7 +534,7 @@ li {
 .hotelConNo {
     width: 100%;
     /*height: 100%;*/
-  display: none;
+    display: none;
 }
 
 .hotelConNo img {
@@ -550,30 +561,30 @@ li {
 }
 
 .nowifi {
-  width: 100%;
-  /*height: 100%;*/
-  display: none;
+    width: 100%;
+    /*height: 100%;*/
+    display: none;
 }
 
 .nowifi img {
-  width: 3.82rem;
-  height: 2.28rem;
-  display: block;
-  margin: 40% auto 0;
+    width: 3.82rem;
+    height: 2.28rem;
+    display: block;
+    margin: 40% auto 0;
 }
 
 .hotelnowifi1 {
-  margin: .94rem 1.2rem 0;
-  color: #666;
-  font-size: .32rem;
-  text-align: center;
-  display: block;
+    margin: .94rem 1.2rem 0;
+    color: #666;
+    font-size: .32rem;
+    text-align: center;
+    display: block;
 }
 
 .hotelnowifi2 {
-  margin: .5rem 1.6rem;
-  color: #999;
-  font-size: .28rem;
-  text-align: center;
-  display: block;
+    margin: .5rem 1.6rem;
+    color: #999;
+    font-size: .28rem;
+    text-align: center;
+    display: block;
 }

@@ -309,11 +309,11 @@
 			if ($("#popup_more")[0]) {
 				//top = ($(window).height() - $("#popup_container").outerHeight(true)) / 2;
                 //top = top < 0 ? 0 : top;
-                top = 120;
+                top = 1.2;
                 var containerHeight = $(window).height() - $("#popup_title").outerHeight(true);
                 $("#popup_more").css("height",containerHeight);
 				$("#popup_container").css({
-					top : top + 'px',
+					top : top + 'rem',
 					left : left + 'px'
 				});
 			} else {

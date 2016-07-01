@@ -26,35 +26,32 @@
 		questUrl = questUrl || that.requestUrl;
 		vlm.loadJson("", JSON.stringify(dataObj), Callback);
 	};
-
+//点击加载更多
+	$('#loadMore').click( function () {
+		console.log('init 111');
+		loadMore();
+	});
 	function dataCallBack(result) {
 		if (result.success && result.code == '200') {
 			console.log(result);
 			var data = result.data;
 			title(data);
 			list(result);
-			//点击加载更多
-			$('#loadMore').on("click", function () {
-				console.log('111');
-				loadMore();
+			//处理星级格式化
+			data.filters[0].item.unshift({
+				"filterText": '不限',
+				"filterValue": 0
 			});
-			clickMore(data);
-
-      //处理星级格式化
-      data.filters[0].item.unshift({
-        "filterText": '不限',
-        "filterValue": 0
-      });
-      data.filters[0].item = data.filters[0].item.map(function (item) {
-        return {
-          filterText:handleDate(item.filterText),
-          filterValue:item.filterValue
-        }
-      });
+			data.filters[0].item = data.filters[0].item.map(function (item) {
+				return {
+				  filterText:handleDate(item.filterText),
+				  filterValue:item.filterValue
+				}
+			});
 
 			//footer  begin
 			var menu_data = {
-				hotelSort : {
+        sortTypes : {
 					title : "推荐排序",
 					c : "foot_sort",
 					s:1,
@@ -62,7 +59,7 @@
 					key : 'sortTypes',
 					listData : data.sortTypes
 				},
-				hotelScreen : {
+        filters : {
 					title : "筛选",
 					c : "foot_screen  aa",
 					s:2,
@@ -70,7 +67,7 @@
 					key : 'filters',
 					listData : data.filters
 				},
-				hotelPosition : {
+        locationList : {
 					title : "位置",
 					c : "foot_position",
 					s:2,//select
@@ -118,38 +115,44 @@
 
 	//title
 	function title(data) {
-		var str = $('#title').html();
-		var title = ejs.render(str, data);
-		$('.header h3 span').html(title);
+    if(data.pageNo === 1){
+      var str = $('#title').html();
+      var title = ejs.render(str, data);
+      $('.header h3 span').html(title);
+    }
 	}
 	//筛选后加数据
 	function screenList(result){
+		$('.all_elements').scrollTop(0);
 		$('.hotel_list').empty();
 		list(result)
 	}
 	//数据加载部分
 	function list(result) {
+		var data = result.data;
 		if(result.data.hotels.length>0){
-		//curList
-		if (result.data.pageNo === 1) {
-			var strCur = $('#curList').html();
-			var curList = ejs.render(strCur, result.data);
-			$('.hotel_list').append(curList);
-		}
-		var str = $('#templateList').html();
-		var hotels = ejs.render(str,result.data);
-		$('.hotel_list').append(hotels);
-		//去掉loading
-		//$('.status').fadeOut('fast');
-		$('.hotel_list li').on('click', function() {
-			$(this).addClass('cur').siblings().removeClass('cur');
-			var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
-			parametersStorage.hotelID = hotelID;
-			parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
-			sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
-      sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
-			window.location.href = 'hft_hotel_detail.html'+chooseUrl;
-		});
+			//curList
+			if (result.data.pageNo === 1) {
+				var strCur = $('#curList').html();
+				var curList = ejs.render(strCur, result.data);
+				$('.hotel_list').append(curList);
+			}
+			var str = $('#templateList').html();
+			var hotels = ejs.render(str,result.data);
+			$('.hotel_list').append(hotels);
+			//去掉loading
+			//$('.status').fadeOut('fast');
+			$('.hotel_list li').on('click', function() {
+				$(this).addClass('cur').siblings().removeClass('cur');
+				var hotelID = $(this).attr("data-hotelId"),hotelAdditionalPrice = $(this).attr("data-addPrice") ;
+				parametersStorage.hotelID = hotelID;
+				parametersStorage.hotelAdditionalPrice = hotelAdditionalPrice;
+				sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+		  sessionStorage.setItem('hotelAdditionalPrice',JSON.stringify(hotelAdditionalPrice));
+				window.location.href = 'hft_hotel_detail.html'+chooseUrl;
+			});
+			//加载更多按钮
+			clickMore(data);
 		}else{
 			jAlert("数据为空！");
 		}
@@ -167,7 +170,6 @@
 
 		$("#loadMore").html("正在加载...");
 		vlm.loadJson('', JSON.stringify(dataPull), dataCallBack);
-		//vlm.loadJson("", data, dataCallBack, false, false, true);
 	}
 
 	//点击加载更多

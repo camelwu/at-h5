@@ -27,7 +27,6 @@
     ,isShowChinaName=vlm.getpara("isShowChinaName").toLowerCase()=="false"?false:true
     ,isShowContact=vlm.getpara("isShowContact").toLowerCase()=="false"?false:true
     ,callback=vlm.getpara("callback")
-
   //页面Dom对象
   var saveDbBtn=$(".addFinish");
   var closeWindowBtn=$("#toper .closedWin");
@@ -145,7 +144,14 @@
       if (window.opener) {
         window.close();
       } else {
-        ifrCilent.parentNode.removeChild(ifrCilent);
+        ifrCilent.style.visibility='hidden';
+        if($(ifrCilent.parentNode).find('#showHide')){
+          $(ifrCilent.parentNode).find('#showHide').css('visibility','visible');
+        }
+        setTimeout(function(){
+          ifrCilent.parentNode.removeChild(ifrCilent);
+        },300);
+
       };
     });
     addPassagerBackBtn.on("click",function(){
@@ -582,8 +588,10 @@
           }
           if (obj.tagName == "INPUT") {
             $(elementList[i]).val(val);
-          }
-          else {
+          }else if(obj.className == "country-btn"){
+            val=getCountryName(val).chineseName;
+            $(elementList[i]).html(val);
+          }else {
             $(elementList[i]).html(val);
           }
         }

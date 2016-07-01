@@ -17,7 +17,7 @@
  }
  *
  */
-var footer = (function() {
+var footer = (function(){
   "use strict";
   // 遮罩容器
   var masker,
@@ -30,7 +30,7 @@ var footer = (function() {
   // 返回结果
     results = {},
   // 对象长度
-    size = function(obj) {
+    size = function(obj){
       var size = 0, key;
       for (key in obj) {
         if (obj.hasOwnProperty(key))
@@ -128,7 +128,7 @@ var footer = (function() {
         // 容器里的各种点击：取消，确定按钮
         on(sec, 'click', function(event) {
           event = event || window.event;
-          var target = event.target || event.srcElement, src, index, cur;
+          var target = event.target || event.srcElement, src, index, cur,nod;
           src = target.parentNode;
           if (target.className == "cancel") {// 取消
             if(target.parentNode.nextSibling){
@@ -145,7 +145,6 @@ var footer = (function() {
             that.remove();
           } else if (target.className == "clears") {// 清初筛选
             var node = src.parentNode;
-            //previousSibling
             that.resec(node);
           } else if (target.className == "sure") {// 筛选确定
             if(target.parentNode.nextSibling){
@@ -165,8 +164,13 @@ var footer = (function() {
             var li = air.getElementsByTagName('li');
             for(var k = 0;k < li.length;k++){
               if(li[k].className == 'cur choose'){
-                li[k].className = 'cur';
-                var nod = li[k];
+                li[k].className='cur';
+                nod = li[k];
+              }else if(li[k].className == 'cur chose'){
+                li[k].className='cur';
+                nod = li[k];
+              }else if(li[k].className == 'cur'){
+                nod = li[k];
               }
             }
             nod.parentNode.insertBefore(nod, nod.parentNode.firstChild);
@@ -395,7 +399,7 @@ var footer = (function() {
       createSec : function(s, c, t, k, d) {
         var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = s ? s : 1, cache = [],
         // 容器
-          wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">', '</ul>'],
+          wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k +'" class="special ' + k+ '">', '</ul>'],
         // 左侧容器
           left = ['<ul class="screen_lf">', '</ul>'],
         // 右侧容器
@@ -423,7 +427,7 @@ var footer = (function() {
               css = i == 0 ? ' class="cur"' : '';
               cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
               s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : 1;
-              wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + a.filterType + '">';
+              wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" class="special ' + k + '" data-type="' + a.filterType + '">';
               for (var j = 0; j < item.length; j++) {
                 var o = item[j];
                 css = o.filterText == '不限' ? ' class="cur"' : '';
@@ -514,6 +518,7 @@ var footer = (function() {
         } else {
           if (!box)
             this.create();
+          this.redTip();
         }
         //缓存数据&导入
       },
@@ -535,11 +540,43 @@ var footer = (function() {
           box.childNodes[i].style.backgroundColor = "";
         }
       },
+      redTip:function(){
+        var allSul = sec.querySelectorAll('.special'), temObj = {};
+        Array.prototype.slice.call(allSul).forEach(function(element,index){
+          if(element.getAttribute('data-key')){
+            temObj[element.getAttribute('data-key')] = [];
+          }
+        });
+        Array.prototype.slice.call(allSul).forEach(function(element,index){
+          for(var p in temObj){
+            if(p == element.getAttribute('data-key')){
+              temObj[element.getAttribute('data-key')].push(element);
+            }
+          }
+        });
+        for(var p in temObj){
+          var targetDl =  document.querySelector('#'+p), tag = false;
+          tag = temObj[p].every(function (value) {
+            var tag_= false, temLis = value.querySelectorAll('.cur');
+            if(temLis){
+              tag_= Array.prototype.slice.call(temLis).some(function(ele){
+                return  ele.getAttribute('data-val')!=""&&ele.getAttribute('data-val')!="0"&&ele.getAttribute('data-val')!=null;
+              });
+            }
+            return  temLis.length>0&&tag_
+          })
+          if(tag){
+            targetDl.querySelector('dt').className = "";
+          }else{
+            targetDl.querySelector('dt').className = "clo";
+          }
+        }
+      },
       request : function() {
         // 选中的属性
         var node = sec.getElementsByTagName("ul"), obj = {};
         for (var i = 0; i < node.length; i++) {
-          if (node[i].getAttribute("data-key")) {
+          if (node[i].getAttribute("data-key")){
             var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
             for (var j = 0; j < chk.length; j++) {
               cache.push(chk[j].getAttribute("data-val"));
@@ -567,6 +604,7 @@ var footer = (function() {
             }
           }
         }
+        this.redTip();
         footer.result = obj;
         this.remove();
         if (box.style.display == 'none') {
@@ -656,4 +694,3 @@ var footer = (function() {
     results : results
   };
 })();
-

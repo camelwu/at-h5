@@ -238,7 +238,7 @@ var htf_search = {
         var initFhDate = {},
             initFhtDate = {},
             fhStartDate, fhEndDate, fhtStartDate, fhtEndDate, now = new Date(),
-            initStartDate, initEndDate;
+            fhInitStartDate, fhInitEndDate, fhtInitStartDate, fhtInitEndDate;
         //F+H
         var fhStartDay = $("#fhCalendar .js_startDay");
         //显示出发日期
@@ -262,9 +262,11 @@ var htf_search = {
         var fhtStartWeekDay = $("#fhtCalendar .week_one");
         var fhtEndWeekDay = $("#fhtCalendar .week_two");
 
-        //默认时间为T+2~T+4
-        initStartDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2);
-        initEndDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4);
+        // 机酒默认时间为T+2~T+4，机酒默认时间为T+5~T+10(H5-2001)
+        fhInitStartDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2);
+        fhInitEndDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4);
+        fhtInitStartDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5);
+        fhtInitEndDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 10);
 
         if (localStorage.cacheSearch) {
             var cacheSearch = JSON.parse(localStorage.cacheSearch);
@@ -279,9 +281,9 @@ var htf_search = {
             //保存缓存日期
             startDate = new Date(fhStartDate.replace(/-/g, "/"));
             endDate = new Date(fhEndDate.replace(/-/g, "/"));
-            if (startDate < initStartDate) {
-                startDate = initStartDate;
-                endDate = initEndDate;
+            if (startDate < fhInitStartDate) {
+                startDate = fhInitStartDate;
+                endDate = fhInitEndDate;
             }
             fhStartDayData.attr('data-day', fhStartDate);
             fhReturnDayData.attr('data-day', fhEndDate);
@@ -301,9 +303,9 @@ var htf_search = {
             //显示选择的日期
             startDate = new Date(fhtStartDate.replace(/-/g, "/"));
             endDate = new Date(fhtEndDate.replace(/-/g, "/"));
-            if (startDate < initStartDate) {
-                startDate = initStartDate;
-                endDate = initEndDate;
+            if (startDate < fhtInitStartDate) {
+                startDate = fhtInitStartDate;
+                endDate = fhtInitEndDate;
             }
             fhtStartDay.html((startDate.getMonth() + 1) + "月" + startDate.getDate() + "日");
             fhtStartWeekDay.html(vlm.Utils.getWeek(startDate.toDateString()));
@@ -316,13 +318,13 @@ var htf_search = {
 
         } else {
             //F+H
-            fhStartDate = initStartDate;
+            fhStartDate = fhInitStartDate;
             //显示出发日期
             fhStartDay.html((fhStartDate.getMonth() + 1) + "月" + fhStartDate.getDate() + "日");
             fhStartWeekDay.html(vlm.Utils.getWeek(fhStartDate.toDateString()));
             fhStartDate = vlm.Utils.format_date(fhStartDate.toDateString(), 'Ymd');
             fhStartDayData.attr("data-day", fhStartDate);
-            fhEndDate = initEndDate;
+            fhEndDate = fhInitEndDate;
             //显示返程日期
             fhEndDay.html((fhEndDate.getMonth() + 1) + "月" + fhEndDate.getDate() + "日");
             fhEndWeekDay.html(vlm.Utils.getWeek(fhEndDate.toDateString()));
@@ -332,13 +334,13 @@ var htf_search = {
             initFhDate[fhEndDate] = "checkout day";
 
             //F+H+T
-            fhtStartDate = initStartDate;
+            fhtStartDate = fhtInitStartDate;
             //显示出发日期
             fhtStartDay.html((fhtStartDate.getMonth() + 1) + "月" + fhtStartDate.getDate() + "日");
             fhtStartWeekDay.html(vlm.Utils.getWeek(fhtStartDate.toDateString()));
             fhtStartDate = vlm.Utils.format_date(fhtStartDate.toDateString(), 'Ymd');
             fhtStartDayData.attr("data-day", fhtStartDate);
-            fhtEndDate = initEndDate;
+            fhtEndDate = fhtInitEndDate;
             //显示返程日期
             fhtEndDay.html((fhtEndDate.getMonth() + 1) + "月" + fhtEndDate.getDate() + "日");
             fhtEndWeekDay.html(vlm.Utils.getWeek(fhtEndDate.toDateString()));
@@ -922,8 +924,15 @@ var htf_search = {
         this.init_title_room();
         //this.switchCities();
         this.add_subtract();
-        //清空历史数据
-        window.sessionStorage.removeItem('hftFlightHotelTourInfo');
+        //清空资源选择页历史数据
+      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
+      window.localStorage.removeItem('hftFlightHotelTourInfo');
+      window.sessionStorage.removeItem('tourChosenInfo');
+      window.sessionStorage.removeItem('hftCreateOrderPara');
+      window.localStorage.removeItem('hftCreateOrderPara');
+      window.sessionStorage.removeItem('hotelAdditionalPrice');
+      window.sessionStorage.removeItem('tempChooseTourDate');
+      window.localStorage.removeItem('selectedRoomId')
     }
 };
 htf_search.init();
@@ -941,11 +950,14 @@ function checkAge(obj) {
         obj.value = '';
     }
 }
+
+// 机酒景搜索按钮
 $('#hft_searchBtn').click(function () {
     if (htf_search.next_page()) {
         window.location.href = 'hft_scenic_list.html?type=2';
     }
 });
+// 机酒搜索按钮
 $('#hf_searchBtn').click(function () {
     if (htf_search.next_page()) {
         window.location.href = 'hft_choose.html?type=1';

@@ -195,7 +195,7 @@
 <script id="tpl_city_list" type="text/template">
       <% for(var i = 0;i<data.destCities.length;i++){ %>
       <li class="t_city_content_item" >
-        <div class="t_city_content_itemtitle" data-code="<%=data.destCities[i].cityCode%>"><%=data.destCities[i].cityName%></div>
+        <div class="t_city_content_itemtitle" data-code="<%=data.destCities[i].cityCode%>" data-name="<%=data.destCities[i].cityName%>" data-countrycode="<%=data.destCities[i].countryCode%>"><%=data.destCities[i].cityName%></div>
       </li>
       <% } %>
 </script>

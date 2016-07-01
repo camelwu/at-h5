@@ -174,7 +174,7 @@ var fOrder = {
   },
 
   eventHandler: function () {
-    var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
+    var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.localStorage.getItem('fIndexInfo')).data;
     var postPara = {}, temObject = {},priceTotalWrap = document.querySelector('.priceTotal_wrap'),changeTip = document.querySelector('.change_tip'), passengerOuter = null;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", iArrow = document.querySelector('.total_word i');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
@@ -347,21 +347,21 @@ var fOrder = {
   $(obj).parent().parent().parent().remove();
 
   var id=$(obj).parent().find(".itemId").val();
-  var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+  var list= JSON.parse(localStorage.getItem("choiceAir_select_passenger-list"));
   var temp={};
   for(var key in list){
     if(key !=id){
       temp[key]=list[key];
     }
   }
-  sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
+    localStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
 },
 
 editPassager:function(obj){
   var id=$(obj).find("input").eq(0).val();
-  var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
-  var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-  vlm.f_choice('passenger-list','f','traver','',!fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), !fOrder.isInternationalTrip())
+  var numofAdult=JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult;
+  var numofChild= JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild;
+  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
 },
   distinct:function(){
     var obj={},ary=[], arr = arguments[0];
@@ -404,12 +404,12 @@ editPassager:function(obj){
   },
 
   isInternationalTrip:function(){
-    var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
-    return !data.data.internationalOrDomestic == "international"
+    var data = JSON.parse(window.localStorage.getItem('fIndexInfo'));
+    return data.data.internationalOrDomestic == "international"
   },
 
   innitData: function () {
-    var flightData = {}, fIndexInfo = {}, storage = window.sessionStorage, priceTotal = "", priceData = {};
+    var flightData = {}, fIndexInfo = {}, storage = window.localStorage, priceTotal = "", priceData = {};
     flightData = JSON.parse(storage.getItem('currentFlight'));
     fIndexInfo = JSON.parse(storage.getItem("fIndexInfo")).data;
     console.log(flightData)

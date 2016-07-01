@@ -48,7 +48,12 @@ var hftTool ={
   var freetype=vlm.getpara('type');
   //返回资源选择页
   $('#hftFreeBack').click(function(){
-      window.location.href='../hotel_flight_tour/hft_choose.html?'+ window.location.search;
+    if( ! $('#choiceAir').length){
+      setTimeout(function(){
+         window.location.href='../hotel_flight_tour/hft_choose.html'+ window.location.search;
+      },500);
+    }
+
   });
   //初始化
   function init() {
@@ -137,7 +142,7 @@ var hftTool ={
     $(document).on('click','.add_traveller',function(){
       $("#status").show().fadeOut();
       $("#preloader").show().delay(400).fadeOut("medium");
-      vlm.f_choice('orderTraveller', 'fx', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false,"callback");
+      vlm.f_choice('orderTraveller', 'fx', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false,"callback",'#showHide');
     });
 
     if(freetype == 2){

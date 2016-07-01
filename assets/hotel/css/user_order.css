@@ -116,6 +116,13 @@ i.right {
     position: relative;
 }
 
+.hotel_user_detail_phone >div{
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  padding: 0 .28rem;
+}
+
 .hotel_user_detail_name1 {
     padding-left: .28rem;
     line-height: .68rem;
@@ -181,11 +188,22 @@ i.right {
     width: 50%;
     box-sizing: border-box;
     font-size: .28rem;
-    padding-left: .28rem;
+    padding: 0 .28rem;
     display: inline-block;
     vertical-align: middle;
 }
-
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 0.24rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
 .hotel_user_detail_Email input {
     width: 44%;
     font-size: .28rem;
@@ -242,7 +260,8 @@ i.right {
 }
 
 .hotel_footer_sum_price .sgd_wrap {
-    line-height: .5rem;
+  line-height: .4rem;
+  margin-top: 0.1rem;
 }
 
 .hotel_footer_sum_price1 {
@@ -258,7 +277,8 @@ i.right {
 .hotel_footer_sum_price3 {
     font-size: .24rem;
     color: #999;
-    line-height: 0.5rem;
+    line-height: 0.3rem;
+  margin-bottom: 0.1rem;
 }
 
 .hotel_footer_button {
@@ -292,7 +312,7 @@ i.right {
 }
 
 
-/*费用明细*/
+/*璐圭敤鏄庣粏*/
 
 .hotel_detail {
     display: none;
@@ -318,7 +338,7 @@ i.right {
 }
 
 
-/*原先*/
+/*鍘熷厛*/
 
 .uo_hid {
     width: 100%;
@@ -480,4 +500,23 @@ i.right {
 #popup_ok {
     text-align: center;
     width: 100%;
+}
+
+
+/*鎵嬫満鍖哄彿*/
+.p_86.tel-btn{
+  position: relative;
+}
+.p_86.tel-btn >span{
+  margin: 0 10% 0 25%;
+}
+.int_tel{
+  display: inline-block;
+  vertical-align: top;
+  width: .28rem;
+  height: .32rem;
+  margin-top: .225rem;
+  background: url("../../images/ui/icon_common.png") no-repeat;
+  background-position: -1.12rem -.57rem;
+  background-size: 8.4rem 5.2rem;
 }

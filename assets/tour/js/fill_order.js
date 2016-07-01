@@ -506,18 +506,16 @@
             var arrivalFlightNo = document.querySelector('#content3 .input_flight input').value;
             var arrivalDateTime = document.querySelector('#content3_CheckInDate').value;
             var dateTime = arrivalDateTime ? arrivalDateTime.split("-") : checkInDate;
+            console.log(dateTime);
             if (arrivalFlightNo == '') {
               fli.ArrivalFlightNo = "None";
             } else {
-
               fli.ArrivalFlightNo = arrivalFlightNo;
-
-              if (dateTime.indexOf("T") > -1) {
-                fli.ArrivalDateTime = dateTime;
-              } else {
-                fli.ArrivalDateTime = arrivalDateTime.replace(" ","T");
-              }
-
+            }
+            if (dateTime.indexOf("T") > -1) {
+              fli.ArrivalDateTime = dateTime;
+            } else {
+              fli.ArrivalDateTime = arrivalDateTime.replace(" ","T");
             }
           }
           if ($('#content4').css('display') == 'block') {
@@ -528,18 +526,17 @@
               fli.ArrivalFlightNo = "None";
             } else {
               fli.DepartFlightNo = departFlightNo;
-              if (departDate.indexOf("T") > -1) {
-                fli.DepartDateTime = departDate;
-              } else {
-                fli.DepartDateTime = departDateTime.replace(" ","T");
-              }
+            }
 
+            if (departDate.indexOf("T") > -1) {
+              fli.DepartDateTime = departDate;
+            } else {
+              fli.DepartDateTime = departDateTime.replace(" ","T");
             }
           }
           Parmeters.Parameters.FlightDetails = fli;
         }
 
-        console.log(Parmeters);
         setOrderTime();
         vlm.loadJson(vlm.apiWithDeviceID, JSON.stringify(Parmeters), package_back);
       }
@@ -598,26 +595,29 @@
     "Code": "0208"
   };
   vlm.loadJson("", JSON.stringify(tmp), getDetail_back);
-
   function getDetail_back(ret) {
     var json = ret;
     if (json.success) {
       var data = json.data;
-      var weekday = JSON.parse(localStorage.week);
+      var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+      for( var i=0; i< data.tourInfos.length ; i++) {
+        if(data.tourInfos[i].travelDateSpecified){
+        var start = data.tourInfos[i].travelDate.substring(0, 10).replace(/-/g, "/"), dd = new Date(start);
+        dd.setDate(dd.getDate());
+        var week = day_ary[dd.getDay()];
+          data = $.extend({
+            "week": week
+          }, data);
+      }}
       var noon = JSON.parse(localStorage.noon);
       //由于返回的数据顺序和存储的数据顺序不一致，格式化
-      var wekday1 = weekday[0],noon1 = noon[0];
-      var wekday2 = weekday[1],noon2 = noon[1];
-      weekday[0] = wekday2;
-      weekday[1] = wekday1;
+      var noon1 = noon[0];
+      var noon2 = noon[1];
       noon[0] = noon2;
       noon[1] = noon1;
-      console.log(weekday)
       data = $.extend({
-        "weekday": weekday,
         "noon": noon
       }, data);
-      console.log(data);
       var n;
       for (var k = 0; k < data.hotels[0].rooms.length; k++) {
         if (data.hotels[0].rooms[k].roomID == roomID) {
@@ -680,19 +680,6 @@
       jAlert(json.message, "提示");
     }
   }
-  ////上午下午
-  //var aNoon=$('.travel-noon a');
-  //aNoon.click(function(){
-  //    $(this).addClass('on').siblings().removeClass('on');
-  //    if(aNoon.attr('class') == 'fa-noon on')
-  //    {
-  //        localStorage.noon=0;
-  //    }
-  //    else
-  //    {
-  //        localStorage.noon=1;
-  //    }
-  //});
   $('.open-close').click(function () {
     $('#detailBox').toggle();
     $(this).find('b').toggleClass('cur');
@@ -713,7 +700,4 @@
     var s = oDate.getSeconds();
     localStorage.orderTime = year + '-' + mon + '-' + day + ' ' + h + ':' + m + ':' + s;
   }
-
-
-
 })();

@@ -27,13 +27,13 @@
             <p class="center-text"></p>
         </div>
     </div>
+    <div class="header">
+      <a href="javascript:void(0);" class="header_back" id="hftFreeBack" data-statl="back">
+        <i class="icon_back"></i>
+      </a>
+      <h3>订单填写</h3>
+    </div>
     <div class="all_elements" id="hftPage">
-        <div class="header">
-            <a href="javascript:void(0);" class="header_back" id="hftFreeBack" data-statl="back">
-                <i class="icon_back"></i>
-            </a>
-            <h3>订单填写</h3>
-        </div>
         <div class="content">
             <!--机票-->
             <div class="flight_section">
@@ -163,17 +163,17 @@
                     </li>
                 </ul>
             </div>
-            <!--预定footer-->
-            <div class="order_footer clearfix">
-                <div class="order_num fl">
-                    <div class="order_num_tab clearfix">
-                        <span class="num1 fl">总额：<i></i></span>
-                        <div class="fl num_tip"><span class="detail_fale"></span></div>
-                    </div>
-                </div>
-                <a href="javascript:;" class="order_submit fr">立即预订</a>
-            </div>
         </div>
+    </div>
+    <!--预定footer-->
+    <div class="order_footer clearfix" id="showHide">
+      <div class="order_num fl">
+        <div class="order_num_tab clearfix">
+          <span class="num1 fl">总额：<i></i></span>
+          <div class="fl num_tip"><span class="detail_fale"></span></div>
+        </div>
+      </div>
+      <a href="javascript:;" class="order_submit fr">立即预订</a>
     </div>
     <!--   明细块   -->
     <div class="hft_det_mask"></div>
@@ -228,7 +228,7 @@
         <ul class="country_hot">
           <% for(var i=0; i< arrCountry.length; i++){ %>
           <% if(arrCountry[i].isHot == 1) { %>
-          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
+          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
           <% } %>
           <% } %>
         </ul>
@@ -242,7 +242,7 @@
           <h4><%= tem%></h4>
           <ul class="full_country_list">
             <%countryArray[tem].forEach(function(array){ %>
-            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
+            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
             <% })%>
           </ul>
           <% }%>
@@ -444,7 +444,7 @@
         function editPassager(obj) {
              var id = $(obj).find("input").eq(0).val();
              var hftFlightHotelTourInfo= JSON.parse(sessionStorage.getItem("hftFlightHotelTourInfo"));
-          vlm.f_choice('orderTraveller', 'fx', 'traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false);
+          vlm.f_choice('orderTraveller', 'fx', 'traver','',true,true,window.localStorage.hft_adunum,window.localStorage.hft_chinum,id,hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false, false,null,'#showHide');
         }
 
     </script>

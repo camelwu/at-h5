@@ -85,7 +85,6 @@ var hotelList = {
 			if (resultData.hotels.length == 0) {
 				jAlert("抱歉暂时没有数据", "提示");
 			} else {
-
 				that.packageID = resultData.packageID;
 				that.bookingFormInfo = resultData.bookingFormInfo;
 				//var hotels = resultData.hotels;

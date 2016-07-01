@@ -35,7 +35,7 @@
     <div class="seat-price-cost"></div>
     <!--乘机人-->
     <div class="passengers_wrap">
-      <h4>乘机人<i onclick="vlm.f_choice('passenger-list','f','traver','',!fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), !fOrder.isInternationalTrip())"></i>
+      <h4>乘机人<i onclick="vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
       </h4>
 
       <div id="passenger-list">
@@ -235,13 +235,13 @@
   vlm.l_contact();
   localStorage.removeItem("travellerInfo_selected");
   localStorage.removeItem("contact_selected");
-  sessionStorage.removeItem("choiceAir_select_passenger-list");
-  sessionStorage.removeItem("choiceAir_select_contact-table");
+  localStorage.removeItem("choiceAir_select_passenger-list");
+  localStorage.removeItem("choiceAir_select_contact-table");
   function callback() {
     fOrder.countrySlider();
   }
   function callback2() {
-    var modle = JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+    var modle = JSON.parse(localStorage.getItem("choiceAir_select_passenger-list"));
     for (var key in modle) {
       $("#contact-table #first-name").val(modle[key].traveller.firstName);
       $("#contact-table #last-name").val(modle[key].traveller.lastName);

@@ -1,6 +1,3 @@
-/**
- * Created byon 2016/5/5.
- */
 (function() {
   var filterSign = false;
   var core = function() {
@@ -33,15 +30,14 @@
         if (data.success) {
           vlm.init();
           filterData = data;
-          //var htmlT = ;
           $("#tour_city").html(ejs.render($("#tpl_head").html(), data.data));
           var htmlt = $("#timeDetile").html();
           var htmlT = ejs.render(htmlt, searchInfo);
           $("#TimeList").html(htmlT);
           if(SParameter.Parameters.PageIndex == 1){
-            var htmlp = $("#scenicDetile").html();
-            var html = ejs.render(htmlp, data.data);
-            $("#scenicList").html(html);
+            document.querySelector('.snap-content').scrollTop = 0; /*H5-2010*/
+            var htmlStr = $("#scenicDetile").html(), outString = ejs.render(htmlStr, data.data);
+            $("#scenicList").html(outString);
           }else{
             var htmlp = $("#scenicDetile").html();
             var html = ejs.render(htmlp, data.data);
@@ -49,7 +45,14 @@
           }
           var htmlc = $("#CityDetile").html();
           var htmlC = ejs.render(htmlc, data.data);
-          $("#CityList").html(htmlC);
+
+          // (H5-1938)点击周边城市后，上面的周边城市不做改变，下面的机酒列表改变
+          if (!filterSign) {
+            $("#CityList").html(htmlC);
+          }
+
+          // 清理上次绑定事件（重复绑定事件造成多次查询接口）
+          $("#CityList").off('click');
           $("#CityList").click(function(e){
             var e = e || window.event,
               tar = e.target || e.srcElement;
@@ -71,6 +74,14 @@
                 "ForeEndType" : 3,
                 "Code" : "60100002"
               };
+
+              // 周边城市激活状态切换
+              Array.prototype.forEach.call(tar.parentNode.children, function (el) {
+                el.classList.remove('current');
+              });
+              tar.classList.add('current');
+
+              // 加载机酒列表
               vlm.loadJson('', JSON.stringify(SParameter), callback);
             }
           });
@@ -102,6 +113,13 @@
       };
     //init filter
     var initFilter = function(data) {
+      var sortList = data.data.sortTypes || {};
+      if(sortList.length > 0){
+        for(var i=0;i < sortList.length;i++){
+          sortList[i].sortValue = i+1;
+        }
+      }
+
       // 添加底部筛选
       if (footer) {
         footer.data = {
@@ -111,9 +129,9 @@
             s : 1,
             type : 1,
             key : 'sortTypes',
-            listData : data.data.sortTypes
+            listData : sortList
           },
-          hotelScreen : {
+          filters : {
             title : "筛选",
             c : "foot_screen",
             s : 1,
@@ -159,11 +177,13 @@
       var sum = data.data.recommendCities.length;
       var num = 0;
       var width = 0;
-      for (var i = 0; i < sum-1; i++) {
-        width = $(".city_list1").eq(i).width();
-        num += width;
+      for (var i = 0; i < sum; i++) {
+        width = $(".city_list1").eq(i).outerWidth();
+        num += width+10;
       }
-      num = num + sum * 60;
+      // rem换算为px会产生小数，导致总和误差为1个像素，顶部菜单会掉下来
+      num += 1;
+      //num = num + sum * 60;
       $(".city_box").css({
         'width' : num + 'px'
       });
@@ -181,9 +201,10 @@
   window.localStorage.removeItem('hftCreateOrderPara');
   window.sessionStorage.removeItem('hotelAdditionalPrice');
   window.sessionStorage.removeItem('tempChooseTourDate');
+  window.localStorage.removeItem('selectedRoomId')
 })();
 (function(){
   $(".all_elements")[0].addEventListener("scroll",function(){
     $(".header")[0].style.position="fixed";
-    });
+  });
 })()
