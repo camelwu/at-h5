@@ -1,0 +1,182 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>机票首页 - 亚程旅行网</title>
+  <link rel="stylesheet" href="../../styles/reset.css" />
+  <link rel="stylesheet" href="footer.css" />
+  <style type="text/css">
+    .cur{color: red!important;} /*测试样式*/
+  </style>
+</head>
+<body>
+
+<script type="text/javascript" src="../../js/lib/jquery.js"></script>
+<script type="text/javascript" src="foot1.0.1.js"></script>
+<script type="text/javascript">
+  var menu_call = function(){
+    console.log(arguments)
+  };
+  var bottom = function(d) {
+    var menu_data = {
+      transformTypes : {
+        //title : "快速排序",
+        candidateTitle : [{sortText:"从低到高", sortValue:"1"},{sortText:"从高到低", sortValue:"1"}], /*候选名字组*/
+        c : "foot_transform",
+        type : 0,
+        s : 1,
+        key : 'transformTypes',
+        isTitleChange:1,  /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+        titleMaxRate:0,  /*最大标题索引值*/
+        titleItem:" ",  /*当前题索引值*/
+        defaultTitle:{sortText:"排序", sortValue:""}, /*默认名字*/
+        clearOtherDl:2,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
+        listData : [ {
+          sortText : "差价升序",
+          sortValue : 7
+        }, {
+          sortText : "差价降序",
+          sortValue : 8
+        }, {
+          sortText : " 直飞在前",
+          sortValue : 1
+        }, {
+          sortText : " 直飞在后",
+          sortValue : 2
+        }, {
+          sortText : "耗时升序",
+          sortValue : 3
+        }, {
+          sortText : "耗时升序",
+          sortValue : 4
+        }, {
+          sortText : "起飞时间升序",
+          sortValue : 5
+        }, {
+          sortText : "起飞时间降序",
+          sortValue : 6
+        }]
+      },
+
+      sortTypes: {
+        //title : "快速排序",
+        candidateTitle : [], /*候选名字组*/
+        c : "foot_sort",
+        type : 1,
+        s : 1,
+        key : 'sortTypes',
+        isTitleChange:2,  /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+        titleMaxRate:0,  /*最大标题索引值*/
+        titleItem:" ",  /*当前题索引值*/
+        defaultTitle:{sortText:"优选", sortValue:""}, /*默认名字*/
+        clearOtherDl:8,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
+        listData: [
+          {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+          {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+          {sortText: "起飞晚到早", sortValue: "isDesc_true"}
+        ]
+      },
+
+      filters : {
+        candidateTitle : [],/*候选名字组*/
+        c : "foot_screen",
+        type : 2,
+        s : 2,
+        key : 'filters',
+        isTitleChange:0,        /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+        clearOtherDl:"",   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为""则不清除
+        titleMaxRate:0,  /*最大标题索引值*/
+        titleItem:" ",  /*当前题索引值*/
+        defaultTitle:{sortText:"筛选", sortValue:""}, /*默认名字*/
+        listData : [
+          {
+            title : "直飞",
+            filterType : 2,
+            item : [{
+              filterText : "不限",
+              filterValue : "0"
+            }, {
+              filterText : "仅看直飞",
+              filterValue : "1"
+            }]
+          },
+          {
+            title : "共享",
+            filterType : 3,
+            item : [{
+              filterText : "不限",
+              filterValue : "0"
+            }, {
+              filterText : "隐藏共享航班",
+              filterValue : "1"
+            }]
+          },
+          {
+            title : "起飞时段",
+            filterType : 4,
+            item : [{
+              filterText : "不限",
+              filterValue : "0"
+            }, {
+              filterText : "0点到6点",
+              filterValue : "1"
+            }, {
+              filterText : "6点到12点",
+              filterValue : "2"
+            }, {
+              filterText : "12点到18点",
+              filterValue : "3"
+            }, {
+              filterText : "18点到24点",
+              filterValue : "4"
+            }]
+          },
+          {
+            allowMultiSelect: 0,
+            filterType: 2,
+            item: [
+              {
+                filterText: "经济舱",
+                filterValue: "economy"
+              },
+              {
+                filterText: "超级经济舱",
+                filterValue: "economyPremium"
+              },
+              {
+                filterText: "商务舱",
+                filterValue: "business"
+              },
+              {
+                filterText: "头等舱",
+                filterValue: "first"
+              }
+
+            ],
+            sortNumber: 3,
+            title: "舱位"
+          }
+        ]
+      }
+    };
+    if (footer) {
+      footer.data = menu_data;
+      footer.callback = menu_call;
+    }
+    footer.filters.init();
+  };
+  bottom()
+</script>
+</body>
+</html>

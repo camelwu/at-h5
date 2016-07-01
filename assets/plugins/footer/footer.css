@@ -435,9 +435,8 @@ footer dl.classname{
   background: #333;
 }
 
-#Screen dt,#sortTypes dt,#filters dt,#locationList dt{position: relative}
-#sortTypes dt,#filters dt{position: relative}
-#sortTypes dt:after, #filters dt:after, #locationList dt:after{
+#Screen dt,#sortTypes dt,#filters dt,#locationList dt, #transformTypes dt,#timeTypes dt {position: relative}
+#sortTypes dt:after, #filters dt:after, #locationList dt:after, #transformTypes dt:after, #timeTypes dt:after{
   content: "";
   width: .1rem;
   height: .1rem;
@@ -447,6 +446,6 @@ footer dl.classname{
   border-radius: .05rem;
   background: #fd7530;
 }
-#sortTypes dt.clo:after,#filters dt.clo:after, #locationList dt.clo:after{
+#sortTypes dt.clo:after,#filters dt.clo:after, #locationList dt.clo:after,#transformTypes dt.clo:after, #timeTypes dt.clo:after {
   display: none;
 }
