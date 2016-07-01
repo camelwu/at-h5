@@ -59,9 +59,14 @@
         <div class="ho_infor">
             <p class="name"><%=hotels[i].hotelGenInfo.hotelNameLocale %>(<%= hotels[i].hotelGenInfo.hotelName %>)</p>
             <div class="grade">
+              <%if(hotels[i].hotelGenInfo.hotelReviewScore>0){%>
                 <p class="score"><span><i><%= hotels[i].hotelGenInfo.hotelReviewScore %>.0</i>分</span><%= hotels[i].hotelGenInfo.hotelReviewCount %>人点评</p>
                 <span><%= starList(hotels[i].starRating) %></span>
-              <% if(hotels[i].location != "N/A"){%>
+              <%if(hotels[i].hotelGenInfo.isFreeWiFi){%>
+              <span class = "tour_wifi"><%= starList(hotels[i].isFreeWiFi)%></span>
+              <%}%>
+              <%}%>
+              <% if(hotels[i].location!= "N/A"){%>
                 <p class="h-address"><%= hotels[i].location %></p><% } %>
                 </div>
             </div>
