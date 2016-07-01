@@ -43,13 +43,11 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   padding-top: 1.66rem;
 }
 .addMarginBottomHigh{
-  margin-bottom: 1.96rem;
+  margin-bottom: 0.99rem;
 }
-
 .singleTrip, .doubleTrip{
   border-bottom: .02rem solid #DEDEDE;
 }
-
 .singleTrip, .doubleTrip , .international_title, .domestic_title{
   float: left;
   width: 50%;
@@ -59,11 +57,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-
 .doubleTrip {
   float: right;
 }
-
 .light-title {
   border-bottom: 0.06rem solid #7bc300;
   color: #7bc300;
