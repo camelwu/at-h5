@@ -342,6 +342,10 @@ var fOrder = {
       }
     });
 
+    $('.add-user').on('click', function () {
+      vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate, !fOrder.isInternationalTrip(), false, 'fOrder.flight_callback')
+    });
+
   },
   deletePassager:function(obj){
   $(obj).parent().parent().parent().remove();
@@ -357,11 +361,19 @@ var fOrder = {
     localStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
 },
 
-editPassager:function(obj){
+  flight_callback:function () {
+    var isInternational = fOrder.isInternationalTrip()
+    if(isInternational){
+      
+    }
+
+  },
+
+  editPassager:function(obj){
   var id=$(obj).find("input").eq(0).val();
   var numofAdult=JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult;
   var numofChild= JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild;
-  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
+  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), false)
 },
   distinct:function(){
     var obj={},ary=[], arr = arguments[0];

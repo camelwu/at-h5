@@ -35,7 +35,8 @@
   var nameDescriptPager=$(".fillName_page ");
   var nameCloseDescriptBtn=  $("#fillName_page #closeName");
   var submitBtn=$("#toper .addPassager_finish");
-  var uc_cnName=$(".addAir_page .cnNameUL");
+  var cnName=$(".addAir_page .cnNameUL");
+  var enName=$(".addAir_page .enNameUL");
   var ul_contect=$(".addAir_page .ul_contect");
 
   var titleTip=$("#toper h3");
@@ -71,31 +72,7 @@
   //  '{% } %}'].join('');
 
   //常旅列表
-  var tpl_traveler = ['{%  var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2; for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
-    '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); %}'+
-    '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
-    '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
-    '<ul class="often_user">',
-    '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
-    '<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
-    '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">' +
-    '{%=dd.traveller.firstName%}</span>',
-    '{%  if(age<2){ %}'+
-    '<i class="per_type" data-id="0">婴儿</i></li>'+
-    '{% } else if(age>=2 && age<12){ %}'+
-    '<i class="per_type" data-id="1">儿童</i></li>'+
-    '{% } else if(age>=12){ %}'+
-    '<i class="per_type" data-id="2">成人</i></li>',
-    '{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ if(dd.listTravellerIdInfo[j].idType==1){ %}',
-    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
-    '{% break; } else if(dd.listTravellerIdInfo[j].idType==2 && defaultShowCardType==1){ %}',
-    '<li class="passport-num"><span class="passport-card-type" style="color: #999;">请补全护照信息</span></li>',
-    '{% } else{ %}',
-    '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
-    '{% }} %}',
-    '</ul>',
-    '</li>',
-    '{% } %}'].join('');
+  var tpl_traveler = $('#tpl_traveler').text();
 
 
   ////常旅列表
@@ -213,7 +190,7 @@
 
   var _validate=function(){
 
-    if(uc_cnName.is(':visible')){
+    if(cnName.is(':visible')){
       if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cnName").eq(0).val())){
         jAlert("中文姓名不能为空！","",null,"确认");
         return false;
@@ -223,6 +200,26 @@
         return false;
       }
     };
+    
+    if(enName.is(':visible')) {
+      if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())){
+        jAlert("姓（英文）不能为空！","",null,"确认");
+        return false;
+      }
+      if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".firstName").eq(0).val())){
+        jAlert("名（英文）不能为空！","",null,"确认");
+        return false;
+      }
+
+      if(!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".lastName").eq(0).val())){
+        jAlert("姓必须为英文！","",null,"确认");
+        return false;
+      }
+      if(!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".firstName").eq(0).val())){
+        jAlert("名必须为英文！","",null,"确认");
+        return false;
+      }
+    }
 
     if(ul_contect.is(':visible')){
       if(!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telephone").eq(0).val())){
@@ -235,25 +232,8 @@
         return false;
       }
     }
-    if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())){
-      jAlert("姓（英文）不能为空！","",null,"确认");
-      return false;
-    }
-    if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".firstName").eq(0).val())){
-      jAlert("名（英文）不能为空！","",null,"确认");
-      return false;
-    }
     if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cardNumber").eq(0).val())){
       jAlert("证件号不能为空！","",null,"确认");
-      return false;
-    }
-
-    if(!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".lastName").eq(0).val())){
-      jAlert("姓必须为英文！","",null,"确认");
-      return false;
-    }
-    if(!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".firstName").eq(0).val())){
-      jAlert("名必须为英文！","",null,"确认");
       return false;
     }
     if($(addOrEditPassagePage).find(".traveler_sex1").length==0){
@@ -279,13 +259,14 @@
     return true;
   }
 
-  var _ui2Modle=function(type){
+  var _ui2Model=function(type){
     if(type=="new") {
       var model= {
         "traveller": {
           "idName": $(".addAir_page .cnName").val(),
           "lastName": $(".addAir_page .lastName").val(),
           "firstName": $(".addAir_page .firstName").val(),
+          "cnName": $(".addAir_page .cnName").val(),
           "countryCode": $(".addAir_page .country").attr("data-code"),
           "countryName": $(".addAir_page .country").html(),
           "sexCode": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code"),
@@ -315,33 +296,33 @@
     }
     else{
 
-      var modle;
+      var model;
       for(var key in passagerArray){
         if(key==editIDKey){
-          modle=passagerArray[key];
+          model=passagerArray[key];
           break;
         }
       }
-      modle.traveller.idName=$(".addAir_page .cnName").val();
-      modle.traveller.lastName=$(".addAir_page .lastName").val();
-      modle.traveller.firstName=$(".addAir_page .firstName").val();
-      modle.traveller.countryCode=$(".addAir_page .country").attr("data-code");
-      modle.traveller.countryName=$(".addAir_page .country").html();
-      modle.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
-      modle.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
-      console.log($(".addAir_page .birthDay").eq(0).html());
-      modle.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
-      modle.traveller.email=$(".addAir_page .email").val();
-      modle.traveller.mobilePhone=$(".addAir_page .telephone").val();
-      modle.traveller.mobilePhoneAreaCode= $(".addAir_page .phone_pre").html();
-      modle.listTravellerIdInfo[0].idType=$(".addAir_page .postCard").attr("data-code");
-      modle.listTravellerIdInfo[0].idNumber=$(".addAir_page .cardNumber").val();
-      modle.listTravellerIdInfo[0].idCountry= $(".addAir_page .cardCountry").attr("data-code");
-      modle.listTravellerIdInfo[0].idCountryName= $(".addAir_page .cardCountry").html();
-      modle.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
-      modle.listTravellerIdInfo[0].nationalityCode= $(".addAir_page .cardCountry").attr("data-code");
+      model.traveller.idName=$(".addAir_page .cnName").val();
+      model.traveller.lastName=$(".addAir_page .lastName").val();
+      model.traveller.firstName=$(".addAir_page .firstName").val();
+      model.traveller.cnName=$(".addAir_page .cnName").val();
+      model.traveller.countryCode=$(".addAir_page .country").attr("data-code");
+      model.traveller.countryName=$(".addAir_page .country").html();
+      model.traveller.sexCode=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
+      model.traveller.sexName=$(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
+      model.traveller.dateOfBirth= $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      model.traveller.email=$(".addAir_page .email").val();
+      model.traveller.mobilePhone=$(".addAir_page .telephone").val();
+      model.traveller.mobilePhoneAreaCode= $(".addAir_page .phone_pre").html();
+      model.listTravellerIdInfo[0].idType=$(".addAir_page .postCard").attr("data-code");
+      model.listTravellerIdInfo[0].idNumber=$(".addAir_page .cardNumber").val();
+      model.listTravellerIdInfo[0].idCountry= $(".addAir_page .cardCountry").attr("data-code");
+      model.listTravellerIdInfo[0].idCountryName= $(".addAir_page .cardCountry").html();
+      model.listTravellerIdInfo[0].idActivatedDate= $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      model.listTravellerIdInfo[0].nationalityCode= $(".addAir_page .cardCountry").attr("data-code");
 
-      return modle;
+      return model;
     }
   }
 
@@ -446,11 +427,11 @@
     if(!_validate()){
       return false;
     }
-    var modle=_ui2Modle(currentOperationType);
+    var model=_ui2Model(currentOperationType);
     //登陆
     if(memberId !=undefined) {
       var  Parameters={
-        Parameters:modle,
+        Parameters:model,
         ForeEndType:3,
         Code:operationType[currentOperationType].code
       }
@@ -470,14 +451,14 @@
       if(currentOperationType=="edit") {
         choiceAir_AddPassagerArray.forEach(function (info) {
           if (info.traveller.travellerId == editIDKey) {
-            info=modle;
+            info=model;
             return;
           }
         })
       }
       else{
-        modle.traveller.travellerId=new Date().getTime();
-        choiceAir_AddPassagerArray.push(modle);
+        model.traveller.travellerId=new Date().getTime();
+        choiceAir_AddPassagerArray.push(model);
       }
 
 
@@ -501,6 +482,7 @@
           "SexCode":selectedPassagerArray[key].traveller.sexCode,
           "FirstName":selectedPassagerArray[key].traveller.firstName,
           "LastName":selectedPassagerArray[key].traveller.lastName,
+          "cnName":selectedPassagerArray[key].traveller.cnName,
           "DateOfBirth":selectedPassagerArray[key].traveller.dateOfBirth,
           "email":selectedPassagerArray[key].traveller.email,
           "mobile":selectedPassagerArray[key].traveller.mobilePhone,
@@ -665,7 +647,6 @@
     $(".user_edit").on("click",function(){
       currentOperationType="edit";
       editIDKey=$(this).attr('data-id');
-      console.log(editIDKey);
       _model2UI(passagerArray[editIDKey]);
 
       _setTitleTip();
@@ -715,7 +696,7 @@
             json.data[i].selected = false;//默认未选择
             passagerArray[json.data[i].traveller.travellerId] = json.data[i];
           }
-          console.log(passagerArray)
+          json.isInternational = isNeedPassport;
           var html = template(tpl_traveler, json);
           document.getElementById("allList").innerHTML = html;
           _bindSelectChoice();
@@ -750,7 +731,11 @@
     //如果免登陆，查询LocalStorge数据
     else{
       var json={data:choiceAir_AddPassagerArray};
-      var html = template(tpl_traveler,json) ;
+
+      // isInternational传false，为了防止template报错。后面改为ejs解析
+      json.isInternational = isNeedPassport;
+
+      var html = template(tpl_traveler,json);
       document.getElementById("allList").innerHTML = html;
       vlm.init();
 
@@ -777,8 +762,8 @@
   var truncateCardInfo=function(){
     var cardId= $(".postCard").attr("data-code");
     if(editIDKey!=null){
-        var modle=passagerArray[editIDKey];
-        var cardList=modle.listTravellerIdInfo;
+        var model=passagerArray[editIDKey];
+        var cardList=model.listTravellerIdInfo;
         addOrEditPassagePage.find(".cardNumber").val("");
         addOrEditPassagePage.find(".cardDateLimit").val("");
         addOrEditPassagePage.find(".cardCountry").html("中国");
@@ -838,10 +823,12 @@
         addOrEditPassagePage.hide();
       }
     }
-    if(!isShowChinaName){
-      uc_cnName.hide();
+    if(isShowChinaName){
+      cnName.show();
+      enName.hide();
     }else{
-      uc_cnName.show();
+      cnName.hide();
+      enName.show();
     }
     if(!isShowContact){
       ul_contect.hide();

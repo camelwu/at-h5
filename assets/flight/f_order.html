@@ -35,7 +35,7 @@
     <div class="seat-price-cost"></div>
     <!--乘机人-->
     <div class="passengers_wrap">
-      <h4>乘机人<i onclick="vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), fOrder.isInternationalTrip())"></i>
+      <h4>乘机人<i class="add-user"></i>
       </h4>
 
       <div id="passenger-list">
@@ -44,8 +44,8 @@
             <p class="name_infos">
               <i class="minus_person" onclick="javascript:fOrder.deletePassager(this)"></i>
               <span class="tip_word">姓/名</span>
-              <span class="first_name" data-elementname="lastName">张</span><b>/</b><span class="last_name"
-                                                                                         data-elementname="firstName">养浩</span>
+              <span class="first_name" data-elementname="lastName"></span><b>/</b><span class="last_name"
+                                                                                         data-elementname="firstName"></span>
               <i class="add_icon passenger" onclick="javascript:fOrder.editPassager(this)"><input type="hidden"
                                                                                            name="input-zone"
                                                                                            class="passport-number itemId"

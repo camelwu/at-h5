@@ -66,7 +66,7 @@
             <input type="text" placeholder="与乘机人姓名一致" class="cnName">
           </li>
         </ul>
-        <ul class="addtra_info nameche_wrap">
+        <ul class="addtra_info nameche_wrap enNameUL">
           <li>
             <div>英文姓</div>
             <input type="text" placeholder="Surname,如Li" class="lastName">
@@ -109,8 +109,8 @@
         <li>
           <div>性别</div>
           <div class="sex_cho_wrap">
-            <span><b class="icon_h traveler_sex2" id="man" data-code="Mr" data-name="男"></b>男士</span>
-            <span><b class="icon_h traveler_sex2" id="woman" data-code="Mrs" data-name="女"></b>女士</span>
+            <span><b class="icon_h traveler_sex2" id="man" data-code="Mr" data-name="男"></b>男</span>
+            <span><b class="icon_h traveler_sex2" id="woman" data-code="Mrs" data-name="女"></b>女</span>
           </div>
         </li>
         <li>
@@ -119,7 +119,7 @@
           <div id="birth-cont" type="text" class="birth-cont birthDay" data-cache="1990年-1月-1日" value="1990年1月1号"></div>
         </li>
       </ul>
-      <div class="ul_contect">
+      <!--<div class="ul_contect">
         <div class="addtra_title">联系方式</div>
         <ul class="traveler_contect">
           <li class="clearfix">
@@ -135,12 +135,7 @@
           </li>
         </ul>
         <div class="name_text_tips" id="name-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
-        <!--<div class="user-account" onclick="showChild_page()">-->
-        <!--儿童婴儿购票说明>-->
-        <!--</div>-->
-        <!--<div id="delTra" class="f_btns">删除常旅客</div>-->
-
-      </div>
+      </div>-->
     </div>
   </div>
 </div>
@@ -201,11 +196,52 @@
   </div>
 </div>
 
+<script id="tpl_traveler" type="text/template">
+  {% var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2; for(var i=0,len=data.length;i<len;i++){
+    var dd=data[i];%}
+    {% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); %}
+      <li class="eve_traveler"  index={%=i%}>
+        <b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>
+        <b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>
+        <ul class="often_user">
+          <input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>
+          <input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>
+          <li data-card="{%=dd.listTravellerIdInfo[0].idType%}">
+            {% if(isInternational) { %}
+            <span>姓 / 名</span>
+            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>
+            {% } else { %}
+            <span>姓名</span>
+            <span class="cnName" style="padding-left: 6px">{%=dd.traveller.cnName%}</span>
+            {% } %}
+
+            {%  if(age<2){ %}
+            <i class="per_type" data-id="0">婴儿</i>
+            {% } else if(age>=2 && age<12){ %}
+            <i class="per_type" data-id="1">儿童</i>
+            {% } else if(age>=12){ %}
+            <i class="per_type" data-id="2">成人</i>
+            {% } %}
+          </li>
+          {% for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ if(dd.listTravellerIdInfo[j].idType==1){ %}
+          <li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>
+          {% break; } else if(dd.listTravellerIdInfo[j].idType==2 && defaultShowCardType==1){ %}
+          <li class="passport-num"><span class="passport-card-type" style="color: #999;">请补全护照信息</span></li>
+          {% } else{ %}
+          <li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>
+          {% } %}
+          {% } %}
+      </ul>
+    </li>
+  {% } %}
+</script>
+
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/plugins.js"></script>
+<!--<script src="../js/lib/ejs.js"></script>-->
 <script src="../js/lib/template.js"></script>
 <script src="../js/plugins/scroller/scroller1.1.js"></script>
 <script src="../js/plugins/countryList/countrydata.js"></script>
