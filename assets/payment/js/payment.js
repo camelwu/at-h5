@@ -221,6 +221,10 @@
                         guestNameList.push(guestInfo);
                     }
                     var param;
+
+                    var hotelStorage = sessionStorage.getItem('hotelStorage12345');
+                    hotelStorage = hotelStorage ? JSON.parse(hotelStorage) : {};
+
                     Parameters = {
                         "availability": true,
                         "bankName": model.bankName,
@@ -252,9 +256,11 @@
                         "iPAddress": "",
                         "memberId": localStorage.memberid,
                         "nationlityCode": "",
-                        "numOfChild": 0,
-                        "numOfGuest": json.NumOfRoom,
-                        "numOfRoom": json.NumOfRoom,
+
+                        "numOfChild": hotelStorage.NumChild,
+                        "numOfGuest": hotelStorage.NumAdult,
+                        "numOfRoom": hotelStorage.NumRoom,
+
                         "residenceCode": "",
                         "roomCode": json.roomCode,
                         "roomName": json.roomName,
