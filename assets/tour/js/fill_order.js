@@ -527,7 +527,6 @@
             } else {
               fli.DepartFlightNo = departFlightNo;
             }
-
             if (departDate.indexOf("T") > -1) {
               fli.DepartDateTime = departDate;
             } else {

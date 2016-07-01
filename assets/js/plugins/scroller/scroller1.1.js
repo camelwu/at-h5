@@ -368,10 +368,10 @@ Scroller.prototype = {
             that.container.style.bottom = 0;
             document.body.style.overflowY = 'hidden';
         } else {
-          if(that.masker){
+            if(that.masker){
             that.masker.style.display = 'none';
             that.container.setAttribute("style", "");
-          }
+            }
           setTimeout(function () {
               $('#selbox').remove();
               $('#overlay').remove();

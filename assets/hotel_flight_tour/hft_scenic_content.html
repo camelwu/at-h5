@@ -55,7 +55,8 @@
     <!--<% }%>-->
 <!--</script>-->
 <script type="text/template" id="Barimg2">
-  <span class="icon_go_back"></span>
+  <span class="bar_img_theme"></span>
+  <% if(images.length==0){ %>
     <% for(var i = 0;i<tours.length;i++){ %>
       <% if(tours[i].tourID == vlm.getpara("tourId") ){%>
         <img src="<%= tours[i].tourPictureURL%>" alt="image"/>

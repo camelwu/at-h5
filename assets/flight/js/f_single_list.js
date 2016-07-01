@@ -124,7 +124,7 @@ var fSingleList = {
   },
 
   dateCalender: function () {
-    var tem = {start: this.postObj.departDate}, timeObj = {}, fIndexInfoObj = {},that = this, storage = window.localStorage;
+    var tem = {start: this.postObj.departDate}, timeObj = {}, fIndexInfoObj = {},that = this, storage = window.sessionStorage;
     fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     var dates = document.querySelectorAll('#timeSingle .monthDay'), weeks = document.querySelectorAll('#timeSingle .weekWord');

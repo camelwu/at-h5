@@ -1,4 +1,3 @@
-
 /*
 	* WOW - v1.0.1 - 2014-08-15
 	* Copyright (c) 2014 Matthieu Aussaguel; Licensed MIT 

@@ -1018,13 +1018,13 @@ a.hotel_detail_pic{
     font-size:0.36rem;
 }
 .order_warp .tr_header i{
-    position: absolute;
-    right:0.05rem;
-    top:0rem;
-    width:0.6rem;
-    height:0.8rem;
-    background: url(../../images/ui/icon.png) -1.7rem -0.45rem;
-    background-size:7.93rem 2.36rem;
+  position: absolute;
+  right: 0.25rem;
+  top: 0rem;
+  width: 0.4rem;
+  height: 0.8rem;
+  background: url(../../images/ui/icon.png) -1.7rem -0.45rem;
+  background-size: 7.93rem 2.36rem;
 }
 .order_warp ol{
     height:5.3rem;

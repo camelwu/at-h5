@@ -142,6 +142,7 @@ for (var name in url2json(myUrl)) {
 }
 //默认房间数量 从搜索列表页获取
 fake_data.NumOfRoom = sessionStorage.getItem("hotelStorage12345") ? JSON.parse(sessionStorage.getItem("hotelStorage12345")).NumRoom : 1;
+
 var user_order_storage2 = localStorage.getItem('hotelDetailData');
 fake_data.HotelGenInfo = JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
 fake_data.dateInfo = JSON.parse(user_order_storage2).data.data[0].dateInfo;
@@ -554,11 +555,11 @@ uoHisData();
         fake_data.guestName = [];
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-              if(!vlm.Utils.validate.engName(aUo_firstname[i].value)){
+                if (!vlm.Utils.validate.engName(aUo_firstname[i].value)) {
                 jAlert('请输入英文姓或名');
                 return;
               }
-              if(!vlm.Utils.validate.engName(aUo_lastname[i].value)){
+                if (!vlm.Utils.validate.engName(aUo_lastname[i].value)) {
                 jAlert('请输入英文姓或名');
                 return;
               }
@@ -569,11 +570,11 @@ uoHisData();
             }
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
-              if(!vlm.Utils.validate.ChineseName(aUo_firstname[i].value)){
+                if (!vlm.Utils.validate.engName(aUo_firstname[i].value)) {
                 jAlert('请输入姓或名');
                 return;
               }
-              if(!vlm.Utils.validate.ChineseName(aUo_lastname[i].value)){
+                if (!vlm.Utils.validate.engName(aUo_lastname[i].value)) {
                 jAlert('请输入姓或名');
                 return;
               }
