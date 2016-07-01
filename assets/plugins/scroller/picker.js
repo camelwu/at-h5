@@ -460,6 +460,7 @@
             }
 
             function handleClick(e) {
+                alert(11);
                 if (!allowItemClick) return;
                 Utils.cancelAnimationFrame(animationFrameId);
                 /*jshint validthis:true */
@@ -489,13 +490,47 @@
             var pickerHtml = '';
             var pickerClass = '';
             var i;
-            var len = p.params.cols.length;
+
+            var type = p.params.type;
+            switch (type) {
+                case 'card':
+                    p.cols = [{
+                        values: ['<span data-code="1">护照</span>', '<span data-code="2">身份证</span>']
+                    }];
+                    break;
+                case 'cardInte':
+                    p.cols = [{
+                        values: ['<span data-code="1">护照</span>']
+                    }];
+                    break;
+                case 'cardDom':
+                    p.cols = [{
+                        values: ['<span data-code="2">身份证</span>']
+                    }];
+                    break;
+                case 'seat':
+                    p.cols = [{
+                        values: ['经济舱', '超级经济舱', '商务舱', '头等舱']
+                    }];
+                    break;
+                case 'date':
+                    p.cols = [];
+                    break;
+                case 'dateTime':
+                    p.cols = [];
+                    break;
+                case 'cardExpirationDate':
+                    p.cols = [];
+                    break;
+                default:
+                    p.cols = setDateCols(['年', '月', '日']);
+                    break;
+            }
             var colsHtml = '';
-            p.cols = [];
+            var len = p.cols.length;
             for (i = 0; i < len; i++) {
-                var col = p.params.cols[i];
+                var col = p.cols[i];
                 colsHtml += p.columnHtml(col);
-                p.cols.push(col);
             }
 
             pickerHtml = p.params.toolbarTemplate +
@@ -505,6 +540,47 @@
                 '</div>';
             p.pickerHtml = pickerHtml;
         };
+
+        function setDateCols(formatArray) {
+            // cols = [{values:['2000年'，'2001年']},{values:['9月']}]
+            var cols = [];
+            var col;
+            var items;
+            var yearNow = new Date().getFullYear();
+            for (var i = 0, len = formatArray.length; i < len; i++) {
+                switch (formatArray[i]) {
+                    case '年':
+                        var defaultStartYear = 1900;
+                        items = [];
+                        for (; defaultStartYear <= yearNow; defaultStartYear++) {
+                            items.push(defaultStartYear + "年");
+                        }
+                        col = {};
+                        col.values = items;
+                        cols.push(col);
+                        break;
+                    case '月':
+                        items = [];
+                        for (var j = 1; j <= 12; j++) {
+                            items.push(j + "月");
+                        }
+                        col = {};
+                        col.values = items;
+                        cols.push(col);
+                        break;
+                    case '日':
+                        col = {};
+                        items = [];
+                        for (var j = 1; j <= 31; j++) {
+                            items.push(j + "日");
+                        }
+                        col.values = items;
+                        cols.push(col);
+                        break;
+                }
+            }
+            return cols;
+        }
 
         p.opened = false;
         p.open = function () {
@@ -633,4 +709,4 @@
     }
 
     exports.Picker = Picker;
-})(typeof exports === 'undefined' ? (this.ATplugins = {}) : exports);
+})(typeof exports === 'undefined' ? (this.ATplugins ? this.ATplugins : this.ATplugins = {}) : exports);

@@ -110,14 +110,8 @@
             //新增常旅
         var myDate1 = new ATplugins.Picker({
             input: '#picker', //调出组件的元素id
-            cols: [{ //初始化列数据
-                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6', 'iPhone 6 Plus', 'iPad 2', 'iPad Retina', 'iPad Air', 'iPad mini', 'iPad mini 2', 'iPad mini 3']
-            }, {
-                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5']
-            }, {
-                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5']
-            }],
-            value: ['iPhone 5', 'iPhone 4S', 'iPhone 5'], //初始化选中数据
+
+            //value: ['2007年', '6月', '15日'], / / 初始化选中数据
             callback: function(arrayData) { //选择完毕点击确认后的回调函数   参数为选中的值数组
                 console.info(arrayData);
                 $("#picker").html(arrayData.join(" "));
@@ -126,14 +120,7 @@
 
         var myDate2 = new ATplugins.Picker({
             input: '#picker2',
-            cols: [{
-                values: ["2016", "2015"],
-                width: '30%'
-            }, {
-                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5'],
-                width: '70%'
-            }],
-            value: ['2016', 'iPhone 4S'],
+            type: 'seat',
             callback: function(arrayData) {
                 console.info(arrayData);
                 $("#picker2").html(arrayData.join(" "));

@@ -541,36 +541,36 @@ var footer = (function(){
         }
       },
       redTip:function(){
-           var allSul = sec.querySelectorAll('.special'), temObj = {};
-           Array.prototype.slice.call(allSul).forEach(function(element,index){
-              if(element.getAttribute('data-key')){
-                  temObj[element.getAttribute('data-key')] = [];
-              }
-            });
-           Array.prototype.slice.call(allSul).forEach(function(element,index){
-              for(var p in temObj){
-                if(p == element.getAttribute('data-key')){
-                  temObj[element.getAttribute('data-key')].push(element);
-                }
-              }
-           });
-            for(var p in temObj){
-                var targetDl =  document.querySelector('#'+p), tag = false;
-                tag = temObj[p].every(function (value) {
-                  var tag_= false, temLis = value.querySelectorAll('.cur');
-                  if(temLis){
-                    tag_= Array.prototype.slice.call(temLis).some(function(ele){
-                      return  ele.getAttribute('data-val')!=""&&ele.getAttribute('data-val')!="0"&&ele.getAttribute('data-val')!=null;
-                    });
-                  }
-                  return  temLis.length>0&&tag_
-                });
-                if(tag){
-                  targetDl.querySelector('dt').className = "";
-                }else{
-                  targetDl.querySelector('dt').className = "clo";
-                }
-             }
+        var allSul = sec.querySelectorAll('.special'), temObj = {};
+        Array.prototype.slice.call(allSul).forEach(function(element,index){
+          if(element.getAttribute('data-key')){
+            temObj[element.getAttribute('data-key')] = [];
+          }
+        });
+        Array.prototype.slice.call(allSul).forEach(function(element,index){
+          for(var p in temObj){
+            if(p == element.getAttribute('data-key')){
+              temObj[element.getAttribute('data-key')].push(element);
+            }
+          }
+        });
+        for(var p in temObj){
+          var targetDl =  document.querySelector('#'+p), tag = false;
+          tag = temObj[p].every(function (value) {
+            var tag_= false, temLis = value.querySelectorAll('.cur');
+            if(temLis){
+              tag_= Array.prototype.slice.call(temLis).some(function(ele){
+                return  ele.getAttribute('data-val')!=""&&ele.getAttribute('data-val')!="0"&&ele.getAttribute('data-val')!=null;
+              });
+            }
+            return  temLis.length>0&&tag_
+          })
+          if(tag){
+            targetDl.querySelector('dt').className = "";
+          }else{
+            targetDl.querySelector('dt').className = "clo";
+          }
+        }
       },
       request : function() {
         // 选中的属性

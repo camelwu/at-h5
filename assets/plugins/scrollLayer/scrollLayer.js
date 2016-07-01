@@ -153,7 +153,7 @@
             if (isMoved || isTouched) {
                 return;
             }
-            event.originalEvent.preventDefault();
+            //event.originalEvent.preventDefault();
             isTouched = true;
             touchStartY = touchCurrentY = event.type === 'touchstart' ? event.originalEvent.targetTouches[0].pageY : event.originalEvent.pageY;
 
