@@ -146,7 +146,7 @@
             var columnHtml = '';
             var columnItemsHtml = '';
             for (var i = 0, len = col.values.length; i < len; i++) {
-                columnItemsHtml += '<div  class="picker_item" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>';
+                columnItemsHtml += col.dataValues ? '<div  class="picker_item" data-value="' + col.dataValues[i] + '" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>' : '<div  class="picker_item" data-value="' + col.values[i] + '" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>';
             }
             columnHtml += '<div class="picker_items_col"><div class="picker_items_col_wrapper">' + columnItemsHtml + '</div></div>';
             return columnHtml;
@@ -441,7 +441,7 @@
 
                 // Transform wrapper
                 // col.wrapper.css('transform', 'translate3d(0,' + (parseInt(newTranslate, 10)) + 'px,0)');
-                Utils.transform(col.wrapper, 'translate3d(0,' + (parseInt(newTranslate, 10)) + 'px,0)');
+                Utils.transform(col.wrapper, 'translate3d(0,' + newTranslate + 'px,0)');
                 // Update items
                 col.updateItems(activeIndex, newTranslate, '', true);
 
@@ -495,17 +495,20 @@
             switch (type) {
                 case 'card':
                     p.cols = [{
-                        values: ['<span data-code="1">护照</span>', '<span data-code="2">身份证</span>']
+                        values: ['护照', '身份证'], //data-code 护照：1  身份证：2
+                        dataValues: ['1', '2']
                     }];
                     break;
                 case 'cardInte':
                     p.cols = [{
-                        values: ['<span data-code="1">护照</span>']
+                        values: ['护照'],
+                        dataValues: ['1']
                     }];
                     break;
                 case 'cardDom':
                     p.cols = [{
-                        values: ['<span data-code="2">身份证</span>']
+                        values: ['身份证'],
+                        dataValues: ['2']
                     }];
                     break;
                 case 'seat':
@@ -513,14 +516,19 @@
                         values: ['经济舱', '超级经济舱', '商务舱', '头等舱']
                     }];
                     break;
+                case 'time':
+                    p.cols = [{
+                        values: ['上午', '下午']
+                    }]
+                    break;
                 case 'date':
-                    p.cols = [];
+                    p.cols = setDateCols(['年', '月', '日']);
                     break;
                 case 'dateTime':
-                    p.cols = [];
+                    p.cols = setDateTimeCols(['date', 'h', 'm']);
                     break;
                 case 'cardExpirationDate':
-                    p.cols = [];
+                    p.cols = setCardDateCols(['年', '月']);
                     break;
                 default:
                     p.cols = setDateCols(['年', '月', '日']);
@@ -540,41 +548,156 @@
                 '</div>';
             p.pickerHtml = pickerHtml;
         };
+        //设置月 周 时 分
+        function setDateTimeCols(formatArray) {
+            var cols = [];
+            var col;
+            var items;
+            var dataItems;
+            var num = p.params.num || 365;
+            var now = p.params.startDate ? p.params.startDate : new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth();
+            var day = now.getDate();
+            var munites = ["00", '10', '20', '30', '40', '50'];
+            var week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            for (var j = 0, len = formatArray.length; j < len; j++) {
+                switch (formatArray[j]) {
+                    case "date":
+                        items = [];
+                        dataItems = [];
+                        for (var i = 0; i < num; i++) {
+                            var date = new Date(year, month, day + i);
+                            var yearNew = date.getFullYear();
+                            var monthNew = date.getMonth() + 1;
+                            var dayNew = date.getDate();
+                            var monthNewZero = monthNew < 10 ? "0" + monthNew : monthNew;
+                            var dayNewZero = dayNew < 10 ? "0" + dayNew : dayNew;
+                            var weekNew = date.getDay();
+                            items.push(monthNew + "月" + dayNew + "日\<i style='padding-left:10px;' \>" + week[weekNew] + "\<\/i \>");
+                            dataItems.push(yearNew + "-" + monthNewZero + "-" + dayNewZero);
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        col.width = "50%";
+                        cols.push(col);
+                        break;
+                    case "h":
+                        items = [];
+                        dataItems = [];
+                        for (var m = 0; m < 24; m++) {
+                            var hour = m < 10 ? "0" + m : m;
+                            dataItems.push(hour)
+                            items.push(hour + "时");
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        col.width = "25%";
+                        cols.push(col);
+                        break;
+                    case "m":
+                        items = [];
+                        dataItems = [];
+                        for (var n = 0; n < munites.length; n++) {
+                            dataItems.push(munites[n])
+                            items.push(munites[n] + "分");
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        col.width = "25%";
+                        cols.push(col);
+                        break;
+                }
+            }
 
+            return cols;
+        }
+        //设置卡的有效期年月  年为至今到未来20年
+        function setCardDateCols(formatArray) {
+            var cols = [];
+            var col;
+            var items;
+            var dataItems;
+            var yearNow = new Date().getFullYear();
+            var endYear = yearNow + 30; //延后30年
+            for (var i = 0, len = formatArray.length; i < len; i++) {
+                switch (formatArray[i]) {
+                    case '年':
+                        items = [];
+                        dataItems = [];
+                        for (; yearNow <= endYear; yearNow++) {
+                            items.push(yearNow + "年");
+                            dataItems.push(yearNow);
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        cols.push(col);
+                        break;
+                    case '月':
+                        items = [];
+                        dataItems = [];
+                        for (var j = 1; j <= 12; j++) {
+                            items.push(j + "月");
+                            dataItems.push(j);
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems
+                        cols.push(col);
+                        break;
+                }
+            }
+            return cols;
+        }
+        //设置生日的年月日   年为1900年至今
         function setDateCols(formatArray) {
             // cols = [{values:['2000年'，'2001年']},{values:['9月']}]
             var cols = [];
             var col;
             var items;
+            var dataItems;
             var yearNow = new Date().getFullYear();
             for (var i = 0, len = formatArray.length; i < len; i++) {
                 switch (formatArray[i]) {
                     case '年':
                         var defaultStartYear = 1900;
                         items = [];
+                        dataItems = [];
                         for (; defaultStartYear <= yearNow; defaultStartYear++) {
                             items.push(defaultStartYear + "年");
+                            dataItems.push(defaultStartYear);
                         }
                         col = {};
                         col.values = items;
+                        col.dataValues = dataItems;
                         cols.push(col);
                         break;
                     case '月':
                         items = [];
+                        dataItems = [];
                         for (var j = 1; j <= 12; j++) {
                             items.push(j + "月");
+                            dataItems.push(j);
                         }
                         col = {};
                         col.values = items;
+                        col.dataValues = dataItems;
                         cols.push(col);
                         break;
                     case '日':
                         col = {};
                         items = [];
+                        dataItems = [];
                         for (var j = 1; j <= 31; j++) {
                             items.push(j + "日");
+                            dataItems.push(j);
                         }
                         col.values = items;
+                        col.dataValues = dataItems;
                         cols.push(col);
                         break;
                 }
@@ -649,7 +772,7 @@
             var selectedValue = [];
             var selectedElems = p.container.find(".picker_selected");
             selectedElems.each(function (index, ele) {
-                selectedValue.push($(ele).attr("data-picker-value"));
+                selectedValue.push($(ele).attr("data-value"));
             });
             p.setValue(selectedValue);
             p.input.attr("data-selected", selectedValue.join(","));
