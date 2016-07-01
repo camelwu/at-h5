@@ -606,24 +606,34 @@
   //姓名说明新增
   $('#anameState').click(function () {
     $('#addtra_page').css('visibility', 'hidden');
-    $('#fillName_page').css('visibility', 'visible');
+    $('#fillName_page').show();
     $('#closeName').click(function () {
       $('#addtra_page').css('visibility', 'visible');
-      $('#fillName_page').css('visibility', 'hidden');
+      $('#fillName_page').hide();
     });
-  })
+  });
 
   //姓名说明编辑
   $('#nameState').click(function () {
     $('#uptra_page').css('visibility', 'hidden');
-    $('#fillName_page_edit').css('visibility', 'visible');
+    $('#fillName_page_edit').show();
 
     $('#closeName_edit').click(function () {
       $('#uptra_page').css('visibility', 'visible');
-      $('#fillName_page_edit').css('visibility', 'hidden');
+      $('#fillName_page_edit').hide();
     });
 
-  })
+  });
+
+  //add traveller
+  var oCountry1=new CountryList({id:'#oCountry1',telCode:false});
+  var oCountry2=new CountryList({id:'#oCountry2',telCode:false});
+  var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});
+
+  //edit traveller
+  var oCountry3=new CountryList({id:'#oCountry3',telCode:false});
+  var oCountry4=new CountryList({id:'#oCountry4',telCode:false});
+  var oCountryCellEdit=new CountryList({id:'#oCountryCellEdit',telCode:true});
 
 
 })();

@@ -657,3 +657,6 @@ uoHisData();
     //     add.style.backgroundSize = '7.9rem 7.83rem';
     // }
 })();
+
+  //国籍和发证国家和手机区号
+  var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});

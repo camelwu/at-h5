@@ -366,6 +366,10 @@ var hftTool ={
       jAlert(json.message);
     }
   }
+
+
+  var oCountryCell=new CountryList({id:'#oCountryCellAdd',telCode:true});
+
 })();
 
 

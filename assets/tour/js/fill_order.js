@@ -155,7 +155,7 @@
       }
     }
     //第一个房间的第一个人添加国籍
-    var oCountry = $('<li class="countries-wrap">' + '<b class="icon_arw open-pho-tour"></b>' + '<span class="list_country fl">国籍：</span>' + '<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>' + '</li>')
+    var oCountry = $('<li class="countries-wrap" id="oCountry1">' + '<b class="icon_arw open-pho-tour"></b>' + '<span class="list_country fl">国籍：</span>' + '<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>' + '</li>')
     oCountry.appendTo($('#ht_trave-r0-0'));
 
     //处理地址栏信息
@@ -699,4 +699,9 @@
     var s = oDate.getSeconds();
     localStorage.orderTime = year + '-' + mon + '-' + day + ' ' + h + ':' + m + ':' + s;
   }
+
+  //国籍和发证国家和手机区号
+  var oCountry1=new CountryList({id:'#oCountry1',telCode:false});
+  var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});
+
 })();

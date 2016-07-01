@@ -1217,4 +1217,9 @@
   T.AjaxAdapter().callAjaxAdapter("getDetails",{});
   //T.Command().callCommand("render",{});
   //vlm.init();
+
+  //选择国籍和区号
+  var oCountry1=new CountryList({id:'#booking_package_linkman_contact',telCode:false});
+  var oCountryTel=new CountryList({id:'#booking_package_linkman_phoneselect',telCode:true});
+
 })();

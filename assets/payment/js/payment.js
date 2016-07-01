@@ -512,7 +512,12 @@
         return{
             InitPage:_initPage()
         }
-    }()
+    }();
+
+    //国籍和发证国家和手机区号
+    var oCountry1=new CountryList({id:'#oCountry1',telCode:false});
+    var oCountry2=new CountryList({id:'#oCountry2',telCode:false});
+    var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});
 
 })()
 
