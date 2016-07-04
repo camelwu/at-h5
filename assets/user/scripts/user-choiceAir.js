@@ -2,32 +2,32 @@
  * Created by zhouwei on 2016/5/25.
  */
 (function () {
-  var urlobj = vlm.parseUrlPara(window.location.href), isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false;//是否多选
-  // 是否国际航班，true国际航班，false国内航班
-  var isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false; //是否需要护照
-  var titleType = vlm.getpara("title").substr(2),//是否多选title;
-    travId = vlm.getpara("Id"),//id,
-    elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""),//id
-    from = vlm.getpara("from"),
-    ifrCilent = window.parent.document.getElementById("choiceAir"),
-    numofAdult = vlm.getpara("numofAdult"),//id
-    numofChlid = vlm.getpara("numofChlid"),//id;
-    selectAdultNum = 0,
-    selectChildNum = 0,
-    departDate = vlm.getpara("departDate"),//departDate;
-    memberId = localStorage.memberid || sessionStorage.memberid,
-    passagerArray = {},
-    selectedPassagerArray = {},
-    choiceAir_AddPassagerArray = [],
-    editIDKey = null,
-    currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType"),
-    operationType = {
-      new: {id: 1, name: "新增", code: "70100012"},
-      edit: {id: 2, name: "编辑", code: "70100013"},
-    },
-    isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true,
-    isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true,
-    callback = vlm.getpara("callback");
+  var urlobj = vlm.parseUrlPara(window.location.href);
+  var isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false, //是否多选
+  isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false, // 是否国际航班，true国际航班，false国内航班
+  titleType = vlm.getpara("title").substr(2),//是否多选title;
+  travId = vlm.getpara("Id"),//id,
+  elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""),//id
+  from = vlm.getpara("from"),
+  ifrCilent = window.parent.document.getElementById("choiceAir"),
+  numofAdult = vlm.getpara("numofAdult"),//id
+  numofChlid = vlm.getpara("numofChlid"),//id;
+  selectAdultNum = 0,
+  selectChildNum = 0,
+  departDate = vlm.getpara("departDate"),//departDate;
+  memberId = localStorage.memberid || sessionStorage.memberid,
+  passagerArray = {},
+  selectedPassagerArray = {},
+  choiceAir_AddPassagerArray = [],
+  editIDKey = null,
+  currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType"),
+  operationType = {
+    new: {id: 1, name: "新增", code: "70100012"},
+    edit: {id: 2, name: "编辑", code: "70100013"},
+  },
+  isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true,
+  isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true,
+  callback = vlm.getpara("callback");
 
   //页面Dom对象
   var saveDbBtn = $(".addFinish");
@@ -45,7 +45,6 @@
   /*页面*/
   var passagerListPage = $(".passageListPage");
   var addOrEditPassagePage = $(".addAir_page");
-  var addPassagerOkBtn = $(".addAir_page .addFinish");
   var addPassagerBackBtn = $(".addAir_page .header_quit");
   var addPassagerTitle = $(".add_passager .newTitle");
 
@@ -207,11 +206,11 @@
 
     if (enName.is(':visible')) {
       if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())) {
-        jAlert("姓（英文）不能为空！", "", null, "确认");
+        jAlert("英文姓不能为空！", "", null, "确认");
         return false;
       }
       if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".firstName").eq(0).val())) {
-        jAlert("名（英文）不能为空！", "", null, "确认");
+        jAlert("英文名不能为空！", "", null, "确认");
         return false;
       }
 
@@ -746,7 +745,8 @@
           if (selectPassagerList != null) {
             for (var key in selectPassagerList) {
               if (selectPassagerList[key].PagerType == from) {
-                $(".list-traveler .user_choice[data-id=" + key + "]").click();
+                // $(".list-traveler .user_choice[data-id=" + key + "]").click();
+                $(".list-traveler .user_choice[data-id=" + key + "]").toggle("choiced");
               }
 
             }
@@ -770,15 +770,17 @@
 
     //如果免登陆，查询LocalStorge数据
     else {
+
+      // isInternational传true或false，为了防止template报错。后面改为ejs解析
+      choiceAir_AddPassagerArray.forEach(function (item) {
+        item.isInternationalTrip = isInternationalTrip;
+      })
       var json = {data: choiceAir_AddPassagerArray};
 
-      // isInternational传false，为了防止template报错。后面改为ejs解析
-      json.isInternational = isInternationalTrip;
 
       var html = template(tpl_traveler, json);
       document.getElementById("allList").innerHTML = html;
       vlm.init();
-
 
       choiceAir_AddPassagerArray.forEach(function (info) {
         passagerArray[info.traveller.travellerId] = info;
@@ -789,11 +791,22 @@
       if (currentOperationType == "new" && selectPassagerList != null) {
         for (var key in selectPassagerList) {
           if (selectPassagerList[key].PagerType == from) {
-            $(".list-traveler .user_choice[data-id=" + key + "]").click();
+            // $(".list-traveler .user_choice[data-id=" + key + "]").click();
+            if (isInternationalTrip) {
+              if (!selectPassagerList[key].traveller.lastName) {
+                return;
+              }
+            } else {
+              if (!selectPassagerList[key].traveller.idName) {
+                return;
+              }
+            }
+            $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
           }
 
         }
       }
+      _setTitleTip();
 
     }
 
@@ -851,10 +864,9 @@
     if (memberId == undefined) {
       var data = JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
       if (data == null) {
-        passagerListPage.hide();
-        addOrEditPassagePage.show();
-      }
-      else {
+        passagerListPage.show();
+        addOrEditPassagePage.hide();
+      } else {
         for (var i = 0; i <= data.length - 1; i++) {
           data[i].PagerType = from;
           choiceAir_AddPassagerArray.push(data[i])
@@ -863,6 +875,7 @@
         addOrEditPassagePage.hide();
       }
     }
+    // 如果是国际航班，展示中文名
     if (isShowChinaName) {
       cnName.show();
       enName.hide();
