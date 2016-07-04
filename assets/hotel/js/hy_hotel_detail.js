@@ -481,7 +481,7 @@
 
 			secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
-			footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
+			footer += '<div class="footer"><span>Copyright @ 2016 北京褀迹国际旅行社有限公司 | 京ICP备 16028783号-1 北京朝阳区五里桥一街非中心32号楼3层 4008-909-202/010-58535627</span></div>';
 
 			contentStr = '<div id="content" class="snap-content" style="padding-top: .88rem;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
 

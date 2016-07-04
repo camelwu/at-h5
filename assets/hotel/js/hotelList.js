@@ -605,15 +605,24 @@ $(window).load(function () {
                     var hotelRefers = document.getElementsByClassName('ho_list');
                     var toDetail = function (that) {
                         var paraObj = {};
+                        var hoPos = localStorage.getItem('hoPos');
+
                         paraObj.HotelID = that.getAttribute('data-hotelCode');
                         paraObj.HotelCode = that.getAttribute('data-hotelCode');
 
                         // paraObj.PartnerCode=hotelList[that.index].PartnerCode!=null?hotelList[that.index].PartnerCode:1000;
                         paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
                         paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
+                        if (hoPos == 'inter') {
+                            //国际
+                            paraObj.CheckInDate = urlArgs.InterCheckInDate;
+                            paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
+                        } else if (hoPos == 'dom') {
+                            //国内
+                            paraObj.CheckInDate = urlArgs.DomCheckInDate;
+                            paraObj.CheckOutDate = urlArgs.DomCheckOutDate;
+                        }
 
-                        paraObj.CheckInDate = urlArgs.InterCheckInDate;
-                        paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
                         paraObj.NumRoom = urlArgs.NumRoom;
                         paraObj.NumAdult = urlArgs.NumAdult;
                         paraObj.NumChild = urlArgs.NumChild;
@@ -877,10 +886,10 @@ $(window).load(function () {
             urlArgs.pageIndex = 1;
             getListByPage(urlArgs);
         }
-         //筛选滑动穿透问题
+        //筛选滑动穿透问题
         ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
         //ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
-       // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
+        // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
     });
     //筛选里面确定按钮的点击事件（交互）
     utils.bind(oBody, 'click', function (ev) {
@@ -1018,7 +1027,7 @@ $(window).load(function () {
             urlArgs.pageIndex = 1;
             getListByPage(urlArgs);
             //alert(hl_star_str+'---'+hl_type_str);
-           
+
         };
         if (oSrc.getAttribute("id") == "clearBtn") {
             var array = [];
@@ -1033,10 +1042,10 @@ $(window).load(function () {
             document.getElementById("h-type").firstElementChild.className = "s-li1";
             document.getElementById("h-level").firstElementChild.className = "s-li1";
         };
-         //筛选滑动穿透问题
-//        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
+        //筛选滑动穿透问题
+        //        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
         ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
-       // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
+        // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
     });
     //位置里面的城市实现筛选交互
     utils.bind(oBody, 'click', function (ev) {
@@ -1087,9 +1096,9 @@ $(window).load(function () {
                 aOk[i] = true;
             }
         };
-         //筛选滑动穿透问题
-//        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
-//        ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
+        //筛选滑动穿透问题
+        //        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
+        //        ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
         ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
     });
 
@@ -1109,7 +1118,7 @@ $(window).load(function () {
         getListByPage(urlArgs);
     });
 
-   
+
 })();
 
 //把星级英文数字换成汉字
