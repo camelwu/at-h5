@@ -2,31 +2,33 @@
  * Created by zhouwei on 2016/5/25.
  */
 (function () {
-  var urlobj = vlm.parseUrlPara(window.location.href), isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false//是否多选
-    , isNeedPassport = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false//是否需要护照
-    , titleType = vlm.getpara("title").substr(2)//是否多选title;
-    , travId = vlm.getpara("Id")//id,
-    , elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, "")//id
-    , from = vlm.getpara("from")
-    , ifrCilent = window.parent.document.getElementById("choiceAir")
-    , numofAdult = vlm.getpara("numofAdult")//id
-    , numofChlid = vlm.getpara("numofChlid")//id;
-    , selectAdultNum = 0
-    , selectChildNum = 0
-    , departDate = vlm.getpara("departDate")//departDate;
-    , memberId = localStorage.memberid || sessionStorage.memberid
-    , passagerArray = {}
-    , selectedPassagerArray = {}
-    , choiceAir_AddPassagerArray = []
-    , editIDKey = null
-    , currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType")
-    , operationType = {
-    new: {id: 1, name: "新增", code: "70100012"},
-    edit: {id: 2, name: "编辑", code: "70100013"},
-  }
-    , isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true
-    , isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true
-    , callback = vlm.getpara("callback")
+  var urlobj = vlm.parseUrlPara(window.location.href), isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false;//是否多选
+  // 是否国际航班，true国际航班，false国内航班
+  var isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false; //是否需要护照
+  var titleType = vlm.getpara("title").substr(2),//是否多选title;
+    travId = vlm.getpara("Id"),//id,
+    elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""),//id
+    from = vlm.getpara("from"),
+    ifrCilent = window.parent.document.getElementById("choiceAir"),
+    numofAdult = vlm.getpara("numofAdult"),//id
+    numofChlid = vlm.getpara("numofChlid"),//id;
+    selectAdultNum = 0,
+    selectChildNum = 0,
+    departDate = vlm.getpara("departDate"),//departDate;
+    memberId = localStorage.memberid || sessionStorage.memberid,
+    passagerArray = {},
+    selectedPassagerArray = {},
+    choiceAir_AddPassagerArray = [],
+    editIDKey = null,
+    currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType"),
+    operationType = {
+      new: {id: 1, name: "新增", code: "70100012"},
+      edit: {id: 2, name: "编辑", code: "70100013"},
+    },
+    isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true,
+    isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true,
+    callback = vlm.getpara("callback");
+
   //页面Dom对象
   var saveDbBtn = $(".addFinish");
   var closeWindowBtn = $("#toper .closedWin");
@@ -47,7 +49,7 @@
   var addPassagerBackBtn = $(".addAir_page .header_quit");
   var addPassagerTitle = $(".add_passager .newTitle");
 
-  //var tpl_traveler = ['{% var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2;  for(var i=0,len=data.length;i<len;i++){ alert(data.length); var dd=data[i];%}',
+  //var tpl_traveler = ['{% var defaultShowCardType=vlm.getpara("isInternationalTrip").toLowerCase()=="true"? 1:2;  for(var i=0,len=data.length;i<len;i++){ alert(data.length); var dd=data[i];%}',
   //  '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
   //  '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
   //  '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
@@ -351,14 +353,16 @@
   }
 
   var _model2UI = function (model) {
-    // 取出当前操作类型，
+    // 取出当前航班类型
     // 如果是国际航班。回显英文姓和英文名
     // 如果是国内航班。回显中文名
+    if (model.isInternationalTrip) {
+      $(".addAir_page .lastName").val(model.traveller.lastName);
+      $(".addAir_page .firstName").val(model.traveller.firstName);
+    } else {
+      $(".addAir_page .cnName").val(model.traveller.idName);
+    }
 
-
-    $(".addAir_page .cnName").val(model.traveller.idName);
-    $(".addAir_page .lastName").val(model.traveller.lastName);
-    $(".addAir_page .firstName").val(model.traveller.firstName);
     $(".addAir_page .postCard").attr("data-code", model.listTravellerIdInfo[0].idType);
     $(".addAir_page .postCard").html(vlm.arr_t[model.listTravellerIdInfo[0].idType]);
     $(".addAir_page .cardNumber").val(model.listTravellerIdInfo[0].idNumber);
@@ -659,7 +663,7 @@
       // 取出对应乘机人信息
       var passagerInfo = passagerArray[editIDKey];
       // 传入当前操作类型
-      // passagerInfo.currentOperationType = currentOperationType;
+      passagerInfo.isInternationalTrip = isInternationalTrip;
 
       // 编辑乘机人面板的数据回显
       _model2UI(passagerInfo);
@@ -713,7 +717,7 @@
             json.data[i].selected = false;//默认未选择
             passagerArray[json.data[i].traveller.travellerId] = json.data[i];
           }
-          json.isInternational = isNeedPassport;
+          json.isInternational = isInternationalTrip;
           var html = template(tpl_traveler, json);
           document.getElementById("allList").innerHTML = html;
           _bindSelectChoice();
@@ -749,7 +753,7 @@
       var json = {data: choiceAir_AddPassagerArray};
 
       // isInternational传false，为了防止template报错。后面改为ejs解析
-      json.isInternational = isNeedPassport;
+      json.isInternational = isInternationalTrip;
 
       var html = template(tpl_traveler, json);
       document.getElementById("allList").innerHTML = html;
@@ -819,7 +823,7 @@
 
     new Scroller({id: "time-cont", type: "validity", cont: "uuun2"});
     new Scroller({id: "birth-cont", type: "birth", cont: "uuun1"});
-    var cardType = isNeedPassport == true ? "cardInte" : "card"
+    var cardType = isInternationalTrip == true ? "cardInte" : "card"
     new Scroller({id: "postCard", type: cardType, cont: "uuu", "callback": truncateCardInfo});
 
     _clearDate();
