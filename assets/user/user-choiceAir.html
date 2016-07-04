@@ -198,8 +198,10 @@
 </div>
 
 <script id="tpl_traveler" type="text/template">
-  {% var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2; for(var i=0,len=data.length;i<len;i++){
-    var dd=data[i];%}
+  {% var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2;%}
+  {% for(var i=0,len=data.length;i<len;i++){ %}
+    {% var dd=data[i]; %}
+
     {% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); %}
       <li class="eve_traveler"  index={%=i%}>
         <b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>
@@ -207,13 +209,18 @@
         <ul class="often_user">
           <input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>
           <input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>
-          <li data-card="{%=dd.listTravellerIdInfo[0].idType%}">
-            {% if(isInternational) { %}
+          <li data-card="{%=dd.listTravellerIdInfo[0].idType%}" data-card2="{%=dd.isInternationalTrip%}">
+            {% if (dd.isInternationalTrip) { %}
             <span>姓 / 名</span>
-            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>
+            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
             {% } else { %}
             <span>姓名</span>
+            {% if (dd.traveller.idName) { %}
             <span class="cnName" style="padding-left: 6px">{%=dd.traveller.cnName%}</span>
+            {% } else { %}
+            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
+            {% } %}
+
             {% } %}
 
             {%  if(age<2){ %}
@@ -232,7 +239,7 @@
           <li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>
           {% } %}
           {% } %}
-      </ul>
+        </ul>
     </li>
   {% } %}
 </script>
