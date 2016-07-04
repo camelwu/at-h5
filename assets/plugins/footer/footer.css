@@ -1,3 +1,4 @@
+
 body {
   background: #f7f7f7;
 }
@@ -109,6 +110,18 @@ dl.foot_position dt {
   background: url(../../../images/hotel_flight_tour/icon_hotel.png);
   background-size: 7.89rem 2.58rem;
   background-position: -2.19rem -0.46rem;
+}
+#transformTypes dt{
+  width: 0.34rem;
+  height: 0.37rem;
+  background: url(../../../images/ui/price.png);
+  background-size: .38rem .38rem;
+  background-position: -.04rem 0;
+  position: relative;
+}
+dl.foot_transform dt, dl.foot_transform dt {
+  position: relative;
+  background-position: -0.59rem -2.32rem;
 }
 
 section.foot_sort,

@@ -1,22 +1,28 @@
-/*
- * 底部菜单
+/* * 底部菜单
  * 创建底部菜单，id,class会有不同,每个页面只有一个底部，多个筛选条件
  * menu：根据页面url地址进行判断
  * filters：根据传入的json对象显示和判断
- * 传入参数说明：
- *
- {
- filters : {//传入标识
- title : "推荐排序",//中文名称
- s : 1|2,//单|多选
- c : "sort bg_color", //样式
- type : 1,//类型：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，多条件筛选，点击确认按钮进行查询，3航空公司，特殊处理方式
- key : 'filters',//键值，返回数据的key值
- listData : [{}]//统一为数组，内为对象内容
- }
- }
- *
- */
+ * 传入参数示例说明：
+sortTypes: {    /!*生成的底部dl单元的id*!/
+    candidateTitle : [], /!*候选名字组， 点击后底部dl单元文字是否改变，和isTitleChange，isArrayItem，titleItem配合使用*!/
+    s :1 ，       /!*1|2, 单|多选*!/
+    c : "foot_sort", //样式
+    type : 1,//类型：0底部dl单元直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，多条件筛选，点击确认按钮进行查询，3航空公司，特殊处理方式
+    key : 'sortTypes', /!*和底部dl单元id一定要相同*!/
+    isTitleChange:2,  /!*点击后是否改变底部dl单元标题：0, 不变,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*!/
+    isAddDl:0,       /!*点击完后是否把底部dl单元当前操作dl返回  0不返回， 1返回*!/
+    isArrayItem:0,/!*底部dl单元是否顺序显示候选名字组的值 0,不循环， 1循环*!/
+    titleMaxRate:0,  /!*最大标题索引值， 默认为0, 其值根据上面的candidateTitle的长度取*!/
+    titleItem:" ",  /!*当需要从candidateTitle取值显示时，其值是该数组的索引值*!/
+    defaultTitle:{sortText:"优选", sortValue:""}, /!*底部dl单元默认名字*!/
+    clearOtherDl:8,   //点击该dl后，是否清空另一个dl的值和高亮状态，序号 值为1就清除1，值为8则不清除
+    listData: [ /!列表选项*!/
+    {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+    {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+    {sortText: "起飞晚到早", sortValue: "isDesc_true"}
+  ]
+}*/
+
 var footer = (function(){
   "use strict";
   // 遮罩容器
@@ -362,6 +368,7 @@ var footer = (function(){
             ' id=' + p +
             ' data-type=' + data[p].type +
             ' data-isTitleChange=' + data[p].isTitleChange +
+            ' data-isAddDl=' + data[p].isAddDl +
             ' data-isArrayItem=' + data[p].isArrayItem +
             ' data-titleMaxRate=' + data[p].titleMaxRate +
             ' data-clearOtherDl=' + data[p].clearOtherDl +
@@ -558,7 +565,7 @@ var footer = (function(){
         }
       },
       redTip:function(){
-        var allLis = sec.querySelectorAll('.cur'), temObj = {};
+        var allLis = sec.querySelectorAll('.cur'), temObj = {}, dlArray = document.querySelectorAll('footer dl');
         Array.prototype.slice.call(allLis).forEach(function(element,index){
           if(element.parentNode.getAttribute('data-key')){
             temObj[element.parentNode.getAttribute('data-key')] = [];
@@ -575,14 +582,19 @@ var footer = (function(){
           var targetDl =  document.querySelector('#'+p), tag = false;
           tag = temObj[p].every(function (value) {
             var tTag = value.getAttribute('data-val');
-            return  tTag==""||tTag=="0"||tTag=="economy"||tTag=="false"||tTag=="00-24"})
+            return  tTag==""||tTag=="0"||tTag=="economy"||tTag=="false"||tTag=="00-24"
+             })
+            if(tag){
+              targetDl.querySelector('dt').className = "clo";
+            }else{
+              targetDl.querySelector('dt').className = "";
+            }
         }
-        console.log(tag)
-        if(tag){
-          targetDl.querySelector('dt').className = "clo";
-        }else{
-          targetDl.querySelector('dt').className = "";
-        }
+        Array.prototype.slice.call(dlArray).forEach(function(element,index){
+          if(element.getAttribute('data-type')=="0"){
+            element.querySelector('dt').className = element.getAttribute('data-titleitem')!=""?"":"clo"
+          }
+        })
       },
       noUlHandler:function(){
         var dlArray = document.querySelectorAll('footer dl'), oproObj = arguments[0];
@@ -594,19 +606,36 @@ var footer = (function(){
         })
         return oproObj
       },
+      setChoo : function(w) {
+        var wUl = document.querySelectorAll('.'+w.id),curLi=null, fst="";
+        if(wUl.length!=1){return}
+        curLi=wUl[0].querySelectorAll('li');
+        fst = curLi[0].innerText;
+        if (fst.indexOf("不限") > -1||fst.indexOf("经济舱") > -1) {
+          curLi[0].className = 'cur choose';
+        }else{
+          curLi[0].className = '';
+        }
+        for (var j = 1; j < curLi.length; j++) {
+          if (curLi[j].className == 'cur' || curLi[j].className == 'cur choose') {
+            curLi[j].className = '';
+          }
+        }
+      },
       targetDlHandler:function(){
         var targetDlItem = arguments[0]!=undefined?arguments[0]:this.dlItem,isArrayItem= 0, dlType = arguments[1]!=undefined?arguments[1]:this.dlType,
           dlArray = document.querySelectorAll('footer dl'), that = this,clickDl = null,temNum = 0,titleItem="", ulArray =[], type="", isTitleChange = "",maxRate = "", clearOtherDl = "";
         clickDl = dlArray[targetDlItem];
-        type = clickDl.getAttribute('data-type');                   /*0*/
-        isTitleChange = clickDl.getAttribute('data-istitlechange'); /*0*/
-        isArrayItem = Number(clickDl.getAttribute('data-isArrayItem')); /*0*/
-        clearOtherDl = clickDl.getAttribute('data-clearotherdl');   /*""*/
-        titleItem = clickDl.getAttribute('data-titleItem');   /*""*/
-        maxRate = clickDl.getAttribute('data-titleMaxRate');   /*"0"*/
+        this.clickDl = clickDl;
+        this.isAddDl = clickDl.getAttribute('data-isAddDl');
+        type = clickDl.getAttribute('data-type');
+        isTitleChange = clickDl.getAttribute('data-istitlechange');
+        isArrayItem = Number(clickDl.getAttribute('data-isArrayItem'));
+        clearOtherDl = clickDl.getAttribute('data-clearotherdl');
+        titleItem = clickDl.getAttribute('data-titleItem');
+        maxRate = clickDl.getAttribute('data-titleMaxRate');
         ulArray = document.querySelectorAll('.'+ clickDl.id);
-        var bottleDlTitle = function(){
-          console.log(arguments)
+        var bottleDlTitle = function(){ //bottleDlTitle(clickDl.id,"",clickDl, "");
           var  data = footer.data, resultTitle = "", cacheObj = null;
           for(var t in data){
             if(t == arguments[0]){
@@ -652,27 +681,38 @@ var footer = (function(){
           if(isTitleChange == "1"&&maxRate !=""){
             if(titleItem == ""){
               titleItem = 0;
-              //clickDl.setAttribute('data-titleItem',titleItem);
             }else{
               titleItem = Number(titleItem)+1<= Number(maxRate)?Number(titleItem)+1:Number(maxRate);
-              // clickDl.setAttribute('data-titleItem',titleItem);
             }
             clickDl.querySelector('dd').innerHTML = bottleDlTitle(clickDl.id,titleItem,clickDl, isArrayItem);
             if(Number(clearOtherDl)<8){
+              this.setChoo(dlArray[Number(clearOtherDl)]);
               dlArray[Number(clearOtherDl)].querySelector('dt').className = "clo";
               dlArray[Number(clearOtherDl)].querySelector('dd').innerHTML = bottleDlTitle(dlArray[Number(clearOtherDl)].id, null, dlArray[Number(clearOtherDl)], isArrayItem, "reset")
             }
           }
         }else if(ulArray.length ==1){
-          var curLi =  ulArray[0].querySelectorAll('.cur')
-          if(isTitleChange == "2"&&curLi.length==1){
-            clickDl.querySelector('dd').innerHTML = curLi[0].innerText;
+          var curLi =  ulArray[0].querySelectorAll('.cur');
+          if(isTitleChange == "2"){
+             if(curLi.length==1&&curLi[0].innerText!="不限"){
+                clickDl.querySelector('dd').innerHTML = curLi[0].innerText;
+             }else{
+               clickDl.querySelector('dd').innerHTML = bottleDlTitle(clickDl.id,null,clickDl, "");
+             }
           }
+          if(Number(clearOtherDl)<8){
+            this.setChoo(dlArray[Number(clearOtherDl)]);
+            dlArray[Number(clearOtherDl)].querySelector('dt').className = "clo";
+            dlArray[Number(clearOtherDl)].querySelector('dd').innerHTML = bottleDlTitle(dlArray[Number(clearOtherDl)].id, null, dlArray[Number(clearOtherDl)], isArrayItem, "reset")
+          }
+
         }
       },
-      request : function() { //that.showItems(index, returnVal);
+      request : function() {
         // 选中的属性
         var node = sec.getElementsByTagName("ul"), obj = {};
+        this.targetDlHandler();
+        this.redTip();
         for (var i = 0; i < node.length; i++) {
           if (node[i].getAttribute("data-key")){
             var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
@@ -702,8 +742,6 @@ var footer = (function(){
             }
           }
         }
-        this.redTip();
-        this.targetDlHandler();
         obj = this.noUlHandler(obj);
         footer.result = obj;
         this.remove();
@@ -711,15 +749,13 @@ var footer = (function(){
           box.style.display = 'block';
         }
         if (footer.callback) {
-          footer.callback(obj);
+          this.isAddDl == "0"?footer.callback(obj):footer.callback(obj, this.clickDl);
         }
       },
+
       // 重置选中
       resec : function(w) {
         var cur = w.getElementsByClassName("cur");
-        /*for (var i = 0; i < cur.length; i++) {
-         cur[i].className=='cur'?cur[i].className = '':null;
-         }*/
         var ul = w.getElementsByTagName("ul");
         for (var i = 0; i < ul.length; i++) {
           if (ul[i].getAttribute("data-key")) {

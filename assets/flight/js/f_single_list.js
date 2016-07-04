@@ -249,88 +249,49 @@ var fSingleList = {
   },
 
   filerCallBack: function () {
-    var transferData = arguments, that = fSingleList;
+    console.log(arguments[0])
+    var transferData = arguments[0], that = fSingleList;
     if (that.postObj.internationalOrDomestic == "international"){
-      if (arguments[1].id == "Tax"){
-        that.fadeHandler('show');
-        var dd = arguments[1].querySelector('dd');
-        if (dd.innerHTML == "含税价") {
-          that.postObj.hasTax = 1;
-          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
-        } else if (dd.innerHTML == "不含税价") {
-          that.postObj.hasTax = 0;
-          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
-        }
-      } else {
-        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
-        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
-        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
-        that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
-        that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
-        that.postObj.airCorpCode = transferData[0].filters[4].FilterValues[0];
-        if (transferData[0].sortTypes[0].indexOf('isDesc') > -1) {
-          that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
-          that.postObj.priorityRule = 0;
-        } else {
-          that.postObj.priorityRule = transferData[0].sortTypes[0];
-          delete that.postObj.isDesc
-        }
-        if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
-          delete that.postObj.airCorpCode;
-        }
-        that.pageHandler();
-        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-      }
-    } else {
-      if (arguments[1].id == "Price") {
-        var dd = arguments[1].querySelector('dd'),  sortDd = document.querySelector('#Sort').querySelector('dd'),sortDt =document.querySelector('#Sort').querySelector('dt');
-        sortDd.innerHTML = "时间";
-        sortDt.className = "clo";
-        if (dd.innerHTML == "价格"){
-          that.postObj.priorityRule = 2;
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        } else if (dd.innerHTML == "从低到高") {
-          that.postObj.priorityRule = 2;
-          that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        }
-      }else if(arguments[1].id == "Sort"){
-        var dd = arguments[1].querySelector('dd'), sortDd = document.querySelector('#Price').querySelector('dd'),sortDt =document.querySelector('#Price').querySelector('dt');
-        arguments[1].querySelector('dt').className = "";
-        sortDd.innerHTML = "价格";
-        sortDt.className = "clo";
-        if (dd.innerHTML == "起飞早到晚") {
-          dd.innerHTML = "起飞晚到早";
-          that.postObj.isDesc = "true";
-          that.postObj.priorityRule = 0;
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        } else if (dd.innerHTML == "起飞晚到早") {
-          dd.innerHTML = "起飞早到晚";
-          that.postObj.isDesc = "false";
-          that.postObj.priorityRule = 0;
-          that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-        }else{
-          dd.innerHTML = "起飞早到晚";
-          that.postObj.isDesc = "false";
-          that.postObj.priorityRule = 0;
-          that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+          that.postObj.isDirectFlight = transferData.filters[0].FilterValues[0];
+          that.postObj.isHideSharedFlight = transferData.filters[1].FilterValues[0];
+          that.postObj.departStartHour = transferData.filters[2].FilterValues[0].substring(0, 2);
+          that.postObj.departEndHour = transferData.filters[2].FilterValues[0].substring(3);
+          that.postObj.cabinClass = transferData.filters[3].FilterValues[0];
+          that.postObj.airCorpCode = transferData.filters[4].FilterValues[0];
+          that.postObj.hasTax = transferData.transformTypes.FilterValues.substring(8) == "false"?0:1;
+          if (transferData.sortTypes[0].indexOf('isDesc') > -1) {
+             that.postObj.isDesc = transferData.sortTypes[0].substring(7);
+             that.postObj.priorityRule = 0;
+          } else {
+             that.postObj.priorityRule = transferData.sortTypes[0];
+             delete that.postObj.isDesc
          }
-      }else {
-        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
-        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
-        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
-        that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
-        that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
-        that.postObj.airCorpCode = transferData[0].filters[4].FilterValues[0];
-        if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
-          delete that.postObj.airCorpCode;
-        }
-        that.pageHandler();
-        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
-      }
-    }
+          that.pageHandler();
+         if(arguments.length==2){
+            that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
+           }else{
+            that.fadeHandler('show');
+            that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+           }
+    }else{
+          that.postObj.isDirectFlight = transferData.filters[0].FilterValues[0];
+          that.postObj.isHideSharedFlight = transferData.filters[1].FilterValues[0];
+          that.postObj.departStartHour = transferData.filters[2].FilterValues[0].substring(0, 2);
+          that.postObj.departEndHour = transferData.filters[2].FilterValues[0].substring(3);
+          that.postObj.cabinClass = transferData.filters[3].FilterValues[0];
+          that.postObj.airCorpCode = transferData.filters[4].FilterValues[0];
+          that.postObj.priorityRule = transferData.transformTypes.FilterValues;
+          if (transferData.timeTypes.FilterValues.indexOf('isDesc') > -1) {
+              that.postObj.isDesc = transferData.timeTypes.FilterValues.substring(7);
+              that.postObj.priorityRule = 0;
+          }else{
+            that.postObj.priorityRule = transferData.transformTypes.FilterValues;
+            delete that.postObj.isDesc
+          }
+            that.pageHandler();
+            that.fadeHandler('show');
+            that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+          }
   },
 
   filterHandler: function (data) {
@@ -343,24 +304,40 @@ var fSingleList = {
         tempArray.push(temObj);
       });
     }
-    if (this.postObj.internationalOrDomestic == "international") {
+    if (this.postObj.internationalOrDomestic == "international") { /*国际*/
       f_data = {
-        Sort: {
-          title: "起飞早到晚",
-          c: "f_foot_sort",
-          type: 1,
-          key: "sortTypes",
+        sortTypes: {
+          candidateTitle : [], /*候选名字组*/
+          c : "foot_sort",
+          type : 1,
+          s : 1,
+          key : 'sortTypes',
+          isTitleChange:2,  /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+          isAddDl:0,   /*点击完后是否把底部当前操作dl返回  0不返回， 1返回*/
+          isArrayItem:0,/*是否顺序显示候选组*/
+          titleMaxRate:0,  /*最大标题索引值*/
+          titleItem:" ",  /*当前题索引值*/
+          defaultTitle:{sortText:"优选", sortValue:""}, /*默认名字*/
+          clearOtherDl:8,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
           listData: [
             {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
             {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
             {sortText: "起飞晚到早", sortValue: "isDesc_true"}
           ]
         },
-        Screen: {
-          title: "筛选", /*名字*/
-          c: "foot_screen",
-          type: 2, /*类型*/
-          key: 'filters',
+        filters : {
+          candidateTitle : [],/*候选名字组*/
+          c : "foot_screen",
+          type : 2,
+          s : 2,
+          key : 'filters',
+          isTitleChange:0,        /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+          isAddDl:0,   /*点击完后是否把底部当前操作dl返回  0不返回， 1返回*/
+          isArrayItem:0,/*是否顺序显示候选组*/
+          clearOtherDl:"",   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为""则不清除
+          titleMaxRate:0,  /*最大标题索引值*/
+          titleItem:" ",  /*当前题索引值*/
+          defaultTitle:{sortText:"筛选", sortValue:""}, /*默认名字*/
           listData: [
             {
               allowMultiSelect: 0,
@@ -443,28 +420,53 @@ var fSingleList = {
             }
           ]
         },
-        Tax: {
-          title: "含税价",
-          c: "f_tax_sort",
-          type: 0,
-          key: 'tax',
-          listData: ["含税价", "不含税价"]
+        transformTypes : {
+          candidateTitle : [{sortText:"含税价", sortValue:"has_tax_true"},{sortText:"不含税价", sortValue:"has_tax_false"}], /*候选名字组*/
+          c : "foot_transform",
+          type : 0,
+          s : 1,
+          key : 'transformTypes',
+          isTitleChange:1,  /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+          isAddDl:1,   /*点击完后是否把底部当前操作dl返回  0不返回， 1返回*/
+          isArrayItem:1,/*是否顺序显示候选组*/
+          titleMaxRate:1,  /*最大标题索引值*/
+          titleItem:0,  /*当前题索引值*/
+          defaultTitle:{sortText:"含税价", sortValue:"has_tax_true"}, /*默认名字*/
+          clearOtherDl:8,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
+          listData : []
         }
       };
+
     } else {
       f_data = {
-        Sort: {
-          title: "起飞早到晚",
-          c: "f_foot_sort",
-          type: 0,
-          key: "sortTypes",
-          listData:["起飞早到晚", "起飞晚到早"]
+        timeTypes : {
+          candidateTitle : [{sortText:"起飞早到晚", sortValue:"isDesc_false"},{sortText:"起飞晚到早", sortValue:"isDesc_true"}], /*候选名字组*/
+          c : "foot_transform",
+          type : 0,
+          s : 1,
+          key : 'timeTypes',
+          isTitleChange:1,  /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+          isAddDl:0,   /*点击完后是否把底部当前操作dl返回  0不返回， 1返回*/
+          isArrayItem:1,/*是否顺序显示候选组*/
+          titleMaxRate:1,  /*最大标题索引值*/
+          titleItem:0,  /*当前题索引值*/
+          defaultTitle:{sortText:"时间", sortValue:""}, /*默认名字*/
+          clearOtherDl:2,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
+          listData : []
         },
-        Screen: {
-          title: "筛选", /*名字*/
-          c: "foot_screen",
-          type: 2, /*类型*/
-          key: 'filters',
+        filters : {
+          candidateTitle : [],/*候选名字组*/
+          c : "foot_screen",
+          type : 2,
+          s : 2,
+          key : 'filters',
+          isTitleChange:0,        /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+          isAddDl:0,   /*点击完后是否把底部当前操作dl返回  0不返回， 1返回*/
+          isArrayItem:0,/*是否顺序显示候选组*/
+          clearOtherDl:"",   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为""则不清除
+          titleMaxRate:0,  /*最大标题索引值*/
+          titleItem:" ",  /*当前题索引值*/
+          defaultTitle:{sortText:"筛选", sortValue:""}, /*默认名字*/
           listData: [
             {
               allowMultiSelect: 0,
@@ -489,8 +491,9 @@ var fSingleList = {
                 filterValue: "true"
               }],
               sortNumber: 1,
-              title: "共享"
-            }, {
+              title: "共享航班"
+            },
+            {
               allowMultiSelect: 0,
               filterType: 3,
               item: [{
@@ -511,7 +514,8 @@ var fSingleList = {
               }],
               sortNumber: 2,
               title: "起飞时段"
-            }, {
+            },
+            {
               allowMultiSelect: 0,
               filterType: 2,
               item: [
@@ -545,14 +549,23 @@ var fSingleList = {
             }
           ]
         },
-        Price: {
-          title: "价格",
-          c: "f_tax_sort",
-          type: 0,
-          key: 'tax',
-          listData: ["从低到高", "价格"]
+        transformTypes : {
+          candidateTitle : [{sortText:"从低到高", sortValue:"2"}], /*候选名字组*/  //that.postObj.priorityRule = 2 从低到高; that.postObj.priorityRule = 0;不排序
+          c : "foot_transform",
+          type : 0,
+          s : 1,
+          key : 'transformTypes',
+          isTitleChange:1,  /*0, 不换,一直显示默认， 1, 从candidateTitle数组里取， 2 :从高亮的li文字里取，*/
+          isAddDl:0,   /*点击完后是否把底部当前操作dl返回  0不返回， 1返回*/
+          isArrayItem:1,/*是否顺序显示候选组*/
+          titleMaxRate:1,  /*最大标题索引值*/
+          titleItem:"",  /*当前题索引值*/
+          defaultTitle:{sortText:"价格", sortValue:"0"}, /*默认名字*/
+          clearOtherDl:0,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
+          listData : []
         }
-      }
+      };
+
     }
     if (footer) {
       footer.data = f_data;
@@ -625,6 +638,7 @@ var fSingleList = {
     this.postObj = postObj;
     this.first = true;
     this.titleInit().dateCalender().dateChangeHandler().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    //this.renderHandler(singleDe)
   }
 };
 fSingleList.init();
