@@ -38,7 +38,7 @@
   </div>
 
   <div class="all_elements">
-    <div id="content" class="content no_header">
+    <div class="content no_header">
       <!--头部banner开始-->
       <div class="slider-container">
           <!--<div class="index_bg"></div>-->
@@ -47,176 +47,175 @@
           </div>
       </div>
       <!--头部banner结束-->
-
-      <!--column开始-->
-      <div class="column_wrap clearfix">
-        <div class="adaptive_item">
-          <a href="./hotel/index.html" title="Hotels Here"><img class="res_image" src="./images/index/hotel_guide.png" alt="img">
-          <span class="center_text">酒店</span></a>
-        </div>
-        <div class="adaptive_item">
-          <a href="./flight/f_index.html" title="Flights Goes Here"> <img class="res_image" src="./images/index/flight_guide.png" alt="img">
-          <span class="center_text">机票</span></a>
-        </div>
-        <div class="adaptive_item">
-          <a href="./scenic/index.html" title="Attractions Here"> <img class="res_image" src="./images/index/scenic_guide.png" alt="img">
-          <span class="center_text">景点</span></a>
-        </div>
-        <div class="adaptive_item">
-          <a href="hotel_flight_tour/index.html" title="Hotels flights attractions Here"> <img class="res_image" src="./images/index/fht_guide.png" alt="img">
-          <span class="center_text">自由行</span></a>
-        </div>
-        <div class="adaptive_item">
-          <a href="tour/index.html" title="Hotels attractions Here"> <img class="res_image" src="./images/index/tour_guide.png" alt="img">
-          <span class="center_text">酒+景</span></a>
-        </div>
+    </div>
+    <!--column开始-->
+    <div class="column_wrap clearfix">
+      <div class="adaptive_item">
+        <a href="./hotel/index.html" title="Hotels Here"><img class="res_image" src="./images/index/hotel_guide.png" alt="img">
+        <span class="center_text">酒店</span></a>
       </div>
-      <!--column开始-->
-
-      <!--当月热玩海外门票开始-->
-      <div class="container">
-        <div class="recommends" id="recommend">
-          <ul class="recommends_tab clearfix">
-            <li class="fl"><a href="index-hotplay.html"><img src="images/index/hot_play.jpg" class="hot_sea"></a></li>
-            <li class="fr"><a href="index-seaticket.html"><img src="images/index/sea_ticket.jpg" class="hot_sea"></a></li>
-          </ul>
-        </div>
+      <div class="adaptive_item">
+        <a href="./flight/f_index.html" title="Flights Goes Here"> <img class="res_image" src="./images/index/flight_guide.png" alt="img">
+        <span class="center_text">机票</span></a>
       </div>
-      <!--当月热玩海外门票结束-->
-      <!--玩家推荐-->
-      <div class="player_recommend">
-        <div class="player_rec_title">
-            <h5 class="play_rec_text">
-              <span class="player_line"></span>玩家推荐<span class="player_line right"></span>
-            </h5>
-        </div>
-        <div class="container" id="tuijian"></div>
+      <div class="adaptive_item">
+        <a href="./scenic/index.html" title="Attractions Here"> <img class="res_image" src="./images/index/scenic_guide.png" alt="img">
+        <span class="center_text">景点</span></a>
+      </div>
+      <div class="adaptive_item">
+        <a href="hotel_flight_tour/index.html" title="Hotels flights attractions Here"> <img class="res_image" src="./images/index/fht_guide.png" alt="img">
+        <span class="center_text">自由行</span></a>
+      </div>
+      <div class="adaptive_item">
+        <a href="tour/index.html" title="Hotels attractions Here"> <img class="res_image" src="./images/index/tour_guide.png" alt="img">
+        <span class="center_text">酒+景</span></a>
       </div>
     </div>
+    <!--column结束-->
+
+    <!--当月热玩海外门票开始-->
+    <div class="container">
+      <div class="recommends" id="recommend">
+        <ul class="recommends_tab clearfix">
+          <li class="fl"><a href="index-hotplay.html"><img src="images/index/hot_play.jpg" class="hot_sea"></a></li>
+          <li class="fr"><a href="index-seaticket.html"><img src="images/index/sea_ticket.jpg" class="hot_sea"></a></li>
+        </ul>
+      </div>
+    </div>
+    <!--当月热玩海外门票结束-->
+    <!--玩家推荐-->
+    <div class="player_recommend">
+      <div class="player_rec_title">
+          <h5 class="play_rec_text">
+            <span class="player_line"></span>玩家推荐<span class="player_line right"></span>
+          </h5>
+      </div>
+      <div class="container" id="tuijian" style="margin-bottom: 1.3rem;"></div>
+    </div>
   </div>
-    <div id="menu"></div>
-    <script src="js/lib/jquery.js"></script>
-    <script src="js/lib/plugins.js"></script>
-    <script src="js/lib/jquery.alert.js"></script>
-    <script src="js/lib/vlm.js"></script>
-    <script src="js/lib/template.js"></script>
+  <div id="menu"></div>
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/plugins.js"></script>
+  <script src="js/lib/jquery.alert.js"></script>
+  <script src="js/lib/vlm.js"></script>
+  <script src="js/lib/template.js"></script>
 
-    <script>
-        var linkurl = {
-            1: "./hotel/hotel_detail.html?HotelID=",
-            2: "./flight/ticket_seat_choose.html?setId=",
-            3: "./scenic/scenic_detail.html?packageID=",
-            4: "./tour/packages_detail.html?packageID="
-        };
-        (function() {
-            vlm.init();
-            $(document).ready(function() {
-                window.addEventListener('load', function() {
-                    FastClick.attach(document.body);
-                }, false);
-            });
-            var index = function() {
-                //banner
-                function LoadBanner() {
-                    var tpl0 = ['<a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a>'].join('');
-                    var tmp = {
-
-                        "Parameters": {
-                            "BannerType": 1
-                        },
-
-                        "ForeEndType": 3,
-                        "Code": "001302"
-                    };
-                    vlm.loadJson("", JSON.stringify(tmp), function(json) {
-                        if (json.success) {
-                            var data = json.data,
-                                html_b = template(tpl0, data.bannerList);
-                            $("#banner").html(html_b);
-                            $("#banner").owlCarousel({
-                                slideSpeed: 500,
-                                paginationSpeed: 500,
-                                lazyLoad: true,
-                                autoPlay: true,
-                                singleItem: true,
-                                item: 1
-                            });
-                        } else {
-                            console.log(json);
-                            jAlert("数据格式错误", "提示");
-                        }
-                    });
-                }
-                //playerRecommend
-                function PlayerRecommend() {
-                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+  <script>
+      var linkurl = {
+          1: "./hotel/hotel_detail.html?HotelID=",
+          2: "./flight/ticket_seat_choose.html?setId=",
+          3: "./scenic/scenic_detail.html?packageID=",
+          4: "./tour/packages_detail.html?packageID="
+      };
+      (function() {
+          vlm.init();
+          $(document).ready(function() {
+              window.addEventListener('load', function() {
+                  FastClick.attach(document.body);
+              }, false);
+          });
+          var index = function() {
+              //banner
+              function LoadBanner() {
+                  var tpl0 = ['<a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a>'].join('');
                   var tmp = {
+
                       "Parameters": {
-                          "PageNo": 1,
-                          "PageSize": 10
+                          "BannerType": 1
                       },
+
                       "ForeEndType": 3,
-                      "Code": "001303"
+                      "Code": "001302"
                   };
                   vlm.loadJson("", JSON.stringify(tmp), function(json) {
-                      console.log(json);
                       if (json.success) {
-                        var data = json.data,
-                        html_tj = template(tpl1, data.playerRecommendList);
-                        $("#tuijian").html(html_tj);
-
-
-                        //默认图片
-                        var images=$("#tuijian").find('img');
-                        var error_url='images/hotelDetailerrorpic.png';
-                        for(var i=0;i<images.length; i++){
-
-                          (function(index){
-                            var re_url=images[i].getAttribute('data-src');
-                            loadImage(re_url,error_url, function() {
-                              images[index].setAttribute('src', re_url);
-
-                            },function(){
-                              images[index].setAttribute('src', error_url);
-                            });
-
-                            function loadImage(url, error_url,callback,errorFunc) {
-                              var img = new Image();
-                              img.src = url;
-                              img.onload = function() {
-                                img.onload = null;
-                                callback();
-                              };
-                              img.onerror = function(){
-                                img.onerror = null;
-                                errorFunc();
-                              }
-                            }
-                          })(i);
-                        }
-
+                          var data = json.data,
+                              html_b = template(tpl0, data.bannerList);
+                          $("#banner").html(html_b);
+                          $("#banner").owlCarousel({
+                              slideSpeed: 500,
+                              paginationSpeed: 500,
+                              lazyLoad: true,
+                              autoPlay: true,
+                              singleItem: true,
+                              item: 1
+                          });
                       } else {
-                        console.log(json);
-                        jAlert("数据格式错误", "提示");
+                          console.log(json);
+                          jAlert("数据格式错误", "提示");
                       }
                   });
-                }
-
-                return {
-                    LoadBanner: LoadBanner,
-                    PlayerRecommend: PlayerRecommend
+              }
+              //playerRecommend
+              function PlayerRecommend() {
+                var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+                var tmp = {
+                    "Parameters": {
+                        "PageNo": 1,
+                        "PageSize": 10
+                    },
+                    "ForeEndType": 3,
+                    "Code": "001303"
                 };
-            }();
+                vlm.loadJson("", JSON.stringify(tmp), function(json) {
+                    console.log(json);
+                    if (json.success) {
+                      var data = json.data,
+                      html_tj = template(tpl1, data.playerRecommendList);
+                      $("#tuijian").html(html_tj);
 
 
-            //页面内容加载
-				    index.LoadBanner();
-            index.PlayerRecommend();
-        })();
+                      //默认图片
+                      var images=$("#tuijian").find('img');
+                      var error_url='images/hotelDetailerrorpic.png';
+                      for(var i=0;i<images.length; i++){
+
+                        (function(index){
+                          var re_url=images[i].getAttribute('data-src');
+                          loadImage(re_url,error_url, function() {
+                            images[index].setAttribute('src', re_url);
+
+                          },function(){
+                            images[index].setAttribute('src', error_url);
+                          });
+
+                          function loadImage(url, error_url,callback,errorFunc) {
+                            var img = new Image();
+                            img.src = url;
+                            img.onload = function() {
+                              img.onload = null;
+                              callback();
+                            };
+                            img.onerror = function(){
+                              img.onerror = null;
+                              errorFunc();
+                            }
+                          }
+                        })(i);
+                      }
+
+                    } else {
+                      console.log(json);
+                      jAlert("数据格式错误", "提示");
+                    }
+                });
+              }
+
+              return {
+                  LoadBanner: LoadBanner,
+                  PlayerRecommend: PlayerRecommend
+              };
+          }();
+
+
+          //页面内容加载
+          index.LoadBanner();
+          index.PlayerRecommend();
+      })();
 
 
 
-    </script>
+  </script>
 
 </body>
 </html>

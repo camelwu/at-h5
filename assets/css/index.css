@@ -31,7 +31,11 @@ body {
 
 .slider-container {
   position: relative;
-  height: 4.88rem;
+  /*height: 4.88rem;*/
+}
+
+.content.no_header{
+  min-height: 4.88rem;
 }
 
 .owl-controls {
@@ -43,7 +47,7 @@ body {
 
 .column_wrap {
   position: relative;
-  z-index: 1000;
+  z-index: 98;
   padding: .4rem 0;
 }
 
