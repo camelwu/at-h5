@@ -641,8 +641,7 @@
           selectAdultNum = selectAdultNum + step;
         }
         _setSelectPessageTip();
-      }
-      else {
+      } else {
         var len = $(".list-traveler .choiced").length;
         if (len >= 1 && !$(this).hasClass("choiced")) {
           $(this).removeClass("choiced");
@@ -650,6 +649,27 @@
           return;
         }
       }
+
+
+      // item对应的id
+      editIDKey = $(this).attr('data-id');
+
+      // 取出对应乘机人信息
+      var passagerInfo = passagerArray[editIDKey];
+      // 传入当前航班类型：true国际，false国内
+      passagerInfo.isInternationalTrip = isInternationalTrip;
+      if (passagerInfo.isInternationalTrip) {
+        if (!passagerInfo.traveller.lastName) {
+          jAlert('请补全信息')
+          return;
+        }
+      } else {
+        if (!passagerInfo.traveller.idName) {
+          jAlert('请补全信息')
+          return;
+        }
+      }
+
       $(this).toggleClass("choiced");
     })
 
@@ -662,7 +682,7 @@
 
       // 取出对应乘机人信息
       var passagerInfo = passagerArray[editIDKey];
-      // 传入当前操作类型
+      // 传入当前航班类型：true国际，false国内
       passagerInfo.isInternationalTrip = isInternationalTrip;
 
       // 编辑乘机人面板的数据回显
