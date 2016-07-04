@@ -279,6 +279,7 @@ element::-webkit-scrollbar{
   top: 0rem;
   left:0;
   margin-bottom: 0.9rem;
+  display: block;
 }
 .scenic-detile_list_matter{
   height: 1.4rem;

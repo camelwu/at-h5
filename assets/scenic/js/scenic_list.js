@@ -222,6 +222,12 @@
           $(".scenic_list_error").show();
           $(".scenic_list_error_div").show();
           $(".scenic_list_error_p").show();
+          $(".scenic-detile").hide();
+        }else{
+          $(".scenic_list_error").hide();
+          $(".scenic_list_error_div").hide();
+          $(".scenic_list_error_p").hide();
+          $(".scenic-detile").show();
         }
         $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
