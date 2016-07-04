@@ -508,6 +508,15 @@
         },
 
         initDate: function (result) {
+          //日期格式化之前先存储
+            result.data[0].dateInfo = {
+              CheckInDate: hotelDetail.gdataInfo.CheckInDate,
+              CheckOutDate: hotelDetail.gdataInfo.CheckOutDate,
+              totalNight: Math.abs(hotelDetail.$Id('nightNum').innerHTML)
+            };
+
+            hotelDetail.storageUtil.set("hotelDetailData", result);
+
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             var dateInitObj = new Object();
@@ -522,13 +531,7 @@
                 fn: hotelDetail.upDateContent
             });
 
-            result.data[0].dateInfo = {
-                CheckInDate: hotelDetail.gdataInfo.CheckInDate,
-                CheckOutDate: hotelDetail.gdataInfo.CheckOutDate,
-                totalNight: Math.abs(hotelDetail.$Id('nightNum').innerHTML)
-            };
 
-            hotelDetail.storageUtil.set("hotelDetailData", result);
         },
 
         imageTouchEvent: function () {
