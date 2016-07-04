@@ -347,26 +347,50 @@ var fOrder = {
     });
 
   },
-  deletePassager:function(obj){
-  $(obj).parent().parent().parent().remove();
 
-  var id=$(obj).parent().find(".itemId").val();
-  var list= JSON.parse(localStorage.getItem("choiceAir_select_passenger-list"));
-  var temp={};
-  for(var key in list){
-    if(key !=id){
-      temp[key]=list[key];
-    }
-  }
-    localStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
-},
-
-  flight_callback:function () {
+  // 传回数据后，渲染数据
+  flight_callback: function (data) {
+    console.log(data);
     var isInternational = fOrder.isInternationalTrip()
-    if(isInternational){
-      
+    if (isInternational) {
+      /*for (var key in selectedPassagerArray) {
+        for (var i = 0; i <= selectedPassagerArray[key].listTravellerIdInfo.length - 1; i++) {
+          selectedPassagerArray[key].listTravellerIdInfo[i].idName = vlm.arr_t[selectedPassagerArray[key].listTravellerIdInfo[i].idType];
+        }
+        var cloneObj = children.clone(true);
+        cloneObj.show();
+        elementList = $(cloneObj).find("[data-elementname]");
+        htmlObj.append(cloneObj);
+        for (var i = 0; i <= elementList.length - 1; i++) {
+          var obj = elementList[i],
+            attribute = elementList[i].attributes["data-elementname"].value,
+            val = passagerArray[key].traveller[attribute];
+          if (val == undefined || val == "") {
+            val = passagerArray[key].listTravellerIdInfo[0][attribute];
+          }
+          if (obj.tagName == "INPUT") {
+            $(elementList[i]).val(val);
+          }
+          else {
+            $(elementList[i]).html(val);
+          }
+        }
+      }*/
     }
+  },
 
+  deletePassager:function(obj){
+    $(obj).parent().parent().parent().remove();
+
+    var id=$(obj).parent().find(".itemId").val();
+    var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+    var temp={};
+    for(var key in list){
+      if(key !=id){
+        temp[key]=list[key];
+      }
+    }
+    sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
   },
 
   editPassager:function(obj){

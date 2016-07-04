@@ -37,7 +37,7 @@
   var nameDescriptPager = $(".fillName_page ");
   var nameCloseDescriptBtn = $("#fillName_page #closeName");
   var submitBtn = $("#toper .addPassager_finish");
-  var cnName = $(".addAir_page .cnNameUL");
+  var idName = $(".addAir_page .cnNameUL");
   var enName = $(".addAir_page .enNameUL");
   var ul_contect = $(".addAir_page .ul_contect");
 
@@ -161,7 +161,7 @@
 
       if (callback != undefined && callback != "undefined") {
         //parent.callback();
-        eval("parent." + callback + '()');
+        eval("parent." + callback + '('+JSON.stringify(selectedPassagerArray[key])+')');
       }
       closeWindowBtn.click();
 
@@ -192,7 +192,7 @@
 
   var _validate = function () {
 
-    if (cnName.is(':visible')) {
+    if (idName.is(':visible')) {
       if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cnName").eq(0).val())) {
         jAlert("中文姓名不能为空！", "", null, "确认");
         return false;
@@ -224,6 +224,7 @@
       }
     }
 
+    /*// 联系人信息，
     if (ul_contect.is(':visible')) {
       if (!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telephone").eq(0).val())) {
         jAlert("请输入有效的电话号码！", "", null, "确认");
@@ -234,7 +235,7 @@
         jAlert("请输入有效的邮箱！", "", null, "确认");
         return false;
       }
-    }
+    }*/
     if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cardNumber").eq(0).val())) {
       jAlert("证件号不能为空！", "", null, "确认");
       return false;
@@ -262,6 +263,7 @@
     return true;
   }
 
+  // 获取dom节点上的数据
   var _ui2Model = function (type) {
     if (type == "new") {
       var model = {
@@ -269,7 +271,6 @@
           "idName": $(".addAir_page .cnName").val(),
           "lastName": $(".addAir_page .lastName").val(),
           "firstName": $(".addAir_page .firstName").val(),
-          "cnName": $(".addAir_page .cnName").val(),
           "countryCode": $(".addAir_page .country").attr("data-code"),
           "countryName": $(".addAir_page .country").html(),
           "sexCode": $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code"),
@@ -309,7 +310,6 @@
       model.traveller.idName = $(".addAir_page .cnName").val();
       model.traveller.lastName = $(".addAir_page .lastName").val();
       model.traveller.firstName = $(".addAir_page .firstName").val();
-      model.traveller.cnName = $(".addAir_page .cnName").val();
       model.traveller.countryCode = $(".addAir_page .country").attr("data-code");
       model.traveller.countryName = $(".addAir_page .country").html();
       model.traveller.sexCode = $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
@@ -327,28 +327,6 @@
 
       return model;
     }
-  }
-
-  //证件生日有效期缓存函数
-  function dueCache(str1) {
-
-    if (str1 == "") {
-      return;
-    }
-    var str = str1.split('-');
-    if (str[1].charAt(0) == 0 && str[2].charAt(0) == 0) {
-
-      str = str[0] + '年-' + str[1].charAt(1) + '月-' + str[2].charAt(1) + '日';
-    } else if (str[1].charAt(0) == 0 && str[2].charAt(0) != 0) {
-
-      str = str[0] + '年-' + str[1].charAt(1) + '月-' + str[2] + '日';
-    } else if (str[1].charAt(0) != 0 && str[2].charAt(0) == 0) {
-
-      str = str[0] + '年-' + str[1] + '月-' + str[2].charAt(1) + '日';
-    } else {
-      str = str[0] + '年-' + str[1] + '月-' + str[2] + '日';
-    }
-    return str;
   }
 
   var _model2UI = function (model) {
@@ -390,48 +368,6 @@
 
   }
 
-  var _clearDate = function () {
-    selectAdultNum = 0;
-    selectChildNum = 0;
-    currentOperationType = "new";
-    editIDKey = null;
-    addOrEditPassagePage.find("input").val("");
-
-    var newDate, year, month, day
-    if (departDate == null || departDate == "null") {
-      newDate = new Date();
-    }
-    else {
-      newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
-    }
-
-
-    newDate.setMonth(newDate.getMonth() + 6);
-    year = newDate.getFullYear();
-    month = newDate.getMonth() + 1;
-    day = newDate.getDate();
-
-    $(".addAir_page .cardDateLimit").attr("data-cache", year + "-" + month + "-" + day + "");
-    $(".addAir_page .cardDateLimit").html();
-
-    $(".addAir_page .birthDay").attr("data-cache", dueCache("1990-01-01"));
-    $(".addAir_page .birthDay").html("1990-01-01");
-
-
-    $(".addAir_page .postCard").attr("data-cache", "1");
-    $(".addAir_page .postCard").val("护照");
-
-
-    $(".addAir_page .cardCountry").attr("data-code", "CN");
-    $(".addAir_page .cardCountry").html("中国");
-
-    $(".addAir_page .country").attr("data-code", "CN");
-    $(".addAir_page .country").html("中国");
-
-    $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2")
-
-  }
-
   //数据保存
   var _saveDb = function () {
     if (!_validate()) {
@@ -468,6 +404,7 @@
       }
       else {
         model.traveller.travellerId = new Date().getTime();
+        model.isInternationalTrip = isInternationalTrip;
         choiceAir_AddPassagerArray.push(model);
       }
 
@@ -492,7 +429,7 @@
           "SexCode": selectedPassagerArray[key].traveller.sexCode,
           "FirstName": selectedPassagerArray[key].traveller.firstName,
           "LastName": selectedPassagerArray[key].traveller.lastName,
-          "cnName": selectedPassagerArray[key].traveller.cnName,
+          "idName": selectedPassagerArray[key].traveller.idName,
           "DateOfBirth": selectedPassagerArray[key].traveller.dateOfBirth,
           "email": selectedPassagerArray[key].traveller.email,
           "mobile": selectedPassagerArray[key].traveller.mobilePhone,
@@ -567,8 +504,7 @@
           }
         }
       }
-    }
-    else {
+    } else {
       var elementList = htmlObj.find("[data-elementname]");
       for (var key in selectedPassagerArray) {
         for (var i = 0; i <= elementList.length - 1; i++) {
@@ -669,6 +605,8 @@
           $(this).removeClass("choiced");
           jAlert("对不起，只能单选！");
           return;
+        } else {
+          $(this).toggleClass("choiced");
         }
       }
     })
@@ -748,6 +686,7 @@
               if (selectPassagerList[key].PagerType == from) {
                 // $(".list-traveler .user_choice[data-id=" + key + "]").click();
                 $(".list-traveler .user_choice[data-id=" + key + "]").toggle("choiced");
+                _setSelectPessageTip();
               }
 
             }
@@ -789,6 +728,7 @@
       var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
 
       _bindSelectChoice();
+      var step = 0;
       if (currentOperationType == "new" && selectPassagerList != null) {
         for (var key in selectPassagerList) {
           if (selectPassagerList[key].PagerType == from) {
@@ -803,10 +743,12 @@
               }
             }
             $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
+            step++;
           }
 
         }
       }
+      selectAdultNum += step;
       _setTitleTip();
 
     }
@@ -878,10 +820,10 @@
     }
     // 如果是国际航班，展示中文名
     if (isShowChinaName) {
-      cnName.show();
+      idName.show();
       enName.hide();
     } else {
-      cnName.hide();
+      idName.hide();
       enName.show();
     }
     if (!isShowContact) {
@@ -916,6 +858,73 @@
 
     //_setTitleTip();
   };
+
+
+
+  //证件生日有效期缓存函数
+  function dueCache(str1) {
+
+    if (str1 == "") {
+      return;
+    }
+    var str = str1.split('-');
+    if (str[1].charAt(0) == 0 && str[2].charAt(0) == 0) {
+
+      str = str[0] + '年-' + str[1].charAt(1) + '月-' + str[2].charAt(1) + '日';
+    } else if (str[1].charAt(0) == 0 && str[2].charAt(0) != 0) {
+
+      str = str[0] + '年-' + str[1].charAt(1) + '月-' + str[2] + '日';
+    } else if (str[1].charAt(0) != 0 && str[2].charAt(0) == 0) {
+
+      str = str[0] + '年-' + str[1] + '月-' + str[2].charAt(1) + '日';
+    } else {
+      str = str[0] + '年-' + str[1] + '月-' + str[2] + '日';
+    }
+    return str;
+  }
+
+  var _clearDate = function () {
+    selectAdultNum = 0;
+    selectChildNum = 0;
+    currentOperationType = "new";
+    editIDKey = null;
+    addOrEditPassagePage.find("input").val("");
+
+    var newDate, year, month, day
+    if (departDate == null || departDate == "null") {
+      newDate = new Date();
+    }
+    else {
+      newDate = new Date(departDate.replace('-', "/").replace('-', "/").replace('T', " "));
+    }
+
+
+    newDate.setMonth(newDate.getMonth() + 6);
+    year = newDate.getFullYear();
+    month = newDate.getMonth() + 1;
+    day = newDate.getDate();
+
+    $(".addAir_page .cardDateLimit").attr("data-cache", year + "-" + month + "-" + day + "");
+    $(".addAir_page .cardDateLimit").html();
+
+    $(".addAir_page .birthDay").attr("data-cache", dueCache("1990-01-01"));
+    $(".addAir_page .birthDay").html("1990-01-01");
+
+
+    $(".addAir_page .postCard").attr("data-cache", "1");
+    $(".addAir_page .postCard").val("护照");
+
+
+    $(".addAir_page .cardCountry").attr("data-code", "CN");
+    $(".addAir_page .cardCountry").html("中国");
+
+    $(".addAir_page .country").attr("data-code", "CN");
+    $(".addAir_page .country").html("中国");
+
+    $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2")
+
+  }
+
 
   /*接口*/
   return {

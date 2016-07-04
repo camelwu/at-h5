@@ -44,8 +44,9 @@
             <p class="name_infos">
               <i class="minus_person" onclick="javascript:fOrder.deletePassager(this)"></i>
               <span class="tip_word">姓/名</span>
-              <span class="first_name" data-elementname="lastName"></span><b>&nbsp;/&nbsp;</b><span class="last_name"
-                                                                                         data-elementname="firstName"></span>
+              <span class="first_name" data-elementname="firstName"></span><b>&nbsp;/&nbsp;</b><span class="last_name"
+                                                                                         data-elementname="lastName"></span>
+              <!--<span data-elementname="idName"></span>-->
               <i class="add_icon passenger" onclick="javascript:fOrder.editPassager(this)"><input type="hidden"
                                                                                            name="input-zone"
                                                                                            class="passport-number itemId"
@@ -53,7 +54,7 @@
                                                                                            data-elementName="travellerId"></i>
             </p>
 
-            <p class="passport_sex"><span class="tip_word" data-elementname="idName">护照</span><input class="passportValue" placeholder="1234567"
+            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567"
                                                                            readonly="readonly"
                                                                            data-elementname="idNumber"/><span
               class="sex_value" data-elementname="sexName"></span>
