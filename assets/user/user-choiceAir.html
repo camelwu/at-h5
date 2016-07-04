@@ -209,18 +209,22 @@
         <ul class="often_user">
           <input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>
           <input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>
-          <li data-card="{%=dd.listTravellerIdInfo[0].idType%}" data-card2="{%=dd.isInternationalTrip%}">
+          <li data-card="{%=dd.listTravellerIdInfo[0].idType%}">
             {% if (dd.isInternationalTrip) { %}
-            <span>姓 / 名</span>
-            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
-            {% } else { %}
-            <span>姓名</span>
-            {% if (dd.traveller.idName) { %}
-            <span class="cnName" style="padding-left: 6px">{%=dd.traveller.cnName%}</span>
-            {% } else { %}
-            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
-            {% } %}
+              <span>姓 / 名</span>
+              {% if (dd.traveller.lastName) { %}
+              <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
+              {% } else { %}
+              <span class="cnName" style="padding-left: 6px">{%=dd.traveller.idName%}</span>
+              {% } %}
 
+            {% } else { %}
+              <span>姓名</span>
+              {% if (dd.traveller.idName) { %}
+              <span class="cnName" style="padding-left: 6px">{%=dd.traveller.idName%}</span>
+              {% } else { %}
+              <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
+              {% } %}
             {% } %}
 
             {%  if(age<2){ %}

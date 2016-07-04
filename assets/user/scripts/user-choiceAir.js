@@ -639,7 +639,30 @@
         else if (age >= 12) {
           selectAdultNum = selectAdultNum + step;
         }
+
+        // item对应的id
+        editIDKey = $(this).attr('data-id');
+
+        // 取出对应乘机人信息
+        var passagerInfo = passagerArray[editIDKey];
+        // 传入当前航班类型：true国际，false国内
+        passagerInfo.isInternationalTrip = isInternationalTrip;
+        if (passagerInfo.isInternationalTrip) {
+          if (!passagerInfo.traveller.lastName) {
+            jAlert('请补全信息')
+            return;
+          }
+        } else {
+          if (!passagerInfo.traveller.idName) {
+            jAlert('请补全信息')
+            return;
+          }
+        }
+
+        $(this).toggleClass("choiced");
+
         _setSelectPessageTip();
+
       } else {
         var len = $(".list-traveler .choiced").length;
         if (len >= 1 && !$(this).hasClass("choiced")) {
@@ -648,28 +671,6 @@
           return;
         }
       }
-
-
-      // item对应的id
-      editIDKey = $(this).attr('data-id');
-
-      // 取出对应乘机人信息
-      var passagerInfo = passagerArray[editIDKey];
-      // 传入当前航班类型：true国际，false国内
-      passagerInfo.isInternationalTrip = isInternationalTrip;
-      if (passagerInfo.isInternationalTrip) {
-        if (!passagerInfo.traveller.lastName) {
-          jAlert('请补全信息')
-          return;
-        }
-      } else {
-        if (!passagerInfo.traveller.idName) {
-          jAlert('请补全信息')
-          return;
-        }
-      }
-
-      $(this).toggleClass("choiced");
     })
 
     // 乘机人列表的编辑按钮
