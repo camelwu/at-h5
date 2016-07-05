@@ -488,7 +488,7 @@ $(window).load(function () {
                 renderList(data);
             } else {
                 // 请求失败报错
-                if (json.message == '远程服务器返回错误: (500) 内部服务器错误。') {
+                if (json.message == '远程服务器返回错误: (500) 内部服务器错误。'||json.message == '目的地搜索酒店时出错(Error Occurs While SearchHotelByDest)') {
                     // if (json.Message == '远程服务器返回错误: (500) 内部服务器错误。') {
                     document.getElementById("loadMore").style.display = "none";
                     var oLi = document.createElement('li');
@@ -542,7 +542,7 @@ $(window).load(function () {
         if (!loadSign) {
             list_oUl.innerHTML = "";
         }
-        if (hotelList.length) {
+        if (hotelList.length>1) {
             for (var i = 0; i < hotelList.length; i++) {
                 var str1 = hotelList[i].starRating.substring(0, 1);
                 var str2 = '';
@@ -646,8 +646,7 @@ $(window).load(function () {
                 getDetail(hotelList);
 
                 clearTimeout(timer);
-            }, 50)
-
+            }, 50);
 
 
             //function screenDir(){
@@ -667,16 +666,21 @@ $(window).load(function () {
 
 
         } else {
-            if (urlArgs.pageIndex > 1) {
+          if(hotelList.length=1){
+            document.getElementById("loadMore").style.display = "none";
+            console.log(document.getElementById("loadMore"));
+            var oLi = document.createElement('li');
+            oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+            oLi.className = 'hotelConNo';
+            oUl.appendChild(oLi);
+            console.log(document.getElementsByClassName("hotelConNo"));
+            document.getElementsByClassName("hotelConNo")[0].style.display = "block";
+            oUl.style.width = '100%';
+            oUl.style.height = '90%';
+
+          }
+            if (urlArgs.pageIndex >=1) {
                 document.getElementById("loadMore").innerHTML = "没有更多数据了";
-            } else {
-                document.getElementById("loadMore").style.display = "none";
-                var oLi = document.createElement('li');
-                oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
-                oLi.className = 'hotelConNo';
-                oUl.style.width = '100%';
-                oUl.style.height = '100%';
-                oUl.appendChild(oLi);
             }
         }
         //位置交互部分
