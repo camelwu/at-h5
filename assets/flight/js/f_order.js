@@ -353,29 +353,10 @@ var fOrder = {
     console.log(data);
     var isInternational = fOrder.isInternationalTrip()
     if (isInternational) {
-      /*for (var key in selectedPassagerArray) {
-        for (var i = 0; i <= selectedPassagerArray[key].listTravellerIdInfo.length - 1; i++) {
-          selectedPassagerArray[key].listTravellerIdInfo[i].idName = vlm.arr_t[selectedPassagerArray[key].listTravellerIdInfo[i].idType];
-        }
-        var cloneObj = children.clone(true);
-        cloneObj.show();
-        elementList = $(cloneObj).find("[data-elementname]");
-        htmlObj.append(cloneObj);
-        for (var i = 0; i <= elementList.length - 1; i++) {
-          var obj = elementList[i],
-            attribute = elementList[i].attributes["data-elementname"].value,
-            val = passagerArray[key].traveller[attribute];
-          if (val == undefined || val == "") {
-            val = passagerArray[key].listTravellerIdInfo[0][attribute];
-          }
-          if (obj.tagName == "INPUT") {
-            $(elementList[i]).val(val);
-          }
-          else {
-            $(elementList[i]).html(val);
-          }
-        }
-      }*/
+      $('.id_name').hide()
+    } else {
+      $('.first_name').hide()
+      $('.last_name').hide()
     }
   },
 
@@ -386,7 +367,7 @@ var fOrder = {
     var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
     var temp={};
     for(var key in list){
-      if(key !=id){
+      if(key != id){
         temp[key]=list[key];
       }
     }
