@@ -530,6 +530,9 @@
                 case 'cardExpirationDate':
                     p.cols = setCardDateCols(['年', '月']);
                     break;
+                case 'validate':
+                    p.cols = setValidateCols(['年', '月', '日']);
+                    break;
                 default:
                     p.cols = setDateCols(['年', '月', '日']);
                     break;
@@ -615,7 +618,7 @@
 
             return cols;
         }
-        //设置卡的有效期年月  年为至今到未来20年
+        //设置卡的有效期年月  年为至今到未来30年
         function setCardDateCols(formatArray) {
             var cols = [];
             var col;
@@ -704,7 +707,56 @@
             }
             return cols;
         }
-
+        //设置证件有效期  年为至今到未来30年
+        function setValidateCols(formatArray) {
+            var cols = [];
+            var col;
+            var items;
+            var dataItems;
+            var yearNow = new Date().getFullYear();
+            var endYear = yearNow + 30;
+            for (var i = 0, len = formatArray.length; i < len; i++) {
+                switch (formatArray[i]) {
+                    case '年':
+                        items = [];
+                        dataItems = [];
+                        for (; yearNow <= endYear; yearNow++) {
+                            items.push(yearNow + "年");
+                            dataItems.push(yearNow);
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        cols.push(col);
+                        break;
+                    case '月':
+                        items = [];
+                        dataItems = [];
+                        for (var j = 1; j <= 12; j++) {
+                            items.push(j + "月");
+                            dataItems.push(j);
+                        }
+                        col = {};
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        cols.push(col);
+                        break;
+                    case '日':
+                        col = {};
+                        items = [];
+                        dataItems = [];
+                        for (var j = 1; j <= 31; j++) {
+                            items.push(j + "日");
+                            dataItems.push(j);
+                        }
+                        col.values = items;
+                        col.dataValues = dataItems;
+                        cols.push(col);
+                        break;
+                }
+            }
+            return cols;
+        }
         p.opened = false;
         p.open = function () {
             var pickerClass = 'picker_modal picker_columns';
@@ -770,12 +822,91 @@
         //确认选择数据
         p.done = function () {
             var selectedValue = [];
+            var selectedPickerValue = [];
+            var responseValue;
             var selectedElems = p.container.find(".picker_selected");
             selectedElems.each(function (index, ele) {
                 selectedValue.push($(ele).attr("data-value"));
+                selectedPickerValue.push($(ele).attr("data-picker-value"));
             });
             p.setValue(selectedValue);
-            p.input.attr("data-selected", selectedValue.join(","));
+            p.input.attr("data-selected", selectedPickerValue.join(","));
+            var type = p.params.type;
+            switch (type) {
+                case 'cardExpirationDate':
+                    var year = selectedValue[0];
+                    var month = selectedValue[1] < 10 ? '0' + selectedValue[1] : selectedValue[1];
+                    p.input.attr('data-expire', year + "-" + month + "-01");
+
+                    selectedValue[0] = month;
+                    selectedValue[1] = parseInt(year.substring(2));
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = selectedValue.join("/");
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = selectedValue.join("/");
+                    }
+                    break;
+                case 'card':
+                    p.input.attr('data-cache', selectedPickerValue[0]);
+                    p.input.attr('data-code', selectedValue[0]);
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = selectedPickerValue[0];
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = selectedPickerValue[0];
+                    }
+                    break;
+                case 'cardInte':
+                    p.input.attr('data-cache', selectedPickerValue[0]);
+                    p.input.attr('data-code', selectedValue[0]);
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = selectedPickerValue[0];
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = selectedPickerValue[0];
+                    }
+                    break;
+                case 'cardDom':
+                    p.input.attr('data-cache', selectedPickerValue[0]);
+                    p.input.attr('data-code', selectedValue[0]);
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = selectedPickerValue[0];
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = selectedPickerValue[0];
+                    }
+                    break;
+                case 'date':
+                    var year = selectedValue[0];
+                    var month = selectedValue[1] < 10 ? "0" + selectedValue[1] : selectedValue[1];
+                    var day = selectedValue[2] < 10 ? "0" + selectedValue[2] : selectedValue[2];
+                    var birthDay = year + "-" + month + "-" + day;
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = birthDay;
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = birthDay;
+                    }
+                    break;
+                case 'validate':
+                    var year = selectedValue[0];
+                    var month = selectedValue[1] < 10 ? "0" + selectedValue[1] : selectedValue[1];
+                    var day = selectedValue[2] < 10 ? "0" + selectedValue[2] : selectedValue[2];
+                    var birthDay = year + "-" + month + "-" + day;
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = birthDay;
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = birthDay;
+                    }
+                    break;
+                case 'dateTime':
+                    var date = selectedValue[0];
+                    var hour = selectedValue[1];
+                    var m = selectedValue[2];
+                    var dateTime = date + "-" + hour + "-" + m + '-00';
+                    if (p.input[0].nodeName == 'DIV') {
+                        p.input[0].innerHTML = dateTime;
+                    } else if (p.input[0].nodeName == 'INPUT') {
+                        p.input[0].value = dateTime;
+                    }
+                    break;
+            }
             if (p.params.callback && typeof p.params.callback === 'function') {
                 p.params.callback(selectedValue);
             }

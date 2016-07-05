@@ -98,6 +98,7 @@ function styleChange(id, mytext) {
         }
     };
 }
+
 function styleChange2(parentid, sClass, mytext) {
     var oBox = document.getElementById(parentid);
     //alert(oBox);
@@ -270,10 +271,10 @@ uoHisData();
     uo_c1_info.innerHTML = fake_data.cancellationDesc;
     //酒店名称/时间/房型
     var uo_con2_chil1 = document.getElementById('uo_con2_chil1');
-  var rege =fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g,'');
-    uo_con2_chil1.innerHTML = '<h3>' + rege +" ( "+fake_data.HotelGenInfo.hotelName +" )"+ '</h3>' +
+    var rege = fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g, '');
+    uo_con2_chil1.innerHTML = '<h3>' + rege + " ( " + fake_data.HotelGenInfo.hotelName + " )" + '</h3>' +
         //'<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
-      '<p class="uo_c2_infor hotel_user_container_time">' + vlm.Utils.format_date(fake_data.dateInfo.CheckInDate, "md") + '-' + vlm.Utils.format_date(fake_data.dateInfo.CheckOutDate, "md") +'  共'+fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
+        '<p class="uo_c2_infor hotel_user_container_time">' + vlm.Utils.format_date(fake_data.dateInfo.CheckInDate, "md") + '-' + vlm.Utils.format_date(fake_data.dateInfo.CheckOutDate, "md") + '  共' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
         '<p class="uo_house hotel_user_container_type">房型：' + fake_data.RoomTypeName + '</p>';
 
     //房间数列表
@@ -556,13 +557,13 @@ uoHisData();
         if (hoPos == 'inter') {
             for (var i = 0; i < aUo_firstname.length; i++) {
                 if (!vlm.Utils.validate.engName(aUo_firstname[i].value)) {
-                jAlert('请输入英文姓或名');
-                return;
-              }
+                    jAlert('请输入英文姓或名');
+                    return;
+                }
                 if (!vlm.Utils.validate.engName(aUo_lastname[i].value)) {
-                jAlert('请输入英文姓或名');
-                return;
-              }
+                    jAlert('请输入英文姓或名');
+                    return;
+                }
                 fake_data.guestName.push({
                     "GuestFirstName": aUo_firstname[i].value,
                     "GuestLastName": aUo_lastname[i].value
@@ -571,13 +572,13 @@ uoHisData();
         } else if (hoPos == 'dom') {
             for (var i = 0; i < aUo_firstname.length; i++) {
                 if (!vlm.Utils.validate.engName(aUo_firstname[i].value)) {
-                jAlert('请输入姓或名');
-                return;
-              }
+                    jAlert('请输入姓或名');
+                    return;
+                }
                 if (!vlm.Utils.validate.engName(aUo_lastname[i].value)) {
-                jAlert('请输入姓或名');
-                return;
-              }
+                    jAlert('请输入姓或名');
+                    return;
+                }
                 fake_data.guestName.push({
                     "GuestFirstName": aUo_firstname[i].value,
                     "GuestLastName": aUo_lastname[i].value
@@ -635,6 +636,11 @@ uoHisData();
     //    uo_c1_info.className='';
     //    this.style.display='none';
     //});
+
+    //form 表单input获得焦点的时候在部分机型上  输入面板遮挡问题
+    $("#uo_con3").on("touchstart", 'input', function (event) {
+        console.info(event);
+    });
     //解决300毫秒延迟问题
     (function ($) {
         $(document).ready(function () {
@@ -658,5 +664,8 @@ uoHisData();
     // }
 })();
 
-  //国籍和发证国家和手机区号
-  var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});
+//国籍和发证国家和手机区号
+var oCountryCellAdd = new CountryList({
+    id: '#oCountryCellAdd',
+    telCode: true
+});
