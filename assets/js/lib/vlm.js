@@ -171,7 +171,6 @@
                 }
             }
             //底部菜单
-
             if (menus.hasOwnProperty(_k)) {
                 _initMenu();
             }
