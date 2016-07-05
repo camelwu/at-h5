@@ -819,12 +819,12 @@
       }
     }
     // 如果是国际航班，展示中文名
-    if (isShowChinaName) {
-      idName.show();
-      enName.hide();
-    } else {
+    if (isInternationalTrip) {
       idName.hide();
       enName.show();
+    } else {
+      idName.show();
+      enName.hide();
     }
     if (!isShowContact) {
       ul_contect.hide();
