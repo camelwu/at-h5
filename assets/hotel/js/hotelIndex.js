@@ -94,7 +94,7 @@
                 num: 13,
                 time: obj,
                 type: "hotel",
-                headerSign: 'tip', //tipClean  tip
+                headerSign: 'hotelTip', //tipClean  tip  hotelTip
                 noComfirmBtn: true,
                 callback: function (result) {
                     var checkInDateEle = $("#CheckInDate");
@@ -469,7 +469,7 @@
                 switch (error.code) {
                     case error.TIMEOUT: //地理位置获取超时
                         if (!Adapter.CurrentNetLocation()) {
-                          jAlert(tips.GEO_TIMEOUT, "提示");
+                            jAlert(tips.GEO_TIMEOUT, "提示");
                         }
                         break;
                     case error.POSITION_UNAVAILABLE: //地理位置获取失败（可能是用户没网或卫星搜不到等原因）

@@ -446,7 +446,7 @@
             vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md")
             secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
-            //footer += '<div class="footer"><span>Copyright @ 2016 北京褀迹国际旅行社有限公司 | 京ICP备 16028783号-1 北京朝阳区五里桥一街非中心32号楼3层 4008-909-202/010-58535627</span></div>';
+            //footer += '<div class="footer"><span></span></div>';
 
             contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl + '</div>';
             //firstUl + secondUl +footer+'</div>'

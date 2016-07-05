@@ -101,6 +101,8 @@
         _header: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><h3>选择日期</h3>',
         //带提示的header
         _tipHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div>',
+        //hotel header
+        _tipHotelHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期以酒店当地时间为准)</span></div>',
         //带清除按钮和提示的header
         _tipCleanHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div><a href="javascript:void(0);" class="header_clean">清除</a>',
         //确认按钮
@@ -171,6 +173,9 @@
                 header.id = this.id + "Header";
                 header.className = this.prefix + '_header';
                 switch (this.headerSign) {
+                    case 'hotelTip':
+                        header.innerHTML = this._tipHotelHeader;
+                        break;
                     case 'tip':
                         header.innerHTML = this._tipHeader;
                         break;
