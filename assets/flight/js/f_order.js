@@ -353,10 +353,9 @@ var fOrder = {
     console.log(data);
     var isInternational = fOrder.isInternationalTrip()
     if (isInternational) {
-      $('.id_name').hide()
+      $('.cn_name').hide()
     } else {
-      $('.first_name').hide()
-      $('.last_name').hide()
+      $('.en_name').hide()
     }
   },
 

@@ -569,13 +569,6 @@
 
         }
 
-        if (age >= 2 && age < 12) {
-          selectChildNum = selectChildNum + step;
-        }
-        else if (age >= 12) {
-          selectAdultNum = selectAdultNum + step;
-        }
-
         // item对应的id
         editIDKey = $(this).attr('data-id');
 
@@ -593,6 +586,13 @@
             jAlert('请补全信息')
             return;
           }
+        }
+
+        if (age >= 2 && age < 12) {
+          selectChildNum = selectChildNum + step;
+        }
+        else if (age >= 12) {
+          selectAdultNum = selectAdultNum + step;
         }
 
         $(this).toggleClass("choiced");
