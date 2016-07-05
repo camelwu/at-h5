@@ -431,7 +431,7 @@
                 if (bookingRefNo == null) {
                     data.data.totalPrice = data.data.calcuTotalPrice;
                     data.data.totalPriceCNY = data.data.calcuTotalPriceCNY * data.data.NumOfRoom;
-                    data.data.hotelName = data.data.HotelGenInfo.hotelNameLocale;
+                    data.data.hotelName = data.data.HotelGenInfo.hotelNameLocale + "(" + data.data.HotelGenInfo.hotelName + ")";
                     data.data.roomType = data.data.RoomTypeName;
                     data.data.noOfRooms = data.data.NumOfRoom;
                     data.data.checkInDate = data.data.dateInfo.CheckInDate;

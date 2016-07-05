@@ -274,7 +274,7 @@ uoHisData();
     var rege = fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g, '');
     uo_con2_chil1.innerHTML = '<h3>' + rege + " ( " + fake_data.HotelGenInfo.hotelName + " )" + '</h3>' +
         //'<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
-        '<p class="uo_c2_infor hotel_user_container_time">' + vlm.Utils.format_date(fake_data.dateInfo.CheckInDate, "md") + '-' + vlm.Utils.format_date(fake_data.dateInfo.CheckOutDate, "md") + '  共' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
+        '<p class="uo_c2_infor hotel_user_container_time">' + vlm.Utils.format_date(fake_data.dateInfo.CheckInDate, "md") + '-' + vlm.Utils.format_date(fake_data.dateInfo.CheckOutDate, "md") + '  共' + fake_data.dateInfo.totalNight + '晚（当地时间为准）</p>' +
         '<p class="uo_house hotel_user_container_type">房型：' + fake_data.RoomTypeName + '</p>';
 
     //房间数列表
@@ -289,7 +289,7 @@ uoHisData();
     for (var i = 0; i < parseInt(uo_c2_num.innerHTML); i++) {
         if (hoPos == 'inter') {
             uo_c3_peoBox.innerHTML += '<div class="uo_c3_peo hotel_user_detail_border">' +
-                '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
+                '<div class="uo_c3_div1 hotel_user_detail_name1">入住人' + (i + 1) + '</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
                 '<input type="text" value="" placeholder="姓（如：Li）" class="uo_lastname"  />' +
                 '<span class = "line"></span>' +
@@ -298,7 +298,7 @@ uoHisData();
                 '</div>';
         } else if (hoPos == 'dom') {
             uo_c3_peoBox.innerHTML += '<div class="uo_c3_peo">' +
-                '<div class="uo_c3_div1 hotel_user_detail_name1">房间' + (i + 1) + '入住人</div>' +
+                '<div class="uo_c3_div1 hotel_user_detail_name1">入住人' + (i + 1) + '</div>' +
                 '<div class="uo_c3_infor hotel_user_detail_name2">' +
                 '<input type="text"  placeholder="姓（如：Li）" class="uo_lastname"  />' +
                 '<span class = "line"></span>' +
