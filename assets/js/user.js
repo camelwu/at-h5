@@ -464,6 +464,7 @@
             var dateCachedue = travJson.data[index].listTravellerIdInfo[0].idActivatedDate.substring(0, 10);
 
             $('#time-cont-edit')[0].setAttribute('data-cache', dueCache(dateCachedue));
+            $('#time-cont-edit')[0].setAttribute('data-selected', dueCache(dateCachedue).split("-"));
             if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
                 oldcard = cardType.innerHTML = "护照";
             } else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {
@@ -489,6 +490,7 @@
         var dateCacheEdit = travJson.data[index].traveller.dateOfBirth.substring(0, 10);
 
         $('#birth-cont-edit')[0].setAttribute('data-cache', dueCache(dateCacheEdit));
+        $('#birth-cont-edit')[0].setAttribute('data-selected', dueCache(dateCacheEdit).split("-"));
         old4 = input[4].value = travJson.data[index].traveller.mobilePhone;
         old5 = input[5].value = travJson.data[index].traveller.email;
         oldsex = travJson.data[index].traveller.sexCode;
@@ -589,7 +591,7 @@
     //编辑常旅
     var myDate4 = new ATplugins.Picker({
         input: "#birth-cont-edit",
-        type: "birth",
+        type: "date",
         value: ['1987年', '6月', '15日'], // 初始化选中数据s
         cont: "eee1"
     });
