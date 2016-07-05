@@ -118,7 +118,7 @@
         var defaults = {
             updateValuesOnMomentum: false,
             updateValuesOnTouchmove: true,
-            scrollToInput: true,
+            scrollToInput: false,
             momentumRatio: 7,
             rotateEffect: false,
             inputReadOnly: true,
