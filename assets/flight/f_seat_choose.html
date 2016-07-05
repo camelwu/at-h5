@@ -174,7 +174,7 @@
            <div class="left_small_word">
              <% if(fSeatChoose.postObjInfo.internationalOrDomestic == "domestic"){%>
                  <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
-                 <p><span class="explain">退改签说明</span> <span class="taxFair">价格</span> </p>
+                 <p><span class="explain">退改签说明</span> <!--<span class="taxFair">价格</span>--> </p>
              <% }else{%>
              <% if(fSeatChoose.postObjInfo.hasTax == "0"){ %>
              <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
