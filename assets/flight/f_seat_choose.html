@@ -87,8 +87,8 @@
             <span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span>
             <%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
             <%if(flightInfo["isLeaveShareFlight"]){%>
-            <span class="share_word">共享</span>
-            <%}%>
+            <span class="share_word">实际乘坐<%= flightInfo.segmentsLeave[0].operatingCarrierName%></span>
+            <% }%>
           </p>
         </li>
         <%if(item
