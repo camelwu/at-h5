@@ -677,7 +677,8 @@
           selectChildNum = 0;
           var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
           if (selectPassagerList != null) {
-            for (var key in selectPassagerList) {
+            // 遍历选中对象，选中并计算成人数和儿童数
+            Object.keys(selectPassagerList).forEach(function (key) {
               if (selectPassagerList[key].PagerType == from) {
                 // $(".list-traveler .user_choice[data-id=" + key + "]").click();
                 $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
@@ -689,7 +690,7 @@
                   selectChildNum++
                 }
               }
-            }
+            });
           }
           if (travId != "null") {
             currentOperationType = "edit";
@@ -706,10 +707,8 @@
         }
       });
 
-    }
-
-    //如果免登陆，查询LocalStorge数据
-    else {
+    } else {
+      //如果免登陆，查询LocalStorge数据
 
       // isInternational传true或false，为了防止template报错。后面改为ejs解析
       var json = {
@@ -729,25 +728,20 @@
       _bindSelectChoice();
       var step = 0;
       if (currentOperationType == "new" && selectPassagerList != null) {
-        for (var key in selectPassagerList) {
+        // 遍历选中对象，选中并计算成人数和儿童数
+        Object.keys(selectPassagerList).forEach(function (key) {
           if (selectPassagerList[key].PagerType == from) {
-            // $(".list-traveler .user_choice[data-id=" + key + "]").click();
-            if (isInternationalTrip) {
-              if (!selectPassagerList[key].traveller.lastName) {
-                return;
-              }
-            } else {
-              if (!selectPassagerList[key].traveller.idName) {
-                return;
-              }
-            }
             $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
-            step++;
-          }
 
-        }
+            // 成人和儿童数添加
+            if (selectPassagerList[key].traveller.PassengerType === 'ADULT') {
+              selectAdultNum++
+            } else if (selectPassagerList[key].traveller.PassengerType === 'CHILD') {
+              selectChildNum++
+            }
+          }
+        });
       }
-      selectAdultNum += step;
       _setTitleTip();
 
     }
