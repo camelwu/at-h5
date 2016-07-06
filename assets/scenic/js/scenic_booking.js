@@ -397,6 +397,7 @@
         });
       },
       bindDate:function(){
+        var myTime;
         $(".js_booking_package_date").click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
@@ -408,7 +409,7 @@
             var obj = {};
             obj[defaultdate] = "fristDate";
 
-            var myTime = new ATplugins.Calender({
+            myTime = myTime || new ATplugins.Calender({
               id: tid,
               selectTime: 1,
               time: obj,
