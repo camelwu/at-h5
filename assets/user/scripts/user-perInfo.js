@@ -366,39 +366,26 @@
 
   }
   u_perInfo();
-    //修改出生日期
-    $('#birth-cont-per').click(function(){
-        setTimeout(function(){
-            var oPerBack=$('.cabin-sure');
-            function selDate(obj){
-                obj.on('click', show)
-            }
-            function show(){
-                var box = $('.sel-time .date-selected'), i = 0, len = box.length, opeater = document.getElementById("opeater"), arr = [];
-                var ele = document.getElementById('' + opeater.getAttribute("data-id"));
-                for (; i < len; i++) {
-                    arr.push(box[i].innerHTML);
-                }
-                var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
-                //console.log(birthstr);
-                if( ! vlm.Utils.compareBirth(birthstr))
-                {
-                    jAlert('您选择的出生日期大于当前日期');
-                    return;
-                }
-                var Parameters={
-                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
-                    "ForeEndType": 3,
-                    "Code": "0056"
-                };
-                console.log(Parameters);
-                vlm.loadJson("", JSON.stringify(Parameters),mycallback_birth);
-            }
-            selDate(oPerBack);
-        },1000)
 
-    })
-
+  function birthVerify(){
+    var box = $('.picker_items_col_wrapper .picker_selected'), i = 0, len = box.length, opeater = document.getElementById("opeater"), arr = [];
+    for (; i < len; i++) {
+      arr.push(box[i].innerHTML);
+    }
+    var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
+    if( ! vlm.Utils.compareBirth(birthstr))
+    {
+      jAlert('您选择的出生日期大于当前日期');
+      return;
+    }
+    var Parameters={
+      "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
+      "ForeEndType": 3,
+      "Code": "0056"
+    };
+    console.log(Parameters);
+    vlm.loadJson("", JSON.stringify(Parameters),mycallback_birth);
+  }
     //修改出生日期回调
     function mycallback_birth(ret){
         var myJson=ret;
@@ -434,20 +421,20 @@
             //console.log(datearr);
             if(datearr[1].charAt(0) == 0 && datearr[2].charAt(0) == 0){
 
-                datecache=datearr[0]+'年-'+datearr[1].charAt(1)+'月-'+datearr[2].charAt(1)+'日';
+                datecache=datearr[0]+'年,'+datearr[1].charAt(1)+'月,'+datearr[2].charAt(1)+'日';
             }else if(datearr[1].charAt(0) == 0 && datearr[2].charAt(0) != 0){
 
-                datecache=datearr[0]+'年-'+datearr[1].charAt(1)+'月-'+datearr[2]+'日';
+                datecache=datearr[0]+'年,'+datearr[1].charAt(1)+'月,'+datearr[2]+'日';
             }else if(datearr[1].charAt(0) != 0 && datearr[2].charAt(0) == 0){
 
-                datecache=datearr[0]+'年-'+datearr[1]+'月-'+datearr[2].charAt(1)+'日';
+                datecache=datearr[0]+'年,'+datearr[1]+'月,'+datearr[2].charAt(1)+'日';
             }else{
-                datecache=datearr[0]+'年-'+datearr[1]+'月-'+datearr[2]+'日';
+                datecache=datearr[0]+'年,'+datearr[1]+'月,'+datearr[2]+'日';
             }
             name.value=nickname.innerHTML = infoJson.data[0].nickName;
             $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
             birthCont.innerHTML=infoJson.data[0].dateOfBirth.substring(0,10);
-            birthCont.setAttribute('data-cache',datecache);
+            birthCont.setAttribute('data-selected',datecache);
             $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
             $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
             if(infoJson.data[0].salutation == 26){
@@ -601,7 +588,14 @@
   clearValue('#realName');
 
   //个人信息修改页生日
-  new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
+  var myDate = new ATplugins.Picker({
+    input: "#birth-cont-per",
+    type: "date",
+    value: ['1990年', '1月', '1日'],
+    cont: "ppp",
+    callback: birthVerify
+  });
+
 //解决safari放回页面错误问题
 //  $("#header").on("click",function(){
 //    window.location.href = 'user.html';
