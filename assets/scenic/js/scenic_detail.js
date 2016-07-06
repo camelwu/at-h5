@@ -1,6 +1,9 @@
 /**
  * Created by Venson on 16/5/24.
  */
+window.addEventListener('load', function () {
+  FastClick.attach(document.body);
+}, false);
 (function(){
   var webkit = this || (0, eval)('this');
   var val = vlm.parseUrlPara(window.location.href);
