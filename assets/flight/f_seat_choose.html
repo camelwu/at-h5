@@ -83,11 +83,11 @@
           </div>
           <p class="flightDetailInfo">
             <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span>
-            <span><%=  leaveItem["operatingCarrierName"] %></span>
-            <span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span>
+            <span><%=  leaveItem["airCorpName"] %></span>
+            <span><%=  leaveItem["airCorpCode"] %><%=  leaveItem["flightNo"] %></span>
             <%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
             <%if(flightInfo["isLeaveShareFlight"]){%>
-            <span class="share_word">实际乘坐<%= flightInfo.segmentsLeave[0].operatingCarrierName%></span>
+            <span class="share_word">实际乘坐<%= leaveItem.operatingCarrierName%></span>
             <% }%>
           </p>
         </li>
@@ -146,9 +146,10 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span>
+            <span><%=  returnItem["airCorpName"] %></span><span><%=  returnItem["airCorpCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
             <%if(flightInfo["isLeaveShareFlight"]){%>
-            <span class="share_word">实际乘坐<%= flightInfo.segmentsLeave[0].operatingCarrierName%></span>
+              <span class="share_word">实际乘坐<%= returnItem.operatingCarrierName%></span>
             <%}%>
           </p>
         </li>
