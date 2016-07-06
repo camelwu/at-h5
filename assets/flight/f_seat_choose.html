@@ -148,7 +148,7 @@
           <p class="flightDetailInfo">
             <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
             <%if(flightInfo["isLeaveShareFlight"]){%>
-            <span class="share_word">共享</span>
+            <span class="share_word">实际乘坐<%= flightInfo.segmentsLeave[0].operatingCarrierName%></span>
             <%}%>
           </p>
         </li>
