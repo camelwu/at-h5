@@ -10,8 +10,8 @@
     elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""), //id
     from = vlm.getpara("from"),
     ifrCilent = window.parent.document.getElementById("choiceAir"),
-    numofAdult = vlm.getpara("numofAdult"), //id
-    numofChlid = vlm.getpara("numofChlid"), //id;
+    numOfAdult = vlm.getpara("numOfAdult"), //id
+    numOfChlid = vlm.getpara("numOfChlid"), //id;
     selectAdultNum = 0,
     selectChildNum = 0,
     departDate = vlm.getpara("departDate"), //departDate;
@@ -562,20 +562,20 @@
           step = 1; //取消减一个
         }
         if (age >= 12) {
-          if (selectAdultNum + step > numofAdult || selectChildNum > numofChlid) {
+          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChlid) {
 
-            jAlert("只能选择" + numofAdult + "成人," + numofChlid + "儿童");
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
             return;
-          } else if (selectAdultNum + step > numofAdult) {
-            jAlert("只能选择" + numofAdult + "成人");
+          } else if (selectAdultNum + step > numOfAdult) {
+            jAlert("只能选择" + numOfAdult + "成人");
             return;
           }
         } else {
-          if (selectAdultNum > numofAdult || selectChildNum + step > numofChlid) {
-            jAlert("只能选择" + numofAdult + "成人," + numofChlid + "儿童");
+          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChlid) {
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
             return;
-          } else if (selectChildNum + step > numofChlid) {
-            jAlert("只能选择" + numofAdult + "儿童");
+          } else if (selectChildNum + step > numOfChlid) {
+            jAlert("只能选择" + numOfAdult + "儿童");
             return;
           }
 
@@ -628,7 +628,7 @@
 
   //设置标题头信息
   var _setTitleTip = function () {
-    if (numofAdult == null || numofAdult == "null") {
+    if (numOfAdult == null || numOfAdult == "null") {
       titleTip.html("选择" + titleType);
     } else {
       _setSelectPessageTip();
@@ -641,10 +641,10 @@
   };
 
   var _setSelectPessageTip = function () {
-    if (numofChlid > 0) {
-      titleTip.html("已选：成人" + selectAdultNum + "/" + numofAdult + "  儿童" + selectChildNum + "/" + numofChlid + "")
+    if (numOfChlid > 0) {
+      titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult + "  儿童" + selectChildNum + "/" + numOfChlid + "")
     } else {
-      titleTip.html("已选：成人" + selectAdultNum + "/" + numofAdult)
+      titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult)
     }
   };
 
@@ -672,14 +672,23 @@
           document.getElementById("allList").innerHTML = html;
           _bindSelectChoice();
 
+          // 成人和儿童数清零
+          selectAdultNum = 0;
+          selectChildNum = 0;
           var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
           if (selectPassagerList != null) {
             for (var key in selectPassagerList) {
               if (selectPassagerList[key].PagerType == from) {
                 // $(".list-traveler .user_choice[data-id=" + key + "]").click();
                 $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
-              }
 
+                // 成人和儿童数添加
+                if (selectPassagerList[key].traveller.PassengerType === 'ADULT') {
+                  selectAdultNum++
+                } else if (selectPassagerList[key].traveller.PassengerType === 'CHILD') {
+                  selectChildNum++
+                }
+              }
             }
           }
           if (travId != "null") {
