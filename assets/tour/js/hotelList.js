@@ -1,15 +1,5 @@
 var oldInfo= JSON.parse(localStorage.getItem('info'));
-console.log(oldInfo);
-//var newPara = {
-//	"StarRating": "",
-//	"Location": "",
-//	"SortType": 1,
-//	"PackageID": oldInfo.packageID,
-//	"CheckinDate": oldInfo.CheckInDate,
-//	"CheckoutDate": oldInfo.CheckOutDate,
-//	"RoomDetails":oldInfo.roomDetails,
-//	"Tours":oldInfo.tours
-//};
+
 var hotelList = {
 
 	CultureName : "zh-CN",
@@ -122,7 +112,7 @@ var hotelList = {
 				};
 				//footer  begin
 				var menu_data = {
-					hotelSort : {
+          sortTypes : {
 						title : "推荐排序",
 						c : "foot_sort",
 						s:1,
@@ -130,7 +120,7 @@ var hotelList = {
 						key : 'sortTypes',
 						listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
 					},
-					hotelScreen : {
+          filters : {
 						title : "筛选",
 						c : "foot_screen",
 						s:2,
@@ -142,7 +132,7 @@ var hotelList = {
 							item: starChoose(resultData)
 						}]
 					},
-					hotelPosition : {
+          locationList : {
 						title : "位置",
 						c : "foot_position",
 						s:2,//select
@@ -175,33 +165,6 @@ var hotelList = {
 					footer.callback = menu_call;
 				}
 				footer.filters.init();
-				//footer  end
-
-
-				////  恢复上次选中的酒店星级
-				//if(newPara.StarRating != ''){
-				//	var li = document.getElementById('h-level').getElementsByTagName('li');
-				//	var star = newPara.StarRating.split('$');
-				//	for(var i = 0;i < li.length;i++){
-				//		for(var j = 0;j < star.length-1;j++){
-				//			if(li[i].innerHTML == star[j]){
-				//				li[0].className = 's_li';
-				//				li[i].className = 's_li1';
-				//			}
-				//		}
-				//	}
-				//}
-				//// 恢复上次选中的酒店位置
-				//var oldLocation = newPara.Location.replace('$', '');
-				//oldLocation = oldLocation ? oldLocation : '不限';
-				//$('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
-				//$('#l-ul .l-li').each(function (index, item) {
-				//	var $item = $(item);
-				//	if($item.text().trim() === oldLocation){
-				//		$item.find('b').addClass('l_icon1').removeClass('l_icon');
-				//		return;
-				//	}
-				//});
 
 				that.delayLoadImage().addEvent()
 			}
@@ -250,12 +213,6 @@ var hotelList = {
 		var hotelUl = document.querySelector('#lsf_list'), that = this;
 		//, nextButton = document.querySelector('.hs-next');
 		var allPic = hotelUl.querySelectorAll('.h-choose');
-
-		//$('#lsf_list>li').on('click',function(){
-		//	$(this).addClass('cur').siblings().removeClass('cur');
-		//	var hotelId = $(this).attr('data-id');
-		//	document.location.href = 'room-upgrade.html?' + 'hotelID=' + hotelId + '&travelersInput=' + that.bookingFormInfo.travelersInput + '&airportTransferType=' + that.bookingFormInfo.airportTransferType;
-		//})
 
 		return this;
 	},
@@ -344,21 +301,6 @@ function url2json(url) {
 	}
 	return json;
 }
-//解决位置搜索部分确定按钮太靠下的问题
-//(function(){
-////		var inst = document.getElementById("fo_lo");
-////		var submit = document.getElementById("l_but");
-//	$("#fo_lo").on("click",function(){
-//		$("#l_but").addClass("s-but-checked");
-//		$("#s_but1").addClass("s-but-checked");
-//		//console.log("111");
-//	});
-//	$("#l_but").on("click",function(){
-//		$("#l_but").removeClass("s-but-checked");
-//		$("#s_but1").removeClass("s-but-checked");
-//	});
-//
-//})();
 (function() {
 	function h_l_s() {
 		var rli = [], sli1 = [], sli2 = [], lb = [],lli = [];
@@ -414,9 +356,6 @@ function url2json(url) {
 				$("#s_but1").removeClass("s-but-checked");
 			}
 		}
-
-
-
 	}
 	h_l_s();
 	//页面没有展示前页面展示的页面
