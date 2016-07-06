@@ -650,6 +650,10 @@
 
   //获取常旅列表数据源
   var _getPassagerList = function () {
+    // 注意这里操作的全局下的selectAdultNum
+    // 成人和儿童数清零
+    selectAdultNum = 0, selectChildNum = 0;
+
     //如果正常登陆，查询数据库常旅接口
     if (memberId != null) {
       var Parameters = {
@@ -671,24 +675,17 @@
           var html = template(tpl_traveler, json);
           document.getElementById("allList").innerHTML = html;
           _bindSelectChoice();
-
-          // 成人和儿童数清零
-          selectAdultNum = 0;
-          selectChildNum = 0;
           var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
           if (selectPassagerList != null) {
             // 遍历选中对象，选中并计算成人数和儿童数
             Object.keys(selectPassagerList).forEach(function (key) {
               if (selectPassagerList[key].PagerType == from) {
-                // $(".list-traveler .user_choice[data-id=" + key + "]").click();
-                $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
+                // 切换元素选中状态
+                var li = $(".list-traveler .user_choice[data-id=" + key + "]");
+                selectUser(li);
 
                 // 成人和儿童数添加
-                if (selectPassagerList[key].traveller.PassengerType === 'ADULT') {
-                  selectAdultNum++
-                } else if (selectPassagerList[key].traveller.PassengerType === 'CHILD') {
-                  selectChildNum++
-                }
+                calculatePersonNum(selectPassagerList[key].traveller.PassengerType);
               }
             });
           }
@@ -725,20 +722,18 @@
       })
       var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
 
+      // 重新绑定选中事件
       _bindSelectChoice();
-      var step = 0;
       if (currentOperationType == "new" && selectPassagerList != null) {
         // 遍历选中对象，选中并计算成人数和儿童数
         Object.keys(selectPassagerList).forEach(function (key) {
           if (selectPassagerList[key].PagerType == from) {
-            $(".list-traveler .user_choice[data-id=" + key + "]").toggleClass("choiced");
+            // 切换元素选中状态
+            var li = $(".list-traveler .user_choice[data-id=" + key + "]");
+            selectUser(li);
 
             // 成人和儿童数添加
-            if (selectPassagerList[key].traveller.PassengerType === 'ADULT') {
-              selectAdultNum++
-            } else if (selectPassagerList[key].traveller.PassengerType === 'CHILD') {
-              selectChildNum++
-            }
+            calculatePersonNum(selectPassagerList[key].traveller.PassengerType);
           }
         });
       }
@@ -746,6 +741,20 @@
 
     }
 
+
+    // 切换元素选中状态
+    function selectUser(li) {
+      li.toggleClass("choiced");
+    }
+    // 成人和儿童数添加
+    // 注意这里操作的全局下的selectAdultNum
+    function calculatePersonNum(PassengerType) {
+      if (PassengerType === 'ADULT') {
+        selectAdultNum++
+      } else if (PassengerType === 'CHILD') {
+        selectChildNum++
+      }
+    }
   };
 
   var truncateCardInfo = function () {
