@@ -1,255 +1,263 @@
 body {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 i,
 em {
-    font-style: normal;
+  font-style: normal;
 }
-input::-webkit-input-placeholder { /* WebKit browsers */
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
   font-size: 0.24rem;
 }
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
   font-size: 0.24rem;
 }
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
   font-size: 0.24rem;
 }
-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
   font-size: 0.24rem;
 }
 
 /*登录注册开始*/
 
 .login_page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 99;
-    font-size: .28rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  font-size: .28rem;
 }
 
 .login_header {
-    height: .86rem;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    pointer-events: all;
-    z-index: 99;
+  height: .86rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
 }
 
 .login_header h3 {
-    color: #333;
-    text-align: center;
-    line-height: .9rem;
-    font-size: .36rem;
+  color: #333;
+  text-align: center;
+  line-height: .9rem;
+  font-size: .36rem;
 }
 
 .header_fd {
-    height: .84rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    pointer-events: all;
-    z-index: 99;
-    background-color: #fff;
-    box-shadow: 0 1px 1px #e6e6e6;
-    color: #333;
-    position: relative;
+  height: .84rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+  background-color: #fff;
+  box-shadow: 0 1px 1px #e6e6e6;
+  color: #333;
+  position: relative;
 }
 
 .header_fd h3 {
-    text-align: center;
-    line-height: .9rem;
-    margin-bottom: 0;
-    font-size: .36rem;
+  text-align: center;
+  line-height: .9rem;
+  margin-bottom: 0;
+  font-size: .36rem;
 }
 
 .header_back {
-    position: absolute;
-    width: 1rem;
-    height: 100%;
-    top: 0;
-    left: 0;
+  position: absolute;
+  width: 1rem;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .icon_person {
-    width: .34rem;
-    height: .34rem;
-    display: inline-block;
-    background: url(../images/ui/icon_person.png) no-repeat;
-    background-size: 8.2rem 4.8rem;
+  width: .34rem;
+  height: .34rem;
+  display: inline-block;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 8.2rem 4.8rem;
 }
 
 .find_go_back {
-    position: absolute;
-    width: .36rem;
-    height: .36rem;
-    left: .28rem;
-    top: .25rem;
-    background-position: -.29rem -.4rem;
-    background-size: 6rem 4rem;
+  position: absolute;
+  width: .36rem;
+  height: .36rem;
+  left: .28rem;
+  top: .25rem;
+  background-position: -.29rem -.4rem;
+  background-size: 6rem 4rem;
 }
 
 .header_close.icon_person {
-    position: absolute;
-    width: .36rem;
-    height: .36rem;
-    left: .28rem;
-    top: .25rem;
-    background-position: -2.92rem -.16rem;
+  position: absolute;
+  width: .36rem;
+  height: .36rem;
+  left: .28rem;
+  top: .25rem;
+  background-position: -2.92rem -.16rem;
 }
 
 .go_back.icon_person {
-    position: absolute;
-    width: .36rem;
-    height: .36rem;
-    left: .28rem;
-    top: .25rem;
-    background-position: -3.36rem -.19rem;
+  position: absolute;
+  width: .36rem;
+  height: .36rem;
+  left: .28rem;
+  top: .25rem;
+  background-position: -3.36rem -.19rem;
 }
 
 #phone_login,
 #email_login {
-    margin-top: 1rem;
-    padding: 0 .4rem;
+  margin-top: 1rem;
+  padding: 0 .4rem;
 }
 
 .login_input {
-    border-bottom: 1px solid #e6e6e6;
-    width: 100%;
-    height: 1.08rem;
-    position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  width: 100%;
+  height: 1.08rem;
+  position: relative;
 }
 
 .tel_code_wrap {
-    padding-top: .32rem;
+  padding-top: .32rem;
 }
 
 .login_phone {
-    margin-top: .04rem;
-    vertical-align: top;
-    background-size: 8.48rem 4.8rem;
-    background-position: -5.3rem -.2rem;
+  margin-top: .04rem;
+  vertical-align: top;
+  background-size: 8.48rem 4.8rem;
+  background-position: -5.3rem -.2rem;
 }
 
 .login_pass {
-    margin-top: .34rem;
-    vertical-align: top;
-    background-size: 8.48rem 4.8rem;
-    background-position: -4.94rem -.2rem;
+  margin-top: .34rem;
+  vertical-align: top;
+  background-size: 8.48rem 4.8rem;
+  background-position: -4.94rem -.2rem;
 }
 
 .login_mail {
-    vertical-align: top;
-    margin-top: .35rem;
-    background-position: -5.5rem -.2rem;
+  vertical-align: top;
+  margin-top: .35rem;
+  background-position: -5.5rem -.2rem;
 }
 
 .login_input input {
-    background: transparent !important;
-    padding-left: .4rem;
-    height: .5rem;
-    color: #333;
-    font-size: .28rem;
-    margin-top: .28rem;
+  background: transparent !important;
+  padding-left: .4rem;
+  height: .5rem;
+  color: #333;
+  font-size: .28rem;
+  margin-top: .28rem;
 }
 
 #r_phone,
 #phone {
-    margin-top: 0!important;
+  margin-top: 0 !important;
 }
 
 .change_way {
-    padding: .4rem;
-    overflow: hidden;
+  padding: .4rem;
+  overflow: hidden;
 }
 
 .login_button,
 .register_button,
 .f_btn {
-    display: block;
-    font-size: .36rem;
-    border-radius: .04rem;
-    height: .96rem;
-    line-height: .96rem;
-    text-align: center;
-    color: #fff;
-    font-weight: 600;
-    background-color: #7bc300;
-    margin: .96rem .4rem 0;
+  display: block;
+  font-size: .36rem;
+  border-radius: .04rem;
+  height: .96rem;
+  line-height: .96rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  background-color: #7bc300;
+  margin: .96rem .4rem 0;
 }
 
 .f_btns {
-    display: block;
-    font-size: .32rem;
-    border-radius: .04rem;
-    height: .88rem;
-    line-height: .88rem;
-    text-align: center;
-    color: #fff;
-    background-color: #7bc300;
-    margin: .96rem .4rem 0;
+  display: block;
+  font-size: .32rem;
+  border-radius: .04rem;
+  height: .88rem;
+  line-height: .88rem;
+  text-align: center;
+  color: #fff;
+  background-color: #7bc300;
+  margin: .96rem .4rem 0;
 }
 
 .login_button:hover {
-    background-color: #66a600;
+  background-color: #66a600;
 }
 
 .uset_name {
-    height: 1.24rem;
-    border-bottom: 1px solid #e6e6e6;
-    position: relative;
+  height: 1.24rem;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
 }
 
 .uset_name .new_msg {
-    margin-top: .2rem;
-    margin-bottom: .06rem;
-    display: inline-block;
-    vertical-align: top;
+  margin-top: .2rem;
+  margin-bottom: .06rem;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .uset_text {
-    color: #999;
-    font-size: .24rem;
+  color: #999;
+  font-size: .24rem;
 }
 
 .name_text {
-    padding: 0 .4rem;
-    color: #999;
-    font-size: .24rem;
+  padding: 0 .4rem;
+  color: #999;
+  font-size: .24rem;
 }
 
 .f_key {
-    margin: .42rem .4rem .96rem;
+  margin: .42rem .4rem .96rem;
 }
 
 .mb_none {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
-.f_key> li {
-    height: .96rem;
-    line-height: .96rem;
-    border-bottom: 1px solid #e6e6e6;
-    position: relative;
+.f_key > li {
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
 }
 
-.f_key> li span {
-    width: 2.3rem;
-    display: inline-block;
+.f_key > li span {
+  width: 2.3rem;
+  display: inline-block;
 }
 
-.f_key> li input {
-    height: 90%;
-    width: 60%;
-    font-size: .28rem;
+.f_key > li input {
+  height: 90%;
+  width: 60%;
+  font-size: .28rem;
 }
 
 #email,
@@ -261,243 +269,240 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 #r_e_password,
 #rs_e_password,
 .mob_cell {
-    width: 80%;
+  width: 80%;
 }
 
 #phone {
-    width: 65%;
-    height: .5rem;
-    display: inline-block;
-    font-size: .28rem;
+  width: 65%;
+  height: .5rem;
+  display: inline-block;
+  font-size: .28rem;
 }
 
 #phone_register,
 #email_register {
-    margin: 0 .4rem;
-    margin-top: 1rem;
+  margin: 0 .4rem;
+  margin-top: 1rem;
 }
 
-.coun-find> div {
-    display: inline-block;
+.coun-find > div {
+  display: inline-block;
 }
 
 .int-tel {
-    position: absolute;
-    right: 12px;
-    top: -2px;
-    width: 20px;
-    height: 16px;
-    background-image: url(../images/ui/icons.png);
-    background-size: 200px 110px;
-    transform: rotate(270deg);
-    -webkit-transform: rotate(270deg);
+  position: absolute;
+  right: 12px;
+  top: -2px;
+  width: 20px;
+  height: 16px;
+  background-image: url(../images/ui/icons.png);
+  background-size: 200px 110px;
+  transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
 }
 
 .open_pho.open_arw {
-    position: absolute;
-    right: .28rem;
-    top: .3rem;
+  position: absolute;
+  right: .28rem;
+  top: .3rem;
 }
 
 .fk_put {
-    height: 90%;
-    width: 100%;
-    font-size: .28rem;
-    color: #333;
+  height: 90%;
+  width: 100%;
+  font-size: .28rem;
+  color: #333;
 }
 
 #phone_num {
-    width: 100%;
+  width: 100%;
 }
 
 .fk_div {
-    padding: 0 .2rem;
-    width: 1.85rem;
-    height: .68rem;
-    text-align: center;
-    line-height: .68rem;
-    background-color: #7bc300;
-    border-radius: .04rem;
-    color: #fff;
-    position: absolute;
-    right: 0;
-    top: .12rem;
+  padding: 0 .2rem;
+  width: 1.85rem;
+  height: .68rem;
+  text-align: center;
+  line-height: .68rem;
+  background-color: #7bc300;
+  border-radius: .04rem;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: .12rem;
 }
 
 .p_86 {
-    display: inline-block;
-    vertical-align: top;
-    color: #333;
-    border-right: 1px solid #e6e6e6;
-    position: relative;
-    max-width: 1.55rem;
+  display: inline-block;
+  vertical-align: top;
+  color: #333;
+  border-right: 1px solid #e6e6e6;
+  position: relative;
+  max-width: 1.55rem;
 }
 
 #content {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 #content-wrap {
-    position: absolute;
-    overflow-x: hidden !important;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    font-size: .28rem;
-    color: #333;
+  position: absolute;
+  overflow-x: hidden !important;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  font-size: .28rem;
+  color: #333;
 }
 
-.p_86> span {
-    display: inline-block;
-    vertical-align: top;
-    margin: .04rem .7rem 0 .2rem;
+.p_86 > span {
+  display: inline-block;
+  vertical-align: top;
+  margin: .04rem .7rem 0 .2rem;
 }
 
 .open_arw.int_tel {
-    width: .28rem;
-    height: .32rem;
-    top: 0;
-    right: .2rem;
-    background-size: 8.4rem 5.2rem;
+  width: .28rem;
+  height: .32rem;
+  top: 0;
+  right: .2rem;
+  background-size: 8.4rem 5.2rem;
 }
 
 #p_password {
-    padding-left: .25rem;
+  padding-left: .25rem;
 }
 
 .login-input .in-phone {
-    display: inline-block;
-    padding-top: 2px;
-    font-size: 1.3rem;
-    width: 50%;
+  display: inline-block;
+  padding-top: 2px;
+  font-size: 1.3rem;
+  width: 50%;
 }
 
 .forgotkey {
-    float: left;
-    margin: .3rem .24rem .3rem 0;
-    color: #333;
+  float: left;
+  margin: .3rem .24rem .3rem 0;
+  color: #333;
 }
 
 .changelogin {
-    float: right;
-    margin: .3rem 0 .6rem 0;
-    color: #333;
+  float: right;
+  margin: .3rem 0 .6rem 0;
+  color: #333;
 }
 
 .login_change {
-    width: .34rem;
-    height: .34rem;
-    background-position: -5.94rem -.2rem;
-    position: relative;
-    top: .06rem;
-    margin-left: .06rem;
+  width: .34rem;
+  height: .34rem;
+  background-position: -5.94rem -.2rem;
+  position: relative;
+  top: .06rem;
+  margin-left: .06rem;
 }
 
 .login_clear {
-    display: none;
-    position: absolute;
-    right: 13px;
-    background-position: -85px -35px;
+  display: none;
+  position: absolute;
+  right: 13px;
+  background-position: -85px -35px;
 }
 
 .login_clear.get_code_del {
-    right: 125px;
+  right: 125px;
 }
 
 .regist-code {
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 107px;
-    border-left: 1px solid #e6e6e6;
-    text-align: center;
-    color: #7bc300;
-    margin-top: 13px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 107px;
+  border-left: 1px solid #e6e6e6;
+  text-align: center;
+  color: #7bc300;
+  margin-top: 13px;
 }
 
-
 /*登录注册结束*/
-
 
 /*个人中心首页user开始*/
 
 .user_lists {
-    padding: .4rem .28rem;
+  padding: .4rem .28rem;
 }
 
-.user_lists> li {
-    position: relative;
-    height: .88rem;
-    line-height: .88rem;
+.user_lists > li {
+  position: relative;
+  height: .88rem;
+  line-height: .88rem;
 }
 
 .user_info #userIcon {
-    border-radius: 50%;
-    width: 1.2rem;
-    height: 1.2rem;
-    margin-bottom: .1rem;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-bottom: .1rem;
 }
 
 .user_top {
-    width: 100%;
-    height: 3.18rem;
-    padding-top: .7rem;
-    background: url(../images/ui/icon_person.png) no-repeat;
-    background-position: -43px -154px;
+  width: 100%;
+  height: 3.18rem;
+  padding-top: .7rem;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-position: -43px -154px;
 }
 
 #u_info {
-    width: 150px;
-    margin: 0 auto;
+  width: 150px;
+  margin: 0 auto;
 }
 
 .unl_div {
-    width: 94%;
-    margin-left: 3%;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
+  width: 94%;
+  margin-left: 3%;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .icon {
-    background: url(../images/ui/icon.png) no-repeat;
-    background-size: 7.86rem 2.36rem;
-    display: inline-block;
+  background: url(../images/ui/icon.png) no-repeat;
+  background-size: 7.86rem 2.36rem;
+  display: inline-block;
 }
 
 .bu_icon {
-    background: url(../images/ui/bu.png) no-repeat;
-    background-size: 3.18rem 4.9rem;
-    display: inline-block;
+  background: url(../images/ui/bu.png) no-repeat;
+  background-size: 3.18rem 4.9rem;
+  display: inline-block;
 }
 
 .college {
-    width: 84px;
-    height: 81px;
-    background-position: 97% 51%;
+  width: 84px;
+  height: 81px;
+  background-position: 97% 51%;
 }
 
 .wifi {
-    width: 2.1rem;
-    height: 1.52rem;
-    background-position: 9% 101%;
+  width: 2.1rem;
+  height: 1.52rem;
+  background-position: 9% 101%;
 }
 
 .order {
-    width: 1.8rem;
-    height: 1.6rem;
-    background-position: 48% 53%;
-    position: absolute;
-    left: 50%;
-    margin-left: -.9rem;
-    top: 0;
+  width: 1.8rem;
+  height: 1.6rem;
+  background-position: 48% 53%;
+  position: absolute;
+  left: 50%;
+  margin-left: -.9rem;
+  top: 0;
 }
 
 .buyOrder {
-    width: 50%;
-    margin-left: 25%
+  width: 50%;
+  margin-left: 25%
 }
-
 
 /*链接*/
 
@@ -511,1310 +516,1290 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 #email_find,
 #link_declaration,
 #header_phone {
-    display: none;
+  display: none;
 }
-
 
 /*关于我们*/
 
 .asiatravel_wrap {
-    margin-top: .6rem;
-    text-align: center;
+  margin-top: .6rem;
+  text-align: center;
 }
 
-.asiatravel_wrap> img {
-    width: 1.4rem;
+.asiatravel_wrap > img {
+  width: 1.4rem;
 }
 
 .asiatravel_wrap h4 {
-    font-size: .28rem;
-    color: #333;
+  font-size: .28rem;
+  color: #333;
 }
 
 .at_introduce {
-    margin-top: .5rem;
-    padding: 0 .4rem;
+  margin-top: .5rem;
+  padding: 0 .4rem;
 }
 
 .at_logo {
-    margin-bottom: .2rem;
+  margin-bottom: .2rem;
 }
 
 .at_introduce li {
-    position: relative;
-    line-height: .96rem;
-    border-bottom: 1px solid #e6e6e6;
+  position: relative;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .at_introduce li a {
-    color: #333;
+  color: #333;
 }
 
 .at_introduce .open_arw {
-    margin-top: .12rem;
-    background: url("../images/ui/icon_common.png") no-repeat;
-    background-size: 8.4rem 4.8rem;
-    width: .28rem;
-    height: .28rem;
-    background-position: -1.12rem -.58rem;
-    float: right;
+  margin-top: .12rem;
+  background: url("../images/ui/icon_common.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .28rem;
+  height: .28rem;
+  background-position: -1.12rem -.58rem;
+  float: right;
 }
 
 .at_introduction,
 .at_declaration {
-    padding: .4rem;
-    line-height: .48rem;
+  padding: .4rem;
+  line-height: .48rem;
 }
 
 .at_declaration h3 {
-    margin-bottom: .1rem;
+  margin-bottom: .1rem;
 }
 
 .at_declaration p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .at_declaration ul {
-    margin: .2rem 0;
+  margin: .2rem 0;
 }
 
 .at_declaration ul li {
-    line-height: .36rem;
-    margin-bottom: .1rem;
+  line-height: .36rem;
+  margin-bottom: .1rem;
 }
 
 .at_declaration dt,
 .at_declaration dd {
-    margin: .1rem 0;
+  margin: .1rem 0;
 }
 
 #link_at,
 #link_about_us,
 #link_page {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .user_content {
-    position: absolute;
-    background-color: white;
-    top: 0.88rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    z-index: 99;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+  position: absolute;
+  background-color: white;
+  top: 0.88rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  z-index: 99;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 #noOrder {
-    margin-top: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 #noOrder p {
-    text-align: center;
+  text-align: center;
 }
 
 .black_con {
-    height: 2.2rem;
-    position: relative;
+  height: 2.2rem;
+  position: relative;
 }
 
-.user_content> ul {
-    margin: 0 .28rem;
+.user_content > ul {
+  margin: 0 .28rem;
 }
 
 .user_name {
-    font-size: .32rem;
-    color: #fff;
+  font-size: .32rem;
+  color: #fff;
 }
 
-.user_content> ul li:last-child {
-    line-height: 1.24rem;
+.user_content > ul li:last-child {
+  line-height: 1.24rem;
 }
 
 .open-sexw {
-    width: .24rem;
-    height: .3rem;
-    display: inline-block;
-    vertical-align: top;
-    margin: .08rem 0 0 .1rem;
-    background-position: -6.62rem -.74rem;
+  width: .24rem;
+  height: .3rem;
+  display: inline-block;
+  vertical-align: top;
+  margin: .08rem 0 0 .1rem;
+  background-position: -6.62rem -.74rem;
 }
 
 .open-sexm {
-    width: .24rem;
-    height: .3rem;
-    display: inline-block;
-    vertical-align: top;
-    margin: .08rem 0 0 .1rem;
-    background-position: -6.94rem -.72rem;
+  width: .24rem;
+  height: .3rem;
+  display: inline-block;
+  vertical-align: top;
+  margin: .08rem 0 0 .1rem;
+  background-position: -6.94rem -.72rem;
 }
 
 .info-circle1 {
-    position: relative;
-    margin-top: -5px;
-    margin-left: 15px;
-    width: 14px;
-    height: 14px;
-    border-radius: 7px;
-    background-color: #7bc300;
-    text-align: center;
-    line-height: 1.2;
-    font-size: 1rem;
-    color: white;
+  position: relative;
+  margin-top: -5px;
+  margin-left: 15px;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: #7bc300;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 1rem;
+  color: white;
 }
 
 .info-circle2 {
-    position: absolute;
-    right: 0;
-    top: -8px;
-    width: 23px;
-    height: 14px;
-    border-radius: 7px;
-    background-color: #7bc300;
-    text-align: center;
-    line-height: 1.2;
-    font-size: 1rem;
-    color: white;
+  position: absolute;
+  right: 0;
+  top: -8px;
+  width: 23px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: #7bc300;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 1rem;
+  color: white;
 }
 
 .open-favs {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    top: 10px;
-    background-position: 87% 76%;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: 87% 76%;
 }
 
 .open-hiss {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    top: 10px;
-    background-position: 94.5% 76%;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: 94.5% 76%;
 }
 
-
 /*个人中心首页user结束*/
-
 
 /*个人资料页开始*/
 
 .info_name {
-    float: right;
-    margin-right: .4rem;
-    width: 4rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: right;
+  float: right;
+  margin-right: .4rem;
+  width: 4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
 }
 
 .info_quit {
-    margin: .96rem .4rem 0;
-    display: block;
-    height: .88rem;
-    background-color: #7bc300;
-    color: #fff;
-    -webkit-border-radius: .04rem;
-    -moz-border-radius: .04rem;
-    border-radius: .04rem;
-    text-align: center;
-    line-height: .88rem;
-    font-size: .36rem;
-    font-weight: 500;
+  margin: .96rem .4rem 0;
+  display: block;
+  height: .88rem;
+  background-color: #7bc300;
+  color: #fff;
+  -webkit-border-radius: .04rem;
+  -moz-border-radius: .04rem;
+  border-radius: .04rem;
+  text-align: center;
+  line-height: .88rem;
+  font-size: .36rem;
+  font-weight: 500;
 }
 
 .info_sex {
-    position: absolute;
-    top: .13rem;
-    right: 0;
-    height: .66rem;
-    border: 1px solid #7bc300;
-    border-radius: .04rem;
-    -webkit-border-radius: .04rem;
-    background-color: #fff;
-    color: #7bc300;
+  position: absolute;
+  top: .13rem;
+  right: 0;
+  height: .66rem;
+  border: 1px solid #7bc300;
+  border-radius: .04rem;
+  -webkit-border-radius: .04rem;
+  background-color: #fff;
+  color: #7bc300;
 }
 
 .info_sex .per_man {
-    float: left;
-    width: .76rem;
-    height: .62rem;
-    line-height: .64rem;
-    text-align: center;
-    color: #7bc300;
-    background-color: #fff;
+  float: left;
+  width: .76rem;
+  height: .62rem;
+  line-height: .64rem;
+  text-align: center;
+  color: #7bc300;
+  background-color: #fff;
 }
 
 .info_sex .sex_act {
-    color: #fff;
-    background-color: #7bc300;
+  color: #fff;
+  background-color: #7bc300;
 }
 
 #uptra_page .info_sex_tab,
 #addtra_page .info_sex_tab {
-    position: absolute;
-    top: .13rem;
-    right: .28rem;
-    width: auto;
-    height: .66rem;
-    border: 1px solid #7bc300;
-    border-radius: .04rem;
-    -webkit-border-radius: .04rem;
-    background-color: #fff;
-    color: #7bc300;
+  position: absolute;
+  top: .13rem;
+  right: .28rem;
+  width: auto;
+  height: .66rem;
+  border: 1px solid #7bc300;
+  border-radius: .04rem;
+  -webkit-border-radius: .04rem;
+  background-color: #fff;
+  color: #7bc300;
 }
 
 .info_sex_tab .per_man {
-    float: left;
-    width: .76rem;
-    height: .62rem;
-    line-height: .64rem;
-    text-align: center;
-    color: #7bc300;
-    background-color: #fff;
+  float: left;
+  width: .76rem;
+  height: .62rem;
+  line-height: .64rem;
+  text-align: center;
+  color: #7bc300;
+  background-color: #fff;
 }
 
 .info_sex_tab .sex_act {
-    color: #fff;
-    background-color: #7bc300;
+  color: #fff;
+  background-color: #7bc300;
 }
 
 .user-mb {
-    display: none;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .u_photo {
-    display: none;
-    position: absolute;
-    z-index: 3;
-    width: 92%;
-    margin-left: 4%;
-    bottom: 15px;
+  display: none;
+  position: absolute;
+  z-index: 3;
+  width: 92%;
+  margin-left: 4%;
+  bottom: 15px;
 }
 
 .u_photo1 {
-    background-color: white;
-    border-radius: 10px;
-    margin-bottom: 10px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .u_photo1 li {
-    list-style-type: none;
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 1.8rem;
-    color: #1190e0;
+  list-style-type: none;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 1.8rem;
+  color: #1190e0;
 }
 
 .u_photo1 li:first-child {
-    border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .u_photo2 {
-    background-color: white;
-    border-radius: 10px;
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #1190e0;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1190e0;
 }
 
 #keyForm {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .showkey {
-    margin: .2rem .4rem .96rem;
+  margin: .2rem .4rem .96rem;
 }
 
 .show_key {
-    position: relative;
-    display: inline-block;
-    width: 0.36rem;
-    height: .36rem;
-    top: .1rem;
-    margin-right: .12rem;
-    background: url(../images/ui/icon_common.png) no-repeat;
-    background-position: -5.92rem -.55rem;
-    background-size: 7.4rem 4.8rem;
+  position: relative;
+  display: inline-block;
+  width: 0.36rem;
+  height: .36rem;
+  top: .1rem;
+  margin-right: .12rem;
+  background: url(../images/ui/icon_common.png) no-repeat;
+  background-position: -5.92rem -.55rem;
+  background-size: 7.4rem 4.8rem;
 }
 
 .show_keys {
-    position: relative;
-    display: inline-block;
-    width: 0.36rem;
-    height: .36rem;
-    top: .1rem;
-    margin-right: .12rem;
-    background: url(../images/ui/icon_common.png) no-repeat;
-    background-position: -5.4rem -.55rem;
-    background-size: 7.4rem 4.8rem;
+  position: relative;
+  display: inline-block;
+  width: 0.36rem;
+  height: .36rem;
+  top: .1rem;
+  margin-right: .12rem;
+  background: url(../images/ui/icon_common.png) no-repeat;
+  background-position: -5.4rem -.55rem;
+  background-size: 7.4rem 4.8rem;
 }
 
 .pas_showhide {
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: -.06rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -.06rem;
 }
-
 
 /*修改昵称页css*/
 
 .u_name {
-    height: .96rem;
-    line-height: .96rem;
-    margin: .42rem .4rem .2rem;
-    border-bottom: 1px solid #e6e6e6;
-    position: relative;
+  height: .96rem;
+  line-height: .96rem;
+  margin: .42rem .4rem .2rem;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
 }
 
-.u_name> input {
-    height: 90%;
-    width: 100%;
-    font-size: .28rem;
+.u_name > input {
+  height: 90%;
+  width: 100%;
+  font-size: .28rem;
 }
 
-.u_name> p {
-    margin-bottom: .05rem;
+.u_name > p {
+  margin-bottom: .05rem;
 }
 
 .icon_person.name_close {
-    position: absolute;
-    width: .35rem;
-    height: .35rem;
-    top: .3rem;
-    right: 0;
-    background-position: -6.74rem -.18rem;
-    display: none;
+  position: absolute;
+  width: .35rem;
+  height: .35rem;
+  top: .3rem;
+  right: 0;
+  background-position: -6.74rem -.18rem;
+  display: none;
 }
 
-
 /*个人资料页结束*/
-
 
 /*全部订单页开始*/
 
 .ticket_div {
-    background-color: #f7f7f7;
+  background-color: #f7f7f7;
 }
 
 .order_div {
-    background-color: #fff;
-    border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .all_order_title {
-    height: .8rem;
-    margin-top: .32rem;
-    padding: 0 .28rem;
-    border-bottom: 1px solid #e6e6e6;
-    overflow: hidden;
+  height: .8rem;
+  margin-top: .32rem;
+  padding: 0 .28rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
 }
 
 .all_order_title b {
-    float: left;
+  float: left;
 }
 
 .icon_allorder {
-    background: url(../images/ui/icon_person.png) no-repeat;
-    background-size: 8rem 4.6rem;
-    display: inline-block;
-    width: .5rem;
-    height: .5rem;
-    margin: .12rem .2rem 0 0;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 8rem 4.6rem;
+  display: inline-block;
+  width: .5rem;
+  height: .5rem;
+  margin: .12rem .2rem 0 0;
 }
 
 .all_order_tab {
-    border-bottom: 1px solid #e6e6e6;
-    padding: .4rem .28rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding: .4rem .28rem;
 }
 
 .order_title {
-    float: left;
-    padding-top: .2rem;
+  float: left;
+  padding-top: .2rem;
 }
 
 .if_pay {
-    display: inline-block;
-    margin: .2rem;
-    padding-left: .2rem;
-    border-left: 1px solid #e6e6e6;
+  display: inline-block;
+  margin: .2rem;
+  padding-left: .2rem;
+  border-left: 1px solid #e6e6e6;
 }
 
 .order_Amount {
-    float: right;
-    margin-top: .2rem;
-    color: #fb7530;
+  float: right;
+  margin-top: .2rem;
+  color: #fb7530;
 }
 
 .info_title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .air_date li {
-    margin-top: .2rem;
+  margin-top: .2rem;
 }
 
 .all_order_tab .air_date {
-    /*color: #999;*/
-    font-size: .24rem
+  /*color: #999;*/
+  font-size: .24rem
 }
 
 .find_order {
-    padding: .2rem .28rem;
+  padding: .2rem .28rem;
 }
 
 .paybtn {
-    float: right;
-    width: 1.52rem;
-    height: .64rem;
-    text-align: center;
-    line-height: .64rem;
-    border: 1px solid #7bc300;
-    color: #7bc300;
-    border-radius: 4px;
+  float: right;
+  width: 1.52rem;
+  height: .64rem;
+  text-align: center;
+  line-height: .64rem;
+  border: 1px solid #7bc300;
+  color: #7bc300;
+  border-radius: 4px;
 }
 
 .paybtn:hover {
-    background-color: #7bc300;
-    color: #fff;
+  background-color: #7bc300;
+  color: #fff;
 }
 
 .quitbtn {
-    float: right;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 76px;
-    height: 31px;
-    color: #7bc300;
-    text-align: center;
-    line-height: 31px;
-    border-radius: 4px;
-    border: 1px solid #7bc300;
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 76px;
+  height: 31px;
+  color: #7bc300;
+  text-align: center;
+  line-height: 31px;
+  border-radius: 4px;
+  border: 1px solid #7bc300;
 }
 
 .user_hotel1 {
-    background-position: -4.84rem -0.59rem;
+  background-position: -4.84rem -0.59rem;
 }
 
 .user_hotel2 {
-    background-position: 0 -.56rem;
+  background-position: 0 -.56rem;
 }
 
 .user_air {
-    background-position: -5.38rem -0.59rem;
+  background-position: -5.38rem -0.59rem;
 }
 
 .user_spot {
-    background-position: -5.92rem -0.59rem;
+  background-position: -5.92rem -0.59rem;
 }
 
 .user_hoteltour {
-    background-position: -3.26rem -0.59rem;
+  background-position: -3.26rem -0.59rem;
 }
 
 .user_fligthotle {
-    background-position: -4.32rem -0.59rem;
+  background-position: -4.32rem -0.59rem;
 }
 
 .user_fligthotletour {
-    background-position: -3.78rem -0.59rem;
+  background-position: -3.78rem -0.59rem;
 }
 
-
 /*全部订单页结束*/
-
 
 /*设置页开始*/
 
 .set_chose1 {
-    width: 1.04rem;
-    height: .62rem;
-    position: absolute;
-    top: .3rem;
-    right: 0;
-    background-position: 51% 32%;
+  width: 1.04rem;
+  height: .62rem;
+  position: absolute;
+  top: .3rem;
+  right: 0;
+  background-position: 51% 32%;
 }
 
 .set_chose2 {
-    width: 1.04rem;
-    height: .62rem;
-    position: absolute;
-    top: .3rem;
-    right: 0;
-    background-position: 51% 69.8%;
+  width: 1.04rem;
+  height: .62rem;
+  position: absolute;
+  top: .3rem;
+  right: 0;
+  background-position: 51% 69.8%;
 }
 
-
 /*设置页结束*/
-
 
 /*联系我们开始*/
 
 .user_wechat {
-    width: 40px;
-    height: 40px;
-    float: left;
-    background-position: 65.5% 4%;
+  width: 40px;
+  height: 40px;
+  float: left;
+  background-position: 65.5% 4%;
 }
 
 .u_remark {
-    padding: 0 .28rem;
-    margin-bottom: .3rem;
+  padding: 0 .28rem;
+  margin-bottom: .3rem;
 }
 
 .u_remark li {
-    padding: .4rem 0;
-    border-bottom: 1px solid #e6e6e6;
+  padding: .4rem 0;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .con_info {
-    margin-left: .4rem;
+  margin-left: .4rem;
 }
 
 .u_remark li .icon_per {
-    display: inline-block;
-    width: .78rem;
-    height: .78rem;
-    background: url(../images/ui/icon_person.png) no-repeat;
-    background-size: 9rem 5rem;
+  display: inline-block;
+  width: .78rem;
+  height: .78rem;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 9rem 5rem;
 }
 
 .u_remark li .user_service {
-    background-position: -8rem -.06rem;
+  background-position: -8rem -.06rem;
 }
 
 .u_remark li .service_phone {
-    background-position: -8rem -.8rem;
+  background-position: -8rem -.8rem;
 }
 
 .user_us {
-    width: 40px;
-    height: 40px;
-    background-position: 78.2% 61%;
+  width: 40px;
+  height: 40px;
+  background-position: 78.2% 61%;
 }
 
-.con_info> span {
-    display: block;
-    color: #999;
+.con_info > span {
+  display: block;
+  color: #999;
 }
 
 .con_info div {
-    font-size: 14px;
-    color: #999999;
+  font-size: 14px;
+  color: #999999;
 }
 
 .con_title1 {
-    margin-bottom: 5px;
-    font-size: 16px;
-    line-height: normal;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: normal;
 }
 
 .con_title2 {
-    font-size: .32rem;
+  font-size: .32rem;
 }
 
 .con_text {
-    margin: 0 .15rem;
-    text-align: center;
-    font-size: .24rem;
-    color: #999;
+  margin: 0 .15rem;
+  text-align: center;
+  font-size: .24rem;
+  color: #999;
 }
 
 #delTra {
-    margin-bottom: .5rem;
-    margin-top: .6rem;
+  margin-bottom: .5rem;
+  margin-top: .6rem;
 }
 
 .con_pass {
-    margin: .25rem .4rem;
-    line-height: .36rem;
-    font-size: .24rem;
-    color: #999;
+  margin: .25rem .4rem;
+  line-height: .36rem;
+  font-size: .24rem;
+  color: #999;
 }
 
-
 /*联系我们结束*/
-
 
 /*常用信息页css*/
 
 .user_add {
-    width: .4rem;
-    height: .4rem;
-    margin: .225rem .2rem 0 0;
-    vertical-align: top;
-    background-position: -4.28rem -.16rem;
+  width: .4rem;
+  height: .4rem;
+  margin: .225rem .2rem 0 0;
+  vertical-align: top;
+  background-position: -4.28rem -.16rem;
 }
 
 .often_traveler {
-    width: 100%;
-    margin-bottom: .3rem;
-    margin-top: .2rem;
-    border-top: 1px solid #e6e6e6;
-    overflow: scroll;
-    overflow-x: hidden;
+  width: 100%;
+  margin-bottom: .3rem;
+  margin-top: .2rem;
+  border-top: 1px solid #e6e6e6;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .eve_traveler {
-    padding: .24rem .3rem;
-    border-bottom: 1px solid #e6e6e6;
-    background-color: #fff;
+  padding: .24rem .3rem;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
 }
-
 
 /*个人信息页出生日期*/
 
-#common-msg> em {
-    font-size: .24rem;
+#common-msg > em {
+  font-size: .24rem;
 }
 
 .user_it {
-    width: 1rem;
-    height: 1rem;
-    margin-right: .4rem;
-    border-radius: 50%;
-    border: 1px solid #e6e6e6;
+  width: 1rem;
+  height: 1rem;
+  margin-right: .4rem;
+  border-radius: 50%;
+  border: 1px solid #e6e6e6;
 }
 
 .user_person_mar {
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .userper_lists {
-    padding: 0 .4rem;
+  padding: 0 .4rem;
 }
 
 .userper_lists .open_arw {
-    top: .32rem;
+  top: .32rem;
 }
 
 .user_info_top .open_arw {
-    right: .4rem;
-    top: .65rem;
+  right: .4rem;
+  top: .65rem;
 }
 
-.userper_lists> li {
-    position: relative;
-    height: .96rem;
-    line-height: .96rem;
-    border-bottom: 1px solid #e6e6e6;
+.userper_lists > li {
+  position: relative;
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
-.user_lists li> a {
-    margin-left: .68rem;
-    color: #333;
+.user_lists li > a {
+  margin-left: .68rem;
+  color: #333;
 }
 
 .user_lists li.sex-alter div.birth-cont {
-    text-align: right;
-    margin-right: 15px;
-    color: #7bc300;
+  text-align: right;
+  margin-right: 15px;
+  color: #7bc300;
 }
 
-.user_lists li> b {
-    position: absolute;
-    width: .4rem;
-    height: .4rem;
-    top: .22rem;
+.user_lists li > b {
+  position: absolute;
+  width: .4rem;
+  height: .4rem;
+  top: .22rem;
 }
 
 .myorder_tip {
-    background-position: -.48rem -.18rem;
+  background-position: -.48rem -.18rem;
 }
 
 .my-order {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .open_info {
-    background-position: -.02rem -.18rem;
+  background-position: -.02rem -.18rem;
 }
 
 #common-msg em {
-    float: right;
-    margin-right: .4rem;
-    color: #999;
+  float: right;
+  margin-right: .4rem;
+  color: #999;
 }
 
 .open_msg {
-    background-position: -1.9rem -.18rem;
+  background-position: -1.9rem -.18rem;
 }
 
 .open_set {
-    background-position: -1.4rem -.18rem;
+  background-position: -1.4rem -.18rem;
 }
 
 .open_about {
-    background-position: -.96rem -.18rem;
+  background-position: -.96rem -.18rem;
 }
 
 .open_arw {
-    position: absolute;
-    right: 0;
-    top: .22rem;
-    background: url("../images/ui/icon_common.png") no-repeat;
-    background-size: 8.4rem 4.8rem;
-    width: .28rem;
-    height: .28rem;
-    background-position: -1.12rem -.57rem;
+  position: absolute;
+  right: 0;
+  top: .22rem;
+  background: url("../images/ui/icon_common.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .28rem;
+  height: .28rem;
+  background-position: -1.12rem -.57rem;
 }
 
 .tip_right {
-    top: .3rem;
+  top: .3rem;
 }
 
 .birth_cont {
-    color: #666;
-    width: 4rem;
-    text-align: right;
-    margin-right: .4rem;
-    float: right;
+  color: #666;
+  width: 4rem;
+  text-align: right;
+  margin-right: .4rem;
+  float: right;
 }
 
 #unloginShow {
-    display: block;
-    width: 4rem;
-    margin: 0 auto;
-    text-align: center;
+  display: block;
+  width: 4rem;
+  margin: 0 auto;
+  text-align: center;
 }
-
 
 /*电话拨号开始*/
 
 .jpop_box_tic {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.4);
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: none;
 }
 
 .jpop_box_tic dl {
-    position: fixed;
-    width: 64%;
-    height: 118px;
-    top: 50%;
-    left: 50%;
-    margin: -59px 0 0 -32%;
-    z-index: 5;
-    background: #fff;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: -1px 1px 3px #c7c7c7;
+  position: fixed;
+  width: 64%;
+  height: 118px;
+  top: 50%;
+  left: 50%;
+  margin: -59px 0 0 -32%;
+  z-index: 5;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: -1px 1px 3px #c7c7c7;
 }
 
 .jpop_box_tic dt {
-    padding: .36rem 0 .2rem;
-    font-size: .36rem;
-    color: #5abdb7;
-    border-bottom: 1px solid #e1e1e1;
-    margin-bottom: .24rem;
+  padding: .36rem 0 .2rem;
+  font-size: .36rem;
+  color: #5abdb7;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: .24rem;
 }
 
 .jpop_box_tic dd {
-    overflow: hidden;
-    margin: 0 10%;
-    font-size: .28rem;
+  overflow: hidden;
+  margin: 0 10%;
+  font-size: .28rem;
 }
 
 .jpop_box_tic dd a,
 .jpop_box_tic dd span {
-    padding: 8px 20px;
-    color: #fff;
-    border-radius: 3px;
+  padding: 8px 20px;
+  color: #fff;
+  border-radius: 3px;
 }
 
 .jpop_box_tic dd a {
-    float: right;
-    background: #7bc300;
+  float: right;
+  background: #7bc300;
 }
 
 .jpop_box_tic dd span {
-    float: left;
-    background: #dfdfdf;
+  float: left;
+  background: #dfdfdf;
 }
-
 
 /*电话拨号结束*/
 
 .per-type {
-    display: inline-block;
-    vertical-align: middle;
-    width: 40px;
-    height: 20px;
-    border-radius: 5px;
-    text-align: center;
-    line-height: 18px;
-    color: #7bc300;
-    font-size: 1.2rem;
-    border: 1px solid #eee;
-    margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 20px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 18px;
+  color: #7bc300;
+  font-size: 1.2rem;
+  border: 1px solid #eee;
+  margin-left: 5px;
 }
-
 
 /*footer*/
 
 .footer-menu {
-    width: 100%;
-    position: fixed;
-    z-index: 98;
-    background-color: #fff;
-    opacity: 0.98;
-    bottom: 0px;
-    border-top: 1px solid #e6e6e6;
-    padding: .06rem 0 .04rem;
+  width: 100%;
+  position: fixed;
+  z-index: 98;
+  background-color: #fff;
+  opacity: 0.98;
+  bottom: 0px;
+  border-top: 1px solid #e6e6e6;
+  padding: .06rem 0 .04rem;
 }
 
 .footer-menu a {
-    text-align: center;
-    font-size: .2rem;
-    color: #999;
-    overflow: hidden;
+  text-align: center;
+  font-size: .2rem;
+  color: #999;
+  overflow: hidden;
 }
 
 .footer-menu a:hover {
-    transform: scale(1.15, 1.15);
-    transition: all 200ms ease-in-out;
+  transform: scale(1.15, 1.15);
+  transition: all 200ms ease-in-out;
 }
 
 .footer-menu i {
-    display: block;
-    margin: 0 auto 0 auto;
-    width: .48rem;
-    height: .48rem;
+  display: block;
+  margin: 0 auto 0 auto;
+  width: .48rem;
+  height: .48rem;
 }
 
 a.foot-homes,
 a.foot-users {
-    color: #7bc300;
+  color: #7bc300;
 }
 
 .foot-home i {
-    background: url(../images/index/home_def.png) no-repeat;
-    background-size: .48rem .48rem;
+  background: url(../images/index/home_def.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .foot-homes i {
-    background: url(../images/index/home_act.png) no-repeat;
-    background-size: .48rem .48rem;
+  background: url(../images/index/home_act.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .foot-user i {
-    background: url(../images/index/user_def.png) no-repeat;
-    background-size: .48rem .48rem;
+  background: url(../images/index/user_def.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .foot-users i {
-    background: url(../images/index/user_act.png) no-repeat;
-    background-size: .48rem .48rem;
+  background: url(../images/index/user_act.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .footer-menu-three-icons a {
-    width: 50%;
-    float: left;
-    text-align: center;
+  width: 50%;
+  float: left;
+  text-align: center;
 }
 
-
 /*首页footer结束*/
-
 
 /*新增常旅页开始*/
 
 #addUser {
-    margin-top: .2rem;
-    font-size: .32rem;
+  margin-top: .2rem;
+  font-size: .32rem;
 }
 
 .blank_con {
-    display: none;
-    margin: 0 auto;
-    margin-top: 30%;
-    text-align: center;
-    color: #999999;
+  display: none;
+  margin: 0 auto;
+  margin-top: 30%;
+  text-align: center;
+  color: #999999;
 }
 
 .header_finish {
-    position: absolute;
-    right: .28rem;
-    top: .23rem;
-    font-size: .3rem;
+  position: absolute;
+  right: .28rem;
+  top: .23rem;
+  font-size: .3rem;
 }
 
 .user_edits {
-    width: .44rem;
-    height: .44rem;
-    float: right;
-    background: url(../images/ui/icon_person.png) no-repeat;
-    background-size: 8.4rem 4.8rem;
-    background-position: -3.82rem -.14rem;
+  width: .44rem;
+  height: .44rem;
+  float: right;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 8.4rem 4.8rem;
+  background-position: -3.82rem -.14rem;
 }
 
 .header_quit {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 1.2rem;
-    padding-left: .3rem;
-    height: .9rem;
-    line-height: .9rem;
-    z-index: 1000;
-    color: #333;
-    font-size: .3rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.2rem;
+  padding-left: .3rem;
+  height: .9rem;
+  line-height: .9rem;
+  z-index: 1000;
+  color: #333;
+  font-size: .3rem;
 }
 
 .addtra_page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f7f7f7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+  overflow-x: hidden !important;
 }
 
 #addtra_page,
 #uptra_page {
-    z-index: 99;
-    visibility: hidden;
+  z-index: 99;
+  visibility: hidden;
 }
 
 .addtra_title {
-    width: 100%;
-    padding: .2rem .28rem;
-    font-size: .24rem;
-    background-color: #f7f7f7;
+  width: 100%;
+  padding: .2rem .28rem;
+  font-size: .24rem;
+  background-color: #f7f7f7;
 }
 
-.addtra_title> span {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: .1rem;
+.addtra_title > span {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .1rem;
 }
 
 .traveler_contect {
-    background-color: #fff;
-    margin-bottom: .32rem;
-    border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
+  margin-bottom: .32rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .traveler_contect li {
-    margin-left: .28rem;
-    border-bottom: 1px solid #e6e6e6;
-    overflow: hidden;
+  margin-left: .28rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
 }
 
 .traveler_contect li:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
-.traveler_contect li> div {
-    width: 45%;
-    line-height: .96rem;
-    border-right: 1px solid #e6e6e6;
-    position: relative;
+.traveler_contect li > div {
+  width: 45%;
+  line-height: .96rem;
+  border-right: 1px solid #e6e6e6;
+  position: relative;
 }
 
 .traveler_contect li .email_code {
-    width: 1.8rem;
-    border: none;
+  width: 1.8rem;
+  border: none;
 }
 
 .phone_pre {
-    float: right;
-    margin-right: .6rem;
+  float: right;
+  margin-right: .6rem;
 }
 
 .mobile_tip_right {
-    right: .2rem;
-    top: .34rem;
+  right: .2rem;
+  top: .34rem;
 }
 
 .traveler_contect input {
-    width: 50%;
-    height: .96rem;
-    margin-left: .32rem;
+  width: 50%;
+  height: .96rem;
+  margin-left: .32rem;
 }
 
 .user-must2 {
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    right: 5px;
-    background-position: 28% 35%;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 5px;
+  background-position: 28% 35%;
 }
 
 .addtra_info {
-    background-color: #fff;
-    border-bottom: 1px solid #e6e6e6;
-    margin-bottom: .2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: .2rem;
 }
 
 .addtra_info li {
-    margin-left: 15px;
-    height: .96rem;
-    line-height: .96rem;
-    border-bottom: 1px solid #e6e6e6;
-    overflow: hidden;
-    position: relative;
+  margin-left: 15px;
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
+  position: relative;
 }
 
 .addtra_info li:last-child {
-    border: none;
+  border: none;
 }
 
 .addtra_info div {
-    float: left;
-    width: 1.6rem;
+  float: left;
+  width: 1.6rem;
 }
 
 .addtra_info .postCard {
-    width: 60%;
-    float: left;
-    margin-left: 12%;
+  width: 60%;
+  float: left;
+  margin-left: 12%;
 }
 
 .addtra_info .country-btn {
-    width: 60%;
-    float: left;
-    height: 20px;
-    margin-left: 12%;
+  width: 60%;
+  float: left;
+  height: 20px;
+  margin-left: 12%;
 }
 
 .addAir_page {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f7f7f7;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
 }
 
 .addAir_info {
-    background-color: #fff;
-    border-top: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
+  background-color: #fff;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .addAir_info li {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    margin-left: 15px;
-    font-size: 14px;
-    border-bottom: 1px solid #dedede;
-    overflow: hidden;
-    position: relative;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-left: 15px;
+  font-size: 14px;
+  border-bottom: 1px solid #dedede;
+  overflow: hidden;
+  position: relative;
 }
 
 .addAir_info li:last-child {
-    border: none;
+  border: none;
 }
 
 .addAir_info div {
-    float: left;
-    width: 1.6rem;
+  float: left;
+  width: 1.6rem;
 }
 
 .addAir_info .country-btn {
-    width: 60%;
-    float: left;
-    height: .4rem;
-    margin-left: 12%;
+  width: 60%;
+  float: left;
+  height: .4rem;
+  margin-left: 12%;
 }
 
 .addAir_info .sex_cho_wrap {
-    width: 60%;
-    margin-left: 12%;
+  width: 60%;
+  margin-left: 12%;
 }
 
 .sex_cho_wrap span:first-child {
-    margin-right: 15%;
+  margin-right: 15%;
 }
 
 .addAir_info input {
-    float: left;
-    margin-left: 12%;
-    width: 60%;
-    height: 90%;
-    font-size: .28rem;
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 90%;
+  font-size: .28rem;
 }
 
 .addAir_info .postCard {
-    width: 60%;
-    float: left;
-    margin-left: 12%;
+  width: 60%;
+  float: left;
+  margin-left: 12%;
 }
 
 .addtra_info input {
-    float: left;
-    margin-left: 12%;
-    width: 60%;
-    height: 90%;
-    font-size: .28rem;
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 90%;
+  font-size: .28rem;
 }
 
 .addtra_info .birth-cont {
-    float: left;
-    margin-left: 12%;
-    width: 60%;
-    height: 100%;
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 100%;
 }
 
 .chn_eng_wrap {
-    border-top: 1px solid #e6e6e6;
-    background-color: #fff;
+  border-top: 1px solid #e6e6e6;
+  background-color: #fff;
 }
 
 .user_must {
-    width: .38rem;
-    height: .38rem;
-    margin-top: .05rem;
-    margin-left: .1rem;
-    background-size: 7rem 4.66rem;
-    background-position: -3.58rem -1.34rem;
+  width: .38rem;
+  height: .38rem;
+  margin-top: .05rem;
+  margin-left: .1rem;
+  background-size: 7rem 4.66rem;
+  background-position: -3.58rem -1.34rem;
 }
 
 .con_text_tip {
-    margin: 0 .15rem 1rem;
-    text-align: center;
-    font-size: .24rem;
-    color: #999;
+  margin: 0 .15rem 1rem;
+  text-align: center;
+  font-size: .24rem;
+  color: #999;
 }
 
-
 /*新增常旅结束*/
-
 
 /*填写姓名说明页css*/
 
 .fillName_page {
-    display: none;
-    background-color: #fff;
+  display: none;
+  background-color: #fff;
 }
 
 .ch_account {
-    width: 100%;
-    height: auto;
-    padding: .4rem;
+  width: 100%;
+  height: auto;
+  padding: .4rem;
 }
 
 #en_account {
-    padding-top: 0;
+  padding-top: 0;
 }
 
-.ch_account> li {
-    margin-bottom: .32rem;
+.ch_account > li {
+  margin-bottom: .32rem;
 }
 
-.ch_account> li:last-child {
-    margin-bottom: 0;
+.ch_account > li:last-child {
+  margin-bottom: 0;
 }
 
 .name_ul {
-    margin: .2rem 0 0 .32rem;
+  margin: .2rem 0 0 .32rem;
 }
 
 .name_ul li {
-    list-style: none;
-    list-style-type: disc;
-    color: #999;
-    /*font-size: .24rem;*/
+  list-style: none;
+  list-style-type: disc;
+  color: #999;
+  /*font-size: .24rem;*/
 }
 
 .name_ul li p {
-    line-height: .4rem;
+  line-height: .4rem;
 }
 
 .example_floor_down {
-    margin-bottom: .32rem;
+  margin-bottom: .32rem;
 }
 
 .example_floor {
-    margin: .32rem 0;
+  margin: .32rem 0;
 }
 
 .name_example {
-    width: 100%;
-    height: .8rem;
-    padding: .2rem .28rem;
-    border: 1px solid #e6e6e6;
-    border-radius: .04rem;
-    color: #333;
-    font-size: .28rem;
+  width: 100%;
+  height: .8rem;
+  padding: .2rem .28rem;
+  border: 1px solid #e6e6e6;
+  border-radius: .04rem;
+  color: #333;
+  font-size: .28rem;
 }
 
 .name_example span:first-child {
-    width: 1.2rem;
-    display: inline-block;
-    margin-right: 1.08rem;
+  width: 1.2rem;
+  display: inline-block;
+  margin-right: 1.08rem;
 }
 
 .name_example2 {
-    width: 100%;
-    height: 1.6rem;
-    border-radius: .04rem;
-    border: 1px solid #e6e6e6;
-    color: #333;
-    font-size: .28rem;
+  width: 100%;
+  height: 1.6rem;
+  border-radius: .04rem;
+  border: 1px solid #e6e6e6;
+  color: #333;
+  font-size: .28rem;
 }
 
 .name_example2 span:first-child {
-    width: 1.6rem;
-    display: inline-block;
-    margin-right: .65rem;
+  width: 1.6rem;
+  display: inline-block;
+  margin-right: .65rem;
 }
 
 .name_ul .name_example2 p {
-    height: .8rem;
-    line-height: .8rem;
-    border-bottom: 1px solid #e6e6e6;
-    padding: 0 .28rem;
+  height: .8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 0 .28rem;
 }
 
 .name_example2 p:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .moreData {
-    display: none;
-    margin-top: .3rem;
-    margin-bottom: .4rem;
-    vertical-align: middle;
-    text-align: center
+  display: none;
+  margin-top: .3rem;
+  margin-bottom: .4rem;
+  vertical-align: middle;
+  text-align: center
 }
 
 .header {
-    display: block;
+  display: block;
 }
-
 
 /*填写姓名说明页结束*/
 
 #shade {
-    display: block;
+  display: block;
 }
