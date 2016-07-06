@@ -575,7 +575,7 @@
     var myDate1 = new ATplugins.Picker({
         input: "#birth-cont",
         type: "date",
-        value: ['1987年', '6月', '15日'], // 初始化选中数据
+        value: ['1990年', '1月', '1日'], // 初始化选中数据
         cont: "uuun1"
     });
     var myDate2 = new ATplugins.Picker({
@@ -592,7 +592,7 @@
     var myDate4 = new ATplugins.Picker({
         input: "#birth-cont-edit",
         type: "date",
-        value: ['1987年', '6月', '15日'], // 初始化选中数据s
+        value: ['1990年', '1月', '1日'], // 初始化选中数据s
         cont: "eee1"
     });
     var myDate5 = new ATplugins.Picker({
