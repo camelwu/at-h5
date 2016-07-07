@@ -28,3 +28,10 @@ rem分支用于非F+H+T模块rem替换；
 点击“确定”，此刻类名为'cur'、'cur choose'、'cur chose'的更改为class = 'cur'即为当前筛选条件。
 点击“取消”或遮罩层，此刻类名为'cur choose'的更改为class = ''清除勾选。类名为'cur chose'、'chose'的
 更改为class = 'cur'即为当前筛选条件。
+
+
+
+#组件目录说明
+assets/plugins/*为组件的源文件目录，组件的开发，更新都在此目录下进行，修正测试完整后，需要grunt拷贝到js/plugins/* css/plugins/*对应的目录。
+项目中实际使用的文件是引用js/plugins/*; css/plugins/*
+**特别注意：修改组件相关的文件 不要去修改js/plugins/* 和css/plugins/*目录下的问题，grunt执行后会被源码文件覆盖。
