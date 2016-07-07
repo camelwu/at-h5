@@ -1474,6 +1474,10 @@ a.foot-users {
   color: #333;
   font-size: .3rem;
 }
+#addtra_page_hd,#edit_page_hd{
+  display: none;
+  z-index: 120;
+}
 
 .addtra_page {
   position: absolute;
@@ -1794,9 +1798,6 @@ a.foot-users {
   text-align: center
 }
 
-.header {
-  display: block;
-}
 
 /*填写姓名说明页结束*/
 

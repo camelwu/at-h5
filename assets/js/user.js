@@ -34,8 +34,11 @@
                 jAlert('超过常旅客人数上限，请删除一些再添加吧!');
                 return;
             }
+            $('#addtra_page_hd').show();
             $('#addtra_page').css('visibility', 'visible');
+            $('#edit_page_hd').hide();
             $('#uptra_page').hide();
+            $('#vlm-login').css('visibility', 'hidden');
             $('#content-wrap').css('visibility', 'hidden');
         });
 
@@ -180,7 +183,9 @@
                     return;
                 }
 
+                $('#addtra_page_hd').hide();
                 $('#addtra_page').css('visibility', 'hidden');
+                $('#vlm-login').css('visibility', 'visible');
                 $('#content-wrap').css('visibility', 'visible');
             };
 
@@ -197,7 +202,10 @@
                     $('.country-btn').attr('data-tel-code', '86');
                     $('#man').attr('class', 'per_man sex_act');
                     $('#woman').attr('class', 'per_man');
+                    $('#addtra_page_hd').hide();
                     $('#addtra_page').css('visibility', 'hidden');
+                    $('#vlm-login').css('visibility', 'visible');
+                    $('#vlm-login').css('visibility', 'visible');
                     $('#content-wrap').css('visibility', 'visible');
                 }
             }
@@ -419,7 +427,9 @@
             index = $(e.target).attr('index');
         }
         var uptra_page = $("#uptra_page")[0];
+        $("#edit_page_hd").show();
         $("#uptra_page").show().css('visibility', 'visible');
+        $('#vlm-login').css('visibility', 'hidden');
         $('#content-wrap').css('visibility', 'hidden');
         var input = document.getElementById("updateForm").getElementsByTagName("input");
         var cardType = $("#cardType")[0];
@@ -526,14 +536,18 @@
                 jConfirm("当前编辑的内容未保存，确定退出编辑?", "", conEdit);
                 return;
             }
+            $('#edit_page_hd').hide()
             $('#uptra_page').css('visibility', 'hidden');
+            $('#vlm-login').css('visibility', 'visible');
             $('#content-wrap').css('visibility', 'visible');
 
         });
 
         function conEdit(arg) {
             if (arg == true) {
+                $('#edit_page_hd').hide();
                 $('#uptra_page').css('visibility', 'hidden');
+                $('#vlm-login').css('visibility', 'visible');
                 $('#content-wrap').css('visibility', 'visible');
             }
         }
@@ -638,9 +652,11 @@
 
     //姓名说明新增
     $('#anameState').click(function () {
+        $('#addtra_page_hd').hide();
         $('#addtra_page').css('visibility', 'hidden');
         $('#fillName_page').show();
         $('#closeName').click(function () {
+            $('#addtra_page_hd').show();
             $('#addtra_page').css('visibility', 'visible');
             $('#fillName_page').hide();
         });
@@ -648,10 +664,12 @@
 
     //姓名说明编辑
     $('#nameState').click(function () {
+        $('#edit_page_hd').hide();
         $('#uptra_page').css('visibility', 'hidden');
         $('#fillName_page_edit').show();
 
         $('#closeName_edit').click(function () {
+            $('#edit_page_hd').show();
             $('#uptra_page').css('visibility', 'visible');
             $('#fillName_page_edit').hide();
         });
