@@ -446,7 +446,7 @@
 
             secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
-            //footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
+            //footer += '<div class="footer"><span>  </span></div>';
 
             contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl + '</div>';
             //firstUl + secondUl +footer+'</div>'
