@@ -64,7 +64,7 @@
     pointer-events: auto;
 }
 
-.picker_modal .toolbar + .picker_modal_inner {
+.picker_modal .toolbar+ .picker_modal_inner {
     height: -webkit-calc(100% - 44px);
     height: -moz-calc(100% - 44px);
     height: calc(100% - 44px);
@@ -118,8 +118,8 @@
 }
 
 .picker_items_col_wrapper {
-    -webkit-transition-duration: 300ms;
-    transition-duration: 300ms;
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
     width: 100%;

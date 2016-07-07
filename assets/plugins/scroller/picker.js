@@ -272,6 +272,7 @@
                 }
                 var newTranslate = -newActiveIndex * itemHeight + maxTranslate;
                 // Update wrapper
+
                 Utils.transition(col.wrapper, transition);
                 Utils.transform(col.wrapper, 'translate3d(0,' + (newTranslate) + 'px,0)');
 
@@ -762,6 +763,9 @@
             var pickerClass = 'picker_modal picker_columns';
             var pickerContainerId = 'pickerContainer';
             var tempValue = "";
+
+
+
             //dom 结构
             p.layout();
 
@@ -801,6 +805,7 @@
             p.opened = true;
             p.initialized = true;
 
+
             //设置value  params.value为初始化值
             p.value = p.params.value;
 
@@ -810,7 +815,9 @@
             }
 
             if (p.value) {
-                p.setValue(p.value, 0);
+                setTimeout(function () {
+                    p.setValue(p.value, 200);
+                }, 200);
             }
         };
         //移除picker组件
