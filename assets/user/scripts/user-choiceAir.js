@@ -549,7 +549,7 @@
 
       if (isMulSelect) {
         var age = $(this).attr("data-age"),
-          step = 1
+          step = 0;
         if (age < 2) {
           jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
           return;

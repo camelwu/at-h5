@@ -392,7 +392,11 @@
         <% if(travelers.length>0){  var i=1;%>
         <% travelers.forEach(function(info){%>
         <li>
+          <% if (flightInfo.isInternationalFlight) { %>
           <p class="clearfix"><span class="fl">登机人<%=i%></span><span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+          <% } else { %>
+          <p class="clearfix"><span class="fl">登机人<%=i%></span><span class="fr"><%=info.travelerName%></span></p>
+          <% } %>
           <p class="clearfix"><span class="fl">护照</span><span class="fr"><%=info.idNumber%></span></p>
           <% i++ %>
         </li>
