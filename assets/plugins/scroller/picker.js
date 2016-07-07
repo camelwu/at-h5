@@ -924,7 +924,7 @@
             e.preventDefault();
             if (p.opened) return;
             p.open();
-            p.input.fucus();
+            //p.input.fucus();
             if (p.params.scrollToInput) {
                 var pageContent = p.input.parents('.all_elements');
                 if (pageContent.length === 0) return;
