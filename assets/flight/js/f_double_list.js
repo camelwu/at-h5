@@ -272,7 +272,33 @@ var fDoubleList = {
   },
 
   filterHandler: function (data) {
-    var dataTransfer = data || [], tempArray = [{filterText: "不限", filterValue: ""}], f_data = {}, that = this;
+    var dataTransfer = data || [], tempArray = [{filterText: "不限", filterValue: ""}], f_data = {},  cabinClassDatas = [],that = this;
+    cabinClassDatas = [
+      {
+        filterText: "经济舱",
+        filterValue: "economy"
+      },
+      {
+        filterText: "超级经济舱",
+        filterValue: "economyPremium"
+      },
+      {
+        filterText: "商务舱",
+        filterValue: "business"
+      },
+      {
+        filterText: "头等舱",
+        filterValue: "first"
+      }
+    ];
+    cabinClassDatas.forEach(function(ele){
+      if(ele.filterValue == that.postObj.cabinClass){
+        ele.defaultChoose = 1;
+      }else{
+        ele.defaultChoose = 0;
+      }
+    })
+
     if (dataTransfer.length > 1) {
       dataTransfer.forEach(function (array, item) {
         var temObj = {};
@@ -366,25 +392,7 @@ var fDoubleList = {
             {
               allowMultiSelect: 0,
               filterType: 2,
-              item: [
-                {
-                  filterText: "经济舱",
-                  filterValue: "economy"
-                },
-                {
-                  filterText: "超级经济舱",
-                  filterValue: "economyPremium"
-                },
-                {
-                  filterText: "商务舱",
-                  filterValue: "business"
-                },
-                {
-                  filterText: "头等舱",
-                  filterValue: "first"
-                }
-
-              ],
+              item: cabinClassDatas,
               sortNumber: 3,
               title: "舱位"
             },
@@ -497,25 +505,7 @@ var fDoubleList = {
             {
               allowMultiSelect: 0,
               filterType: 2,
-              item: [
-                {
-                  filterText: "经济舱",
-                  filterValue: "economy"
-                },
-                {
-                  filterText: "超级经济舱",
-                  filterValue: "economyPremium"
-                },
-                {
-                  filterText: "商务舱",
-                  filterValue: "business"
-                },
-                {
-                  filterText: "头等舱",
-                  filterValue: "first"
-                }
-
-              ],
+              item: cabinClassDatas,
               sortNumber: 3,
               title: "舱位"
             },

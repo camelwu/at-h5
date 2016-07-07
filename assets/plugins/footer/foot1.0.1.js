@@ -413,8 +413,8 @@ var footer = (function(){
         }
       },
       // section
-      createSec : function(s, c, t, k, d) { //this.createSec(data[p].s, data[p].c, data[p].type, data[p].key, data[p].listData);
-        var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = s ? s : 1, cache = [],
+      createSec : function(s, c, t, k, d) {
+        var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = s ? s : 1, cache = [], defaultItem = 0,
         // 容器
           wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k +'" class="' + k + '">', '</ul>'],
         // 左侧容器
@@ -447,7 +447,7 @@ var footer = (function(){
               wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k +'" class="' + k + '" data-type="' + a.filterType + '">';
               for (var j = 0; j < item.length; j++) {
                 var o = item[j];
-                css = o.filterText == '不限'||o.filterText == '经济舱' ? ' class="cur"' : '';
+                css = o.filterText == '不限'||o.defaultChoose == 1 ? ' class="cur"' : '';
                 li += '<li' + css + ' data-val="' + o.filterValue + '">' + o.filterText + '<i></i></li>';
               }
               ulstr += wrapper[0] + li + wrapper[1];
@@ -463,10 +463,17 @@ var footer = (function(){
             break;
           case "sortTypes":
             // 排序
+            for (j=0; j < l; j++) {
+                 if(d[j].defaultChoose){
+                    defaultItem = j;
+                    break;
+                 }
+            }
             for (; i < l; i++) {
-              css = i == 0 ? ' class="cur"' : '';//2016-6-14&& i == "不限"
+              css = i == defaultItem? ' class="cur"' : '';
               listr += '<li' + css + ' data-val="' + d[i].sortValue + '">' + d[i].sortText + '<i></i></li>';
             }
+
             ulstr = wrapper[0] + listr + wrapper[1];
             break;
           case "themes":
@@ -542,9 +549,8 @@ var footer = (function(){
             time++;
           })
           this.isInt = (time < dlArray.length)?true:false;
-          this.redTip();
+         // this.redTip();
         }
-        //缓存数据&导入
       },
 
       remove : function() {
@@ -635,7 +641,7 @@ var footer = (function(){
         titleItem = clickDl.getAttribute('data-titleItem');
         maxRate = clickDl.getAttribute('data-titleMaxRate');
         ulArray = document.querySelectorAll('.'+ clickDl.id);
-        var bottleDlTitle = function(){ //bottleDlTitle(clickDl.id,"",clickDl, "");
+        var bottleDlTitle = function(){
           var  data = footer.data, resultTitle = "", cacheObj = null;
           for(var t in data){
             if(t == arguments[0]){

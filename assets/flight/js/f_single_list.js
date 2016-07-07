@@ -295,7 +295,33 @@ var fSingleList = {
   },
 
   filterHandler: function (data) {
-    var dataTransfer = data || [], tempArray = [{filterText: "不限", filterValue: ""}], f_data = {}, that = this;
+    var dataTransfer = data || [], tempArray = [{filterText: "不限", filterValue: ""}], f_data = {}, cabinClassDatas = [], that = this;
+    cabinClassDatas = [
+      {
+        filterText: "经济舱",
+        filterValue: "economy"
+      },
+      {
+        filterText: "超级经济舱",
+        filterValue: "economyPremium"
+      },
+      {
+        filterText: "商务舱",
+        filterValue: "business"
+      },
+      {
+        filterText: "头等舱",
+        filterValue: "first"
+      }
+    ];
+    cabinClassDatas.forEach(function(ele){
+      if(ele.filterValue == that.postObj.cabinClass){
+           ele.defaultChoose = 1;
+       }else{
+           ele.defaultChoose = 0;
+      }
+    })
+
     if (dataTransfer.length > 1) {
       dataTransfer.forEach(function (array, item) {
         var temObj = {};
@@ -321,7 +347,7 @@ var fSingleList = {
           clearOtherDl:8,   //清空另一个dl的高亮状态，    序号 值为1就清除1，值为8则不清除
           listData: [
             {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
-            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false", defaultChoose:1},
             {sortText: "起飞晚到早", sortValue: "isDesc_true"}
           ]
         },
@@ -389,25 +415,7 @@ var fSingleList = {
             {
               allowMultiSelect: 0,
               filterType: 2,
-              item: [
-                {
-                  filterText: "经济舱",
-                  filterValue: "economy"
-                },
-                {
-                  filterText: "超级经济舱",
-                  filterValue: "economyPremium"
-                },
-                {
-                  filterText: "商务舱",
-                  filterValue: "business"
-                },
-                {
-                  filterText: "头等舱",
-                  filterValue: "first"
-                }
-
-              ],
+              item: cabinClassDatas,
               sortNumber: 3,
               title: "舱位"
             },
@@ -518,25 +526,7 @@ var fSingleList = {
             {
               allowMultiSelect: 0,
               filterType: 2,
-              item: [
-                {
-                  filterText: "经济舱",
-                  filterValue: "economy"
-                },
-                {
-                  filterText: "超级经济舱",
-                  filterValue: "economyPremium"
-                },
-                {
-                  filterText: "商务舱",
-                  filterValue: "business"
-                },
-                {
-                  filterText: "头等舱",
-                  filterValue: "first"
-                }
-
-              ],
+              item:cabinClassDatas,
               sortNumber: 3,
               title: "舱位"
             },
