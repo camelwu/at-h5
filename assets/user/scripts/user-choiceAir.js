@@ -157,7 +157,7 @@
       _replacePagerAttri();
       _saveLocalStorge();
 
-      if (callback != undefined && callback != "undefined") {
+      if (callback !== undefined && callback !== "undefined" && callback !== null && callback !== "null") {
         //parent.callback();
         eval("parent." + callback + '(' + JSON.stringify(selectedPassagerArray[key]) + ')');
       }
