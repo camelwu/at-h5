@@ -549,7 +549,7 @@ var footer = (function(){
             time++;
           })
           this.isInt = (time < dlArray.length)?true:false;
-         // this.redTip();
+           this.redTip();
         }
       },
 
