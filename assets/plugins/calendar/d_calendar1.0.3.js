@@ -6,7 +6,7 @@
  *===============================================
  * */
 (function (exports) {
-  "use strct";
+  "use strict";
   var _CalF = {
 
     // 选择元素
@@ -41,7 +41,7 @@
     // 获取元素位置
     getPos: function (node) {
       var scrollx = document.documentElement.scrollLeft || document.body.scrollLeft,
-        scrollt = document.documentElement.scrollTop || document.body.scrollTop;
+        scrollt = document.documentElement.scrollTop || document.body.scrollTop,
       pos = node.getBoundingClientRect();
       return {
         top: pos.top + scrollt,
@@ -245,7 +245,7 @@
     // 渲染日期
     drawDate: function (odate) { // 参数 odate 为日期对象格式
       var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [],
-        textNode, disableDate, ableStartDate, rangeStartDate, rangeEndDate, tempDate;
+        textNode, disableDate, ableStartDate, rangeStartDate, rangeEndDate, tempDate, m, d, pstr;
       var nowDate = new Date(),
         nowyear = nowDate.getFullYear(),
         nowmonth = nowDate.getMonth(),
@@ -262,7 +262,7 @@
       this.month = month = odate.getMonth() + 1;
       this.date = date = odate.getDate();
       this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
-      tims = this.time;
+      var tims = this.time;
       this.result.length = 0;
       for (var key in tims) {
         this.result.push(key);
@@ -365,7 +365,7 @@
       this.month = month = odate.getMonth() + 1;
       this.date = date = odate.getDate();
       this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
-      tims = this.time;
+      var tims = this.time;
       this.result.length = 0;
       for (var key in tims) {
         this.result.push(key);
@@ -843,10 +843,10 @@
         that.initDate();
         for (var i = 0; i < that.num; i++) {
           if (i == (that.num - 1) && that.num > 1) {
-            var idate = new Date(nowY, nowM + i, 01);
+            var idate = new Date(nowY, nowM + i, 1);
             that.drawLastDate(idate);
           } else {
-            var idate = new Date(nowY, nowM + i, 01);
+            var idate = new Date(nowY, nowM + i, 1);
             that.drawDate(idate);
           }
         }
