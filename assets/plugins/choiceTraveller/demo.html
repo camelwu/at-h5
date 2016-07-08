@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+  <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+  <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+  <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+  <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+  <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+  <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+  <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+  <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+  <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+  <title>选择乘机人</title>
+  <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+  <link href="../../plugins/choiceTraveller/choiceTraveller.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+  .demo_lizi{
+    padding: 0 1rem;
+    height: 1rem;
+  }
+  .demo_lizi > .fr >span{
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    margin-top: .3rem;
+    background-color: #7bc300;
+  }
+</style>
+<body>
+  <div id="preloader" style="display: none">
+    <div id="status"></div>
+  </div>
+  <!--fht添加乘机人-->
+  <div class="demo_lizi">
+    <div class="fr"><span id="add_traveller"></span></div>
+  </div>
+
+  <div id="orderTraveller">
+    <ul style="display: none;">
+      <li class="order_tlist2">
+        <i class="tra_delete" onclick="delPassager(this);"></i>
+        <div class="traveller_wrap">
+          <span><em class="card_tra_type">姓/名</em><b class="travel_last" data-elementName="lastName">BAI</b>/<b class="travel_first" data-elementName="firstName">LISA</b></span>
+          <span><em class="card_tra_type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel_sex" data-sex="Ms" data-elementName="sexName">女</b></span>
+        </div>
+        <em class="edit_tips" data-id="" onclick="javascript:editPassager(this)"><input type="hidden" class="itemId" name="input-zone" class="passport_number" readonly="readonly"  data-elementName="travellerId"></em>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+  <script src="../../js/lib/jquery-1.10.2.min.js"></script>
+  <script src="../../js/lib/jquery.alert.js"></script>
+  <script src="../../js/lib/vlm.js"></script>
+  <script src="../../js/lib/ejs.js"></script>
+  <script src="../../js/plugins/countryList/countrydata.js"></script>
+  <script src="../../js/plugins/countryList/country_list.js"></script>
+  <script src="../../plugins/choiceTraveller/choiceTraveller2.js"></script>
+
+
+  <script>
+    /*添加出行人*/
+//      $("#status").show().fadeOut();
+//      $("#preloader").show().delay(400).fadeOut("medium");
+//      vlm.f_choice('orderTraveller', 'fx', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false,"callback",'#showHide');
+        new TravelChoice({id:'#add_traveller',Tid:'#orderTraveller'});
+  </script>
+
+
+
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-var hftTool ={
+ var hftTool ={
   resetMonth:function () {
   var array = [], arg = arguments[0];
   array = arg.split('-');

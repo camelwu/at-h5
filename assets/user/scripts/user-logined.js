@@ -80,12 +80,6 @@
       }
       if(myJson.data[0].nickName == ''){
         user_name.innerHTML='点击头像设置个人资料';
-      }else{
-        if (myJson.data[0].salutation == "26") {
-          user_sex.className = "icon_person open-sexm";
-        } else {
-          user_sex.className = "icon_person open-sexw";
-        }
       }
     }
   }
