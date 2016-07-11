@@ -312,7 +312,7 @@
               "LastName": conLasName,
               "Email": conEmail,
               "ContactNo": {
-                "CountryCode": "65",
+                "CountryCode":$('#oCountryCellAdd span').attr('data-code'),
                 "PhoneNo": conPhone
               },
               "MemberID": localStorage.memberid
