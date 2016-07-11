@@ -274,7 +274,7 @@
 
           var hotelStorage = sessionStorage.getItem('hotelStorage12345');
           hotelStorage = hotelStorage ? JSON.parse(hotelStorage) : {};
-
+console.log(model);
           Parameters = {
             "availability": true,
             "bankName": model.bankName,
@@ -288,9 +288,9 @@
             "cardBillingAddress": model.cardAddress,
             "countryNumber": model.countryNumber,
             "MobilePhone": model.MobilePhone,
-            "cardAddressCity": "北京",
-            "cardAddressPostalCode": "122132",
-            "cardCountryCode": "CN",
+            "cardAddressCity": model.cardAddressCity,
+            "cardAddressPostalCode": model.cardAddressPostalCode,
+            "cardCountryCode": model.cardCountryCode,
             "creditCardType": paymentType[cardType].id,
             "cashVoucherDetails": "",
             "checkInDate": json.dateInfo.CheckInDate + "T00:00:00",
@@ -382,6 +382,7 @@
 
       //$.jAlert.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",null,"支付完成","支付出现问题");
       console.log(JSON.stringify(param));
+      debugger;
       vlm.loading();
       vlm.loadJson(url, JSON.stringify(param), function (data) {
         if (data.success) {
