@@ -9,7 +9,7 @@
   <meta name="x5-orientation" content="portrait">
   <meta name="x5-fullscreen" content="true">
   <meta name="x5-page-mode" content="app">
-  <meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="telephone=no"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="green">
   <meta name="Keywords" content="亚程旅行网">
@@ -196,7 +196,9 @@
   <section id="hotel">
     <div class="hotel_section">
       <% var checkIn=checkInDate.split("T")[0],checkOut=checkOutDate.split("T")[0];%>
-      <a href="../hotel/hotel_detail.html?HotelID=<%=hotelCode%>&HotelCode=<%=hotelCode%>&InstantConfirmation=false&AllOccupancy=false&CheckInDate=<%=checkIn%>&CheckOutDate=<%=checkOut%>&NumRoom=<%=noOfRooms%>&NumAdult=<%=noOfAdults%>&NumChild=<%=noOfChild%>" class="hotel_link_wrap"><i class="hotel_tip_link"></i></a>
+      <a
+        href="../hotel/hotel_detail.html?HotelID=<%=hotelCode%>&HotelCode=<%=hotelCode%>&InstantConfirmation=false&AllOccupancy=false&CheckInDate=<%=checkIn%>&CheckOutDate=<%=checkOut%>&NumRoom=<%=noOfRooms%>&NumAdult=<%=noOfAdults%>&NumChild=<%=noOfChild%>"
+        class="hotel_link_wrap"><i class="hotel_tip_link"></i></a>
       <!--<div class="fht_hd clearfix">-->
       <!--<span class="fht_hd_tit hotel fl"><i></i>酒店</span>-->
       <!--</div>-->
@@ -206,7 +208,7 @@
           <li class="hotel_check_wrap">
             <% function getDayNum(arg1,arg2){
             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
-            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+            return dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
             }%>
             <span><%=vlm.Utils.format_date(checkInDate,"md")%>-<%=vlm.Utils.format_date(checkOutDate,"md")%></span>
             <span>共<%=getDayNum(checkInDate,checkOutDate)%>晚（当地时间为准）</span>
@@ -256,12 +258,15 @@
       <div class="fht_hd">订单总额</div>
       <div class="tot_prinum_wrap clearfix">
         <span class="fl">订单总额: <i class="tot_prinum"><%=currency%><%=totalRoomRate%></i></span>
-        <span class="fr fare_tip"  id="tip"></span>
+        <span class="fr fare_tip" id="tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">房费</span><span class="fr"><%=currency%><%=totalRoomRate-totalSeriveCharge%> </span></li>
-        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr"><%=currency%><%=totalSeriveCharge%></span></li>
-        <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1"><% if(paymentModeID==1){%>预付 <%} else{ %>到付<%}%></span></li>
+        <li class="clearfix"><span class="fl">房费</span><span class="fr"><%=currency%><%=totalRoomRate-totalSeriveCharge%> </span>
+        </li>
+        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr"><%=currency%><%=totalSeriveCharge%></span>
+        </li>
+        <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1"><% if(paymentModeID==1){%>预付 <%} else{ %>到付<%}%></span>
+        </li>
       </ul>
     </div>
   </section>
@@ -290,86 +295,95 @@
     <div class="flight_section">
       <ul class="flight_cir_wrap flight_cir_wrap1">
         <% if(flightInfo.segmentsLeave.length>=1) {%>
-            <!--去程-->
-            <li class="fli_cont fli_cont1">
-              <div class="fli_infp clearfix">
-                <div class="fli_cir_left fl">
-                  <i class="go_tip"></i>
-                  <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%></span>
-                  <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
-                  <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
-                </div>
-                <div class="fli_cir_right fr">
-                  <i></i>
-                  <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
-                </div>
+        <!--去程-->
+        <li class="fli_cont fli_cont1">
+          <div class="fli_infp clearfix">
+            <div class="fli_cir_left fl">
+              <i class="go_tip"></i>
+              <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%></span>
+              <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
+              <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
+            </div>
+            <div class="fli_cir_right fr">
+              <i></i>
+              <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+            </div>
+          </div>
+          <% for(var i=0; i< flightInfo.segmentsLeave.length; i++){ %>
+          <div class="fli_list">
+            <div class="time-arrow-time clearfix">
+              <div class="city-time-left">
+                <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].departDate,'hm')%></div>
+                <p class="port-name">
+                  <%=flightInfo.segmentsLeave[i].airportNameFrom%><%=flightInfo.segmentsLeave[i].termDepart%></p>
               </div>
-              <% for(var i=0; i< flightInfo.segmentsLeave.length; i++){ %>
-              <div class="fli_list">
-                <div class="time-arrow-time clearfix">
-                  <div class="city-time-left">
-                    <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].departDate,'hm')%></div>
-                    <p class="port-name"><%=flightInfo.segmentsLeave[i].airportNameFrom%><%=flightInfo.segmentsLeave[i].termDepart%></p>
-                  </div>
-                  <div class="time-arrow">
-                    <div class="icon-arrow"><span></span></div>
-                  </div>
-                  <div class="city-time-right">
-                    <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].arriveDate,'hm')%></div>
-                    <p class="port-name"><%=flightInfo.segmentsLeave[i].airportNameTo%><%=flightInfo.segmentsLeave[i].termArrive%></p>
-                  </div>
-                </div>
-                <div class="fli_info ">
-                  <span><%=flightInfo.segmentsLeave[i].airCorpName%></span><span class="line_four">|</span><span><%=flightInfo.segmentsLeave[i].airCorpCode%><%=flightInfo.segmentsLeave[i].flightNo%></span><span class="line_four">|</span><span><%=flightInfo.segmentsLeave[i].planeName%><span></span></span>
-                </div>
+              <div class="time-arrow">
+                <div class="icon-arrow"><span></span></div>
               </div>
-              <% if(flightInfo.segmentsLeave.length>=2 &&  i<flightInfo.segmentsLeave.length-1) {%>
-                  <div class="fli-stop">中转<%=flightInfo.segmentsLeave[i].cityNameTo%></div>
-              <% } %>
-            </li>
+              <div class="city-time-right">
+                <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].arriveDate,'hm')%></div>
+                <p class="port-name">
+                  <%=flightInfo.segmentsLeave[i].airportNameTo%><%=flightInfo.segmentsLeave[i].termArrive%></p>
+              </div>
+            </div>
+            <div class="fli_info ">
+              <span><%=flightInfo.segmentsLeave[i].airCorpName%></span><span class="line_four">|</span><span><%=flightInfo.segmentsLeave[i].airCorpCode%><%=flightInfo.segmentsLeave[i].flightNo%></span><span
+              class="line_four">|</span><span><%=flightInfo.segmentsLeave[i].planeName%><span></span></span>
+            </div>
+          </div>
+          <% if(flightInfo.segmentsLeave.length>=2 && i
+          <flightInfo.segmentsLeave.length-1
+          ) {%>
+          <div class="fli-stop">中转<%=flightInfo.segmentsLeave[i].cityNameTo%></div>
           <% } %>
+        </li>
+        <% } %>
         <% } %>
 
-        <% if( flightInfo.segmentsReturn  &&flightInfo.segmentsReturn.length>=1) {%>
+        <% if( flightInfo.segmentsReturn &&flightInfo.segmentsReturn.length>=1) {%>
 
-              <!--返程-->
-              <li class="fli_cont fli_cont1 fli_retrun">
-                <div class="fli_infp clearfix">
-                  <div class="fli_cir_left fl">
-                    <i class="back_tip"></i>
-                    <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%></span>
-                    <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
-                    <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
-                  </div>
-                  <div class="fli_cir_right fr">
-                    <i></i>
-                    <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
-                  </div>
-                </div>
-                <% for(var i=0; i< flightInfo.segmentsReturn.length; i++){ %>
-                <div class="fli_list">
-                    <div class="time-arrow-time clearfix">
-                      <div class="city-time-left">
-                        <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].departDate,'hm')%></div>
-                        <p class="port-name"><%=flightInfo.segmentsReturn[i].airportNameFrom%><%=flightInfo.segmentsReturn[i].termDepart%></p>
-                      </div>
-                      <div class="time-arrow">                             <!--<h6>2h3m</h6>-->
-                        <div class="icon-arrow"></div>
-                      </div>
-                      <div class="city-time-right">
-                        <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].arriveDate,'hm')%></div>
-                        <p class="port-name"><%=flightInfo.segmentsReturn[i].airportNameTo%><%=flightInfo.segmentsReturn[i].termArrive%></p>
-                      </div>
-                    </div>
-                    <div class="fli_info">
-                      <span><%=flightInfo.segmentsReturn[i].airCorpName%></span><span>|</span><span><%=flightInfo.segmentsReturn[i].airCorpCode%><%=flightInfo.segmentsReturn[i].flightNo%></span><span>|</span><span><%=flightInfo.segmentsReturn[i].planeName%><span></span></span>
-                    </div>
-                </div>
-                <% if(flightInfo.segmentsReturn.length>=2 &&  i<flightInfo.segmentsReturn.length-1) {%>
-                <div class="fli-stop">中转<%=flightInfo.segmentsReturn[i].cityNameTo%></div>
-                <% } %>
-                <% } %>
-              </li>
+        <!--返程-->
+        <li class="fli_cont fli_cont1 fli_retrun">
+          <div class="fli_infp clearfix">
+            <div class="fli_cir_left fl">
+              <i class="back_tip"></i>
+              <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%></span>
+              <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
+              <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
+            </div>
+            <div class="fli_cir_right fr">
+              <i></i>
+              <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+            </div>
+          </div>
+          <% for(var i=0; i< flightInfo.segmentsReturn.length; i++){ %>
+          <div class="fli_list">
+            <div class="time-arrow-time clearfix">
+              <div class="city-time-left">
+                <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].departDate,'hm')%></div>
+                <p class="port-name">
+                  <%=flightInfo.segmentsReturn[i].airportNameFrom%><%=flightInfo.segmentsReturn[i].termDepart%></p>
+              </div>
+              <div class="time-arrow">                             <!--<h6>2h3m</h6>-->
+                <div class="icon-arrow"></div>
+              </div>
+              <div class="city-time-right">
+                <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].arriveDate,'hm')%></div>
+                <p class="port-name">
+                  <%=flightInfo.segmentsReturn[i].airportNameTo%><%=flightInfo.segmentsReturn[i].termArrive%></p>
+              </div>
+            </div>
+            <div class="fli_info">
+              <span><%=flightInfo.segmentsReturn[i].airCorpName%></span><span>|</span><span><%=flightInfo.segmentsReturn[i].airCorpCode%><%=flightInfo.segmentsReturn[i].flightNo%></span><span>|</span><span><%=flightInfo.segmentsReturn[i].planeName%><span></span></span>
+            </div>
+          </div>
+          <% if(flightInfo.segmentsReturn.length>=2 && i
+          <flightInfo.segmentsReturn.length-1
+          ) {%>
+          <div class="fli-stop">中转<%=flightInfo.segmentsReturn[i].cityNameTo%></div>
+          <% } %>
+          <% } %>
+        </li>
 
         <% } %>
       </ul>
@@ -382,18 +396,20 @@
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
         <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
+        <li class="clearfix"><span class="fl">下单时间</span><span
+          class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
         </li>
       </ul>
     </div>
     <div class="fht_order_detail">
       <div class="fht_hd">出行人信息</div>
       <ul class="fht_order_tab border_light">
-        <% if(travelers.length>0){  var i=1;%>
+        <% if(travelers.length>0){ var i=1;%>
         <% travelers.forEach(function(info){%>
         <li>
           <% if (flightInfo.isInternationalFlight) { %>
-          <p class="clearfix"><span class="fl">登机人<%=i%></span><span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+          <p class="clearfix"><span class="fl">登机人<%=i%></span><span class="fr"><%=info.travelerName%>/<%=info.lastName%></span>
+          </p>
           <% } else { %>
           <p class="clearfix"><span class="fl">登机人<%=i%></span><span class="fr"><%=info.travelerName%></span></p>
           <% } %>
@@ -417,23 +433,26 @@
       <div class="fht_hd">订单总额</div>
       <div class="tot_prinum_wrap clearfix">
         <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalFlightPrice%></i></span>
-        <span class="fr fare_tip"  id="tip"></span>
+        <span class="fr fare_tip" id="tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=flightInfo.totalFareAmountADT%>×<%=numofAdult%> </span></li>
-        <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountADT%>×<%=numofAdult%> </span></li>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=flightInfo.totalFareAmountADT%>×<%=numofAdult%> </span>
+        </li>
+        <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountADT%>×<%=numofAdult%> </span>
+        </li>
         <%if(parseInt(numofChild)>0){%>
         <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=flightInfo.totalFareAmountCHD%>×<%=numofChild%> </span>
-        <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountCHD%>×<%=numofChild%> </span></li>
+        <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountCHD%>×<%=numofChild%> </span>
+        </li>
         <%}%>
         </li>
       </ul>
     </div>
   </section>
   <% if (isContinuePay==1) {%>
-      <div class="p-but payOrder">
-        <a href="payment.html?bookingRefNo=<%=bookingRefNo%>&type=Flight">支付订单</a>
-      </div>
+  <div class="p-but payOrder">
+    <a href="payment.html?bookingRefNo=<%=bookingRefNo%>&type=Flight">支付订单</a>
+  </div>
   <% } %>
 
 </script>
@@ -451,24 +470,25 @@
       <a href="../scenic/scenic_detail.html?packageID=<%=packageID%>"><i class="tourdetail_icon"></i></a>
     </div>
     <div class="tour_productinfo tour_ticketinfo">
-      <p>使用日期：<%=vlm.Utils.format_date(tours[0].travelDate,"Ymd")%> <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%><%=TourTimer[tours[0].tourSession]%></p>
+      <p>使用日期：<%=vlm.Utils.format_date(tours[0].travelDate,"Ymd")%>
+        <%=vlm.Utils.getWeek(tours[0].travelDate,"f1")%><%=TourTimer[tours[0].tourSession]%></p>
       <% var numAdult=0; numChild=0;
       chargeDetails.forEach(function(info){
       if(info.category=="ADULT"){
       numAdult=info.quantity
       }
       else if(info.category=="CHILD"){
-         numChild=info.quantity
+      numChild=info.quantity
       }
       }) %>
       <p><span>成人票：<%=numAdult%>张;</span>
         <%if(parseInt(numChild)>0){%>
-          <span>儿童票：<%=numChild%>张</span></p>
-        <%}%>
+        <span>儿童票：<%=numChild%>张</span></p>
+      <%}%>
     </div>
   </section>
 
-  <section id="order_detail" style="clear:both" >
+  <section id="order_detail" style="clear:both">
     <% if(voucher!=null && voucher.length>=1){ %>
     <div class="fht_order_detail">
       <div class="fht_hd">电子确认单（景点入园时出示）</div>
@@ -488,8 +508,10 @@
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
         <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span></li>
-        <li class="clearfix"><span class="fl">联系人</span><span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span></li>
+        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span>
+        </li>
+        <li class="clearfix"><span class="fl">联系人</span><span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span>
+        </li>
         <li class="clearfix"><span class="fl">联系电话</span><span class="fr"><%=contactDetails.contactNo%></span></li>
         <li class="clearfix"><span class="fl">邮箱</span><span class="fr"><%=contactDetails.email%></span></li>
       </ul>
@@ -506,14 +528,16 @@
         });
         %>
         <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalAmount%></i></span>
-        <span class="fr fare_tip"  id="tip"></span>
+        <span class="fr fare_tip" id="tip"></span>
       </div>
       <ul class="hft_pri_details">
         <% chargeDetails.forEach(function(info){ %>
         <% if(info.category=="ADULT"){ %>
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%>人</span></li>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%>人</span>
+        </li>
         <% } else if(info.category=="CHILD"&&parseInt(info.quantity)>0) {%>
-        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%>人</span></li>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%>人</span>
+        </li>
         <% } %>
         <% })%>
       </ul>
@@ -536,78 +560,84 @@
         <span class="productName"><%=packageName%></span><span class="productCode">(产品编号 <%=bookingRefNo%>)</span>
       </p>
       <%
-        var totalAmount=0;
-        chargeDetails.forEach(function(info){
-        if(info.category=="ADULT" || info.category=="CHILD"){
-        totalAmount+=info.totalAmount;
+      var totalAmount=0;
+      chargeDetails.forEach(function(info){
+      if(info.category=="ADULT" || info.category=="CHILD"){
+      totalAmount+=info.totalAmount;
       }
       });
       %>
-       <a href="../tour/packages_detail.html?packageID=<%=packageID%>&productPrice=<%=totalAmount%>&status=0"><i class="tourdetail_icon"></i></a>
+      <a href="../tour/packages_detail.html?packageID=<%=packageID%>&productPrice=<%=totalAmount%>&status=0"><i
+        class="tourdetail_icon"></i></a>
     </div>
-      <% var numAdult=0; numchild=0;
-      chargeDetails.forEach(function(info){
-      if(info.category=="ADULT"){
-      numAdult=info.quantity
-      }
-      else if(info.category=="CHILD"){
-      numchild=info.quantity
-      }
-      }) %>
+    <% var numAdult=0; numchild=0;
+    chargeDetails.forEach(function(info){
+    if(info.category=="ADULT"){
+    numAdult=info.quantity
+    }
+    else if(info.category=="CHILD"){
+    numchild=info.quantity
+    }
+    }) %>
   </section>
 
   <section id="tour_info" class="tour_list" style="clear:both">
-     <div class="tour-item">
-        <div class="title"><i></i><%=hotelDetails.hotelName%></div>
-         <div class="item">
-           <ul class="col">
-             <li>房型：</li>
-             <li><%=hotelDetails.rooms[0].roomName%></li>
-             <li>&nbsp<%=hotelDetails.rooms.length%>&nbsp间</li>
-           </ul>
-           <ul class="col">
-             <li>时间：</li>
-             <% function getDayNum(arg1,arg2){
-             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
-             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
-             }%>
-             <li><%=vlm.Utils.format_date(hotelDetails.checkinDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%> 共<%=getDayNum(hotelDetails.checkinDate,hotelDetails.checkoutDate)%>晚（以当地时间为准）</li>
-           </ul>
-         </div>
-     </div>
+    <div class="tour-item">
+      <div class="title"><i></i><%=hotelDetails.hotelName%></div>
+      <div class="item">
+        <ul class="col">
+          <li>房型：</li>
+          <li><%=hotelDetails.rooms[0].roomName%></li>
+          <li>&nbsp<%=hotelDetails.rooms.length%>&nbsp间</li>
+        </ul>
+        <ul class="col">
+          <li>时间：</li>
+          <% function getDayNum(arg1,arg2){
+          var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+          return dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+          }%>
+          <li>
+            <%=vlm.Utils.format_date(hotelDetails.checkinDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%>
+            共<%=getDayNum(hotelDetails.checkinDate,hotelDetails.checkoutDate)%>晚（以当地时间为准）
+          </li>
+        </ul>
+      </div>
+    </div>
     <!--<% var i=0; tours.forEach(function(info){ %>-->
-      <!--<div class="tour-item line">-->
-        <!--<div class="title"><i></i><%=info.tourName%></div>-->
-        <!--<div class="item">-->
-          <!--<% if(tours[i].hasOwnProperty("travelDate")){ %>-->
-          <!--<ul class="col">-->
-            <!--<li>游玩时间：</li>-->
-            <!--<li><%=vlm.Utils.format_date(info.travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%></li>-->
-          <!--</ul>-->
-          <!--<% i++ ;} %>-->
-          <!--<ul class="col">-->
-            <!--<li>成人票：</li>-->
-            <!--<li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</div>-->
+    <!--<div class="tour-item line">-->
+    <!--<div class="title"><i></i><%=info.tourName%></div>-->
+    <!--<div class="item">-->
+    <!--<% if(tours[i].hasOwnProperty("travelDate")){ %>-->
+    <!--<ul class="col">-->
+    <!--<li>游玩时间：</li>-->
+    <!--<li><%=vlm.Utils.format_date(info.travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%></li>-->
+    <!--</ul>-->
+    <!--<% i++ ;} %>-->
+    <!--<ul class="col">-->
+    <!--<li>成人票：</li>-->
+    <!--<li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--<% });%>-->
     <% for(var i=0;i < tours.length;i++){%>
     <div class="tour-item line">
       <div class="title"><i></i><%=tours[i].tourName%></div>
       <div class="item">
-              <ul class="col">
-              <% if(tours[i].hasOwnProperty("travelDate")){ %>
-              <li>游玩时间：</li>
-              <li><%=vlm.Utils.format_date(tours[i].travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%></li>
-              </ul>
-              <% }%>
-          <ul class="col">
-            <li>成人票：</li>
-            <li><%=numAdult%>张<% if(parseInt(numchild)>0){%>;儿童票：<%=numchild%>张<%}%></li>
-          </ul>
-        </div>
+        <ul class="col">
+          <% if(tours[i].hasOwnProperty("travelDate")){ %>
+          <li>游玩时间：</li>
+          <li><%=vlm.Utils.format_date(tours[i].travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%>
+            <%=TourTimer[tours[i].tourSession]%>
+          </li>
+        </ul>
+        <% }%>
+        <ul class="col">
+          <li>成人票：</li>
+          <li><%=numAdult%>张<% if(parseInt(numchild)>0){%>;儿童票：<%=numchild%>张<%}%></li>
+        </ul>
       </div>
+    </div>
     <% } %>
     <% if(flightDetails!=null){ %>
     <!--酒景接送机-->
@@ -615,11 +645,17 @@
       <div class="title"><i></i>接机服务</div>
       <div class="item">
         <ul class="ht_send_travel">
-          <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime), fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ') %>
-          <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime), fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+' ') %>
-          <li class="clearfix"><span class="fl">接机航班号</span><span class="fr"><%=flightDetails.arrivalFlightNo%></span></li>
+          <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime),
+          fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ')
+          %>
+          <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime),
+          fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+'
+          ') %>
+          <li class="clearfix"><span class="fl">接机航班号</span><span class="fr"><%=flightDetails.arrivalFlightNo%></span>
+          </li>
           <li class="clearfix"><span class="fl">接机时间</span><span class="fr"><%=fdTime%></span></li>
-          <li class="clearfix"><span class="fl">送机航班号</span><span class="fr"><%=flightDetails.departFlightNo%></span></li>
+          <li class="clearfix"><span class="fl">送机航班号</span><span class="fr"><%=flightDetails.departFlightNo%></span>
+          </li>
           <li class="clearfix"><span class="fl">送机时间</span><span class="fr"><%=fdTime2%></span></li>
         </ul>
       </div>
@@ -648,8 +684,10 @@
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab ">
         <li class="clearfix"><span class="fl">订单号</span><span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span></li>
-        <li class="clearfix"><span class="fl">联系人</span><span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span></li>
+        <li class="clearfix"><span class="fl">下单时间</span><span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHi")%></span>
+        </li>
+        <li class="clearfix"><span class="fl">联系人</span><span class="fr"><%=contactDetails.lastName%><%=contactDetails.firstName%></span>
+        </li>
         <li class="clearfix"><span class="fl">联系电话</span><span class="fr"><%=contactDetails.contactNo%></span></li>
         <li class="clearfix"><span class="fl">邮箱</span><span class="fr"><%=contactDetails.email%></span></li>
       </ul>
@@ -661,19 +699,21 @@
         <% var totalAmount=0;
         chargeDetails.forEach(function(info){
         if(info.category=="ADULT" || info.category=="CHILD"){
-          totalAmount+=info.totalAmount;
+        totalAmount+=info.totalAmount;
         }
         });
         %>
         <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalAmount%></i></span>
-        <span class="fr fare_tip"  id="tip"></span>
+        <span class="fr fare_tip" id="tip"></span>
       </div>
       <ul class="hft_pri_details">
         <% chargeDetails.forEach(function(info){ %>
         <% if(info.category=="ADULT"){ %>
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span></li>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span>
+        </li>
         <% } else if(info.category=="CHILD"&&parseInt(info.quantity)>0) {%>
-        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span></li>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=info.totalAmount/info.quantity%>×<%=info.quantity%></span>
+        </li>
         <% } %>
         <% })%>
       </ul>
@@ -693,7 +733,8 @@
     <div class="flight_section">
       <div class="fht_hd clearfix">
         <span class="fht_hd_tit fl"><i></i>机票</span>
-        <a href="../hotel_flight_tour/hft_flightDetail.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotle"><span class="fht_hd_det fr">详情<i></i></span></a>
+        <a href="../hotel_flight_tour/hft_flightDetail.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotle"><span
+          class="fht_hd_det fr">详情<i></i></span></a>
       </div>
       <ul class="flight_cir_wrap">
 
@@ -779,7 +820,8 @@
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
         <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
+        <li class="clearfix"><span class="fl"></span>下单时间<span
+          class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
         </li>
       </ul>
     </div>
@@ -811,7 +853,7 @@
       <div class="fht_hd">订单总额</div>
       <div class="tot_prinum_wrap clearfix">
         <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalFlightPrice%></i></span>
-        <span class="fr fare_tip"  id="tip"></span>
+        <span class="fr fare_tip" id="tip"></span>
       </div>
       <ul class="hft_pri_details">
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%>人 </span>
@@ -839,7 +881,8 @@
     <div class="flight_section">
       <div class="fht_hd clearfix">
         <span class="fht_hd_tit fl"><i></i>机票</span>
-        <a href="../hotel_flight_tour/hft_flightDetail.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotelTour"><span class="fht_hd_det fr">详情<i></i></span></a>
+        <a href="../hotel_flight_tour/hft_flightDetail.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotelTour"><span
+          class="fht_hd_det fr">详情<i></i></span></a>
       </div>
       <ul class="flight_cir_wrap">
 
@@ -896,7 +939,7 @@
             <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
             <% function getDayNum(arg1,arg2){
             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
-            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+            return dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
             }%>
             <span>共<%=getDayNum(hotelDetails.checkInDate,hotelDetails.checkoutDate)%>晚（当地时间为准）</span>
           </li>
@@ -934,7 +977,8 @@
         <li>
           <p class="mb_ten"><%=tours[i].tourName%></p>
           <% if(tours[i].travelDate){ %>
-          <p><%=vlm.Utils.format_date(tours[i].travelDate,"md")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%>
+          <p><%=vlm.Utils.format_date(tours[i].travelDate,"md")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%>
+            <%=TourTimer[tours[i].tourSession]%>
             <% } %>
           </p>
         </li>
@@ -966,7 +1010,8 @@
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
         <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
+        <li class="clearfix"><span class="fl"></span>下单时间<span
+          class="fr"><%=vlm.Utils.format_date(createTime,"YmdHi")%></span>
         </li>
       </ul>
     </div>
@@ -998,7 +1043,7 @@
       <div class="fht_hd">订单总额</div>
       <div class="tot_prinum_wrap clearfix">
         <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalFlightPrice%></i></span>
-        <span class="fr fare_tip" id = "tip"></span>
+        <span class="fr fare_tip" id="tip"></span>
       </div>
       <ul class="hft_pri_details">
         <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%> </span>
@@ -1018,25 +1063,25 @@
 
 </script>
 
-<script src="../js/lib/jquery.js" ></script>
-<script src="../js/lib/vlm.js" ></script>
-<script src="../js/lib/ejs.js" ></script>
-<script src="../js/lib/jquery.alert.js" ></script>
-<script src="js/order_detail.js" ></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="js/order_detail.js"></script>
 <script type="application/javascript">
 
-  var TourTimer={
-     0:"上午",
-     1:"下午",
-     2:"晚上",
-     3:"全天",
-     4:"全天"
+  var TourTimer = {
+    0: "上午",
+    1: "下午",
+    2: "晚上",
+    3: "全天",
+    4: "全天"
   }
 </script>
 
 <script>
-  function hotel_link(){
-      window.location.href="../hotel/hotel_detail.html";
+  function hotel_link() {
+    window.location.href = "../hotel/hotel_detail.html";
   }
 
 </script>

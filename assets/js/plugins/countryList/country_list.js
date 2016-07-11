@@ -1,5 +1,5 @@
 /*国籍和手机区号选择组件js   author ：qzz  date:2016/07/01 */
-var arrCountry = localStorage.arrCountry,countryArray={},targetDiv,targetTimer;
+var arrCountry = localStorage.arrCountry, countryArray = {}, targetDiv, targetTimer;
 
 function CountryList() {
   if (!arguments.length)
@@ -11,22 +11,22 @@ function CountryList() {
   }
 };
 
-CountryList.prototype= {
+CountryList.prototype = {
 
   constructor: CountryList,
 
   init: function (options) {
-    this.id=options.id;
-    this.telCode=options.telCode;
-    this.inputEvent(options.id,options.telCode);
+    this.id = options.id;
+    this.telCode = options.telCode;
+    this.inputEvent(options.id, options.telCode);
 
   },
 
   createCountryPanel: function (telCode) {
-    var that = this, oCounHeader = document.createElement('div'),countryWrapHot,countryWrap,
-    oCounContent = document.createElement('div'),
-    oCounWindow = document.createElement('ul'),
-    oCounIndex = document.createElement('div');
+    var that = this, oCounHeader = document.createElement('div'), countryWrapHot, countryWrap,
+      oCounContent = document.createElement('div'),
+      oCounWindow = document.createElement('ul'),
+      oCounIndex = document.createElement('div');
 
     oCounHeader.className = 'header country_header';
     oCounContent.className = 'all_elements country-cho-wrap';
@@ -86,69 +86,69 @@ CountryList.prototype= {
 
     //模板
     <!--热门国籍-->
-    var countryStrHot=['<h4><a name="rm" class="target"></a>热门</h4>'+
-      '<ul class="country_hot">'+
-      '<% for(var i=0; i< arrCountry.length; i++){ %>'+
-      '<% if(arrCountry[i].isHot == 1) { %>'+
-      '<li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>'+
-      '<% } %>'+
-      '<% } %>'+
-      '</ul>'].join('');
+    var countryStrHot = ['<h4><a name="rm" class="target"></a>热门</h4>' +
+    '<ul class="country_hot">' +
+    '<% for(var i=0; i< arrCountry.length; i++){ %>' +
+    '<% if(arrCountry[i].isHot == 1) { %>' +
+    '<li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>' +
+    '<% } %>' +
+    '<% } %>' +
+    '</ul>'].join('');
 
     <!--国籍全部列表-->
-    var countryStr=['<div class="full_country_outer">'+
-    '<% for(var tem in countryArray){ %>'+
-    '<a class="target" name="<%=tem%>"></a>'+
-    '<h4><%=tem%></h4>'+
-    '<ul class="full_country_list">'+
-    '<% countryArray[tem].forEach(function(array){ %>'+
-    '<li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>'+
-    '<% })%>'+
-    '</ul>'+
-    '<% }%>'+
+    var countryStr = ['<div class="full_country_outer">' +
+    '<% for(var tem in countryArray){ %>' +
+    '<a class="target" name="<%=tem%>"></a>' +
+    '<h4><%=tem%></h4>' +
+    '<ul class="full_country_list">' +
+    '<% countryArray[tem].forEach(function(array){ %>' +
+    '<li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>' +
+    '<% })%>' +
+    '</ul>' +
+    '<% }%>' +
     '</div>'].join('');
 
     <!--热门手机区号-->
-    var countryStrHotTel=['<h4><a name="rm" class="target"></a>热门</h4>'+
-    '<ul class="country_hot">'+
-    '<% for(var i=0; i< arrCountry.length; i++){ %>'+
-    '<% if(arrCountry[i].isHot == 1) { %>'+
-    '<li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>'+
-    '<% } %>'+
-    '<% } %>'+
+    var countryStrHotTel = ['<h4><a name="rm" class="target"></a>热门</h4>' +
+    '<ul class="country_hot">' +
+    '<% for(var i=0; i< arrCountry.length; i++){ %>' +
+    '<% if(arrCountry[i].isHot == 1) { %>' +
+    '<li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>' +
+    '<% } %>' +
+    '<% } %>' +
     '</ul>'].join('');
 
     <!--手机区号全部列表-->
-    var countryStrTel=['<div class="full_country_outer">'+
-    '<% for(var tem in countryArray){ %>'+
-    '<a class="target" name="<%=tem%>"></a>'+
-    '<h4><%=tem%></h4>'+
-    '<ul class="full_country_list">'+
-    '<%countryArray[tem].forEach(function(array){ %>'+
-    '<li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>'+
-    '<% })%>'+
-    '</ul>'+
-    '<% }%>'+
+    var countryStrTel = ['<div class="full_country_outer">' +
+    '<% for(var tem in countryArray){ %>' +
+    '<a class="target" name="<%=tem%>"></a>' +
+    '<h4><%=tem%></h4>' +
+    '<ul class="full_country_list">' +
+    '<%countryArray[tem].forEach(function(array){ %>' +
+    '<li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>' +
+    '<% })%>' +
+    '</ul>' +
+    '<% }%>' +
     '</div>'].join('');
 
     <!--国籍a-z-->
-    var countryStrIndex=['<ul>'+
-    '<li><a href="#rm">热门</a></li>'+
-    '<% for(var tem in countryArray){%>'+
-    '<li><a href="#<%=tem%>"><%=tem%></a></li>'+
-    '<%}%>'+
+    var countryStrIndex = ['<ul>' +
+    '<li><a href="#rm">热门</a></li>' +
+    '<% for(var tem in countryArray){%>' +
+    '<li><a href="#<%=tem%>"><%=tem%></a></li>' +
+    '<%}%>' +
     '</ul>'].join('');
 
-    if(telCode){
+    if (telCode) {
       //显示区号hot
-      countryWrapHot=ejs.render(countryStrHotTel,{arrCountry :arrCountry});
+      countryWrapHot = ejs.render(countryStrHotTel, {arrCountry: arrCountry});
       $('#country-wrap-hot').html(countryWrapHot);
 
       //显示区号全部列表
-      countryWrap=ejs.render(countryStrTel,{countryArray:countryArray});
+      countryWrap = ejs.render(countryStrTel, {countryArray: countryArray});
       $('#country-wrap').html(countryWrap);
 
-    }else{
+    } else {
       //不显示区号hot
       countryWrapHot = ejs.render(countryStrHot, {arrCountry: arrCountry});
       $('#country-wrap-hot').html(countryWrapHot);
@@ -165,7 +165,7 @@ CountryList.prototype= {
   },
 
   // 绑定操作对象的事件
-  inputEvent: function (id,telCode) {
+  inputEvent: function (id, telCode) {
     var that = this;
     $(id).on('click', function (e) {
       that.createCountryPanel(telCode);
@@ -183,9 +183,9 @@ CountryList.prototype= {
     });
   },
   //移除面板
-  panelRemove:function(){
+  panelRemove: function () {
     //展示列表消失
-    setTimeout(function(){
+    setTimeout(function () {
       $('.country_mask').remove();
       targetDiv.remove();
       $('.country-cho-wrap').remove();
@@ -193,80 +193,84 @@ CountryList.prototype= {
       $('#country_index_wrap').remove();
       if ($('.country-list-searched')) {
         $('.country-list-searched').remove();
-      };
-    },200)
+      }
+      ;
+    }, 200)
   },
 
- //A-Z点击
-  codeTarget: function(){
-    $('#country_index_wrap a').click(function(){
+  //A-Z点击
+  codeTarget: function () {
+    $('#country_index_wrap a').click(function () {
       clearTimeout(targetTimer);
-      targetDiv.css('visibility','visible');
+      targetDiv.css('visibility', 'visible');
       targetDiv.html($(this).html());
-      targetTimer=setTimeout(function(){
-        targetDiv.css('visibility','hidden');
-      },500);
+      targetTimer = setTimeout(function () {
+        targetDiv.css('visibility', 'hidden');
+      }, 500);
     });
   },
 
   //选择国家或者区号click具体操作
-  selectCountry:function (e) {
+  selectCountry: function (e) {
 
-    var cId=this.id,that=this,e = e || window.event, target = e.target || e.srcElement;
-    if ( cId == '#tel11' || cId == '#tel12' || cId == '#oCountryCellAdd' || cId == '#oCountryCellEdit' || cId=='#booking_package_linkman_phoneselect') {
+    var cId = this.id, that = this, e = e || window.event, target = e.target || e.srcElement;
+    if (cId == '#tel11' || cId == '#tel12' || cId == '#oCountryCellAdd' || cId == '#oCountryCellEdit' || cId == '#booking_package_linkman_phoneselect') {
       //login +86
-      if(target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == "country_list"){
-        var phonecode='+'+$(target).attr("data-tel-code");
+      if (target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == "country_list") {
+        var phonecode = '+' + $(target).attr("data-tel-code");
+        var phonecodeTel = $(target).attr("data-tel-code");
         $(cId).find('span').html(phonecode);
+        $(cId).find('span').attr('data-code', phonecodeTel);
         //选择完毕后展示列表remove
         that.panelRemove();
       }
 
-    }else if(cId == '#tel13'){
-      var phoneName,phonenumber,phonecode;
+    } else if (cId == '#tel13') {
+      var phoneName, phonenumber, phonecode;
       //忘记密码页+86
-      if(target.className == "country_list_hot"){
-        phoneName=$(target).find('em').html();
-        phonenumber=$(target).find('em').attr("data-tel-code");
-        phonecode = phoneName + '+' + phonenumber;
-        $(cId).find('div').html(phonecode);
-        that.panelRemove();
-      }else if(target.parentNode.className == "country_list_hot"){
-        phoneName=$(target).parent().find('em').html();
-        phonenumber = $(target).parent().find('em').attr("data-tel-code");
-        phonecode = phoneName + '+' + phonenumber;
-        $(cId).find('div').html(phonecode);
-        that.panelRemove();
-      }else if(target.className == "country_list"){
-        phoneName=$(target).find('em').html();
+      if (target.className == "country_list_hot") {
+        phoneName = $(target).find('em').html();
         phonenumber = $(target).find('em').attr("data-tel-code");
         phonecode = phoneName + '+' + phonenumber;
         $(cId).find('div').html(phonecode);
         that.panelRemove();
-      }else if(target.parentNode.className == "country_list"){
-        phoneName=$(target).parent().find('em').html();
+      } else if (target.parentNode.className == "country_list_hot") {
+        phoneName = $(target).parent().find('em').html();
+        phonenumber = $(target).parent().find('em').attr("data-tel-code");
+        phonecode = phoneName + '+' + phonenumber;
+        $(cId).find('div').html(phonecode);
+        that.panelRemove();
+      } else if (target.className == "country_list") {
+        phoneName = $(target).find('em').html();
+        phonenumber = $(target).find('em').attr("data-tel-code");
+        phonecode = phoneName + '+' + phonenumber;
+        $(cId).find('div').html(phonecode);
+        that.panelRemove();
+      } else if (target.parentNode.className == "country_list") {
+        phoneName = $(target).parent().find('em').html();
         phonenumber = $(target).parent().find('em').attr("data-tel-code");
         phonecode = phoneName + '+' + phonenumber;
         $(cId).find('div').html(phonecode);
         that.panelRemove();
       }
 
-    }else if(cId == '#oCountry1' || cId == '#oCountry2' || cId == '#oCountry3' || cId == '#oCountry4' || cId=='#booking_package_linkman_contact' ){
+    } else if (cId == '#oCountry1' || cId == '#oCountry2' || cId == '#oCountry3' || cId == '#oCountry4' || cId == '#booking_package_linkman_contact') {
       //新增常旅发证国家/国籍
-      if(target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == "country_list") {
+      if (target.className == "country_list_hot" || target.parentNode.className == "country_list_hot" || target.className == "country_list" || target.parentNode.className == "country_list") {
         $(cId).find('.country-btn').html($(target).html());
         $(cId).find('.country-btn').attr("data-tel-code", $(target).attr("data-tel-code"));
         $(cId).find('.country-btn').attr("data-code", $(target).attr("data-code"));
         //选择完毕后展示列表remove
         that.panelRemove();
       }
-    };
+    }
+    ;
 
   },
 
   //选择国籍或者区号事件,返回按钮
   chooseCountry: function (id) {
-    var that=this;
+    var that = this;
 
     //国家选择弹层返回按钮
     $('.country-hidden').click(function () {
@@ -274,22 +278,24 @@ CountryList.prototype= {
     });
 
     //选择国家操作
-    $("body").children().click(function () {});
+    $("body").children().click(function () {
+    });
 
-    $('.country-cho-wrap .content').on('click',function(e){
+    $('.country-cho-wrap .content').on('click', function (e) {
       that.selectCountry(e);
     });
 
-    if($('.country-list-searched').css('display') == 'block'){
-      $('.country-list-searched').on('click',function(e){
+    if ($('.country-list-searched').css('display') == 'block') {
+      $('.country-list-searched').on('click', function (e) {
         that.selectCountry(e);
       });
-    };
+    }
+    ;
 
   },
 
-  countrySearch:function (str) {
-    var valueStr = str,resultStr = '',searchResult = [],telCode=this.telCode,that=this;
+  countrySearch: function (str) {
+    var valueStr = str, resultStr = '', searchResult = [], telCode = this.telCode, that = this;
     if (valueStr) {
       for (var i = 0; i < arrCountry.length; i++) {
         if (arrCountry[i]['chineseName'].toLowerCase().indexOf(valueStr) > -1 || arrCountry[i]['englishName'].toLowerCase().indexOf(valueStr) > -1 || arrCountry[i]['nationalityCode'].toLowerCase().indexOf(valueStr) > -1 || arrCountry[i]['simplePinYin'].toLowerCase().indexOf(valueStr) > -1 || arrCountry[i]['fullPinYin'].toLowerCase().indexOf(valueStr) > -1) {
@@ -321,10 +327,10 @@ CountryList.prototype= {
   },
 
   //模糊搜索
-  fuzzyQuery : function () {
-    var that=this;
-    $('#country-input-zone').on('input propertychange',function(){
-      var serachstr=$('#country-input-zone').val();
+  fuzzyQuery: function () {
+    var that = this;
+    $('#country-input-zone').on('input propertychange', function () {
+      var serachstr = $('#country-input-zone').val();
       that.countrySearch(serachstr);
     });
 
@@ -333,24 +339,20 @@ CountryList.prototype= {
 };
 
 //根据countryCode获得CountryName
-function getCountryName(code){
+function getCountryName(code) {
   arrCountry = JSON.parse(localStorage.arrCountry);
-  for(var i=0;i<arrCountry.length; i++)
-  {
-    if(arrCountry[i].countryCode == code)
-    {
+  for (var i = 0; i < arrCountry.length; i++) {
+    if (arrCountry[i].countryCode == code) {
       return arrCountry[i];
     }
   }
 };
 
 //根据countryCode获得手机区号data-tel-code
-function getTelCode(code){
+function getTelCode(code) {
   arrCountry = JSON.parse(localStorage.arrCountry);
-  for(var i=0;i<arrCountry.length; i++)
-  {
-    if(arrCountry[i].countryCode == code)
-    {
+  for (var i = 0; i < arrCountry.length; i++) {
+    if (arrCountry[i].countryCode == code) {
       return arrCountry[i];
     }
   }

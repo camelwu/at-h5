@@ -746,6 +746,7 @@
     function selectUser(li) {
       li.toggleClass("choiced");
     }
+
     // 成人和儿童数添加
     // 注意这里操作的全局下的selectAdultNum
     function calculatePersonNum(PassengerType) {

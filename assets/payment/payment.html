@@ -2,471 +2,486 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
 
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/splash/splash-icon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="../images/splash/splash-icon-big.png">
-    <link rel="apple-touch-startup-image" href="../images/splash/splash-screen.png" media="screen and (max-device-width: 320px)" />
-    <link rel="apple-touch-startup-image" href="../images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
-    <link rel="apple-touch-startup-image" href="../images/splash/splash-screen-six.png" media="(device-width: 375px)">
-    <link rel="apple-touch-startup-image" href="../images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
-    <link rel="apple-touch-startup-image" sizes="640x1096" href="../images/splash/splash-screen@3x.png" />
-    <link rel="apple-touch-startup-image" sizes="1024x748" href="../images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
-    <link rel="apple-touch-startup-image" sizes="768x1004" href="../images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
-    <link rel="apple-touch-startup-image" sizes="1536x2008" href="../images/splash/splash-screen-ipad-portrait-retina.png" media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
-    <link rel="apple-touch-startup-image" sizes="1496x2048" href="../images/splash/splash-screen-ipad-landscape-retina.png" media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
-    <title>订单支付 - 亚程旅行网</title>
-    <link href="../styles/reset.css" rel="stylesheet" type="text/css">
-    <link href="../styles/tips.css" rel="stylesheet" />
-    <link href="../css/plugins/scroller/picker.css" rel="stylesheet" type="text/css">
-    <link href="../css/plugins/countryList/country_list.css" rel="stylesheet" type="text/css">
-    <link href="css/payment.css" rel="stylesheet" type="text/css">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/splash/splash-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="../images/splash/splash-icon-big.png">
+  <link rel="apple-touch-startup-image" href="../images/splash/splash-screen.png"
+        media="screen and (max-device-width: 320px)"/>
+  <link rel="apple-touch-startup-image" href="../images/splash/splash-screen@2x.png"
+        media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)"/>
+  <link rel="apple-touch-startup-image" href="../images/splash/splash-screen-six.png" media="(device-width: 375px)">
+  <link rel="apple-touch-startup-image" href="../images/splash/splash-screen-six-plus.png"
+        media="(device-width: 414px)">
+  <link rel="apple-touch-startup-image" sizes="640x1096" href="../images/splash/splash-screen@3x.png"/>
+  <link rel="apple-touch-startup-image" sizes="1024x748" href="../images/splash/splash-screen-ipad-landscape"
+        media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)"/>
+  <link rel="apple-touch-startup-image" sizes="768x1004" href="../images/splash/splash-screen-ipad-portrait.png"
+        media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)"/>
+  <link rel="apple-touch-startup-image" sizes="1536x2008" href="../images/splash/splash-screen-ipad-portrait-retina.png"
+        media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+  <link rel="apple-touch-startup-image" sizes="1496x2048"
+        href="../images/splash/splash-screen-ipad-landscape-retina.png"
+        media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+  <title>订单支付 - 亚程旅行网</title>
+  <link href="../styles/reset.css" rel="stylesheet" type="text/css">
+  <link href="../styles/tips.css" rel="stylesheet"/>
+  <link href="../css/plugins/scroller/picker.css" rel="stylesheet" type="text/css">
+  <link href="../css/plugins/countryList/country_list.css" rel="stylesheet" type="text/css">
+  <link href="css/payment.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <div id="preloader">
-        <div id="status">
-            <p class="center-text"></p>
-        </div>
-    </div>
-    <!--1支付方式-->
-    <div class="paymentype-session snap-content android-relative" style="display: block">
-        <div class="header">
-            <a href="javascript:window.history.go(-1);" class="header_back">
-                <i class="icon_back"></i>
-            </a>
-            <h3>订单支付</h3>
-        </div>
-        <!--  详情信息   -->
-        <div class="content payment-type-list"></div>
-    </div>
-    <!--2信用卡信息-->
-    <div class="all_elements credit-session" style="display: none">
-        <div class="header">
-            <a href="javascript:;" class="header_back">
-                <i class="icon_back"></i>
-            </a>
-            <h3>支付</h3>
-        </div>
-        <!-- Page Content-->
-        <div class="content pay_detail_order">
-            <!--   总价   -->
-            <ul id="order_pay_price">
+<div id="preloader">
+  <div id="status">
+    <p class="center-text"></p>
+  </div>
+</div>
+<!--1支付方式-->
+<div class="paymentype-session snap-content android-relative" style="display: block">
+  <div class="header">
+    <a href="javascript:window.history.go(-1);" class="header_back">
+      <i class="icon_back"></i>
+    </a>
 
-                {% if(vlm.getpara("type")=="Hotle" ){ if(paymentModeID==2) { %}
-                <div class="p-price p-price2">
-                    <p class="p-price-descript">您将根据付款当天的汇率以及酒店当地的货币付费给酒店。Asiatravel不提供发票，如需消费凭证，请向酒店前台索取消费清单</p>
-                    <p class="p-p1 p-p2" id="jp_price_sum">订单总价：
-                        <span class="coin_type">{%=currency%}</span><span class="total_price">{%=totalPrice%}</span>
-                        <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
-                    </p>
-                </div>
-                {% }else{ %}
-                <div class="p-price">
-                    <p class="p-p1" id="jp_price_sum">订单总价：
-                        <span class="coin_type">￥</span><span class="total_price">{%=totalPrice%}</span>
-                    </p>
-                </div>
-                {% } }else{ %}
-                <div class="p-price">
-                    <p class="p-p1" id="jp_price_sum">订单总价：
-                        <span class="coin_type">￥</span><span class="total_price">{%=totalFlightPrice%}</span>
-                    </p>
-                </div>
-                {% } %}
-            </ul>
-            <!--   支付信息   -->
-            <ul class="p-ul2">
-                <li>
-                    <div>信用卡卡号</div>
-                    <div><input type="tel" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="16" placeholder="输入信用卡卡号" /></div>
-                </li>
-                <li>
-                    <div>持卡人姓名</div>
-                    <div>
-                        <input type="text" value="" class="cardHolderName" maxlength="20" placeholder="姓名" />
-                    </div>
-                </li>
-                <li>
-                    <div>发卡银行</div>
-                    <div>
-                        <input type="text" value="" class="bankName" placeholder="招商银行" />
-                    </div>
-                </li>
-                <li class="countries-wrap" id="oCountry1">
-                    <div>发卡国家</div>
-                    <span class="CardCountryCode country-btn" data-code="CN">中国</span><b class="icon_common s-xiala2"></b>
-                    <b class="icon_common s-xiala1"></b>
-                </li>
-                <li>
-                    <div>有效期</div>
-                    <div id="jp_limit_time" class="cardExpiryDate" style="color: #a9a9a9;font-family: FZLTXHK;">月/年，如：09/12</div>
-                </li>
-                <li>
-                    <div>安全码</div>
-                    <div class="safe_code">
-                        <input type="tel" onkeyup="setNum(this);" maxlength="3" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位" />
-                    </div>
-                </li>
-                <li class="fill-tel">
-                    <div>持卡人手机号</div>
-                    <div class="con_phone fl" id="oCountryCellAdd">
-                        <span class="phone_pre" value="CN" data-code="86">+86</span>
-                        <b class="s-xiala3"></b>
-                    </div>
-                    <input type="tel" value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);">
-                </li>
-                <li>
-                    <div>账单城市</div>
-                    <div>
-                        <input type="text" placeholder="请输入持卡人账单城市" class="cardAddressCity" />
-                    </div>
-                </li>
-                <li>
-                    <div>账单地址</div>
-                    <div>
-                        <input type="text" placeholder="请输入持卡人账单地址" class="cardAddress" />
-                    </div>
-                </li>
-                <li>
-                    <div>邮政编码</div>
-                    <div><input type="tel" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);" /></div>
-                </li>
-                <li class="countries-wrap" id="oCountry2">
-                    <div>持卡人国家</div>
-                    <span class="CardIssuanceCountryCode country-btn" data-code="CN">中国</span><b class="icon_common s-xiala2"></b>
-                    <b class="icon_common s-xiala1"></b>
-                </li>
-            </ul>
-            <hr width="100%" size="1px" color="#dddddd">
-        </div>
-    </div>
-    <div class="p-but">支付</div>
-    <!--信用卡信息-->
+    <h3>订单支付</h3>
+  </div>
+  <!--  详情信息   -->
+  <div class="content payment-type-list"></div>
+</div>
+<!--2信用卡信息-->
+<div class="all_elements credit-session" style="display: none">
+  <div class="header">
+    <a href="javascript:;" class="header_back">
+      <i class="icon_back"></i>
+    </a>
 
-    <!--tpl模板文件-->
-    <script id="tpl_flighthotel_detail" type="text/template">
-        <div class="p-home">
-            <ul class="p-hotelinfo">
-                <li>机票+酒店</li>
-                {% if(flightInfo.segmentsReturn==null){ %}
-                <li>
-                    <span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
-                </li>
-                {% }else{ %}
-                <li>
-                    <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
-                    <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
-                    <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalAdult%}</i>成人</span> {% if(hotelDetails.roomDetails.totalChild>0){ %}
-                    <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalChild%}</i>儿童</span> {% } %}
-                    <span class="hf-f"><i>{%=hotelDetails.roomDetails.numRoom%}</i>间</span>
-                </li>
-                {% } %}
+    <h3>支付</h3>
+  </div>
+  <!-- Page Content-->
+  <div class="content pay_detail_order">
+    <!--   总价   -->
+    <ul id="order_pay_price">
 
-                <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
-            </ul>
-        </div>
-        <!-- 支付方式   -->
-        <div class="p-pay">
-            <ul class="p-ul1">
-                <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                    <i class="icon_pay p-icon1"></i>
-                    <span class="jp_credit">支付宝支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
-                <!--<i class="icon_pay p-icon6"></i>-->
-                <!--<span class="jp_credit" >银联支付</span>-->
-                <!--<i class = "p-icon5"></i>-->
-                <!--</li>-->
-                <li data-paymentmode="CreditCard" data-cardtype="Visa">
-                    <i class="icon_pay p-icon4"></i>
-                    <span class="jp_credit">Visa信用卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <li data-paymentmode="CreditCard" data-cardtype="Master">
-                    <i class="icon_pay p-icon3"></i>
-                    <span class="jp_credit">万事达卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-            </ul>
-        </div>
-    </script>
-    <script id="tpl_hotel_detail" type="text/template">
-        <div class="p-home">
-            <ul class="p-hotelinfo">
-                <li>{%=hotelName%}</li>
-                <li>
-                    <span class="hf-f"><p>{%=vlm.Utils.format_date(checkInDate,"md")%}-{%=vlm.Utils.format_date(checkOutDate,"md")%} 共{%=totalNight%}晚（当地时间为准）</p></span>
-                </li>
-                <li>
-                    <div class="hf-anum">
-                        <span>房型:</span>
-                        <span>{%=roomType%}</span>
-                        <span>房间数</span>
-                        <span><i>{%=noOfRooms%}</i>间</span>
+      {% if(vlm.getpara("type")=="Hotle" ){ if(paymentModeID==2) { %}
+      <div class="p-price p-price2">
+        <p class="p-price-descript">您将根据付款当天的汇率以及酒店当地的货币付费给酒店。Asiatravel不提供发票，如需消费凭证，请向酒店前台索取消费清单</p>
 
-                    </div>
-                </li>
-                {% if(paymentModeID==2) { %}
-                <li class="order-price">
-                    订单总价：<span class="coin_type">SGD</span><i>{%=totalPrice%}</i>
-                    <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
-                </li>
-                {% } else { %}
-                <li class="order-price">
-                    订单总价：<span class="coin_type">￥</span><i>{%=totalPrice%}</i>
-                </li>
-                {% } %}
-            </ul>
+        <p class="p-p1 p-p2" id="jp_price_sum">订单总价：
+          <span class="coin_type">{%=currency%}</span><span class="total_price">{%=totalPrice%}</span>
+          <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
+        </p>
+      </div>
+      {% }else{ %}
+      <div class="p-price">
+        <p class="p-p1" id="jp_price_sum">订单总价：
+          <span class="coin_type">￥</span><span class="total_price">{%=totalPrice%}</span>
+        </p>
+      </div>
+      {% } }else{ %}
+      <div class="p-price">
+        <p class="p-p1" id="jp_price_sum">订单总价：
+          <span class="coin_type">￥</span><span class="total_price">{%=totalFlightPrice%}</span>
+        </p>
+      </div>
+      {% } %}
+    </ul>
+    <!--   支付信息   -->
+    <ul class="p-ul2">
+      <li>
+        <div>信用卡卡号</div>
+        <div><input type="tel" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="16"
+                    placeholder="输入信用卡卡号"/></div>
+      </li>
+      <li>
+        <div>持卡人姓名</div>
+        <div>
+          <input type="text" value="" class="cardHolderName" maxlength="20" placeholder="姓名"/>
         </div>
-        <!-- 支付方式   -->
-        <div class="p-pay">
-            <ul class="p-ul1">
-                {% if(paymentModeID==1){ %}
-                <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                    <i class="icon_pay p-icon1"></i>
-                    <span class="jp_credit">支付宝支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
-                <!--<i class="icon_pay p-icon6"></i>-->
-                <!--<span class="jp_credit" >银联支付</span>-->
-                <!--<i class = "p-icon5"></i>-->
-                <!--</li>-->
-                {% } %}
-                <li data-paymentmode="CreditCard" data-cardtype="Visa">
-                    <i class="icon_pay p-icon4"></i>
-                    <span class="jp_credit">Visa信用卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <li data-paymentmode="CreditCard" data-cardtype="Master">
-                    <i class="icon_pay p-icon3"></i>
-                    <span class="jp_credit">万事达卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-            </ul>
+      </li>
+      <li>
+        <div>发卡银行</div>
+        <div>
+          <input type="text" value="" class="bankName" placeholder="招商银行"/>
         </div>
-    </script>
-    <script id="tpl_flight_detail" type="text/template">
-        <div class="p-home">
-            <ul class="p-hotelinfo">
-                <li>
-                    {% if(flightInfo.segmentsReturn==null){ %}
-                    <li>
-                        单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
-                    </li>
-                    <li>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
-                        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if( numofChild >0 ){ %}
-                        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span> {% } %}
-                    </li>
-                    {% } else{ %}
-                    <li>
-                        往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
-                    </li>
-                    <li>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
-                        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"cymd")%}</p></span>
-                        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if( numofChild >0 ){ %}
-                        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span> {% } %} {% } %}
-                    </li>
-                    <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
-            </ul>
+      </li>
+      <li class="countries-wrap" id="oCountry1">
+        <div>发卡国家</div>
+        <span class="CardCountryCode country-btn" data-code="CN">中国</span><b class="icon_common s-xiala2"></b>
+        <b class="icon_common s-xiala1"></b>
+      </li>
+      <li>
+        <div>有效期</div>
+        <div id="jp_limit_time" class="cardExpiryDate" style="color: #a9a9a9;font-family: FZLTXHK;">月/年，如：09/12</div>
+      </li>
+      <li>
+        <div>安全码</div>
+        <div class="safe_code">
+          <input type="tel" onkeyup="setNum(this);" maxlength="3" value="" class="cardSecurityCode"
+                 placeholder="请输入签名栏末尾最后3位"/>
         </div>
-        <!-- 支付方式   -->
-        <div class="p-pay">
-            <ul class="p-ul1">
-                <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                    <i class="icon_pay p-icon1"></i>
-                    <span class="jp_credit">支付宝支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
-                <!--<i class="icon_pay p-icon6"></i>-->
-                <!--<span class="jp_credit" >银联支付</span>-->
-                <!--<i class = "p-icon5"></i>-->
-                <!--</li>-->
-                <li data-paymentmode="CreditCard" data-cardtype="Visa">
-                    <i class="icon_pay p-icon4"></i>
-                    <span class="jp_credit">Visa信用卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <li data-paymentmode="CreditCard" data-cardtype="Master">
-                    <i class="icon_pay p-icon3"></i>
-                    <span class="jp_credit">万事达卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-            </ul>
+      </li>
+      <li class="fill-tel">
+        <div>持卡人手机号</div>
+        <div class="con_phone fl" id="oCountryCellAdd">
+          <span class="phone_pre" value="CN" data-code="86">+86</span>
+          <b class="s-xiala3"></b>
         </div>
-    </script>
-    <script id="tpl_tour_detail" type="text/template">
-        <div class="p-home">
-            <ul class="p-hotelinfo">
-                <li>酒+景</li>
-                <li>
-                    <span class="hf-f"><p>{%=packageName%}</p></span>
-                </li>
-                <li>
-                    <div class="hf-anum">
-                        <span>人数:</span>
+        <input type="tel" value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);">
+      </li>
+      <li>
+        <div>账单城市</div>
+        <div>
+          <input type="text" placeholder="请输入持卡人账单城市" class="cardAddressCity"/>
+        </div>
+      </li>
+      <li>
+        <div>账单地址</div>
+        <div>
+          <input type="text" placeholder="请输入持卡人账单地址" class="cardAddress"/>
+        </div>
+      </li>
+      <li>
+        <div>邮政编码</div>
+        <div><input type="tel" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);"/></div>
+      </li>
+      <li class="countries-wrap" id="oCountry2">
+        <div>持卡人国家</div>
+        <span class="CardIssuanceCountryCode country-btn" data-code="CN">中国</span><b class="icon_common s-xiala2"></b>
+        <b class="icon_common s-xiala1"></b>
+      </li>
+    </ul>
+    <hr width="100%" size="1px" color="#dddddd">
+  </div>
+</div>
+<div class="p-but">支付</div>
+<!--信用卡信息-->
 
-                        <span><i>{%=numofAdult%}</i>成人</span>
-                        <span><i>{%=numofChild%}</i>儿童</span>
+<!--tpl模板文件-->
+<script id="tpl_flighthotel_detail" type="text/template">
+  <div class="p-home">
+    <ul class="p-hotelinfo">
+      <li>机票+酒店</li>
+      {% if(flightInfo.segmentsReturn==null){ %}
+      <li>
+        <span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
+      </li>
+      {% }else{ %}
+      <li>
+        <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
+        <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
+        <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalAdult%}</i>成人</span> {%
+        if(hotelDetails.roomDetails.totalChild>0){ %}
+        <span class="hf-f"><i>{%=hotelDetails.roomDetails.totalChild%}</i>儿童</span> {% } %}
+        <span class="hf-f"><i>{%=hotelDetails.roomDetails.numRoom%}</i>间</span>
+      </li>
+      {% } %}
 
-                    </div>
-                </li>
-                <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
-            </ul>
+      <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="icon_pay p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
+      <!--<i class="icon_pay p-icon6"></i>-->
+      <!--<span class="jp_credit" >银联支付</span>-->
+      <!--<i class = "p-icon5"></i>-->
+      <!--</li>-->
+      <li data-paymentmode="CreditCard" data-cardtype="Visa">
+        <i class="icon_pay p-icon4"></i>
+        <span class="jp_credit">Visa信用卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="icon_pay p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+    </ul>
+  </div>
+</script>
+<script id="tpl_hotel_detail" type="text/template">
+  <div class="p-home">
+    <ul class="p-hotelinfo">
+      <li>{%=hotelName%}</li>
+      <li>
+        <span class="hf-f"><p>{%=vlm.Utils.format_date(checkInDate,"md")%}-{%=vlm.Utils.format_date(checkOutDate,"md")%}
+          共{%=totalNight%}晚（当地时间为准）</p></span>
+      </li>
+      <li>
+        <div class="hf-anum">
+          <span>房型:</span>
+          <span>{%=roomType%}</span>
+          <span>房间数</span>
+          <span><i>{%=noOfRooms%}</i>间</span>
+
         </div>
-        <!-- 支付方式   -->
-        <div class="p-pay">
-            <ul class="p-ul1">
-                <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                    <i class="icon_pay p-icon1"></i>
-                    <span class="jp_credit">支付宝支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
-                <!--<i class="icon_pay p-icon6"></i>-->
-                <!--<span class="jp_credit" >银联支付</span>-->
-                <!--<i class = "p-icon5"></i>-->
-                <!--</li>-->
-                <li data-paymentmode="CreditCard" data-cardtype="Visa">
-                    <i class="icon_pay p-icon4"></i>
-                    <span class="jp_credit">Visa信用卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <li data-paymentmode="CreditCard" data-cardtype="Master">
-                    <i class="icon_pay p-icon3"></i>
-                    <span class="jp_credit">万事达卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-            </ul>
+      </li>
+      {% if(paymentModeID==2) { %}
+      <li class="order-price">
+        订单总价：<span class="coin_type">SGD</span><i>{%=totalPrice%}</i>
+        <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
+      </li>
+      {% } else { %}
+      <li class="order-price">
+        订单总价：<span class="coin_type">￥</span><i>{%=totalPrice%}</i>
+      </li>
+      {% } %}
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      {% if(paymentModeID==1){ %}
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="icon_pay p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
+      <!--<i class="icon_pay p-icon6"></i>-->
+      <!--<span class="jp_credit" >银联支付</span>-->
+      <!--<i class = "p-icon5"></i>-->
+      <!--</li>-->
+      {% } %}
+      <li data-paymentmode="CreditCard" data-cardtype="Visa">
+        <i class="icon_pay p-icon4"></i>
+        <span class="jp_credit">Visa信用卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="icon_pay p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+    </ul>
+  </div>
+</script>
+<script id="tpl_flight_detail" type="text/template">
+  <div class="p-home">
+    <ul class="p-hotelinfo">
+      <li>
+        {% if(flightInfo.segmentsReturn==null){ %}
+      <li>
+        单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
+      </li>
+      <li>
+        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
+        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if( numofChild >0 ){ %}
+        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span> {% } %}
+      </li>
+      {% } else{ %}
+      <li>
+        往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
+      </li>
+      <li>
+        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
+        <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"cymd")%}</p></span>
+        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if( numofChild >0 ){ %}
+        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span> {% } %} {% } %}
+      </li>
+      <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="icon_pay p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
+      <!--<i class="icon_pay p-icon6"></i>-->
+      <!--<span class="jp_credit" >银联支付</span>-->
+      <!--<i class = "p-icon5"></i>-->
+      <!--</li>-->
+      <li data-paymentmode="CreditCard" data-cardtype="Visa">
+        <i class="icon_pay p-icon4"></i>
+        <span class="jp_credit">Visa信用卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="icon_pay p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+    </ul>
+  </div>
+</script>
+<script id="tpl_tour_detail" type="text/template">
+  <div class="p-home">
+    <ul class="p-hotelinfo">
+      <li>酒+景</li>
+      <li>
+        <span class="hf-f"><p>{%=packageName%}</p></span>
+      </li>
+      <li>
+        <div class="hf-anum">
+          <span>人数:</span>
+
+          <span><i>{%=numofAdult%}</i>成人</span>
+          <span><i>{%=numofChild%}</i>儿童</span>
+
         </div>
-    </script>
-    <script id="tpl_scenic_detail" type="text/template">
-        <div class="p-home">
-            <ul class="p-hotelinfo">
-                <li>{%=packageName%}</li>
-                <li>
-                    {% var travelDate; if(tours[0].travelDate==undefined){ travelDate= tours[tours.length-1].travelDate} else{ travelDate=tours[0].travelDate} %}
-                    <span class="hf-f"><p>{%=vlm.Utils.format_date(travelDate,"cymd")%}（当地时间为准）</p></span>
-                </li>
-                <li>
-                    <div class="hf-anum">
-                        <span>人数:</span>
-                        <span><i>{%=numofAdult%}</i>成人</span>
-                        <span><i>{%=numofChild%}</i>儿童</span>
-                    </div>
-                </li>
-                <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
-            </ul>
+      </li>
+      <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="icon_pay p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
+      <!--<i class="icon_pay p-icon6"></i>-->
+      <!--<span class="jp_credit" >银联支付</span>-->
+      <!--<i class = "p-icon5"></i>-->
+      <!--</li>-->
+      <li data-paymentmode="CreditCard" data-cardtype="Visa">
+        <i class="icon_pay p-icon4"></i>
+        <span class="jp_credit">Visa信用卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="icon_pay p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+    </ul>
+  </div>
+</script>
+<script id="tpl_scenic_detail" type="text/template">
+  <div class="p-home">
+    <ul class="p-hotelinfo">
+      <li>{%=packageName%}</li>
+      <li>
+        {% var travelDate; if(tours[0].travelDate==undefined){ travelDate= tours[tours.length-1].travelDate} else{
+        travelDate=tours[0].travelDate} %}
+        <span class="hf-f"><p>{%=vlm.Utils.format_date(travelDate,"cymd")%}（当地时间为准）</p></span>
+      </li>
+      <li>
+        <div class="hf-anum">
+          <span>人数:</span>
+          <span><i>{%=numofAdult%}</i>成人</span>
+          <span><i>{%=numofChild%}</i>儿童</span>
         </div>
-        <!-- 支付方式   -->
-        <div class="p-pay">
-            <ul class="p-ul1">
-                <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                    <i class="icon_pay p-icon1"></i>
-                    <span class="jp_credit">支付宝支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
-                <!--<i class="icon_pay p-icon6"></i>-->
-                <!--<span class="jp_credit" >银联支付</span>-->
-                <!--<i class = "p-icon5"></i>-->
-                <!--</li>-->
-                <li data-paymentmode="CreditCard" data-cardtype="Visa">
-                    <i class="icon_pay p-icon4"></i>
-                    <span class="jp_credit">Visa信用卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <li data-paymentmode="CreditCard" data-cardtype="Master">
-                    <i class="icon_pay p-icon3"></i>
-                    <span class="jp_credit">万事达卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-            </ul>
-        </div>
-    </script>
+      </li>
+      <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="icon_pay p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
+      <!--<i class="icon_pay p-icon6"></i>-->
+      <!--<span class="jp_credit" >银联支付</span>-->
+      <!--<i class = "p-icon5"></i>-->
+      <!--</li>-->
+      <li data-paymentmode="CreditCard" data-cardtype="Visa">
+        <i class="icon_pay p-icon4"></i>
+        <span class="jp_credit">Visa信用卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="icon_pay p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+    </ul>
+  </div>
+</script>
 
 
-    <script id="tpl_flighthoteltour_detail" type="text/template">
-        <div class="p-home">
-            <ul class="p-hotelinfo">
-                <li>机票+酒店+景点</li>
-                {% if(flightInfo.segmentsReturn==null){ %}
-                <li>
-                    <span>去程：</span><span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
-                </li>
-                {% }else{ %}
-                <li>
-                    <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
-                    <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
-                    <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if(numofChild >0){ %}
-                    <span class="hf-f"><i>{%=numofChild %}</i>儿童</span> {% } %}
-                    <span class="hf-f"><i>{%=numofRoom %}</i>间</span>
-                </li>
-                {% } %}
-                <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
-            </ul>
-        </div>
-        <!-- 支付方式   -->
-        <div class="p-pay">
-            <ul class="p-ul1">
-                <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                    <i class="icon_pay p-icon1"></i>
-                    <span class="jp_credit">支付宝支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-                <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
-                <!--<i class="icon_pay p-icon6"></i>-->
-                <!--<span class="jp_credit" >银联支付</span>-->
-                <!--<i class = "p-icon5"></i>-->
-                <!--</li>-->
-                <li data-paymentmode="CreditCard" data-cardtype="Visa">
-                    <i class="icon_pay p-icon4"></i>
+<script id="tpl_flighthoteltour_detail" type="text/template">
+  <div class="p-home">
+    <ul class="p-hotelinfo">
+      <li>机票+酒店+景点</li>
+      {% if(flightInfo.segmentsReturn==null){ %}
+      <li>
+        <span>去程：</span><span class="hf-f"><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
+      </li>
+      {% }else{ %}
+      <li>
+        <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
+        <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
+        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if(numofChild >0){ %}
+        <span class="hf-f"><i>{%=numofChild %}</i>儿童</span> {% } %}
+        <span class="hf-f"><i>{%=numofRoom %}</i>间</span>
+      </li>
+      {% } %}
+      <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="icon_pay p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class="p-icon5"></i>
+      </li>
+      <!--<li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">-->
+      <!--<i class="icon_pay p-icon6"></i>-->
+      <!--<span class="jp_credit" >银联支付</span>-->
+      <!--<i class = "p-icon5"></i>-->
+      <!--</li>-->
+      <li data-paymentmode="CreditCard" data-cardtype="Visa">
+        <i class="icon_pay p-icon4"></i>
                     <span class="jp_credit">Visa信用卡支付/span>
                     <i class="p-icon5"></i>
-                </li>
-                <li data-paymentmode="CreditCard" data-cardtype="Master">
-                    <i class="icon_pay p-icon3"></i>
-                    <span class="jp_credit">万事达卡支付</span>
-                    <i class="p-icon5"></i>
-                </li>
-            </ul>
-        </div>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="icon_pay p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class="p-icon5"></i>
+      </li>
+    </ul>
+  </div>
 
-    </script>
-    <!---------------->
+</script>
+<!---------------->
 
-    <script src="../js/lib/jquery.js"></script>
-    <script src="../js/lib/jquery.alert.js"></script>
-    <script src="../js/lib/vlm.js"></script>
-    <script src="../js/lib/template.js"></script>
-    <script src="../js/lib/plugins.js"></script>
-    <script src="../js/lib/ejs.js"></script>
-    <script src="../js/plugins/scroller/picker.js"></script>
-    <!--    <script src="../js/plugins/scroller/scroller1.1.js"></script>-->
-    <script src="../js/plugins/countryList/countrydata.js"></script>
-    <script src="../js/plugins/countryList/country_list.js"></script>
-    <script src="js/payment.js"></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/plugins/scroller/picker.js"></script>
+<!--    <script src="../js/plugins/scroller/scroller1.1.js"></script>-->
+<script src="../js/plugins/countryList/countrydata.js"></script>
+<script src="../js/plugins/countryList/country_list.js"></script>
+<script src="js/payment.js"></script>
 
-    <script>
-        // 输入只能纯数字
-        function setNum(obj) {
-            obj.value = obj.value.replace(/\D/ig, '');
-        }
+<script>
+  // 输入只能纯数字
+  function setNum(obj) {
+    obj.value = obj.value.replace(/\D/ig, '');
+  }
 
-    </script>
-
+</script>
 
 
 </body>
