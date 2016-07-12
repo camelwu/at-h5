@@ -457,7 +457,7 @@ footer dl.classname{
   right: -0.18rem;
   top: .05rem;
   border-radius: .05rem;
-  background: #fd7530;
+  background: #7bc300;
 }
 #sortTypes dt.clo:after,#filters dt.clo:after, #locationList dt.clo:after,#transformTypes dt.clo:after, #timeTypes dt.clo:after {
   display: none;

@@ -1015,6 +1015,8 @@ input:-ms-input-placeholder {
   height: .28rem;
   line-height: .28rem;
   font-size: .20rem;
+  width: 1.8rem;
+  margin: 0 auto;
 }
 
 .trip_go_, .trip_back_ {
