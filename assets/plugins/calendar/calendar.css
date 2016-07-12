@@ -245,6 +245,9 @@
   z-index: 999;
   background-color: #fff;
 }
+.calendar_week .ca_week{
+  margin: 0 .2rem;
+}
 
 .calendar_week .date_title {
   float: left;
@@ -365,7 +368,14 @@
   border-top-left-radius: .3rem;
   border-bottom-left-radius: .3rem;
 }
-
+.calendar a.rightSide.selectStart:after{
+  display: none;
+}
+.calendar a.through.rightSide:after{
+  display: block;
+  border-top-right-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+}
 .calendar a.selectEnd:after {
   content: " ";
   display: inline-block;
@@ -380,7 +390,43 @@
   border-top-right-radius: .3rem;
   border-bottom-right-radius: .3rem;
 }
-
+.calendar a.selectEnd.dayEnd.leftSide:after{
+  display: none;
+}
+.calendar a.selectEnd.dayStart:after{
+  display: none;
+}
+.calendar a.leftSide:after{
+  display: none;
+}
+.calendar a.leftSide.selectStart:after{
+  display: block;
+}
+.calendar a.selectStart.dayEnd:after{
+  display: none;
+}
+.calendar a.through.leftSide:after{
+  display: block;
+  border-top-left-radius: .35rem;
+  border-bottom-left-radius: .35rem;
+}
+.calendar a.through.dayEnd:after{
+  display: block;
+  border-top-right-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+}
+.calendar a.through.leftSide.dayEnd:after{
+  display: block;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+}
+.calendar a.through.dayStart:after{
+  display: block;
+  border-top-left-radius: .35rem;
+  border-bottom-left-radius: .35rem;
+}
 /*
 .calendar dd a span.live_txt {
     color: #7bc300;

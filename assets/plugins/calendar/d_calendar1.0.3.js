@@ -42,7 +42,7 @@
     getPos: function (node) {
       var scrollx = document.documentElement.scrollLeft || document.body.scrollLeft,
         scrollt = document.documentElement.scrollTop || document.body.scrollTop,
-      pos = node.getBoundingClientRect();
+        pos = node.getBoundingClientRect();
       return {
         top: pos.top + scrollt,
         right: pos.right + scrollx,
@@ -106,7 +106,7 @@
     //hotel header
     _tipHotelHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期以酒店当地时间为准)</span></div>',
     //带清除按钮和提示的header
-    _tipCleanHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div><a href="javascript:void(0);" class="header_clean">清除</a>',
+    _tipCleanHeader: '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><div class="tip_header"><h3>选择日期</h3><span class="tiper">(查询日期为出发地日期)</span></div><a href="javascript:void(0);" class="header_clean">清空</a>',
     //确认按钮
     _confirmBtn: '<div class="btn"><p>选择完毕</p><span class="total">06月28日至06月30日(2晚)</span></div>',
     // 模板数组
@@ -245,7 +245,7 @@
     // 渲染日期
     drawDate: function (odate) { // 参数 odate 为日期对象格式
       var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [],
-        textNode, disableDate, ableStartDate, rangeStartDate, rangeEndDate, tempDate, m, d, pstr;
+        textNode, disableDate, ableStartDate, rangeStartDate, rangeEndDate, tempDate, weekDay, rightOrLeftSide, m, d, pstr;
       var nowDate = new Date(),
         nowyear = nowDate.getFullYear(),
         nowmonth = nowDate.getMonth(),
@@ -286,6 +286,17 @@
         m = month < 10 ? '0' + month : month;
         d = i < 10 ? '0' + i : i;
         tempDate = new Date(year, m - 1, d);
+        weekDay = tempDate.getDay();
+        if(i===1){
+          rightOrLeftSide = "dayStart";
+        }else if(i === days){
+          rightOrLeftSide = "dayEnd";
+        }else{
+          rightOrLeftSide = "";
+        }
+        rightOrLeftSide = weekDay == 6 ? rightOrLeftSide +" rightSide" : (weekDay == 0 ? rightOrLeftSide + ' leftSide' : rightOrLeftSide);
+
+
         if (this.ableDateRange) {
           rangeStartDate = this.ableDateRange.rangeStartDate;
           rangeEndDate = this.ableDateRange.rangeEndDate;
@@ -297,9 +308,9 @@
               ddHtml.push('<a class="disabled">' + i + '</a>');
             } else {
               if (tims[year + '-' + m + '-' + d]) {
-                ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                ddHtml.push('<a class="live selected ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
               } else {
-                ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                ddHtml.push('<a class="live ' + rightOrLeftSide + '" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
               }
             }
           } else {
@@ -329,11 +340,11 @@
                     pstr = '<a class="live disabled">' + i + '</a>';
                     break;
                   } else {
-                    pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                    pstr = '<a class="live ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
                   }
                 }
               } else {
-                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                pstr = '<a class="live ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
               }
             }
           }
@@ -386,11 +397,22 @@
       }
       // 循环显示日期
       var theLastAbleDayDate = this.theLastAbleDay ? this.theLastAbleDay.getDate() : nowdate;
-      var rangeStartDate, rangeEndDate, tempDate;
+      var rangeStartDate, rangeEndDate, tempDate, weekDay, rightOrLeftSide;
       for (i = 1; i <= days; i++) {
         m = month < 10 ? '0' + month : month;
         d = i < 10 ? '0' + i : i;
         tempDate = new Date(year, m - 1, d);
+        weekDay = tempDate.getDay();
+
+        if(i===1){
+          rightOrLeftSide = "dayStart";
+        }else if(i === days){
+          rightOrLeftSide = "dayEnd";
+        }else{
+          rightOrLeftSide = "";
+        }
+        rightOrLeftSide = weekDay == 6 ? rightOrLeftSide +" rightSide" : (weekDay == 0 ? rightOrLeftSide + ' leftSide' : rightOrLeftSide);
+
         if (this.ableDateRange) {
           rangeStartDate = this.ableDateRange.rangeStartDate;
           rangeEndDate = this.ableDateRange.rangeEndDate;
@@ -401,9 +423,9 @@
               ddHtml.push('<a class="disabled">' + i + '</a>');
             } else {
               if (tims[year + '-' + m + '-' + d]) {
-                ddHtml.push('<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
+                ddHtml.push('<a class="live selected ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>');
               } else {
-                ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+                ddHtml.push('<a class="live ' + rightOrLeftSide + '" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
               }
             }
 
@@ -412,7 +434,7 @@
           }
         } else {
           if (i <= theLastAbleDayDate) {
-            ddHtml.push('<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>');
+            ddHtml.push('<a class="live ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>');
           } else {
             ddHtml.push('<a class="disabled">' + i + '</a>');
           }
@@ -601,7 +623,7 @@
         var firstDate = vlm.Utils.format_date(selectDate[0], 'md');
         var secondDate = vlm.Utils.format_date(selectDate[1], 'md');
         var days = (Math.round(((new Date(selectDate[1].replace(/-/g, "/"))) - new Date(selectDate[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)))
-        totelEle.html(firstDate + "至" + secondDate + '(' + days + '晚)');
+        totelEle.html(firstDate + "至" + secondDate + '(' + (1+days)+ '天' + days + '晚)');
         comfirmBtn.slideDown();
       } else {
         comfirmBtn.slideUp();
