@@ -287,14 +287,14 @@
         d = i < 10 ? '0' + i : i;
         tempDate = new Date(year, m - 1, d);
         weekDay = tempDate.getDay();
-        if(i===1){
+        if (i === 1) {
           rightOrLeftSide = "dayStart";
-        }else if(i === days){
+        } else if (i === days) {
           rightOrLeftSide = "dayEnd";
-        }else{
+        } else {
           rightOrLeftSide = "";
         }
-        rightOrLeftSide = weekDay == 6 ? rightOrLeftSide +" rightSide" : (weekDay == 0 ? rightOrLeftSide + ' leftSide' : rightOrLeftSide);
+        rightOrLeftSide = weekDay == 6 ? rightOrLeftSide + " rightSide" : (weekDay == 0 ? rightOrLeftSide + ' leftSide' : rightOrLeftSide);
 
 
         if (this.ableDateRange) {
@@ -319,16 +319,16 @@
         } else {
           if (tims[year + '-' + m + '-' + d]) {
             if (i == nowdate && month == nowmonth + 1) {
-              pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span></a>';
+              pstr = '<a class="live selected ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span></a>';
             } else {
-              pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
+              pstr = '<a class="live selected ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
             }
           } else {
             if (i == nowdate && month == nowmonth + 1 && year == nowyear) {
               if (i < ableStartDate) {
                 pstr = '<a class="live disabled">今天</a>';
               } else {
-                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
+                pstr = '<a class="live ' + rightOrLeftSide + '" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
               }
 
             } else {
@@ -404,14 +404,14 @@
         tempDate = new Date(year, m - 1, d);
         weekDay = tempDate.getDay();
 
-        if(i===1){
+        if (i === 1) {
           rightOrLeftSide = "dayStart";
-        }else if(i === days){
+        } else if (i === days) {
           rightOrLeftSide = "dayEnd";
-        }else{
+        } else {
           rightOrLeftSide = "";
         }
-        rightOrLeftSide = weekDay == 6 ? rightOrLeftSide +" rightSide" : (weekDay == 0 ? rightOrLeftSide + ' leftSide' : rightOrLeftSide);
+        rightOrLeftSide = weekDay == 6 ? rightOrLeftSide + " rightSide" : (weekDay == 0 ? rightOrLeftSide + ' leftSide' : rightOrLeftSide);
 
         if (this.ableDateRange) {
           rangeStartDate = this.ableDateRange.rangeStartDate;
@@ -623,7 +623,7 @@
         var firstDate = vlm.Utils.format_date(selectDate[0], 'md');
         var secondDate = vlm.Utils.format_date(selectDate[1], 'md');
         var days = (Math.round(((new Date(selectDate[1].replace(/-/g, "/"))) - new Date(selectDate[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)))
-        totelEle.html(firstDate + "至" + secondDate + '(' + (1+days)+ '天' + days + '晚)');
+        totelEle.html(firstDate + "至" + secondDate + '(' + (1 + days) + '天' + days + '晚)');
         comfirmBtn.slideDown();
       } else {
         comfirmBtn.slideUp();
