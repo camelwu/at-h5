@@ -119,7 +119,7 @@
                                 <i class="open_arw int_tel">&nbsp;</i>
                             </div>
                             <span class="list_con">
-                                <input class="list_inp2" id="list_con_tel" type="tel" placeholder="用于接收短信通知" data-elementName="mobilePhone"  />
+                                <input class="list_inp2" id="list_con_tel" type="tel" onkeyup="setNum(this)" maxlength="11" placeholder="用于接收短信通知" data-elementName="mobilePhone"  />
                             </span>
                         </li>
                         <li>
@@ -289,6 +289,11 @@
                 $(document.body).css('overflowY','hidden');
         });
       })();
+
+      // 输入只能纯数字
+      function setNum(obj) {
+        obj.value = obj.value.replace(/\D/ig, '');
+      }
 
     </script>
 

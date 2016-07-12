@@ -274,7 +274,7 @@ uoHisData();
   var uo_con2_chil1 = document.getElementById('uo_con2_chil1');
   var rege = fake_data.HotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g, '');
   uo_con2_chil1.innerHTML = '<h3>' + rege + " ( " + fake_data.HotelGenInfo.hotelName + " )" + '</h3>' +
-    //'<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
+      //'<p class="uo_c2_infor hotel_user_container_time">' + fake_data.dateInfo.CheckInDate.split('-')[0] + '年' + fake_data.dateInfo.CheckInDate.split('-')[1] + '月' + fake_data.dateInfo.CheckInDate.split('-')[2] + '日' + '-' + fake_data.dateInfo.CheckOutDate.split('-')[0] + '年' + fake_data.dateInfo.CheckOutDate.split('-')[1] + '月' + fake_data.dateInfo.CheckOutDate.split('-')[2] + '日' + ' -' + fake_data.dateInfo.totalNight + '晚（目的地时间为准）</p>' +
     '<p class="uo_c2_infor hotel_user_container_time">' + vlm.Utils.format_date(fake_data.dateInfo.CheckInDate, "md") + '-' + vlm.Utils.format_date(fake_data.dateInfo.CheckOutDate, "md") + '  共' + fake_data.dateInfo.totalNight + '晚（当地时间为准）</p>' +
     '<p class="uo_house hotel_user_container_type">房型：' + fake_data.RoomTypeName + '</p>';
 
@@ -667,6 +667,12 @@ uoHisData();
   //     add.style.backgroundSize = '7.9rem 7.83rem';
   // }
 })();
+
+
+// 输入只能纯数字
+function setNum(obj) {
+  obj.value = obj.value.replace(/\D/ig, '');
+}
 
 //国籍和发证国家和手机区号
 var oCountryCellAdd = new CountryList({

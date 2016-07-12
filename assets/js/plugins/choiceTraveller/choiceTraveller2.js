@@ -8,7 +8,7 @@ function TravelChoice() {
   if (jQuery) {
     this.init.apply(this, arguments);
   } else {
-    alert("需要jQuery!");
+    alert("need jQuery!");
   }
 };
 
