@@ -915,7 +915,7 @@ var htf_search = {
     };
     localStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
     if (allNum > 9) {
-      jAlert('每个机票酒店打包产品最多不能超过9人！', '');
+      jAlert('出游人最多9人，1成人最多带两个儿童！', '');
       return false;
     } else {
       return true;
