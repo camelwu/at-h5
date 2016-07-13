@@ -139,6 +139,7 @@
       this.ableWeekRange = options.ableWeekRange; //日期根据wenken 可选不可选 '1,2,3,4,5,6,0'
       this.prefix = options.prefix || "calendar";
       this.op = 0; //已操作次数
+      this.defaultComfirmBtn = options.defaultComfirmBtn;
       this.theLastAbleDay = options.theLastAbleDay;
       this.checkInTimeOptId = options.checkInTimeOptId;
       this.checkOutTimeOptId = options.checkOutTimeOptId;
@@ -211,7 +212,7 @@
         weeker.innerHTML = this._tempweek.join('');
         header.appendChild(weeker);
 
-        var comfirmBtn = this.tiper = document.createElement('div');
+        var comfirmBtn = this.comfirmBtn = document.createElement('div');
         comfirmBtn.id = 'comfirmBtn';
         comfirmBtn.className = 'calendar_comfirm';
         comfirmBtn.innerHTML = this._confirmBtn;
@@ -610,6 +611,9 @@
         firstWeek.html(vlm.Utils.getWeek(values[0]));
         secondDate.html(values[1]);
         secondWeek.html(vlm.Utils.getWeek(values[1]));
+        if(this.defaultComfirmBtn){
+          this.showComfirmBtn(1);
+        }
       }
     },
     /**
