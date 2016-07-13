@@ -74,9 +74,20 @@ img {
   color: #fff;
 }
 
+.one_scenic_tip {
+  width: 1.22rem;
+  height: .42rem;
+  position: absolute;
+  left: 0;
+  top: .2rem;
+  background: url("../../images/oneticket/scenic_tip.png") no-repeat;
+  background-size: 1.22rem .42rem;
+}
+
 .one_sale_content {
   padding: .6rem .26rem;
 }
+
 .one_sale_content > li > div {
   width: 48.5%;
   background-color: #fff;
@@ -84,6 +95,7 @@ img {
   -webkit-border-radius: 4px;
   border-radius: 4px;
   overflow: hidden;
+  position: relative;
 }
 
 .one_sale_content > li > div:nth-child(odd) {
