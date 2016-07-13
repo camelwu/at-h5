@@ -496,7 +496,7 @@
 
       if(hotelDetail.fromUtm){
         //暂时将返回按钮定位到酒店搜索页  后续如果能够支持搜索时再调整
-        $(".goback").attr('href','/hotel/index.html');
+        $(".goback").attr('href','/hotel/index.html?from=utm');
       }
     },
 
