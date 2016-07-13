@@ -1,0 +1,153 @@
+
+img {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.one_select {
+  height: .8rem;
+  line-height: .8rem;
+  background-color: #fed81d;
+  font-size: .32rem;
+}
+
+.one_travel_wrap .active {
+  overflow: hidden;
+}
+
+.one_travel_wrap .on {
+  display: block;
+}
+
+.one_travel_wrap .one_sale_cont {
+  background-color: #fed81d;
+}
+
+.one_travel_wrap .one_child_cont {
+  background-color: #7bc300;
+}
+
+.one_travel_wrap .one_bestie_cont {
+  background-color: #65ebe0;
+}
+
+.one_travel_wrap .one_lovers_cont {
+  background-color: #4ad1ef;
+}
+
+.one_travel_wrap > div {
+  display: none;
+  overflow: hidden;
+}
+
+.shortexhibition {
+  height: 2.6rem;
+  margin-top: .6rem;
+}
+
+.one_select > li {
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+
+.one_select > li.one_sale {
+  background-color: #fed81d;
+}
+
+.one_select > li.one_child {
+  background-color: #7bc300;
+}
+
+.one_select > li.one_bestie {
+  background-color: #65ebe0;
+}
+
+.one_select > li.one_lovers {
+  background-color: #4ad1ef;
+}
+
+.one_select > li.active {
+  color: #fff;
+}
+
+.one_sale_content {
+  padding: .6rem .26rem;
+}
+.one_sale_content > li > div {
+  width: 48.5%;
+  background-color: #fff;
+  float: left;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.one_sale_content > li > div:nth-child(odd) {
+  margin: 0 .2rem .18rem 0;
+}
+
+.one_scenic_txt {
+  padding: .2rem;
+  position: relative;
+}
+
+.onesceimg {
+  height: 2rem;
+}
+
+.one_scenic_txt span {
+  font-size: .24rem;
+}
+
+.price_panic {
+  padding-top: .1rem;
+}
+
+.one_price {
+  height: .6rem;
+  line-height: .6rem;
+}
+
+.panic_buy {
+  width: 1.4rem;
+  height: .5rem;
+  background: url("../../images/oneticket/panicbuy.png") no-repeat;
+  background-size: 1.4rem .5rem;
+  padding-left: .5rem;
+  line-height: .5rem;
+  color: #fff;
+}
+
+/*一元门票底部*/
+.one_foot {
+  background-color: #4ad1ef;
+  overflow: hidden;
+  padding: 0 .26rem .4rem;
+}
+
+.morexciting_title {
+  margin: .4rem 0;
+  height: .83rem;
+  background: url("../../images/oneticket/morexciting.png") no-repeat center;
+  background-size: 6.2rem .83rem;
+}
+
+.package_recommend li {
+  margin-bottom: .2rem;
+}
+
+.activity_rules_title {
+  margin: .4rem 0;
+  height: .83rem;
+  background: url("../../images/oneticket/activity_rules.png") no-repeat center;
+  background-size: 6.2rem .83rem;
+}
+
+.activity_rules_detail li {
+  line-height: .48rem;
+  color: #fff;
+}
