@@ -1,6 +1,7 @@
 ;
 (function (window, document) {
   var hotelDetail = {
+    fromUtm : false,  //来自关键字投放
     CultureName: "zh-CN",
     tempCurLeft: 0,
     tempStart: 0,
@@ -492,6 +493,11 @@
         label = ''; //result.data[0].hotelGenInfo["hotelName"];
       at.map.createMap(latitude, longitude);
       at.map.markHotel(latitude, longitude, label);
+
+      if(hotelDetail.fromUtm){
+        //暂时将返回按钮定位到酒店搜索页  后续如果能够支持搜索时再调整
+        $(".goback").attr('href','/hotel/index.html');
+      }
     },
 
     //点评点击事件
@@ -880,6 +886,7 @@
         dataObj.NumRoom = '1';
         dataObj.NumAdult = '1';
         dataObj.NumChild = '0';
+        hotelDetail.fromUtm = true;
       }
       this.gdataInfo = dataObj;
       this.myData.getByUrl = dataObj;
