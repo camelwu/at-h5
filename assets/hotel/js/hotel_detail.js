@@ -205,16 +205,17 @@
       var str = '';
       var tempArray = result.data[0].hotelRoomsList;
       for (var i = 0; i < tempArray.length; i++) {
-        str += '<li class="d-li1 super">' + '<div class="d-div3 roomEvent hotel_content_roomEvent" style="max-width: 60%" room-type-code=' + tempArray[i].roomTypeCode + '> ' + '<div class="d-p5 hotel_content_roomEvent_name">' + tempArray[i].roomTypeName + '</div><b class="d-icon3 hotel_content_roomEvent_detail"></b><div class="d-p6 hotel_content_roomEvent_content">32-38㎡ 大/双床</div></div><div class="showListTrigger hotel_content_listTrigger"><div class="priceNum hotel_content_listTrigger_price"><span class="money">￥</span><span class="moneyNum">' + tempArray[i].minAvgPrice + '<span>起</span></span></div><a href="javascript:void(0)" class="at d-icon5"></a></div>' + hotelDetail.subRoomList(tempArray[i].roomList) + '</li>';
+        str += '<li class="d-li1 super">' + '<div class="d-div3 roomEvent hotel_content_roomEvent" style="max-width: 60%" room-type-code=' + tempArray[i].roomTypeCode + '> ' + '<div class="d-p5 hotel_content_roomEvent_name">' + tempArray[i].roomTypeName + '</div><b class="d-icon3 hotel_content_roomEvent_detail"></b></div><div class="showListTrigger hotel_content_listTrigger"><div class="priceNum hotel_content_listTrigger_price"><span class="money">￥</span><span class="moneyNum">' + tempArray[i].minAvgPrice + '<span>起</span></span></div><a href="javascript:void(0)" class="at d-icon5"></a></div>' + hotelDetail.subRoomList(tempArray[i].roomList) + '</li>';
       }
       return str;
     },
 
     subRoomListNoService: function (arg) {
+      console.log(arg);
       var cashOrOnline = arg.paymentModeID == 1 ? "在线付" : (arg.paymentModeID == 2) ? "到店付" : "";
-      var brackfast = arg.isabd ? '<span class="breakfast">含早</span>' : '<span class="breakfast">无早</span>';
-      var canceAble = arg.cancellationPeriod > 0 ? '<span class="no-cancel">可取消</span>' : '<span class="no-cancel">不可取消</span>';
-      var str = arg.listNum ? '<li class="d-li1 " style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '(标准价)</div><div class="d-p6">' + brackfast + '<span class="big-bed">大床</span>' + canceAble + '<span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '(标准价)</div><div class="d-p6">' + brackfast + '<span class="big-bed">大床</span>' + canceAble + '</div></div><div class="moneyTip hotel_content_roomDetail_money"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve hotel_content_roomDetail_price" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>';
+      var brackfast = arg.isABD ? '<span class="breakfast">含早</span>' : '<span class="breakfast">不含早</span>';
+      //var canceAble = arg.cancellationPeriod > 0 ? '<span class="no-cancel">可取消</span>' : '<span class="no-cancel">不可取消</span>';
+      var str = arg.listNum ? '<li class="d-li1 " style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '</div><div class="d-p6">' + brackfast + '<span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '</div><div class="d-p6">' + brackfast + '</div></div><div class="moneyTip hotel_content_roomDetail_money"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve hotel_content_roomDetail_price" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>';
 
       return str;
     },
@@ -222,7 +223,7 @@
     subRoomListHasService: function (arg) {
 
       var str = '<li class="d-li1"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">';
-      str += arg.isabd ? arg.roomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>' : arg.roomName + '(无早)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
+      str += arg.isABD ? arg.roomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>' : arg.roomName + '(不含早)</div><div class="d-p6"><span class="breakfast">不含早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
       str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.totalPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
       return str;
 
@@ -230,7 +231,7 @@
 
     subRoomList: function (arg) {
       var str = '<ul class="roomDetailList hotel_content_roomDetail">';
-      console.log("arg=");
+      //console.log("arg=");
       arg.sort(getSortFun('asc', "avgPriceCNY"));
       console.log(arg);
       for (var i = 0; i < arg.length; i++) {
@@ -715,14 +716,14 @@
       //couponStr += arg.isFreeCityTour ? '<p class="info-text"><span>'+arg.isFreeCityTourTitle+'</span>'+arg.isFreeCityTourDesc+'</p>' : '';
       //modalStr += couponStr ;
       modalStr += arg.cancellationDesc ? '<div class="info-div-1"> <div class="rate-rule">取消说明</div><p class="info-text">' + arg.cancellationDesc + '</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div>';
-      // modalStr += arg.isabd ? '<header class="r-top"><p class="r-p1">' + arg.roomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.roomName + '</p><b class="r-icon1 closeTag"></b></header>';          oDiv.innerHTML = modalStr;
+      // modalStr += arg.isABD ? '<header class="r-top"><p class="r-p1">' + arg.roomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.roomName + '</p><b class="r-icon1 closeTag"></b></header>';          oDiv.innerHTML = modalStr;
       //document.body.appendChild(oDiv);
       //hotelDetail.$Id('r-mb').style.display = 'block';
       //document.getElementById('r-mb').onclick =hotelDetail.$CN('closeTag')[0].onclick = function (event) {
       //   document.body.removeChild(hotelDetail.$Id('infoAll'))
       //   hotelDetail.$Id('r-mb').style.display = 'none';
       //};
-      var title = arg.isabd ? arg.roomName + '(含早)' : arg.roomName + ' (无早)';
+      var title = arg.isABD ? arg.roomName + '(含早)' : arg.roomName + ' (不含早)';
       jLayer(modalStr, title);
     },
 

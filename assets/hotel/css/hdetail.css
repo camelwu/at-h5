@@ -225,6 +225,7 @@ strong{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding-top: .28rem;
 }
 .hotel_content_listTrigger{
   width: 2.4rem;
@@ -273,6 +274,7 @@ strong{
   max-width: 75%;
   min-width: 5%;
   color: #484848;
+  vertical-align: top;
 }
 .hotel_content_roomEvent_detail{
   display: inline-block;
@@ -282,8 +284,6 @@ strong{
   background-image: url(../../images/ui.1.0/icon_hotel.png);
   background-position: -2.81rem -0.41rem;
   background-size: 7.9rem 2.52rem;
-  position: absolute;
-  top: .2rem;
 }
 .hotel_content_roomEvent_content{
   margin-top:.12rem;
