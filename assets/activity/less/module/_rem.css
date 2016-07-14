@@ -1,0 +1,103 @@
+/*
+ *==============================================
+ *@desc  responsive media query: iphones6+ 414*736 iphone6 375*667 iphone5s 320*568 iphone5 320*568
+ *@author  Jason
+ *@time 2016-05-03
+ *@calculate method
+    font-size: 6.25 * width / 750 * 100%
+    1rem->x px: width / 750 * 100
+ *==============================================
+ */
+@media only screen and (min-width: 240px) {
+  html {
+    font-size: 266.66666666%;
+  }
+}
+/* 42.6666666px */
+@media only screen and (min-width: 320px) {
+  html {
+    font-size: 266.66666666%;
+  }
+}
+/* 42.6666666px */
+@media only screen and (min-width: 360px) {
+  html {
+    font-size: 300%;
+  }
+}
+/* 48px */
+@media only screen and (min-width: 375px) {
+  html {
+    font-size: 312.5%;
+  }
+}
+/* 50px */
+@media only screen and (min-width: 411px) {
+  html {
+    font-size: 342.5%;
+  }
+}
+/* 55.2px */
+@media only screen and (min-width: 414px) {
+  html {
+    font-size: 345%;
+  }
+}
+/* 55.2px */
+@media only screen and (min-width: 435px) {
+  html {
+    font-size: 362.5%;
+  }
+}
+/* 58px */
+@media only screen and (min-width: 480px) {
+  html {
+    font-size: 400%;
+  }
+}
+/*iphone5 landscape*/
+@media only screen and (min-width: 568px) {
+  html {
+    font-size: 473.3333333333333%;
+  }
+}
+/*47.333333333333336px*/
+/* 64px */
+@media only screen and (min-width: 640px) {
+  html {
+    font-size: 533.3333333333%;
+  }
+}
+/* 85.33333px */
+/*iphone6 landscape*/
+@media only screen and (min-width: 667px) {
+  html {
+    font-size: 555.8333333333334%;
+  }
+}
+/* 88.93333333333334px */
+/*iphone6 plus landscape*/
+@media only screen and (min-width: 736px) {
+  html {
+    font-size: 613.3333333333334%;
+  }
+}
+/* 98.13333333333333px */
+@media only screen and (min-width: 750px) {
+  html {
+    font-size: 625%;
+  }
+}
+/* 1rem = 100px */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 640%;
+  }
+}
+/* 1rem = 102.4px */
+@media only screen and (min-width: 1024px) {
+  html {
+    font-size: 853.333333%;
+  }
+}
+/* 1rem = 136.5333px */
