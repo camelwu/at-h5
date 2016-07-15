@@ -863,6 +863,7 @@
       var dataObj = arg || this.parseUrlPara(document.location.search, true);
       //utm_source  来自百度等搜索引擎的关键字推广
       if (dataObj['utm_source']) {
+        window.localStorage.setItem('hoPos','inter'); //目前只有国际酒店
         var hotelId = dataObj.HotelID;
         var hotelCode = dataObj.HotelCode;
         dataObj = {};
