@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,user-scalable=no">
-  <title></title>
+  <title>亚程旅游任性送</title>
   <link rel="stylesheet" href="./less/lottery.css">
 </head>
 <body module-css-reset module-css-base>
@@ -13,7 +13,7 @@
   <p class="tips">恭喜你！<br>获得：&nbsp;<span class="prize_tips"></span></p>
   <p class="code">兑奖码：&nbsp;<span class="prize_code"></span></p>
   <p class="tips2">请牢记兑奖码才能成功领取奖品哦！</p>
-  <button class="download"></button>
+  <div class="download"></div>
 </div>
 <img class="background" src="./img/background.jpg" alt="">
 <div class="button_area">
@@ -46,17 +46,18 @@
   </div>
 </div>
 <div id="activityRule" class="activity_rule">
-  <p>活动区域：全国</p>
-  <p>活动时间：2016.08.08－ 2016.08.11</p>
-  <p>领取方法：点击老虎机游戏按钮，摇中滚动中的图标，记录下中奖后生成的领取码。然后下载亚程旅游APP，打开APP在弹出的自动提示窗口中输入领取人信息和验证码。</p>
-  <p>兑奖方式：小亚毛绒玩具、乐纯整箱酸奶将以快递的方式寄出；乐纯酸奶礼包券领取后可在“乐纯的伙伴们”酸奶微信公众号购买时直接使用。</p>
-  <p>关注微信公共平台：亚程旅游 ID：atrip</p>
-  <p>小亚客服微信ID：yanfei</p>
-  <p>温馨提示：</p>
-  <p>1、如果您半个小时内未提交领取信息，将视为自动放弃本次领取资格。</p>
-  <p>2、同一部手机和手机号码只能领取一份奖品。</p>
-  <p>3、本活动结束后7个工作日内，将陆续安排发放。</p>
-  <p>4、本次活动不收取任何费用。</p>
+  <p><strong>活动区域：</strong>全国</p>
+  <p><strong>活动时间：</strong>2016.08.08 － 2016.08.10</p>
+  <p><strong>领取方法：</strong>参与老虎机游戏，获取奖品兑奖码。下载亚程旅游APP并启动，在弹出的兑换奖品的窗口中输入奖品兑奖码和兑奖人信息；</p>
+  <p><strong>奖品设置：</strong>新加坡金沙酒店3晚住宿、微信红包、小亚毛绒玩具、乐纯酸奶1箱、乐纯酸奶代金券；</p>
+  <p><strong>兑奖方式：</strong>新加坡金沙酒店3晚住宿，亚程客服将线下联系您安排入住；微信红包，下载亚程app，短信获取红包兑奖码，关注“亚程旅游”微信公众号并输入微信红包兑奖码，小亚就会给您送出红包；小亚毛绒玩具、乐纯酸奶（箱）将以快递的方式寄出；乐纯酸奶代金券以短信方式下发，领取后可在“乐纯的伙伴们”微信公众号直接使用。</p>
+  <p><strong>关注微信公共平台：</strong>亚程旅游</p>
+  <p><strong>温馨提示：</strong></p>
+  <p>1、请您中奖后尽快完成奖品兑换。由于参与活动用户较多，奖品数量有限，亚程不保证您最终可以获得相应奖品；</p>
+  <p>2、新下载注册用户，可参加活动。老用户不再参加此活动；</p>
+  <p>3、同一部手机和同一个手机号码只能领取一份奖品；</p>
+  <p>4、本活动结束后7个工作日内，将陆续安排奖品的发放；</p>
+  <p>5、本次活动不收取任何费用。</p>
 </div>
 <script src="../js/jquery/jquery.min.js"></script>
 <script src="../js/vlm.js"></script>
@@ -244,9 +245,22 @@
     var $alert = $('.alert');
     var $mask = $('.mask');
     var Alert = function (options) {
+      this.origin = this.initDownloadBtn();
       this.initTips(options);
       this.bindEvent();
       return this;
+    };
+    Alert.prototype.initDownloadBtn = function () {
+      var queryStringArgs = getQueryStringArgs();
+
+      // 根据页面来源
+      if (queryStringArgs.origin === 'app') {
+        $('.alert .download').text('去兑换');
+        return 'origin=app'
+      } else {
+        $('.alert .download').text('下载APP兑奖')
+        return 'origin=browser'
+      }
     };
     Alert.prototype.initTips = function (options) {
       var prizeTips = options.prizeTips;
@@ -260,10 +274,14 @@
         _this.close();
       });
       $alert.find('.download').on('click', function () {
-        if (userAgent.isAndroid) {
-          location.href = 'http://url.cn/27QotxC';
-        } else if (userAgent.isIOS) {
-          location.href = 'http://m.yazhoulvyou.cn/';
+        if (_this.origin === 'origin=app') {
+          history.back();
+        } else {
+          if (userAgent.isAndroid) {
+            location.href = 'http://url.cn/27QotxC';
+          } else if (userAgent.isIOS) {
+            location.href = 'http://m.yazhoulvyou.cn/';
+          }
         }
       });
     }
@@ -363,6 +381,26 @@
     });
 
     return element;
+  }
+
+  function getQueryStringArgs () {
+    var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+            args = {},
+            items = qs.length ? qs.split("&") : [],
+            item = null,
+            name = null,
+            value = null,
+            i,
+            len = items.length;
+    for (i = 0; i < len; i++) {
+      item = items[i].split("=");
+      name = decodeURIComponent(item[0]);
+      value = decodeURIComponent(item[1]);
+      if (name.length) {
+        args[name] = value;
+      }
+    }
+    return args;
   }
 
 </script>
