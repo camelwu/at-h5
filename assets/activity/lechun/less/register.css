@@ -378,7 +378,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  font-family: MicrosoftYaHei, '微软雅黑', Arial, Tahoma, Helvetica, Georgia, Sans-serif, 'STXihei', '华文黑体', Hei, 'Hiragino Kaku Gothic Pro', SimSun;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", sans-serif;
 }
 ::-webkit-input-placeholder {
   opacity: 1;

@@ -257,7 +257,7 @@
 
    Lechun.prototype.sendPhoneConfirm = function(){
      var that = this;
-     var btn = this.sendPhoneBtn;
+
      var parameters = {
        "Parameters":{
          "PhoneNo": this.phone.value
@@ -267,28 +267,10 @@
      };
      vlm.loadJson("",JSON.stringify(parameters), function(json){
 
-       //console.log(json);
-       if(json.success){
-         if(json.data.result){
-           return this;
-         }else{
-           that.show = true;
-           that.tips({msg:"验证码发送失败",top:'9.5rem',left:'2rem',display:'block'});
-           btn.value = "获取验证码";
-           that.outsecond = 0;
-           $(btn).removeClass("stopgray");
-           throw new Error();
-         }
-
-       }else{
-         console.log(json);
-         that.show = true;
-         that.tips({msg:"验证码发送失败",top:'9.5rem',left:'2rem',display:'block'});
-         throw new Error();
-       }
-     });
-
-   }
+      return that.validatecodephone(json);
+    });
+    return this;
+  }
 
   Lechun.prototype.confirm = function(){
     var that = this;
@@ -310,33 +292,70 @@
 
     vlm.loadJson("",JSON.stringify(parameters), function(json){
 
-
-      var main = document.querySelector('.main');
-      if(json.success){
-        if(json.data.result){
-          var pop = document.querySelector('.pop');
-          var pop_mask = document.querySelector('.pop_mask');
-          var pop_confirmbtn = document.querySelector('.pop_confirmbtn');
-          pop.style.display = 'block';
-          pop_mask.style.display = 'block';
-
-          $(pop_confirmbtn).on('touchend',function(e){
-            that.closeActivity();
-          });
-          return this;
-        }else{
-          that.show = true;
-          that.tips({msg:"注册失败",top:'12.8rem',left:'2rem',display:'block'});
-          throw new Error();
-        }
-
-      }else{
-        console.log(json);
-        that.show = true;
-        that.tips({msg:"注册失败",top:'12.8rem',left:'2rem',display:'block'});
-        throw new Error();
-      }
+      return that.validatecode(json);
     });
+    return this;
+  }
+
+  Lechun.prototype.validatecodephone = function(msg){
+    var btn = this.sendPhoneBtn;
+    switch (msg.code){
+      case 200:
+        break;
+      case 404:
+      case 3301:
+      case 3302:
+      case 3303:
+      case 3304:
+      case 3305:
+      case 3306:
+      case 3307:
+      case 3308:
+      case 3309:
+      case 3311:
+      case 3312:
+      case 3313:
+        this.show = true;
+        this.tips({msg:msg.message,top:'9.5rem',left:'2rem',display:'block'});
+        btn.value = "获取验证码";
+        this.outsecond = 0;
+        $(btn).removeClass("stopgray");
+        throw new Error(msg.code);
+        break;
+    }
+    return this;
+  }
+
+  Lechun.prototype.validatecode = function(msg){
+    switch (msg.code){
+      case 200:
+        var pop = document.querySelector('.pop');
+        var pop_mask = document.querySelector('.pop_mask');
+        var pop_confirmbtn = document.querySelector('.pop_confirmbtn');
+        pop.style.display = 'block';
+        pop_mask.style.display = 'block';
+        $(pop_confirmbtn).on('touchend',function(e){
+          this.closeActivity();
+        });
+        break;
+      case 404:
+      case 3301:
+      case 3302:
+      case 3303:
+      case 3304:
+      case 3305:
+      case 3306:
+      case 3307:
+      case 3308:
+      case 3309:
+      case 3311:
+      case 3312:
+      case 3313:
+        this.show = true;
+        this.tips({msg:msg.message,top:'12.8rem',left:'2rem',display:'block'});
+        throw new Error(msg.code);
+        break;
+    }
     return this;
   }
 
