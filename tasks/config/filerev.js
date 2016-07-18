@@ -11,16 +11,25 @@
  */
 module.exports = function (grunt) {
 
-    grunt.config.set('filerev', {
-        dev: {
-            files: [{
-                expand: true,
-                cwd: './assets',
-                src: ['**/*.js'],
-                dest: 'temp/public'
-                }],
-        }
-    });
+  grunt.config.set('filerev', {
+    dev: {
+      options:{
+        keep: true
+      },
+      files: [{
+        expand: true,
+        cwd: '.tmp/',//js目录下
+        src: [
+          '**/*.js',  //所有js文件
+          '**/*.css', //所有的CSS文件
+          '!**/coords_china.js',
+          '!**/coords_w_en.js'
+        ],
+        dest: '.tmp/'//输出到此目录下
+        //ext:'.js'
+      }]
+    }
+  });
 
-    grunt.loadNpmTasks('grunt-filerev');
+  grunt.loadNpmTasks('grunt-filerev');
 };
