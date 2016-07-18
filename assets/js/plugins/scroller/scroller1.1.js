@@ -368,15 +368,15 @@ Scroller.prototype = {
             that.container.style.bottom = 0;
             document.body.style.overflowY = 'hidden';
         } else {
-            if(that.masker){
-              that.masker.style.display = 'none';
-              that.container.setAttribute("style", "");
-            }
-            setTimeout(function () {
+          if(that.masker){
+            that.masker.style.display = 'none';
+            that.container.setAttribute("style", "");
+          }
+          setTimeout(function () {
               $('#selbox').remove();
               $('#overlay').remove();
-            }, 200)
-            document.body.style.overflowY = 'auto';
+          }, 200)
+          document.body.style.overflowY = 'auto';
         }
     },
     // 重置

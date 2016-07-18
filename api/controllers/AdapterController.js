@@ -58,6 +58,11 @@ module.exports = {
         var headers = req.headers;
         var postJson = req.body;
 
+        //没有UA的请求不处理
+        if(headers['user-agent']){
+          return false;
+        }
+
         var timestamp = new Date().getTime();
         var bodyString = JSON.stringify(postJson);
         var sign = md5(timestamp + bodyString);
@@ -91,7 +96,7 @@ module.exports = {
             //http://10.6.11.20:6666/api/GetServiceApiResult
             //http://123.56.190.34:8888/api/GetServiceApiResult
             //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight
-            //10.7.2.100:8888   
+            //10.7.2.100:8888
             //UAT domain   hapi.atrip.net:8000
             var _api = 'http://' + sails.config.globals.hapi + '/api/GetServiceApiResult' + '?rnd=' + Math.random();
 

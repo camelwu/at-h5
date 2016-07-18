@@ -296,6 +296,15 @@ i, em {
   right: 0;
   top: .12rem;
 }
+.fk_captcha{
+  width: 1.85rem;
+  height: .68rem;
+  position: absolute;
+  text-align: center;
+  line-height: .68rem;
+  right: 0;
+  top: .12rem;
+}
 
 .p_86 {
   display: inline-block;
@@ -335,8 +344,15 @@ i, em {
   background-size: 8.4rem 5.2rem;
 }
 
-#p_password {
+#p_password, #captcha {
   padding-left: .25rem;
+}
+
+.captcha_img{
+  float: right;
+  width: 1rem;
+  margin-top: .28rem;
+  margin-right: .28rem;
 }
 
 .login-input .in-phone {
