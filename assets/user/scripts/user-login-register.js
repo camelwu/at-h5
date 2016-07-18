@@ -575,3 +575,8 @@ function timedown_reg(seconds){
 			}
 		},1000);
 }
+
+var oCountryLogin=new CountryList({id:'#tel11',telCode:true});
+var oCountryregister=new CountryList({id:'#tel12',telCode:true});
+var oCountryForget=new CountryList({id:'#tel13',telCode:true});
+

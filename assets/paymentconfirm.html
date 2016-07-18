@@ -107,6 +107,7 @@ $(document).ready()
             var opid=vlm.getpara("opid");
             var paymentType=getpara("paymentType");
             var bookingRefNo=getpara("bookingRefNo");
+            //paymentType = 1 表示到付   如果是到付产品直接跳转到支付成功页
             if(paymentType==1){
                 window.location.href = "payment/pay_success.html?bookingRefNo="+ bookingRefNo+"&type=Hotle";
             }

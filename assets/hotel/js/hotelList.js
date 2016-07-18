@@ -488,7 +488,7 @@ $(window).load(function () {
                 renderList(data);
             } else {
                 // 请求失败报错
-                if (json.message == '远程服务器返回错误: (500) 内部服务器错误。') {
+                if (json.message == '远程服务器返回错误: (500) 内部服务器错误。' || json.message == '目的地搜索酒店时出错(Error Occurs While SearchHotelByDest)') {
                     // if (json.Message == '远程服务器返回错误: (500) 内部服务器错误。') {
                     document.getElementById("loadMore").style.display = "none";
                     var oLi = document.createElement('li');
@@ -542,7 +542,7 @@ $(window).load(function () {
         if (!loadSign) {
             list_oUl.innerHTML = "";
         }
-        if (hotelList.length) {
+        if (hotelList.length > 1) {
             for (var i = 0; i < hotelList.length; i++) {
                 var str1 = hotelList[i].starRating.substring(0, 1);
                 var str2 = '';
@@ -572,7 +572,7 @@ $(window).load(function () {
                 if (!hotelList[i].hotelReviewScore && !hotelList[i].hotelReviewCount) {
                     scoreHtml = '<span class="hotel_content_score_span">&nbsp;</span><span>&nbsp;  </span>'
                 } else {
-                    scoreHtml = '<span class="hotel_content_score_span">' + hotelList[i].hotelReviewScore + '分</span><span>' + hotelList[i].hotelReviewCount + '人点评</span>'
+                    scoreHtml = '<span class="hotel_content_score_span">' + hotelList[i].hotelReviewScore.toFixed(1) + '分</span><span>' + hotelList[i].hotelReviewCount + '人点评</span>'
                 }
                 var namestr = hotelList[i].hotelNameLocale != null && hotelList[i].hotelNameLocale != "" ? hotelList[i].hotelNameLocale + '(' + hotelList[i].hotelName + ')' : hotelList[i].hotelName,
                     str = '<li class="ho_list hotel_list" data-hotelCode="' + hotelList[i].hotelCode + '" data-InstantConfirmation="' + hotelList[i].InstantConfirmation + '" hotelList-AllOccupancy="' + hotelList[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + hotelList[i].frontPgImage + '" class="ho_img"/ data-all="' + hotelList[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + scoreHtml + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + hotelList[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + hotelList[i].location + '</p>' + '</div>' + '</li>';
@@ -605,15 +605,24 @@ $(window).load(function () {
                     var hotelRefers = document.getElementsByClassName('ho_list');
                     var toDetail = function (that) {
                         var paraObj = {};
+                        var hoPos = localStorage.getItem('hoPos');
+
                         paraObj.HotelID = that.getAttribute('data-hotelCode');
                         paraObj.HotelCode = that.getAttribute('data-hotelCode');
 
                         // paraObj.PartnerCode=hotelList[that.index].PartnerCode!=null?hotelList[that.index].PartnerCode:1000;
                         paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
                         paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
+                        if (hoPos == 'inter') {
+                            //国际
+                            paraObj.CheckInDate = urlArgs.InterCheckInDate;
+                            paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
+                        } else if (hoPos == 'dom') {
+                            //国内
+                            paraObj.CheckInDate = urlArgs.DomCheckInDate;
+                            paraObj.CheckOutDate = urlArgs.DomCheckOutDate;
+                        }
 
-                        paraObj.CheckInDate = urlArgs.InterCheckInDate;
-                        paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
                         paraObj.NumRoom = urlArgs.NumRoom;
                         paraObj.NumAdult = urlArgs.NumAdult;
                         paraObj.NumChild = urlArgs.NumChild;
@@ -637,8 +646,7 @@ $(window).load(function () {
                 getDetail(hotelList);
 
                 clearTimeout(timer);
-            }, 50)
-
+            }, 50);
 
 
             //function screenDir(){
@@ -658,16 +666,21 @@ $(window).load(function () {
 
 
         } else {
-            if (urlArgs.pageIndex > 1) {
-                document.getElementById("loadMore").innerHTML = "没有更多数据了";
-            } else {
+            if (hotelList.length = 1) {
                 document.getElementById("loadMore").style.display = "none";
+                console.log(document.getElementById("loadMore"));
                 var oLi = document.createElement('li');
                 oLi.innerHTML = '<div><img src="../images/error/blank.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
                 oLi.className = 'hotelConNo';
-                oUl.style.width = '100%';
-                oUl.style.height = '100%';
                 oUl.appendChild(oLi);
+                console.log(document.getElementsByClassName("hotelConNo"));
+                document.getElementsByClassName("hotelConNo")[0].style.display = "block";
+                oUl.style.width = '100%';
+                oUl.style.height = '90%';
+
+            }
+            if (urlArgs.pageIndex >= 1) {
+                document.getElementById("loadMore").innerHTML = "没有更多数据了";
             }
         }
         //位置交互部分
@@ -877,10 +890,10 @@ $(window).load(function () {
             urlArgs.pageIndex = 1;
             getListByPage(urlArgs);
         }
-         //筛选滑动穿透问题
+        //筛选滑动穿透问题
         ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
         //ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
-       // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
+        // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
     });
     //筛选里面确定按钮的点击事件（交互）
     utils.bind(oBody, 'click', function (ev) {
@@ -1018,7 +1031,7 @@ $(window).load(function () {
             urlArgs.pageIndex = 1;
             getListByPage(urlArgs);
             //alert(hl_star_str+'---'+hl_type_str);
-           
+
         };
         if (oSrc.getAttribute("id") == "clearBtn") {
             var array = [];
@@ -1033,10 +1046,10 @@ $(window).load(function () {
             document.getElementById("h-type").firstElementChild.className = "s-li1";
             document.getElementById("h-level").firstElementChild.className = "s-li1";
         };
-         //筛选滑动穿透问题
-//        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
+        //筛选滑动穿透问题
+        //        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
         ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
-       // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
+        // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
     });
     //位置里面的城市实现筛选交互
     utils.bind(oBody, 'click', function (ev) {
@@ -1087,9 +1100,9 @@ $(window).load(function () {
                 aOk[i] = true;
             }
         };
-         //筛选滑动穿透问题
-//        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
-//        ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
+        //筛选滑动穿透问题
+        //        ATplugins.ScrollLayer().scroll("#rank", '#rankWrapper');
+        //        ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
         ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
     });
 
@@ -1109,7 +1122,7 @@ $(window).load(function () {
         getListByPage(urlArgs);
     });
 
-   
+
 })();
 
 //把星级英文数字换成汉字

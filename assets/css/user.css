@@ -1,4 +1,3 @@
-
 body {
   background-color: #fff;
 }
@@ -7,8 +6,29 @@ body {
   box-sizing: border-box;
 }
 
-i, em {
+i,
+em {
   font-style: normal;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.24rem;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.24rem;
 }
 
 /*登录注册开始*/
@@ -103,7 +123,8 @@ i, em {
   background-position: -3.36rem -.19rem;
 }
 
-#phone_login, #email_login {
+#phone_login,
+#email_login {
   margin-top: 1rem;
   padding: 0 .4rem;
 }
@@ -115,7 +136,7 @@ i, em {
   position: relative;
 }
 
-.tel_code_wrap{
+.tel_code_wrap {
   padding-top: .32rem;
 }
 
@@ -147,15 +168,20 @@ i, em {
   font-size: .28rem;
   margin-top: .28rem;
 }
-#r_phone,#phone {
-	margin-top: 0!important;
+
+#r_phone,
+#phone {
+  margin-top: 0 !important;
 }
+
 .change_way {
   padding: .4rem;
   overflow: hidden;
 }
 
-.login_button, .register_button, .f_btn {
+.login_button,
+.register_button,
+.f_btn {
   display: block;
   font-size: .36rem;
   border-radius: .04rem;
@@ -234,7 +260,15 @@ i, em {
   font-size: .28rem;
 }
 
-#email, #r_email, #e_password, #r_p_password, #p_password, #find_phone, #r_e_password, #rs_e_password, .mob_cell {
+#email,
+#r_email,
+#e_password,
+#r_p_password,
+#p_password,
+#find_phone,
+#r_e_password,
+#rs_e_password,
+.mob_cell {
   width: 80%;
 }
 
@@ -245,7 +279,8 @@ i, em {
   font-size: .28rem;
 }
 
-#phone_register, #email_register {
+#phone_register,
+#email_register {
   margin: 0 .4rem;
   margin-top: 1rem;
 }
@@ -306,11 +341,11 @@ i, em {
   max-width: 1.55rem;
 }
 
-#content{
+#content {
   overflow-x: hidden;
 }
 
-#content-wrap{
+#content-wrap {
   position: absolute;
   overflow-x: hidden !important;
   width: 100%;
@@ -470,11 +505,22 @@ i, em {
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #register_page, #email_register, #fkey_page, #black_page, #email_find, #link_declaration, #header_phone {
+
+#link_page,
+#link_about_us,
+#link_at,
+#register_page,
+#email_register,
+#fkey_page,
+#black_page,
+#email_find,
+#link_declaration,
+#header_phone {
   display: none;
 }
 
 /*关于我们*/
+
 .asiatravel_wrap {
   margin-top: .6rem;
   text-align: center;
@@ -518,7 +564,8 @@ i, em {
   float: right;
 }
 
-.at_introduction, .at_declaration {
+.at_introduction,
+.at_declaration {
   padding: .4rem;
   line-height: .48rem;
 }
@@ -540,11 +587,14 @@ i, em {
   margin-bottom: .1rem;
 }
 
-.at_declaration dt, .at_declaration dd {
+.at_declaration dt,
+.at_declaration dd {
   margin: .1rem 0;
 }
 
-#link_at, #link_about_us, #link_page {
+#link_at,
+#link_about_us,
+#link_page {
   background-color: #fff;
 }
 
@@ -711,7 +761,8 @@ i, em {
   background-color: #7bc300;
 }
 
-#uptra_page .info_sex_tab, #addtra_page .info_sex_tab {
+#uptra_page .info_sex_tab,
+#addtra_page .info_sex_tab {
   position: absolute;
   top: .13rem;
   right: .28rem;
@@ -828,6 +879,7 @@ i, em {
 }
 
 /*修改昵称页css*/
+
 .u_name {
   height: .96rem;
   line-height: .96rem;
@@ -920,7 +972,8 @@ i, em {
 .air_date li {
   margin-top: .2rem;
 }
-.all_order_tab .air_date{
+
+.all_order_tab .air_date {
   /*color: #999;*/
   font-size: .24rem
 }
@@ -1040,7 +1093,6 @@ i, em {
   height: .78rem;
   background: url(../images/ui/icon_person.png) no-repeat;
   background-size: 9rem 5rem;
-
 }
 
 .u_remark li .user_service {
@@ -1099,6 +1151,7 @@ i, em {
 /*联系我们结束*/
 
 /*常用信息页css*/
+
 .user_add {
   width: .4rem;
   height: .4rem;
@@ -1123,6 +1176,7 @@ i, em {
 }
 
 /*个人信息页出生日期*/
+
 #common-msg > em {
   font-size: .24rem;
 }
@@ -1236,10 +1290,10 @@ i, em {
   width: 4rem;
   margin: 0 auto;
   text-align: center;
-
 }
 
 /*电话拨号开始*/
+
 .jpop_box_tic {
   position: fixed;
   top: 0;
@@ -1279,7 +1333,8 @@ i, em {
   font-size: .28rem;
 }
 
-.jpop_box_tic dd a, .jpop_box_tic dd span {
+.jpop_box_tic dd a,
+.jpop_box_tic dd span {
   padding: 8px 20px;
   color: #fff;
   border-radius: 3px;
@@ -1312,6 +1367,7 @@ i, em {
 }
 
 /*footer*/
+
 .footer-menu {
   width: 100%;
   position: fixed;
@@ -1340,10 +1396,10 @@ i, em {
   margin: 0 auto 0 auto;
   width: .48rem;
   height: .48rem;
-
 }
 
-a.foot-homes, a.foot-users {
+a.foot-homes,
+a.foot-users {
   color: #7bc300;
 }
 
@@ -1376,6 +1432,7 @@ a.foot-homes, a.foot-users {
 /*首页footer结束*/
 
 /*新增常旅页开始*/
+
 #addUser {
   margin-top: .2rem;
   font-size: .32rem;
@@ -1417,6 +1474,10 @@ a.foot-homes, a.foot-users {
   color: #333;
   font-size: .3rem;
 }
+#addtra_page_hd,#edit_page_hd{
+  display: none;
+  z-index: 120;
+}
 
 .addtra_page {
   position: absolute;
@@ -1425,12 +1486,15 @@ a.foot-homes, a.foot-users {
   width: 100%;
   height: 100%;
   background-color: #f7f7f7;
-
+  overflow-x: hidden !important;
 }
-#addtra_page,#uptra_page{
+
+#addtra_page,
+#uptra_page {
   z-index: 99;
   visibility: hidden;
 }
+
 .addtra_title {
   width: 100%;
   padding: .2rem .28rem;
@@ -1458,7 +1522,6 @@ a.foot-homes, a.foot-users {
 
 .traveler_contect li:last-child {
   border-bottom: none;
-
 }
 
 .traveler_contect li > div {
@@ -1591,7 +1654,6 @@ a.foot-homes, a.foot-users {
   width: 60%;
   height: 90%;
   font-size: .28rem;
-
 }
 
 .addAir_info .postCard {
@@ -1612,6 +1674,7 @@ a.foot-homes, a.foot-users {
   float: left;
   margin-left: 12%;
   width: 60%;
+  height: 100%;
 }
 
 .chn_eng_wrap {
@@ -1638,8 +1701,9 @@ a.foot-homes, a.foot-users {
 /*新增常旅结束*/
 
 /*填写姓名说明页css*/
+
 .fillName_page {
-  visibility: hidden;
+  display: none;
   background-color: #fff;
 }
 
@@ -1726,22 +1790,17 @@ a.foot-homes, a.foot-users {
   border-bottom: none;
 }
 
-.moreData{
+.moreData {
   display: none;
   margin-top: .3rem;
   margin-bottom: .4rem;
   vertical-align: middle;
   text-align: center
+}
 
-}
-.header{
-  display: block;
-}
 
 /*填写姓名说明页结束*/
-#shade{
+
+#shade {
   display: block;
 }
-
-
-

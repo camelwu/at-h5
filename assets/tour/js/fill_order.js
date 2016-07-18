@@ -85,23 +85,6 @@
       for (var k = 0; k < tAdult; k++) {
         var oSection = document.createElement('section');
         oSection.className = 'li_section_box';
-        //if(travelersInput == 0)
-        //{
-        //    oSection.innerHTML='<li>'
-        //        +'<span class="list_tit">成人'+(k+1)+'：</span>'
-        //        +'<b class="add_icon"><a href="javascript:;" data-c-id="0" class="add-passager0" ></a></b></span>'
-        //        +'</li>'
-        //        +"<ul id='trave"+k+"'>"
-        //        +'<li class="trave-li trave-li-adu ">'
-        //        +'<span class="list_tit2 ">姓：</span>'
-        //        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
-        //        +'<span class="list_tit2 ">名：</span>'
-        //        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
-        //        +'</li>'
-        //        +"</ul>"
-        //}
-        //else
-        //{
         oSection.innerHTML = '<li class="first">' + '<span class="list_tit">成人' + (k + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" date-roomId="'+i+'" data-c-id="' + k + '" class="add-passager-r'+i+"-" + k + '" ></a></b></span>' + '</li>' + '<ul class="order_trave"  id="ht_trave'+"-r"+i+"-"+k + '">' + '<li class="trave-li trave-li-adu fillinorder_li">'
             //+'<span class="list_tit2 ">姓：</span>'
           + '<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="姓（如：Li）" data-elementName="lastName" /></span>'
@@ -110,19 +93,20 @@
         //}
         oRoomNum[i].querySelector('ul').appendChild(oSection);
 
+        // 成人-添加联系人
         $(".add-passager-r"+i+"-" + k).on("click", function () {
           var urlObj = vlm.parseUrlPara(window.location.href);
           var sign=vlm.checkLogin("../tour/fill-in-order-new.html?hotelID="+urlObj["hotelID"]+"&travelersInput="+urlObj["travelersInput"]+"&airportTransferType="+urlObj["airportTransferType"]+"&totailPrice="+urlObj["totailPrice"]+"&roomID="+urlObj["roomID"]+"&travelersInput="+urlObj["travelersInput"]+"");
           if(sign) {
             var id = $(this).attr("data-c-id");
             var roomId=$(this).attr("date-roomId");
-            vlm.f_choice('ht_trave-r'+roomId+"-"+id, "ht", 'traver', '', false, false, null, null, null, null);
+            vlm.f_choice('ht_trave-r'+roomId+"-"+id, "ht", 'traver', '', true, false, null, null, null, null);
           }
         })
       }
 
       //每个房间儿童数
-      var totChiNUm = 0,
+      var totalChildNum = 0,
         t1 = 0,
         t2 = 0;
       if (jsonPackage.roomDetails[i].childWithOutBed) {
@@ -132,8 +116,8 @@
         t2 = parseInt(jsonPackage.roomDetails[i].childWithBed.length);
       }
 
-      totChiNUm = t1 + t2;
-      for (var j = 0; j < totChiNUm; j++) {
+      totalChildNum = t1 + t2;
+      for (var j = 0; j < totalChildNum; j++) {
         var oSection = document.createElement('section');
         oSection.className = 'li_section_box';
         oSection.innerHTML = '<li>' + '<span class="list_tit">儿童' + (j + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" date-roomId="'+i+'" data-c-id="' + j + '" class="add-cpassage-r'+i+"-" + j + '"></a></b></span>' + '</li>' + "<ul  id='traveC-r"+i+"-"+j+"'>" + '<li class="trave-li trave-li-child child">'
@@ -142,20 +126,22 @@
             //+'<span class="list_tit2 ">名：</span>'
           + '<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="名（如：ShiMin）" data-elementName="firstName" /></span>' + '</li>' + "</ul>" + '</section>';
         oRoomNum[i].querySelector('ul').appendChild(oSection);
+
+
+        // 儿童-添加联系人
         $(".add-cpassage-r" +i+"-"+j).on("click", function () {
           var urlObj = vlm.parseUrlPara(window.location.href);
           var sign=vlm.checkLogin("../tour/fill-in-order-new.html?hotelID="+urlObj["hotelID"]+"&travelersInput="+urlObj["travelersInput"]+"&airportTransferType="+urlObj["airportTransferType"]+"&totailPrice="+urlObj["totailPrice"]+"&roomID="+urlObj["roomID"]+"&travelersInput="+urlObj["travelersInput"]+"");
           if(sign) {
             var id = $(this).attr("data-c-id");
             var roomId = $(this).attr("date-roomId");
-            vlm.f_choice('traveC-r' + roomId + "-" + id, "ht", 'traver', '', false, false, null, null, null, null);
+            vlm.f_choice('traveC-r' + roomId + "-" + id, "ht", 'traver', '', true, false, null, null, null, null);
           }
         })
-
       }
     }
     //第一个房间的第一个人添加国籍
-    var oCountry = $('<li class="countries-wrap">' + '<b class="icon_arw open-pho-tour"></b>' + '<span class="list_country fl">国籍：</span>' + '<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>' + '</li>')
+    var oCountry = $('<li class="countries-wrap" id="oCountry1">' + '<b class="icon_arw open-pho-tour"></b>' + '<span class="list_country fl">国籍：</span>' + '<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>' + '</li>')
     oCountry.appendTo($('#ht_trave-r0-0'));
 
     //处理地址栏信息
@@ -182,24 +168,24 @@
             $('#flight-air').remove();
             break;
           case '1': // TwoWay => 1
-            //                        document.querySelector('#content3_CheckInDate').value=paraObj.start;
-            //                        document.querySelector('#content4_CheckInDate').value=paraObj.end;
-            //                        var myDate= new TicketDate({
-            //                            id: 'nav2-center-dep',
-            //                            num: 13,
-            //                            time: paraObj,
-            //                            sClass1: 'CheckInDate',
-            //                            type:'Oneway',
-            //                            _word:{tip:['出发']}
-            //                        });
-            //                        var myDate2= new TicketDate({
-            //                            id: 'nav2-center-arr',
-            //                            num: 13,
-            //                            time: paraObj,
-            //                            sClass1: 'CheckInDate',
-            //                            type:'Oneway',
-            //                            _word:{tip:['出发']}
-            //                        });
+            // document.querySelector('#content3_CheckInDate').value = paraObj.start;
+            // document.querySelector('#content4_CheckInDate').value = paraObj.end;
+            // var myDate = new TicketDate({
+            //   id: 'nav2-center-dep',
+            //   num: 13,
+            //   time: paraObj,
+            //   sClass1: 'CheckInDate',
+            //   type: 'Oneway',
+            //   _word: {tip: ['出发']}
+            // });
+            // var myDate2 = new TicketDate({
+            //   id: 'nav2-center-arr',
+            //   num: 13,
+            //   time: paraObj,
+            //   sClass1: 'CheckInDate',
+            //   type: 'Oneway',
+            //   _word: {tip: ['出发']}
+            // });
             //初始化content3_CheckInDate scroller组件
             console.info(localStorage.info);
 
@@ -221,15 +207,15 @@
             break;
           case '2': // Arrival => 2
             $('#content3').remove();
-            //                        document.querySelector('#content3_CheckInDate').value=paraObj.start;
-            //                        var myDate= new TicketDate({
-            //                            id: 'nav2-center-dep',
-            //                            num: 13,
-            //                            time: paraObj,
-            //                            sClass1: 'CheckInDate',
-            //                            type:'Oneway',
-            //                            _word:{tip:['出发']}
-            //                        });
+            // document.querySelector('#content3_CheckInDate').value = paraObj.start;
+            // var myDate = new TicketDate({
+            //   id: 'nav2-center-dep',
+            //   num: 13,
+            //   time: paraObj,
+            //   sClass1: 'CheckInDate',
+            //   type: 'Oneway',
+            //   _word: {tip: ['出发']}
+            // });
             var arriveDate = new Scroller({
               id: "content3_CheckInDate",
               type: "dateTime",
@@ -254,7 +240,7 @@
         }
         //订单总价
         perPrice = arr2[3].split('=')[1];
-        //totPrice=perPrice*(tAdult+totChiNUm);
+        //totPrice=perPrice*(tAdult+totalChildNum);
         totPrice = perPrice;
         $('.all_num i').html("￥" + totPrice);
         //roomID
@@ -263,16 +249,12 @@
     }
     urlShow();
 
-    //$('.add-passager').each(function(index,element){
-    //    $(this).click(function(){
-    //        vlm.f_choice('trave'+index,"ht",'traver','',false,false,null,null,null,null);
-    //    })
-    //});
+    // 添加联系人
     $('.add-contact').click(function () {
       var urlObj = vlm.parseUrlPara(window.location.href);
       var sign=vlm.checkLogin("../tour/fill-in-order-new.html?hotelID="+urlObj["hotelID"]+"&travelersInput="+urlObj["travelersInput"]+"&airportTransferType="+urlObj["airportTransferType"]+"&totailPrice="+urlObj["totailPrice"]+"&roomID="+urlObj["roomID"]+"&travelersInput="+urlObj["travelersInput"]+"");
       if(sign) {
-        vlm.f_choice('personal_data', "ht", 'contact', '', false, false, null, null, null, null);
+        vlm.f_choice('personal_data', "ht", 'contact', '', true, false, null, null, null, null);
       }
     });
 
@@ -330,7 +312,7 @@
               "LastName": conLasName,
               "Email": conEmail,
               "ContactNo": {
-                "CountryCode": "65",
+                "CountryCode":$('#oCountryCellAdd span').attr('data-code'),
                 "PhoneNo": conPhone
               },
               "MemberID": localStorage.memberid
@@ -527,7 +509,6 @@
             } else {
               fli.DepartFlightNo = departFlightNo;
             }
-
             if (departDate.indexOf("T") > -1) {
               fli.DepartDateTime = departDate;
             } else {
@@ -683,11 +664,6 @@
   $('.open-close').click(function () {
     $('#detailBox').toggle();
     $(this).find('b').toggleClass('cur');
-    //if($('#detailBox').display == 'none'){
-    //    $('#detailBox').show();
-    //}else{
-    //    $('#detailBox').hide();
-    //}
   });
 
   function setOrderTime() {
@@ -700,4 +676,9 @@
     var s = oDate.getSeconds();
     localStorage.orderTime = year + '-' + mon + '-' + day + ' ' + h + ':' + m + ':' + s;
   }
+
+  //国籍和发证国家和手机区号
+  var oCountry1=new CountryList({id:'#oCountry1',telCode:false});
+  var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});
+
 })();

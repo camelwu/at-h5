@@ -120,6 +120,7 @@ var flight_list = {
     var flightListBack = function (ret) {
       var json = ret;
       var data = json.data;
+      console.log(json.code);
       if (json.success && json.code == '200' && data.flightInfoListGroup.length > 0) {
         // 有数据和无数据互斥，清理无数据内容
         $('.flight_hotel_no_result').remove();
@@ -171,7 +172,60 @@ var flight_list = {
             window.location.href = 'hft_choose.html' + window.location.search;
           }, 500);
         });
-      } else {
+      }
+      else if(json.success && json.code == '200' && data.flightInfoListGroup.length == 0 && data.selectedAirway){
+        // 有数据和无数据互斥，清理无数据内容
+        $('.flight_hotel_no_result').remove();
+
+        // 数据过滤，research情况下，selectedFlight字段有可能不存在
+        data.selectedFlight = data.selectedFlight ? data.selectedFlight : false;
+        // 增加打包产品默认选中的航空公司
+        var newL = data.selectedAirway ? data.airways.unshift(data.selectedAirway) : null;
+        $('.go_place').html(data.selectedFlight.cityNameFrom);
+        $('.to_place').html(data.selectedFlight.cityNameTo);
+        $('#fligtList').html('');
+        //航班列表选中项
+        if (data.selectedFlight) {
+          var str2 = $("#flightCur").html();
+          var flightCur = ejs.render(str2, data);
+          $('#fligtList').append(flightCur);
+        }
+        //航班列表
+        var str1 = $("#tplFlightList").html();
+        var flightList = ejs.render(str1, data);
+        $('#fligtList').append(flightList);
+        flight_list.delayLoadImage();
+        if (!filterSign) {
+          filterSign = true;
+          bottom(data);
+        }
+        //  页面跳转
+        $(".seat_detail").click(function () {
+          $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
+          var hftFlightHotelTourInfo = JSON.parse(sessionStorage.getItem('hftFlightHotelTourInfo'));
+          var setid = $(this).attr('data-setID');
+          hftFlightHotelTourInfo.airwaySetID = data.selectedAirway.airwaySetID;
+          hftFlightHotelTourInfo.airwayCacheID =data.selectedAirway.airwayCacheID;
+          for (var i = 0; i < data.flightInfoListGroup.length; i++) {
+            for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
+              if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
+                hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
+                break;
+              }
+            }
+          }
+          if(data.selectedFlight&&data.selectedFlight.setID == setid){
+            hftFlightHotelTourInfo.flightInfo = data.selectedFlight;
+          }
+          sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(hftFlightHotelTourInfo));
+          that.timer1 = setTimeout(function () {
+            window.clearTimeout(that.timer1);
+            that.timer1 = null;
+            window.location.href = 'hft_choose.html' + window.location.search;
+          }, 500);
+        });
+
+      }else {
         that.noResult();
         bottom(data);
       }

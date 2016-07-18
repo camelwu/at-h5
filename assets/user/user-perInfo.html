@@ -24,7 +24,7 @@
 		<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
 		<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
-		<link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
+    <link href="../css/plugins/scroller/picker.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="preloader">
@@ -55,7 +55,7 @@
 					</li>
 					<li  class="sex-alter" id="ppp">
 						<div class="birth_date fl">出生日期</div>
-						<div id="birth-cont-per" class="birth_cont" data-cache="1990年-1月-1日">1990-01-01</div>
+						<div id="birth-cont-per" class="birth_cont" data-selected="1990年,1月,1日">1990-01-01</div>
 						<b class="open_arw"></b>
 					</li>
 					<li id="a_phone">
@@ -81,7 +81,7 @@
 				<li id="changename" style="display: none;">
 					<form id="nickForm" action="user-perInfo.html" method="get">
 						<div class="u_name">
-							<input id="name" name="name" placeholder="请输入用户昵称" type="text" value="" maxlength="20" autofocus="autofocus"/>
+							<input id="name" name="name" placeholder="请填写昵称" type="text" value="" maxlength="20" autofocus="autofocus"/>
 							<b class="icon_person name_close"></b>
 						</div>
 						<div class="name_text">4-20个字符，可由中英文字母，数字、“_”组成。</div>
@@ -109,7 +109,7 @@
 					</li>
 					<li id="useremail">
 						<div class="u_name">
-							<input id="email" type="text" placeholder="请输入邮箱" data-type="email">
+							<input id="email" type="text" placeholder="请填写邮箱" data-type="email">
 						</div>
 					</li>
           <a id="amend_btn_0" href="javascript:;" class="f_btn">保存</a>
@@ -144,8 +144,7 @@
 		<script src="../js/lib/jquery.js"></script>
 		<script src="../js/lib/jquery.alert.js"></script>
 		<script src="../js/lib/vlm.js"></script>
-    <script src="../js/plugins/jquery.scrollevent/scrollevent.js" type="text/javascript" ></script>
-    <script src="../js/plugins/scroller/scroller1.1.js"></script>
+    <script src="../js/plugins/scroller/picker.js"></script>
     <script src="scripts/user-perInfo.js"></script>
 	</body>
 </html>

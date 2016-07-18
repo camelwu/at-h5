@@ -87,7 +87,7 @@
        * @returns {Array}
        */
       m_scenic_list:function(param){
-        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode,"priceSortType":"LowToHigh"}, "ForeEndType" : 3, "Code" : "40100007"};
+        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode,"priceSortType":""}, "ForeEndType" : 3, "Code" : "40100007"};
         vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_listCallback"]);
       }
     }
@@ -147,7 +147,7 @@
     // 添加底部筛选
     var f_data = {
       sortTypes : {
-        title : "推荐排序",
+        title : "价格排序",
         c : "foot_sort",
         s : 1,
         type : 1,

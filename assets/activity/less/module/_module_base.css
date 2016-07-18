@@ -1,0 +1,36 @@
+/*
+ *  [module-css-base]所有使用base组件的都通过在div外层显式定义的方式来使用，如<div module-css-base></div>
+ */
+[module-css-base] .box-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+}
+[module-css-base] .pull-left {
+  float: left !important;
+}
+[module-css-base] .pull-right {
+  float: right !important;
+}
+[module-css-base] .clearfix:before,
+[module-css-base] .clearfix:after {
+  content: "";
+  display: table;
+}
+[module-css-base] .clearfix:after {
+  clear: both;
+}
+[module-css-base] .center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+[module-css-base] .hide {
+  display: none !important;
+}
+[module-css-base] .show {
+  display: block !important;
+}
+[module-css-base] .hidden {
+  display: none !important;
+}

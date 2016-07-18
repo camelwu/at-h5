@@ -123,10 +123,10 @@ i.i_address {
     text-align: center;
 }
 
-.hotel_time_left > span {
+.hotel_time_left> span {
     display: block;
     color: #666;
-   font-size: .24rem;
+    font-size: .24rem;
 }
 
 .hotel_time_center {
@@ -161,7 +161,7 @@ i.i_address {
     padding: .1rem 0 0 0;
     float: left;
     width: 2.24rem;
-    font-size: .4rem;
+    font-size: .38rem;
     font-weight: 600;
     margin-top: .6rem;
     /*margin-right: .12rem;*/

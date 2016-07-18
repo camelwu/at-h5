@@ -1,4 +1,5 @@
 /*index  banner*/
+
 .index_scroll {
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0, 0, 0);
@@ -20,30 +21,66 @@ body {
   background-color: #fff;
 }
 
-.index_bg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: url('../images/index/indexbg.png') no-repeat;
+.content.no_header {
+  min-height: 4.88rem;
 }
+
+/*banner开始*/
 
 .slider-container {
   position: relative;
   height: 4.88rem;
+  overflow: hidden;
 }
 
-.owl-controls {
+.homepage_slider {
   position: absolute;
-  bottom: 0;
   left: 0;
-  width: 100%;
+  top: 0;
+
 }
+
+.homepage_slider img, .homepage_slider a {
+  display: block;
+}
+
+.banner_num_wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.banner_num {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.banner_num li.active span {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.banner_num li {
+  display: inline-block;
+  zoom: 1;
+}
+
+.banner_num li span {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 100%;
+  display: inline-block;
+  margin: 8px;
+  cursor: pointer;
+}
+
+/*banner结束*/
 
 .column_wrap {
   position: relative;
-  z-index: 1000;
+  z-index: 98;
   padding: .4rem 0;
 }
 
@@ -51,7 +88,6 @@ body {
   text-align: center;
   float: left;
   width: 20%;
-  /*margin-left: .5rem;*/
 }
 
 .res_image {
@@ -65,6 +101,7 @@ body {
 }
 
 /*当月热玩index*/
+
 .recommends {
   width: 100%;
   overflow: hidden;
@@ -87,6 +124,7 @@ body {
 }
 
 /*玩家推荐*/
+
 .player_recommend {
   padding: 0 .2rem;
   background-color: #fff;
@@ -172,7 +210,14 @@ body {
   line-height: .5rem;
 }
 
+.footer {
+  margin-bottom: 1.3rem;
+  font-size: .2rem;
+  text-align: center;
+}
+
 /*footer*/
+
 .footer-menu {
   width: 100%;
   position: fixed;
@@ -189,7 +234,6 @@ body {
   /*-ms-filter: blur(1px);*/
   /*filter: blur(1px);*/
   /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /!* IE6~IE9 *!/*/
-
 }
 
 .footer-menu a {
@@ -209,10 +253,10 @@ body {
   margin: 0 auto 0 auto;
   width: .48rem;
   height: .48rem;
-
 }
 
-a.foot-homes, a.foot-users {
+a.foot-homes,
+a.foot-users {
   color: #7bc300;
 }
 
@@ -245,6 +289,7 @@ a.foot-homes, a.foot-users {
 /*首页footer结束*/
 
 /*当月热玩海外门票开始*/
+
 .head_hot {
   height: 1.2rem;
   background-color: #fcfcfc;
@@ -341,18 +386,3 @@ a.foot-homes, a.foot-users {
 }
 
 /*当月热玩海外门票结束*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

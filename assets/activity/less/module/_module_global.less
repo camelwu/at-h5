@@ -1,0 +1,27 @@
+/*
+ *  [module-css-global]为全局css
+ */
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", sans-serif;
+}
+
+::-webkit-input-placeholder {
+  // opacity:0.54 Firefox
+  // IE、Chrome opacity:1
+  opacity: 1;
+}
+
+img {
+  vertical-align: top;
+}

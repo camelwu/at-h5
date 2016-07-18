@@ -1,3 +1,4 @@
+
 body {
   background: #f7f7f7;
 }
@@ -109,6 +110,18 @@ dl.foot_position dt {
   background: url(../../../images/hotel_flight_tour/icon_hotel.png);
   background-size: 7.89rem 2.58rem;
   background-position: -2.19rem -0.46rem;
+}
+#transformTypes dt{
+  width: 0.34rem;
+  height: 0.37rem;
+  background: url(../../../images/ui/price.png);
+  background-size: .38rem .38rem;
+  background-position: -.04rem 0;
+  position: relative;
+}
+dl.foot_transform dt, dl.foot_transform dt {
+  position: relative;
+  background-position: -0.59rem -2.32rem;
 }
 
 section.foot_sort,
@@ -401,7 +414,7 @@ section.flight_company .aw_price span:last-child {
 
 section.flight_company li.cur b.hft_icon {
   position: absolute;
-  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-image: url(../../../images/ui.1.0/icon_common.png);
   background-size: 7.9rem 7.83rem;
   background-position: -4.72rem -1.46rem;
   width: 0.42rem;
@@ -427,7 +440,7 @@ dl.flight_company dt:after, dl.foot_sort dt:after{
   right: -0.18rem;
   top: .05rem;
   border-radius: .05rem;
-  background: #fd7530;
+  background: #7bc300;
 }
 
 /*航空公司 结束*/
@@ -435,9 +448,8 @@ footer dl.classname{
   background: #333;
 }
 
-#Screen dt,#sortTypes dt,#filters dt,#locationList dt{position: relative}
-#sortTypes dt,#filters dt{position: relative}
-#sortTypes dt:after, #filters dt:after, #locationList dt:after{
+#Screen dt,#sortTypes dt,#filters dt,#locationList dt, #transformTypes dt,#timeTypes dt {position: relative}
+#sortTypes dt:after, #filters dt:after, #locationList dt:after, #transformTypes dt:after, #timeTypes dt:after{
   content: "";
   width: .1rem;
   height: .1rem;
@@ -445,8 +457,8 @@ footer dl.classname{
   right: -0.18rem;
   top: .05rem;
   border-radius: .05rem;
-  background: #fd7530;
+  background: #7bc300;
 }
-#sortTypes dt.clo:after,#filters dt.clo:after, #locationList dt.clo:after{
+#sortTypes dt.clo:after,#filters dt.clo:after, #locationList dt.clo:after,#transformTypes dt.clo:after, #timeTypes dt.clo:after {
   display: none;
 }

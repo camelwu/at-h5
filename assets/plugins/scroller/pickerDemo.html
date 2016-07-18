@@ -2,132 +2,198 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
 
-    <!--seo-->
-    <meta name="Keywords" content="亚程旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <title>亚程旅行网</title>
+  <!--seo-->
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>亚程旅行网</title>
 
-    <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
-    <link href="picker.css" rel="stylesheet" type="text/css">
-    <style>
-        .main {
-            margin: 0 auto;
-            font-size: .28rem;
-        }
-        
-        .main .header .title {
-            height: 100%;
-            margin: 0 1rem;
-            line-height: 1.4rem;
-            text-align: center;
-            background: #eeeccc;
-        }
-        
-        .content {
-            margin-top: .88rem;
-        }
-        
-        .siteRight {
-            height: 1rem;
-            line-height: 1rem;
-            background: #eee;
-            text-align: center;
-        }
-        
-        .select_time {
-            /*            margin: .2rem;*/
-        }
-        
-        .select_time .check_in {
-            height: .5rem;
-            width: 5rem;
-            border-bottom: 1px solid #999;
-            float: left;
-        }
-        
-        .select_time .time_icon {
-            float: right;
-            height: 1rem;
-            width: 1rem;
-            background: gold;
-        }
-        
-        .content .button {
-            height: .6rem;
-            border: 1px solid #999;
-            border-radius: 8px;
-            margin: .2rem;
-        }
+  <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+  <link href="picker.css" rel="stylesheet" type="text/css">
+  <style>
+    .main {
+      margin: 0 auto;
+      font-size: .28rem;
+    }
 
-    </style>
+    .main .header .title {
+      height: 100%;
+      margin: 0 1rem;
+      line-height: 1.4rem;
+      text-align: center;
+      background: #eeeccc;
+    }
+
+    .content {
+      margin-top: .88rem;
+    }
+
+    .siteRight {
+      height: 1rem;
+      line-height: 1rem;
+      background: #eee;
+      text-align: center;
+    }
+
+    .select_time {
+      /*            margin: .2rem;*/
+    }
+
+    .select_time .check_in {
+      height: .5rem;
+      width: 5rem;
+      border-bottom: 1px solid #999;
+      float: left;
+    }
+
+    .select_time .time_icon {
+      float: right;
+      height: 1rem;
+      width: 1rem;
+      background: gold;
+    }
+
+    .content .button {
+      height: 30px;
+      width: 200px;
+      border: 1px solid #999;
+      border-radius: 8px;
+      margin: .2rem;
+    }
+
+  </style>
 </head>
 
 <body>
-    <div class="all_elements">
-        <header class="header">
-            <a href="#" class="header_back">
-                <i class="icon_back"></i>
-            </a>
-            <h3>Picker 控件</h3>
-        </header>
-        <div class="content">
-            <div id="picker" class="button"></div>
-            <div id="picker2" class="button"></div>
-            <ul>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-                <li>item 1</li>
-            </ul>
-        </div>
-        <div class="siteRight">
-            <p>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</p>
-        </div>
-        <footer class="bottomFixNav">
+<div class="all_elements">
+  <header class="header">
+    <a href="#" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>Picker 控件</h3>
+  </header>
+  <div class="content">
+    <input type="tel" placeholder="tel phone number">
+    <h2>出生日期</h2>
+    <div id="picker" class="button" tabindex = "0" ></div>
+    <h2>舱位</h2>
+    <div id="picker2" class="button"></div>
+    <h2>信用卡有效期</h2>
+    <div id="picker3" class="button"></div>
+    <h2>下午下午</h2>
+    <div id="picker4" class="button"></div>
+    <h2>身份证</h2>
+    <div id="picker5" class="button"></div>
+    <h2>护照</h2>
+    <div id="picker6" class="button"></div>
+    <h2>身份证 and 护照</h2>
+    <div id="picker7" class="button"></div>
+    <h2>日期 + 时间</h2>
+    <div id="picker8" class="button"></div>
+    <ul>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+      <li>item 1</li>
+    </ul>
+  </div>
+  <div class="siteRight">
+    <p></p>
+  </div>
+  <footer class="bottomFixNav">
 
-        </footer>
-    </div>
-    <script src="../../js/lib/jquery.js"></script>
-    <script src='picker.js'></script>
-    <script>
-        var cardcallback = function() {
-                console.info("callback");
-            }
-            //新增常旅
-        var myDate1 = new ATplugins.Picker({
-            input: '#picker', //调出组件的元素id
+  </footer>
+</div>
+<script src="../../js/lib/jquery.js"></script>
+<script src='picker.js'></script>
+<script>
+  var cardcallback = function () {
+    console.info("callback");
+  }
+  //新增常旅
+  var myDate1 = new ATplugins.Picker({
+    input: '#picker', //调出组件的元素id
+    type: 'date',
+    value: ['2007年', '6月', '15日'], // 初始化选中数据
+    callback: function (arrayData) { //选择完毕点击确认后的回调函数   参数为选中的值数组
+      console.info(arrayData);
+      //$("#picker").html(arrayData.join(" "));
+    }
+  });
 
-            //value: ['2007年', '6月', '15日'], / / 初始化选中数据
-            callback: function(arrayData) { //选择完毕点击确认后的回调函数   参数为选中的值数组
-                console.info(arrayData);
-                $("#picker").html(arrayData.join(" "));
-            }
-        });
+  var myDate2 = new ATplugins.Picker({
+    input: '#picker2',
+    type: 'seat',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      $("#picker2").html(arrayData.join(" "));
+    }
+  });
+  var myDate3 = new ATplugins.Picker({
+    input: '#picker3',
+    type: 'cardExpirationDate',
+    value: ['2016年', '7月'],
+    callback: function (arrayData) {
+      console.info(arrayData);
+      //$("#picker3").html(arrayData.join(" "));
+    }
+  });
+  var myDate4 = new ATplugins.Picker({
+    input: '#picker4',
+    type: 'time',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      $("#picker4").html(arrayData.join(" "));
+    }
+  });
+  var myDate5 = new ATplugins.Picker({
+    input: '#picker5',
+    type: 'cardDom',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      //$("#picker5").html(arrayData.join(" "));
+    }
+  });
+  var myDate6 = new ATplugins.Picker({
+    input: '#picker6',
+    type: 'cardInte',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      //$("#picker6").html(arrayData.join(" "));
+    }
+  });
 
-        var myDate2 = new ATplugins.Picker({
-            input: '#picker2',
-            type: 'seat',
-            callback: function(arrayData) {
-                console.info(arrayData);
-                $("#picker2").html(arrayData.join(" "));
-            }
-        });
+  var myDate7 = new ATplugins.Picker({
+    input: '#picker7',
+    type: 'card',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      //$("#picker7").html(arrayData.join(" "));
+    }
+  });
+  var myDate8 = new ATplugins.Picker({
+    input: '#picker8',
+    type: 'dateTime',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      // $("#picker8").html(arrayData.join(" "));
+    }
+  });
 
-    </script>
+</script>
 </body>
 
 </html>

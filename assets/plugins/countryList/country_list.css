@@ -1,13 +1,8 @@
 /*国籍选择开始*/
 
-#country_index_wrap {
-  display: none;
-}
-
 .country_header.header {
   z-index: 1100;
   opacity: 1;
-  display: none;
 }
 
 .gj_header {
@@ -16,13 +11,12 @@
 }
 
 .country-cho-wrap {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1000;
-  display: none;
   background-color: #fff;
 }
 
@@ -87,9 +81,8 @@
   right: 0;
   top: 1.2rem;
   background: rgba(255, 255, 255, .5);
-  padding: 0 .16rem;
-  height: 100%;
   z-index: 1000;
+  width: .6rem;
 }
 
 .country_index li {
@@ -160,7 +153,6 @@
   background-color: #fff;
   position: fixed;
   z-index: 500;
-  display: none;
 }
 
 /*国籍选择结束*/

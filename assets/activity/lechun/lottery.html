@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+  <title>亚程旅游任性送</title>
+  <link rel="stylesheet" href="./less/lottery.css">
+</head>
+<body module-css-reset module-css-base>
+<div class="mask hidden"></div>
+<div class="alert hidden">
+  <button class="close"></button>
+  <p class="tips">恭喜你！<br>获得：&nbsp;<span class="prize_tips"></span></p>
+  <p class="code">兑奖码：&nbsp;<span class="prize_code"></span></p>
+  <p class="tips2">请牢记兑奖码才能成功领取奖品哦！</p>
+  <div class="download"></div>
+</div>
+<img class="background" src="./img/background.jpg" alt="">
+<div class="button_area">
+  <button id="button" class="button" type="button"></button>
+  <button class="button clicked hidden" type="button"></button>
+</div>
+<div class="lottery">
+  <div class="stage">
+    <div class="container">
+
+    </div>
+  </div>
+  <div class="stage">
+    <div class="container">
+
+    </div>
+  </div>
+  <div class="stage">
+    <div class="container">
+
+    </div>
+  </div>
+
+  <div id="light" class="light light1"></div>
+  <div class="light light1 hidden"></div>
+  <div class="light light2 hidden"></div>
+  <div class="rule_title">
+    <p><a href="#activityRule">活动规则</a></p>
+    <div class="line"></div>
+  </div>
+</div>
+<div id="activityRule" class="activity_rule">
+  <p><strong>活动区域：</strong>全国</p>
+  <p><strong>活动时间：</strong>2016.08.08 － 2016.08.10</p>
+  <p><strong>领取方法：</strong>参与老虎机游戏，获取奖品兑奖码。下载亚程旅游APP并启动，在弹出的兑换奖品的窗口中输入奖品兑奖码和兑奖人信息；</p>
+  <p><strong>奖品设置：</strong>新加坡金沙酒店3晚住宿、微信红包、小亚毛绒玩具、乐纯酸奶1箱、乐纯酸奶代金券；</p>
+  <p><strong>兑奖方式：</strong>新加坡金沙酒店3晚住宿，亚程客服将线下联系您安排入住；微信红包，下载亚程app，短信获取红包兑奖码，关注“亚程旅游”微信公众号并输入微信红包兑奖码，小亚就会给您送出红包；小亚毛绒玩具、乐纯酸奶（箱）将以快递的方式寄出；乐纯酸奶代金券以短信方式下发，领取后可在“乐纯的伙伴们”微信公众号直接使用。</p>
+  <p><strong>关注微信公共平台：</strong>亚程旅游</p>
+  <p><strong>温馨提示：</strong></p>
+  <p>1、请您中奖后尽快完成奖品兑换。由于参与活动用户较多，奖品数量有限，亚程不保证您最终可以获得相应奖品；</p>
+  <p>2、新下载注册用户，可参加活动。老用户不再参加此活动；</p>
+  <p>3、同一部手机和同一个手机号码只能领取一份奖品；</p>
+  <p>4、本活动结束后7个工作日内，将陆续安排奖品的发放；</p>
+  <p>5、本次活动不收取任何费用。</p>
+</div>
+<script src="../js/jquery/jquery.min.js"></script>
+<script src="../js/vlm.js"></script>
+<script>
+  var container = document.querySelectorAll('.container');
+  // 记录动画完成的全局变量，动画完成后置为true
+  var AnimationEndStatus = true;
+
+
+  // 初始化奖品界面
+  !function initLottery() {
+    // 默认展示金沙酒店、毛绒玩具、乐纯酸奶
+    var initIndex = [0, 1, -2];
+    Array.prototype.forEach.call(container, function (item, index) {
+      // transformIndex是index位移
+      var transformIndex = initIndex[index];
+      transform(item, 'rotateX(' + (transformIndex * 72) + 'deg)');
+      // 使用setTimeout，防止初始化时触发transition
+      setTimeout(function () {
+        transition(item, 'all ' + (index + 5) + 's');
+      }, 200);
+    });
+  }()
+
+  // 初始化转盘内容
+  // hotel金沙酒店 gift红包 leben酸奶 cash购物券 doll亚程玩具
+  var imgs = ['hotel', 'gift', 'lechun_leben', 'lechun_cash', 'doll'].map(function (item, index) {
+    return '<img src="img/' + item + '.png">';
+  }).join('');
+  Array.prototype.forEach.call(container, function (item) {
+    item.innerHTML = imgs;
+  });
+
+  // 切换屏幕上的灯
+  var light = document.querySelector('#light');
+  setInterval(function () {
+    switchLight(light);
+  }, 800);
+  // 切换屏幕上的灯
+  var switchLight = function (el) {
+    if (el.classList.contains('light1')) {
+      el.classList.remove('light1')
+      el.classList.add('light2')
+    } else if (el.classList.contains('light2')) {
+      el.classList.remove('light2')
+      el.classList.add('light1')
+    }
+  };
+
+
+  // 按钮点击开始摇奖
+  var i = 0;
+  // doll亚程玩具 hotel金沙酒店 leben酸奶 cash购物券 gift红包
+  document.querySelector('#button').addEventListener('click', function () {
+    var _this = this;
+
+    // 动画未完成，不可点击
+    if (!AnimationEndStatus) {
+      return;
+    }
+    // 点击后，按钮置为不可点
+    AnimationEndStatus = false;
+
+    /*sendAjaxObj({
+      button: this,
+      url: './mock/lottery.json',
+      data: {
+        "Parameters":{
+          "DeviceID": "895623"
+        },
+        "ForeEndType": 3,
+        "Code": "97100001"
+      },
+      type: 'GET',
+      dataType: 'json',
+      success: function (data) {
+      },
+      error: function (error) {
+
+      },
+      complete: function () {
+      }
+    })*/
+
+    // testUrl: './mock/lottery.json', type: 'get'
+    vlm.loadJson('', JSON.stringify({
+      "Parameters": {
+        "DeviceID": "895623"
+      },
+      "ForeEndType": 3,
+      "Code": "97100001"
+    }), function (data) {
+      data = data.data;
+      prizeCode = data.prizeCode;
+      prizeType = data.prizeType;
+      prizeTips = [null, '金沙酒店3晚住宿', '2.86元微信红包', '乐纯酸奶1箱', '乐纯酸奶25元代金券', '毛绒玩具小亚一只'];
+
+
+      prizeTips = prizeTips[prizeType];
+
+      // 摇奖开始，按钮置为不可点
+      AnimationEndStatus = false;
+      // 开始摇奖动画
+      lotteryAnimation();
+      // 切换按钮事件
+      toggleClicked(_this);
+
+      function lotteryAnimation() {
+        i++;
+        Array.prototype.forEach.call(container, function (item) {
+          transform(item, 'rotateX(' + (-(prizeType - 1) * 72 + (-i) * 3600) + 'deg)')
+        });
+      }
+
+      function toggleClicked(button) {
+        button.classList.add('clicked');
+        setTimeout(function () {
+          button.classList.remove('clicked');
+        }, 500);
+      }
+    });
+
+  }, false);
+
+  // 获取当前可用的transitionEnd事件名
+  var transitionEvent = (function whichTransitionEvent() {
+    var t, el = document.createElement('surface'), transitions = {
+      'transition': 'transitionend',
+      'OTransition': 'oTransitionEnd',
+      'MozTransition': 'transitionend',
+      'WebkitTransition': 'webkitTransitionEnd'
+    }
+
+    for (t in transitions) {
+      if (el.style[t] !== undefined) {
+        return transitions[t];
+      }
+    }
+  })();
+
+  var prizeCode, prizeTips;
+  // 为每个animation添加animationEnd事件，animation都结束后弹出对话框
+  var transitionFunc = function () {
+    var i = 0;
+    return function (item) {
+      function transitionEndFunc() {
+        i++;
+        if (i === 3) {
+          // 摇奖结束，按钮置为不可点
+          AnimationEndStatus = true;
+
+          // 弹出alert框
+          $alert.bootstrap({
+            prizeTips: prizeTips,
+            prizeCode: prizeCode
+          }).show()
+
+          i = 0;
+          /*Array.prototype.forEach.call(container, function (item2) {
+            item2.removeEventListener(transitionEvent, transitionEndFunc, false);
+          });*/
+        }
+      }
+
+      item.addEventListener(transitionEvent, transitionEndFunc, false);
+    }
+  };
+  var transitionFuncClosure = transitionFunc();
+  Array.prototype.forEach.call(container, transitionFuncClosure);
+
+
+  // 检测Android和iOS
+  var userAgent = (function () {
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+    var isAndroid = userAgent.indexOf('android') > 0;
+
+    return {
+      isIOS: isIOS,
+      isAndroid: isAndroid
+    }
+  })();
+
+  var $alert = (function () {
+    var $alert = $('.alert');
+    var $mask = $('.mask');
+    var Alert = function (options) {
+      this.origin = this.initDownloadBtn();
+      this.initTips(options);
+      this.bindEvent();
+      return this;
+    };
+    Alert.prototype.initDownloadBtn = function () {
+      var queryStringArgs = getQueryStringArgs();
+
+      // 根据页面来源
+      if (queryStringArgs.origin === 'app') {
+        $('.alert .download').text('去兑换');
+        return 'origin=app'
+      } else {
+        $('.alert .download').text('下载APP兑奖')
+        return 'origin=browser'
+      }
+    };
+    Alert.prototype.initTips = function (options) {
+      var prizeTips = options.prizeTips;
+      var prizeCode = options.prizeCode;
+      $alert.find('.prize_tips').text(prizeTips)
+      $alert.find('.prize_code').text(prizeCode)
+    }
+    Alert.prototype.bindEvent = function () {
+      var _this = this;
+      $alert.find('.close').on('click', function () {
+        _this.close();
+      });
+      $alert.find('.download').on('click', function () {
+        if (_this.origin === 'origin=app') {
+          history.back();
+        } else {
+          if (userAgent.isAndroid) {
+            location.href = 'http://url.cn/27QotxC';
+          } else if (userAgent.isIOS) {
+            location.href = 'http://m.yazhoulvyou.cn/';
+          }
+        }
+      });
+    }
+    Alert.prototype.show = function () {
+      $alert.removeClass('hidden');
+      $mask.removeClass('hidden');
+    }
+    Alert.prototype.hide = function () {
+      $alert.addClass('hidden');
+      $mask.addClass('hidden');
+    }
+    Alert.prototype.close = function () {
+      this.hide();
+    }
+    Alert.prototype.openBrowserTips = function () {
+    }
+
+    Alert.prototype.unbindEvent = function () {
+      $alert.find('.download').off('click');
+      $alert.find('.close').off('click');
+    }
+    Alert.prototype.destroy = function () {
+      // 解除绑定事件
+      this.unbindEvent()
+    }
+
+    return {
+      bootstrap: function (options) {
+        return new Alert(options);
+      }
+    }
+  })();
+
+
+  // 以下是ajax函数
+  function sendAjaxObj(options) {
+    var button = options.button;
+    if (button) {
+      switchButtonDisabledStatus(true);
+    }
+    var args = {
+      url: options.url,
+      data: options.args,
+      type: options.type || 'GET',
+      dataType: 'json'
+    };
+    if (options.contentType) {
+      args.contentType = options.contentType;
+    }
+    args.success = function (data) {
+      if (data.code === 200) {
+        options.success(data.data);
+      } else {
+        alert(data.message);
+      }
+    };
+    args.error = function (error) {
+      options.success(error);
+    };
+    args.complete = function () {
+      if (button) {
+        switchButtonDisabledStatus(false);
+      }
+      options.complete();
+    };
+
+    // 切换按钮的禁用状态，true不可点，false可点
+    function switchButtonDisabledStatus(status) {
+      if (typeof status === "boolean") {
+        if (button instanceof Zepto) {
+          button.prop('disabled', status);
+        } else if (button.nodeType === 1) {
+          button.disabled = status;
+        }
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    return $.ajax(args);
+  }
+
+  // CSS transform变换应用
+  function transform(element, value, key) {
+    key = key || "Transform";
+    ["Moz", "O", "Ms", "Webkit", ""].forEach(function (prefix) {
+      element.style[prefix + key] = value;
+    });
+
+    return element;
+  }
+  function transition(element, value, key) {
+    key = key || "Transition";
+    ["Moz", "O", "Ms", "Webkit", ""].forEach(function (prefix) {
+      element.style[prefix + key] = value;
+    });
+
+    return element;
+  }
+
+  function getQueryStringArgs () {
+    var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+            args = {},
+            items = qs.length ? qs.split("&") : [],
+            item = null,
+            name = null,
+            value = null,
+            i,
+            len = items.length;
+    for (i = 0; i < len; i++) {
+      item = items[i].split("=");
+      name = decodeURIComponent(item[0]);
+      value = decodeURIComponent(item[1]);
+      if (name.length) {
+        args[name] = value;
+      }
+    }
+    return args;
+  }
+
+</script>
+</body>
+</html>

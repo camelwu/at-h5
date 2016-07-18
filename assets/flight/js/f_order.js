@@ -342,26 +342,42 @@ var fOrder = {
       }
     });
 
+    $('.add-user').on('click', function () {
+      vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate, !fOrder.isInternationalTrip(), false, 'fOrder.flight_callback')
+    });
+
   },
-  deletePassager:function(obj){
-  $(obj).parent().parent().parent().remove();
 
-  var id=$(obj).parent().find(".itemId").val();
-  var list= JSON.parse(localStorage.getItem("choiceAir_select_passenger-list"));
-  var temp={};
-  for(var key in list){
-    if(key !=id){
-      temp[key]=list[key];
+  // 传回数据后，渲染数据
+  flight_callback: function (data) {
+    console.log(data);
+    var isInternational = fOrder.isInternationalTrip()
+    if (isInternational) {
+      $('.cn_name').hide()
+    } else {
+      $('.en_name').hide()
     }
-  }
-    localStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
-},
+  },
 
-editPassager:function(obj){
+  deletePassager:function(obj){
+    $(obj).parent().parent().parent().remove();
+
+    var id=$(obj).parent().find(".itemId").val();
+    var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+    var temp={};
+    for(var key in list){
+      if(key != id){
+        temp[key]=list[key];
+      }
+    }
+    sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
+  },
+
+  editPassager:function(obj){
   var id=$(obj).find("input").eq(0).val();
   var numofAdult=JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult;
   var numofChild= JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild;
-  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), fOrder.isInternationalTrip())
+  vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), false)
 },
   distinct:function(){
     var obj={},ary=[], arr = arguments[0];
