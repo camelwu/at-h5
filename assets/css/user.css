@@ -13,32 +13,50 @@ em {
 
 input::-webkit-input-placeholder {
   /* WebKit browsers */
-  font-size: 0.24rem;
+  font-size: 0.32rem;
+  color: #fff;
 }
 
 input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  font-size: 0.24rem;
+  font-size: 0.32rem;
+  color: #fff;
 }
 
 input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  font-size: 0.24rem;
+  font-size: 0.32rem;
+  color: #fff;
 }
 
 input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
-  font-size: 0.24rem;
+  font-size: 0.32rem;
+  color: #fff;
 }
 
 /*登录注册开始*/
+#cellCode_login{
+  display: none;
+}
+#cellCode_login > ul {
+  padding: 0 .6rem;
+  margin-top: .5rem;
+}
+
+#all_user {
+  background: url("../images/user/login_bg.png") no-repeat;
+}
 
 .login_page {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 99;
   font-size: .28rem;
+  color: #fff;
 }
 
 .login_header {
@@ -52,7 +70,6 @@ input:-ms-input-placeholder {
 }
 
 .login_header h3 {
-  color: #333;
   text-align: center;
   line-height: .9rem;
   font-size: .36rem;
@@ -95,63 +112,122 @@ input:-ms-input-placeholder {
   background-size: 8.2rem 4.8rem;
 }
 
+.icon_user {
+  width: .3rem;
+  height: .3rem;
+  display: inline-block;
+  background: url(../images/ui.1.0/icon_user.png) no-repeat;
+  background-size: 5.7rem .92rem;
+}
+
+#fkey_page {
+  background-color: #fff;
+}
+
 .find_go_back {
   position: absolute;
-  width: .36rem;
-  height: .36rem;
-  left: .28rem;
-  top: .25rem;
-  background-position: -.29rem -.4rem;
-  background-size: 6rem 4rem;
+  width: 0.36rem;
+  height: .4rem;
+  left: .4rem;
+  top: .2rem;
+  background-position: -.65rem -.28rem;
 }
 
-.header_close.icon_person {
+.header_close.icon_user {
   position: absolute;
-  width: .36rem;
+  width: 0.36rem;
   height: .36rem;
-  left: .28rem;
-  top: .25rem;
-  background-position: -2.92rem -.16rem;
+  left: .4rem;
+  top: .26rem;
+  background-position: -1.36rem -.32rem;
 }
 
-.go_back.icon_person {
+.go_back.icon_user {
   position: absolute;
-  width: .36rem;
+  width: 0.36rem;
   height: .36rem;
-  left: .28rem;
-  top: .25rem;
-  background-position: -3.36rem -.19rem;
+  left: .4rem;
+  top: .2rem;
+  background-position: -.16rem -.32rem;
 }
 
 #phone_login,
 #email_login {
-  margin-top: 1rem;
-  padding: 0 .4rem;
+  margin-top: .5rem;
+  padding: 0 .6rem;
+}
+
+.login_tab_wrap {
+  border: 1px solid #fff;
+  border-radius: .06rem;
+  -webkit-border-radius: .06rem;
+  height: .6rem;
+  line-height: .6rem;
+  margin: .4rem .6rem 0;
+  overflow: hidden;
+  position: relative;
+  font-size: .3rem;
+}
+
+.login_tab_wrap > div {
+  float: left;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.login_tab_wrap a {
+
+}
+
+.login_tab_wrap .active a {
+  opacity: .3;
+  filter: alpha(opacity:30);
+  background-color: #fff;
+  display: block;
+  height: 100%;
+}
+
+.login_tab_wrap span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .5;
+  filter: alpha(opacity:50);
+  color: #fff;
+}
+
+.login_tab_wrap .active span {
+  opacity: 1;
+  filter: alpha(opacity:100);
 }
 
 .login_input {
   border-bottom: 1px solid #e6e6e6;
   width: 100%;
-  height: 1.08rem;
+  height: 1.2rem;
   position: relative;
 }
 
-.tel_code_wrap {
-  padding-top: .32rem;
-}
-
 .login_phone {
-  margin-top: .04rem;
+  width: .35rem;
+  height: .35rem;
+  display: inline-block;
   vertical-align: top;
-  background-size: 8.48rem 4.8rem;
-  background-position: -5.3rem -.2rem;
+  margin-top: .39rem;
+  background-position: -3.96rem -.32rem;
 }
 
 .login_pass {
-  margin-top: .34rem;
+  width: .35rem;
+  height: .42rem;
+  display: inline-block;
   vertical-align: top;
-  background-size: 8.48rem 4.8rem;
-  background-position: -4.94rem -.2rem;
+  margin-top: .34rem;
+  background-position: -2.14rem -.28rem;
 }
 
 .login_mail {
@@ -164,19 +240,9 @@ input:-ms-input-placeholder {
   background: transparent !important;
   padding-left: .4rem;
   height: .5rem;
-  color: #333;
-  font-size: .28rem;
-  margin-top: .28rem;
-}
-
-#r_phone,
-#phone {
-  margin-top: 0 !important;
-}
-
-.change_way {
-  padding: .4rem;
-  overflow: hidden;
+  color: #fff;
+  font-size: .32rem;
+  margin-top: .35rem;
 }
 
 .login_button,
@@ -184,14 +250,14 @@ input:-ms-input-placeholder {
 .f_btn {
   display: block;
   font-size: .36rem;
-  border-radius: .04rem;
+  border-radius: .5rem;
+  border: 1px solid #fff;
   height: .96rem;
   line-height: .96rem;
   text-align: center;
   color: #fff;
   font-weight: 600;
-  background-color: #7bc300;
-  margin: .96rem .4rem 0;
+  margin: .96rem .6rem 0;
 }
 
 .f_btns {
@@ -243,8 +309,7 @@ input:-ms-input-placeholder {
 }
 
 .f_key > li {
-  height: .96rem;
-  line-height: .96rem;
+  height: 1.2rem;
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
@@ -255,12 +320,33 @@ input:-ms-input-placeholder {
 }
 
 .f_key > li input {
-  height: 90%;
   width: 60%;
-  font-size: .28rem;
+  margin-top: .35rem;
+  font-size: .32rem;
+}
+
+.f_key > li input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #d1d1d1;
+}
+
+.f_key > li input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #d1d1d1;
+}
+
+.f_key > li input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #d1d1d1;
+}
+
+.f_key > li input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #d1d1d1;
 }
 
 #email,
+#cellCode_phone,
 #r_email,
 #e_password,
 #r_p_password,
@@ -269,20 +355,32 @@ input:-ms-input-placeholder {
 #r_e_password,
 #rs_e_password,
 .mob_cell {
-  width: 80%;
+  width: 90%;
 }
 
 #phone {
-  width: 65%;
+  width: 90%;
   height: .5rem;
-  display: inline-block;
-  font-size: .28rem;
+  font-size: .32rem;
 }
 
 #phone_register,
 #email_register {
-  margin: 0 .4rem;
-  margin-top: 1rem;
+  margin: 0 .6rem;
+  margin-top: .5rem;
+}
+
+#findkey_btn {
+  display: block;
+  font-size: .36rem;
+  border-radius: .5rem;
+  -webkit-border-radius: .5rem;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  color: #fff;
+  background-color: #7bc300;
+  margin: .96rem .4rem 0;
 }
 
 .coun-find > div {
@@ -308,7 +406,6 @@ input:-ms-input-placeholder {
 }
 
 .fk_put {
-  height: 90%;
   width: 100%;
   font-size: .28rem;
   color: #333;
@@ -319,23 +416,31 @@ input:-ms-input-placeholder {
 }
 
 .fk_div {
-  padding: 0 .2rem;
-  width: 1.85rem;
-  height: .68rem;
-  text-align: center;
-  line-height: .68rem;
-  background-color: #7bc300;
-  border-radius: .04rem;
-  color: #fff;
   position: absolute;
   right: 0;
-  top: .12rem;
+  top: .33rem;
+  font-size: .3rem;
+  border-left: 1px solid #fff;
+  padding-left: .2rem;
+}
+
+.fk_div_code {
+  position: absolute;
+  right: 0;
+  top: .25rem;
+  font-size: .28rem;
+  border: 1px solid #7bc300;
+  color: #7bc300;;
+  border-radius: .4rem;
+  -webkit-border-radius: .4rem;
+  padding: 0 .35rem;
+  height: .72rem;
+  line-height: .72rem;
 }
 
 .p_86 {
   display: inline-block;
   vertical-align: top;
-  color: #333;
   border-right: 1px solid #e6e6e6;
   position: relative;
   max-width: 1.55rem;
@@ -362,18 +467,6 @@ input:-ms-input-placeholder {
   margin: .04rem .7rem 0 .2rem;
 }
 
-.open_arw.int_tel {
-  width: .28rem;
-  height: .32rem;
-  top: 0;
-  right: .2rem;
-  background-size: 8.4rem 5.2rem;
-}
-
-#p_password {
-  padding-left: .25rem;
-}
-
 .login-input .in-phone {
   display: inline-block;
   padding-top: 2px;
@@ -382,47 +475,34 @@ input:-ms-input-placeholder {
 }
 
 .forgotkey {
-  float: left;
-  margin: .3rem .24rem .3rem 0;
-  color: #333;
+  float: right;
+  margin-top: .3rem;
+  color: #fff;
 }
 
 .changelogin {
   float: right;
   margin: .3rem 0 .6rem 0;
-  color: #333;
-}
-
-.login_change {
-  width: .34rem;
-  height: .34rem;
-  background-position: -5.94rem -.2rem;
-  position: relative;
-  top: .06rem;
-  margin-left: .06rem;
+  color: #fff;
 }
 
 .login_clear {
   display: none;
   position: absolute;
-  right: 13px;
-  background-position: -85px -35px;
+  right: .26rem;
+  background-position: -1.7rem -.7rem;
 }
 
 .login_clear.get_code_del {
-  right: 125px;
+  right: 2.5rem;
 }
 
 .regist-code {
-  display: inline-block;
   position: absolute;
   right: 0;
-  top: 0;
-  width: 107px;
-  border-left: 1px solid #e6e6e6;
-  text-align: center;
-  color: #7bc300;
-  margin-top: 13px;
+  top: .33rem;
+  border-left: 1px solid #fff;
+  padding-left: .4rem;
 }
 
 /*登录注册结束*/
@@ -440,7 +520,6 @@ input:-ms-input-placeholder {
 }
 
 .user_info #userIcon {
-  border-radius: 50%;
   width: 1.2rem;
   height: 1.2rem;
   margin-bottom: .1rem;
@@ -451,11 +530,11 @@ input:-ms-input-placeholder {
   height: 3.18rem;
   padding-top: .7rem;
   background: url(../images/ui/icon_person.png) no-repeat;
-  background-position: -43px -154px;
+  background-position: -1rem -4rem;
 }
 
 #u_info {
-  width: 150px;
+  width: 3rem;
   margin: 0 auto;
 }
 
@@ -478,8 +557,8 @@ input:-ms-input-placeholder {
 }
 
 .college {
-  width: 84px;
-  height: 81px;
+  width: 1.68rem;
+  height: 1.62rem;
   background-position: 97% 51%;
 }
 
@@ -515,7 +594,8 @@ input:-ms-input-placeholder {
 #black_page,
 #email_find,
 #link_declaration,
-#header_phone {
+#header_phone,
+#close_cellCode {
   display: none;
 }
 
@@ -664,9 +744,9 @@ input:-ms-input-placeholder {
 .info-circle1 {
   position: relative;
   margin-top: -5px;
-  margin-left: 15px;
-  width: 14px;
-  height: 14px;
+  margin-left: .3rem;
+  width: .28rem;
+  height: .28rem;
   border-radius: 7px;
   background-color: #7bc300;
   text-align: center;
@@ -879,7 +959,6 @@ input:-ms-input-placeholder {
 }
 
 /*修改昵称页css*/
-
 .u_name {
   height: .96rem;
   line-height: .96rem;
@@ -1273,10 +1352,6 @@ input:-ms-input-placeholder {
   background-position: -1.12rem -.57rem;
 }
 
-.tip_right {
-  top: .3rem;
-}
-
 .birth_cont {
   color: #666;
   width: 4rem;
@@ -1447,10 +1522,13 @@ a.foot-users {
 }
 
 .header_finish {
-  position: absolute;
-  right: .28rem;
-  top: .23rem;
-  font-size: .3rem;
+  margin: .3rem 0;
+  text-align: center;
+}
+
+.header_finish em {
+  opacity: 0.7;
+  filter: alpha(opacity:70);
 }
 
 .user_edits {
@@ -1474,7 +1552,8 @@ a.foot-users {
   color: #333;
   font-size: .3rem;
 }
-#addtra_page_hd,#edit_page_hd{
+
+#addtra_page_hd, #edit_page_hd {
   display: none;
   z-index: 120;
 }
@@ -1798,9 +1877,25 @@ a.foot-users {
   text-align: center
 }
 
-
 /*填写姓名说明页结束*/
 
-#shade {
-  display: block;
+/*动态密码*/
+.captcha_img {
+  width: 2.6rem;
+  max-width: 2.6rem;
+  position: absolute;
+  right: 0;
+  top: .28rem;
+  text-align: center;
+}
+
+.fk_captcha {
+  width: 2.6rem;
+  max-width: 130px;
+  height: .68rem;
+  position: absolute;
+  text-align: center;
+  line-height: .68rem;
+  right: 0;
+  top: .12rem;
 }

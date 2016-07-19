@@ -87,13 +87,6 @@
   //登录之后点击全部订单的链接会改变
   (function(){
     document.querySelector('.my-order').onclick=function(){
-      //去除登录
-      //if(localStorage.getItem('login') == 1)
-      //{
-      //    this.href='user-allorder.html';
-      //}else{
-      //    this.href="user-login.html?allorder";
-      //}
       this.href='user-allorder.html';
     };
 
@@ -126,15 +119,6 @@
       $("#shade")[0].style.display = "block";
     });
   });
-  //设置里的消息开关
-  //function ifOpen(){
-  //  var b = window.event.srcElement;
-  //  if(b.className == "icon set_chose1"){
-  //    b.className = "icon set_chose2";
-  //  }else{
-  //    b.className = "icon set_chose1";
-  //  }
-  //}
 
   //电话
   $('.service_tel').click(function(){
