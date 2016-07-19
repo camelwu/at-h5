@@ -361,6 +361,9 @@ i, em {
   right: 0;
   top: .12rem;
 }
+.captcha{
+  max-width: 130px;
+}
 .login-input .in-phone {
   display: inline-block;
   padding-top: 2px;

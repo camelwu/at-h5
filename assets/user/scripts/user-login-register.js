@@ -34,6 +34,31 @@ window.onload = function () {
 
   email_login.style.display = "none";
   change_phone.style.display = "none";
+  function clickGetCaptcha(){
+    $('.captcha_img').on("click",function(event){
+      var target = $(event.target);
+      getCaptchaCode(function(result){
+        if(result.success){
+          var imageNo = result.data.imageNo;
+          var imageUrl = result.data.imageUrl;
+          target.attr("data-imageno",imageNo);
+          target.attr("src",imageUrl);
+        }
+      });
+    });
+    $('.fk_captcha').on("click",function(event){
+      var target = $(event.target);
+      getCaptchaCode(function(result){
+        if(result.success){
+          var imageNo = result.data.imageNo;
+          var imageUrl = result.data.imageUrl;
+          target.attr("data-imageno",imageNo);
+          target.attr("src",imageUrl);
+        }
+      });
+    });
+  }
+  clickGetCaptcha();
   function showRegister(obj1, obj2, obj3) {
     obj1.onclick = function () {
       obj2.style.display = "none";
@@ -168,11 +193,11 @@ window.onload = function () {
           jAlert("请输入有效手机号");
           return;
         }
-        if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+        if (!check(input[2].getAttribute('data-type'), input[2].value)) {
           jAlert("请输入有效验证码");
           return;
         }
-        if (!check(input[2].getAttribute('data-type'), input[0].value)) {
+        if (!check(input[3].getAttribute('data-type'), input[3].value)) {
           jAlert("请输入6-18位密码");
           return;
         }
@@ -213,9 +238,7 @@ window.onload = function () {
         "Code": "0058"
       };
       console.log(Parameters);
-      phone_reg.style.width = '2.4rem';
-      phone_reg.innerHTML = '120秒重新发送';
-      timedown_reg(120);
+
       vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
     };
   }
@@ -285,11 +308,11 @@ window.onload = function () {
           jAlert('请输入有效的手机号');
           return;
         }
-        if (input[1].value == '') {
+        if (input[2].value == '') {
           jAlert('请输入验证码');
           return;
         }
-        if (input[2].value == '') {
+        if (input[3].value == '') {
           jAlert('请输入新密码');
           return;
         }
@@ -343,9 +366,7 @@ window.onload = function () {
         "Code": "0058"
       };
       console.log(Parameters);
-      phone_verify.style.width = '2.4rem';
-      phone_verify.innerHTML = '120秒重新发送';
-      timedown_forget(120);
+
       //vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
       vlm.loadJson("", JSON.stringify(Parameters), mycallback_findver);
     };
@@ -398,7 +419,7 @@ function show_keypage() {
       phoneFindCaptcha.attr('src', imageUrl);
       phoneFindCaptcha.attr('data-imageno', imageNo);
     }
-  })
+  });
 }
 
 function close_keypage() {
@@ -480,23 +501,22 @@ function mycallback_login(myJson) {
     } else {
       jAlert(myJson.message);
     }
-    if (loginErrorTime >= 3) {
-      var imageElePhone = phoneCaptchaWrap.find('img');
-      var imageEleEmail = emailCaptchaWrap.find('img');
-      var captchaCallback = function (result) {
-        console.info(result);
-
-        if (result.success) {
-          var imageUrl = result.data.imageUrl;
-          imageElePhone.attr('src', imageUrl);
-          imageEleEmail.attr('src', imageUrl);
-        }
-        phoneCaptchaWrap.show();
-        emailCaptchaWrap.show();
-      }
-      getCaptchaCode(captchaCallback);
-
-    }
+    // if (loginErrorTime >= 3) {
+    //   var imageElePhone = phoneCaptchaWrap.find('img');
+    //   var imageEleEmail = emailCaptchaWrap.find('img');
+    //   var captchaCallback = function (result) {
+    //     console.info(result);
+    //
+    //     if (result.success) {
+    //       var imageUrl = result.data.imageUrl;
+    //       imageElePhone.attr('src', imageUrl);
+    //       imageEleEmail.attr('src', imageUrl);
+    //     }
+    //     phoneCaptchaWrap.show();
+    //     emailCaptchaWrap.show();
+    //   }
+    //   getCaptchaCode(captchaCallback);
+    // }
   }
 }
 
@@ -509,7 +529,7 @@ function getCaptchaCode(callback) {
   };
 
   console.log(Parameters);
-  vlm.loadJson("", JSON.stringify(Parameters), callback);
+  vlm.loadJson("", JSON.stringify(Parameters), callback,true,false,true);
 }
 
 //头部关闭
@@ -531,6 +551,9 @@ function mycallback_verify(ret) {
   var myJson = ret;
   console.log(myJson);
   if (myJson.success) {
+    phone_reg.style.width = '2.4rem';
+    phone_reg.innerHTML = '120秒重新发送';
+    timedown_reg(120);
     vlm.Utils.sendMobileCode(verify.value);
   } else {
     jAlert(myJson.message);
@@ -568,6 +591,9 @@ function mycallback_findver(ret) {
   var find_veri = $("#find_veri")[0];
   var myJson = ret;
   if (myJson.success) {
+    phone_verify.style.width = '2.4rem';
+    phone_verify.innerHTML = '120秒重新发送';
+    timedown_forget(120);
     vlm.Utils.sendMobileCode(find_veri.value);
   } else {
     jAlert(myJson.message);
