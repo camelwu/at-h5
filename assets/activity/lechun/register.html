@@ -126,6 +126,7 @@
     this.sencond = 60;
     this.outsecond = 0;
     this.sendPhoneBtn = button_1;
+    this.isrun = true;
 
 
   }
@@ -231,11 +232,16 @@
     var secs = this.sencond;
     this.outsecond = secs;
 
-    $(btn).addClass("stopgray");
-    for(var i=1;i<=secs+1;i++) {
-      window.setTimeout(function(){
-        that.update();
-      }, i * 1000);
+
+    if(this.isrun){
+      this.isrun = false;
+      $(btn).addClass("stopgray");
+      for(var i=1;i<=secs+1;i++) {
+        window.setTimeout(function(){
+          that.update();
+        }, i * 1000);
+      }
+      this.isrun = true;
     }
 
     return this;
@@ -267,7 +273,7 @@
      };
      vlm.loadJson("",JSON.stringify(parameters), function(json){
 
-      return that.validatecodephone(json);
+      return that.validatecodephone(json).sendPhone();
     });
     return this;
   }
@@ -379,7 +385,7 @@
   });
 
   $(".button_1").on("touchend",function(e){
-    lechun.checkPhone().sendPhone().sendPhoneConfirm();
+    lechun.checkPhone().sendPhoneConfirm();
   });
   $(".button_2").on("touchend",function(e){
     lechun.checkPrizecode().checkPhone().checkVerificationcode().confirm();
