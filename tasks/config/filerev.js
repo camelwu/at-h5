@@ -14,11 +14,12 @@ module.exports = function (grunt) {
   grunt.config.set('filerev', {
     dev: {
       options:{
-        keep: true
+        keep: false,
+        mapping: '.tmp/mapping.json'
       },
       files: [{
         expand: true,
-        cwd: '.tmp/',//js目录下
+        cwd: '.tmp/public/',//js目录下
         src: [
           '**/*.js',  //所有js文件
           '**/*.css', //所有的CSS文件
