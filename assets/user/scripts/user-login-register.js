@@ -317,7 +317,7 @@ window.onload = function () {
           return;
         }
         var Parameters = {
-          "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"NewPassword\":\"" + input[2].value + "\",\"Code\":\"" + input[1].value + "\"}",
+          "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"NewPassword\":\"" + input[3].value + "\",\"Code\":\"" + input[2].value + "\"}",
           "ForeEndType": 3,
           "Code": "0055"
         };
