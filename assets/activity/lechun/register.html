@@ -15,48 +15,6 @@
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>亚程旅游任性送兑奖</title>
   <link href="less/register.css" rel="stylesheet" type="text/css"/>
-  <script>
-//    function registerLog(obj){
-//      alert(obj);
-//    }
-
-//    function getDeviceId(){
-//      window.activity.getDeviceId();
-//    }
-//
-//    function closeActivity(){
-//      window.activity.closeActivity();
-//    }
-
-//    function passJSONToClient(){
-//      window.activity.passJSONToClient({'key':'活动'})
-//    }
-//
-//    function getClientValue() {
-//      var value = window.activity.getClientValue();
-//      document.querySelector('#clientValue').value = value
-//    }
-
-//    window.JSObj = {
-//      getNumber: function () {
-//        return document.querySelector('#getNumber').value;
-//      }
-//    }
-
-    // Client客户端通过暴露的native接口的register函数，注册JS的函数名。Client端只调用getNumber(key)，不关心getNumber(key)对应的函数名(value)
-//    var clientFunc = window.activity.register({
-//      type:0,
-//      methods:[
-//        {
-//          getNumber: 'window.JSObj.getNumber'
-//        },
-        /*{
-         register: 'window.JSObj.register'
-         }*/
-//      ]
-//    });
-//    console.log(clientFunc);
-  </script>
 </head>
 <body>
 <div class="register main">
@@ -83,9 +41,9 @@
 </div>
 <div class="register pop_mask"></div>
 <div class="register tips">
-       <div class="tips_content">
-           hello world!
-       </div>
+  <div class="tips_content">
+    hello world!
+  </div>
   <s>
     <i></i>
   </s>
@@ -93,13 +51,14 @@
 <script src="../js/jquery/jquery.min.js"></script>
 <script src="../js/vlm.js"></script>
 <script>
-//  function getDeviceId(){
-//    window.activity.getDeviceId();
-//  }
-//
-//  function closeActivity(){
-//    window.activity.closeActivity();
-//  }
+  function getDeviceId(that){
+    var id =  window.activity.getDeviceId();
+    that.diviceID = id;
+  }
+
+  function closeActivity(){
+    window.activity.closeActivity();
+  }
 
 
   function Lechun(){
@@ -132,45 +91,12 @@
   }
 
 
-  Lechun.prototype.addEvents =function(target, type, func) {
-    if (target.addEventListener) {//非ie 和ie9
-      target.addEventListener(type, func, false);
-    }else if (target.attachEvent) { //ie6到ie8
-      target.attachEvent("on" + type, func);
-    }else{//ie5
-      target["on" + type] = func;
-    }
-  }
-
-  Lechun.prototype.removeEvents =function(target, type, func){
-    if (target.removeEventListener){
-      target.removeEventListener(type, func, false);
-    }else if (target.detachEvent){
-      target.detachEvent("on" + type, func);
-    }else{
-      target["on" + type] = null;
-    }
-  }
-
-
-
-  Lechun.prototype.fetchDeviceId=function(){
-    this.diviceID = window.activity.getDeviceId();
-    return this;
-  }
-
-  Lechun.prototype.closeActivity = function(){
-    window.activity.closeActivity();
-    return this;
-  }
-
   Lechun.prototype.checkPrizecode = function(){
     var prizecode = this.prizecode;
     if(prizecode.value == ""){
       this.tips({msg:"请输入兑奖码",top:'7.5rem',left:'2rem',display:'block'});
       this.show = true;
       throw new Error();
-//      return false;
     }else{
       this.show = false;
       this.tips({display:'none'});
@@ -192,7 +118,6 @@
       this.tips({msg:"请输入手机号",top:'8.5rem',left:'2rem',display:'block'});
       this.show = true;
       throw new Error();
-//      return false;
     }else{
       this.show = false;
       this.tips({display:'none'});
@@ -203,7 +128,6 @@
       this.tips({msg:"请输入正确手机号格式",top:'8.5rem',left:'2rem',display:'block'});
       this.show = true;
       throw new Error();
-//      return false;
     }else{
       this.show = false;
       this.tips({display:'none'});
@@ -218,7 +142,6 @@
       this.tips({msg:"请输入验证码",top:'9.5rem',left:'2rem',display:'block'});
       this.show = true;
       throw new Error();
-//      return false;
     }else{
       this.show = false;
       this.tips({display:'none'});
@@ -261,17 +184,17 @@
 
   }
 
-   Lechun.prototype.sendPhoneConfirm = function(){
-     var that = this;
+  Lechun.prototype.sendPhoneConfirm = function(){
+    var that = this;
 
-     var parameters = {
-       "Parameters":{
-         "PhoneNo": this.phone.value
-       },
-       "ForeEndType": 3,
-       "Code": "97100003"
-     };
-     vlm.loadJson("",JSON.stringify(parameters), function(json){
+    var parameters = {
+      "Parameters":{
+        "PhoneNo": this.phone.value
+      },
+      "ForeEndType": 3,
+      "Code": "97100003"
+    };
+    vlm.loadJson("",JSON.stringify(parameters), function(json){
 
       return that.validatecodephone(json).sendPhone();
     });
@@ -280,8 +203,8 @@
 
   Lechun.prototype.confirm = function(){
     var that = this;
-    this.fetchDeviceId();
-//    this.diviceID = "1234567890";
+
+    getDeviceId(that);
 
     var parameters = {
       "Parameters":{
@@ -341,7 +264,7 @@
         pop.style.display = 'block';
         pop_mask.style.display = 'block';
         $(pop_confirmbtn).on('touchend',function(e){
-          this.closeActivity();
+          closeActivity();
         });
         break;
       case 404:
