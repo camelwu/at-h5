@@ -296,15 +296,7 @@ i, em {
   right: 0;
   top: .12rem;
 }
-.fk_captcha{
-  width: 1.85rem;
-  height: .68rem;
-  position: absolute;
-  text-align: center;
-  line-height: .68rem;
-  right: 0;
-  top: .12rem;
-}
+
 
 .p_86 {
   display: inline-block;
@@ -343,18 +335,32 @@ i, em {
   right: .2rem;
   background-size: 8.4rem 5.2rem;
 }
-
+/*    captcha   */
+#phone_login .captchaWrap, #email_login .captchaWrap{
+  display: none;
+}
 #p_password, #captcha {
   padding-left: .25rem;
 }
 
 .captcha_img{
   float: right;
-  width: 1rem;
+  width: 2.6rem;
+  max-width: 130px;
   margin-top: .28rem;
   margin-right: .28rem;
 }
 
+.fk_captcha{
+  width: 2.6rem;
+  max-width: 130px;
+  height: .68rem;
+  position: absolute;
+  text-align: center;
+  line-height: .68rem;
+  right: 0;
+  top: .12rem;
+}
 .login-input .in-phone {
   display: inline-block;
   padding-top: 2px;

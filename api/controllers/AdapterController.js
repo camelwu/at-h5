@@ -59,9 +59,10 @@ module.exports = {
         var postJson = req.body;
 
         //没有UA的请求不处理
-        //if(headers['user-agent']){
-        //  return false;
-        //}
+        if(!headers['user-agent']){
+          res.send("please access the site with correct device");
+          return false;
+        }
 
         var timestamp = new Date().getTime();
         var bodyString = JSON.stringify(postJson);
