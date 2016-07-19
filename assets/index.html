@@ -28,7 +28,6 @@
     <title>首页 - 亚程旅行网</title>
     <script src="js/lib/logRecord.js"></script>
     <link href="styles/reset.css" rel="stylesheet" type="text/css">
-    <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
     <link href="styles/tips.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
@@ -42,9 +41,11 @@
         <div class="content no_header">
             <!--头部banner开始-->
             <div class="slider-container">
-                <!--<div class="index_bg"></div>-->
-                <div class="homepage-slider" data-snap-ignore="true" id="banner">
-                    <a><img src="images/loading_def_big.png" class="responsive_image" alt="img"></a>
+                <ul class="homepage_slider clearfix"  id="banner">
+                  <li><a><img src="images/loading_def_big.png" class="responsive_image" alt="img"></a></li>
+                </ul>
+                <div class="banner_num_wrap">
+                  <ul class="banner_num"></ul>
                 </div>
             </div>
             <!--头部banner结束-->
@@ -128,34 +129,27 @@
             var index = function() {
                 //banner
                 function LoadBanner() {
-                    var tpl0 = ['<a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a>'].join('');
-                    var tmp = {
+                  var tpl0 = ['<li class="fl"><a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a></li>'].join('');
+                  var tmp = {
 
-                        "Parameters": {
-                            "BannerType": 1
-                        },
+                      "Parameters": {
+                          "BannerType": 1
+                      },
 
-                        "ForeEndType": 3,
-                        "Code": "001302"
-                    };
-                    vlm.loadJson("", JSON.stringify(tmp), function(json) {
-                        if (json.success) {
-                            var data = json.data,
-                                html_b = template(tpl0, data.bannerList);
-                            $("#banner").html(html_b);
-                            $("#banner").owlCarousel({
-                                slideSpeed: 500,
-                                paginationSpeed: 500,
-                                lazyLoad: true,
-                                autoPlay: true,
-                                singleItem: true,
-                                item: 1
-                            });
-                        } else {
-                            console.log(json);
-                            jAlert("数据格式错误", "提示");
-                        }
-                    });
+                      "ForeEndType": 3,
+                      "Code": "001302"
+                  };
+                  vlm.loadJson("", JSON.stringify(tmp), function(json) {
+                      if (json.success) {
+                        var data = json.data,
+                            html_b = template(tpl0, data.bannerList);
+                        $("#banner").html(html_b);
+                        bannerTab();
+                      } else {
+                        console.log(json);
+                        jAlert("数据格式错误", "提示");
+                      }
+                  });
                 }
                 //playerRecommend
                 function PlayerRecommend() {
@@ -211,6 +205,100 @@
                         }
                     });
                 }
+
+              //bannerTab
+              function bannerTab(){
+                var startX, endX;
+                var i= 0,timer=null,timerTimeout=null;bFlag=false;viewWidth=$(window).width();
+                for (var j = 0; j < $('.homepage_slider li').length; j++) {
+                  $('.banner_num').append('<li><span></span></li>')
+                }
+                $('.banner_num li').first().addClass('active');
+                var firstimg=$('.homepage_slider li').first().clone();
+                firstimg.css('width',viewWidth);
+                $('.homepage_slider li').css('width',viewWidth);
+
+                $(window).on('resize',function(){
+                  viewWidth=$(window).width();
+                  $('.homepage_slider li').css('width',viewWidth);
+                  firstimg.css('width',viewWidth);
+                  $('.homepage_slider').width($('.homepage_slider li').length*($('.homepage_slider li').width()));
+                  $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function() {
+                    bFlag=false;
+                  }});
+                });
+
+                $('.homepage_slider').append(firstimg).width($('.homepage_slider li').length*($('.homepage_slider li').width()));
+
+                // 滑动
+                $('.slider-container').on('touchstart',function(event) {
+                  var touch = event.originalEvent.targetTouches[0];
+                  startX = touch.pageX;
+                });
+
+                $('.slider-container').on('touchmove',function(event){
+                  if( bFlag){
+                    return;
+                  }
+                  bFlag=true;
+                  clearInterval(timer);
+                  var touch = event.originalEvent.targetTouches[0];
+                  endX = touch.pageX;
+                  if ((startX - endX) >= 5) {
+                    i++;
+                    if (i==$('.homepage_slider li').length) {
+                      i=1; //这里不是i=0
+                      $('.homepage_slider').css({left:0}); //保证无缝轮播，设置left值
+                    };
+                    $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
+                      bFlag=false;
+                    }});
+                    if (i==$('.homepage_slider li').length-1) { //设置小圆点指示
+                      $('.banner_num li').eq(0).addClass('active').siblings().removeClass('active');
+                    }else{
+                      $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
+                    }
+                  }else if((startX - endX) < -5){
+                    i--;
+                    if (i == -1) {
+                      i=$('.homepage_slider li').length-2;
+                      $('.homepage_slider').css({left:-($('.homepage_slider li').length-1)*viewWidth});
+                    }
+                    $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
+                      bFlag=false;
+                    }});
+                    $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
+                  }
+
+                  clearTimeout(timerTimeout);
+                  timerTimeout=setTimeout(function(){
+                    timer_play();
+                  },1500);
+
+                });
+
+                //定时器自动播放
+                timer_play();
+                function timer_play(){
+                  clearInterval(timer);
+                  timer=setInterval(function(){
+                    i++;
+                    if (i==$('.homepage_slider li').length) {
+                      i=1;
+                      $('.homepage_slider').css({left:0});
+                    };
+                    $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
+                      bFlag=false;
+                    }});
+                    if (i==$('.homepage_slider li').length-1) {
+                      $('.banner_num li').eq(0).addClass('active').siblings().removeClass('active');
+                    }else{
+                      $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
+                    }
+                  },4000)
+                }
+
+              }
 
                 return {
                     LoadBanner: LoadBanner,
