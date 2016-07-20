@@ -86,9 +86,10 @@ img {
 
 .one_sale_content {
   padding: .6rem .26rem;
+  overflow: hidden;
 }
 
-.one_sale_content > li > div {
+.one_sale_content > div {
   width: 48.5%;
   background-color: #fff;
   float: left;
@@ -98,7 +99,7 @@ img {
   position: relative;
 }
 
-.one_sale_content > li > div:nth-child(odd) {
+.one_sale_content > div:nth-child(odd) {
   margin: 0 .2rem .18rem 0;
 }
 
@@ -107,12 +108,18 @@ img {
   position: relative;
 }
 
+.one_scenic_txt h3 {
+  font-size: .28rem;
+  color: #333;
+}
+
 .onesceimg {
   height: 2rem;
 }
 
 .one_scenic_txt span {
   font-size: .24rem;
+  color: #999;
 }
 
 .price_panic {
@@ -122,6 +129,7 @@ img {
 .one_price {
   height: .6rem;
   line-height: .6rem;
+  color: #ff504e;
 }
 
 .panic_buy {

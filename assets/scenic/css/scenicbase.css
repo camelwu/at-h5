@@ -1579,4 +1579,5 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 /*防止ios 滑动失效*/
 .scenic_order_content{
   position: relative;
+  overflow-x: hidden;
 }
