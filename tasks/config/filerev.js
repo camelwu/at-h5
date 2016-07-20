@@ -19,7 +19,7 @@ module.exports = function (grunt) {
       },
       files: [{
         expand: true,
-        cwd: '.tmp/public/',//js目录下
+        cwd: '.tmp/',//js目录下
         src: [
           '**/*.js',  //所有js文件
           '**/*.css', //所有的CSS文件
