@@ -565,10 +565,11 @@ function mycallback_verify(ret) {
   if (myJson.success) {
     regBflag_t = true;
     phone_reg.style.width = '2.4rem';
-    phone_reg.innerHTML = '120秒重新发送';
-    timedown_reg(120);
+    phone_reg.innerHTML = '60秒重新发送';
+    timedown_reg(60);
     vlm.Utils.sendMobileCode(verify.value);
   } else {
+    updateCaptchaCode("#phone_register .captcha_img");
     jAlert(myJson.message);
   }
 }
@@ -608,10 +609,11 @@ function mycallback_findver(ret) {
     //获取验证码成功后不能再次发送短信验证码
     Bflag_forget = true;
     phone_verify.style.width = '2.4rem';
-    phone_verify.innerHTML = '120秒重新发送';
-    timedown_forget(120);
+    phone_verify.innerHTML = '60秒重新发送';
+    timedown_forget(60);
     vlm.Utils.sendMobileCode(find_veri.value);
   } else {
+    updateCaptchaCode("#phone_find .fk_captcha");
     jAlert(myJson.message);
   }
 }
@@ -651,13 +653,13 @@ function timedown_forget(seconds) {
     seconds--;
     if (Math.abs(new Date() - lasttime) >= 3000) {
       newtime = new Date();
-      if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
+      if (Math.ceil(seconds - (newtime - lasttime) / 1000) < 1) {
         phone_verify.innerHTML = '发送验证码';
         clearInterval(timer);
         Bflag_forget = false;
         return;
       }
-      phone_verify.innerHTML = Math.ceil(120 - (newtime - lasttime) / 1000) + '秒重新发送';
+      phone_verify.innerHTML = Math.ceil(seconds - (newtime - lasttime) / 1000) + '秒重新发送';
     } else {
       phone_verify.innerHTML = seconds + '秒重新发送';
     }
@@ -671,14 +673,14 @@ function timedown_reg(seconds) {
     seconds--;
     if (Math.abs(new Date() - lasttime) >= 3000) {
       newtime = new Date();
-      if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
+      if (Math.ceil(seconds - (newtime - lasttime) / 1000) < 1) {
         phone_reg.innerHTML = '发送验证码';
-        phone_reg.style.color = '#fff';
+        phone_reg.style.color = '#7bc300';
         clearInterval(timer);
         regBflag_t = false;
         return;
       }
-      phone_reg.innerHTML = Math.ceil(120 - (newtime - lasttime) / 1000) + '秒重新发送';
+      phone_reg.innerHTML = Math.ceil(seconds - (newtime - lasttime) / 1000) + '秒重新发送';
       phone_reg.style.color = 'rgb(204,204,204)';
     } else {
       phone_reg.innerHTML = seconds + '秒重新发送';
