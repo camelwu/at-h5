@@ -231,7 +231,7 @@ window.onload = function () {
       if (regBflag_t) {
         return;
       }
-      regBflag_t = true;
+
       var Parameters = {
         "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":1,\"ImageNo\":\"" + phoneRegisterCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + phoneRegisterCaptcha.val() + "\"}",
         "ForeEndType": 3,
@@ -359,7 +359,7 @@ window.onload = function () {
       if (Bflag_forget) {
         return;
       }
-      Bflag_forget = true;
+
       var Parameters = {
         "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
         "ForeEndType": 3,
@@ -551,6 +551,7 @@ function mycallback_verify(ret) {
   var myJson = ret;
   console.log(myJson);
   if (myJson.success) {
+    regBflag_t = true;
     phone_reg.style.width = '2.4rem';
     phone_reg.innerHTML = '120秒重新发送';
     timedown_reg(120);
@@ -591,6 +592,8 @@ function mycallback_findver(ret) {
   var find_veri = $("#find_veri")[0];
   var myJson = ret;
   if (myJson.success) {
+    //获取验证码成功后不能再次发送短信验证码
+    Bflag_forget = true;
     phone_verify.style.width = '2.4rem';
     phone_verify.innerHTML = '120秒重新发送';
     timedown_forget(120);
