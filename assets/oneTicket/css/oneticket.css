@@ -8,7 +8,6 @@ img {
 }
 
 .one_select {
-  height: .8rem;
   line-height: .8rem;
   background-color: #fed81d;
   font-size: .32rem;
@@ -16,10 +15,6 @@ img {
 
 .one_travel_wrap .active {
   overflow: hidden;
-}
-
-.one_travel_wrap .on {
-  display: block;
 }
 
 .one_travel_wrap .one_sale_cont {
@@ -39,7 +34,6 @@ img {
 }
 
 .one_travel_wrap > div {
-  display: none;
   overflow: hidden;
 }
 
@@ -87,6 +81,7 @@ img {
 .one_sale_content {
   padding: .6rem .26rem;
   overflow: hidden;
+  min-width: 320px;
 }
 
 .one_sale_content > div {
@@ -144,7 +139,7 @@ img {
 
 /*一元门票底部*/
 .one_foot {
-  background-color: #4ad1ef;
+  background-color: #fed81d;
   overflow: hidden;
   padding: 0 .26rem .4rem;
 }
