@@ -173,7 +173,7 @@ window.onload = function () {
       }
       login_activeBflag = true;
       var Parameters = {
-        "Parameters": {"CultureName": "", "Mobile": "+r_phone.value+", "VerificationCodeType": "1"},
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":\"5\"}",
         "ForeEndType": 3,
         "Code": "0058"
       };
