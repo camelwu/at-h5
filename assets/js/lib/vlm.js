@@ -622,12 +622,22 @@
                 //六位数字验证码
                 code: function (name) {
                     var pattern = /^[0-9]{6}$/;
-                    //只能是中文，长度为2-7位
+                    //只能是数字，6位
                     if (pattern.test(name)) {
                         return true;
                     } else {
                         return false;
                     }
+                },
+                //图形验证码4位
+                imgcode: function(name){
+                  var pattern = /^[0-9A-Za-z]{4}$/;
+                  //数字或英文4位
+                  if (pattern.test(name)) {
+                    return true;
+                  } else {
+                    return false;
+                  }
                 },
                 engName: function (name) {
                     var pattern = /^[a-zA-Z][a-zA-Z\s]*[a-zA-Z]{1,25}$/;

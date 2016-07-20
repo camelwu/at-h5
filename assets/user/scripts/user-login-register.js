@@ -35,7 +35,8 @@ window.onload = function () {
     r_email = $("#r_email")[0],
     verify = $("#verify")[0],
     get_code = $("#get_code")[0],
-    findkey_btn = $("#findkey_btn")[0];;
+    findkey_btn = $("#findkey_btn")[0];
+  ;
 
   //图片验证码点击更新图片开始
   function clickGetCaptcha() {
@@ -127,25 +128,30 @@ window.onload = function () {
     if (type == "code") {
       return vlm.Utils.validate.code(num);
     }
+    if (type == "imgcode") {
+      return vlm.Utils.validate.imgcode(num);
+    }
   };
+
   // 会员注册
   function user_register(obj) {
     obj.onclick = function () {
-      var password;
-      var input;
-
-      password = r_p_password;
-      input = phone_register.getElementsByTagName('input');
-
+      var password=r_p_password, input=phone_register.getElementsByTagName('input');
+      var phoneRegisterCaptcha = $("#phone_register .captcha"), phoneRegisterCaptchaImg = $("#phone_register img");
       if (!check(input[0].getAttribute('data-type'), input[0].value)) {
         jAlert("请输入有效手机号");
         return;
       }
+      //图形验证码
       if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+        jAlert("请输入正确的图形验证码");
+        return;
+      }
+      if (!check(input[2].getAttribute('data-type'), input[2].value)) {
         jAlert("请输入有效验证码");
         return;
       }
-      if (!check(input[2].getAttribute('data-type'), input[0].value)) {
+      if (!check(input[3].getAttribute('data-type'), input[3].value)) {
         jAlert("请输入6-18位密码");
         return;
       }
@@ -160,63 +166,10 @@ window.onload = function () {
   }
   user_register(register_btn);
 
-  //获取动态登录验证码
-  function get_verify_login(obj) {
-    obj.onclick = function () {
-      var r_phone = $("#cellCode_phone")[0];
-      if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
-        jAlert("请输入有效的手机号");
-        return;
-      }
-      if (login_activeBflag) {
-        return;
-      }
-      login_activeBflag = true;
-      var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":\"5\"}",
-        "ForeEndType": 3,
-        "Code": "0058"
-      };
-      console.log(Parameters);
-      get_code_login.style.width = '2.4rem';
-      get_code_login.innerHTML = '120秒重新发送';
-      get_code_login.style.color = '#ccc';
-      timedown_login(120);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
-    };
-  }
-  get_verify_login(get_code_login);
-
-  //  获取注册验证码
-  function get_verify(obj) {
-    obj.onclick = function () {
-      var r_phone = $("#r_phone")[0];
-      if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
-        jAlert("请输入有效的手机号");
-        return;
-      }
-      if (regBflag_t) {
-        return;
-      }
-      regBflag_t = true;
-      var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":1}",
-        "ForeEndType": 3,
-        "Code": "0058"
-      };
-      console.log(Parameters);
-      phone_reg.style.width = '2.4rem';
-      phone_reg.innerHTML = '120秒重新发送';
-      phone_reg.style.color = '#ccc';
-      timedown_reg(120);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
-    };
-  }
-  get_verify(get_code);
-
   // 会员登录
   function user_login(obj) {
     obj.onclick = function () {
+      //账号密码登录
       var input;
       if ($("#cellCode_login")[0].style.display == 'none') {
         login_pass = p_password;
@@ -240,24 +193,26 @@ window.onload = function () {
         vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
 
       } else {
+        //动态密码登录
         login_pass = e_password;
         input = cellCode_login.getElementsByTagName('input');
         if (!check(input[0].getAttribute('data-type'), input[0].value)) {
           jAlert("请输入有效手机号");
           return;
         }
-        if ($('#cellCode_login .captcha_img_text').val() == '') {
-          jAlert("请输入图形验证码");
+        //图形验证码
+        if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+          jAlert("请输入正确的图形验证码");
           return;
         }
-        if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+        if (!check(input[2].getAttribute('data-type'), input[2].value)) {
           jAlert("请输入正确的验证码");
           return;
         }
         var Parameters = {
-          "Parameters": "{\"CultureName\":\"\",\"Email\":\"" + input[0].value + "\",\"Password\":\"" + input[1].value + "\"}",
+          "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + input[0].value + "\",\"VerificationCode\":\"" + input[2].value + "\"}",
           "ForeEndType": 3,
-          "Code": "0052"
+          "Code": "70100020"
         };
         console.log(Parameters);
         vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
@@ -266,9 +221,8 @@ window.onload = function () {
     };
   }
   user_login(login_btn);
+
   //找回密码
-
-
   function findkey(obj) {
     obj.onclick = function () {
 
@@ -294,12 +248,71 @@ window.onload = function () {
       vlm.loadJson("", JSON.stringify(Parameters), mycallback_findkey);
     };
   }
-
   findkey(findkey_btn);
+
+  //获取动态登录验证码
+  function get_verify_login(obj) {
+    obj.onclick = function () {
+      var r_phone = $("#cellCode_phone")[0];
+      var phoneLoginCaptcha = $("#cellCode_login .captcha_img_text"), phoneLoginCaptchaImg = $("#cellCode_login img");
+      if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
+        jAlert("请输入有效的手机号");
+        return;
+      }
+      if (login_activeBflag) {
+        return;
+      }
+      login_activeBflag = true;
+      var Parameters = {
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":5,\"ImageNo\":\"" + phoneLoginCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + phoneLoginCaptcha.val() + "\"}",
+        "ForeEndType": 3,
+        "Code": "0058"
+      };
+      console.log(Parameters);
+      get_code_login.style.width = '2.4rem';
+      get_code_login.innerHTML = '120秒重新发送';
+      get_code_login.style.color = '#ccc';
+      timedown_login(120);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
+    };
+  }
+  get_verify_login(get_code_login);
+
+  //  获取注册验证码
+  function get_verify(obj) {
+    obj.onclick = function () {
+      var r_phone = $("#r_phone")[0];
+      var phoneRegisterCaptcha = $("#phone_register .captcha"), phoneRegisterCaptchaImg = $("#phone_register img");
+      if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
+        jAlert("请输入有效的手机号");
+        return;
+      }
+      if (regBflag_t) {
+        return;
+      }
+      regBflag_t = true;
+      var Parameters = {
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":1,\"ImageNo\":\"" + phoneRegisterCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + phoneRegisterCaptcha.val() + "\"}",
+        "ForeEndType": 3,
+        "Code": "0058"
+      };
+      console.log(Parameters);
+      phone_reg.style.width = '2.4rem';
+      phone_reg.innerHTML = '120秒重新发送';
+      phone_reg.style.color = '#ccc';
+      timedown_reg(120);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
+    };
+  }
+  get_verify(get_code);
+
+
   //找回密码获取手机验证码
   function get_fver(obj) {
     obj.onclick = function () {
       var find_phone = $("#find_phone")[0];
+      var findPhoneCaptchaInput = $("#phone_find .captcha");
+      var findPhoneCaptchaImg = $("#phone_find .fk_captcha");
       if (!check(find_phone.getAttribute('data-type'), find_phone.value)) {
         jAlert("请输入有效的手机号");
         return;
@@ -309,7 +322,7 @@ window.onload = function () {
       }
       Bflag_forget = true;
       var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3}",
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
         "ForeEndType": 3,
         "Code": "0058"
       };
@@ -319,7 +332,6 @@ window.onload = function () {
       vlm.loadJson("", JSON.stringify(Parameters), mycallback_findver);
     };
   }
-
   get_fver(phone_verify);
 
 };

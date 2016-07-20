@@ -83,7 +83,7 @@
                 </li>
                 <li class="login_input">
                   <b class="icon_user login_pass"></b>
-                  <input type="text" class="captcha_img_text" value="" placeholder="请输入图形验证码" autocomplete="off">
+                  <input type="text" class="captcha_img_text" value="" placeholder="请输入图形验证码" data-type="imgcode" autocomplete="off">
                   <b class="icon login_clear"></b>
                   <img class="captcha_img" src="" alt="验证码">
                 </li>
@@ -115,7 +115,7 @@
             </div>
             <div class="login_input">
               <b class="icon_user login_pass"></b>
-              <input type="text" value="" placeholder="请输入图形验证码" data-type="code" />
+              <input type="text" class="captcha" value="" placeholder="请输入图形验证码" data-type="imgcode" />
               <b class="icon login_clear get-code-del"></b>
               <img class="captcha_img" src="" alt="验证码" />
             </div>
@@ -150,7 +150,7 @@
             <input id="find_phone" class="fk_put" type="tel" value placeholder="请输入手机号" data-type="tel">
           </li>
           <li>
-            <input class="fk_put" type="text" value placeholder="请输入图形验证码" data-type="code">
+            <input class="fk_put captcha" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">
             <img class="fk_captcha" src="" alt="验证码" />
           </li>
           <li>
