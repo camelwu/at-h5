@@ -7,9 +7,7 @@
   <link rel="stylesheet" href="./less/lottery.css">
 </head>
 <body module-css-reset module-css-base>
-<a href="javascript:history.go(-1)" id="iback">
-  <img class="iconBack" src="img/icon_back.png">
-</a>
+
 <div class="mask hidden"></div>
 <div class="alert hidden">
   <button class="close"></button>
@@ -244,14 +242,6 @@
     }
   })();
 
-  function initBackBtn(){
-    var queryStringArgs = getQueryStringArgs();
-    // 根据页面来源
-    if (queryStringArgs.origin === 'app') {
-      $(".iconBack").show();
-    }
-  }
-  initBackBtn();
 
   var $alert = (function () {
     var $alert = $('.alert');
