@@ -433,6 +433,7 @@ function mycallback_register(ret) {
     jAlert('注册成功', '', cb_register);
   } else {
     jAlert(myJson.message);
+    updateCaptchaCode("#phone_register .captcha_img");
   }
 }
 
@@ -531,6 +532,17 @@ function getCaptchaCode(callback) {
   console.log(Parameters);
   vlm.loadJson("", JSON.stringify(Parameters), callback,true,false,true);
 }
+//更新图形验证码
+function updateCaptchaCode(targetImgeSelector){
+  var imageEle = targetImgeSelector ? $(targetImgeSelector) : $(".captcha_img");
+  getCaptchaCode(function(result){
+    if(result.success){
+      var imageNo = result.data.imageNo;
+      var imageUrl = result.data.imageUrl;
+      imageEle.attr("src",imageUrl).attr("data-imageno",imageNo);
+    }
+  });
+}
 
 //头部关闭
 var loginRegShut = document.querySelector('#login-reg-shut');
@@ -568,6 +580,7 @@ function mycallback_findkey(ret) {
     jAlert('重置密码成功', '', call_pass);
   } else {
     jAlert('修改密码失败，请重试');
+    updateCaptchaCode("#phone_find .fk_captcha");
   }
 }
 
