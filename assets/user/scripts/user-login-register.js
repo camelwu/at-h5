@@ -312,8 +312,8 @@ window.onload = function () {
           jAlert('请输入验证码');
           return;
         }
-        if (input[3].value == '') {
-          jAlert('请输入新密码');
+        if (!check(input[3].getAttribute('data-type'), input[3].value)) {
+          jAlert("请输入6-18位密码");
           return;
         }
         var Parameters = {
