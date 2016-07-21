@@ -568,10 +568,11 @@
     if (myJson.success) {
       phoneBflag = true;
       phone_verify.style.width = '2.4rem';
-      phone_verify.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
-      timedown_regcy(120);
+      phone_verify.innerHTML = '<span style="color: rgb(204,204,204)">60秒重新发送</span>';
+      timedown_regcy(60);
       vlm.Utils.sendMobileCode(phone_ver.value);
     } else {
+      updateCaptchaCode();
       jAlert(myJson.message);
     }
   }
@@ -614,13 +615,13 @@
       seconds--;
       if (Math.abs(new Date() - lasttime) >= 3000) {
         newtime = new Date();
-        if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
+        if (Math.ceil(seconds - (newtime - lasttime) / 1000) < 1) {
           phone_verify.innerHTML = '发送验证码';
           clearInterval(timer);
           phoneBflag = false;
           return;
         }
-        phone_verify.innerHTML = Math.ceil(120 - (newtime - lasttime) / 1000) + '秒重新发送';
+        phone_verify.innerHTML = Math.ceil(seconds - (newtime - lasttime) / 1000) + '秒重新发送';
       } else {
         phone_verify.innerHTML = seconds + '秒重新发送';
       }
