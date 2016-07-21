@@ -11,34 +11,35 @@ em {
   font-style: normal;
 }
 
-input::-webkit-input-placeholder {
+#all_user input::-webkit-input-placeholder, #fkey_page input::-webkit-input-placeholder {
   /* WebKit browsers */
   font-size: 0.32rem;
   color: #fff;
 }
 
-input:-moz-placeholder {
+#all_user input:-moz-placeholder, #fkey_page input::-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   font-size: 0.32rem;
   color: #fff;
 }
 
-input::-moz-placeholder {
+#all_user input::-moz-placeholder, #fkey_page input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   font-size: 0.32rem;
   color: #fff;
 }
 
-input:-ms-input-placeholder {
+#all_user input:-ms-input-placeholder, #fkey_page input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   font-size: 0.32rem;
   color: #fff;
 }
 
 /*登录注册开始*/
-#cellCode_login{
+#cellCode_login {
   display: none;
 }
+
 #cellCode_login > ul {
   padding: 0 .6rem;
   margin-top: .5rem;
@@ -325,22 +326,22 @@ input:-ms-input-placeholder {
   font-size: .32rem;
 }
 
-.f_key > li input::-webkit-input-placeholder {
+#phone_find input::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #d1d1d1;
 }
 
-.f_key > li input:-moz-placeholder {
+#phone_find input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #d1d1d1;
 }
 
-.f_key > li input::-moz-placeholder {
+#phone_find input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #d1d1d1;
 }
 
-.f_key > li input:-ms-input-placeholder {
+#phone_find input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #d1d1d1;
 }
@@ -422,6 +423,20 @@ input:-ms-input-placeholder {
   font-size: .3rem;
   border-left: 1px solid #fff;
   padding-left: .2rem;
+}
+
+.fk_div_phone {
+  padding: 0 .2rem;
+  width: 1.85rem;
+  height: .68rem;
+  text-align: center;
+  line-height: .68rem;
+  background-color: #7bc300;
+  border-radius: .04rem;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: .25rem;
 }
 
 .fk_div_code {
@@ -1879,8 +1894,8 @@ a.foot-users {
 
 /*填写姓名说明页结束*/
 
-/*动态密码*/
-.captcha_img {
+/*动态密码验证码*/
+.captcha_img, .captcha_img_reg {
   width: 2.6rem;
   max-width: 2.6rem;
   position: absolute;

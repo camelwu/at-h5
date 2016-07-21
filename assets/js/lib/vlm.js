@@ -171,6 +171,7 @@
                 }
             }
             //底部菜单
+
             if (menus.hasOwnProperty(_k)) {
                 _initMenu();
             }
@@ -194,7 +195,7 @@
                     _str += "<a href='" + menus[k][1] + "' class='" + cn + "'><i></i>" + menus[k][0] + "</a>";
                 }
                 menuer.innerHTML = _str;
-                $("#content").css("padding-bottom", "51px");
+                //$("#content").css("padding-bottom", "51px");
             };
         }, _loading = function (k) {
             if ($("#preloader").css('display') == 'none') {
@@ -397,17 +398,6 @@
                 } else {
                     return -1;
                 }
-            },
-
-            ages: function (str) {
-                var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
-                if (r == null) return false;
-                var d = new Date(r[1], r[3] - 1, r[4]);
-                if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
-                    var Y = new Date().getFullYear();
-                    return Y - r[1];
-                }
-                return ("输入的日期格式错误！");
             },
             //比较时间串与当前时间的大小
             compareTime: function (timeStr) {
@@ -622,22 +612,12 @@
                 //六位数字验证码
                 code: function (name) {
                     var pattern = /^[0-9]{6}$/;
-                    //只能是数字，6位
+                    //只能是中文，长度为2-7位
                     if (pattern.test(name)) {
                         return true;
                     } else {
                         return false;
                     }
-                },
-                //图形验证码4位
-                imgcode: function(name){
-                  var pattern = /^[0-9A-Za-z]{4}$/;
-                  //数字或英文4位
-                  if (pattern.test(name)) {
-                    return true;
-                  } else {
-                    return false;
-                  }
                 },
                 engName: function (name) {
                     var pattern = /^[a-zA-Z][a-zA-Z\s]*[a-zA-Z]{1,25}$/;
@@ -1164,7 +1144,7 @@
                 }
             }, true);
             return back;
-        }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numOfAdult, numOfChlid, id, departDate, isShowChinaName, isShowContact, callback, showHideId) {
+        }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate, isShowChinaName, isShowContact, callback) {
             //if(arguments.length<1){return ;}
             //var arg = arguments.callee.slice(this);
             var type = '',
@@ -1195,12 +1175,9 @@
             } else {
                 type = 'add';
             }
-            //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numOfAdult='+numOfAdult+"&numOfChlid="+numOfChlid+"&Id="+id, title, "fullscreen=1");isShowChinaName,isShowContact
-            var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numOfAdult=' + numOfAdult + "&numOfChlid=" + numOfChlid + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callback);
+            //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");isShowChinaName,isShowContact
+            var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callback);
             document.body.appendChild(choice);
-            if (showHideId) {
-                $(showHideId).css('visibility', 'hidden');
-            }
 
             //choice.location = urls;
         }, createIframe = function (urlstr, id) {
@@ -1220,7 +1197,6 @@
             myIframe.style.height = '100%';
             return myIframe;
         };
-
         //out api
         return {
             api: _api,
@@ -1242,7 +1218,6 @@
             Utils: _Utils
         };
     })();
-
     if (typeof module !== "undefined" && module.exports) {
         module.exports = n;
     }

@@ -9,7 +9,8 @@ var phone_verify = $('#find_verify')[0],
   urlobj = vlm.parseUrlPara(window.location.href, true),
   get_code_login = $('#cellCodefind_verify')[0],
   timer_fogot,
-  timer_register;
+  timer_register,
+  timer_active;
 vlm.init();
 window.onload = function () {
   var phone_login = $("#phone_login")[0],
@@ -38,7 +39,11 @@ window.onload = function () {
 
   //图片验证码点击图片时更新
   function clickGetCaptcha() {
+    //动态登录
     $('.captcha_img').on("click", function (event) {
+      if (login_activeBflag) {
+        return;
+      }
       var target = $(event.target);
       getCaptchaCode(function (result) {
         if (result.success) {
@@ -49,6 +54,25 @@ window.onload = function () {
         }
       });
     });
+
+    //注册
+    $('.captcha_img_reg').on("click", function (event) {
+      console.log(regBflag_t);
+      if (regBflag_t) {
+        return;
+      }
+      var target = $(event.target);
+      getCaptchaCode(function (result) {
+        if (result.success) {
+          var imageNo = result.data.imageNo;
+          var imageUrl = result.data.imageUrl;
+          target.attr("data-imageno", imageNo);
+          target.attr("src", imageUrl);
+        }
+      });
+    });
+
+    //忘记密码
     $('.fk_captcha').on("click", function (event) {
       var target = $(event.target);
       getCaptchaCode(function (result) {
@@ -122,8 +146,7 @@ window.onload = function () {
       case "imgcode":
         return vlm.Utils.validate.imgcode(num);
         break;
-      default:
-        ;
+      default:;
     }
   };
 
@@ -275,11 +298,10 @@ window.onload = function () {
         "Code": "0058"
       };
       console.log(Parameters);
-      get_code_login.style.width = '2.4rem';
       get_code_login.innerHTML = '120秒重发';
       get_code_login.style.color = '#ccc';
       timedown_login(120);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_active_login);
     };
   }
 
@@ -309,7 +331,6 @@ window.onload = function () {
         "Code": "0058"
       };
       console.log(Parameters);
-      //phone_reg.style.width = '2.4rem';
       phone_reg.innerHTML = '120秒重发';
       phone_reg.style.color = '#ccc';
       timedown_reg(120);
@@ -320,7 +341,7 @@ window.onload = function () {
   get_verify(get_code);
 
 
-  //找回密码获取验证码
+  //忘记密码获取验证码
   function get_fver(obj) {
     obj.onclick = function () {
       var find_phone = $("#find_phone")[0];
@@ -340,7 +361,7 @@ window.onload = function () {
       }
       Bflag_forget = true;
       var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":2,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
         "ForeEndType": 3,
         "Code": "0058"
       };
@@ -383,6 +404,22 @@ function mycallback_register(ret) {
     jAlert('注册成功', '', cb_register);
   } else {
     jAlert(myJson.message);
+    clearInterval(timer_register);
+    $('#get_code').html('获取验证码').css({'color': '#fff'});
+    regBflag_t = false;
+    $('.captcha').val('');
+    $('#verify').val('');
+    $('#r_p_password').val('');
+    getCaptchaCode(function (result) {
+      var imgEle = $(".captcha_img_reg");
+      if (result.success) {
+        var imageUrl = result.data.imageUrl;
+        var imageNo = result.data.imageNo;
+        imgEle.attr('src', imageUrl);
+        imgEle.attr('data-imageno', imageNo);
+      }
+    });
+
   }
 }
 
@@ -398,7 +435,7 @@ function cb_register() {
   vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
 }
 
-//登录成功回调函数
+//登录回调函数
 function mycallback_login(myJson) {
   if (myJson.success) {
     vlm.init();
@@ -441,6 +478,22 @@ function mycallback_login(myJson) {
     } else {
       jAlert(myJson.message);
     }
+    if (timer_active) {
+      clearInterval(timer_active);
+      $('#cellCodefind_verify').html('获取验证码').css({'color': '#fff'});
+      login_activeBflag = false;
+      $('.captcha_img_text').val('');
+      $('#cellCode_phone_veri').val('');
+      getCaptchaCode(function (result) {
+        var imgEle = $("#cellCode_login img");
+        if (result.success) {
+          var imageUrl = result.data.imageUrl;
+          var imageNo = result.data.imageNo;
+          imgEle.attr('src', imageUrl);
+          imgEle.attr('data-imageno', imageNo);
+        }
+      });
+    }
   }
 }
 
@@ -467,6 +520,21 @@ $('#login-reg-shut').click(function () {
   }
 });
 
+//动态登录验证码回调
+function mycallback_active_login(ret) {
+  var verify_active = $("#cellCode_phone_veri")[0];
+  var myJson = ret;
+  console.log(myJson);
+  if (myJson.success) {
+    vlm.Utils.sendMobileCode(verify_active.value);
+  } else {
+    jAlert(myJson.message);
+    clearInterval(timer_active);
+    $('#get_code').html('获取验证码').css({'color': '#fff'});
+    login_activeBflag = false;
+  }
+}
+
 //注册验证码回调
 function mycallback_verify(ret) {
   var verify = $("#verify")[0];
@@ -477,7 +545,8 @@ function mycallback_verify(ret) {
   } else {
     jAlert(myJson.message);
     clearInterval(timer_register);
-    $('#get_code').html('获取验证码').css({'color': '#fff', 'textAlign': 'right'});
+    $('#get_code').html('获取验证码').css({'color': '#fff'});
+    regBflag_t = false;
   }
 }
 
@@ -543,7 +612,7 @@ function timedown_forget(seconds) {
       newtime = new Date();
       if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
         phone_verify.innerHTML = '获取验证码';
-        clearInterval(timer);
+        clearInterval(timer_fogot);
         Bflag_forget = false;
         return;
       }
@@ -565,7 +634,7 @@ function timedown_reg(seconds) {
       if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
         phone_reg.innerHTML = '获取验证码';
         phone_reg.style.color = '#fff';
-        clearInterval(timer);
+        clearInterval(timer_register);
         regBflag_t = false;
         return;
       }
@@ -582,14 +651,14 @@ function timedown_reg(seconds) {
 function timedown_login(seconds) {
   var lasttime = new Date();
   var newtime;
-  var timer = setInterval(function () {
+  timer_active = setInterval(function () {
     seconds--;
     if (Math.abs(new Date() - lasttime) >= 3000) {
       newtime = new Date();
       if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
         get_code_login.innerHTML = '获取验证码';
         get_code_login.style.color = '#fff';
-        clearInterval(timer);
+        clearInterval(timer_active);
         regBflag_t = false;
         return;
       }
