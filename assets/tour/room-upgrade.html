@@ -113,7 +113,12 @@
     </li>
     <%}%>
     <li onclick="showHotelInfo()">
-        <p><%= star(htls.hotelGenInfo.starRatingName) %></p>
+        <p>
+          <em><%= star(htls.hotelGenInfo.starRatingName) %></em>
+          <% if(htls.hotelGenInfo.isFreeWiFi){ %>
+          <span class="tour_wifi"></span>
+          <% } %>
+        </p>
         <span class="seeDetail">查看详情</span>
         <a href="#" class="d-icon1"></a>
     </li>
