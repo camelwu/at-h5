@@ -15,11 +15,55 @@
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>亚程旅游任性送兑奖</title>
   <link href="less/register.css" rel="stylesheet" type="text/css"/>
+  <script>
+    //    function registerLog(obj){
+    //      alert(obj);
+    //    }
+
+    //    function getDeviceId(){
+    //      window.activity.getDeviceId();
+    //    }
+    //
+    //    function closeActivity(){
+    //      window.activity.closeActivity();
+    //    }
+
+    //    function passJSONToClient(){
+    //      window.activity.passJSONToClient({'key':'活动'})
+    //    }
+    //
+    //    function getClientValue() {
+    //      var value = window.activity.getClientValue();
+    //      document.querySelector('#clientValue').value = value
+    //    }
+
+    //    window.JSObj = {
+    //      getNumber: function () {
+    //        return document.querySelector('#getNumber').value;
+    //      }
+    //    }
+
+    // Client客户端通过暴露的native接口的register函数，注册JS的函数名。Client端只调用getNumber(key)，不关心getNumber(key)对应的函数名(value)
+    //    var clientFunc = window.activity.register({
+    //      type:0,
+    //      methods:[
+    //        {
+    //          getNumber: 'window.JSObj.getNumber'
+    //        },
+    /*{
+     register: 'window.JSObj.register'
+     }*/
+    //      ]
+    //    });
+    //    console.log(clientFunc);
+  </script>
 </head>
 <body>
 <div class="register main">
   <input type="email" class="register_input input_1">
   <input type="tel" class="register_input input_2">
+  <input type="email" maxlength="4" class="register_input input_6">
+  <img id="vpic" class="register_input v_pic" src="">
   <input type="email" class="register_input input_3">
   <input type="button" class="register_button button_1" value="获取验证码">
   <input type="email" class="register_input input_4" placeholder="实物中奖者填写">
@@ -121,7 +165,6 @@
       this.tips({msg:"请输入兑奖码",top:'7.3rem',left:'2rem',display:'block'});
       this.show = true;
       throw new Error();
-//      return false;
     }else{
       this.show = false;
       this.tips({display:'none'});
@@ -209,19 +252,19 @@
 
   }
 
-   Lechun.prototype.sendPhoneConfirm = function(){
-     var that = this;
+  Lechun.prototype.sendPhoneConfirm = function(){
+    var that = this;
 
-     var parameters = {
-       "Parameters":{
-         "PhoneNo": that.phone.value,
-         "ImageNo":$("#vpic").attr("data-imageno"),
-         "InputCode":that.imagecode.value
-       },
-       "ForeEndType": 3,
-       "Code": "97100003"
-     };
-     vlm.loadJson("",JSON.stringify(parameters), function(json){
+    var parameters = {
+      "Parameters":{
+        "PhoneNo": that.phone.value,
+        "ImageNo":$("#vpic").attr("data-imageno"),
+        "InputCode":that.imagecode.value
+      },
+      "ForeEndType": 3,
+      "Code": "97100003"
+    };
+    vlm.loadJson("",JSON.stringify(parameters), function(json){
 
       return that.validatecodephone(json).sendPhone();
     });
