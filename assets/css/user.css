@@ -355,6 +355,7 @@ em {
 #find_phone,
 #r_e_password,
 #rs_e_password,
+#new_pass_set,
 .mob_cell {
   width: 90%;
 }
@@ -1904,7 +1905,7 @@ a.foot-users {
   text-align: center;
 }
 
-.fk_captcha {
+.fk_captcha, .fk_captcha_modify {
   width: 2.6rem;
   max-width: 130px;
   height: .68rem;
@@ -1912,5 +1913,5 @@ a.foot-users {
   text-align: center;
   line-height: .68rem;
   right: 0;
-  top: .12rem;
+  top: .24rem;
 }

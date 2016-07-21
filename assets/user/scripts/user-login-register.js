@@ -317,7 +317,7 @@ window.onload = function () {
         return;
       }
       //图形验证码
-      if (!check($('.captcha')[0].getAttribute('data-type'), $('.captcha')[0].value)) {
+      if (!check($('#phone_register .captcha')[0].getAttribute('data-type'), $('#phone_register .captcha')[0].value)) {
         jAlert("请输入正确的图形验证码");
         return;
       }
@@ -564,7 +564,7 @@ function call_pass() {
   window.location.href = "user-login.html";
 }
 
-//找回密码验证码回调
+//忘记密码验证码回调
 function mycallback_findver(ret) {
   var find_veri = $("#find_veri")[0];
   var myJson = ret;

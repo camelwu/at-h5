@@ -75,7 +75,7 @@
 		<div id="amend_info" class="all_elements" style="display: none;">
       <div class="header">
         <span id="close_page" class="header_back"><i class="icon_back"></i></span>
-        <h3 id="title">修改昵称/填写姓名/手机号验证/邮箱/修改密码</h3>
+        <h3 id="title">修改昵称/填写姓名/修改密码/邮箱/</h3>
       </div>
 			<ul id="info_content" class="user_content">
 				<li id="changename" style="display: none;">
@@ -96,23 +96,30 @@
 						</div>
 						<div class="name_text">不超过10个汉字或者20个英文字符，支持空格和“.”</div>
 					</li>
-					<li id="modify_pass">
-						<ul class="f_key">
-							<li>
-								<input id="phone_num" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
-							</li>
-							<li>
-								<input class="fk_put mob_code" type="text" value placeholder="请输入验证码" data-type="code">
-								<div class="fk_div_phone" id="phone_ver">发送验证码</div>
-							</li>
-						</ul>
-					</li>
 					<li id="useremail">
 						<div class="u_name">
 							<input id="email" type="text" placeholder="请填写邮箱" data-type="email">
               <b class="icon_person name_close"></b>
 						</div>
 					</li>
+          <li id="modify_pass">
+            <ul class="f_key">
+              <li>
+                <input id="phone_num" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
+              </li>
+              <li>
+                <input class="fk_put captcha_modify" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">
+                <img class="fk_captcha_modify" src="" alt="验证码" />
+              </li>
+              <li>
+                <input class="fk_put mob_code" type="text" value placeholder="请输入验证码" data-type="code">
+                <div class="fk_div_phone" id="phone_ver">发送验证码</div>
+              </li>
+              <li>
+                <input id="phone_pass_new" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请设置6-18位新密码" data-type="pass">
+              </li>
+            </ul>
+          </li>
           <a id="amend_btn_0" href="javascript:;" class="f_btns">保存</a>
           <a id="amend_btn_1" href="javascript:;" class="f_btns">保存</a>
           <a id="amend_btn_2" href="javascript:;" class="f_btns">保存</a>
