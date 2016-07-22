@@ -1,7 +1,10 @@
 /**
+<<<<<<< HEAD
  * Created by lichengjun on 16/7/21.
  */
 /**
+=======
+>>>>>>> v1.3.0.160718
  * Created by lichengjun on 16/7/15.
  */
 /**
@@ -18,12 +21,11 @@ module.exports = function (grunt) {
     'compileAssets',
     'clean:demo', //删除不能访问的资源
     'clean:plugins', //删除不能访问的资源
-    
+
     //'uglify:dev',
     //'cssmin:dev',
 
     'filerev:dev',  //文件生成hash url
     'jason_rev:dev'  //html 文件中css  js 文件替换
-
   ]);
 };

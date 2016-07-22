@@ -22,5 +22,5 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-filerev');
+  grunt.loadNpmTasks('grunt-filerev');
 };
