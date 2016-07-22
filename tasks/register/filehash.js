@@ -1,10 +1,4 @@
 /**
-<<<<<<< HEAD
- * Created by lichengjun on 16/7/21.
- */
-/**
-=======
->>>>>>> v1.3.0.160718
  * Created by lichengjun on 16/7/15.
  */
 /**
