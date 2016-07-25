@@ -606,6 +606,16 @@
     vlm.loadJson("", JSON.stringify(Parameters), callback, true, false, true);
   }
 
+  function updateCaptchaCode(targetImgeSelector){
+    var imageEle = targetImgeSelector ? $(targetImgeSelector) : $("#phoneverify .fk_captcha");
+    getCaptchaCode(function(result){
+      if(result.success){
+        var imageNo = result.data.imageNo;
+        var imageUrl = result.data.imageUrl;
+        imageEle.attr("src",imageUrl).attr("data-imageno",imageNo);
+      }
+    });
+  }
 //解决safari放回页面错误问题
 //  $("#header").on("click",function(){
 //    window.location.href = 'user.html';

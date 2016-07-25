@@ -17,7 +17,8 @@
  *
  */
 module.exports = function (grunt) {
-    grunt.registerTask('default', ['linkAssets', 'compileAssets', 'watch']);
+    grunt.registerTask('default', []);
+    //grunt.registerTask('default', ['linkAssets', 'compileAssets', 'watch']);
     //grunt.registerTask('default', ['filerev']);
 //    grunt.registerTask('default', [
 //        'linkAssets',

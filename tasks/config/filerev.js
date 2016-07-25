@@ -16,11 +16,11 @@ module.exports = function (grunt) {
             files: [{
                 expand: true,
                 cwd: './assets',
-                src: ['**/*.js'],
-                dest: 'temp/public'
+                src: ['**/*.js','**/*.css'],
+                dest: '.tmp/public'
                 }],
         }
     });
 
-    grunt.loadNpmTasks('grunt-filerev');
+  grunt.loadNpmTasks('grunt-filerev');
 };
