@@ -91,6 +91,9 @@ window.onload = function () {
   //亚程账户动态码登录切换
   $('.login_tab_wrap >div').click(function () {
     if ($(this).find('span').attr('id') == 'change_cellCode') {
+      if($(this).hasClass('active')){
+        return;
+      }
       getCaptchaCode(function (result) {
         var imgEle = $("#cellCode_login img");
         if (result.success) {
