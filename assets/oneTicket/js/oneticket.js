@@ -7,7 +7,7 @@
 
   $(window).load(function () {
     $("#status").fadeOut();
-    $("#preloader").delay(400).fadeOut("medium");
+    $("#preloader").delay(200).fadeOut("medium");
   });
 
   function init() {
@@ -556,10 +556,11 @@
 
 })();
 
-function quickShop(){
+//立即抢购
+function quickShop() {
   var sPackageId = $(this).attr('data-packageId');
   var Parmeters = {
-    "parameters": {"packageID": sPackageId},
+    "parameters": {"packageID": "1064"},
     "foreEndType": 2,
     "code": "20100003"
   }
@@ -570,9 +571,9 @@ function quickShop(){
     var json = ret;
     console.log(json);
     if (json.success) {
-      if (json.data.tourAllotmentTotail) {
-        //if (json.data.TourAllotmentTotal) {
-        window.location.href = "../scenic/scenic_detail.html?packageID=" + sPackageId;
+      if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
+        //是否登录
+        vlm.checkLogin(window.location.href = "../scenic/scenic_detail.html?packageID=" + 1064);
       } else {
         jAlert('该产品已被抢购一空');
       }

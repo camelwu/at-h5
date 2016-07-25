@@ -1007,13 +1007,15 @@
           }
         }
 
-
         for (var i = 0; i < data.tours.length; i++) {
           SearchPrice.Parameters.Tours[i] = {
             "TourID" : data.tours[i].tourID,
             "TravelDate" : TravelDate
           };
         }
+        //oneticket 添加memberid
+        SearchPrice.Parameters.MemberID=localStorage.memberid;
+
         T.AjaxAdapter().callAjaxAdapter("getPickup",{});
         T.AjaxAdapter().callAjaxAdapter("getSearchPrice",SearchPrice);
       } else {

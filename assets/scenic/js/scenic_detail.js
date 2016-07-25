@@ -291,6 +291,9 @@
         {
           SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
         }
+        //oneticket 添加memberid
+        SearchPrice.Parameters.MemberID=localStorage.memberid;
+
         AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
         //console.log(ExtendData);
       }else{
