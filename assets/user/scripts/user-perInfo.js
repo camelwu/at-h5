@@ -234,7 +234,7 @@
     //修改邮箱
     function changeInfo_email(obj) {
       obj.onclick = function () {
-        var oInputEmail = document.getElementById("infoForm").getElementsByTagName("input")[3];
+        var oInputEmail = document.querySelector("#infoForm").querySelector('#email');
         u_email = oInputEmail.value;
         if (oInputEmail.value != "") {
           if (oInputEmail.getAttribute('data-type') != "code") {
@@ -349,8 +349,8 @@
         "Code": "0058"
       };
       console.log(Parameters);
-      phone_verify.innerHTML = '120秒重发';
-      timedown_modify(120);
+      phone_verify.innerHTML = '60秒重发';
+      timedown_modify(60);
       vlm.loadJson("", JSON.stringify(Parameters), mycallback_modify_code);
     };
   }
@@ -391,13 +391,13 @@
       seconds--;
       if (Math.abs(new Date() - lasttime) >= 3000) {
         newtime = new Date();
-        if (Math.ceil(120 - (newtime - lasttime) / 1000) < 1) {
+        if (Math.ceil(60 - (newtime - lasttime) / 1000) < 1) {
           phone_verify.innerHTML = '获取验证码';
           clearInterval(timer_modify);
           Bflag_modify = false;
           return;
         }
-        phone_verify.innerHTML = Math.ceil(120 - (newtime - lasttime) / 1000) + '秒重发';
+        phone_verify.innerHTML = Math.ceil(60 - (newtime - lasttime) / 1000) + '秒重发';
       } else {
         phone_verify.innerHTML = seconds + '秒重发';
       }
@@ -458,7 +458,6 @@
         birthCont.innerHTML = infoJson.data[0].dateOfBirth.substring(0, 10);
         birthCont.setAttribute('data-selected', datecache);
         $('#hostmobile')[0].innerHTML = user_phone.value = infoJson.data[0].mobileNo;
-        $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
         if (infoJson.data[0].salutation == 26) {
           $('#sex').children().eq(0).attr('class', 'per_man sex_act');
           $('#sex').children().eq(1).attr('class', 'per_man');
@@ -467,8 +466,6 @@
           $('#sex').children().eq(1).attr('class', 'per_man sex_act');
         }
       }
-
-      user_email.value = localStorage.email;
       memberid = localStorage.memberid;
     } else {
       jAlert(infoJson.message);
@@ -606,16 +603,6 @@
     vlm.loadJson("", JSON.stringify(Parameters), callback, true, false, true);
   }
 
-  function updateCaptchaCode(targetImgeSelector){
-    var imageEle = targetImgeSelector ? $(targetImgeSelector) : $("#phoneverify .fk_captcha");
-    getCaptchaCode(function(result){
-      if(result.success){
-        var imageNo = result.data.imageNo;
-        var imageUrl = result.data.imageUrl;
-        imageEle.attr("src",imageUrl).attr("data-imageno",imageNo);
-      }
-    });
-  }
 //解决safari放回页面错误问题
 //  $("#header").on("click",function(){
 //    window.location.href = 'user.html';
