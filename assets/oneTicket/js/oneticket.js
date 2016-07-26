@@ -1,14 +1,12 @@
 /**
  * Created by qzz on 2016/7/13.
  */
+"use strict";
 
 (function () {
-  "use strict";
-
-  $(window).load(function () {
-    $("#status").fadeOut();
-    $("#preloader").delay(200).fadeOut("medium");
-  });
+  //加载动画
+  $("#status").fadeOut();
+  $("#preloader").delay(400).fadeOut("medium");
 
   function init() {
 
@@ -512,6 +510,7 @@
       var greatSalestr = $('#greatSale').html();
       var greatSaleList = ejs.render(greatSalestr, {greatSaleData: oneticketData})
       $('#one_sale_cont').html(greatSaleList);
+      def_img();
     }
 
     oneticketTab(greatSaleData);
@@ -556,15 +555,47 @@
 
 })();
 
+//默认图片
+function def_img(){
+  var images = $("#one_sale_cont").find('img');
+  var error_url = '../../images/hotelDetailerrorpic.png';
+  for (var i = 0; i < images.length; i++) {
+
+    (function(index) {
+      var re_url = images[i].getAttribute('data-src');
+      loadImage(re_url, error_url, function() {
+        images[index].setAttribute('src', re_url);
+
+      }, function() {
+        images[index].setAttribute('src', error_url);
+      });
+
+      function loadImage(url, error_url, callback, errorFunc) {
+        var img = new Image();
+        img.src = url;
+        img.onload = function() {
+          img.onload = null;
+          callback();
+        };
+        img.onerror = function() {
+          img.onerror = null;
+          errorFunc();
+        }
+      }
+    })(i);
+  }
+}
+
 //立即抢购
-function quickShop() {
+var shopTarget;
+function quickShop(obj) {
+  shopTarget=obj;
   var sPackageId = $(this).attr('data-packageId');
   var Parmeters = {
     "parameters": {"packageID": "1064"},
     "foreEndType": 2,
     "code": "20100003"
   }
-
   vlm.loadJson("", JSON.stringify(Parmeters), saleList_back);
 
   function saleList_back(ret) {
@@ -573,11 +604,18 @@ function quickShop() {
     if (json.success) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
         //是否登录
-        vlm.checkLogin(window.location.href = "../scenic/scenic_detail.html?packageID=" + 1064);
+        //if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
+        //  window.location.href='../scenic/scenic_detail.html?packageID=1064';
+        //};
+        $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();
+        $(shopTarget).parents('.one_sale_show').find('.one_price').css('color','#ccc');
+        $(shopTarget).parents('.one_sale_show').find('.panic_buy').addClass('on');
       } else {
-        jAlert('该产品已被抢购一空');
+        //售罄
+        $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();
+        $(shopTarget).parents('.one_sale_show').find('.one_price').css('color','#ccc');
+        $(shopTarget).parents('.one_sale_show').find('.panic_buy').addClass('on');
       }
-
     } else {
       jAlert(json.message);
     }

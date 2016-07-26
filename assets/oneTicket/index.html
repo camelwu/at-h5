@@ -66,17 +66,17 @@
         <div class="morexciting_title"></div>
         <ul class="package_recommend">
           <li class="localfun">
-            <a href="javascript:;">
+            <a href="../scenic/index.html">
               <img src="../images/oneticket/localfun.png" alt=""/>
             </a>
           </li>
           <li class="hothotel">
-            <a href="javascript:;">
+            <a href="../hotel/index.html">
               <img src="../images/oneticket/hothotel.png" alt=""/>
             </a>
           </li>
           <li class="vacation">
-            <a href="javascript:;">
+            <a href="../tour/index.html">
               <img src="../images/oneticket/vacation.png" alt=""/>
             </a>
           </li>
@@ -100,7 +100,7 @@
 <!--oneticket模板-->
 <script id="greatSale" type="text/template">
   <% for(var i=0;i< greatSaleData.length; i++) { %>
-  <div>
+  <div class="one_sale_show">
     <% if(greatSaleData[i].ProductType == 'T') { %>
     <b class="one_scenic_tip"></b>
     <% }else { %>
@@ -114,9 +114,10 @@
 
       <div class="price_panic clearfix">
         <p class="one_price fl">¥<%=greatSaleData[i].ProductPrice%>起</p>
-        <a href="javascript:;" onclick="quickShop();" class="panic_buy" data-packageId="greatSaleData[i].ProductID">抢购</a>
+        <a href="javascript:;" onclick="quickShop(this);" class="panic_buy" data-packageId="greatSaleData[i].ProductID"></a>
       </div>
     </div>
+    <div class="one_sale_bg"></div>
   </div>
   <% } %>
 </script>

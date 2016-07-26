@@ -68,6 +68,18 @@ img {
   color: #fff;
 }
 
+.one_sale_bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/oneticket/soldout_tip.png") no-repeat center;
+  background-size: 2.45rem 1.95rem;
+  background-color: rgba(102, 102, 102, 0.5);
+  display: none;
+}
+
 .one_scenic_tip {
   width: 1.22rem;
   height: .42rem;
@@ -151,10 +163,12 @@ img {
   height: .5rem;
   background: url("../../images/oneticket/panicbuy.png") no-repeat;
   background-size: 1.4rem .5rem;
-  padding-left: .5rem;
-  line-height: .5rem;
-  color: #fff;
   float: right;
+}
+
+.panic_buy.on {
+  background: url("../../images/oneticket/soldout.png") no-repeat;
+  background-size: 1.4rem .5rem;
 }
 
 /*一元门票底部*/
