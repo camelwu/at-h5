@@ -604,12 +604,9 @@ function quickShop(obj) {
     if (json.success) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
         //是否登录
-        //if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
-        //  window.location.href='../scenic/scenic_detail.html?packageID=1064';
-        //};
-        $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();
-        $(shopTarget).parents('.one_sale_show').find('.one_price').css('color','#ccc');
-        $(shopTarget).parents('.one_sale_show').find('.panic_buy').addClass('on');
+        if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
+          window.location.href='../scenic/scenic_detail.html?packageID=1064';
+        };
       } else {
         //售罄
         $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();
