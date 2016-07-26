@@ -510,7 +510,6 @@
       var greatSalestr = $('#greatSale').html();
       var greatSaleList = ejs.render(greatSalestr, {greatSaleData: oneticketData})
       $('#one_sale_cont').html(greatSaleList);
-      def_img();
     }
 
     oneticketTab(greatSaleData);
@@ -555,36 +554,6 @@
 
 })();
 
-//默认图片
-function def_img(){
-  var images = $("#one_sale_cont").find('img');
-  var error_url = '../../images/hotelDetailerrorpic.png';
-  for (var i = 0; i < images.length; i++) {
-
-    (function(index) {
-      var re_url = images[i].getAttribute('data-src');
-      loadImage(re_url, error_url, function() {
-        images[index].setAttribute('src', re_url);
-
-      }, function() {
-        images[index].setAttribute('src', error_url);
-      });
-
-      function loadImage(url, error_url, callback, errorFunc) {
-        var img = new Image();
-        img.src = url;
-        img.onload = function() {
-          img.onload = null;
-          callback();
-        };
-        img.onerror = function() {
-          img.onerror = null;
-          errorFunc();
-        }
-      }
-    })(i);
-  }
-}
 
 //立即抢购
 var shopTarget;
