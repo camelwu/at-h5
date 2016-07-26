@@ -572,10 +572,21 @@ function quickShop(obj) {
     console.log(json);
     if (json.success) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
-        //是否登录
-        if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
-          window.location.href='../scenic/scenic_detail.html?packageID=1064';
-        };
+        if($(shopTarget).attr('data-packagetype') == 'T'){
+          //跳到景点详情
+          if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
+            window.location.href='../scenic/scenic_detail.html?packageID=1064';
+          };
+        }else {
+          if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
+            window.location.href='../scenic/scenic_detail.html?packageID=1064';
+          };
+          //跳到酒店详情
+          //if(vlm.checkLogin("../hotel/hotel_detail.html?")){
+          //  window.location.href='../hotel/hotel_detail.html?';
+          //};
+        }
+
       } else {
         //售罄
         $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();

@@ -114,7 +114,7 @@
 
       <div class="price_panic clearfix">
         <p class="one_price fl">¥<%=greatSaleData[i].ProductPrice%>起</p>
-        <a href="javascript:;" onclick="quickShop(this);" class="panic_buy" data-packageId="greatSaleData[i].ProductID"></a>
+        <a href="javascript:;" onclick="quickShop(this);" class="panic_buy" data-packageId="<%=greatSaleData[i].ProductID%>" data-packageType="<%=greatSaleData[i].ProductType%>"></a>
       </div>
     </div>
     <div class="one_sale_bg"></div>
