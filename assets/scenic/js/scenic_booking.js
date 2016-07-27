@@ -1048,7 +1048,16 @@
         T.Command().callCommand("render",{});
       } else {
         console.log(json);
-        jAlert(json.message, "提示");
+        if(json.message.indexOf('Ticket sold out. Please try again tomorrow') != -1){
+          $('.pickup_pop').hide();
+          jAlert('您已经成功购买，每人仅限一次参与资格','',callinvalid);
+          function callinvalid(){
+            //window.location.href='../../oneTicket/index.html'
+          }
+
+        }else{
+          jAlert(json.message, "提示");
+        }
       }
     },
     callbackReSearchPrice:function(data){
