@@ -247,17 +247,40 @@
         var Sheight1=$("#Sheight1")[0];
         var Sheight2=$("#Sheight2")[0];
         var Sheight3=$("#Sheight3")[0];
+
         Sheight1.onclick =function(){
-          $(".scenic_height1").css({'height':'100%'});
-          $("#Sheight1").css({'display':'none'});
+          if($("#Sheight1").hasClass("js_show")){
+            $("#Sheight1").removeClass("js_show");
+            $(".scenic_height1").css({'height':'4.8rem'});
+            $("#Sheight1").css({"background-position":  "-3.71rem -2.26rem"});
+          }else{
+            $("#Sheight1").addClass("js_show");
+            $(".scenic_height1").css({'height':'100%'});
+            $("#Sheight1").css({"background-position":  "-4.1rem -2.26rem"});
+          }
+
         };
         Sheight2.onclick =function(){
-          $(".scenic_height2").css({'height':'100%'});
-          $("#Sheight2").css({'display':'none'});
+          if($("#Sheight2").hasClass("js_show")){
+            $("#Sheight2").removeClass("js_show");
+            $(".scenic_height2").css({'height':'4.8rem'});
+            $("#Sheight2").css({"background-position":  "-3.71rem -2.26rem"});
+          }else{
+            $("#Sheight2").addClass("js_show");
+            $(".scenic_height2").css({'height':'100%'});
+            $("#Sheight2").css({"background-position":  "-4.1rem -2.26rem"});
+          }
         };
         Sheight3.onclick =function(){
-          $(".scenic_height3").css({'height':'100%'});
-          $("#Sheight3").css({'display':'none'});
+          if($("#Sheight3").hasClass("js_show")){
+            $("#Sheight3").removeClass("js_show");
+            $(".scenic_height3").css({'height':'4.8rem'});
+            $("#Sheight3").css({"background-position":  "-3.71rem -2.26rem"});
+          }else{
+            $("#Sheight3").addClass("js_show");
+            $(".scenic_height3").css({'height':'100%'});
+            $("#Sheight3").css({"background-position":  "-4.1rem -2.26rem"});
+          }
         };
 
         //price
