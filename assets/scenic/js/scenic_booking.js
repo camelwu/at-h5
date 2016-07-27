@@ -720,8 +720,8 @@
 
           function shopSure(arg) {
             if (arg == true) {
-              if( vlm.checkLogin('../scenic/scenic_order_detail.html?PackageID=1064&RPP=0&ADU=1&FAIL=0')){
-                window.location.href='../scenic/scenic_order_detail.html?PackageID=1064&RPP=0&ADU=1&FAIL=0';
+              if( vlm.checkLogin('../scenic/scenic_order_detail.html?PackageID=1064&RPP=1&ADU=1&FAIL=0')){
+                window.location.href='../scenic/scenic_order_detail.html?PackageID=1064&RPP=1&ADU=1&FAIL=0';
               }
             }
           }
