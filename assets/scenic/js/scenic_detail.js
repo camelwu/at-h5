@@ -355,8 +355,12 @@
             }
         });
       }else {
-        jAlert(json.message, "提示");
-        console.log(json);
+        if(json.message.indexOf('Ticket sold out. Please try again tomorrow') != -1){
+          jAlert('您已经成功购买，每人仅限一次参与资格');
+        }else{
+          jAlert(json.message, "提示");
+          console.log(json);
+        }
       }
     }
   };
