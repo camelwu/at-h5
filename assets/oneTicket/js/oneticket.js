@@ -558,7 +558,7 @@
 //立即抢购
 var shopTarget;
 function quickShop(obj) {
-  shopTarget=obj;
+  shopTarget = obj;
   var sPackageId = $(this).attr('data-packageId');
   var Parmeters = {
     "parameters": {"packageID": "1064"},
@@ -570,27 +570,38 @@ function quickShop(obj) {
   function saleList_back(ret) {
     var json = ret;
     console.log(json);
+    var hotelid = $(shopTarget).attr('data-packageId');
     if (json.success) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
-        if($(shopTarget).attr('data-packagetype') == 'T'){
+        if ($(shopTarget).attr('data-packagetype') == 'T') {
           //跳到景点详情
-          if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
-            window.location.href='../scenic/scenic_detail.html?packageID=1064';
-          };
-        }else {
-          if(vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")){
-            window.location.href='../scenic/scenic_detail.html?packageID=1064';
-          };
+          if (vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")) {
+            window.location.href = '../scenic/scenic_detail.html?packageID=1064';
+          }
+          ;
+        } else {
+          var oDate = new Date(),
+            year = oDate.getFullYear(),
+            month = oDate.getMonth(),
+            day = oDate.getDate(),
+            oDate1 = new Date(year, month, day + 2),
+            oDate2 = new Date(year, month, day + 3),
+            beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd'),
+            leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
+
+          var hotelStr = '../hotel/hotel_detail.html?HotelID=' + hotelid + '&HotelCode=' + hotelid + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + beginDate + '&CheckOutDate=' + leaveDate + '&NumRoom=1&NumAdult=1&NumChild=0';
+
           //跳到酒店详情
-          //if(vlm.checkLogin("../hotel/hotel_detail.html?")){
-          //  window.location.href='../hotel/hotel_detail.html?';
-          //};
+          if (vlm.checkLogin(hotelStr)) {
+            window.location.href = hotelStr;
+          }
+          ;
         }
 
       } else {
         //售罄
         $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();
-        $(shopTarget).parents('.one_sale_show').find('.one_price').css('color','#ccc');
+        $(shopTarget).parents('.one_sale_show').find('.one_price').css('color', '#ccc');
         $(shopTarget).parents('.one_sale_show').find('.panic_buy').addClass('on');
       }
     } else {
@@ -598,4 +609,10 @@ function quickShop(obj) {
     }
   }
 
+}
+
+//补零
+
+function zero(num) {
+  return num < 10 ? '0' + num : '' + num;
 }
