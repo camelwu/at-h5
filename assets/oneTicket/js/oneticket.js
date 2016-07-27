@@ -22,10 +22,12 @@
         "ProductCode": "PK00519LGK09",
         "ProductDesc": "穿梭于圣淘沙和新加坡花柏山顶两个繁华目的地",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
-        "ProductID": "507063",
+        "ProductPrice": "84",
+        //"ProductID": "507063",
+        "ProductID": "1064",
         "ProductAttentionNum": "",
         "ProductType": "T",
+        "oneticket": 'true'
       },
       {
         "ProductName": "滨海湾花园电子票",
@@ -37,7 +39,7 @@
         "ProductCode": "PK0382360SIN17",
         "ProductDesc": "城市中心的绿洲",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "85",
         "ProductID": "382792",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -52,7 +54,7 @@
         "ProductCode": "PK0505975SIN17",
         "ProductDesc": "参观亚洲首个亦是唯一一个以河川为主题的野生动物园",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "98",
         "ProductID": "509289",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -67,7 +69,7 @@
         "ProductCode": "PK04205SIN17",
         "ProductDesc": "关于勇气的故事",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "60",
         "ProductID": "4416",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -82,7 +84,7 @@
         "ProductCode": "PK0505901SIN17",
         "ProductDesc": "新加坡旅游局的最佳休闲景点体验奖的九冠王新加坡日间动物园含小火车",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "135",
         "ProductID": "509215",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -95,12 +97,12 @@
         "ProductEndDate": "",
         "IsEnabled": "1",
         "ProductCode": "",
-        "ProductDesc": "穿梭于圣淘沙和新加坡花柏山顶两个繁华目的地",
+        "ProductDesc": "见证了新加坡发展的中心地标",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "1",
         "ProductID": "",
         "ProductAttentionNum": "",
-        "ProductType": "T",
+        "ProductType": "T"
       },
       {
         "ProductName": "新加坡环球影城2大1小",
@@ -110,9 +112,9 @@
         "ProductEndDate": "",
         "IsEnabled": "1",
         "ProductCode": "",
-        "ProductDesc": "穿梭于圣淘沙和新加坡花柏山顶两个繁华目的地",
+        "ProductDesc": "新加坡环球影城，越过荧幕感受身临其境的电影世界",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "800",
         "ProductID": "",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -125,9 +127,9 @@
         "ProductEndDate": "",
         "IsEnabled": "1",
         "ProductCode": "",
-        "ProductDesc": "穿梭于圣淘沙和新加坡花柏山顶两个繁华目的地",
+        "ProductDesc": "嗨翻新加坡影城，进入惊心动魄的电影魔幻世界",
         "ProductSite": "新加坡",
-        "ProductPrice": "480",
+        "ProductPrice": "560",
         "ProductID": "",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -146,7 +148,7 @@
         "ProductCode": "PK0489210SIN17",
         "ProductDesc": "嗨翻新加坡影城，进入惊心动魄的电影魔幻世界，身临其境的娱乐体验，让人身心愉悦",
         "ProductSite": "新加坡",
-        "ProductPrice": "297",
+        "ProductPrice": "294",
         "ProductID": "492416",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -161,7 +163,7 @@
         "ProductCode": "PK0449906SIN17",
         "ProductDesc": "沉醉于世界最大海洋馆,寓教于乐",
         "ProductSite": "新加坡",
-        "ProductPrice": "98",
+        "ProductPrice": "96",
         "ProductID": "453034",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -176,7 +178,7 @@
         "ProductCode": "PK0505895SIN17",
         "ProductDesc": "与动物亲密接触",
         "ProductSite": "新加坡",
-        "ProductPrice": "98",
+        "ProductPrice": "91",
         "ProductID": "509209",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -206,7 +208,7 @@
         "ProductCode": "",
         "ProductDesc": "住海底套房与鱼共眠，拥有超大海洋馆观景窗的海景套房",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "1547",
+        "ProductPrice": "1379",
         "ProductID": "10472",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -219,9 +221,9 @@
         "ProductEndDate": "",
         "IsEnabled": "1",
         "ProductCode": "",
-        "ProductDesc": "住海底套房与鱼共眠，拥有超大海洋馆观景窗的海景套房",
+        "ProductDesc": "集吃喝玩乐及住宿于一身， 配套设施一应俱全",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "",
+        "ProductPrice": "1123",
         "ProductID": "7765",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -236,7 +238,7 @@
         "ProductCode": "",
         "ProductDesc": "时尚创新设计，客房暖色调的温馨设计，舒适的入住体验",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "",
+        "ProductPrice": "1208",
         "ProductID": "7764",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -251,7 +253,7 @@
         "ProductCode": "",
         "ProductDesc": "尽情享受大自然的美丽风光，享受度假的悠闲时光",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "",
+        "ProductPrice": "859",
         "ProductID": "80",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -283,9 +285,9 @@
         "ProductEndDate": "2017/3/31",
         "IsEnabled": "1",
         "ProductCode": "PK0037721SIN17",
-        "ProductDesc": "",
+        "ProductDesc": "见证友谊，与小伙伴一起寻求刺激冒险挑战",
         "ProductSite": "新加坡",
-        "ProductPrice": "69",
+        "ProductPrice": "56",
         "ProductID": "37937",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -315,7 +317,7 @@
         "ProductCode": "PK0449909SIN17",
         "ProductDesc": "搭乘东南亚的第一个水电磁过山车",
         "ProductSite": "新加坡",
-        "ProductPrice": "99",
+        "ProductPrice": "96",
         "ProductID": "453037",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -330,7 +332,7 @@
         "ProductCode": "",
         "ProductDesc": "文华大酒店是乌节路将传统东方文化和西方高雅的现代风格完美的结合的代表",
         "ProductSite": "乌节路",
-        "ProductPrice": "",
+        "ProductPrice": "1195",
         "ProductID": "58",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -345,7 +347,7 @@
         "ProductCode": "",
         "ProductDesc": "半岛怡东酒店位于新加坡商业、娱乐区，距离历史悠久的新加坡河只有一街之隔",
         "ProductSite": "市政厅",
-        "ProductPrice": "",
+        "ProductPrice": "750",
         "ProductID": "46",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -360,7 +362,7 @@
         "ProductCode": "",
         "ProductDesc": "酒店紧靠来福士广场、滨海湾、新加坡商业及娱乐中心等知名景点",
         "ProductSite": "克拉码头",
-        "ProductPrice": "",
+        "ProductPrice": "896",
         "ProductID": "8860",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -375,7 +377,7 @@
         "ProductCode": "",
         "ProductDesc": "新加坡龙都大酒店是您来新加坡的最佳落脚点",
         "ProductSite": "",
-        "ProductPrice": "",
+        "ProductPrice": "985",
         "ProductID": "48",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -394,7 +396,7 @@
         "ProductCode": "PK0506423SIN17",
         "ProductDesc": "和爱人泛舟新加坡河，感受古老建筑与现代摩天楼的对比，享受城市的美丽",
         "ProductSite": "新加坡",
-        "ProductPrice": "260",
+        "ProductPrice": "238",
         "ProductID": "509737",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -424,7 +426,7 @@
         "ProductCode": "PK0037730SIN17",
         "ProductDesc": "圣淘沙旅行最高点，可观及马来西亚甚至印尼全景",
         "ProductSite": "新加坡",
-        "ProductPrice": "54",
+        "ProductPrice": "52",
         "ProductID": "37946",
         "ProductAttentionNum": "",
         "ProductType": "T",
@@ -454,7 +456,7 @@
         "ProductCode": "",
         "ProductDesc": "位于城市的心脏的国际五星豪华酒店",
         "ProductSite": "市中心",
-        "ProductPrice": "",
+        "ProductPrice": "1324",
         "ProductID": "47",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -469,7 +471,7 @@
         "ProductCode": "",
         "ProductDesc": "圣淘沙阿玛拉私人度假村一个世界级综合度假胜地",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "",
+        "ProductPrice": "1095",
         "ProductID": "5168",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -484,7 +486,7 @@
         "ProductCode": "",
         "ProductDesc": "一个远离尘嚣的世外桃源，新加坡最知名的度假天堂",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "",
+        "ProductPrice": "2640",
         "ProductID": "6822",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -499,7 +501,7 @@
         "ProductCode": "",
         "ProductDesc": "探索狮城古老和现代文化独特融合的完美下榻之所",
         "ProductSite": "圣淘沙",
-        "ProductPrice": "",
+        "ProductPrice": "1688",
         "ProductID": "9186",
         "ProductAttentionNum": "",
         "ProductType": "H",
@@ -513,6 +515,27 @@
     }
 
     oneticketTab(greatSaleData);
+
+    //判断一元产品是否售罄
+    var Parmeters = {
+      "parameters": {"packageID": "1064"},
+      "foreEndType": 2,
+      "code": "20100003"
+    }
+    vlm.loadJson("", JSON.stringify(Parmeters), saleout);
+
+    function saleout(ret){
+      var json=ret;
+      if (json.success) {
+        if ( ! json.data.tourAllotmentTotal ) {
+          //售罄
+          $('#oneticket_buy').parents('.one_sale_show').find('.one_sale_bg').show();
+          $('#oneticket_buy').parents('.one_sale_show').find('.one_price').css('color', '#ccc');
+          $('#oneticket_buy').parents('.one_sale_show').find('.panic_buy').addClass('on');
+        }
+      }
+
+    }
 
     //Tab切换
     $('.one_select >li').on('click', function () {
@@ -574,12 +597,13 @@ function quickShop(obj) {
     if (json.success) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
         if ($(shopTarget).attr('data-packagetype') == 'T') {
-          //跳到景点详情
-          if (vlm.checkLogin("../scenic/scenic_detail.html?packageID=1064")) {
-            window.location.href = '../scenic/scenic_detail.html?packageID=1064';
-          }
-          ;
+          var oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId');
+
+          //产品跳到景点详情
+          window.location.href = oneticket_scenic;
+
         } else {
+          //跳到酒店详情
           var oDate = new Date(),
             year = oDate.getFullYear(),
             month = oDate.getMonth(),
@@ -588,22 +612,14 @@ function quickShop(obj) {
             oDate2 = new Date(year, month, day + 3),
             beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd'),
             leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
-
           var hotelStr = '../hotel/hotel_detail.html?HotelID=' + hotelid + '&HotelCode=' + hotelid + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + beginDate + '&CheckOutDate=' + leaveDate + '&NumRoom=1&NumAdult=1&NumChild=0';
-
-          //跳到酒店详情
           if (vlm.checkLogin(hotelStr)) {
             window.location.href = hotelStr;
           }
-          ;
         }
 
-      } else {
-        //售罄
-        $(shopTarget).parents('.one_sale_show').find('.one_sale_bg').show();
-        $(shopTarget).parents('.one_sale_show').find('.one_price').css('color', '#ccc');
-        $(shopTarget).parents('.one_sale_show').find('.panic_buy').addClass('on');
       }
+
     } else {
       jAlert(json.message);
     }

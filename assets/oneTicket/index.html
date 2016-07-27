@@ -114,7 +114,11 @@
 
       <div class="price_panic clearfix">
         <p class="one_price fl">¥<%=greatSaleData[i].ProductPrice%>起</p>
-        <a href="javascript:;" onclick="quickShop(this);" class="panic_buy" data-packageId="<%=greatSaleData[i].ProductID%>" data-packageType="<%=greatSaleData[i].ProductType%>"></a>
+        <% if(greatSaleData[i].oneticket){ %>
+          <a href="javascript:;" id="oneticket_buy" onclick="quickShop(this);" class="panic_buy" data-packageId="<%=greatSaleData[i].ProductID%>" data-packageType="<%=greatSaleData[i].ProductType%>"></a>
+        <% }else{ %>
+          <a href="javascript:;" onclick="quickShop(this);" class="panic_buy" data-packageId="<%=greatSaleData[i].ProductID%>" data-packageType="<%=greatSaleData[i].ProductType%>"></a>
+        <% } %>
       </div>
     </div>
     <div class="one_sale_bg"></div>

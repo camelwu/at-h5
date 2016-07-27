@@ -226,6 +226,7 @@
         });
 
         $(".booking_footer_bookingbtn").click(function(e){
+
           Adapter.validateBookingPackage();
         });
       },
@@ -713,6 +714,19 @@
           OrderParam.Parameters.Tours = TourArray;
         }
 
+        //一元门票必须登陆
+        if(window.location.search.indexOf('1064') != -1 && localStorage.memberid == undefined){
+          jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
+
+          function shopSure(arg) {
+            if (arg == true) {
+              if( vlm.checkLogin('../scenic/scenic_order_detail.html?PackageID=1064&RPP=0&ADU=1&FAIL=0')){
+                window.location.href='../scenic/scenic_order_detail.html?PackageID=1064&RPP=0&ADU=1&FAIL=0';
+              }
+            }
+          }
+          return;
+        }
 
         //前缀
         Salutation = "Mr";
@@ -1131,6 +1145,7 @@
  * 入口
  */
 (function(){
+
   /**
    *  添加套餐 显示
    */
