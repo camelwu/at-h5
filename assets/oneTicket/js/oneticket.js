@@ -412,7 +412,7 @@
         "ProductDesc": "美妙的城市在浪漫夜空烘托下，与心爱人在摩天轮用餐，终身难忘",
         "ProductSite": "新加坡",
         "ProductPrice": "655",
-        "ProductID": "409750",
+        "ProductID": "409720",
         "ProductAttentionNum": "",
         "ProductType": "T",
       },
@@ -598,7 +598,6 @@ function quickShop(obj) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
         if ($(shopTarget).attr('data-packagetype') == 'T') {
           var oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId');
-
           //产品跳到景点详情
           window.location.href = oneticket_scenic;
 
@@ -613,11 +612,9 @@ function quickShop(obj) {
             beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd'),
             leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
           var hotelStr = '../hotel/hotel_detail.html?HotelID=' + hotelid + '&HotelCode=' + hotelid + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + beginDate + '&CheckOutDate=' + leaveDate + '&NumRoom=1&NumAdult=1&NumChild=0';
-          if (vlm.checkLogin(hotelStr)) {
-            window.location.href = hotelStr;
-          }
-        }
+          window.location.href = hotelStr;
 
+        }
       }
 
     } else {
