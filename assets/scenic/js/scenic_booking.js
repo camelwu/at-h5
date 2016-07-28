@@ -316,8 +316,16 @@
           count++;
           if(window.location.search.indexOf('1064') != -1 && (parseInt($('.js_booking_package_pre_adult_num').html())+count) >2){
             jAlert('一个账户最多能抢2张票');
+            if(count == 1){
+              $('.js_booking_package_child_minbtn').removeClass("current");
+            }
             return;
           }
+          if(window.location.search.indexOf('1064') != -1 && count >2){
+            jAlert('一个账户最多能抢2张票');
+            return;
+          }
+
           totalprice = count * perprice;
           $(tar).prev().html(count);
           $(tar).prev().attr("data-value",totalprice);
@@ -731,20 +739,6 @@
             TourArray.push(TourObj);
           }
           OrderParam.Parameters.Tours = TourArray;
-        }
-
-        //一元门票必须登陆
-        if(window.location.search.indexOf('1064') != -1 && localStorage.memberid == undefined){
-          jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
-
-          function shopSure(arg) {
-            if (arg == true) {
-              if( vlm.checkLogin('../scenic/scenic_order_detail.html?PackageID=1064&RPP=1&ADU=1&FAIL=0')){
-                window.location.href='../scenic/scenic_order_detail.html?PackageID=1064&RPP=1&ADU=1&FAIL=0';
-              }
-            }
-          }
-          return;
         }
 
         //前缀
@@ -1177,10 +1171,19 @@
    *  添加套餐 显示
    */
   $("#js_booking_package_addpackage").click(function(e){
-    if(window.location.search.indexOf('1064') != -1 && $('.js_booking_package_pre_adult_num').html() == 2){
+    //成人票
+    if(window.location.search.indexOf('1064') != -1 && $('.js_booking_package_pre_adult_num').html() >= 2){
       jAlert('一个账户最多能抢2张票');
       return;
     }
+    //儿童票
+    if(window.location.search.indexOf('1064') != -1 && window.location.search.indexOf('ADU=0') != -1){
+      if($('.js_booking_package_pre_child_num').html() >=2){
+        jAlert('一个账户最多能抢2张票');
+        return;
+      }
+    }
+
     $(".mask_pop").show();
     $(".booking_footer_pop").animate({bottom: '0rem'},300,function(e){
       $("#js_booking_footer_i").addClass("current");

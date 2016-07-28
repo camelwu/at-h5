@@ -351,7 +351,21 @@
               var RequiredPickupPoint = tar.getAttribute("data-RPP");
               var category = tar.getAttribute("data-category");
               var fail = tar.getAttribute("data-fail");
-              window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+category+"&FAIL="+fail;
+              //一元门票必须登陆
+              var oneYuanStr='../scenic/scenic_order_detail.html?PackageID='+packageId+'&RPP='+RequiredPickupPoint+'&ADU='+category+'&FAIL='+fail;
+              if(window.location.search.indexOf('1064') != -1 && localStorage.memberid == undefined){
+
+                jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
+
+                function shopSure(arg) {
+                  if (arg == true) {
+                    vlm.checkLogin(oneYuanStr);
+                  }
+                }
+                return;
+              }
+              window.location.href = oneYuanStr;
+
             }
         });
       }else {
@@ -414,3 +428,5 @@
 //    //}
 //  });
 //})()
+
+
