@@ -360,6 +360,10 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
+          if(count >= 3){
+            jAlert('一个账户最多能抢2张票');
+            return;
+          }
           totalprice = count * perprice;
           $(tar).prev().html(count);
           $(tar).prev().attr("data-value",totalprice);
@@ -687,9 +691,10 @@
             }
           }
         }
-
-
-
+        if(window.location.search.indexOf('1064') != -1 && (parseInt(adultCount) + parseInt(childCount))>2){
+          jAlert('一个账户最多能抢2张票');
+          return;
+        }
 
         //验证景点的日期是否开放
         if(!T.Command().execCommand({command:"validate", param:{type:"tourweek",data:"",rules:"",tips:"不开放,请重新选择日期"}})){
@@ -1154,11 +1159,14 @@
  * 入口
  */
 (function(){
-
   /**
    *  添加套餐 显示
    */
   $("#js_booking_package_addpackage").click(function(e){
+    if(window.location.search.indexOf('1064') != -1 && $('.js_booking_package_pre_adult_num').html() == 2){
+      jAlert('一个账户最多能抢2张票');
+      return;
+    }
     $(".mask_pop").show();
     $(".booking_footer_pop").animate({bottom: '0rem'},300,function(e){
       $("#js_booking_footer_i").addClass("current");
