@@ -314,6 +314,10 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
+          if(window.location.search.indexOf('1064') != -1 && (parseInt($('.js_booking_package_pre_adult_num').html())+count) >2){
+            jAlert('一个账户最多能抢2张票');
+            return;
+          }
           totalprice = count * perprice;
           $(tar).prev().html(count);
           $(tar).prev().attr("data-value",totalprice);
@@ -360,9 +364,19 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
-          if(count >= 3){
+          if(window.location.search.indexOf('1064') != -1 && count >2){
             jAlert('一个账户最多能抢2张票');
             return;
+          }
+          if(window.location.search.indexOf('1064') != -1 && $('#js_BookingPackage_last .booking_package')){
+            if( (parseInt($('.js_booking_package_pre_child_num').html())+count) >2){
+
+              jAlert('一个账户最多能抢2张票');
+              if(count == 1){
+                $('.js_booking_package_adult_minbtn').removeClass("current");
+              }
+              return;
+            }
           }
           totalprice = count * perprice;
           $(tar).prev().html(count);
