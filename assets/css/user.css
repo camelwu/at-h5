@@ -71,8 +71,8 @@ i, em {
   width: .34rem;
   height: .34rem;
   display: inline-block;
-  background: url(../images/ui/icon_person.png) no-repeat;
-  background-size: 8.2rem 4.8rem;
+  background: url(../images/ui/icons-user.png) no-repeat;
+  background-size: 8rem 2rem;
 }
 
 .find_go_back {
@@ -495,7 +495,7 @@ i, em {
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #register_page, #email_register, #fkey_page, #black_page, #email_find, #link_declaration, #header_phone {
+#link_redBag,#myRed,#link_page, #link_about_us, #link_at, #register_page, #email_register, #fkey_page, #black_page, #email_find, #link_declaration, #header_phone {
   display: none;
 }
 
@@ -1197,22 +1197,32 @@ i, em {
 
 .user_lists li > b {
   position: absolute;
-  width: .4rem;
-  height: .4rem;
-  top: .22rem;
+  width: .32rem;
+  height: .32rem;
+  top: .28rem;
 }
 
 .myorder_tip {
-  background-position: -.48rem -.18rem;
+  background-position: -2.8rem 0;
 }
 
 .my-order {
   display: block;
   width: 100%;
 }
-
+.user_lists .myred_tip{
+  background-position: -2.1rem 0;
+}
+.user_lists .my-red .useable{
+  float: right;
+  margin-right: .4rem;
+}
+.user_lists .my-red .useable .money{
+  color: #fb7530;
+  padding-right: .1rem;
+}
 .open_info {
-  background-position: -.02rem -.18rem;
+  background-position: -1.4rem 0;
 }
 
 #common-msg em {
@@ -1222,21 +1232,21 @@ i, em {
 }
 
 .open_msg {
-  background-position: -1.9rem -.18rem;
+  background-position: 0 0;
 }
 
 .open_set {
-  background-position: -1.4rem -.18rem;
+  background-position: -.7rem 0;
 }
 
 .open_about {
-  background-position: -.96rem -.18rem;
+  background-position: -3.5rem 0;
 }
 
 .open_arw {
   position: absolute;
   right: 0;
-  top: .22rem;
+  top: .3rem;
   background: url("../images/ui/icon_common.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .28rem;

@@ -46,9 +46,19 @@
       float: left;
       box-sizing: border-box;
       padding-left: .72rem;
-      background: url(../images/user/redbag.png) left center no-repeat;
-      background-size: .48rem .64rem;
       position: relative;
+    }
+    .red_bag_wrap .red_info_wrap .icon_red{
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -.32rem;
+      display: block;
+      width: .72rem;
+      height: 100%;
+      background: url(../images/ui/icons-user.png) no-repeat;
+      background-size: 8rem 2rem;
+      background-position: -.92rem -1rem;
     }
 
     .red_bag_wrap .red_info_wrap .line {
@@ -94,6 +104,20 @@
       border: 1px solid #d1d1d1;
       border-radius: 5px;
       position: relative;
+    }
+    .red_list .red .icon_hook{
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: .46rem;
+      width: .58rem;
+      background: url(../images/ui/icons-user.png) no-repeat;
+      background-size: 8rem 2rem;
+      background-position: 0 -1rem;
+    }
+    .red_list .red .icon_hook.selected{
+      display: block;
     }
 
     .red_list .wrap {
@@ -196,6 +220,7 @@
   <div class="content">
     <div class="red_info_wrap clearfix">
       <div class="total">
+        <i class="icon_red"></i>
         <p class="money"><em>¥</em>800.00</p>
         <p class="info">共有2个红包可用</p>
         <i class="line"></i>
@@ -208,7 +233,8 @@
     <div class="red_List_wrap">
       <ul class="red_list">
         <li>
-          <div class="red selected">
+          <div class="red">
+            <i class="icon_hook selected"></i>
             <div class="wrap">
               <p class="title">酒店现金红包</p>
               <p class="expire">有效期至2016-07-29</p>
