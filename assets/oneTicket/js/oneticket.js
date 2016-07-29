@@ -24,7 +24,7 @@
         "ProductSite": "新加坡",
         "ProductPrice": "84",
         //"ProductID": "507063",
-        "ProductID": "507367",
+        "ProductID": "1064",
         "ProductAttentionNum": "",
         "ProductType": "T",
         "oneticket": 'true'
@@ -518,7 +518,7 @@
 
     //判断一元产品是否售罄
     var Parmeters = {
-      "parameters": {"packageID": "507367"},
+      "parameters": {"packageID": "1064"},
       "foreEndType": 2,
       "code": "20100003"
     }
@@ -584,7 +584,7 @@ function quickShop(obj) {
   shopTarget = obj;
   var sPackageId = $(this).attr('data-packageId');
   var Parmeters = {
-    "parameters": {"packageID": "507367"},
+    "parameters": {"packageID": "1064"},
     "foreEndType": 2,
     "code": "20100003"
   }

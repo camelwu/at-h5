@@ -353,7 +353,7 @@
               var fail = tar.getAttribute("data-fail");
               //一元门票必须登陆
               var oneYuanStr='../scenic/scenic_order_detail.html?PackageID='+packageId+'&RPP='+RequiredPickupPoint+'&ADU='+category+'&FAIL='+fail;
-              if(window.location.search.indexOf('507367') != -1 && localStorage.memberid == undefined){
+              if(window.location.search.indexOf('1064') != -1 && localStorage.memberid == undefined){
 
                 jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
 
