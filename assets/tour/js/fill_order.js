@@ -85,11 +85,11 @@
       for (var k = 0; k < tAdult; k++) {
         var oSection = document.createElement('section');
         oSection.className = 'li_section_box';
-        oSection.innerHTML = '<li class="first">' + '<span class="list_tit">成人' + (k + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" date-roomId="'+i+'" data-c-id="' + k + '" class="add-passager-r'+i+"-" + k + '" ></a></b></span>' + '</li>' + '<ul class="order_trave"  id="ht_trave'+"-r"+i+"-"+k + '">' + '<li class="trave-li trave-li-adu fillinorder_li">'
+        oSection.innerHTML = '<li class="first">' + '<span class="list_tit">成人' + (k + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" date-roomId="'+i+'" data-c-id="' + k + '" class="add-passager-r'+i+"-" + k + '" ></a></b></span>' + '</li>' + '<ul class="order_trave"  id="ht_trave'+"-r"+i+"-"+k + '">' + '<li class="trave-li trave-li-adu fillinorder_li clearfix">'
             //+'<span class="list_tit2 ">姓：</span>'
-          + '<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="姓（如：Li）" data-elementName="lastName" /></span>'
+          + '<span class="list_con2 fl"><input class="list_inp2 list-adult" type="text" placeholder="姓（如：Li）" data-elementName="lastName" /></span><i class="ht_order_line fl"></i>'
             //+'<span class="list_tit2 ">名：</span>'
-          + '<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementname="firstName" /></span>' + '</li></ul>';
+          + '<span class="list_con2 name-inp fl"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementname="firstName" /></span>' + '</li></ul>';
         //}
         oRoomNum[i].querySelector('ul').appendChild(oSection);
 
@@ -120,11 +120,11 @@
       for (var j = 0; j < totalChildNum; j++) {
         var oSection = document.createElement('section');
         oSection.className = 'li_section_box';
-        oSection.innerHTML = '<li>' + '<span class="list_tit">儿童' + (j + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" date-roomId="'+i+'" data-c-id="' + j + '" class="add-cpassage-r'+i+"-" + j + '"></a></b></span>' + '</li>' + "<ul  id='traveC-r"+i+"-"+j+"'>" + '<li class="trave-li trave-li-child child">'
+        oSection.innerHTML = '<li>' + '<span class="list_tit">儿童' + (j + 1) + '</span>' + '<b class="add_icon"><a href="javascript:;" date-roomId="'+i+'" data-c-id="' + j + '" class="add-cpassage-r'+i+"-" + j + '"></a></b></span>' + '</li>' + "<ul  id='traveC-r"+i+"-"+j+"'>" + '<li class="trave-li trave-li-child child clearfix">'
             //+'<span class="list_tit2 ">姓：</span>'
-          + '<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="姓（如：Li）" data-elementName="lastName"  /></span>'
+          + '<span class="list_con2 fl"><input class="list_inp2 list-child" type="text" placeholder="姓（如：Li）" data-elementName="lastName"  /></span><i class="ht_order_line fl"></i>'
             //+'<span class="list_tit2 ">名：</span>'
-          + '<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="名（如：ShiMin）" data-elementName="firstName" /></span>' + '</li>' + "</ul>" + '</section>';
+          + '<span class="list_con2 fl"><input class="list_inp2 list-child" type="text" placeholder="名（如：ShiMin）" data-elementName="firstName" /></span>' + '</li>' + "</ul>" + '</section>';
         oRoomNum[i].querySelector('ul').appendChild(oSection);
 
 
