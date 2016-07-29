@@ -10,8 +10,8 @@
     elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""), //id
     from = vlm.getpara("from"),
     ifrCilent = window.parent.document.getElementById("choiceAir"),
-    numOfAdult = vlm.getpara("numOfAdult"), //id
-    numOfChlid = vlm.getpara("numOfChlid"), //id;
+    numOfAdult = vlm.getpara("numofAdult"), //id
+    numOfChlid = vlm.getpara("numofChlid"), //id;
     selectAdultNum = 0,
     selectChildNum = 0,
     departDate = vlm.getpara("departDate"), //departDate;
@@ -28,7 +28,6 @@
     isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true,
     isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true,
     callback = vlm.getpara("callback");
-
   //页面Dom对象
   var saveDbBtn = $(".addFinish");
   var closeWindowBtn = $("#toper .closedWin");

@@ -135,7 +135,6 @@ var hftTool = {
     window.localStorage.hft_peotot = (hft_peotot.adunum + hft_peotot.chinum);
     window.localStorage.hft_adunum = hft_peotot.adunum;
     window.localStorage.hft_chinum = hft_peotot.chinum;
-
     /*添加出行人*/
     $(document).on('click', '.add_traveller', function () {
       $("#status").show().fadeOut();
