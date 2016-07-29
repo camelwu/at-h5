@@ -1527,13 +1527,19 @@ a.foot-users {
   text-align: center;
   color: #999999;
 }
+.header_finish{
+  position: absolute;
+  right: .28rem;
+  top: .23rem;
+  font-size: .3rem;
+}
 
-.header_finish {
+.register_fast {
   margin: .3rem 0;
   text-align: center;
 }
 
-.header_finish em {
+.register_fast em {
   opacity: 0.7;
   filter: alpha(opacity:70);
 }
