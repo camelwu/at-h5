@@ -479,7 +479,7 @@
       {
         "ProductName": "新加坡圣淘沙嘉佩乐酒店 Capella Singapore",
         "ProductPicUrl": "http://images.asiatravel.com/Hotel/6822/6822exterior.jpg",
-        "ProductIndex": "2",
+        "ProductIndex": "3",
         "ProductStartDate": "",
         "ProductEndDate": "",
         "IsEnabled": "1",
@@ -494,7 +494,7 @@
       {
         "ProductName": "新加坡艾美圣淘沙酒店'Le Meridien Singapore",
         "ProductPicUrl": "http://images.asiatravel.com/Hotel/9186/exterior.jpg",
-        "ProductIndex": "2",
+        "ProductIndex": "4",
         "ProductStartDate": "",
         "ProductEndDate": "",
         "IsEnabled": "1",
