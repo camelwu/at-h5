@@ -593,11 +593,15 @@ function quickShop(obj) {
   function saleList_back(ret) {
     var json = ret;
     console.log(json);
-    var hotelid = $(shopTarget).attr('data-packageId');
+    var hotelid = $(shopTarget).attr('data-packageId'),oneticket_scenic;
     if (json.success) {
       if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
         if ($(shopTarget).attr('data-packagetype') == 'T') {
-          var oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId');
+          if($(shopTarget).attr('id') == 'oneticket_buy'){
+            oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId')+'&oneticket';
+          }else{
+            oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId');
+          }
           //产品跳到景点详情
           window.location.href = oneticket_scenic;
 

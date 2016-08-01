@@ -314,12 +314,9 @@
         {
           SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
         }
-        //oneticket 添加memberid
-        SearchPrice.Parameters.MemberID=localStorage.memberid;
 
-        //一元产品不传memberid
-        if(location.search.indexOf('507368') != -1){
-          SearchPrice.Parameters.MemberID='';
+        if(window.location.search.indexOf('oneticket') != -1){
+          SearchPrice.Parameters.Adult = 1;
         }
 
         AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
@@ -358,28 +355,28 @@
               var fail = tar.getAttribute("data-fail");
               //一元门票必须登陆
               var oneYuanStr='../scenic/scenic_order_detail.html?PackageID='+packageId+'&RPP='+RequiredPickupPoint+'&ADU='+category+'&FAIL='+fail;
-              if(window.location.search.indexOf('507368') != -1 && localStorage.memberid == undefined){
+              if(window.location.search.indexOf('oneticket') != -1 ){
+                if(localStorage.memberid == undefined){
+                  jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
 
-                jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
-
-                function shopSure(arg) {
-                  if (arg == true) {
-                    vlm.checkLogin(oneYuanStr);
+                  function shopSure(arg) {
+                    if (arg == true) {
+                      oneYuanStr=oneYuanStr+'&oneticket';
+                      vlm.checkLogin(oneYuanStr);
+                    }
                   }
+                  return;
                 }
-                return;
+                oneYuanStr=oneYuanStr+'&oneticket';
+                window.location.href = oneYuanStr;
               }
               window.location.href = oneYuanStr;
 
             }
         });
       }else {
-        if(json.message.indexOf('Ticket sold out. Please try again tomorrow') != -1){
-          jAlert('您已经成功购买，每人仅限一次参与资格');
-        }else{
-          jAlert(json.message, "提示");
-          console.log(json);
-        }
+        jAlert(json.message, "提示");
+        console.log(json);
       }
     }
   };
