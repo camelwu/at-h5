@@ -265,7 +265,8 @@
                          totalPriceCNY: json.totalPriceCNY*parseInt(json.NumOfRoom),
                         "trck": "",
                         "browserType":"",
-                        "deviceID":vlm.getDeviceID()
+                        "deviceID":vlm.getDeviceID(),
+                        "Vouchers":json.Vouchers ? json.Vouchers.code : ""   //array
                     }
                      param = {
                          "Code": type.payMentCode,
@@ -377,7 +378,8 @@
             else if(type.id==1) {
                 //data.data.totalPrice=data.data.totalFlightPrice;
                 if (bookingRefNo == null) {
-                    data.data.totalPrice=data.data.calcuTotalPrice;
+                  //如果有使用红包,显示金额需要减去红包金额
+                    data.data.totalPrice= data.data.Vouchers ? data.data.calcuTotalPrice - data.data.Vouchers.amount[0] : data.data.calcuTotalPrice;
                     data.data.totalPriceCNY=data.data.calcuTotalPriceCNY*data.data.NumOfRoom;
                     data.data.hotelName=data.data.HotelGenInfo.hotelNameLocale;
                     data.data.roomType=data.data.RoomTypeName;
