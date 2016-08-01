@@ -1043,6 +1043,11 @@
         //oneticket 添加memberid
         SearchPrice.Parameters.MemberID=localStorage.memberid;
 
+        //一元产品不传memberid
+        if(location.search.indexOf('507367') != -1){
+          SearchPrice.Parameters.MemberID='';
+        }
+
         T.AjaxAdapter().callAjaxAdapter("getPickup",{});
         T.AjaxAdapter().callAjaxAdapter("getSearchPrice",SearchPrice);
       } else {

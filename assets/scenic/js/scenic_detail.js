@@ -317,6 +317,11 @@
         //oneticket 添加memberid
         SearchPrice.Parameters.MemberID=localStorage.memberid;
 
+        //一元产品不传memberid
+        if(location.search.indexOf('507367') != -1){
+          SearchPrice.Parameters.MemberID='';
+        }
+
         AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
         //console.log(ExtendData);
       }else{
