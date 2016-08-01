@@ -318,7 +318,7 @@
         SearchPrice.Parameters.MemberID=localStorage.memberid;
 
         //一元产品不传memberid
-        if(location.search.indexOf('507367') != -1){
+        if(location.search.indexOf('507368') != -1){
           SearchPrice.Parameters.MemberID='';
         }
 
@@ -358,7 +358,7 @@
               var fail = tar.getAttribute("data-fail");
               //一元门票必须登陆
               var oneYuanStr='../scenic/scenic_order_detail.html?PackageID='+packageId+'&RPP='+RequiredPickupPoint+'&ADU='+category+'&FAIL='+fail;
-              if(window.location.search.indexOf('507367') != -1 && localStorage.memberid == undefined){
+              if(window.location.search.indexOf('507368') != -1 && localStorage.memberid == undefined){
 
                 jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
 

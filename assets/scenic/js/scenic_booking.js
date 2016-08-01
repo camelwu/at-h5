@@ -314,14 +314,14 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
-          if(window.location.search.indexOf('507367') != -1 && (parseInt($('.js_booking_package_pre_adult_num').html())+count) >2){
+          if(window.location.search.indexOf('507368') != -1 && (parseInt($('.js_booking_package_pre_adult_num').html())+count) >2){
             jAlert('一个账户最多能抢2张票');
             if(count == 1){
               $('.js_booking_package_child_minbtn').removeClass("current");
             }
             return;
           }
-          if(window.location.search.indexOf('507367') != -1 && count >2){
+          if(window.location.search.indexOf('507368') != -1 && count >2){
             jAlert('一个账户最多能抢2张票');
             return;
           }
@@ -372,11 +372,11 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
-          if(window.location.search.indexOf('507367') != -1 && count >2){
+          if(window.location.search.indexOf('507368') != -1 && count >2){
             jAlert('一个账户最多能抢2张票');
             return;
           }
-          if(window.location.search.indexOf('507367') != -1 && $('#js_BookingPackage_last .booking_package')){
+          if(window.location.search.indexOf('507368') != -1 && $('#js_BookingPackage_last .booking_package')){
             if( (parseInt($('.js_booking_package_pre_child_num').html())+count) >2){
 
               jAlert('一个账户最多能抢2张票');
@@ -713,7 +713,7 @@
             }
           }
         }
-        if(window.location.search.indexOf('507367') != -1 && (parseInt(adultCount) + parseInt(childCount))>2){
+        if(window.location.search.indexOf('507368') != -1 && (parseInt(adultCount) + parseInt(childCount))>2){
           jAlert('一个账户最多能抢2张票');
           return;
         }
@@ -1044,7 +1044,7 @@
         SearchPrice.Parameters.MemberID=localStorage.memberid;
 
         //一元产品不传memberid
-        if(location.search.indexOf('507367') != -1){
+        if(location.search.indexOf('507368') != -1){
           SearchPrice.Parameters.MemberID='';
         }
 
@@ -1177,12 +1177,12 @@
    */
   $("#js_booking_package_addpackage").click(function(e){
     //成人票
-    if(window.location.search.indexOf('507367') != -1 && $('.js_booking_package_pre_adult_num').html() >= 2){
+    if(window.location.search.indexOf('507368') != -1 && $('.js_booking_package_pre_adult_num').html() >= 2){
       jAlert('一个账户最多能抢2张票');
       return;
     }
     //儿童票
-    if(window.location.search.indexOf('507367') != -1 && window.location.search.indexOf('ADU=0') != -1){
+    if(window.location.search.indexOf('507368') != -1 && window.location.search.indexOf('ADU=0') != -1){
       if($('.js_booking_package_pre_child_num').html() >=2){
         jAlert('一个账户最多能抢2张票');
         return;
