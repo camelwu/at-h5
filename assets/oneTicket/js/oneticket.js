@@ -602,6 +602,8 @@ function quickShop(obj) {
           window.location.href = oneticket_scenic;
 
         } else {
+          //加国际酒店标识
+          window.localStorage.hoPos='inter';
           //跳到酒店详情
           var oDate = new Date(),
             year = oDate.getFullYear(),
