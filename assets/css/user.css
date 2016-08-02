@@ -11,6 +11,26 @@ em {
   font-style: normal;
 }
 
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.24rem;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
+
 #all_user input::-webkit-input-placeholder, #fkey_page input::-webkit-input-placeholder {
   /* WebKit browsers */
   font-size: 0.32rem;
