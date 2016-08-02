@@ -684,31 +684,31 @@
         var totalP=0;
         if(ExtendData.onlyForAdult){//只限制成人
           if(adultCount < ExtendData.minPax){
-            jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+            jAlert("限定成人最小数为"+ExtendData.minPax+"人起订", "提示");
             return false;
           }
           if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
-            jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+            jAlert("限定成人最大数为"+ExtendData.maxPax+"人起订", "提示");
             return false;
           }
         }else{//限制成人和儿童
           if(ExtendData.minPaxType == 1){//限制成人和儿童
             totalP = parseInt(adultCount) + parseInt(childCount);
             if(totalP < ExtendData.minPax){
-              jAlert("限定最小人数为"+ExtendData.minPax+"起订", "提示");
+              jAlert("限定最小人数为"+ExtendData.minPax+"人起订", "提示");
               return false;
             }
             if(totalP > ExtendData.maxPax && ExtendData.maxPax != -1){
-              jAlert("限定最大人数为"+ExtendData.maxPax+"起订", "提示");
+              jAlert("限定最大人数为"+ExtendData.maxPax+"人起订", "提示");
               return false;
             }
           }else{//只限制成人
             if(adultCount < ExtendData.minPax){
-              jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+              jAlert("限定成人最小数为"+ExtendData.minPax+"人起订", "提示");
               return false;
             }
             if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
-              jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+              jAlert("限定成人最大数为"+ExtendData.maxPax+"人起订", "提示");
               return false;
             }
           }

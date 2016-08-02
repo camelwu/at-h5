@@ -561,4 +561,6 @@ span.money{
 /*房间售罄*/
 .room_soldout{
   font-size: .2rem;
+  padding: 0 .2rem .4rem;
+  line-height: .45rem;
 }
