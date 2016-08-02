@@ -23,11 +23,10 @@
         "ProductDesc": "穿梭于圣淘沙和新加坡花柏山顶两个繁华目的地",
         "ProductSite": "新加坡",
         "ProductPrice": "84",
-        //"ProductID": "507063",
-        "ProductID": "507367",
+        "ProductID": "507063",
+        //"ProductID": "507367",
         "ProductAttentionNum": "",
-        "ProductType": "T",
-        "oneticket": 'true'
+        "ProductType": "T"
       },
       {
         "ProductName": "滨海湾花园电子票",
@@ -100,9 +99,10 @@
         "ProductDesc": "见证了新加坡发展的中心地标",
         "ProductSite": "新加坡",
         "ProductPrice": "1",
-        "ProductID": "",
+        "ProductID": "512129",
         "ProductAttentionNum": "",
-        "ProductType": "T"
+        "ProductType": "T",
+        "oneticket": 'true'
       },
       {
         "ProductName": "新加坡环球影城2大1小",
@@ -115,7 +115,7 @@
         "ProductDesc": "新加坡环球影城，越过荧幕感受身临其境的电影世界",
         "ProductSite": "新加坡",
         "ProductPrice": "800",
-        "ProductID": "",
+        "ProductID": "512137",
         "ProductAttentionNum": "",
         "ProductType": "T",
       },
@@ -130,7 +130,7 @@
         "ProductDesc": "嗨翻新加坡影城，进入惊心动魄的电影魔幻世界",
         "ProductSite": "新加坡",
         "ProductPrice": "560",
-        "ProductID": "",
+        "ProductID": "512138",
         "ProductAttentionNum": "",
         "ProductType": "T",
       }
@@ -518,16 +518,17 @@
 
     //判断一元产品是否售罄
     var Parmeters = {
-      "parameters": {"packageID": "507367"},
+      "parameters": {"packageID": $('#oneticket_buy').attr('data-packageid')},
       "foreEndType": 2,
       "code": "20100003"
     }
+    console.log(Parmeters);
     vlm.loadJson("", JSON.stringify(Parmeters), saleout);
 
-    function saleout(ret){
-      var json=ret;
+    function saleout(ret) {
+      var json = ret;
       if (json.success) {
-        if ( ! json.data.tourAllotment.adultBalance ) {
+        if (json.data.tourAllotment.adultBalance) {
           //售罄
           $('#oneticket_buy').parents('.one_sale_show').find('.one_sale_bg').show();
           $('#oneticket_buy').parents('.one_sale_show').find('.one_price').css('color', '#ccc');
@@ -579,53 +580,33 @@
 
 
 //立即抢购
-var shopTarget;
 function quickShop(obj) {
-  shopTarget = obj;
-  var sPackageId = $(this).attr('data-packageId');
-  var Parmeters = {
-    "parameters": {"packageID": "507367"},
-    "foreEndType": 2,
-    "code": "20100003"
-  }
-  vlm.loadJson("", JSON.stringify(Parmeters), saleList_back);
-
-  function saleList_back(ret) {
-    var json = ret;
-    console.log(json);
-    var hotelid = $(shopTarget).attr('data-packageId'),oneticket_scenic;
-    if (json.success) {
-      if (json.data.tourAllotmentTotal && json.data.isCashVoucherAllowed) {
-        if ($(shopTarget).attr('data-packagetype') == 'T') {
-          if($(shopTarget).attr('id') == 'oneticket_buy'){
-            oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId')+'&oneticket';
-          }else{
-            oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + $(shopTarget).attr('data-packageId');
-          }
-          //产品跳到景点详情
-          window.location.href = oneticket_scenic;
-
-        } else {
-          //加国际酒店标识
-          window.localStorage.hoPos='inter';
-          //跳到酒店详情
-          var oDate = new Date(),
-            year = oDate.getFullYear(),
-            month = oDate.getMonth(),
-            day = oDate.getDate(),
-            oDate1 = new Date(year, month, day + 2),
-            oDate2 = new Date(year, month, day + 3),
-            beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd'),
-            leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
-          var hotelStr = '../hotel/hotel_detail.html?HotelID=' + hotelid + '&HotelCode=' + hotelid + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + beginDate + '&CheckOutDate=' + leaveDate + '&NumRoom=1&NumAdult=1&NumChild=0';
-          window.location.href = hotelStr;
-
-        }
-      }
-
+  var shopTarget = obj;
+  var oneticketid = $(shopTarget).attr('data-packageId'), oneticket_scenic;
+  if ($(shopTarget).attr('data-packagetype') == 'T') {
+    if ($(shopTarget).attr('id') == 'oneticket_buy') {
+      oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + oneticketid + '&oneticket';
     } else {
-      jAlert(json.message);
+      oneticket_scenic = '../scenic/scenic_detail.html?packageID=' + oneticketid;
     }
+    //产品跳到景点详情
+    window.location.href = oneticket_scenic;
+
+  } else {
+    //加国际酒店标识
+    window.localStorage.hoPos = 'inter';
+    //跳到酒店详情
+    var oDate = new Date(),
+      year = oDate.getFullYear(),
+      month = oDate.getMonth(),
+      day = oDate.getDate(),
+      oDate1 = new Date(year, month, day + 2),
+      oDate2 = new Date(year, month, day + 3),
+      beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd'),
+      leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
+    var hotelStr = '../hotel/hotel_detail.html?HotelID=' + oneticketid + '&HotelCode=' + oneticketid + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + beginDate + '&CheckOutDate=' + leaveDate + '&NumRoom=1&NumAdult=1&NumChild=0';
+    window.location.href = hotelStr;
+
   }
 
 }
