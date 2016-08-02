@@ -169,7 +169,7 @@
       $(".header_back").click(function () {
         //清楚搜索记录
         // sessionStorage.removeItem("hotelStorage12345");
-        history.go(-1);
+        // history.go(-1);
       });
 
       $('#arr1 .i_address').on('touchend', function () {
