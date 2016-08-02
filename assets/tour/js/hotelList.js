@@ -123,11 +123,12 @@ var hotelList = {
           filters : {
 						title : "筛选",
 						c : "foot_screen",
-						s:2,
+						s: 1,
 						type : 2,
 						key : 'filters',
 						listData : [{
 							title: "星级",
+              allowMultiSelect: 1,
 							filterType: 1,
 							item: starChoose(resultData)
 						}]
