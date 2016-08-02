@@ -681,7 +681,7 @@ uoHisData();
     }
 
     //优惠券信息
-    if ($("#coupon").attr("data-code")) {
+    if ($("#coupon").css("display") !== 'none' && $("#coupon").attr("data-code")) {
       var vouchers = [], amount = [];
       vouchers.push($("#coupon").attr("data-code"));
       amount.push($("#coupon").attr("data-amount"));

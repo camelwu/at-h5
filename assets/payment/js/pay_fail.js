@@ -70,7 +70,8 @@
                             }
                             totalPrice+=data.data.chargeDetails[i].totalAmount;
                         }
-                        data.data.totalPrice=totalPrice;
+                        //data.data.totalPrice=totalPrice;
+                        data.data.totalPrice=data.data.payAmount;   //新增payAmount字段为订单总额
                     }
                     else if(type.id==4){
                         data.data.productName=data.data.packageName;
