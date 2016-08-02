@@ -286,9 +286,11 @@ strong{
   background-size: 7.9rem 2.52rem;
 }
 .hotel_content_roomEvent_content{
-  margin-top:.12rem;
+  /*margin-top:.12rem;*/
   max-width: 90%;
   color: #999999;
+  display: inline-block;
+  vertical-align: top;
 }
 .super{
   font-size: .24rem;
