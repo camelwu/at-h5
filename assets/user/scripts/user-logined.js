@@ -2,6 +2,10 @@
  * Created by changlv on 2016/1/13.
  */
 "use strict";
+var UserInfo ={
+  redPageSize : 10,
+  redPageIndex : 1
+};
 
 function init() {
 
@@ -24,7 +28,7 @@ function init() {
     "Code": "0053"
   };
   var redBagParameters = {
-    "Parameters": "{\"MemberId\":\"" + memberid + "\"}",
+    "Parameters": "{\"MemberId\":\"" + memberid + "\",\"PageIndex\":\"" + UserInfo.redPageIndex + "\",\"PageSize\":\"" + UserInfo.redPageSize + "\"}",
     "ForeEndType": 3,
     "Code": "70100032"
   }
@@ -68,16 +72,77 @@ function init() {
   }
   vlm.checkUser();
   vlm.loadJson("", JSON.stringify(Parameters), mycallback);
-  vlm.loadJson("", JSON.stringify(redBagParameters), redBabCallback);
-}
+  vlm.loadJson("", JSON.stringify(redBagParameters), redBagCallback);
 
-function redBabCallback(result) {
+}
+function moreRedCallback(result){
+  if (result.success) {
+    var data = result.data[0];
+    var allCouponList = data.allCouponList;
+    var couponLenght = allCouponList.length;
+    if(couponLenght == 0){
+      $(".red_bag_wrap .more").html("没有更多数据了");
+      return;
+    }
+    //预处理数据
+    var status = "";
+    for (var i = 0; i < couponLenght; i++) {
+      switch (allCouponList[i].productCategory) {
+        case 1:
+          allCouponList[i].title = "酒店现金红包";
+          if (allCouponList[i].type == 1) {
+            allCouponList[i].desc = "全站酒店订单满" + allCouponList[i].minUsePrice + "元可用";
+          } else if (allCouponList[i].type == 2) {
+            allCouponList[i].desc = "全站酒店订单立减" + allCouponList[i].amount;
+          }
+          break;
+        case 2:
+          allCouponList[i].title = "景点现金红包";
+          if (allCouponList[i].type == 1) {
+            allCouponList[i].desc = "全站景点订单满" + allCouponList[i].minUsePrice + "元可用";
+          } else if (allCouponList[i].type == 2) {
+            allCouponList[i].desc = "全站景点订单立减" + allCouponList[i].amount;
+          }
+          break;
+      }
+      switch (allCouponList[i].status) {
+        case 1:
+          status = "为激活";
+          break;
+        case 2:
+          status = "";
+          break;
+        case 3:
+          status = "已锁定";
+          break;
+        case 4:
+          status = "已使用";
+          break;
+        case 5:
+          status = "已过期";
+          break;
+        case 6:
+          status = "已作废";
+          break;
+      }
+      allCouponList[i].endDate = allCouponList[i].endDate.split("T")[0] + " " + status;
+    }
+    var str = $("#redItemTemplate").html();
+    var output1 = ejs.render(str, {
+      data: data,
+      allCouponList: allCouponList
+    });
+    $(".red_List_wrap .red_list").append(output1);
+  }
+}
+function redBagCallback(result) {
   if (result.success) {
     var data = result.data[0];
     $("#myRed").show();
     var str = $("#redTemplate").html();
     //预处理数据
     var allCouponList = data.allCouponList;
+    var status = "";
     for (var i = 0; i < allCouponList.length; i++) {
       switch (allCouponList[i].productCategory) {
         case 1:
@@ -97,7 +162,27 @@ function redBabCallback(result) {
           }
           break;
       }
-      allCouponList[i].endDate = allCouponList[i].endDate.split("T")[0];
+      switch (allCouponList[i].status) {
+        case 1:
+          status = "为激活";
+          break;
+        case 2:
+          status = "";
+          break;
+        case 3:
+          status = "已锁定";
+          break;
+        case 4:
+          status = "已使用";
+          break;
+        case 5:
+          status = "已过期";
+          break;
+        case 6:
+          status = "已作废";
+          break;
+      }
+      allCouponList[i].endDate = allCouponList[i].endDate.split("T")[0] + " " + status;
     }
     var output1 = ejs.render(str, {
       data: data,
@@ -105,6 +190,21 @@ function redBabCallback(result) {
     });
     $("#link_redBag").html(output1);
     $("#myRed .useable .money").html('¥ ' + data.canUseAmount);
+
+
+
+    //加载更多红包
+    $(".red_bag_wrap .more").on("click",function(event){
+      UserInfo.redPageIndex = UserInfo.redPageIndex + 1;
+      var memberid = localStorage.memberid;
+      var redBagParameters = {
+        "Parameters": "{\"MemberId\":\"" + memberid + "\",\"PageIndex\":\"" + UserInfo.redPageIndex + "\",\"PageSize\":\"" + UserInfo.redPageSize + "\"}",
+        "ForeEndType": 3,
+        "Code": "70100032"
+      }
+
+      vlm.loadJson("", JSON.stringify(redBagParameters), moreRedCallback,"","",true);
+    });
   }
 }
 

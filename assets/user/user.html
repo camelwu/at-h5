@@ -109,6 +109,8 @@
           <li>
             <% if(allCouponList[i].status ==2 ) {%>
             <div class="red">
+            <% }else if(allCouponList[i].status ==3) {%>
+              <div class="red done">
             <% }else if(allCouponList[i].status ==4){%>
               <div class="red done">
             <% }else if(allCouponList[i].status ==5){ %>
@@ -139,35 +141,36 @@
               <!--<i class="right_icon"></i>-->
             <!--</div>-->
           <!--</li>-->
-          <!--<li>-->
-            <!--<div class="red done">-->
-              <!--<div class="wrap">-->
-                <!--<p class="title">酒店现金红包</p>-->
-                <!--<p class="expire">有效期至2016-07-29(已使用)</p>-->
-                <!--<p class="money"><em>¥</em>200</p>-->
-              <!--</div>-->
-              <!--<p class="desc">全站酒店订单满2000元可用</p>-->
-              <!--<i class="left_icon"></i>-->
-              <!--<i class="right_icon"></i>-->
-            <!--</div>-->
-          <!--</li>-->
-          <!--<li>-->
-            <!--<div class="red expire">-->
-              <!--<div class="wrap">-->
-                <!--<p class="title">酒店现金红包</p>-->
-                <!--<p class="expire">有效期至2016-07-01(已过期)</p>-->
-                <!--<p class="money"><em>¥</em>200</p>-->
-              <!--</div>-->
-              <!--<p class="desc">全站酒店订单满2000元可用</p>-->
-              <!--<i class="left_icon"></i>-->
-              <!--<i class="right_icon"></i>-->
-            <!--</div>-->
-          <!--</li>-->
         </ul>
       </div>
       <a class="more">点击查看更多往期红包 ></a>
     </div>
   </div>
+</script>
+<script type="text/template" id="redItemTemplate">
+  <% for(var i=0;i < allCouponList.length;i++) { %>
+  <li>
+    <% if(allCouponList[i].status ==2 ) {%>
+    <div class="red">
+      <% }else if(allCouponList[i].status ==3) {%>
+      <div class="red done">
+        <% }else if(allCouponList[i].status ==4){%>
+        <div class="red done">
+          <% }else if(allCouponList[i].status ==5){ %>
+          <div class="red expire">
+            <% } %>
+            <i class="icon_hook"></i>
+            <div class="wrap">
+              <p class="title"><%= allCouponList[i].title %></p>
+              <p class="expire">有效期至<%= allCouponList[i].endDate %></p>
+              <p class="money"><em>¥</em><%= allCouponList[i].amount %></p>
+            </div>
+            <p class="desc"><%= allCouponList[i].desc %></p>
+            <i class="left_icon"></i>
+            <i class="right_icon"></i>
+          </div>
+  </li>
+  <% } %>
 </script>
 <!-- 设置链接页-->
 <div id="link_page">

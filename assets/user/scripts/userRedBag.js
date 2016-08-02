@@ -23,6 +23,7 @@
       switch (module) {
         case 'my':
           this.createMy(triggerDom, afterAppendDom);
+          //在个人中心出来
           break;
         case 'hotel':
           this.createHotel(memberid, triggerDomId, orderAmount, afterAppendDom);
@@ -234,7 +235,4 @@
   w.RedBag = RedBag;
 })(window);
 
-
-// redBag.init("my",afterAppendDom);
-// redBag.init("hotel",afterAppendDom);
-// redBag.init("tour",afterAppendDom);
+//RedBag.init(memberid, "scenic", "redBagWrap", "coupon", orderAmount);
