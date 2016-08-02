@@ -73,8 +73,9 @@ function init() {
   vlm.checkUser();
   vlm.loadJson("", JSON.stringify(Parameters), mycallback);
   vlm.loadJson("", JSON.stringify(redBagParameters), redBagCallback);
-
 }
+
+//查看更多红包回调函数
 function moreRedCallback(result){
   if (result.success) {
     var data = result.data[0];
@@ -135,6 +136,7 @@ function moreRedCallback(result){
     $(".red_List_wrap .red_list").append(output1);
   }
 }
+//首次加载红包回调函数
 function redBagCallback(result) {
   if (result.success) {
     var data = result.data[0];
