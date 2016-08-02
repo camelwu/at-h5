@@ -315,7 +315,7 @@
           SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
         }
 
-        SearchPrice.Parameters.MemberID=localStorage.memberid;
+        //SearchPrice.Parameters.MemberID=localStorage.memberid;
 
         if(window.location.search.indexOf('oneticket') != -1){
           SearchPrice.Parameters.Adult = 1;
