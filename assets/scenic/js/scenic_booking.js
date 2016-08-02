@@ -1041,6 +1041,8 @@
           };
         }
 
+        SearchPrice.Parameters.MemberID=localStorage.memberid;
+
         T.AjaxAdapter().callAjaxAdapter("getPickup",{});
         T.AjaxAdapter().callAjaxAdapter("getSearchPrice",SearchPrice);
       } else {

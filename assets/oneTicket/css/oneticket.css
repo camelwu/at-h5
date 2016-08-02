@@ -150,6 +150,8 @@ img {
 
 .price_panic {
   padding-top: .1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .one_price {
