@@ -528,7 +528,7 @@
     function saleout(ret) {
       var json = ret;
       if (json.success) {
-        if (json.data.tourAllotment.adultBalance) {
+        if ( ! json.data.tourAllotment.adultBalance) {
           //售罄
           $('#oneticket_buy').parents('.one_sale_show').find('.one_sale_bg').show();
           $('#oneticket_buy').parents('.one_sale_show').find('.one_price').css('color', '#ccc');
