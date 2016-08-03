@@ -617,6 +617,14 @@
         <li class="clearfix"><span class="fl">税和服务费</span><span class="fr"><%=currency%><%=totalSeriveCharge%></span></li>
         <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1"><% if(paymentModeID==1){%>预付 <%} else{ %>到付<%}%></span></li>
       </ul>
+      <% if(cashVouchers.length > 0) {%>
+      <div class="order_coupons">
+        <p class="title">尊享优惠</p>
+        <% for(var m=0;m<cashVouchers.length;m++) { %>
+        <p class="desc">优惠<%= m +1  %><span class="info">红包抵扣<%= cashVouchers[m].amount %>元</span></p>
+        <% } %>
+      </div>
+      <% } %>
     </div>
   </section>
   <% if(orderStatus==1 ){ %>
@@ -867,6 +875,14 @@
         <% } %>
         <% })%>
       </ul>
+      <% if(cashVouchers.length > 0) {%>
+      <div class="order_coupons">
+        <p class="title">尊享优惠</p>
+        <% for(var m=0;m<cashVouchers.length;m++) { %>
+        <p class="desc">优惠<%= m +1  %><span class="info">红包抵扣<%= cashVouchers[m].amount %>元</span></p>
+        <% } %>
+      </div>
+      <% } %>
     </div>
   </section>
   <% if(paymentStatus==false ){ %>

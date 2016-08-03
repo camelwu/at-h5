@@ -692,6 +692,23 @@ li.order_tlist2 {
   margin-left: .1rem;
 }
 
+.order_coupons .title{
+  background-color: #f7f7f7;
+  height: 0.68rem;
+  line-height: 0.68rem;
+  padding: 0 .28rem;
+  color: #333
+}
+.order_coupons .desc{
+  padding: 0 .28rem;
+  background-color: #fff;
+  line-height: .68rem;
+}
+.order_coupons .desc .info{
+  float: right;
+  color: #fb7530;
+}
+
 /*电话拨号结束*/
 
 #order_detail {
