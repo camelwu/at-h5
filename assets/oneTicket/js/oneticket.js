@@ -39,8 +39,8 @@
         "ProductDesc": "穿梭于圣淘沙和新加坡花柏山顶两个繁华目的地",
         "ProductSite": "新加坡",
         "ProductPrice": "84",
-        //"ProductID": "507063",
-        "ProductID": "1064",
+        "ProductID": "507063",
+        //"ProductID": "1064",
         "ProductAttentionNum": "",
         "ProductType": "T"
       },
