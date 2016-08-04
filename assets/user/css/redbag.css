@@ -44,7 +44,7 @@
   height: .52rem;
   width: 1px;
   margin-top: -.26rem;
-  background-color: #d1d1d1;
+  background-color: #e6e6e6;
 }
 
 .red_bag_wrap .red_info_wrap .used {
@@ -80,7 +80,7 @@
   padding: 0 .36rem;
   background: #fff;
   margin: 0 .28rem .32rem .28rem;
-  border: 1px solid #d1d1d1;
+  border: 1px solid #e6e6e6;
   border-radius: 5px;
   position: relative;
 }
@@ -105,7 +105,7 @@
   height: 1.62rem;
   position: relative;
   padding-top: .4rem;
-  border-bottom: dashed 1px #999;
+  border-bottom: dashed 1px #e6e6e6;
   box-sizing: border-box;
 }
 
@@ -132,7 +132,7 @@
 
 .red_list .red .money em {
   font-size: .36rem;
-  padding-right: .16rem;
+  padding-right: .1rem;
 }
 
 .red_list .red .desc {
@@ -160,7 +160,7 @@
   height: .3rem;
   border-radius: .3rem;
   background: #F7F7F7;
-  border: 1px solid #d1d1d1;
+  border: 1px solid #e6e6e6;
   border-left: transparent;
   border-top: transparent;
   transform: rotate(-45deg);
@@ -175,7 +175,7 @@
   height: .3rem;
   border-radius: .3rem;
   background: #F7F7F7;
-  border: 1px solid #d1d1d1;
+  border: 1px solid #e6e6e6;
   border-right: transparent;
   border-bottom: transparent;
   transform: rotate(-45deg);
