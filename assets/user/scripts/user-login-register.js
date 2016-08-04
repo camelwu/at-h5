@@ -91,8 +91,19 @@ window.onload = function () {
   //亚程账户动态码登录切换
   $('.login_tab_wrap >div').click(function () {
     if ($(this).find('span').attr('id') == 'change_cellCode') {
-      if($(this).hasClass('active')){
+      if ($(this).hasClass('active')) {
         return;
+      }
+      if($('#cellCode_phone_veri').val() == ''){
+        $('#login_btn').css({
+          backgroundColor: 'transparent',
+          color: '#fff'
+        });
+      }else{
+        $('#login_btn').css({
+          backgroundColor: '#fff',
+          color: '#666'
+        });
       }
       getCaptchaCode(function (result) {
         var imgEle = $("#cellCode_login img");
@@ -103,6 +114,18 @@ window.onload = function () {
           imgEle.attr('data-imageno', imageNo);
         }
       });
+    }else{
+      if($('#p_password').val() == ''){
+        $('#login_btn').css({
+          backgroundColor: 'transparent',
+          color: '#fff'
+        });
+      }else{
+        $('#login_btn').css({
+          backgroundColor: '#fff',
+          color: '#666'
+        });
+      }
     }
     $(this).addClass('active').siblings('div').removeClass('active');
     $('.login_tab_content >div').eq($(this).index()).show().siblings().hide();
@@ -149,7 +172,8 @@ window.onload = function () {
       case "imgcode":
         return vlm.Utils.validate.imgcode(num);
         break;
-      default:;
+      default:
+        ;
     }
   };
 
@@ -379,6 +403,29 @@ window.onload = function () {
 
 };
 
+/*输入密码登录按钮变化*/
+function changeLoginButton(id1, id2) {
+
+  $(id1).on('input propertychange', function () {
+    if ($(id1).val() != '') {
+      $(id2).css({
+        backgroundColor: '#fff',
+        color: '#666'
+      });
+    } else {
+      $(id2).css({
+        backgroundColor: 'transparent',
+        color: '#fff'
+      });
+    }
+
+  });
+}
+
+changeLoginButton('#p_password', '#login_btn');
+changeLoginButton('#cellCode_phone_veri', '#login_btn');
+
+
 //手机找回密码页面
 $('.forgotkey').click(function () {
   $("#fkey_page").show();
@@ -596,14 +643,13 @@ function clearValue(id) {
 
 clearValue('#phone');
 clearValue('#p_password');
-clearValue('#email');
-clearValue('#e_password');
 clearValue('#r_phone');
 clearValue('#verify');
 clearValue('#r_p_password');
-clearValue('#r_email');
-clearValue('#rs_e_password');
-clearValue('#r_e_password');
+clearValue('#cellCode_phone');
+clearValue('#img_active_text');
+clearValue('#cellCode_phone_veri');
+clearValue('#reg_capture');
 
 //忘记密码倒计时
 function timedown_forget(seconds) {
