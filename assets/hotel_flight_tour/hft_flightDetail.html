@@ -36,6 +36,7 @@
   <div class="content content-down">
     <div class="ticket fix-margin">
       <ul class="flightOuter">
+        <!--去程-->
         <% for(var index = 0; index < flightInfo.segmentsLeave.length; index++) { %>
         <% var length = flightInfo.segmentsLeave.length; %>
         <% var leaveItem = flightInfo.segmentsLeave[index]; %>
@@ -83,15 +84,16 @@
 
         <% } %>
 
-        <% for(var index_ = 0; index_ < flightInfo.segmentsReturn.length; index_++) { %>
+        <!--返程-->
+        <% for(var index2 = 0; index2 < flightInfo.segmentsReturn.length; index2++) { %>
         <% var len = flightInfo.segmentsReturn.length %>
-        <% var returnItem = flightInfo.segmentsReturn[index_] %>
+        <% var returnItem = flightInfo.segmentsReturn[index2] %>
 
-          <li class="tripBack <%if(index_==0){%>addMargin_<%}%>">
-            <%if(index_==0){ %>
+          <li class="tripBack <%if(index2==0){%>addMargin_<%}%>">
+            <%if(index2==0){ %>
             <div class="dateWeekCity">
               <span class="icon"></span>
-              <span><%= hftFlightDetail.returnDay(returnItem["departDate"]) %></span><span class="<%= index_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= flightInfo.segmentsReturn[0]["cityNameFrom"]%></span><span>-</span><span><%= flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1]["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span>
+              <span><%= hftFlightDetail.returnDay(returnItem["departDate"]) %></span><span class="<%= index2>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= flightInfo.segmentsReturn[0]["cityNameFrom"]%></span><span>-</span><span><%= flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1]["cityNameTo"] %></span><span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></span>
             </div>
             <%}%>
             <div class="timeAirport fixedMargin">
@@ -116,15 +118,15 @@
               <span><img src="../images/loading_def_big.png" data-src="<%= returnItem[" airwayLogo"] %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
             </p>
           </li>
-          <%if(index_ < len-1){
-          var endDate_=flightInfo.segmentsReturn[index_+1]['departDate'],returnTransferMins="",
+          <%if(index2 < len-1){
+          var endDate_=flightInfo.segmentsReturn[index2+1]['departDate'],returnTransferMins="",
           returnTransferHm="";
           returnTransferMins = hftFlightDetail["getMinutes"](returnItem["arriveDate"],endDate_);
           returnTransferHm = parseInt(returnTransferMins / 60) + 'h' + returnTransferMins % 60 + 'm';
           %>
-          <%if(flightInfo.transferListReturn[index_]){%>
+          <%if(flightInfo.transferListReturn[index2]){%>
           <p class="flightDetailArrow addMargin">
-            中转<%=flightInfo.transferListReturn[index_]%><span><%=flightInfo.transferListReturnTime[index_]%></span>
+            中转<%=flightInfo.transferListReturn[index2]%><span><%=flightInfo.transferListReturnTime[index2]%></span>
           </p>
           <%}%>
           <%}%>
