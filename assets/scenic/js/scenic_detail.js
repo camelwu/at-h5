@@ -223,11 +223,17 @@
       if(json.success){
         var data=json.data;
         ExtendData = data;
+        if(window.location.search.indexOf('oneticket') != -1){
+          //一元产品
+          var htmlc = $("#Barcontent_oneticket").html();
+          var htmlC = ejs.render(htmlc,json.data);
+          $("#barContent").html(htmlC);
+        }else{
+          var htmlc = $("#Barcontent").html();
+          var htmlC = ejs.render(htmlc,json.data);
+          $("#barContent").html(htmlC);
+        }
 
-
-        var htmlc = $("#Barcontent").html();
-        var htmlC = ejs.render(htmlc,json.data);
-        $("#barContent").html(htmlC);
         var htmls = $("#Sceniccontent").html();
         var htmlS = ejs.render(htmls,json.data);
         //图片点击事件
