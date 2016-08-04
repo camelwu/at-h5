@@ -122,6 +122,8 @@ var  hftFlightDetail = {
   createTags:function(){
     var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
     console.log(data);
+    console.log(data.flightInfo.segmentsLeave);
+    console.log(data.flightInfo.segmentsReturn);
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr,data);
     $(".all_elements").eq(0).html(outputStr);

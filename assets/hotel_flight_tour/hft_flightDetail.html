@@ -66,7 +66,10 @@
               </div>
             </div>
             <p class="flightDetailInfo">
-              <span><img src="../images/loading_def_big.png" data-src="<%= leaveItem["airwayLogo"] %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><span><%=  leaveItem["planeName"] %></span>
+              <span><img src="../images/loading_def_big.png" data-src="<%= leaveItem["airwayLogo"] %>" /></span>
+              <span><%= leaveItem["airCorpName"] %></span>
+              <span><%= leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span>
+              <span><%= leaveItem["planeName"] %></span>
             </p>
           </li>
           <%if(index < length-1 ){%>
@@ -115,7 +118,10 @@
               </div>
             </div>
             <p class="flightDetailInfo">
-              <span><img src="../images/loading_def_big.png" data-src="<%= returnItem[" airwayLogo"] %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
+              <span><img src="../images/loading_def_big.png" data-src="<%= returnItem[" airwayLogo"] %>" /></span>
+              <span><%= returnItem["operatingCarrierName"] %></span>
+              <span><%= returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span>
+              <span><%= returnItem["planeName"] %></span>
             </p>
           </li>
           <%if(index2 < len-1){
