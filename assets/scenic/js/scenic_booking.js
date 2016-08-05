@@ -704,7 +704,7 @@
             return false;
           }
           if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
-            jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+            jAlert("限定成人最大数为"+ExtendData.maxPax+"", "提示");
             return false;
           }
         }else{//限制成人和儿童
@@ -715,7 +715,7 @@
               return false;
             }
             if(totalP > ExtendData.maxPax && ExtendData.maxPax != -1){
-              jAlert("限定最大人数为"+ExtendData.maxPax+"起订", "提示");
+              jAlert("限定最大人数为"+ExtendData.maxPax+"", "提示");
               return false;
             }
           }else{//只限制成人
@@ -724,7 +724,7 @@
               return false;
             }
             if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
-              jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+              jAlert("限定成人最大数为"+ExtendData.maxPax+"", "提示");
               return false;
             }
           }
