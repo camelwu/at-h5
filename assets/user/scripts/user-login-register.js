@@ -241,7 +241,7 @@ window.onload = function () {
         login_pass = e_password;
         input = cellCode_login.getElementsByTagName('input');
         if (!check(input[0].getAttribute('data-type'), input[0].value)) {
-          jAlert("22请输入有效手机号");
+          jAlert("请输入有效手机号");
           return;
         }
         //图形验证码

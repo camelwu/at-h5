@@ -243,7 +243,13 @@
           if( bFlag){
             return;
           }
-          if(Math.abs(startY - endY) <= 5){
+          // uc浏览器兼容性
+          if(navigator.userAgent.toLowerCase().indexOf('ucbrowser')){
+            alert(Math.abs(startY - endY))
+            if(Math.abs(startY - endY) >= 9){
+              bFlag=true;
+            }
+          }else if(Math.abs(startY - endY) <= 5){
             bFlag=true;
           }
 
