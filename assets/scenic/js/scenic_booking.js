@@ -366,7 +366,7 @@
             tar = $(tar)[0],perprice = 0,totalprice = 0;
           var count = parseInt($(tar).next().html());
           perprice = $(tar).next().attr("data-preprice");
-          if(count > 0){
+          if(count > 1){
             count--;
             totalprice = count * perprice;
             $(tar).next().html(count);

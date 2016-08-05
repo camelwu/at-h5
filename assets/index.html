@@ -208,7 +208,7 @@
 
       //bannerTab
       function bannerTab(){
-        var startX, endX;
+        var startX,startY, endX,endY;
         var i= 0,timer=null,timerTimeout=null;bFlag=false;viewWidth=$(window).width();
         for (var j = 0; j < $('.homepage_slider li').length; j++) {
           $('.banner_num').append('<li><span></span></li>')
@@ -233,17 +233,28 @@
         // 滑动
         $('.slider-container').on('touchstart',function(event) {
           var touch = event.originalEvent.targetTouches[0];
-          startX = touch.pageX;
+          startX = touch.pageX,
+          startY = touch.pageY;
         });
 
         $('.slider-container').on('touchmove',function(event){
+          var touch = event.originalEvent.targetTouches[0];
+          endX = touch.pageX,
+          endY = touch.pageY;
           if( bFlag){
             return;
           }
-          bFlag=true;
+          // uc浏览器兼容性
+          if(navigator.userAgent.toLowerCase().indexOf('ucbrowser')){
+            alert(Math.abs(startY - endY))
+            if(Math.abs(startY - endY) >= 9){
+              bFlag=true;
+            }
+          }else if(Math.abs(startY - endY) <= 5){
+            bFlag=true;
+          }
+
           clearInterval(timer);
-          var touch = event.originalEvent.targetTouches[0];
-          endX = touch.pageX;
           if ((startX - endX) >= 5) {
             i++;
             if (i==$('.homepage_slider li').length) {

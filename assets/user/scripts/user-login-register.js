@@ -11,7 +11,7 @@ var phone_verify = $('#find_verify')[0],
   timer_fogot,
   timer_register,
   timer_active;
-vlm.init();
+  vlm.init();
 window.onload = function () {
   var phone_login = $("#phone_login")[0],
     cellCode_login = $("#cellCode_login")[0],
@@ -216,10 +216,9 @@ window.onload = function () {
     obj.onclick = function () {
       //账号密码登录
       var input;
-      if ($("#cellCode_login")[0].style.display == 'none') {
+      if ($("#yc_login").parent().hasClass('active')) {
         login_pass = p_password;
         input = phone_login.getElementsByTagName('input');
-
         if (!check(input[0].getAttribute('data-type'), input[0].value)) {
           jAlert("请输入有效手机号");
           return;
@@ -328,7 +327,7 @@ window.onload = function () {
       get_code_login.innerHTML = '60秒重发';
       get_code_login.style.color = '#ccc';
       timedown_login(60);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_active_login);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_active_login, true, false, true);
     };
   }
 
@@ -361,7 +360,8 @@ window.onload = function () {
       phone_reg.innerHTML = '60秒重发';
       phone_reg.style.color = '#ccc';
       timedown_reg(60);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify,true,false,true);
+
     };
   }
 
@@ -395,7 +395,7 @@ window.onload = function () {
       console.log(Parameters);
       phone_verify.innerHTML = '60秒重发';
       timedown_forget(60);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_findver);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_findver,true,false,true);
     };
   }
 
