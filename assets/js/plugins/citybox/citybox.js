@@ -2294,34 +2294,27 @@
         citybox_summary_item_li.setAttribute("class","citybox_summary_item");
         citybox_summary_item_li.setAttribute("data-key",data[i]);
         citybox_summary_item_li.innerHTML = data[i];
+        citybox_summary_item_li.onclick = function(){
+          var key = this.getAttribute("data-key");
+          var a = $("#js_index_" + key);
+
+          var showletter = $("#citybox_showletter");
+          showletter.html(key.toLocaleUpperCase());
+          showletter.addClass("show");
+          setTimeout(function(){
+            showletter.removeClass("show");
+          },400);
+
+          if (a.length != 0) {
+
+            i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
+          }
+          $(".citybox_content").scrollTop(i);
+
+        }
         fragment.appendChild(citybox_summary_item_li);
       }
       dom.appendChild(fragment);
-
-      /**
-       * #1838
-       * 1.每打开弹框，绑定一次事件
-       * 2.for循环给每个li绑定事件，使用事件委托优化事件绑定
-       * 以上两点造成严重的性能问题
-       */
-      $(dom).off();
-      $(dom).on('click', 'li', function(){
-        var key = this.getAttribute("data-key");
-        var a = $("#js_index_" + key);
-
-        var showletter = $("#citybox_showletter");
-        showletter.html(key.toLocaleUpperCase());
-        showletter.addClass("show");
-        setTimeout(function(){
-          showletter.removeClass("show");
-        },400);
-
-        if (a.length != 0) {
-
-          i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
-        }
-        document.querySelector('.citybox_content').scrollTop = i;
-      });
 
     }
   }

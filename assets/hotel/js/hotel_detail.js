@@ -516,8 +516,8 @@
     },
 
     initDate: function (result) {
-      hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
-      hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
+      //hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
+      //hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
       var dateInitObj = new Object();
       dateInitObj[hotelDetail.gdataInfo.CheckInDate] = '入住';
       dateInitObj[hotelDetail.gdataInfo.CheckOutDate] = '离店';

@@ -108,7 +108,8 @@
         num: 13,
         time: obj,
         type: "hotel",
-        headerSign: 'tip', //tipClean  tip
+        headerSign: 'hotelTip', //tipClean  tip hotelTip
+        disableDateAfterLength: 30,
         noComfirmBtn: true,
         callback: function (result) {
           var checkInDateEle = $("#CheckInDate");
@@ -117,11 +118,12 @@
           var checkOutDateEle = $("#CheckOutDate");
           var checkOutWeekEle = $("#week_span2");
           var totalDayEle = $("#total_day");
-
+          document.forms[0].InterCheckInDate.value = result[0];
+          document.forms[0].InterCheckOutDate.value = result[1];
           //                    checkInDateEle.val(vlm.Utils.format_date(result[0], 'md'));
-          checkInDateEle.val(result[0]);
+          checkInDateEle.html(vlm.Utils.format_date(result[0], 'md'));
           checkInWeekEle.html(vlm.Utils.getWeek(result[0]));
-          checkOutDateEle.val(result[1]);
+          checkOutDateEle.html(vlm.Utils.format_date(result[1], 'md'));
           //                    checkOutDateEle.val(vlm.Utils.format_date(result[1], 'md'));
           checkOutWeekEle.html(vlm.Utils.getWeek(result[1]));
 
@@ -143,11 +145,13 @@
           var checkOutWeekEle = $("#weekSpan4");
           var totalDayEle = $("#domeTotalDay");
 
-          checkInDateEle.val(result[0]);
+          document.forms[0].DomCheckInDate.value = result[0];
+          document.forms[0].DomCheckOutDate.value = result[1];
+          checkInDateEle.html(vlm.Utils.format_date(result[0], 'md'));
           //                    checkInDateEle.val(vlm.Utils.format_date(result[0], 'md'));
           checkInWeekEle.html(vlm.Utils.getWeek(result[0]));
           //                    checkOutDateEle.val(vlm.Utils.format_date(result[1], 'md'));
-          checkOutDateEle.val(result[1]);
+          checkOutDateEle.html(vlm.Utils.format_date(result[1], 'md'));
           checkOutWeekEle.html(vlm.Utils.getWeek(result[1]));
           totalDayEle.html(Math.round(((new Date(result[1].replace(/-/g, "/"))) - new Date(result[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)));
         }
@@ -310,10 +314,10 @@
         //如果历史搜索入住日期早于最早入住日期
         console.info(new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')));
         if (new Date(hotelStorage.InterBeginDate.replace(/-/g, '/')) < oDate1) {
-          //                    checkIn.val(vlm.Utils.format_date(beginDate, 'md'));
-          checkIn.val(beginDate);
-          //                    checkOut.val(vlm.Utils.format_date(leaveDate, 'md'));
-          checkOut.val(leaveDate);
+          checkIn.html(vlm.Utils.format_date(beginDate, 'md'));
+          //checkIn.val(beginDate);
+          checkOut.html(vlm.Utils.format_date(leaveDate, 'md'));
+          //checkOut.val(leaveDate);
           week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
           week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
           $("#total_day").html(1);
@@ -321,10 +325,10 @@
           interInitDate[leaveDate] = "离店";
 
         } else {
-          checkIn.val(hotelStorage.InterBeginDate);
-          //                    checkIn.val(vlm.Utils.format_date(hotelStorage.InterBeginDate, 'md'));
-          checkOut.val(hotelStorage.InterLeaveDate);
-          //                    checkOut.val(vlm.Utils.format_date(hotelStorage.InterLeaveDate, 'md'));
+          //checkIn.val(hotelStorage.InterBeginDate);
+          checkIn.html(vlm.Utils.format_date(hotelStorage.InterBeginDate, 'md'));
+          //checkOut.val(hotelStorage.InterLeaveDate);
+          checkOut.html(vlm.Utils.format_date(hotelStorage.InterLeaveDate, 'md'));
           $("#total_day").html(hotelStorage.InterTotalDay);
           week_span1.html(hotelStorage.InterBeginDateWeek);
           week_span2.html(hotelStorage.InterLeaveDateWeek);
@@ -339,8 +343,10 @@
         $("#count1").val(hotelIndex.NumRoom);
         $("#count2").val(hotelIndex.NumAdult);
         $("#count3").val(hotelIndex.NumChild);
-        checkIn.val(beginDate);
-        checkOut.val(leaveDate);
+        //checkIn.val(beginDate);
+        //checkOut.val(leaveDate);
+        checkIn.html(vlm.Utils.format_date(beginDate, 'md'));
+        checkOut.html(vlm.Utils.format_date(leaveDate, 'md'));
         $("#total_day").html(1);
         week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
         week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -358,8 +364,10 @@
 
         beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd');
         leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
-        checkIn.val(beginDate);
-        checkOut.val(leaveDate);
+        //checkIn.val(beginDate);
+        //checkOut.val(leaveDate);
+        checkIn.html(vlm.Utils.format_date(beginDate, 'md'));
+        checkOut.html(vlm.Utils.format_date(leaveDate, 'md'));
         $("#total_day").html(2);
         week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
         week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -403,8 +411,10 @@
       if (hotelStorage) {
         //如果历史搜索入住日期早于最早入住日期
         if (new Date(hotelStorage.DomCheckInDate.replace(/-/g, '/')) < oDate3) {
-          DomCheckInDate.val(DomBeginDate);
-          DomCheckOutDate.val(DomLeaveDate);
+          //DomCheckInDate.val(DomBeginDate);
+          //DomCheckOutDate.val(DomLeaveDate);
+          DomCheckInDate.html(vlm.Utils.format_date(DomBeginDate, 'md'));
+          DomCheckOutDate.html(vlm.Utils.format_date(DomLeaveDate, 'md'));
           week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
           week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
           $("#domeTotalDay").html(1);
@@ -412,8 +422,10 @@
           domInitDate[DomLeaveDate] = "离店";
 
         } else {
-          DomCheckInDate.val(hotelStorage.DomCheckInDate);
-          DomCheckOutDate.val(hotelStorage.DomCheckOutDate);
+          //DomCheckInDate.val(hotelStorage.DomCheckInDate);
+          //DomCheckOutDate.val(hotelStorage.DomCheckOutDate);
+          DomCheckInDate.html(vlm.Utils.format_date(hotelStorage.DomCheckInDate, 'md'));
+          DomCheckOutDate.html(vlm.Utils.format_date(hotelStorage.DomCheckOutDate, 'md'));
           $("#domeTotalDay").html(hotelStorage.DomeTotalDay);
           week_span3.html(hotelStorage.DomBeginDateWeek);
           week_span4.html(hotelStorage.DomLeaveDateWeek);
@@ -421,8 +433,10 @@
           domInitDate[hotelStorage.DomCheckOutDate] = "离店";
         }
       } else {
-        DomCheckInDate.val(DomBeginDate);
-        DomCheckOutDate.val(DomLeaveDate);
+        //DomCheckInDate.val(DomBeginDate);
+        //DomCheckOutDate.val(DomLeaveDate);
+        DomCheckInDate.html(vlm.Utils.format_date(DomBeginDate, 'md'));
+        DomCheckOutDate.html(vlm.Utils.format_date(DomLeaveDate, 'md'));
         $("#domeTotalDay").html(1);
         week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
         week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
