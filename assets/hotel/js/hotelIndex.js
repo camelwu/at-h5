@@ -78,8 +78,8 @@
       //用于记录用户历史选择
       var hotelStorage12345 = {
         //"InterDes" : lsf_myweb.getbyid('input1').value,
-        "InterBeginDate": $("#CheckInDate").val(),
-        "InterLeaveDate": $("#CheckOutDate").val(),
+        "InterBeginDate": document.forms[0].InterCheckInDate.value,
+        "InterLeaveDate": document.forms[0].InterCheckOutDate.value,
         "NumRoom": $("#count1").val(),
         "NumAdult": $("#count2").val(),
         "NumChild": $("#count3").val(),
@@ -88,8 +88,8 @@
         "InterBeginDateWeek": $("#week_span1").html(),
         "InterLeaveDateWeek": $("#week_span2").html(),
         //"DomDes" : lsf_myweb.getbyid('input2').value,
-        "DomCheckInDate": $("#DomCheckInDate").val(),
-        "DomCheckOutDate": $("#DomCheckOutDate").val(),
+        "DomCheckInDate": document.forms[0].DomCheckInDate.value,
+        "DomCheckOutDate": document.forms[0].DomCheckOutDate.value,
         //已去掉城市模糊搜索
         "DomeTotalDay": $("#domeTotalDay").html(),
         "DomBeginDateWeek": $("#weekSpan3").html(),
@@ -317,6 +317,8 @@
           checkIn.html(vlm.Utils.format_date(beginDate, 'md'));
           //checkIn.val(beginDate);
           checkOut.html(vlm.Utils.format_date(leaveDate, 'md'));
+          document.forms[0].InterCheckInDate.value = beginDate;
+          document.forms[0].InterCheckOutDate.value = leaveDate;
           //checkOut.val(leaveDate);
           week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
           week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -329,6 +331,8 @@
           checkIn.html(vlm.Utils.format_date(hotelStorage.InterBeginDate, 'md'));
           //checkOut.val(hotelStorage.InterLeaveDate);
           checkOut.html(vlm.Utils.format_date(hotelStorage.InterLeaveDate, 'md'));
+          document.forms[0].InterCheckInDate.value = hotelStorage.InterBeginDate;
+          document.forms[0].InterCheckOutDate.value = hotelStorage.InterLeaveDate;
           $("#total_day").html(hotelStorage.InterTotalDay);
           week_span1.html(hotelStorage.InterBeginDateWeek);
           week_span2.html(hotelStorage.InterLeaveDateWeek);
@@ -347,6 +351,8 @@
         //checkOut.val(leaveDate);
         checkIn.html(vlm.Utils.format_date(beginDate, 'md'));
         checkOut.html(vlm.Utils.format_date(leaveDate, 'md'));
+        document.forms[0].InterCheckInDate.value = beginDate;
+        document.forms[0].InterCheckOutDate.value = leaveDate;
         $("#total_day").html(1);
         week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
         week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -368,6 +374,10 @@
         //checkOut.val(leaveDate);
         checkIn.html(vlm.Utils.format_date(beginDate, 'md'));
         checkOut.html(vlm.Utils.format_date(leaveDate, 'md'));
+
+        document.forms[0].InterCheckInDate.value = beginDate;
+        document.forms[0].InterCheckOutDate.value = leaveDate;
+
         $("#total_day").html(2);
         week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
         week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
@@ -415,6 +425,8 @@
           //DomCheckOutDate.val(DomLeaveDate);
           DomCheckInDate.html(vlm.Utils.format_date(DomBeginDate, 'md'));
           DomCheckOutDate.html(vlm.Utils.format_date(DomLeaveDate, 'md'));
+          document.forms[0].DomCheckInDate.value = DomBeginDate;
+          document.forms[0].DomCheckOutDate.value = DomLeaveDate;
           week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
           week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
           $("#domeTotalDay").html(1);
@@ -426,6 +438,8 @@
           //DomCheckOutDate.val(hotelStorage.DomCheckOutDate);
           DomCheckInDate.html(vlm.Utils.format_date(hotelStorage.DomCheckInDate, 'md'));
           DomCheckOutDate.html(vlm.Utils.format_date(hotelStorage.DomCheckOutDate, 'md'));
+          document.forms[0].DomCheckInDate.value = hotelStorage.DomCheckInDate;
+          document.forms[0].DomCheckOutDate.value = hotelStorage.DomCheckOutDate;
           $("#domeTotalDay").html(hotelStorage.DomeTotalDay);
           week_span3.html(hotelStorage.DomBeginDateWeek);
           week_span4.html(hotelStorage.DomLeaveDateWeek);
@@ -437,6 +451,8 @@
         //DomCheckOutDate.val(DomLeaveDate);
         DomCheckInDate.html(vlm.Utils.format_date(DomBeginDate, 'md'));
         DomCheckOutDate.html(vlm.Utils.format_date(DomLeaveDate, 'md'));
+        document.forms[0].DomCheckInDate.value = DomBeginDate;
+        document.forms[0].DomCheckOutDate.value = DomLeaveDate;
         $("#domeTotalDay").html(1);
         week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
         week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
