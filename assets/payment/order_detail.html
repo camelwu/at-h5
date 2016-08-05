@@ -552,23 +552,26 @@
 <!--酒景模板-->
 <script id="tpl_ht" type="text/template">
 
-  <p class="hft_paid"><% if (paymentStatus) {%> 已支付<% }else{ %>待支付 <%}%> </p>
+  <p class="hft_paid">
+    <% if (paymentStatus) {%>
+    已支付
+    <% }else{ %>
+    待支付
+    <%}%>
+  </p>
   <!--景点-->
   <section id="tour">
     <div class="tour_wrap">
       <p class="tour_productinfo">
         <span class="productName"><%=packageName%></span><span class="productCode">(产品编号 <%=bookingRefNo%>)</span>
       </p>
-      <%
-      var totalAmount=0;
-      chargeDetails.forEach(function(info){
-      if(info.category=="ADULT" || info.category=="CHILD"){
-      totalAmount+=info.totalAmount;
-      }
-      });
-      %>
-      <a href="../tour/packages_detail.html?packageID=<%=packageID%>&productPrice=<%=totalAmount%>&status=0"><i
-        class="tourdetail_icon"></i></a>
+      <% var totalAmount=0; %>
+      <% chargeDetails.forEach(function(info){ %>
+        <% if(info.category=="ADULT" || info.category=="CHILD"){%>
+          <% totalAmount+=info.totalAmount;%>
+        <% }%>
+      <% }); %>
+      <a href="../tour/packages_detail.html?packageID=<%=packageID%>&productPrice=<%=totalAmount%>&status=0"><i class="tourdetail_icon"></i></a>
     </div>
     <% var numAdult=0; numchild=0;
     chargeDetails.forEach(function(info){
@@ -603,23 +606,6 @@
         </ul>
       </div>
     </div>
-    <!--<% var i=0; tours.forEach(function(info){ %>-->
-    <!--<div class="tour-item line">-->
-    <!--<div class="title"><i></i><%=info.tourName%></div>-->
-    <!--<div class="item">-->
-    <!--<% if(tours[i].hasOwnProperty("travelDate")){ %>-->
-    <!--<ul class="col">-->
-    <!--<li>游玩时间：</li>-->
-    <!--<li><%=vlm.Utils.format_date(info.travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%> <%=TourTimer[tours[i].tourSession]%></li>-->
-    <!--</ul>-->
-    <!--<% i++ ;} %>-->
-    <!--<ul class="col">-->
-    <!--<li>成人票：</li>-->
-    <!--<li><%=numAdult%>张<% if(numchild>0){%>;儿童票<%=numchild%>张<%}%></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<% });%>-->
     <% for(var i=0;i < tours.length;i++){%>
     <div class="tour-item line">
       <div class="title"><i></i><%=tours[i].tourName%></div>
@@ -627,11 +613,11 @@
         <ul class="col">
           <% if(tours[i].hasOwnProperty("travelDate")){ %>
           <li>游玩时间：</li>
-          <li><%=vlm.Utils.format_date(tours[i].travelDate,"cymd")%> <%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%>
+          <li><%=vlm.Utils.format_date(tours[i].travelDate,"cymd")%><%=vlm.Utils.getWeek(tours[i].travelDate,"f1")%>
             <%=TourTimer[tours[i].tourSession]%>
           </li>
+          <% } %>
         </ul>
-        <% }%>
         <ul class="col">
           <li>成人票：</li>
           <li><%=numAdult%>张<% if(parseInt(numchild)>0){%>;儿童票：<%=numchild%>张<%}%></li>
@@ -645,16 +631,14 @@
       <div class="title"><i></i>接机服务</div>
       <div class="item">
         <ul class="ht_send_travel">
-          <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime),
-          fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ')
-          %>
-          <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime),
-          fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+'
-          ') %>
+          <% var fdWeek=vlm.Utils.getWeek(flightDetails.arrivalDateTime); %>
+          <% var fdDate=vlm.Utils.format_date(flightDetails.arrivalDateTime,"YmdHi"); fdTime=fdDate.replace(' ',' '+fdWeek+' ') %>
+          <% var fdWeek2=vlm.Utils.getWeek(flightDetails.departDateTime); %>
+          <% var fdDate2=vlm.Utils.format_date(flightDetails.departDateTime,"YmdHi"); fdTime2=fdDate2.replace(' ',' '+fdWeek2+'') %>
           <li class="clearfix"><span class="fl">接机航班号</span><span class="fr"><%=flightDetails.arrivalFlightNo%></span>
           </li>
           <li class="clearfix"><span class="fl">接机时间</span><span class="fr"><%=fdTime%></span></li>
-          <li class="clearfix"><span class="fl">送机航班号</span><span class="fr"><%=flightDetails.departFlightNo%></span>
+          <li class="clearfix"><span class="fl">送机航班号</span><span class="fr"><%=flightDetails.departFlightNo %></span>
           </li>
           <li class="clearfix"><span class="fl">送机时间</span><span class="fr"><%=fdTime2%></span></li>
         </ul>
@@ -1068,16 +1052,6 @@
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="js/order_detail.js"></script>
-<script type="application/javascript">
-
-  var TourTimer = {
-    0: "上午",
-    1: "下午",
-    2: "晚上",
-    3: "全天",
-    4: "全天"
-  }
-</script>
 
 <script>
   function hotel_link() {
