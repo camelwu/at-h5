@@ -142,7 +142,7 @@ input:-ms-input-placeholder {
   height: .3rem;
   display: inline-block;
   background: url(../images/ui.1.0/icon_user.png) no-repeat;
-  background-size: 5.7rem .92rem;
+  background-size: 4.8rem .8rem;
 }
 
 #fkey_page {
@@ -164,7 +164,7 @@ input:-ms-input-placeholder {
   height: .36rem;
   left: .4rem;
   top: .26rem;
-  background-position: -1.36rem -.32rem;
+  background-position: -1.12rem -.26rem;
 }
 
 .go_back.icon_user {
@@ -173,7 +173,7 @@ input:-ms-input-placeholder {
   height: .36rem;
   left: .4rem;
   top: .2rem;
-  background-position: -.16rem -.32rem;
+  background-position: -.1rem -.245rem;
 }
 
 #phone_login,
@@ -252,7 +252,7 @@ input:-ms-input-placeholder {
   display: inline-block;
   vertical-align: top;
   margin-top: .39rem;
-  background-position: -3.96rem -.32rem;
+  background-position: -3.3rem -.25rem;
 }
 
 .login_pass {
@@ -260,8 +260,8 @@ input:-ms-input-placeholder {
   height: .42rem;
   display: inline-block;
   vertical-align: top;
-  margin-top: .34rem;
-  background-position: -2.14rem -.28rem;
+  margin-top: .37rem;
+  background-position: -1.76rem -.22rem;
 }
 
 .login_mail {
@@ -272,7 +272,7 @@ input:-ms-input-placeholder {
 
 .login_input input {
   background: transparent !important;
-  padding-left: .4rem;
+  padding-left: .25rem;
   height: .5rem;
   color: #fff;
   font-size: .32rem;
