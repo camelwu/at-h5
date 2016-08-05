@@ -216,10 +216,9 @@ window.onload = function () {
     obj.onclick = function () {
       //账号密码登录
       var input;
-      if ($("#cellCode_login")[0].style.display == 'none') {
+      if ($("#yc_login").parent().hasClass('active')) {
         login_pass = p_password;
         input = phone_login.getElementsByTagName('input');
-
         if (!check(input[0].getAttribute('data-type'), input[0].value)) {
           jAlert("请输入有效手机号");
           return;
@@ -242,7 +241,7 @@ window.onload = function () {
         login_pass = e_password;
         input = cellCode_login.getElementsByTagName('input');
         if (!check(input[0].getAttribute('data-type'), input[0].value)) {
-          jAlert("请输入有效手机号");
+          jAlert("22请输入有效手机号");
           return;
         }
         //图形验证码
