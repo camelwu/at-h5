@@ -25,41 +25,55 @@
     NumAdult: 1,
     NumChild: 0,
     init: function () {
-      this.initSlider();
+      //this.initSlider(); owlCarousel 插件在iOS UC浏览器横竖屏切换时DOM渲染有问题
+      this.initTab();
       this.initEvent();
       this.initData();
     },
-    initSlider: function () {
-      //国际国内切换实现滑动效果
-      hotelIndex.owlQuoteSlider = $(".quote-slider");
-
-      hotelIndex.owlQuoteSlider.owlCarousel({
-        items: 1
-      });
-      hotelIndex.owlQuoteSlider.on('changed.owl.carousel', function (event) {
-        var Inter = $('#Inter')[0],
-          Dom = $('#Dom')[0];
-        if (Dom.className == 'on') {
-          Dom.className = '';
-          Inter.className = 'on';
-        } else {
-          Dom.className = 'on';
-          Inter.className = '';
-        }
-      });
+    initTab: function () {
+      var tabHeader = $("#h-Tab a");
+      var panels = $(".quote-slider .hotel_content");
+      tabHeader.eq(0).addClass("on").siblings().removeClass("on");
+      panels.eq(0).show().siblings().hide();
       //tab 点击事件切换
-      hotelIndex._initTabEvent();
-    },
-    _initTabEvent: function () {
-      $("#Dom").click(function () {
-        hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
-        return false;
-      });
-      $("#Inter").click(function () {
-        hotelIndex.owlQuoteSlider.trigger('prev.owl.carousel');
-        return false;
+      $("#h-Tab").on("click","a",function(event){
+        var target = $(event.target);
+        var index = tabHeader.index(target);
+        tabHeader.eq(index).addClass("on").siblings().removeClass("on");
+        panels.eq(index).show().siblings().hide();
       });
     },
+    // initSlider: function () {
+    //   //国际国内切换实现滑动效果
+    //   hotelIndex.owlQuoteSlider = $(".quote-slider");
+    //
+    //   hotelIndex.owlQuoteSlider.owlCarousel({
+    //     items: 1
+    //   });
+    //   hotelIndex.owlQuoteSlider.on('changed.owl.carousel', function (event) {
+    //     var Inter = $('#Inter')[0],
+    //       Dom = $('#Dom')[0];
+    //     if (Dom.className == 'on') {
+    //       Dom.className = '';
+    //       Inter.className = 'on';
+    //     } else {
+    //       Dom.className = 'on';
+    //       Inter.className = '';
+    //     }
+    //   });
+    //   //tab 点击事件切换
+    //   hotelIndex._initTabEvent();
+    // },
+    // _initTabEvent: function () {
+    //   $("#Dom").click(function () {
+    //     hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
+    //     return false;
+    //   });
+    //   $("#Inter").click(function () {
+    //     hotelIndex.owlQuoteSlider.trigger('prev.owl.carousel');
+    //     return false;
+    //   });
+    // },
     saveHistory: function () {
       //用于记录用户历史选择
       var hotelStorage12345 = {
