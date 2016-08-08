@@ -71,8 +71,8 @@ i, em {
   width: .34rem;
   height: .34rem;
   display: inline-block;
-  background: url(../images/ui/icons-user.png) no-repeat;
-  background-size: 8rem 2rem;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 8.2rem 4.8rem;
 }
 
 .find_go_back {
@@ -422,7 +422,10 @@ i, em {
 .user_lists {
   padding: .4rem .28rem;
 }
-
+.user_lists .icon_person{
+  background: url(../images/ui/icons-user.png) no-repeat;
+  background-size: 8rem 2rem;
+}
 .user_lists > li {
   position: relative;
   height: .88rem;
@@ -1202,7 +1205,7 @@ i, em {
   top: .28rem;
 }
 
-.myorder_tip {
+.user_lists .myorder_tip {
   background-position: -2.8rem 0;
 }
 
@@ -1221,7 +1224,7 @@ i, em {
   color: #fb7530;
   padding-right: .1rem;
 }
-.open_info {
+.user_lists .open_info {
   background-position: -1.4rem 0;
 }
 
@@ -1231,15 +1234,15 @@ i, em {
   color: #999;
 }
 
-.open_msg {
+.user_lists .open_msg {
   background-position: 0 0;
 }
 
-.open_set {
+.user_lists .open_set {
   background-position: -.7rem 0;
 }
 
-.open_about {
+.user_lists .open_about {
   background-position: -3.5rem 0;
 }
 
