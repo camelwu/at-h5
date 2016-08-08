@@ -580,7 +580,7 @@ function mycallback_active_login(ret) {
   } else {
     jAlert(myJson.message);
     clearInterval(timer_active);
-    $('#get_code').html('获取验证码').css({'color': '#fff'});
+    $('#cellCodefind_verify').html('获取验证码').css({'color': '#fff'});
     login_activeBflag = false;
   }
 }
