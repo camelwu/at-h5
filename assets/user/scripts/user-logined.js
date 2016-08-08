@@ -173,7 +173,8 @@ function redBagCallback(result) {
           status = "";
           break;
         case 3:
-          status = "已锁定";
+          //status = "已锁定";
+          status = "已使用";
           break;
         case 4:
           status = "已使用";
