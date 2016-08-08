@@ -58,11 +58,8 @@
 						<div id="birth-cont-per" class="birth_cont" data-selected="1990年,1月,1日">1990-01-01</div>
 						<b class="open_arw"></b>
 					</li>
-					<li>
+					<li id="verify_phone_line">
 						手机 <span id="hostmobile" class="info_name"></span><b class="open_arw"></b>
-					</li>
-					<li id="a_email">
-						邮箱 <span id="hostemail" class="info_name"></span><b class="open_arw"></b>
 					</li>
 					<li  id="modify_password">
 						修改密码<b class="open_arw"></b>
@@ -75,7 +72,7 @@
 		<div id="amend_info" class="all_elements" style="display: none;">
       <div class="header">
         <span id="close_page" class="header_back"><i class="icon_back"></i></span>
-        <h3 id="title">修改昵称/填写姓名/修改密码/邮箱/</h3>
+        <h3 id="title">修改昵称/填写姓名/修改密码/验证手机/</h3>
       </div>
 			<ul id="info_content" class="user_content">
 				<li id="changename" style="display: none;">
@@ -96,16 +93,25 @@
 						</div>
 						<div class="name_text">不超过10个汉字或者20个英文字符，支持空格和“.”</div>
 					</li>
-					<li id="useremail">
-						<div class="u_name">
-							<input id="email" type="text" placeholder="请填写邮箱" data-type="email">
-              <b class="icon_person name_close"></b>
-						</div>
-					</li>
+          <li id="verify_phone_num">
+            <ul class="f_key">
+              <li>
+                <input id="verify_cellphone_code" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
+              </li>
+              <li>
+                <input class="fk_put captcha_ver_cell" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">
+                <img class="fk_captcha_modify" src="" alt="验证码" />
+              </li>
+              <li>
+                <input class="fk_put mob_phonecode" type="text" value placeholder="请输入验证码" data-type="code">
+                <div class="fk_div_phone" id="verify_phone_btn">发送验证码</div>
+              </li>
+            </ul>
+          </li>
           <li id="modify_pass">
             <ul class="f_key">
               <li>
-                <input id="phone_num" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
+                <input id="phone_num" class="fk_put mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
               </li>
               <li>
                 <input class="fk_put captcha_modify" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">

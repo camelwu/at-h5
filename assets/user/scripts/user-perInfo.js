@@ -8,10 +8,13 @@
     u_email,
     u_realname,
     Bflag_modify = false,
-    timer_modify=null,
+    Bflag_verify_cellnum = false,
+    timer_modify = null,
+    timer_verify_vell = null,
     r_phone = $('#phone_num')[0],
     UserSex = localStorage.salutation,
-    phone_verify = $('#phone_ver')[0];
+    phone_verify = $('#phone_ver')[0],
+    verify_phone_btn = $('#verify_phone_btn')[0];
 
   //验证input内容
   function check(type, num) {
@@ -40,7 +43,7 @@
   function clickGetCaptcha() {
     //修改密码图片验证码
     $('.fk_captcha_modify').on("click", function (event) {
-      if(Bflag_modify){
+      if (Bflag_modify) {
         return;
       }
       var target = $(event.target);
@@ -77,12 +80,12 @@
     var a_nick = $("#a_nick")[0];
     var a_name = $("#a_name")[0];
     var modify_password = $("#modify_password")[0];
-    var a_email = $("#a_email")[0];
+    var verify_phone_line = $("#verify_phone_line")[0];
     var a_key = $("#a_key")[0];
     var changename = $("#changename")[0];
     var fillname = $("#fillname")[0];
     var modify_pass = $("#modify_pass")[0];
-    var useremail = $("#useremail")[0];
+    var verify_phone_num = $("#verify_phone_num")[0];
     var sex = $("#sex")[0];
     var ifshowkey = $("#ifshowkey")[0];
     var array = title.innerHTML;
@@ -104,7 +107,7 @@
         changename.style.display = "none";
         fillname.style.display = "none";
         modify_pass.style.display = "none";
-        useremail.style.display = "none";
+        verify_phone_num.style.display = "none";
         header.style.display = "none";
         if (obj1 == a_nick || obj1 == a_key) {
           amend_btn.style.display = "none";
@@ -120,7 +123,7 @@
     amendInfo(a_nick, head[0], changename);
     amendInfo(a_name, head[1], fillname);
     amendInfo(modify_password, head[2], modify_pass);
-    amendInfo(a_email, head[3], useremail);
+    amendInfo(verify_phone_line, head[3], verify_phone_num);
 
     $('#a_nick').click(function () {
       $('#amend_btn_0').hide();
@@ -132,6 +135,21 @@
       $('#amend_btn_0').show().siblings('.f_btns').hide();
     });
 
+    //验证手机号
+    $('#verify_phone_line').click(function () {
+      $('#amend_btn_2').show().siblings('.f_btns').hide();
+      getCaptchaCode(function (result) {
+        var imgEle = $("#verify_phone_num img");
+        if (result.success) {
+          var imageUrl = result.data.imageUrl;
+          var imageNo = result.data.imageNo;
+          imgEle.attr('src', imageUrl);
+          imgEle.attr('data-imageno', imageNo);
+        }
+      });
+    });
+
+    //修改密码
     $('#modify_password').click(function () {
       $('#amend_btn_1').show().siblings('.f_btns').hide();
       getCaptchaCode(function (result) {
@@ -143,10 +161,6 @@
           imgEle.attr('data-imageno', imageNo);
         }
       });
-    });
-
-    $('#a_email').click(function () {
-      $('#amend_btn_2').show().siblings('.f_btns').hide();
     });
 
     //  性别选择
@@ -231,38 +245,41 @@
 
     changeInfo_name(amend_btn);
 
-    //修改邮箱
-    function changeInfo_email(obj) {
+    //验证手机号
+    function changeInfo_cell(obj) {
       obj.onclick = function () {
-        var oInputEmail = document.querySelector("#infoForm").querySelector('#email');
-        u_email = oInputEmail.value;
-        if (oInputEmail.value != "") {
-          if (oInputEmail.getAttribute('data-type') != "code") {
-            if (!check(oInputEmail.getAttribute('data-type'), oInputEmail.value)) {
-              jAlert("输入不正确");
-              return;
-            }
+        var input = document.getElementById("verify_phone_num").getElementsByTagName("input");
+        if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+          jAlert("请输入有效手机号");
+          return;
+        }
+        if (localStorage.phone != "") {
+          if (input[0].value == phone) {
+            jAlert("用户已绑定信息不能修改");
+            return;
           }
-          if (localStorage.email != "") {
-            if (oInputEmail.value == email) {
-              jAlert("用户已绑定信息不能修改");
-              return;
-            }
-          }
+        }
+        //图形验证码
+        if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+          jAlert("请输入正确的图形验证码");
+          return;
+        }
+        if (!check(input[2].getAttribute('data-type'), input[2].value)) {
+          jAlert("请输入有效验证码");
+          return;
+        }
 
-          var Parameters = {
-            "Parameters": "{\"MemberId\":\"" + memberid + "\",\"Email\":\"" + u_email + "\"}",
-            "ForeEndType": 3,
-            "Code": "0056"
-          };
-          //console.log(Parameters);
-          $('#preloader').remove();
-          vlm.loadJson("", JSON.stringify(Parameters), mycallback_infoemail);
+        var Parameters = {
+          "Parameters": "{\"MemberId\":\"" + memberid + "\",\"Mobile\":\"" + input[0].value + "\",\"Code\":\"" + $('.mob_phonecode').val() + "\"}",
+          "ForeEndType": 3,
+          "Code": "0056"
         };
+        console.log(Parameters);
+        vlm.loadJson("", JSON.stringify(Parameters), my_phonenumVeri_cb);
       }
     }
 
-    changeInfo_email(amend_btn_2);
+    changeInfo_cell(amend_btn_2);
 
     //  修改密码
     var modify_pass_btn = $("#amend_btn_1")[0];
@@ -324,6 +341,88 @@
     vlm.loadJson("", JSON.stringify(Parameters), mycallback_birth);
   }
 
+
+  //验证手机获取验证码
+  function modify_phone(obj) {
+    obj.onclick = function () {
+      var phone_num = $("#verify_cellphone_code")[0];
+      var findPhoneCaptchaInput = $(".captcha_ver_cell");
+      var findPhoneCaptchaImg = $("#verify_phone_num .fk_captcha_modify");
+      if (!check(phone_num.getAttribute('data-type'), phone_num.value)) {
+        jAlert("请输入有效的手机号");
+        return;
+      }
+      //图形验证码
+      if (!check($('.captcha_ver_cell')[0].getAttribute('data-type'), $('.captcha_ver_cell')[0].value)) {
+        jAlert("请输入正确的图形验证码");
+        return;
+      }
+      if (Bflag_verify_cellnum) {
+        return;
+      }
+      Bflag_verify_cellnum = true;
+      var Parameters = {
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
+        "ForeEndType": 3,
+        "Code": "0058"
+      };
+      console.log(Parameters);
+      $('#verify_phone_btn').html('60秒重发');
+      timedown_verifynum(60);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_modify_code, true, false, true);
+    };
+  }
+
+  modify_phone(verify_phone_btn);
+
+  //验证手机验证码回调
+  function mycallback_modify_code(ret) {
+    var phoneCell_num_ver_inp = $(".captcha_ver_cell")[0];
+    var myJson = ret;
+    if (myJson.success) {
+      vlm.Utils.sendMobileCode(phoneCell_num_ver_inp.value);
+    } else {
+      jAlert(myJson.message);
+      clearInterval(timer_verify_vell);
+      $('#verify_phone_btn').html('获取验证码').css({'color': '#fff'});
+      Bflag_verify_cellnum = false;
+      $('.captcha_ver_cell').val('');
+      $('#mob_phonecode').val('');
+      getCaptchaCode(function (result) {
+        var imgEle = $("#verify_phone_num .fk_captcha_modify");
+        if (result.success) {
+          var imageUrl = result.data.imageUrl;
+          var imageNo = result.data.imageNo;
+          imgEle.attr('src', imageUrl);
+          imgEle.attr('data-imageno', imageNo);
+        }
+      });
+    }
+  }
+
+  //验证手机号倒计时
+  function timedown_verifynum(seconds) {
+    var lasttime = new Date();
+    var newtime;
+    timer_verify_vell = setInterval(function () {
+      seconds--;
+      if (Math.abs(new Date() - lasttime) >= 3000) {
+        newtime = new Date();
+        if (Math.ceil(60 - (newtime - lasttime) / 1000) < 1) {
+          verify_phone_btn.innerHTML = '获取验证码';
+          clearInterval(timer_verify_vell);
+          Bflag_verify_cellnum = false;
+          return;
+        }
+        verify_phone_btn.innerHTML = Math.ceil(60 - (newtime - lasttime) / 1000) + '秒重发';
+      } else {
+        verify_phone_btn.innerHTML = seconds + '秒重发';
+      }
+    }, 1000);
+  }
+
+
+
   //修改密码获取验证码
   function modify_pass(obj) {
     obj.onclick = function () {
@@ -357,7 +456,7 @@
 
   modify_pass(phone_verify);
 
-  //找回密码验证码回调
+  //修改密码验证码回调
   function mycallback_modify_code(ret) {
     var find_modify = $(".captcha_modify")[0];
     var myJson = ret;
@@ -496,17 +595,6 @@
     }
   }
 
-  function mycallback_infoemail(ret) {
-    var myJson = ret;
-    console.log(myJson);
-    if (myJson.success) {
-      localStorage.email = u_email;
-      document.getElementById("infoForm").submit();
-    } else {
-      jAlert(myJson.message);
-    }
-  }
-
   //性别回调
   function mycallback_sex(ret) {
     var myJson = ret;
@@ -523,10 +611,8 @@
     }
   }
 
-  function mycallback_phoneVeri(ret) {
-    var phone_ver = $("#phone_ver")[0];
-    console.log(ret);
-    var myJson = ret;
+  function my_phonenumVeri_cb(ret) {
+    var phone_ver = $(".captcha_ver_cell")[0], myJson = ret;
     console.log(myJson);
     if (myJson.success) {
       vlm.Utils.sendMobileCode(phone_ver.value);
