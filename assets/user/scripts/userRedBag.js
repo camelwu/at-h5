@@ -109,9 +109,10 @@
           data: data,
           allCouponList: allCouponList
         });
+        $("body").find("#redBagWrap").remove();
         $("body").append(output1);
 
-        // 红包列表绑定事件
+        // 景点列表绑定事件
         RedBag.bindScenicListEvent();
       }
     },
@@ -143,6 +144,8 @@
         $("#" + RedBag.triggerDomId).attr("data-amount",target.attr("data-amount"));
         //关闭红包列表
         redWrap.find(".header_back").trigger("click");
+        //更新预定页总额
+        T.Command().callCommand('updatePriceDetail');
       });
     },
     scenicHotelList: function(){
@@ -191,6 +194,8 @@
           data: data,
           allCouponList: allCouponList
         });
+
+        $("body").find("#redBagWrap").remove();
         $("body").append(output1);
 
         // 红包列表绑定事件
