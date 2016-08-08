@@ -206,7 +206,7 @@
       var str = '';
       var tempArray = result.data[0].hotelRoomsList;
       for (var i = 0; i < tempArray.length; i++) {
-        str += '<li class="d-li1 super">' + '<div class="d-div3 roomEvent hotel_content_roomEvent" style="max-width: 60%" room-type-code=' + tempArray[i].roomTypeCode + '> ' + '<div class="d-p5 hotel_content_roomEvent_name">' + tempArray[i].roomTypeName + '</div><b class="d-icon3 hotel_content_roomEvent_detail"></b><div class="d-p6 hotel_content_roomEvent_content">32-38㎡ 大/双床</div></div><div class="showListTrigger hotel_content_listTrigger"><div class="priceNum hotel_content_listTrigger_price"><span class="money">￥</span><span class="moneyNum">' + tempArray[i].minAvgPrice + '<span>起</span></span></div><a href="javascript:void(0)" class="at d-icon5"></a></div>' + hotelDetail.subRoomList(tempArray[i].roomList) + '</li>';
+        str += '<li class="d-li1 super">' + '<div class="d-div3 roomEvent hotel_content_roomEvent" style="max-width: 60%" room-type-code=' + tempArray[i].roomTypeCode + '> ' + '<div class="d-p5 hotel_content_roomEvent_name">' + tempArray[i].roomTypeName + '</div><b class="d-icon3 hotel_content_roomEvent_detail"></b></div><div class="showListTrigger hotel_content_listTrigger"><div class="priceNum hotel_content_listTrigger_price"><span class="money">￥</span><span class="moneyNum">' + tempArray[i].minAvgPrice + '<span>起</span></span></div><a href="javascript:void(0)" class="at d-icon5"></a></div>' + hotelDetail.subRoomList(tempArray[i].roomList) + '</li>';
       }
       return str;
     },
