@@ -12,6 +12,13 @@
     "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005",tplKey:"tpl_fh"},
     "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011",tplKey:"tpl_fht"}
   };
+  window.TourTimer = {
+    0: "上午",
+    1: "下午",
+    2: "晚上",
+    3: "全天",
+    4: "全天"
+  };
 
 
   var bindEvent=function(){
@@ -87,10 +94,10 @@
       if (data.success) {
 
         if(type.id == 1){
-           html = ejs.render($("#"+type.tplKey).html(), data.data[0]);
+          html = ejs.render($("#"+type.tplKey).html(), data.data[0]);
         }
         else{
-           html = ejs.render($("#"+type.tplKey).html(), data.data);
+          html = ejs.render($("#"+type.tplKey).html(), data.data);
         }
         $("#order_details").html(html);
         vlm.init();
@@ -102,8 +109,7 @@
           })
         }
         bindEvent();
-      }
-      else{
+      } else{
         alert("接口错误！");
       }
     });
