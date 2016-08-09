@@ -138,6 +138,7 @@
       this.startAbleDate = options.startAbleDate;
       this.ableWeekRange = options.ableWeekRange; //日期根据wenken 可选不可选 '1,2,3,4,5,6,0'
       this.prefix = options.prefix || "calendar";
+      this.comfirmTip = options.comfirmTip, //确认按钮的提示信息     默认是 ~至~    或者~至~(3晚)
       this.op = 0; //已操作次数
       this.defaultComfirmBtn = options.defaultComfirmBtn;
       this.theLastAbleDay = options.theLastAbleDay;
@@ -234,11 +235,20 @@
       var secondDate = calendar.find(".second_select .date");
       var secondWeek = calendar.find(".second_select .week");
       if (this.selectTime === 2 && this.time) {
-        for (var key in this.time) {
-          dates.push(key);
+        if(Object.prototype.toString.call(this.time) === "[object Array]"){
+          for(var i=0,len = this.time.length;i<len;i++){
+            for (var key in this.time[i]) {
+              dates.push(key);
+            }
+          }
+        }else{
+          for (var key in this.time) {
+            dates.push(key);
+          }
         }
+
         firstDate.html(dates[0]);
-        firstWeek.html(vlm.Utils.getWeek(dates[0]))
+        firstWeek.html(vlm.Utils.getWeek(dates[0]));
         secondDate.html(dates[1]);
         secondWeek.html(vlm.Utils.getWeek(dates[1]));
       }
@@ -265,9 +275,22 @@
       this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
       var tims = this.time;
       this.result.length = 0;
-      for (var key in tims) {
-        this.result.push(key);
+      //机票允许用户选择出发日期和返程日期为同一天
+      if(Object.prototype.toString.call(tims) === "[object Array]"){
+        var tempTimes = {};
+        for(var i=0,len = tims.length;i<len;i++){
+          for (var key in tims[i]) {
+            this.result.push(key);
+            tempTimes[key] = tims[i][key];
+          }
+        }
+        tims = tempTimes;
+      }else{
+        for (var key in tims) {
+          this.result.push(key);
+        }
       }
+
       textNode = document.createTextNode(year + '年' + month + '月');
       titleDate.appendChild(textNode);
       //this.btnEvent();
@@ -379,9 +402,22 @@
       this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
       var tims = this.time;
       this.result.length = 0;
-      for (var key in tims) {
-        this.result.push(key);
+      //机票允许用户选择出发日期和返程日期为同一天
+      if(Object.prototype.toString.call(tims) === "[object Array]"){
+        var tempTimes = {};
+        for(var i=0,len = tims.length;i<len;i++){
+          for (var key in tims[i]) {
+            this.result.push(key);
+            tempTimes[key] = tims[i][key];
+          }
+        }
+        tims = tempTimes;
+      }else{
+        for (var key in tims) {
+          this.result.push(key);
+        }
       }
+
       textNode = document.createTextNode(year + '年' + month + '月');
       titleDate.appendChild(textNode);
       //this.btnEvent();
@@ -627,7 +663,7 @@
         var firstDate = vlm.Utils.format_date(selectDate[0], 'md');
         var secondDate = vlm.Utils.format_date(selectDate[1], 'md');
         var days = (Math.round(((new Date(selectDate[1].replace(/-/g, "/"))) - new Date(selectDate[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)))
-        totelEle.html(firstDate + "至" + secondDate + '(' + (1 + days) + '天' + days + '晚)');
+        this.comfirmTip ? totelEle.html(firstDate + "至" + secondDate + '(' + days + '晚)') : totelEle.html(firstDate + "至" + secondDate);
         comfirmBtn.slideDown();
       } else {
         comfirmBtn.slideUp();
@@ -710,6 +746,12 @@
           if (!this.noComfirmBtn) {
             this.showComfirmBtn(1);
           }
+        }else if(this.type == "flight" && this.selectTime === 2 && twoSelect.getTime() == oneSelect.getTime() ){
+          this.result.push(selectValue);
+          //控制确认按钮是否显示
+          if (!this.noComfirmBtn) {
+            this.showComfirmBtn(1);
+          }
         } else {
           this.result[0] = selectValue;
         }
@@ -787,6 +829,17 @@
         obj[that.result[0]] = that._word[that.type][0];
         obj[that.result[1]] = that._word[that.type][1];
         that.time = obj;
+        var oneSelect = new Date(that.result[0]);
+        var twoSelect = new Date(that.result[1]);
+
+        if(that.type == "flight" && twoSelect.getTime() == oneSelect.getTime()){
+          var obj1 = {},obj2 = {};
+          obj1[that.result[0]] = that._word[that.type][0];
+          obj2[that.result[1]] = that._word[that.type][1];
+
+          that.time = [obj1,obj2];
+        }
+
       } else {
         if ($('#' + that.checkInTimeOptId).length > 0) {
           _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
