@@ -745,6 +745,10 @@ input:-ms-input-placeholder {
   transform: translate3d(0, 0, 0);
 }
 
+.user_content >li{
+  display: none;
+}
+
 #noOrder {
   margin-top: 2.5rem;
 }

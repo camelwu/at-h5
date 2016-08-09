@@ -38,31 +38,24 @@
   };
 
   //图片验证码点击图片时更新
-  function clickGetCaptcha() {
-    //修改密码图片验证码
-    $('.fk_captcha_modify').on("click", function (event) {
-      if (Bflag_modify) {
-        return;
+  $('.fk_captcha_modify').on("click", function (event) {
+    if (Bflag_modify) {
+      return;
+    }
+    var target = $(event.target);
+    getCaptchaCode(function (result) {
+      if (result.success) {
+        var imageNo = result.data.imageNo;
+        var imageUrl = result.data.imageUrl;
+        target.attr("data-imageno", imageNo);
+        target.attr("src", imageUrl);
       }
-      var target = $(event.target);
-      getCaptchaCode(function (result) {
-        if (result.success) {
-          var imageNo = result.data.imageNo;
-          var imageUrl = result.data.imageUrl;
-          target.attr("data-imageno", imageNo);
-          target.attr("src", imageUrl);
-        }
-      });
     });
-  }
+  });
 
-  clickGetCaptcha();
 
   function u_perInfo() {
-    var email = localStorage.email;
-    var phone = localStorage.phone;
     var memberid = localStorage.memberid;
-
     var Parameters = {
       "Parameters": "{\"MemberId\":\"" + memberid + "\"}",
       "ForeEndType": 3,
@@ -71,8 +64,6 @@
     console.log(Parameters);
     vlm.loadJson("", JSON.stringify(Parameters), mycallback);
 
-    var close_page = $("#close_page")[0];
-    var amend_info = $("#amend_info")[0];
     var title = $("#title")[0];
     var info_content = $("#info_content")[0];
     var a_nick = $("#a_nick")[0];
@@ -88,16 +79,12 @@
     var ifshowkey = $("#ifshowkey")[0];
     var array = title.innerHTML;
     var head = array.split("/");
-    var header = $("#header")[0];
 
-    function closeAmend(obj) {
-      obj.onclick = function () {
-        amend_info.style.display = "none";
-        header.style.display = "block";
-      }
-    }
-
-    closeAmend(close_page);
+    //修改信息浮层关闭按钮
+    $("#close_page").on('click',function(){
+      $("#amend_info").hide();
+      $("#header").show();
+    });
 
     //  点击链接页面跳转
     function amendInfo(obj1, obj2, obj3) {
@@ -106,7 +93,6 @@
         fillname.style.display = "none";
         modify_pass.style.display = "none";
         verify_phone_num.style.display = "none";
-        header.style.display = "none";
         if (obj1 == a_nick || obj1 == a_key) {
           amend_btn.style.display = "none";
         } else {
@@ -685,9 +671,5 @@
     vlm.loadJson("", JSON.stringify(Parameters), callback, true, false, true);
   }
 
-//解决safari放回页面错误问题
-//  $("#header").on("click",function(){
-//    window.location.href = 'user.html';
-//  })
 })();
 
