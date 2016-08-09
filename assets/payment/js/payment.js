@@ -391,8 +391,6 @@
        */
       $(window).ajaxStart(function () {
         vlm.loading();
-      }).ajaxError(function () {
-        vlm.loadend();
       });
       vlm.loadJson(url, JSON.stringify(param), function (data) {
         if (data.success) {
