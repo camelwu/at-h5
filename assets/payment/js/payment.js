@@ -382,6 +382,18 @@
       //$.jAlert.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",null,"支付完成","支付出现问题");
       console.log(JSON.stringify(param));
       vlm.loading();
+
+      /**
+       * 传入'nothing'，自由控制loading
+       * ajaxStart显示loading
+       * ajaxSuccess继续显示loading，直到跳转
+       * ajaxFail or ajaxError隐藏loading
+       */
+      $(window).ajaxStart(function () {
+        vlm.loading();
+      }).ajaxError(function () {
+        vlm.loadend();
+      });
       vlm.loadJson(url, JSON.stringify(param), function (data) {
         if (data.success) {
           if (type.id == 1) {
@@ -392,8 +404,7 @@
               location.href = data.data[0].paymentRedirectURL
             }
           } else {
-            $("#preloader").show();
-            $('#status').show();
+            vlm.loading();
             location.href = data.data.paymentRedirectURL;
           }
         } else {

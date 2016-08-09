@@ -1025,8 +1025,7 @@
            *
            * ajaxStop结束后，$(window).off('ajaxStart')结束全局ajax
            *
-           * @param {String} tag
-           * @return {Element} element
+           * @param {boolean|null|undefinde|'nothing'} isShowLoading
            */
           if (isShowLoading === true) {
             $(t).ajaxStart(function () {
