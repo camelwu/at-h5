@@ -52,6 +52,7 @@
             console.log(JSON.stringify(para));
             vlm.loadJson("", JSON.stringify(para),function(data){
                 // data = {"success":false,"message":"获取详细价格时出错(Error Occurs While GetRateDetails.)","code":9010};
+                var html;
                 if (data.success) {
                     if(type.id==1){
                         data.data[0].bookingRefNo=data.data[0].bookingReferenceNo;
@@ -103,10 +104,12 @@
                       data.data.Day = Day;
                       data.data.Night = Night;
                     }
-                    var html = template("template", data.data);
+                    html = template("template_success", data.data);
                     $("#elements").html(html);
                 } else {
-                  // 接口错误
+                    // 接口异常
+                    html = template("template_fail", {});
+                    $(document.body).append(html);
                 }
 
             });
