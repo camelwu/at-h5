@@ -379,7 +379,7 @@
         //data.data.totalPrice=data.data.totalFlightPrice;
         if (bookingRefNo == null) {
           //如果有使用红包,显示金额需要减去红包金额
-          data.data.totalPrice = data.data.Vouchers ? data.data.calcuTotalPrice - data.data.Vouchers.amount[0] : data.data.calcuTotalPrice;
+          data.data.totalPrice = data.data.payAmount ? data.data.payAmount : (data.data.Vouchers ? data.data.calcuTotalPrice - data.data.Vouchers.amount[0] : data.data.calcuTotalPrice);
           data.data.totalPriceCNY = data.data.calcuTotalPriceCNY * data.data.NumOfRoom;
           data.data.hotelName = data.data.HotelGenInfo.hotelNameLocale;
           data.data.roomType = data.data.RoomTypeName;
