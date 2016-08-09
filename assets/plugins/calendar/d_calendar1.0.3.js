@@ -234,11 +234,20 @@
       var secondDate = calendar.find(".second_select .date");
       var secondWeek = calendar.find(".second_select .week");
       if (this.selectTime === 2 && this.time) {
-        for (var key in this.time) {
-          dates.push(key);
+        if(Object.prototype.toString.call(this.time) === "[object Array]"){
+          for(var i=0,len = this.time.length;i<len;i++){
+            for (var key in this.time[i]) {
+              dates.push(key);
+            }
+          }
+        }else{
+          for (var key in this.time) {
+            dates.push(key);
+          }
         }
+
         firstDate.html(dates[0]);
-        firstWeek.html(vlm.Utils.getWeek(dates[0]))
+        firstWeek.html(vlm.Utils.getWeek(dates[0]));
         secondDate.html(dates[1]);
         secondWeek.html(vlm.Utils.getWeek(dates[1]));
       }
@@ -265,9 +274,18 @@
       this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
       var tims = this.time;
       this.result.length = 0;
-      for (var key in tims) {
-        this.result.push(key);
+      if(Object.prototype.toString.call(tims) === "[object Array]"){
+        for(var i=0,len = tims.length;i<len;i++){
+          for (var key in tims[i]) {
+            this.result.push(key);
+          }
+        }
+      }else{
+        for (var key in tims) {
+          this.result.push(key);
+        }
       }
+
       textNode = document.createTextNode(year + '年' + month + '月');
       titleDate.appendChild(textNode);
       //this.btnEvent();
@@ -379,9 +397,18 @@
       this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
       var tims = this.time;
       this.result.length = 0;
-      for (var key in tims) {
-        this.result.push(key);
+      if(Object.prototype.toString.call(tims) === "[object Array]"){
+        for(var i=0,len = tims.length;i<len;i++){
+          for (var key in tims[i]) {
+            this.result.push(key);
+          }
+        }
+      }else{
+        for (var key in tims) {
+          this.result.push(key);
+        }
       }
+
       textNode = document.createTextNode(year + '年' + month + '月');
       titleDate.appendChild(textNode);
       //this.btnEvent();
@@ -710,6 +737,12 @@
           if (!this.noComfirmBtn) {
             this.showComfirmBtn(1);
           }
+        }else if(this.type == "flight" && this.selectTime === 2 && twoSelect.getTime() == oneSelect.getTime() ){
+          this.result.push(selectValue);
+          //控制确认按钮是否显示
+          if (!this.noComfirmBtn) {
+            this.showComfirmBtn(1);
+          }
         } else {
           this.result[0] = selectValue;
         }
@@ -787,6 +820,17 @@
         obj[that.result[0]] = that._word[that.type][0];
         obj[that.result[1]] = that._word[that.type][1];
         that.time = obj;
+        var oneSelect = new Date(that.result[0]);
+        var twoSelect = new Date(that.result[1]);
+
+        if(that.type == "flight" && twoSelect.getTime() == oneSelect.getTime()){
+          var obj1 = {},obj2 = {};
+          obj1[that.result[0]] = that._word[that.type][0];
+          obj2[that.result[1]] = that._word[that.type][1];
+
+          that.time = [obj1,obj2];
+        }
+
       } else {
         if ($('#' + that.checkInTimeOptId).length > 0) {
           _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];

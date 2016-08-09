@@ -109,31 +109,7 @@
 
         </footer>
     </div>
-    <div class="select_time clearfix">
-      <h2>单选日期</h2>
-      <div id="timeClickWrap">
-        <div id="checkInTime" class="check_in"></div>
-        <div id="checkOutTime" class="check_out"></div>
-        <div class="time_icon"></div>
-      </div>
-    </div>
-    <div class="select_time clearfix">
-      <h2>双选日期--机票</h2>
-      <div id="timeClickWrap1">
-        <div id="checkInTime" class="check_in"></div>
-        <div id="checkOutTime" class="check_out"></div>
-        <div class="time_icon"></div>
-      </div>
-    </div>
-    <div class="select_time clearfix">
-      <h2>单选日期--机票</h2>
-      <div id="timeClickWrap2">
-        <div id="checkInTime" class="check_in"></div>
-        <div id="checkOutTime" class="check_out"></div>
-        <div class="time_icon"></div>
-      </div>
-    </div>
-  </div>
+
   <div class="siteRight">
     <p></p>
   </div>
@@ -144,13 +120,14 @@
 <script src="../../js/lib/jquery.js"></script>
 <script src="../../js/lib/vlm.js"></script>
 <script src="../../plugins/calendar/d_calendar1.0.3.js"></script>
-<script src="../../plugins/scrollLayer/scrollLayer.js"></script>
+<!--<script src="../../plugins/scrollLayer/scrollLayer.js"></script>-->
 <script>
   //酒店双选
 
   var hotelDouble = new ATplugins.Calender({
     id: "hotelDouble",
     headerSign: 'tip', //tipClean  tip
+    type:'hotel',
     noComfirmBtn: true,
     time: {
       "2016-06-25": "checkinTime",
@@ -167,8 +144,8 @@
   var myTime = new ATplugins.Calender({
     id: "timeClickWrap1",
     time: {
-      "2016-07-20": "checkinTime",
-      "2016-07-23": "checkoutTime"
+      "2016-08-20": "checkinTime",
+      "2016-08-23": "checkoutTime"
     },
     checkInTimeOptId: 'checkInTime',
     checkOutTimeOptId: 'checkOutTime',
