@@ -392,13 +392,15 @@
               location.href = data.data[0].paymentRedirectURL
             }
           } else {
+            $("#preloader").show();
+            $('#status').show();
             location.href = data.data.paymentRedirectURL;
           }
         } else {
           jAlert(data.message);
           vlm.loadend();
         }
-      });
+      }, null, null, 'nothing');
 
     };
     /*生成订单详情HTML片段*/

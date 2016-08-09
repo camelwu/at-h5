@@ -1018,14 +1018,25 @@
           data.Code = _codeDic[data.Code] == undefined ? data.Code : _codeDic[data.Code];
           data = JSON.stringify(data);
 
-          if (isShowLoading != undefined && isShowLoading == true) {
-            //ajax 不全屏显示loading
+          /**
+           * 默认传入undefined，全屏显示loading
+           * 传入true，不全屏显示loading
+           * 传入'nothing'，什么也不显示自由控制
+           *
+           * ajaxStop结束后，$(window).off('ajaxStart')结束全局ajax
+           *
+           * @param {String} tag
+           * @return {Element} element
+           */
+          if (isShowLoading === true) {
             $(t).ajaxStart(function () {
               $("#preloader").hide();
               $('#status').hide();
             }).ajaxStop(function () {
               $("#preloader").hide();
               $('#status').show();
+              $(t).off('ajaxStart');
+              $(t).off('ajaxStop');
             });
             /*$("#preloader").ajaxStart(function() {
              $(this).hide();
@@ -1035,7 +1046,7 @@
              $(this).hide();
              $('#status').hide();
              });*/
-          } else {
+          } else if (isShowLoading === undefined || isShowLoading === null || isShowLoading === false) {
             // 1.8以后，ajaxStart要绑定到document
             $(t).ajaxStart(function () {
               $("#preloader").show();
@@ -1043,6 +1054,8 @@
             }).ajaxStop(function () {
               $("#preloader").hide();
               $('#status').show();
+              $(t).off('ajaxStart');
+              $(t).off('ajaxStop');
             });
             /*$("#preloader").ajaxStart(function() {
              console.log("ajaxStart");
@@ -1053,6 +1066,7 @@
              $(this).hide();
              $('#status').show();
              });*/
+          } else if (isShowLoading === 'nothing') {
           }
           if (async != undefined && async == true) {
             $.ajaxSetup({
@@ -1063,6 +1077,7 @@
           var apiUrl = url == "" ? _api : url;
           $.ajax({
             type: "post",
+            // type: "get",
             url: apiUrl + '?rnd=' + Math.random(),
             timeout: 1000 * 60 * 5,
             data: data,
