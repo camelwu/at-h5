@@ -5,13 +5,11 @@
 (function () {
   var infoJson,
     u_phone,
-    u_email,
     u_realname,
     Bflag_modify = false,
     Bflag_verify_cellnum = false,
     timer_modify = null,
     timer_verify_vell = null,
-    r_phone = $('#phone_num')[0],
     UserSex = localStorage.salutation,
     phone_verify = $('#phone_ver')[0],
     verify_phone_btn = $('#verify_phone_btn')[0];
@@ -253,12 +251,6 @@
           jAlert("请输入有效手机号");
           return;
         }
-        if (localStorage.phone != "") {
-          if (input[0].value == phone) {
-            jAlert("用户已绑定信息不能修改");
-            return;
-          }
-        }
         //图形验证码
         if (!check(input[1].getAttribute('data-type'), input[1].value)) {
           jAlert("请输入正确的图形验证码");
@@ -272,7 +264,7 @@
         var Parameters = {
           "Parameters": "{\"MemberId\":\"" + memberid + "\",\"Mobile\":\"" + input[0].value + "\",\"Code\":\"" + $('.mob_phonecode').val() + "\"}",
           "ForeEndType": 3,
-          "Code": "0056"
+          "Code": "0060"
         };
         console.log(Parameters);
         vlm.loadJson("", JSON.stringify(Parameters), my_phonenumVeri_cb);
@@ -362,21 +354,21 @@
       }
       Bflag_verify_cellnum = true;
       var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":4,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
         "ForeEndType": 3,
         "Code": "0058"
       };
       console.log(Parameters);
       $('#verify_phone_btn').html('60秒重发');
       timedown_verifynum(60);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_modify_code, true, false, true);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify_code, true, false, true);
     };
   }
 
   modify_phone(verify_phone_btn);
 
   //验证手机验证码回调
-  function mycallback_modify_code(ret) {
+  function mycallback_verify_code(ret) {
     var phoneCell_num_ver_inp = $(".captcha_ver_cell")[0];
     var myJson = ret;
     if (myJson.success) {
@@ -612,13 +604,17 @@
   }
 
   function my_phonenumVeri_cb(ret) {
-    var phone_ver = $(".captcha_ver_cell")[0], myJson = ret;
+    var myJson = ret;
     console.log(myJson);
     if (myJson.success) {
-      vlm.Utils.sendMobileCode(phone_ver.value);
+      jAlert('验证手机号成功', '', cb_test_phone);
     } else {
       jAlert(myJson.message);
     }
+  }
+
+  function cb_test_phone() {
+    document.getElementById("infoForm").submit();
   }
 
   function mycallback_newKey(ret) {
