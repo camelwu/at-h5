@@ -465,7 +465,11 @@
   <section id="tour">
     <div class="tour_wrap">
       <p class="tour_productinfo">
-        <span class="productName"><%=packageName%></span><span class="productCode">(产品编号 <%=packageRefNo%>)</span>
+        <span class="productName"><%=packageName%></span>
+        <span class="productCode">产品编号:<%=packageRefNo%></span>
+        <% if(pickupPoint.pickupPoint){%>
+          <span class="productCode">接送酒店:<%=pickupPoint.pickupPoint%></span>
+        <% } %>
       </p>
       <a href="../scenic/scenic_detail.html?packageID=<%=packageID%>"><i class="tourdetail_icon"></i></a>
     </div>
@@ -481,7 +485,7 @@
       numChild=info.quantity
       }
       }) %>
-      <p><span>成人票：<%=numAdult%>张;</span>
+      <p><span>成人票：<%=numAdult%>张</span>
         <%if(parseInt(numChild)>0){%>
         <span>儿童票：<%=numChild%>张</span></p>
       <%}%>

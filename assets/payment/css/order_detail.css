@@ -1163,11 +1163,16 @@ li.order_tlist2 {
 .tour_wrap .productName {
   font-size: .30rem;
   font-weight: bold;
+  display: block;
+  margin-bottom: .04rem;
 }
 
 .tour_wrap .productCode {
   padding-left: .05rem;
   color: #999999;
+  display: block;
+  line-height: .4rem;
+  font-size: .2rem;
 }
 
 .tour_productinfo {
