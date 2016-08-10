@@ -392,7 +392,7 @@
         else {
           data.data[0].hotelName = data.data[0].hotelName;
           data.data[0].totalNight = 1;
-          data.data[0].totalPrice = parseInt(data.data[0].totalRoomRate);
+          data.data[0].totalPrice = data.data[0].payAmount;
 
         }
         var html = template("tpl_hotel_detail", data.data);
