@@ -556,6 +556,15 @@ function mycallback_login(myJson) {
           }
         }
         $('#login_three')[0].style.display ='block';
+        var target = $('.captcha_img_three');
+        getCaptchaCode(function (result) {
+          if (result.success) {
+            var imageNo = result.data.imageNo;
+            var imageUrl = result.data.imageUrl;
+            target.attr("data-imageno", imageNo);
+            target.attr("src", imageUrl);
+          }
+        });
       }
 
     }
