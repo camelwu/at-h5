@@ -240,7 +240,7 @@ input:-ms-input-placeholder {
   width: 50%;
 }
 #img_clear,#img_clear_reg{
-  right: 3rem;
+  right: 2.7rem;
 }
 #img_code_clear,#img_clear_reg_code{
   right: 2.2rem;
@@ -1011,6 +1011,9 @@ input:-ms-input-placeholder {
 }
 
 /*修改昵称页css*/
+#amend_info{
+  display: none;
+}
 .u_name {
   height: .96rem;
   line-height: .96rem;
@@ -1935,6 +1938,8 @@ a.foot-users {
 /*动态密码验证码*/
 .captcha_img, .captcha_img_reg {
   width: 2.6rem;
+  height: .6rem;
+  line-height: .6rem;
   max-width: 2.6rem;
   position: absolute;
   right: 0;

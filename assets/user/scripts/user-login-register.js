@@ -555,7 +555,7 @@ function getCaptchaCode(callback) {
     "Code": "70100022"
   };
   console.log(Parameters);
-  vlm.loadJson("", JSON.stringify(Parameters), callback, true, false, true);
+  vlm.loadJson("", JSON.stringify(Parameters), callback, false, false, true);
 }
 
 //头部关闭

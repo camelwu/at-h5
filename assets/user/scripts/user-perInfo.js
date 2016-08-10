@@ -53,7 +53,6 @@
     });
   });
 
-
   function u_perInfo() {
     var memberid = localStorage.memberid;
     var Parameters = {
