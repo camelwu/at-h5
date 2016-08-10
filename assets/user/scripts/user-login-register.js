@@ -37,7 +37,7 @@ window.onload = function () {
     findkey_btn = $("#findkey_btn")[0];
   ;
 
-  if(localStorage.threelogin){
+  if(document.cookie.indexOf('threelogin') != -1){
     //三次登录后,一直显示验证码
     $('#login_three')[0].style.display ='block';
     var target = $('.captcha_img_three');
@@ -547,7 +547,14 @@ function mycallback_login(myJson) {
     if($('#yc_login').parent().hasClass('active')){
       threelogin++;
       if(threelogin >=3){
-        localStorage.threelogin=true;
+        if(threelogin == 3){
+          var arrStr = document.cookie.split("; ");
+          if(arrStr[0]!=""){
+            var exp =new Date(new Date()+86400000-(new Date().getHours()*60*60+new Date().getMinutes()*60+new Date().getSeconds())*1000);
+            exp.setTime(exp.getTime());
+            document.cookie = "threelogin=true"+ ";expires=" + exp.toUTCString();
+          }
+        }
         $('#login_three')[0].style.display ='block';
       }
 
