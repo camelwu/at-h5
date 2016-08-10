@@ -488,7 +488,7 @@ function cb_register() {
 
 //登录回调函数
 
-if( ! localStorage.threelogin){
+if( document.cookie.indexOf('threelogin') == -1){
   var threelogin=0;
 }
 
@@ -545,6 +545,7 @@ function mycallback_login(myJson) {
 
     //账户密码登录三次错误
     if($('#yc_login').parent().hasClass('active')){
+      console.log(threelogin);
       threelogin++;
       if(threelogin >=3){
         if(threelogin == 3){
