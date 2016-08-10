@@ -56,13 +56,19 @@
             <div id="phone_login">
               <div class="login_input">
                 <b class="icon_user login_phone"></b>
-                <input id="phone" type="tel" maxlength="11" class="in_phone" autofocus="autofocus" value="" placeholder="请输入用户名/手机号" data-type="tel" autocomplete="off">
+                <input id="phone" type="tel" maxlength="11" class="in_phone" autofocus="autofocus" value="" placeholder="请输入手机号" data-type="tel" autocomplete="off">
                 <b class="icon_person login_clear"></b>
               </div>
               <div class="login_input">
                 <b class="icon_user login_pass"></b>
                 <input id="p_password" type="password" value="" placeholder="请输入密码" data-type="pass" autocomplete="off">
                 <b class="icon_person login_clear"></b>
+              </div>
+              <div class="login_input" id="login_three" style="display: none">
+                <b class="icon_user login_pass"></b>
+                <input type="text" id="img_active_login_three" class="captcha_img_text" value="" placeholder="请输入验证码" data-type="imgcode" autocomplete="off">
+                <b class="icon_person login_clear" id="img_clear_three"></b>
+                <img class="captcha_img_three" src="" alt="验证码">
               </div>
               <div class="clearfix">
                 <a class="forgotkey" href="javascript:;">忘记密码？</a>
@@ -73,12 +79,12 @@
               <ul>
                 <li class="login_input">
                   <b class="icon_user login_phone"></b>
-                  <input id="cellCode_phone" maxlength="11"  type="tel" value placeholder="输入有效手机号" data-type="tel">
+                  <input id="cellCode_phone" maxlength="11"  type="tel" value placeholder="请输入手机号" data-type="tel">
                   <b class="icon_person login_clear"></b>
                 </li>
                 <li class="login_input">
                   <b class="icon_user login_pass"></b>
-                  <input type="text" id="img_active_text" class="captcha_img_text" value="" placeholder="请输入图形验证码" data-type="imgcode" autocomplete="off">
+                  <input type="text" id="img_active_text" class="captcha_img_text" value="" placeholder="请输入验证码" data-type="imgcode" autocomplete="off">
                   <b class="icon_person login_clear" id="img_clear"></b>
                   <img class="captcha_img" src="" alt="验证码">
                 </li>
@@ -110,7 +116,7 @@
             </div>
             <div class="login_input">
               <b class="icon_user login_pass"></b>
-              <input type="text" class="captcha" id="reg_capture" value placeholder="请输入图形验证码" data-type="imgcode" />
+              <input type="text" class="captcha" id="reg_capture" value placeholder="请输入验证码" data-type="imgcode" />
               <b class="icon_person login_clear " id="img_clear_reg"></b>
               <img class="captcha_img_reg" src="" alt="验证码" />
             </div>
@@ -145,7 +151,7 @@
             <input id="find_phone" class="fk_put" type="tel" value placeholder="请输入手机号" data-type="tel">
           </li>
           <li>
-            <input class="fk_put captcha" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">
+            <input class="fk_put captcha" type="text" value="" placeholder="请输入验证码" data-type="imgcode">
             <img class="fk_captcha"  src="" alt="验证码" />
           </li>
           <li>

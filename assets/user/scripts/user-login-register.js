@@ -37,56 +37,50 @@ window.onload = function () {
     findkey_btn = $("#findkey_btn")[0];
   ;
 
-  //图片验证码点击图片时更新
-  function clickGetCaptcha() {
-    //动态登录
-    $('.captcha_img').on("click", function (event) {
-      if (login_activeBflag) {
-        return;
+  if(localStorage.threelogin){
+    //三次登录后,一直显示验证码
+    $('#login_three')[0].style.display ='block';
+    var target = $('.captcha_img_three');
+    getCaptchaCode(function (result) {
+      if (result.success) {
+        var imageNo = result.data.imageNo;
+        var imageUrl = result.data.imageUrl;
+        target.attr("data-imageno", imageNo);
+        target.attr("src", imageUrl);
       }
-      var target = $(event.target);
-      getCaptchaCode(function (result) {
-        if (result.success) {
-          var imageNo = result.data.imageNo;
-          var imageUrl = result.data.imageUrl;
-          target.attr("data-imageno", imageNo);
-          target.attr("src", imageUrl);
-        }
-      });
-    });
-
-    //注册
-    $('.captcha_img_reg').on("click", function (event) {
-      console.log(regBflag_t);
-      if (regBflag_t) {
-        return;
-      }
-      var target = $(event.target);
-      getCaptchaCode(function (result) {
-        if (result.success) {
-          var imageNo = result.data.imageNo;
-          var imageUrl = result.data.imageUrl;
-          target.attr("data-imageno", imageNo);
-          target.attr("src", imageUrl);
-        }
-      });
-    });
-
-    //忘记密码
-    $('.fk_captcha').on("click", function (event) {
-      var target = $(event.target);
-      getCaptchaCode(function (result) {
-        if (result.success) {
-          var imageNo = result.data.imageNo;
-          var imageUrl = result.data.imageUrl;
-          target.attr("data-imageno", imageNo);
-          target.attr("src", imageUrl);
-        }
-      });
     });
   }
 
-  clickGetCaptcha();
+  //图片验证码点击图片时更新
+
+    function click_common_getimg(className,bflag){
+      $(className).on('click',function(event){
+        if (bflag) {
+          return;
+        }
+        var target = $(event.target);
+        getCaptchaCode(function (result) {
+          if (result.success) {
+            var imageNo = result.data.imageNo;
+            var imageUrl = result.data.imageUrl;
+            target.attr("data-imageno", imageNo);
+            target.attr("src", imageUrl);
+          }
+        });
+      });
+    }
+
+  //账户登录
+  click_common_getimg('.captcha_img_three');
+
+  //动态登录
+  click_common_getimg('.captcha_img',login_activeBflag);
+
+  //注册
+  click_common_getimg('.captcha_img_reg',regBflag_t);
+  //忘记密码
+  click_common_getimg('.fk_captcha');
+
 
   //亚程账户动态码登录切换
   $('.login_tab_wrap >div').click(function () {
@@ -226,6 +220,13 @@ window.onload = function () {
         if (!check(input[1].getAttribute('data-type'), input[1].value)) {
           jAlert("请输入6-18位密码");
           return;
+        }
+        if($('#login_three')[0].style.display == 'block'){
+          //图形验证码
+          if (!check($('#img_active_login_three')[0].getAttribute('data-type'), $('#img_active_login_three')[0].value)) {
+            jAlert("请输入正确的图形验证码");
+            return;
+          }
         }
         var Parameters = {
           "Parameters": "{\"CultureName\":\"\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
@@ -486,6 +487,11 @@ function cb_register() {
 }
 
 //登录回调函数
+
+if( ! localStorage.threelogin){
+  var threelogin=0;
+}
+
 function mycallback_login(myJson) {
   if (myJson.success) {
     vlm.init();
@@ -519,15 +525,7 @@ function mycallback_login(myJson) {
     }
 
   } else {
-    if (myJson.message == 'Invalid password') {
-      jAlert('密码错误，请重新输入');
-    } else if (myJson.message == 'Invalid username or password.') {
-      jAlert('用户名或密码错误');
-    } else if (myJson.message == '无此用户的相关信息') {
-      jAlert('未注册用户');
-    } else {
-      jAlert(myJson.message);
-    }
+    jAlert(myJson.message);
     if (timer_active) {
       clearInterval(timer_active);
       $('#cellCodefind_verify').html('获取验证码').css({'color': '#fff'});
@@ -544,6 +542,17 @@ function mycallback_login(myJson) {
         }
       });
     }
+
+    //账户密码登录三次错误
+    if($('#yc_login').parent().hasClass('active')){
+      threelogin++;
+      if(threelogin >=3){
+        localStorage.threelogin=true;
+        $('#login_three')[0].style.display ='block';
+      }
+
+    }
+
   }
 }
 

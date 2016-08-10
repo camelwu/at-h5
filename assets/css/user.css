@@ -236,13 +236,16 @@ input:-ms-input-placeholder {
   height: 1.2rem;
   position: relative;
 }
-.captcha_img_text{
+
+.captcha_img_text {
   width: 50%;
 }
-#img_clear,#img_clear_reg{
+
+#img_clear, #img_clear_reg {
   right: 2.7rem;
 }
-#img_code_clear,#img_clear_reg_code{
+
+#img_code_clear, #img_clear_reg_code {
   right: 2.2rem;
 }
 
@@ -745,7 +748,7 @@ input:-ms-input-placeholder {
   transform: translate3d(0, 0, 0);
 }
 
-.user_content >li{
+.user_content > li {
   display: none;
 }
 
@@ -1011,9 +1014,10 @@ input:-ms-input-placeholder {
 }
 
 /*修改昵称页css*/
-#amend_info{
+#amend_info {
   display: none;
 }
+
 .u_name {
   height: .96rem;
   line-height: .96rem;
@@ -1517,7 +1521,7 @@ input:-ms-input-placeholder {
 }
 
 .footer-menu i {
-  display: block ;
+  display: block;
   margin: 0 auto 0 auto;
   width: .48rem;
   height: .48rem;
@@ -1570,7 +1574,8 @@ a.foot-users {
   text-align: center;
   color: #999999;
 }
-.header_finish{
+
+.header_finish {
   position: absolute;
   right: .28rem;
   top: .23rem;
@@ -1936,7 +1941,7 @@ a.foot-users {
 /*填写姓名说明页结束*/
 
 /*动态密码验证码*/
-.captcha_img, .captcha_img_reg {
+.captcha_img, .captcha_img_reg, .captcha_img_three {
   width: 2.6rem;
   height: .6rem;
   line-height: .6rem;
