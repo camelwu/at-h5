@@ -69,20 +69,20 @@
         var postCard = document.getElementById("postCard").innerHTML,
           cardId;
         //中文姓名验证
-        var sChiName = input[0].value;
+        var sChiName = input[0].value=input[0].value.trim();
         if (!vlm.Utils.validate.chiName(sChiName)) {
           jAlert('请输入正确的中文名');
           return;
         }
         //英文姓
-        var sEngfa = input[1].value;
+        var sEngfa = input[1].value=input[1].value.trim();;
         if (!vlm.Utils.validate.engName(sEngfa)) {
           jAlert('请输入正确的英文姓');
           return;
         }
 
         //英文名
-        var sEngfir = input[2].value;
+        var sEngfir = input[2].value=input[2].value.trim();;
         if (!vlm.Utils.validate.engName(sEngfir)) {
           jAlert('请输入正确的英文名');
           return;
@@ -145,11 +145,8 @@
         }
         // 手机号邮箱检验
 
-        $('#mobile-cell-add')[0].value = $('#mobile-cell-add')[0].value.replace(/^\s*/, '');
-        var oMobile = $('#mobile-cell-add')[0].value;
-        $('#email-cell-add')[0].value = $('#email-cell-add')[0].value.replace(/^\s*/, '');
-
-        var oEmail = $('#email-cell-add')[0].value;
+        var oMobile = $('#mobile-cell-add')[0].value=$('#mobile-cell-add')[0].value.trim();
+        var oEmail = $('#email-cell-add')[0].value=$('#email-cell-add')[0].value.trim();
 
         if (!vlm.Utils.validate.mobileNo(oMobile)) {
           jAlert('请输入正确的手机号');
@@ -229,20 +226,20 @@
         var cardId;
         var countryName = document.getElementById("countryName").innerHTML;
         //中文姓名验证
-        var sChiName = input[0].value;
+        var sChiName = input[0].value=input[0].value.trim();
         if (!vlm.Utils.validate.chiName(sChiName)) {
           jAlert('请输入正确的中文名');
           return;
         }
         //英文姓
-        var sEngfa = input[1].value;
+        var sEngfa = input[1].value=input[1].value.trim();
         if (!vlm.Utils.validate.engName(sEngfa)) {
           jAlert('请输入正确的英文姓');
           return;
         }
 
         //英文名
-        var sEngfir = input[2].value;
+        var sEngfir = input[2].value=input[2].value.trim();
         if (!vlm.Utils.validate.engName(sEngfir)) {
           jAlert('请输入正确的英文名');
           return;
@@ -302,10 +299,8 @@
         ;
 
         // 手机号邮箱检验
-        var oMobile = $('#mobile-cell')[0].value,
-          oEmail = $('#email-cell')[0].value;
-        $('#mobile-cell')[0].value = $('#mobile-cell')[0].value.replace(/^\s*/, '');
-        $('#email-cell')[0].value = $('#email-cell')[0].value.replace(/^\s*/, '');
+        var oMobile = $('#mobile-cell')[0].value=$('#mobile-cell')[0].value.trim(),
+          oEmail = $('#email-cell')[0].value=$('#email-cell')[0].value.trim();
 
         if (!vlm.Utils.validate.mobileNo(oMobile)) {
           jAlert('请输入正确的手机号');
