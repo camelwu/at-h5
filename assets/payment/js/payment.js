@@ -348,27 +348,6 @@
             "ForeEndType": 3
           }
         }
-        else {
-          Parameters = {
-            "bankName": model.bankName,
-            "bookingReferenceNo": bookingRefNo,
-            "cardBillingAddress": "",
-            "cardHolderName": model.cardHolderName,
-            "cardIssuanceCountry": model.cardIssuanceCountry,
-            "cardSecurityCode": model.cardSecurityCode,
-            "cashVoucherDetails": "",
-            "creditCardExpiryDate": model.cardExpiryDate,
-            "creditCardNumber": model.cardNumber,
-            "creditCardType": cardType,
-            "paymentGatewayID": "0",
-            "CardIssuanceCountry": $(".CardIssuanceCountryCode").attr("data-code")
-          }
-          param = {
-            "Code": "0014",
-            "Parameters": Parameters,
-            "ForeEndType": 3
-          }
-        }
 
       }
       else {
