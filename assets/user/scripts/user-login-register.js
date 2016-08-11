@@ -550,8 +550,9 @@ function mycallback_login(myJson) {
         if(threelogin == 3){
           var arrStr = document.cookie.split("; ");
           if(arrStr[0]!=""){
-            var exp =new Date(new Date()+86400000-(new Date().getHours()*60*60+new Date().getMinutes()*60+new Date().getSeconds())*1000);
-            exp.setTime(exp.getTime());
+            var exp =new Date();
+            exp.setHours(0,0,0);
+            exp.setTime(exp.getTime()+86400000+8*60*60*1000);
             document.cookie = "threelogin=true"+ ";expires=" + exp.toUTCString();
           }
         }
