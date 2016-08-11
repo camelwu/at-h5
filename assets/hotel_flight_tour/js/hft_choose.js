@@ -259,12 +259,14 @@ var hftChoose = {
         hftChangeFlightPara.tours = toursArray;
         hftChangeFlightPara.packageID = that.initParaObj.packageID;
       } else {
-        hftChangeFlightPara.airwaySetID = that.curData.airwaySetID;
-        hftChangeFlightPara.airwayCacheID = that.curData.airwayCacheID;
         hftChangeFlightPara.SortFields = [0];
         hftChangeFlightPara.ScreenFields = [0];
         hftChangeFlightPara.FlightStartTime = 0;
       }
+      //传递默认选择的航班信息
+      hftChangeFlightPara.airwaySetID = that.curData.airwaySetID;
+      hftChangeFlightPara.airwayCacheID = that.curData.airwayCacheID;
+
       storage.setItem('hftChangeFlightPara', JSON.stringify(hftChangeFlightPara));
       that.timer1 = setTimeout(function () {
         window.clearTimeout(that.timer1);

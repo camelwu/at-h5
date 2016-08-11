@@ -226,11 +226,17 @@ window.addEventListener('load', function () {
       if(json.success){
         var data=json.data;
         ExtendData = data;
+        if(window.location.search.indexOf('oneticket') != -1){
+          //一元产品
+          var htmlc = $("#Barcontent_oneticket").html();
+          var htmlC = ejs.render(htmlc,json.data);
+          $("#barContent").html(htmlC);
+        }else{
+          var htmlc = $("#Barcontent").html();
+          var htmlC = ejs.render(htmlc,json.data);
+          $("#barContent").html(htmlC);
+        }
 
-
-        var htmlc = $("#Barcontent").html();
-        var htmlC = ejs.render(htmlc,json.data);
-        $("#barContent").html(htmlC);
         var htmls = $("#Sceniccontent").html();
         var htmlS = ejs.render(htmls,json.data);
         //图片点击事件
@@ -317,6 +323,13 @@ window.addEventListener('load', function () {
         {
           SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
         }
+
+        //SearchPrice.Parameters.MemberID=localStorage.memberid;
+
+        if(window.location.search.indexOf('oneticket') != -1){
+          SearchPrice.Parameters.Adult = 1;
+        }
+
         AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
         //console.log(ExtendData);
       }else{
@@ -351,7 +364,25 @@ window.addEventListener('load', function () {
               var RequiredPickupPoint = tar.getAttribute("data-RPP");
               var category = tar.getAttribute("data-category");
               var fail = tar.getAttribute("data-fail");
-              window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+category+"&FAIL="+fail;
+              //一元门票必须登陆
+              var oneYuanStr='../scenic/scenic_order_detail.html?PackageID='+packageId+'&RPP='+RequiredPickupPoint+'&ADU='+category+'&FAIL='+fail;
+              if(window.location.search.indexOf('oneticket') != -1 ){
+                if(localStorage.memberid == undefined){
+                  jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
+
+                  function shopSure(arg) {
+                    if (arg == true) {
+                      oneYuanStr=oneYuanStr+'&oneticket';
+                      vlm.checkLogin(oneYuanStr);
+                    }
+                  }
+                  return;
+                }
+                oneYuanStr=oneYuanStr+'&oneticket';
+                window.location.href = oneYuanStr;
+              }
+              window.location.href = oneYuanStr;
+
             }
         });
       }else {
