@@ -237,7 +237,7 @@ input:-ms-input-placeholder {
   position: relative;
 }
 
-.captcha_img_text {
+.captcha_img_text,.captcha_inp_three {
   width: 50%;
 }
 
