@@ -73,6 +73,12 @@ input:-ms-input-placeholder {
   background: url("../images/user/login_bg.png") no-repeat;
 }
 
+@media screen and (min-width: 7.5rem) {
+  #all_user{
+    background-size: cover;
+  }
+}
+
 .login_page {
   position: absolute;
   left: 0;
@@ -237,7 +243,7 @@ input:-ms-input-placeholder {
   position: relative;
 }
 
-.captcha_img_text,.captcha_inp_three {
+.captcha_img_text, .captcha_inp_three {
   width: 50%;
 }
 
@@ -561,11 +567,14 @@ input:-ms-input-placeholder {
 
 .user_lists {
   padding: .4rem .28rem;
+  margin-bottom: 2rem;
 }
-.user_lists .icon_person{
+
+.user_lists .icon_person {
   background: url(../images/ui/icons-user.png) no-repeat;
   background-size: 8rem 2rem;
 }
+
 .user_lists > li {
   position: relative;
   height: .88rem;
@@ -582,8 +591,8 @@ input:-ms-input-placeholder {
   width: 100%;
   height: 3.18rem;
   padding-top: .7rem;
-  background: url(../images/ui/icon_person.png) no-repeat;
-  background-position: -1rem -4rem;
+  background: url(../images/user/bg_green.png) no-repeat;
+  background-size: cover;
 }
 
 #u_info {
@@ -651,7 +660,7 @@ input:-ms-input-placeholder {
 #header_phone,
 #close_cellCode,
 #myRed,
-#link_redBag{
+#link_redBag {
   display: none;
 }
 
@@ -1377,17 +1386,21 @@ input:-ms-input-placeholder {
   display: block;
   width: 100%;
 }
-.user_lists .myred_tip{
+
+.user_lists .myred_tip {
   background-position: -2.1rem 0;
 }
-.user_lists .my-red .useable{
+
+.user_lists .my-red .useable {
   float: right;
   margin-right: .4rem;
 }
-.user_lists .my-red .useable .money{
+
+.user_lists .my-red .useable .money {
   color: #fb7530;
   padding-right: .1rem;
 }
+
 .user_lists .open_info {
   background-position: -1.4rem 0;
 }
