@@ -189,6 +189,7 @@ i.right {
 }
 
 .hotel_user_detail_phone input {
+  float: right;
   width: 50%;
   height: .48rem;
   line-height: .48rem;
