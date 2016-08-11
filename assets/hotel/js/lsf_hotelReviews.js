@@ -64,6 +64,9 @@ var lsf_myweb = {
   //alert(HotelID);
   //最大字数设置
   function maxWord(str) {
+    if(!str){
+      return "";
+    }
     var n = count(str).n;
     var a = count(str).a;
     var len = n;
@@ -77,6 +80,12 @@ var lsf_myweb = {
   //统计字数
   function count(str) {
     var result = {};
+    if(!str){
+      result.comments = "";
+      result.a = 0;
+      result.n = 0;
+      return result;
+    }
     result.comments = str;
     var adress = 110;
     var num = 0;
