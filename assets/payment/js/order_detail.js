@@ -22,20 +22,17 @@
 
 
   var bindEvent=function(){
-    var hft_flightDetail=$(".fht_hd"),fare_tip= $('.fare_tip').parent(),hft_pri_details=$(".hft_pri_details");
-    //hft_flightDetail.on("click",function(){
-    //  window.location.href="hft_flightDetail.html";
-    //})
-    //$(".fare_tip").toggleClass("tip");
+    var fare_tip= $('.fare_tip').parent(),hft_pri_details=$(".hft_pri_details");
+
     //折叠订单价格
     fare_tip.toggle(function(){
-      $('.hft_pri_details').hide();
-    },function(){
       hft_pri_details.show();
       $('.all_elements').scrollTop($('.all_elements').height());
+    },function(){
+      $('.hft_pri_details').hide();
     });
-    $("#tip").on("click",function(){
-      $(".fare_tip") .toggleClass("on");
+    $(".fare_tip").on("click",function(){
+      $(this) .toggleClass("on");
     });
     $(".cancelOrder").on("click",function(){
         var Parameters = {
