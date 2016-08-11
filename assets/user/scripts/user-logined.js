@@ -2,9 +2,9 @@
  * Created by changlv on 2016/1/13.
  */
 "use strict";
-var UserInfo ={
-  redPageSize : 10,
-  redPageIndex : 1
+var UserInfo = {
+  redPageSize: 10,
+  redPageIndex: 1
 };
 
 function init() {
@@ -76,12 +76,12 @@ function init() {
 };
 init();
 //查看更多红包回调函数
-function moreRedCallback(result){
+function moreRedCallback(result) {
   if (result.success) {
     var data = result.data[0];
     var allCouponList = data.allCouponList;
     var couponLenght = allCouponList.length;
-    if(couponLenght == 0){
+    if (couponLenght == 0) {
       $(".red_bag_wrap .more").html("没有更多数据了");
       return;
     }
@@ -196,9 +196,8 @@ function redBagCallback(result) {
     $("#myRed .useable .money").html('¥ ' + data.canUseAmount);
 
 
-
     //加载更多红包
-    $(".red_bag_wrap .more").on("click",function(event){
+    $(".red_bag_wrap .more").on("click", function (event) {
       UserInfo.redPageIndex = UserInfo.redPageIndex + 1;
       var memberid = localStorage.memberid;
       var redBagParameters = {
@@ -207,7 +206,7 @@ function redBagCallback(result) {
         "Code": "70100032"
       }
 
-      vlm.loadJson("", JSON.stringify(redBagParameters), moreRedCallback,"","",true);
+      vlm.loadJson("", JSON.stringify(redBagParameters), moreRedCallback, "", "", true);
     });
   }
 }
@@ -239,11 +238,11 @@ function mycallback(ret) {
   }
 }
 
-  //登录之后点击全部订单的链接会改变
-  (function(){
-    document.querySelector('.my-order').onclick=function(){
-      this.href='user-allorder.html';
-    };
+//登录之后点击全部订单的链接会改变
+(function () {
+  document.querySelector('.my-order').onclick = function () {
+    this.href = 'user-allorder.html';
+  };
 
 
   document.querySelector('#common-msg').onclick = function () {

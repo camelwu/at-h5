@@ -649,7 +649,9 @@ input:-ms-input-placeholder {
 #email_find,
 #link_declaration,
 #header_phone,
-#close_cellCode {
+#close_cellCode,
+#myRed,
+#link_redBag{
   display: none;
 }
 
