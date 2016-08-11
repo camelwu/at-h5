@@ -271,7 +271,7 @@ $('#about_at').click(function () {
     $('#link_about_us').hide();
     $("#shade")[0].style.display = "block";
   });
-
+});
 //电话
 $('.service_tel').click(function () {
   $('.jpop_box_tic').show();
@@ -306,6 +306,6 @@ $('#myRed').click(function () {
     $('#link_redBag').hide();
     $("#shade").show();
   });
-});
+})
 
 
