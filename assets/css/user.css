@@ -562,7 +562,10 @@ input:-ms-input-placeholder {
 .user_lists {
   padding: .4rem .28rem;
 }
-
+.user_lists .icon_person{
+  background: url(../images/ui/icons-user.png) no-repeat;
+  background-size: 8rem 2rem;
+}
 .user_lists > li {
   position: relative;
   height: .88rem;
@@ -1359,22 +1362,32 @@ input:-ms-input-placeholder {
 
 .user_lists li > b {
   position: absolute;
-  width: .4rem;
-  height: .4rem;
-  top: .22rem;
+  width: .32rem;
+  height: .32rem;
+  top: .28rem;
 }
 
-.myorder_tip {
-  background-position: -.48rem -.18rem;
+.user_lists .myorder_tip {
+  background-position: -2.8rem 0;
 }
 
 .my-order {
   display: block;
   width: 100%;
 }
-
-.open_info {
-  background-position: -.02rem -.18rem;
+.user_lists .myred_tip{
+  background-position: -2.1rem 0;
+}
+.user_lists .my-red .useable{
+  float: right;
+  margin-right: .4rem;
+}
+.user_lists .my-red .useable .money{
+  color: #fb7530;
+  padding-right: .1rem;
+}
+.user_lists .open_info {
+  background-position: -1.4rem 0;
 }
 
 #common-msg em {
@@ -1383,22 +1396,22 @@ input:-ms-input-placeholder {
   color: #999;
 }
 
-.open_msg {
-  background-position: -1.9rem -.18rem;
+.user_lists .open_msg {
+  background-position: 0 0;
 }
 
-.open_set {
-  background-position: -1.4rem -.18rem;
+.user_lists .open_set {
+  background-position: -.7rem 0;
 }
 
-.open_about {
-  background-position: -.96rem -.18rem;
+.user_lists .open_about {
+  background-position: -3.5rem 0;
 }
 
 .open_arw {
   position: absolute;
   right: 0;
-  top: .22rem;
+  top: .3rem;
   background: url("../images/ui/icon_common.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .28rem;

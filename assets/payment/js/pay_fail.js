@@ -57,7 +57,7 @@
                     if(type.id==1){
                         data.data[0].bookingRefNo=data.data[0].bookingReferenceNo;
                         data.data[0].productName=data.data[0].hotelName;
-                        data.data[0].totalPrice=data.data[0].totalRoomRate;
+                        data.data[0].totalPrice=data.data[0].payAmount;
                     }else if(type.id==2){
                         data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
@@ -72,7 +72,8 @@
                             }
                             totalPrice+=data.data.chargeDetails[i].totalAmount;
                         }
-                        data.data.totalPrice=totalPrice;
+                        //data.data.totalPrice=totalPrice;
+                        data.data.totalPrice=data.data.payAmount;   //新增payAmount字段为订单总额
                     }
                     else if(type.id==4){
                         data.data.productName=data.data.packageName;

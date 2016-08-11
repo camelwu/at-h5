@@ -221,6 +221,36 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   vertical-align: middle;
   padding: .2rem 0;
 }
+.coupon{
+  /*display: none;*/
+}
+.coupon .title{
+  padding-left: .28rem;
+  line-height: .68rem;
+}
+.coupon .content{
+  box-sizing: border-box;
+  line-height: .88rem;
+  background-color: #fff;
+  padding: 0 .28rem;
+  position: relative;
+}
+.coupon .content .desc {
+  float: right;
+  padding-right: .38rem;
+  color: #fb7530;
+}
+.coupon .content .open_arw{
+  position: absolute;
+  right: .28rem;
+  top: 50%;
+  margin-top: -.14rem;
+  background: url("/images/ui/icon_common.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .28rem;
+  height: .28rem;
+  background-position: -1.12rem -.57rem;
+}
 
 .hotel_user_prompt {
   color: #999999;

@@ -19,6 +19,7 @@
     <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
     <link href="../css/plugins/countryList/country_list.css"	rel="stylesheet" type="text/css">
     <link href="css/scenicbase.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../user/css/redbag.css" type="text/css" rel="stylesheet" media="all">
 </head>
 <body>
 <!--loading-->
@@ -202,7 +203,13 @@
               <input type="email" class="booking_package_linkman_inputemail" placeholder="用于接收邮件通知" data-elementName="email" value="">
             </div>
           </div>
-
+          <div class="coupon" id="coupon">
+            <p class="title">可选优惠</p>
+            <div class="content">
+              <p>红包<span class="desc"><em class="money">200</em>元景点红包抵扣</span></p>
+              <em class="open_arw"></em>
+            </div>
+          </div>
         </section>
 
       <section id="js_booking_package_pickup" class="booking_wrap">
@@ -467,6 +474,49 @@
     </li>
     <% } %>
 </script>
+<script type="text/template" id="redTemplate">
+  <div class="red_bag_wrap" id="redBagWrap">
+    <div class="header">
+      <a href="javascript:;" class="header_back" id="close_page"> <i class="icon_back"></i> </a>
+      <h3 class="title">可选红包(<%= allCouponList.length %>)</h3>
+    </div>
+    <div class="content">
+      <div class="red_List_wrap">
+        <ul class="red_list">
+          <% for(var i=0;i < allCouponList.length;i++) { %>
+          <li>
+            <% if(allCouponList[i].status ==2 ) {%>
+            <div class="red" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+              <% }else if(allCouponList[i].status ==4){%>
+              <div class="red done" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                <% }else if(allCouponList[i].status ==5){ %>
+                <div class="red expire" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                  <% } else {%>
+                  <div class="red" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                    <% } %>
+                    <% if(i == 0) {%>
+                    <i class="icon_hook selected"></i>
+                    <% } else {%>
+                    <i class="icon_hook"></i>
+                    <% } %>
+
+                    <div class="wrap">
+                      <p class="title"><%= allCouponList[i].title %></p>
+                      <p class="expire">有效期至<%= allCouponList[i].endDate %></p>
+                      <p class="money"><em>¥</em><%= allCouponList[i].amount %></p>
+                    </div>
+                    <p class="desc"><%= allCouponList[i].desc %></p>
+                    <i class="left_icon"></i>
+                    <i class="right_icon"></i>
+                  </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+      <!--<a class="more">点击查看更多往期红包 ></a>-->
+    </div>
+  </div>
+</script>
 <!--模板-->
 <!--javascript引用-->
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
@@ -477,6 +527,7 @@
 <script type="text/javascript" src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
 <script src="../js/plugins/countryList/countrydata.js"></script>
 <script src="../js/plugins/countryList/country_list.js"></script>
+<script src="../user/scripts/userRedBag.js"></script>
 <script type="text/javascript" src="js/scenic_booking.js"></script>
 <!--javascript引用-->
 <script>

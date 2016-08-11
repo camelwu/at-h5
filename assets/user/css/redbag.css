@@ -1,0 +1,190 @@
+/*=======================red bag======================*/
+#redBagWrap {
+  display: none;
+}
+
+.red_bag_wrap .content {
+  background: #f7f7f7;
+}
+
+.red_bag_wrap .header .list {
+  display: none;
+}
+
+.red_bag_wrap .red_info_wrap {
+  padding: .4rem .48rem .2rem .48rem;
+}
+
+.red_bag_wrap .red_info_wrap .total {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding-left: .72rem;
+  position: relative;
+}
+
+.red_bag_wrap .red_info_wrap .icon_red {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -.32rem;
+  display: block;
+  width: .72rem;
+  height: 100%;
+  background: url(/images/ui/icons-user.png) no-repeat;
+  background-size: 8rem 2rem;
+  background-position: -.92rem -1rem;
+}
+
+.red_bag_wrap .red_info_wrap .line {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: .52rem;
+  width: 1px;
+  margin-top: -.26rem;
+  background-color: #e6e6e6;
+}
+
+.red_bag_wrap .red_info_wrap .used {
+  width: 50%;
+  float: left;
+  text-align: right;
+}
+
+.red_bag_wrap .red_info_wrap em {
+  font-size: .28rem;
+  padding-right: .1rem;
+}
+
+.red_bag_wrap .red_info_wrap .money {
+  font-size: .4rem;
+  color: #fb7530;
+}
+
+.red_bag_wrap .red_info_wrap .used .money {
+  color: #88d000;
+}
+
+.red_bag_wrap .red_info_wrap .info {
+  font-size: .24rem;
+  color: #999;
+}
+
+.red_bag_wrap .red_list {
+  margin: .28rem 0;
+}
+
+.red_list .red {
+  padding: 0 .36rem;
+  background: #fff;
+  margin: 0 .28rem .32rem .28rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  position: relative;
+}
+
+.red_list .red .icon_hook {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: .46rem;
+  width: .58rem;
+  background: url(/images/ui/icons-user.png) no-repeat;
+  background-size: 8rem 2rem;
+  background-position: 0 -1rem;
+}
+
+.red_list .red .icon_hook.selected {
+  display: block;
+}
+
+.red_list .wrap {
+  height: 1.62rem;
+  position: relative;
+  padding-top: .4rem;
+  border-bottom: dashed 1px #e6e6e6;
+  box-sizing: border-box;
+}
+
+.red_list .title {
+  font-size: .36rem;
+  color: #fb7530;
+}
+
+.red_list .expire {
+  font-size: .24rem;
+  color: #fb7530;
+  opacity: .9;
+}
+
+.red_list .red .money {
+  position: absolute;
+  right: 0;
+  font-size: .68rem;
+  top: 0;
+  height: 100%;
+  line-height: 1.62rem;
+  color: #fb7530;
+}
+
+.red_list .red .money em {
+  font-size: .36rem;
+  padding-right: .1rem;
+}
+
+.red_list .red .desc {
+  height: .74rem;
+  line-height: .74rem;
+  font-size: .24rem;
+  color: #999;
+}
+
+.red_list .red.done .title, .red_list .red.done .expire, .red_list .red.done .money, .red_list .red.done .desc, .red_list .red.expire .title, .red_list .red.expire .expire, .red_list .red.expire .money, .red_list .red.expire .desc {
+  color: #d1d1d1;
+}
+
+.red_list .red.selected {
+  background: url(../images/user/hook.png) right top no-repeat #fff;
+  background-size: .58rem .46rem;
+}
+
+.red_list .red .left_icon {
+  display: inline-block;
+  position: absolute;
+  left: -.16rem;
+  top: 1.47rem;
+  width: .3rem;
+  height: .3rem;
+  border-radius: .3rem;
+  background: #F7F7F7;
+  border: 1px solid #e6e6e6;
+  border-left: transparent;
+  border-top: transparent;
+  transform: rotate(-45deg);
+}
+
+.red_list .red .right_icon {
+  display: inline-block;
+  position: absolute;
+  right: -.16rem;
+  top: 1.47rem;
+  width: .3rem;
+  height: .3rem;
+  border-radius: .3rem;
+  background: #F7F7F7;
+  border: 1px solid #e6e6e6;
+  border-right: transparent;
+  border-bottom: transparent;
+  transform: rotate(-45deg);
+}
+
+.red_bag_wrap .more {
+  display: block;
+  text-align: center;
+  font-size: .24rem;
+  color: #666;
+  padding-bottom: 1.2rem;
+}

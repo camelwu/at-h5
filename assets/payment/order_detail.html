@@ -257,17 +257,22 @@
     <div class="order_tot_price">
       <div class="fht_hd">订单总额</div>
       <div class="tot_prinum_wrap clearfix">
-        <span class="fl">订单总额: <i class="tot_prinum"><%=currency%><%=totalRoomRate%></i></span>
-        <span class="fr fare_tip" id="tip"></span>
+        <span class="fl">订单总额: <i class="tot_prinum"><%=currency%><%=payAmount%></i></span>
+        <span class="fr fare_tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">房费</span><span class="fr"><%=currency%><%=totalRoomRate-totalSeriveCharge%> </span>
-        </li>
-        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr"><%=currency%><%=totalSeriveCharge%></span>
-        </li>
-        <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1"><% if(paymentModeID==1){%>预付 <%} else{ %>到付<%}%></span>
-        </li>
+        <li class="clearfix"><span class="fl">房费</span><span class="fr"><%=currency%><%=totalAmount-totalSeriveCharge%> </span></li>
+        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr"><%=currency%><%=totalSeriveCharge%></span></li>
+        <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1"><% if(paymentModeID==1){%>预付 <%} else{ %>到付<%}%></span></li>
       </ul>
+      <% if(cashVouchers.length > 0) {%>
+      <div class="order_coupons">
+        <p class="title">尊享优惠</p>
+        <% for(var m=0;m<cashVouchers.length;m++) { %>
+        <p class="desc">优惠<%= m +1  %><span class="info">红包抵扣<%= cashVouchers[m].amount %>元</span></p>
+        <% } %>
+      </div>
+      <% } %>
     </div>
   </section>
   <% if(orderStatus==1 ){ %>
@@ -531,8 +536,8 @@
         }
         });
         %>
-        <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalAmount%></i></span>
-        <span class="fr fare_tip" id="tip"></span>
+        <span class="fl">订单总额: <i class="tot_prinum">¥<%=payAmount%></i></span>
+        <span class="fr fare_tip"></span>
       </div>
       <ul class="hft_pri_details">
         <% chargeDetails.forEach(function(info){ %>
@@ -545,6 +550,14 @@
         <% } %>
         <% })%>
       </ul>
+      <% if(cashVouchers.length > 0) {%>
+      <div class="order_coupons">
+        <p class="title">尊享优惠</p>
+        <% for(var m=0;m<cashVouchers.length;m++) { %>
+        <p class="desc">优惠<%= m +1  %><span class="info">红包抵扣<%= cashVouchers[m].amount %>元</span></p>
+        <% } %>
+      </div>
+      <% } %>
     </div>
   </section>
   <% if(paymentStatus==false ){ %>

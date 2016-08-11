@@ -151,7 +151,8 @@
             "CultureName": "en-US",
             "BookingReferenceNo": bookingRefNo
           }
-        } else {
+        }
+        else {
           Parameters = {
             "BookingRefNo": bookingRefNo
           }
@@ -163,12 +164,11 @@
         }
         console.log(JSON.stringify(Parameters));
         vlm.loadJson("", JSON.stringify(Parameters), callback);
-      } else {
+      }
+      else {
         var json = JSON.parse(localStorage.getItem('user_order_storage12345'));
         vlm.init();
-        var data = {
-          data: json
-        };
+        var data = {data: json};
         console.log(json);
         _generateHtml(type, data);
       }
@@ -348,8 +348,30 @@
             "ForeEndType": 3
           }
         }
+        else {
+          Parameters = {
+            "bankName": model.bankName,
+            "bookingReferenceNo": bookingRefNo,
+            "cardBillingAddress": "",
+            "cardHolderName": model.cardHolderName,
+            "cardIssuanceCountry": model.cardIssuanceCountry,
+            "cardSecurityCode": model.cardSecurityCode,
+            "cashVoucherDetails": "",
+            "creditCardExpiryDate": model.cardExpiryDate,
+            "creditCardNumber": model.cardNumber,
+            "creditCardType": cardType,
+            "paymentGatewayID": "0",
+            "CardIssuanceCountry": $(".CardIssuanceCountryCode").attr("data-code")
+          }
+          param = {
+            "Code": "0014",
+            "Parameters": Parameters,
+            "ForeEndType": 3
+          }
+        }
 
-      } else {
+      }
+      else {
 
         //支付模式为在线支付
         if (paymentMode == "CreditCard") {
@@ -401,15 +423,16 @@
             } else {
               location.href = data.data[0].paymentRedirectURL
             }
-          } else {
-            vlm.loading();
+          }
+          else {
             location.href = data.data.paymentRedirectURL;
           }
-        } else {
+        }
+        else {
           jAlert(data.message);
           vlm.loadend();
         }
-      }, null, null, 'nothing');
+      });
 
     };
     /*生成订单详情HTML片段*/
@@ -439,19 +462,21 @@
       else if (type.id == 1) {
         //data.data.totalPrice=data.data.totalFlightPrice;
         if (bookingRefNo == null) {
-          data.data.totalPrice = data.data.calcuTotalPrice;
+          //如果有使用红包,显示金额需要减去红包金额
+          data.data.totalPrice = data.data.payAmount ? data.data.payAmount : (data.data.Vouchers ? data.data.calcuTotalPrice - data.data.Vouchers.amount[0] : data.data.calcuTotalPrice);
           data.data.totalPriceCNY = data.data.calcuTotalPriceCNY * data.data.NumOfRoom;
-          data.data.hotelName = data.data.HotelGenInfo.hotelNameLocale + "(" + data.data.HotelGenInfo.hotelName + ")";
+          data.data.hotelName = data.data.HotelGenInfo.hotelNameLocale;
           data.data.roomType = data.data.RoomTypeName;
           data.data.noOfRooms = data.data.NumOfRoom;
           data.data.checkInDate = data.data.dateInfo.CheckInDate;
           data.data.checkOutDate = data.data.dateInfo.CheckOutDate
           data.data.totalNight = data.data.dateInfo.totalNight;
 
-        } else {
+        }
+        else {
           data.data[0].hotelName = data.data[0].hotelName;
           data.data[0].totalNight = 1;
-          data.data[0].totalPrice = parseInt(data.data[0].totalRoomRate);
+          data.data[0].totalPrice = data.data[0].payAmount;
 
         }
         var html = template("tpl_hotel_detail", data.data);
@@ -482,7 +507,8 @@
             totalPrice += data.data.chargeDetails[i].totalAmount;
           }
         }
-        data.data.totalFlightPrice = totalPrice;
+        data.data.totalFlightPrice = data.data.payAmount; // 新增订单总额字段 如果使用了优惠券 金额已经扣除
+        //data.data.totalFlightPrice=totalPrice;
         data.data.numofAdult = numofAdult;
         data.data.numofChild = numofChild;
         var html = template("tpl_scenic_detail", data.data);
@@ -511,7 +537,8 @@
 
         var html = template("tpl_tour_detail", data.data);
         $(".payment-type-list").append(html);
-      } else if (type.id == 6) {
+      }
+      else if (type.id == 6) {
         var numofAdult = 0;
         var numofChild = 0;
         var numofRoom = 0;
