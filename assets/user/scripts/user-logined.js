@@ -73,8 +73,8 @@ function init() {
   vlm.checkUser();
   vlm.loadJson("", JSON.stringify(Parameters), mycallback);
   vlm.loadJson("", JSON.stringify(redBagParameters), redBagCallback);
-}
-
+};
+init();
 //查看更多红包回调函数
 function moreRedCallback(result){
   if (result.success) {

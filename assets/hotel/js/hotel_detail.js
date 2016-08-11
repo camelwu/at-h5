@@ -231,9 +231,7 @@
 
     subRoomList: function (arg) {
       var str = '<ul class="roomDetailList hotel_content_roomDetail">';
-      console.log("arg=");
       arg.sort(getSortFun('asc', "avgPriceCNY"));
-      console.log(arg);
       for (var i = 0; i < arg.length; i++) {
         str += hotelDetail.subRoomListNoService(arg[i]); // + hotelDetail.subRoomListHasService(arg[i]);
       }
@@ -381,7 +379,6 @@
     },
 
     createAll: function (result) {
-      //result = JSON.parse(result);
       console.log('callback函数得到的数据');
       hotelDetail.myData.createAllback = result;
       console.log(hotelDetail.myData);
@@ -450,9 +447,9 @@
 
       if(hotelDetail.showRoomList(result) == ''){
         //房间已售罄
-        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + '<div class="room_soldout">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div>'+ '</ul>';
+        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + '<div class="room_soldout">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div>'+ '</ul>';
       }else{
-        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
+        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
       }
 
       contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl + '</div>';
@@ -515,6 +512,11 @@
 
       hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
       hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
+
+      //选择日期之后，有加载图标，解决网速接口慢的问题
+      var mask=$('<div id="preloader"><div id="status"></div></div>');
+      mask.appendTo($(document.body));
+
       hotelDetail.init(hotelDetail.gdataInfo);
 
     },

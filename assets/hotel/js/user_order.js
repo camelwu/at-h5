@@ -277,10 +277,6 @@ uoHisData();
   //    }
   //}
 
-  //返回按钮
-  uo_back.onclick = function () {
-    window.history.go(-1);
-  };
   //判断是担保还是在线支付
   //fake_data.paymentModeID=2;//测试用的
   if (parseInt(fake_data.paymentModeID) == 1) {
