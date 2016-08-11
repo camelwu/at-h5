@@ -223,11 +223,17 @@
       if(json.success){
         var data=json.data;
         ExtendData = data;
+        if(window.location.search.indexOf('oneticket') != -1){
+          //一元产品
+          var htmlc = $("#Barcontent_oneticket").html();
+          var htmlC = ejs.render(htmlc,json.data);
+          $("#barContent").html(htmlC);
+        }else{
+          var htmlc = $("#Barcontent").html();
+          var htmlC = ejs.render(htmlc,json.data);
+          $("#barContent").html(htmlC);
+        }
 
-
-        var htmlc = $("#Barcontent").html();
-        var htmlC = ejs.render(htmlc,json.data);
-        $("#barContent").html(htmlC);
         var htmls = $("#Sceniccontent").html();
         var htmlS = ejs.render(htmls,json.data);
         //图片点击事件
@@ -247,17 +253,40 @@
         var Sheight1=$("#Sheight1")[0];
         var Sheight2=$("#Sheight2")[0];
         var Sheight3=$("#Sheight3")[0];
+
         Sheight1.onclick =function(){
-          $(".scenic_height1").css({'height':'100%'});
-          $("#Sheight1").css({'display':'none'});
+          if($("#Sheight1").hasClass("js_show")){
+            $("#Sheight1").removeClass("js_show");
+            $(".scenic_height1").css({'height':'4.8rem'});
+            $("#Sheight1").css({"background-position":  "-3.71rem -2.26rem"});
+          }else{
+            $("#Sheight1").addClass("js_show");
+            $(".scenic_height1").css({'height':'100%'});
+            $("#Sheight1").css({"background-position":  "-4.1rem -2.26rem"});
+          }
+
         };
         Sheight2.onclick =function(){
-          $(".scenic_height2").css({'height':'100%'});
-          $("#Sheight2").css({'display':'none'});
+          if($("#Sheight2").hasClass("js_show")){
+            $("#Sheight2").removeClass("js_show");
+            $(".scenic_height2").css({'height':'4.8rem'});
+            $("#Sheight2").css({"background-position":  "-3.71rem -2.26rem"});
+          }else{
+            $("#Sheight2").addClass("js_show");
+            $(".scenic_height2").css({'height':'100%'});
+            $("#Sheight2").css({"background-position":  "-4.1rem -2.26rem"});
+          }
         };
         Sheight3.onclick =function(){
-          $(".scenic_height3").css({'height':'100%'});
-          $("#Sheight3").css({'display':'none'});
+          if($("#Sheight3").hasClass("js_show")){
+            $("#Sheight3").removeClass("js_show");
+            $(".scenic_height3").css({'height':'4.8rem'});
+            $("#Sheight3").css({"background-position":  "-3.71rem -2.26rem"});
+          }else{
+            $("#Sheight3").addClass("js_show");
+            $(".scenic_height3").css({'height':'100%'});
+            $("#Sheight3").css({"background-position":  "-4.1rem -2.26rem"});
+          }
         };
 
         //price
@@ -291,6 +320,13 @@
         {
           SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
         }
+
+        //SearchPrice.Parameters.MemberID=localStorage.memberid;
+
+        if(window.location.search.indexOf('oneticket') != -1){
+          SearchPrice.Parameters.Adult = 1;
+        }
+
         AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
         //console.log(ExtendData);
       }else{
@@ -325,7 +361,25 @@
               var RequiredPickupPoint = tar.getAttribute("data-RPP");
               var category = tar.getAttribute("data-category");
               var fail = tar.getAttribute("data-fail");
-              window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+category+"&FAIL="+fail;
+              //一元门票必须登陆
+              var oneYuanStr='../scenic/scenic_order_detail.html?PackageID='+packageId+'&RPP='+RequiredPickupPoint+'&ADU='+category+'&FAIL='+fail;
+              if(window.location.search.indexOf('oneticket') != -1 ){
+                if(localStorage.memberid == undefined){
+                  jConfirm('本产品购买需要登录，是否登录购买','',shopSure);
+
+                  function shopSure(arg) {
+                    if (arg == true) {
+                      oneYuanStr=oneYuanStr+'&oneticket';
+                      vlm.checkLogin(oneYuanStr);
+                    }
+                  }
+                  return;
+                }
+                oneYuanStr=oneYuanStr+'&oneticket';
+                window.location.href = oneYuanStr;
+              }
+              window.location.href = oneYuanStr;
+
             }
         });
       }else {
@@ -384,3 +438,5 @@
 //    //}
 //  });
 //})()
+
+

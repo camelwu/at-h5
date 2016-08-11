@@ -226,6 +226,7 @@
         });
 
         $(".booking_footer_bookingbtn").click(function(e){
+
           Adapter.validateBookingPackage();
         });
       },
@@ -313,6 +314,18 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
+          if(window.location.search.indexOf('oneticket') != -1 && (parseInt($('.js_booking_package_pre_adult_num').html())+count) >2){
+            jAlert('一个账户最多能抢2张票');
+            if(count == 1){
+              $('.js_booking_package_child_minbtn').removeClass("current");
+            }
+            return;
+          }
+          if(window.location.search.indexOf('oneticket') != -1 && count >2){
+            jAlert('一个账户最多能抢2张票');
+            return;
+          }
+
           totalprice = count * perprice;
           $(tar).prev().html(count);
           $(tar).prev().attr("data-value",totalprice);
@@ -359,6 +372,20 @@
           perprice = $(tar).prev().attr("data-preprice");
           $(tar).prev().prev().addClass("current");
           count++;
+          if(window.location.search.indexOf('oneticket') != -1 && count >2){
+            jAlert('一个账户最多能抢2张票');
+            return;
+          }
+          if(window.location.search.indexOf('oneticket') != -1 && $('#js_BookingPackage_last .booking_package')){
+            if( (parseInt($('.js_booking_package_pre_child_num').html())+count) >2){
+
+              jAlert('一个账户最多能抢2张票');
+              if(count == 1){
+                $('.js_booking_package_adult_minbtn').removeClass("current");
+              }
+              return;
+            }
+          }
           totalprice = count * perprice;
           $(tar).prev().html(count);
           $(tar).prev().attr("data-value",totalprice);
@@ -657,38 +684,39 @@
         var totalP=0;
         if(ExtendData.onlyForAdult){//只限制成人
           if(adultCount < ExtendData.minPax){
-            jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+            jAlert("限定成人最小数为"+ExtendData.minPax+"人起订", "提示");
             return false;
           }
           if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
-            jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+            jAlert("限定成人最大数为"+ExtendData.maxPax+"人起订", "提示");
             return false;
           }
         }else{//限制成人和儿童
           if(ExtendData.minPaxType == 1){//限制成人和儿童
             totalP = parseInt(adultCount) + parseInt(childCount);
             if(totalP < ExtendData.minPax){
-              jAlert("限定最小人数为"+ExtendData.minPax+"起订", "提示");
+              jAlert("限定最小人数为"+ExtendData.minPax+"人起订", "提示");
               return false;
             }
             if(totalP > ExtendData.maxPax && ExtendData.maxPax != -1){
-              jAlert("限定最大人数为"+ExtendData.maxPax+"起订", "提示");
+              jAlert("限定最大人数为"+ExtendData.maxPax+"人起订", "提示");
               return false;
             }
           }else{//只限制成人
             if(adultCount < ExtendData.minPax){
-              jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+              jAlert("限定成人最小数为"+ExtendData.minPax+"人起订", "提示");
               return false;
             }
             if(adultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
-              jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+              jAlert("限定成人最大数为"+ExtendData.maxPax+"人起订", "提示");
               return false;
             }
           }
         }
-
-
-
+        if(window.location.search.indexOf('oneticket') != -1 && (parseInt(adultCount) + parseInt(childCount))>2){
+          jAlert('一个账户最多能抢2张票');
+          return;
+        }
 
         //验证景点的日期是否开放
         if(!T.Command().execCommand({command:"validate", param:{type:"tourweek",data:"",rules:"",tips:"不开放,请重新选择日期"}})){
@@ -712,7 +740,6 @@
           }
           OrderParam.Parameters.Tours = TourArray;
         }
-
 
         //前缀
         Salutation = "Mr";
@@ -1007,13 +1034,15 @@
           }
         }
 
-
         for (var i = 0; i < data.tours.length; i++) {
           SearchPrice.Parameters.Tours[i] = {
             "TourID" : data.tours[i].tourID,
             "TravelDate" : TravelDate
           };
         }
+
+        //SearchPrice.Parameters.MemberID=localStorage.memberid;
+
         T.AjaxAdapter().callAjaxAdapter("getPickup",{});
         T.AjaxAdapter().callAjaxAdapter("getSearchPrice",SearchPrice);
       } else {
@@ -1032,6 +1061,7 @@
         T.Command().callCommand("render",{});
       } else {
         console.log(json);
+        $('.pickup_pop').hide();
         jAlert(json.message, "提示");
       }
     },
@@ -1133,6 +1163,19 @@
    *  添加套餐 显示
    */
   $("#js_booking_package_addpackage").click(function(e){
+    //成人票
+    if(window.location.search.indexOf('oneticket') != -1 && $('.js_booking_package_pre_adult_num').html() >= 2){
+      jAlert('一个账户最多能抢2张票');
+      return;
+    }
+    //儿童票
+    if(window.location.search.indexOf('oneticket') != -1 && window.location.search.indexOf('ADU=0') != -1){
+      if($('.js_booking_package_pre_child_num').html() >=2){
+        jAlert('一个账户最多能抢2张票');
+        return;
+      }
+    }
+
     $(".mask_pop").show();
     $(".booking_footer_pop").animate({bottom: '0rem'},300,function(e){
       $("#js_booking_footer_i").addClass("current");

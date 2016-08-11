@@ -128,6 +128,7 @@
                 return decodeURIComponent(r[2]);
             return null;
         }, setUrlPara = function (url, key, value) {
+
             var originalUrl = url ? url : window.location.href,
                 newUrl = "",
                 reg = new RegExp(key + "=([^&]*)(&|$)"),

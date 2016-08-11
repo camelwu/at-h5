@@ -15,6 +15,7 @@
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>景点详情</title>
   <link rel="stylesheet" href="../styles/reset.css"/>
+  <link rel="stylesheet" href="../styles/tips.css"/>
   <link rel="stylesheet" href="css/scenicbase.css"/>
   <link href="../styles/swipebox.css"	rel="stylesheet">
 </head>
@@ -77,6 +78,17 @@
     <p>游玩时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
   </div>
 </script>
+
+<!--一元产品添加预定日期-->
+<script type ="text/template" id = "Barcontent_oneticket">
+  <h3 class = "bar_content_title"><%= packageName%></h3>
+  <div class="bar_content_time">
+    <p>购买时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>
+    <p>游玩时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
+  </div>
+</script>
+
+
 <script type="text/template" id="Booking">
   <% console.log(data);%>
   <% for(var i=0,len=data.prices.length;i<len;i++){ %>

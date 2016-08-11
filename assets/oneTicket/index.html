@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>一元门票</title>
+  <link href="../styles/reset.css" rel="stylesheet"/>
+  <link href="../styles/tips.css" rel="stylesheet"/>
+  <link href="css/oneticket.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="preloader">
+  <div id="status"></div>
+</div>
+<div class="header">
+  <a href="javascript:window.history.go(-1);" class="header_back" id="hftFreeBack" data-statl="back">
+    <i class="icon_back"></i>
+  </a>
+  <h3>一元门票</h3>
+</div>
+<div class="all_elements">
+  <div class="content">
+    <div class="one_banner">
+      <a href="javascript:;"><img src="../images/oneticket/onebanner1.jpg" alt=""/></a>
+    </div>
+    <!--游玩种类切换-->
+    <div class="one_travel_wrap">
+      <ul class="one_select clearfix">
+        <li class="one_sale active">超值特卖</li>
+        <li class="one_child">亲子游</li>
+        <li class="one_bestie">闺蜜游</li>
+        <li class="one_lovers">情侣游</li>
+      </ul>
+      <div class="one_sale_cont">
+        <img class="shortexhibition" src="../images/oneticket/great_sale.png" alt=""/>
+        <ul class="one_sale_content" id="one_sale_cont">
+          <!--<a href="">-->
+          <!--<div>-->
+          <!--<b class="one_scenic_tip"></b>-->
+          <!--<img src="../images/oneticket/onesce.png" class="onesceimg" alt=""/>-->
+          <!--<div class="one_scenic_txt">-->
+          <!--<h3>新加坡环球影城</h3>-->
+          <!--<span>摄影之旅: 含门票+往返车票</span>-->
+          <!--<div class="price_panic clearfix">-->
+          <!--<p class="one_price fl">¥1299起</p>-->
+          <!--<a href="javascript:;" class="panic_buy fr">抢购</a>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</a>-->
+        </ul>
+      </div>
+
+      <!--oneticket foot-->
+      <section class="one_foot">
+        <div class="morexciting_title"></div>
+        <ul class="package_recommend">
+          <li class="localfun">
+            <a href="../scenic/index.html">
+              <img src="../images/oneticket/localfun.png" alt=""/>
+            </a>
+          </li>
+          <li class="hothotel">
+            <a href="../hotel/index.html">
+              <img src="../images/oneticket/hothotel.png" alt=""/>
+            </a>
+          </li>
+          <li class="vacation">
+            <a href="../tour/index.html">
+              <img src="../images/oneticket/vacation.png" alt=""/>
+            </a>
+          </li>
+        </ul>
+        <div class="activity_rules_title_wrap">
+          <div class="activity_rules_title"></div>
+          <ul class="activity_rules_detail">
+            <li>1、 一元特卖票，一个亚程账户只能抢购2张，已成功抢购的用户将不能再次抢购。</li>
+            <li>2、超值特卖产品名额有限，售完即止，不与亚程旅游其他任何优惠活动同享。</li>
+            <li>3、提醒您于支付前仔细阅读条款须知和注意事项。</li>
+            <li>4、本活动页面产品客人付款成功后若更改、退订，会产生全额损失。</li>
+            <li>5、亚程旅游可根据本活动的实际情况对活动规则进行变动或者调整，如有相关变动或调整将公布在活动页面上，并于公布时即时生效。</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</div>
+
+<!--oneticket模板-->
+<script id="greatSale" type="text/template">
+  <% for(var i=0;i< greatSaleData.length; i++) { %>
+  <div class="one_sale_show">
+    <% if(greatSaleData[i].ProductType == 'T') { %>
+    <b class="one_scenic_tip"></b>
+    <% }else { %>
+    <b class="one_hotel_tip"></b>
+    <% } %>
+    <img src="<%=greatSaleData[i].ProductPicUrl%>" class="onesceimg" alt=""/>
+
+    <div class="one_scenic_txt">
+      <h3><%=greatSaleData[i].ProductName%></h3>
+      <span><%=greatSaleData[i].ProductDesc%></span>
+
+      <div class="price_panic clearfix">
+        <p class="one_price fl">¥<%=greatSaleData[i].ProductPrice%>起</p>
+        <% if(greatSaleData[i].oneticket){ %>
+          <a href="javascript:;" id="oneticket_buy" onclick="quickShop(this);" class="panic_buy" data-packageId="<%=greatSaleData[i].ProductID%>" data-packageType="<%=greatSaleData[i].ProductType%>"></a>
+        <% }else{ %>
+          <a href="javascript:;" onclick="quickShop(this);" class="panic_buy" data-packageId="<%=greatSaleData[i].ProductID%>" data-packageType="<%=greatSaleData[i].ProductType%>"></a>
+        <% } %>
+      </div>
+    </div>
+    <div class="one_sale_bg"></div>
+  </div>
+  <% } %>
+</script>
+
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="js/oneticket.js"></script>
+
+</body>
+</html>
