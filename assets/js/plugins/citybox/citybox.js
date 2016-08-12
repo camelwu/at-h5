@@ -1990,7 +1990,8 @@
         var data = config["CityListData"];
         var strValue = $('#js_citybox_searchactive_input').val();
         dom.innerHTML = "";
-        if(strValue == ""){
+        // #2237 两个字母以上显示
+        if(strValue.length <= 1) {
           return;
         }
         strValue = strValue.replace(/\s+/g,"");
