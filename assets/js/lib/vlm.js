@@ -1019,6 +1019,20 @@
           data.Code = _codeDic[data.Code] == undefined ? data.Code : _codeDic[data.Code];
           data = JSON.stringify(data);
 
+          function isObject(value) {
+            var type = typeof value;
+            return !!value && (type == 'object' || type == 'function');
+          }
+
+          /**
+           * mycallback
+           * 1. 传入object {success, error}，服务器返回调用success，服务器失败调用error
+           * 2. 传入object {success, error}，服务器返回调用success，服务器失败调用error
+           */
+          if (isObject(mycallback)) {
+            var error = mycallback.error;
+          }
+
           /**
            * 默认传入undefined，全屏显示loading
            * 传入true，不全屏显示loading
@@ -1095,9 +1109,18 @@
               mycallback(jsondata);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
+              /**
+               * @param {Object} XMLHttpRequest
+               * @param {String} textStatus
+               * @param {String} errorThrown
+               *
+               * error = mycallback.error
+               */
               if (textStatus == 'timeout') {
                 alert("网络不给力，刷新重试！");
                 window.location.reload();
+              } else if (textStatus == 'error') {
+                error && error(arguments);
               }
             }
           });
