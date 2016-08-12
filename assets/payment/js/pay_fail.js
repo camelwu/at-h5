@@ -107,6 +107,10 @@
                     }
                     html = template("template_success", data.data);
                     $("#elements").html(html);
+
+                  //绑定页面事件
+                  _init.bindbindPaymentTypeEvent();
+
                 } else {
                     // 接口异常
                     html = template("template_fail", {});
@@ -120,8 +124,7 @@
             //获取url参数
             type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
             bookingRefNo=vlm.getpara("bookingRefNo");//订单code
-            //绑定页面事件
-            _init.bindbindPaymentTypeEvent();
+
             //获取支付数据
             _getData(type,bookingRefNo,3,function(data){
                 if (data.success) {
