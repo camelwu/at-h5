@@ -189,13 +189,13 @@ input:-ms-input-placeholder {
 }
 
 .login_tab_wrap {
-  border: 1px solid #cdc0c2;
+  border: 1px solid;
+  border-color: rgba(255,255,255,0.4);
   border-radius: .06rem;
   -webkit-border-radius: .06rem;
   height: .6rem;
   line-height: .6rem;
   margin: .4rem .6rem 0;
-  overflow: hidden;
   position: relative;
   font-size: .3rem;
 }
@@ -204,8 +204,9 @@ input:-ms-input-placeholder {
   float: left;
   text-align: center;
   width: 50%;
-  height: 100%;
+  height: .6rem;
   position: relative;
+  top: -1px;
 }
 
 .login_tab_wrap a {
@@ -237,7 +238,8 @@ input:-ms-input-placeholder {
 }
 
 .login_input {
-  border-bottom: 1px solid #cdc0c2;
+  border-bottom: 1px solid;
+  border-color: rgba(255,255,255,0.4);
   width: 100%;
   height: 1.2rem;
   position: relative;
@@ -294,7 +296,8 @@ input:-ms-input-placeholder {
   display: block;
   font-size: .36rem;
   border-radius: .5rem;
-  border: 1px solid #cdc0c2;
+  border: 1px solid;
+  border-color: rgba(255,255,255,0.4);
   height: .96rem;
   line-height: .96rem;
   text-align: center;
