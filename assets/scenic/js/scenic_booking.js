@@ -450,6 +450,7 @@
         });
       },
       bindDate: function () {
+        var myTime;
         $(".js_booking_package_date").click(function (e) {
           var e = e || window.event,
             tar = e.target || e.srcElement;
