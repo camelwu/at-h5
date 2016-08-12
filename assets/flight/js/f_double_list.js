@@ -66,11 +66,11 @@ var fDoubleList = {
       no_result.style.display = "none";
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
-        $('#loadMore').hide();
         $(".flight_ul").eq(0).html("");
         that.first == true ? that.filterHandler().dateCalender() : that.dateCalender();
         that.first = false;
       } else {
+        $('#loadMore').show();
         that.currrentFlightList = result.data;
         that.first == true ? that.filterHandler(result.data.airCorpCodeList).loadMoreHandler(true) : that.loadMoreHandler(false);
         that.first = false;
@@ -81,7 +81,6 @@ var fDoubleList = {
         $(".flight_ul").eq(0).html("");
       }
       no_result.style.display = "block";
-      $('#loadMore').hide();
       that.filterHandler().dateCalender();
     }
   },

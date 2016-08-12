@@ -742,6 +742,7 @@ input:-ms-input-placeholder {
 
 #loadMore {
   /*height: .48rem;*/
+  display: none;
   line-height: .88rem;
   background: #FFFFFF;
   color: #666666;
