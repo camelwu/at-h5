@@ -343,7 +343,7 @@
             tar = $(tar)[0], perprice = 0, totalprice = 0;
           var count = parseInt($(tar).next().html());
           perprice = $(tar).next().attr("data-preprice");
-          if (count > 0) {
+          if (count > 1) {
             count--;
             totalprice = count * perprice;
             $(tar).next().html(count);
@@ -351,7 +351,7 @@
             Adapter.totalPrice();
             Adapter.initRedbag(); //价格变化 更新红包(优惠券)
             Adapter.removeChildInput(".js_booking_package_pre_childlist");
-            if (count == 0) {
+            if (count == 1) {
               $(tar).removeClass("current");
             }
           }
@@ -408,7 +408,7 @@
             totalprice = count * perprice;
             $(tar).next().html(count);
             $(tar).next().attr("data-value", totalprice);
-            if (count == 0) {
+            if (count == 1) {
               $(tar).removeClass("current");
             }
 
@@ -425,7 +425,9 @@
             tar = $(tar)[0], perprice = 0, totalprice = 0;
           var count = parseInt($(tar).prev().html());
           perprice = $(tar).prev().attr("data-preprice");
-          $(tar).prev().prev().addClass("current");
+          if (count > 0) {
+            $(tar).prev().prev().addClass("current");
+          }
           count++;
           if(window.location.search.indexOf('oneticket') != -1 && count >2){
             jAlert('一个账户最多能抢2张票');
