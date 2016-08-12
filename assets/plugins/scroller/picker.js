@@ -142,13 +142,13 @@
     var originBug = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) && (navigator.userAgent.toLowerCase().indexOf('safari') >= 0 && navigator.userAgent.toLowerCase().indexOf('chrome') < 0);
 
     //初始化columns
-    p.columnHtml = function (col) {
+    p.columnHtml = function (col,styleWidth) {
       var columnHtml = '';
       var columnItemsHtml = '';
       for (var i = 0, len = col.values.length; i < len; i++) {
         columnItemsHtml += col.dataValues ? '<div  class="picker_item" data-value="' + col.dataValues[i] + '" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>' : '<div  class="picker_item" data-value="' + col.values[i] + '" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>';
       }
-      columnHtml += '<div class="picker_items_col"><div class="picker_items_col_wrapper">' + columnItemsHtml + '</div></div>';
+      columnHtml += '<div class="picker_items_col" style="width: '+styleWidth+'"><div class="picker_items_col_wrapper">' + columnItemsHtml + '</div></div>';
       return columnHtml;
     };
     //设置每行的值
@@ -539,9 +539,10 @@
       }
       var colsHtml = '';
       var len = p.cols.length;
+      var styleWidth = Math.round(1/len*10000)/100 + "%";
       for (i = 0; i < len; i++) {
         var col = p.cols[i];
-        colsHtml += p.columnHtml(col);
+        colsHtml += p.columnHtml(col,styleWidth);
       }
 
       pickerHtml = p.params.toolbarTemplate +

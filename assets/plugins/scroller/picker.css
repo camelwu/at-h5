@@ -87,6 +87,7 @@
 }
 
 .picker_items_col {
+    float: left;
     overflow: hidden;
     position: relative;
     max-height: 100%;
