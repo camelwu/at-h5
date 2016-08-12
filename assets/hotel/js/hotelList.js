@@ -339,7 +339,7 @@ $(window).load(function () {
         json.rank = json.rank || ''; //使用默认排序
         // json.InterCityName = decodeURIComponent(json.InterCityName.replace(/\+/g, "%20")) || 'Singapore';
         json.InterCityName = json.InterCityName.replace(/\+/g, " ") || 'Singapore';
-        json.DomCityName = decodeURIComponent(json.DomCityName) || '北京';
+        json.DomCityName = json.DomCityName.replace(/\+/g, " ") || '北京';
         json.NumRoom = json.NumRoom || '1';
         json.NumChild = json.NumChild || '1';
         json.NumAdult = json.NumAdult || '1';
