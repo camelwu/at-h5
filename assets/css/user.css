@@ -207,10 +207,7 @@ input:-ms-input-placeholder {
   height: .6rem;
   position: relative;
   top: -1px;
-}
-
-.login_tab_wrap a {
-
+  overflow: hidden;
 }
 
 .login_tab_wrap .active a {
@@ -890,7 +887,7 @@ input:-ms-input-placeholder {
   position: absolute;
   top: .13rem;
   right: 0;
-  height: .66rem;
+  height: .62rem;
   border: 1px solid #7bc300;
   border-radius: .04rem;
   -webkit-border-radius: .04rem;
@@ -901,8 +898,8 @@ input:-ms-input-placeholder {
 .info_sex .per_man {
   float: left;
   width: .76rem;
-  height: .62rem;
-  line-height: .64rem;
+  height: .58rem;
+  line-height: .6rem;
   text-align: center;
   color: #7bc300;
   background-color: #fff;
@@ -911,6 +908,7 @@ input:-ms-input-placeholder {
 .info_sex .sex_act {
   color: #fff;
   background-color: #7bc300;
+  height: .6rem;
 }
 
 #uptra_page .info_sex_tab,
@@ -919,7 +917,7 @@ input:-ms-input-placeholder {
   top: .13rem;
   right: .28rem;
   width: auto;
-  height: .66rem;
+  height: .62rem;
   border: 1px solid #7bc300;
   border-radius: .04rem;
   -webkit-border-radius: .04rem;
@@ -930,8 +928,8 @@ input:-ms-input-placeholder {
 .info_sex_tab .per_man {
   float: left;
   width: .76rem;
-  height: .62rem;
-  line-height: .64rem;
+  height: .58rem;
+  line-height: .6rem;
   text-align: center;
   color: #7bc300;
   background-color: #fff;
@@ -940,6 +938,7 @@ input:-ms-input-placeholder {
 .info_sex_tab .sex_act {
   color: #fff;
   background-color: #7bc300;
+  height: .6rem;
 }
 
 .user-mb {
