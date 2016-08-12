@@ -405,7 +405,7 @@
     obj.onclick = function () {
       var phone_num = $("#phone_num")[0];
       var findPhoneCaptchaInput = $(".captcha_modify");
-      var findPhoneCaptchaImg = $(".fk_captcha_modify");
+      var findPhoneCaptchaImg = $("#modify_pass .fk_captcha_modify");
       if (!check(phone_num.getAttribute('data-type'), phone_num.value)) {
         jAlert("请输入有效的手机号");
         return;
