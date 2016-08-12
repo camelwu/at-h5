@@ -1026,8 +1026,8 @@
 
           /**
            * mycallback
-           * 1. 传入object {success, error}，服务器返回调用success，服务器失败调用error
-           * 2. 传入object {success, error}，服务器返回调用success，服务器失败调用error
+           * 1. 必传success<function>，服务器返回调用success
+           * 2. 可选{success, error}<object>，服务器返回调用mycallback，服务器失败调用mycallback.error
            */
           if (isObject(mycallback)) {
             var error = mycallback.error;
