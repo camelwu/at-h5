@@ -856,7 +856,7 @@
 
     _clearDate();
     //免登录，如果缓存没有数据，自己显示添加页面
-    if (isLogin) {
+    if (!isLogin) {
       var data = JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
       if (data == null) {
         passagerListPage.show();
@@ -887,7 +887,7 @@
     _getPassagerList();
     _bindEvent();
 
-    if (isLogin && travId != "null") {
+    if (!isLogin && travId != "null") {
       currentOperationType = "edit";
       editIDKey = travId;
       _model2UI(passagerArray[editIDKey]);
