@@ -535,7 +535,7 @@ li.scenic_detile_project_first{
 /*/!*营业时间开始*!/营业地址开始*/
 .scenic_content_time,.scenic_content_address,.scenic_content_package,.scenic_content_booking,.scenic_content_scheduling,.scenic_content_notes,.scenic_content_TOS,.scenic_content_detail{
   margin: .4rem 0 0 .28rem;
-  padding:0 .28rem .4rem 0;
+  padding:0 .28rem .32rem 0;
   font-size: .28rem;
   position: relative;
   border-bottom: 1px solid #e6e6e6;
@@ -624,15 +624,15 @@ li.scenic_detile_project_first{
   margin-bottom: 0;
 }
 .scenic_content_scheduling .scenic_content_scheduling_down, .scenic_content_notes .scenic_content_scheduling_down, .scenic_content_TOS .scenic_content_scheduling_down{
-  width: .32rem;
-  height: .32rem;
+  width: .4rem;
+  height: .4rem;
   position: relative;
   left: 50%;
   bottom:0;
   display: inline-block;
   background-image: url(../../images/ui/icon-hft.png);
   background-size: 7.5rem 4.54rem;
-  background-position:  -3.71rem -2.26rem;
+  background-position: -3.64rem -2.14rem;
 }
 li.scenic_height1, li.scenic_height2, li.scenic_height3{
   height: 4.8rem;

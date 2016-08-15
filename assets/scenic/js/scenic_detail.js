@@ -236,7 +236,6 @@ window.addEventListener('load', function () {
           var htmlC = ejs.render(htmlc,json.data);
           $("#barContent").html(htmlC);
         }
-
         var htmls = $("#Sceniccontent").html();
         var htmlS = ejs.render(htmls,json.data);
         //图片点击事件
@@ -432,11 +431,13 @@ window.addEventListener('load', function () {
       header.style.opacity="1";
       header.style.backgroundColor = "#f7f7f7";
       oldgo.style.zIndex = 98;
+      $('.icon_go_back').hide();
     }else{
       header.style.position="absolute";
       header.style.opacity="0";
       header.style.backgroundColor = "transparent";
       oldgo.style.zIndex = 998;
+      $('.icon_go_back').show();
     }
   });
 })();
