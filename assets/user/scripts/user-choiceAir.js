@@ -44,11 +44,11 @@
   var memberId = localStorage.getItem('memberid') || sessionStorage.getItem('memberid');
   var isLogin = memberId !== null && memberId !== undefined ? true : false;
 
+  var closeWindowBtn = $("#toper .closedWin");
 
   var passagerArray = {};
   var selectedPassagerArray = {};
-  var choiceAir_AddPassagerArray = sessionStorage.getItem('choiceAir_AddPassagerArray')
-  choiceAir_AddPassagerArray = choiceAir_AddPassagerArray ? JSON.parse(choiceAir_AddPassagerArray) : [];
+  var choiceAir_AddPassagerArray = [];
   var editIDKey = null;
 
   /**
@@ -66,6 +66,7 @@
   var isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true;
   var callbackName = vlm.getpara("callback");
   //页面Dom对象
+  var closeWindowBtn = $("#toper .closedWin");
   var nameDescriptPager = $(".fillName_page");
   var submitBtn = $("#toper .addPassager_finish");
   var idName = $(".addAir_page .cnNameUL");
