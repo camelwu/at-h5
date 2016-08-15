@@ -1205,15 +1205,15 @@
             }
           }, true);
           return back;
-        }, _choice = function (elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate, isShowChinaName, isShowContact, callback) {
+        }, _choice = function (elementId, flight, tour, travellerId, isInternationalTrip, isMulSelect, numOfAdult, numOfChild, id, departDate, isShowChinaName, isShowContact, callbackName) {
           //if(arguments.length<1){return ;}
           //var arg = arguments.callee.slice(this);
           var type = '',
             title = '';
-          if (t === "contact") {
+          if (tour === "contact") {
             title = '选择联系人';
           } else {
-            switch (f.toLowerCase()) {
+            switch (flight.toLowerCase()) {
               case "h":
                 title = '选择入住人';
                 break;
@@ -1231,15 +1231,13 @@
                 break;
             }
           }
-          if (tid) {
+          if (travellerId) {
             type = 'edit';
           } else {
             type = 'add';
           }
-          //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");isShowChinaName,isShowContact
-          var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + t + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callback);
+          var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + flight + tour + '&isNeedPassport=' + isInternationalTrip + '&title=' + title + '&type=' + type + '&TravellerId=' + travellerId + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numOfAdult + "&numofChlid=" + numOfChild + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callbackName);
           document.body.appendChild(choice);
-
           //choice.location = urls;
         }, createIframe = function (urlstr, id) {
           var str = id ? id : 'choiceAir',
