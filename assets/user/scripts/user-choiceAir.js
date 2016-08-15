@@ -18,7 +18,7 @@
    * @param {Date} departDate 出发日期
    * @param {Boolean} isShowChinaName 是否显示中文名
    * @param {Boolean} isShowContact 是否显示联系人
-   * @param {String} callbackName 勾选乘机人后，回调iframe.parent.window[callback](arguments)，即传递参数arguments给callback
+   * @param {String} callbackName 勾选乘机人后，回调iframe.parent.window[callbackName](arguments)，即传递参数arguments给callback
    */
   var urlobj = vlm.parseUrlPara(window.location.href);
 
@@ -35,19 +35,36 @@
   var selectAdultNum = 0;
   var selectChildNum = 0;
   var departDate = vlm.getpara("departDate"); //departDate;
-  var memberId = localStorage.memberid || sessionStorage.memberid;
+
+  /**
+   *
+   * @param {String} memberId 用户id
+   * @param {Boolean} isLogin 判断登录状态：true登录 false未登录
+   */
+  var memberId = localStorage.getItem('memberid') || sessionStorage.getItem('memberid');
+  var isLogin = memberId !== null && memberId !== undefined ? true : false;
+
+
   var passagerArray = {};
   var selectedPassagerArray = {};
-  var choiceAir_AddPassagerArray = [];
+  var choiceAir_AddPassagerArray = sessionStorage.getItem('choiceAir_AddPassagerArray')
+  choiceAir_AddPassagerArray = choiceAir_AddPassagerArray ? JSON.parse(choiceAir_AddPassagerArray) : [];
   var editIDKey = null;
+
+  /**
+   * @param {String} currentOperationType 当前操作类型：1.new(新增) & 2.edit(编辑)
+   * @param {String} operationType 操作类型对应id&code
+   */
   var currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType");
   var operationType = {
     new: {id: 1, name: "新增", code: "70100012"},
     edit: {id: 2, name: "编辑", code: "70100013"},
   };
+
+
   var isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true;
   var isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true;
-  var callback = vlm.getpara("callback");
+  var callbackName = vlm.getpara("callback");
   //页面Dom对象
   var nameDescriptPager = $(".fillName_page");
   var submitBtn = $("#toper .addPassager_finish");
@@ -118,7 +135,7 @@
   var _bindEvent = function () {
 
     /**
-     * 个人中心-选择乘机人（出行人）-乘机人（出行人）列表-选择按钮
+     * 个人中心选择乘机人（出行人等）-乘机人（出行人等）列表-选择按钮
      * 选中对应乘机人
      */
     $("#allList").on("click", '.user_choice', function () {
@@ -198,7 +215,7 @@
     })
 
     /**
-     * 个人中心-选择乘机人（出行人）-乘机人（出行人）列表-编辑按钮
+     * 个人中心选择乘机人（出行人等）-乘机人（出行人等）列表-编辑按钮
      * 编辑对应乘机人
      */
     $("#allList").on("click", '.user_edit', function () {
@@ -223,8 +240,8 @@
     })
 
     /**
-     * 个人中心-选择乘机人（出行人）-乘机人（出行人）列表-编辑按钮
-     * 编辑对应乘机人
+     * 个人中心选择乘机人（出行人等）-新增按钮
+     * 点击后弹出新增乘机人（出行人等）表单
      */
     $(".add_passager").on("click", function () {
       currentOperationType = "new";
@@ -265,6 +282,12 @@
         closeWindowBtn.click();
       }
     });
+
+    /**
+     * 个人中心选择乘机人（出行人等）-完成按钮
+     * 点击后_replacePagerAttri操作parent页面的节点
+     */
+    // FIXME: 此处直接操作parent页面的节点，待修复为：只为parent页面提供数据，回调location.href传递的callbackName，即执行parent[callbackName](data)
     submitBtn.on("click", function () {
       var selectPassagerList = $(".list-traveler .choiced")
       for (var i = 0; i <= selectPassagerList.length - 1; i++) {
@@ -281,29 +304,31 @@
       _replacePagerAttri();
       _saveLocalStorge();
 
-      if (callback !== undefined && callback !== "undefined" && callback !== null && callback !== "null") {
-        //parent.callback();
-        eval("parent." + callback + '(' + JSON.stringify(selectedPassagerArray[key]) + ')');
+      if (callbackName !== undefined && callbackName !== "undefined" && callbackName !== null && callbackName !== "null") {
+        //parent.callbackName();
+        eval("parent." + callbackName + '(' + JSON.stringify(selectedPassagerArray[key]) + ')');
       }
       closeWindowBtn.click();
-
     });
 
-    //保存事件
+    /**
+     * 个人中心选择乘机人（出行人等）-新增按钮点击-新增乘机人（出行人等）页面-完成按钮
+     * 点击后校验新增是否成功，成功后travId是否存在，存在点击“个人中心选择乘机人（出行人等）-完成按钮”
+     */
     $(".addFinish").on("click", function () {
       var flag = _saveDb();
       if (flag) {
         _getPassagerList();
-      } else {
-        return;
+        if (travId != "null") {
+          submitBtn.click();
+        }
       }
-
-      if (travId != "null") {
-        submitBtn.click();
-      }
-
     })
 
+    /**
+     * 个人中心选择乘机人（出行人等）-新增按钮点击-新增乘机人（出行人等）页面-性别选择
+     * 男女切换
+     */
     $(".sex_cho_wrap span").on("click", function () {
       $(".sex_cho_wrap b").removeClass("traveler_sex1");
       $(".sex_cho_wrap b").addClass("traveler_sex2");
@@ -323,7 +348,6 @@
         return false;
       }
     }
-    ;
 
     if (enName.is(':visible')) {
       if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())) {
@@ -345,18 +369,6 @@
       }
     }
 
-    /*// 联系人信息，
-     if (ul_contect.is(':visible')) {
-     if (!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telephone").eq(0).val())) {
-     jAlert("请输入有效的电话号码！", "", null, "确认");
-     return false;
-     }
-
-     if (!vlm.Utils.validate["email"]($(addOrEditPassagePage).find(".email").eq(0).val())) {
-     jAlert("请输入有效的邮箱！", "", null, "确认");
-     return false;
-     }
-     }*/
     if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cardNumber").eq(0).val())) {
       jAlert("证件号不能为空！", "", null, "确认");
       return false;
@@ -491,14 +503,25 @@
 
   }
 
-  //数据保存
+
   var _saveDb = function () {
+    /**
+     * 新增乘机人是否成功
+     *
+     * @return {Boolean} true成功 false失败
+     */
+
+    // 校验数据合法性
     if (!_validate()) {
       return false;
     }
+
+    // 根据操作类型，返回不同的数据
     var model = _ui2Model(currentOperationType);
-    //登陆
-    if (memberId != undefined) {
+
+    // isLogin判断登录状态
+    if (isLogin) {
+      //登录
       var Parameters = {
         Parameters: model,
         ForeEndType: 3,
@@ -512,14 +535,12 @@
           return;
         }
       })
-    }
-    //免登陆
-    else {
+    } else {
+      //免登录
       //编辑状态，移除数组元素，为了更数据
       if (currentOperationType == "edit") {
         choiceAir_AddPassagerArray.forEach(function (info) {
           if (info.traveller.travellerId == editIDKey) {
-            info = model;
             return;
           }
         })
@@ -528,7 +549,6 @@
         model.isInternationalTrip = isInternationalTrip;
         choiceAir_AddPassagerArray.push(model);
       }
-
 
       sessionStorage.setItem('choiceAir_AddPassagerArray', JSON.stringify(choiceAir_AddPassagerArray));
       passagerListPage.show();
@@ -667,14 +687,16 @@
     }
   };
 
-  //获取常旅列表数据源
+  /**
+   * 获取常旅客数据，拼接数据+模板，存入常旅客列表
+   */
   var _getPassagerList = function () {
     // 注意这里操作的全局下的selectAdultNum
     // 成人和儿童数清零
     selectAdultNum = 0, selectChildNum = 0;
 
-    //如果正常登陆，查询数据库常旅接口
-    if (memberId != null) {
+    //如果正常登录，查询数据库常旅接口
+    if (isLogin) {
       var Parameters = {
         "Parameters": {"memberId": memberId},
         "ForeEndType": 3,
@@ -723,7 +745,7 @@
       });
 
     } else {
-      //如果免登陆，查询LocalStorge数据
+      //如果免登录，查询LocalStorge数据
 
       // isInternational传true或false，为了防止template报错。后面改为ejs解析
       var json = {
@@ -833,8 +855,8 @@
     });
 
     _clearDate();
-    //免登陆，如果缓存没有数据，自己显示添加页面
-    if (memberId == undefined) {
+    //免登录，如果缓存没有数据，自己显示添加页面
+    if (isLogin) {
       var data = JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
       if (data == null) {
         passagerListPage.show();
@@ -865,7 +887,7 @@
     _getPassagerList();
     _bindEvent();
 
-    if (memberId == undefined && travId != "null") {
+    if (isLogin && travId != "null") {
       currentOperationType = "edit";
       editIDKey = travId;
       _model2UI(passagerArray[editIDKey]);
