@@ -232,7 +232,7 @@ strong{
   height: .68rem;
   float: right;
   line-height: .68rem;
-  color: #ff5b13;;
+  color: #fb7530;;
 }
 .hotel_content_listTrigger_price{
   margin-top:.12rem;
@@ -242,7 +242,7 @@ strong{
 
 .hotel_content_listTrigger_price >span{
   font-size: .4rem;
-  color: #ff5b13;
+  color: #fb7530;
 }
 .d-icon5{
   width: .4rem;
@@ -380,7 +380,7 @@ strong{
 .hotel_content_roomDetail_money span.money{
   font-size:.24rem;
   display: inline-block;
-  color: #ff5b13;;
+  color: #fb7530;;
   position: absolute;
   top: .18rem;
   right: -0.2rem;
