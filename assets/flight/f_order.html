@@ -39,10 +39,11 @@
       </h4>
 
       <div id="passenger-list">
+        <!--此ul节点用于user-choiceAir.html的_replacePagerAttri克隆节点-->
         <ul class="passenger_outer" style="display:none;">
           <li>
             <p class="name_infos">
-              <i class="minus_person" onclick="javascript:fOrder.deletePassager(this)"></i>
+              <i class="minus_person"></i>
               <span class="en_name">
                 <span class="tip_word">姓<b>/</b>名</span>
                 <span class="last_name" data-elementname="lastName"></span><b>&nbsp;/&nbsp;</b><span class="first_name" data-elementname="firstName"></span>
@@ -51,16 +52,14 @@
                 <span class="tip_word">姓名</span>
                 <span class="id_name" data-elementname="idName"></span>
               </span>
-              <i class="add_icon passenger" onclick="javascript:fOrder.editPassager(this)"><input type="hidden" name="input-zone"
-                                                                                           class="passport-number itemId"
-                                                                                           readonly="readonly"
-                                                                                           data-elementName="travellerId"></i>
+              <i class="add_icon passenger">
+                <input type="hidden" name="input-zone" class="passport-number itemId" readonly="readonly" data-elementName="travellerId">
+              </i>
             </p>
-
-            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567"
-                                                                           readonly="readonly"
-                                                                           data-elementname="idNumber"/><span
-              class="sex_value" data-elementname="sexName"></span>
+            <p class="passport_sex">
+              <span class="tip_word">护照</span>
+                <input class="passportValue" placeholder="1234567" readonly="readonly" data-elementname="idNumber"/>
+              <span class="sex_value" data-elementname="sexName"></span>
             </p>
           </li>
         </ul>

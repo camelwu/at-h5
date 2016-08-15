@@ -1183,7 +1183,7 @@ input:-ms-input-placeholder {
 }
 
 .passengers_wrap ul p:nth-child(1) span, .passengers_wrap ul p:nth-child(1) b {
-  float: left
+  /*float: left*/
 }
 
 .passengers_wrap ul p input {
