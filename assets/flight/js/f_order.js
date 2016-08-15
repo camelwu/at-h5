@@ -371,6 +371,10 @@ var fOrder = {
       vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numofAdult, fIndexInfo.numofChild, null, fIndexInfo.departDate, !isInternationalTrip, false, 'fOrder.flight_callback');
     });
 
+    /**
+     * 机票订单填写页-乘机人-“-”
+     * 删除对应乘机人
+     */
     $('#passenger-list').on('click', '.minus_person', function () {
       deletePassager(this)
       function deletePassager(obj){
@@ -388,6 +392,12 @@ var fOrder = {
       }
     });
 
+    /**
+     * 机票订单填写页-乘机人-“>”
+     * 编辑对应乘机人
+     * iframe打开../user/user-choiceAir.html?
+     * 传递参数给iframe，用于回显乘机人数据
+     */
     $('#passenger-list').on('click', '.passenger', function () {
       editPassager(this)
       function editPassager(obj) {
