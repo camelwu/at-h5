@@ -342,8 +342,33 @@ var fOrder = {
       }
     });
 
+    /**
+     * 机票订单填写页-乘机人-“+”
+     * iframe打开../user/user-choiceAir.html?
+     * 传递参数给iframe
+     */
     $('.add-user').on('click', function () {
-      vlm.f_choice('passenger-list','f','traver','',fOrder.isInternationalTrip(),true,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(localStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(localStorage.getItem('fIndexInfo')).data.departDate, !fOrder.isInternationalTrip(), false, 'fOrder.flight_callback')
+      /**
+       * 当前页面在iframe中打开
+       * location.href接收iframe.parent传递的参数
+       *
+       * @param {String} elementId
+       * @param {String} flight
+       * @param {String} tour
+       * @param {String} travellerId
+       * @param {Boolean} isInternationalTrip 是否国际航班
+       * @param {Boolean} isMulSelect 是否多选
+       * @param {Number} numOfAdult 成人数
+       * @param {Number} numOfChild 儿童数
+       * @param {String} id
+       * @param {Date} departDate 出发日期
+       * @param {Boolean} isShowChinaName 是否显示中文名
+       * @param {Boolean} isShowContact 是否显示联系人
+       * @param {String} callbackName 勾选乘机人后，回调iframe.parent.window[callback](arguments)，即传递参数arguments给callback
+       */
+      var fIndexInfo = JSON.parse(localStorage.getItem('fIndexInfo')).data;
+      var isInternationalTrip = fOrder.isInternationalTrip()
+      vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numofAdult, fIndexInfo.numofChild, null, fIndexInfo.departDate, !isInternationalTrip, false, 'fOrder.flight_callback');
     });
 
   },

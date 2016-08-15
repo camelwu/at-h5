@@ -2,32 +2,52 @@
  * Created by zhouwei on 2016/5/25.
  */
 (function () {
+  /**
+   * 当前页面在iframe中打开
+   * location.href接收iframe.parent传递的参数
+   *
+   * @param {String} elementId
+   * @param {String} flight
+   * @param {String} tour
+   * @param {String} travellerId
+   * @param {Boolean} isInternationalTrip 是否国际航班
+   * @param {Boolean} isMulSelect 是否多选
+   * @param {Number} numOfAdult 成人数
+   * @param {Number} numOfChild 儿童数
+   * @param {String} id
+   * @param {Date} departDate 出发日期
+   * @param {Boolean} isShowChinaName 是否显示中文名
+   * @param {Boolean} isShowContact 是否显示联系人
+   * @param {String} callbackName 勾选乘机人后，回调iframe.parent.window[callback](arguments)，即传递参数arguments给callback
+   */
   var urlobj = vlm.parseUrlPara(window.location.href);
-  var isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false, //是否多选
-    isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false, // 是否国际航班，true国际航班，false国内航班
-    titleType = vlm.getpara("title").substr(2), //是否多选title;
-    travId = vlm.getpara("Id"), //id,
-    elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""), //id
-    from = vlm.getpara("from"),
-    ifrCilent = window.parent.document.getElementById("choiceAir"),
-    numOfAdult = vlm.getpara("numofAdult"), //id
-    numOfChlid = vlm.getpara("numofChlid"), //id;
-    selectAdultNum = 0,
-    selectChildNum = 0,
-    departDate = vlm.getpara("departDate"), //departDate;
-    memberId = localStorage.memberid || sessionStorage.memberid,
-    passagerArray = {},
-    selectedPassagerArray = {},
-    choiceAir_AddPassagerArray = [],
-    editIDKey = null,
-    currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType"),
-    operationType = {
-      new: {id: 1, name: "新增", code: "70100012"},
-      edit: {id: 2, name: "编辑", code: "70100013"},
-    },
-    isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true,
-    isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true,
-    callback = vlm.getpara("callback");
+
+
+  var isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false; //是否多选
+  var isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false; // 是否国际航班，true国际航班，false国内航班
+  var titleType = vlm.getpara("title").substr(2); //是否多选title;
+  var travId = vlm.getpara("Id"); //id,
+  var elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""); //id
+  var from = vlm.getpara("from");
+  var ifrCilent = window.parent.document.getElementById("choiceAir");
+  var numOfAdult = vlm.getpara("numofAdult"); //id
+  var numOfChlid = vlm.getpara("numofChlid"); //id;
+  var selectAdultNum = 0;
+  var selectChildNum = 0;
+  var departDate = vlm.getpara("departDate"); //departDate;
+  var memberId = localStorage.memberid || sessionStorage.memberid;
+  var passagerArray = {};
+  var selectedPassagerArray = {};
+  var choiceAir_AddPassagerArray = [];
+  var editIDKey = null;
+  var currentOperationType = vlm.getpara("operationType") == null ? "new" : vlm.getpara("operationType");
+  var operationType = {
+    new: {id: 1, name: "新增", code: "70100012"},
+    edit: {id: 2, name: "编辑", code: "70100013"},
+  };
+  var isShowChinaName = vlm.getpara("isShowChinaName").toLowerCase() == "false" ? false : true;
+  var isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true;
+  var callback = vlm.getpara("callback");
   //页面Dom对象
   var saveDbBtn = $(".addFinish");
   var closeWindowBtn = $("#toper .closedWin");
