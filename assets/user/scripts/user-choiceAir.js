@@ -23,8 +23,8 @@
   var urlobj = vlm.parseUrlPara(window.location.href);
 
 
-  var isMulSelect = vlm.getpara("isMulSelect").toLowerCase() == "true" ? true : false; //是否多选
-  var isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() == "true" ? true : false; // 是否国际航班，true国际航班，false国内航班
+  var isMulSelect = vlm.getpara("isMulSelect").toLowerCase() === "true" ? true : false; //是否多选
+  var isInternationalTrip = vlm.getpara("isNeedPassport").toLowerCase() === "true" ? true : false; // 是否国际航班，true国际航班，false国内航班
   var titleType = vlm.getpara("title").substr(2); //是否多选title;
   var travId = vlm.getpara("Id"); //id,
   var elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""); //id
@@ -49,12 +49,7 @@
   var isShowContact = vlm.getpara("isShowContact").toLowerCase() == "false" ? false : true;
   var callback = vlm.getpara("callback");
   //页面Dom对象
-  var saveDbBtn = $(".addFinish");
-  var closeWindowBtn = $("#toper .closedWin");
-  var addPassagerBtn = $(".add_passager");
-  var nameDescriptBtn = $("#name_state");
-  var nameDescriptPager = $(".fillName_page ");
-  var nameCloseDescriptBtn = $("#fillName_page #closeName");
+  var nameDescriptPager = $(".fillName_page");
   var submitBtn = $("#toper .addPassager_finish");
   var idName = $(".addAir_page .cnNameUL");
   var enName = $(".addAir_page .enNameUL");
@@ -121,7 +116,117 @@
 
   //页面事件绑定
   var _bindEvent = function () {
-    addPassagerBtn.on("click", function () {
+
+    /**
+     * 个人中心-选择乘机人（出行人）-乘机人（出行人）列表-选择按钮
+     * 选中对应乘机人
+     */
+    $("#allList").on("click", '.user_choice', function () {
+      // item对应的id
+      editIDKey = $(this).attr('data-id');
+
+      // 取出对应乘机人信息
+      var passagerInfo = passagerArray[editIDKey];
+      // 传入当前航班类型：true国际，false国内
+      passagerInfo.isInternationalTrip = isInternationalTrip;
+      if (passagerInfo.isInternationalTrip) {
+        if (!passagerInfo.traveller.lastName) {
+          jAlert('请补全信息')
+          return;
+        }
+      } else {
+        if (!passagerInfo.traveller.idName) {
+          jAlert('请补全信息')
+          return;
+        }
+      }
+      if (isMulSelect) {
+        var age = $(this).attr("data-age"),
+          step = 0;
+        if (age < 2) {
+          jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
+          return;
+        }
+
+        //选择操作 choiced 选择下个操作取消
+        if ($(this).hasClass("choiced")) {
+          step = -1 //选择加1个
+        } else {
+          step = 1; //取消减一个
+        }
+        if (age >= 12) {
+          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChlid) {
+
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
+            return;
+          } else if (selectAdultNum + step > numOfAdult) {
+            jAlert("只能选择" + numOfAdult + "成人");
+            return;
+          }
+        } else {
+          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChlid) {
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
+            return;
+          } else if (selectChildNum + step > numOfChlid) {
+            jAlert("只能选择" + numOfAdult + "儿童");
+            return;
+          }
+
+        }
+
+        if (age >= 2 && age < 12) {
+          selectChildNum = selectChildNum + step;
+        } else if (age >= 12) {
+          selectAdultNum = selectAdultNum + step;
+        }
+
+        $(this).toggleClass("choiced");
+
+        _setSelectPessageTip();
+
+      } else {
+        var len = $(".list-traveler .choiced").length;
+        if (len >= 1 && !$(this).hasClass("choiced")) {
+          $(this).removeClass("choiced");
+          jAlert("对不起，只能单选！");
+          return;
+        } else {
+          $(this).toggleClass("choiced");
+        }
+      }
+
+    })
+
+    /**
+     * 个人中心-选择乘机人（出行人）-乘机人（出行人）列表-编辑按钮
+     * 编辑对应乘机人
+     */
+    $("#allList").on("click", '.user_edit', function () {
+      // 当前操作类型为编辑
+      currentOperationType = "edit";
+      // item对应的id
+      editIDKey = $(this).attr('data-id');
+
+      // 取出对应乘机人信息
+      var passagerInfo = passagerArray[editIDKey];
+      // 传入当前航班类型：true国际，false国内
+      passagerInfo.isInternationalTrip = isInternationalTrip;
+
+      // 编辑乘机人面板的数据回显
+      _model2UI(passagerInfo);
+
+      _setTitleTip();
+
+      // 用户列表隐藏，添加编辑页面展示
+      passagerListPage.hide();
+      addOrEditPassagePage.show();
+    })
+
+    /**
+     * 个人中心-选择乘机人（出行人）-乘机人（出行人）列表-编辑按钮
+     * 编辑对应乘机人
+     */
+    $(".add_passager").on("click", function () {
       currentOperationType = "new";
       editIDKey = null;
       _setTitleTip();
@@ -130,14 +235,14 @@
       addOrEditPassagePage.show();
     });
 
-    nameDescriptBtn.on("click", function () {
+    $("#name_state").on("click", function () {
       nameDescriptPager.show();
     });
-    nameCloseDescriptBtn.on("click", function () {
+    $("#closeName").on("click", function () {
       nameDescriptPager.hide();
     });
 
-    closeWindowBtn.on("click", function () {
+    $("#toper .closedWin").on("click", function () {
       if (window.opener) {
         window.close();
       } else {
@@ -185,7 +290,7 @@
     });
 
     //保存事件
-    saveDbBtn.on("click", function () {
+    $(".addFinish").on("click", function () {
       var flag = _saveDb();
       if (flag) {
         _getPassagerList();
@@ -540,111 +645,6 @@
     }
   };
 
-  //绑定选择事件
-  var _bindSelectChoice = function () {
-    //_clearDate();
-    $(".user_choice").on("click", function () {
-
-
-      // item对应的id
-      editIDKey = $(this).attr('data-id');
-
-      // 取出对应乘机人信息
-      var passagerInfo = passagerArray[editIDKey];
-      // 传入当前航班类型：true国际，false国内
-      passagerInfo.isInternationalTrip = isInternationalTrip;
-      if (passagerInfo.isInternationalTrip) {
-        if (!passagerInfo.traveller.lastName) {
-          jAlert('请补全信息')
-          return;
-        }
-      } else {
-        if (!passagerInfo.traveller.idName) {
-          jAlert('请补全信息')
-          return;
-        }
-      }
-
-
-      if (isMulSelect) {
-        var age = $(this).attr("data-age"),
-          step = 0;
-        if (age < 2) {
-          jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
-          return;
-        }
-
-        //选择操作 choiced 选择下个操作取消
-        if ($(this).hasClass("choiced")) {
-          step = -1 //选择加1个
-        } else {
-          step = 1; //取消减一个
-        }
-        if (age >= 12) {
-          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChlid) {
-
-            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
-            return;
-          } else if (selectAdultNum + step > numOfAdult) {
-            jAlert("只能选择" + numOfAdult + "成人");
-            return;
-          }
-        } else {
-          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChlid) {
-            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
-            return;
-          } else if (selectChildNum + step > numOfChlid) {
-            jAlert("只能选择" + numOfAdult + "儿童");
-            return;
-          }
-
-        }
-
-        if (age >= 2 && age < 12) {
-          selectChildNum = selectChildNum + step;
-        } else if (age >= 12) {
-          selectAdultNum = selectAdultNum + step;
-        }
-
-        $(this).toggleClass("choiced");
-
-        _setSelectPessageTip();
-
-      } else {
-        var len = $(".list-traveler .choiced").length;
-        if (len >= 1 && !$(this).hasClass("choiced")) {
-          $(this).removeClass("choiced");
-          jAlert("对不起，只能单选！");
-          return;
-        } else {
-          $(this).toggleClass("choiced");
-        }
-      }
-    })
-
-    // 乘机人列表的编辑按钮
-    $(".user_edit").on("click", function () {
-      // 当前操作类型为编辑
-      currentOperationType = "edit";
-      // item对应的id
-      editIDKey = $(this).attr('data-id');
-
-      // 取出对应乘机人信息
-      var passagerInfo = passagerArray[editIDKey];
-      // 传入当前航班类型：true国际，false国内
-      passagerInfo.isInternationalTrip = isInternationalTrip;
-
-      // 编辑乘机人面板的数据回显
-      _model2UI(passagerInfo);
-
-      _setTitleTip();
-
-      // 用户列表隐藏，添加编辑页面展示
-      passagerListPage.hide();
-      addOrEditPassagePage.show();
-    })
-  };
-
   //设置标题头信息
   var _setTitleTip = function () {
     if (numOfAdult == null || numOfAdult == "null") {
@@ -693,7 +693,6 @@
           }
           var html = template(tpl_traveler, json);
           document.getElementById("allList").innerHTML = html;
-          _bindSelectChoice();
           var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
           if (selectPassagerList != null) {
             // 遍历选中对象，选中并计算成人数和儿童数
@@ -741,8 +740,6 @@
       })
       var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
 
-      // 重新绑定选中事件
-      _bindSelectChoice();
       if (currentOperationType == "new" && selectPassagerList != null) {
         // 遍历选中对象，选中并计算成人数和儿童数
         Object.keys(selectPassagerList).forEach(function (key) {
@@ -959,6 +956,4 @@
   return {
     InitPage: _initPage()
   }
-
-
 })()
