@@ -2,6 +2,11 @@ em {
   font-style: normal
 }
 
+.all_elements.input-relative {
+  -webkit-overflow-scrolling: auto;
+  /*-webkit-overflow-scrolling https://bugs.webkit.org/show_bug.cgi?id=138201  */
+}
+
 .hotel_user {
   width: 100%;
   height: 100%;
@@ -222,26 +227,31 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   vertical-align: middle;
   padding: .2rem 0;
 }
-.coupon{
+
+.coupon {
   /*display: none;*/
 }
-.coupon .title{
+
+.coupon .title {
   padding-left: .28rem;
   line-height: .68rem;
 }
-.coupon .content{
+
+.coupon .content {
   box-sizing: border-box;
   line-height: .88rem;
   background-color: #fff;
   padding: 0 .28rem;
   position: relative;
 }
+
 .coupon .content .desc {
   float: right;
   padding-right: .38rem;
   color: #fb7530;
 }
-.coupon .content .open_arw{
+
+.coupon .content .open_arw {
   position: absolute;
   right: .28rem;
   top: 50%;
