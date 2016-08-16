@@ -11,7 +11,7 @@
     from = vlm.getpara("from"),
     ifrCilent = window.parent.document.getElementById("choiceAir"),
     numOfAdult = vlm.getpara("numOfAdult"), //id
-    numOfChlid = vlm.getpara("numOfChlid"), //id;
+    numOfChild = vlm.getpara("numOfChild"), //id;
     selectAdultNum = 0,
     selectChildNum = 0,
     departDate = vlm.getpara("departDate"), //departDate;
@@ -562,19 +562,19 @@
           step = 1; //取消减一个
         }
         if (age >= 12) {
-          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChlid) {
+          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChild) {
 
-            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChild + "儿童");
             return;
           } else if (selectAdultNum + step > numOfAdult) {
             jAlert("只能选择" + numOfAdult + "成人");
             return;
           }
         } else {
-          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChlid) {
-            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
+          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChild) {
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChild + "儿童");
             return;
-          } else if (selectChildNum + step > numOfChlid) {
+          } else if (selectChildNum + step > numOfChild) {
             jAlert("只能选择" + numOfAdult + "儿童");
             return;
           }
@@ -641,8 +641,8 @@
   };
 
   var _setSelectPessageTip = function () {
-    if (numOfChlid > 0) {
-      titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult + "  儿童" + selectChildNum + "/" + numOfChlid + "")
+    if (numOfChild > 0) {
+      titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult + "  儿童" + selectChildNum + "/" + numOfChild + "")
     } else {
       titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult)
     }

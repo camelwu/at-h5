@@ -450,12 +450,10 @@ var fOrder = {
   },
 
   priceTags: function () {
-    console.log(arguments[0])
     var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.total_word b'), personNum = document.querySelector('.totalPersonNumber b');
     tempString1 = $("#template_flight_price").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
     $(".priceDetailInfo").eq(0).html(outputString1);
-    console.log(data)
     moneyNumber.innerHTML = "￥"+data.priceTotal;
     return this;
   },
@@ -469,7 +467,6 @@ var fOrder = {
     var flightData = {}, fIndexInfo = {}, storage = window.localStorage, priceTotal = "", priceData = {};
     flightData = JSON.parse(storage.getItem('currentFlight'));
     fIndexInfo = JSON.parse(storage.getItem("fIndexInfo")).data;
-    console.log(flightData)
     priceData.numofAdult = fIndexInfo.numofAdult;
     priceData.numofChild = fIndexInfo.numofChild;
     priceData.totalFareAmountADT = flightData.totalFareAmountADT;

@@ -31,7 +31,7 @@
   var from = vlm.getpara("from");
   var ifrCilent = window.parent.document.getElementById("choiceAir");
   var numOfAdult = vlm.getpara("numofAdult"); //id
-  var numOfChlid = vlm.getpara("numofChlid"); //id;
+  var numOfChild = vlm.getpara("numofChild"); //id;
   var selectAdultNum = 0;
   var selectChildNum = 0;
   var departDate = vlm.getpara("departDate"); //departDate;
@@ -141,6 +141,36 @@
   //  '{% } %}'].join('');
 
 
+  var getAdultAndChildNum = function (json) {
+    var selectAdultNum = 0;
+    var selectChildNum = 0;
+
+    if (!validate(json)) {
+      return;
+    }
+    calculate(json)
+
+    function validate (json) {
+      return !json.length;
+    }
+    function calculate(json) {
+      Object.keys(json).forEach(function (key) {
+        var PassengerType = this[key].traveller.PassengerType.toLowerCase()
+        if (PassengerType === 'adult') {
+          selectAdultNum++
+        } else if (PassengerType === 'child') {
+          selectChildNum++
+        }
+      }, json);
+    }
+
+    return {
+      selectAdultNum: selectAdultNum,
+      selectChildNum: selectChildNum
+    }
+  };
+
+
   //页面事件绑定
   var _bindEvent = function () {
 
@@ -168,8 +198,8 @@
         }
       }
       if (isMulSelect) {
-        var age = $(this).attr("data-age"),
-          step = 0;
+        var age = $(this).attr("data-age");
+        var step = 0;
         if (age < 2) {
           jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
           return;
@@ -182,23 +212,21 @@
           step = 1; //取消减一个
         }
         if (age >= 12) {
-          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChlid) {
-
-            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
+          if (selectAdultNum + step > numOfAdult || selectChildNum > numOfChild) {
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChild + "儿童");
             return;
           } else if (selectAdultNum + step > numOfAdult) {
             jAlert("只能选择" + numOfAdult + "成人");
             return;
           }
         } else {
-          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChlid) {
-            jAlert("只能选择" + numOfAdult + "成人," + numOfChlid + "儿童");
+          if (selectAdultNum > numOfAdult || selectChildNum + step > numOfChild) {
+            jAlert("只能选择" + numOfAdult + "成人," + numOfChild + "儿童");
             return;
-          } else if (selectChildNum + step > numOfChlid) {
+          } else if (selectChildNum + step > numOfChild) {
             jAlert("只能选择" + numOfAdult + "儿童");
             return;
           }
-
         }
 
         if (age >= 2 && age < 12) {
@@ -208,6 +236,7 @@
         }
 
         $(this).toggleClass("choiced");
+        choicedArray()
 
         _setSelectPessageTip();
 
@@ -216,12 +245,21 @@
         if (len >= 1 && !$(this).hasClass("choiced")) {
           $(this).removeClass("choiced");
           jAlert("对不起，只能单选！");
-          return;
         } else {
+          choicedArray()
           $(this).toggleClass("choiced");
         }
       }
 
+
+      function choicedArray() {
+        var selectPassagerList = $(".list-traveler .choiced")
+        for (var i = 0; i <= selectPassagerList.length - 1; i++) {
+          var key = $(selectPassagerList[i]).attr("data-id")
+          passagerArray[key].PagerType = from;
+          selectedPassagerArray[key] = passagerArray[key];
+        }
+      }
     })
 
     /**
@@ -299,7 +337,10 @@
      */
     // FIXME: 此处直接操作parent页面的节点，待修复为：只为parent页面提供数据，回调location.href传递的callbackName，即执行parent[callbackName](data)
     finishBtn.on("click", function () {
-      var selectPassagerList = $(".list-traveler .choiced")
+      var selectPassagerList = $(".list-traveler .choiced");
+
+      // 清空selectedPassagerArray
+      selectedPassagerArray = {};
       for (var i = 0; i <= selectPassagerList.length - 1; i++) {
         var key = $(selectPassagerList[i]).attr("data-id")
         passagerArray[key].PagerType = from;
@@ -326,6 +367,12 @@
      * 点击后校验新增是否成功，成功后travId是否存在，存在点击“个人中心选择乘机人（出行人等）-完成按钮”
      */
     $(".addFinish").on("click", function () {
+      // 校验单条数据合法性
+      if (!_validate()) {
+        return false;
+      }
+
+      // 存储到storage
       var flag = _saveDb();
       if (flag) {
         _getPassagerList();
@@ -341,13 +388,10 @@
          * @return {Boolean} true成功 false失败
          */
 
-        // 校验单条数据合法性
-        if (!_validate()) {
-          return false;
-        }
-
         // 根据操作类型，返回不同的数据
         var model = _ui2Model(currentOperationType);
+        // selectedPassagerArray[editIDKey]存在的话，同步passagerArray[editIDKey]到selectedPassagerArray[editIDKey]
+        selectedPassagerArray[editIDKey] ? selectedPassagerArray[editIDKey] = clone(model) : null;
 
         // isLogin判断登录状态
         if (isLogin) {
@@ -367,22 +411,34 @@
           })
         } else {
           //未登录
+
           //编辑状态，移除数组元素，为了更数据
           if (currentOperationType === "new") {
             model.traveller.travellerId = new Date().getTime();
             model.isInternationalTrip = isInternationalTrip;
             choiceAir_AddPassagerArray.push(model);
+          } else if (currentOperationType === 'edit') {
+            /**
+             * 成人变更为儿童
+             *   如果已选中的儿童数，等于可选儿童数，则“成人变更为儿童”的那条取消选中
+             * 儿童变更为成人
+             *   如果已选中的成人数，等于可选成人数，则“儿童变更为成人”的那条取消选中
+             *
+             * @return {Boolean} true成功 false失败
+             */
+            var num = getAdultAndChildNum(selectedPassagerArray);
+            if (num.selectAdultNum > numOfAdult || num.selectChildNum > numOfChild) {
+              delete selectedPassagerArray[editIDKey];
+            }
           }
 
           sessionStorage.setItem('choiceAir_AddPassagerArray', JSON.stringify(choiceAir_AddPassagerArray));
           passagerListPage.show();
           addOrEditPassagePage.hide();
-          //_getPassagerList();
         }
         _clearDate();
         return true;
       }
-
 
       /**
        * _validate()校验单条数据合法性
@@ -509,6 +565,12 @@
       model.traveller.sexCode = $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-code");
       model.traveller.sexName = $(".addAir_page .sex_cho_wrap .traveler_sex1").attr("data-name");
       model.traveller.dateOfBirth = $(".addAir_page .birthDay").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
+      if (vlm.Utils.getAge(model.traveller.dateOfBirth, departDate) < 12) {
+        model.traveller.PassengerType = "CHILD"; //乘客类型
+      } else {
+        model.traveller.PassengerType = "ADULT"; //乘客类型
+      }
+
       model.traveller.email = $(".addAir_page .email").val();
       model.traveller.mobilePhone = $(".addAir_page .telephone").val();
       model.traveller.mobilePhoneAreaCode = $(".addAir_page .phone_pre").html();
@@ -518,7 +580,6 @@
       model.listTravellerIdInfo[0].idCountryName = $(".addAir_page .cardCountry").html();
       model.listTravellerIdInfo[0].idActivatedDate = $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       model.listTravellerIdInfo[0].nationalityCode = $(".addAir_page .cardCountry").attr("data-code");
-
     }
     return model;
   }
@@ -686,10 +747,11 @@
   };
 
   var _setSelectPessageTip = function () {
-    if (numOfChlid > 0) {
-      titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult + "  儿童" + selectChildNum + "/" + numOfChlid + "")
+    var num = getAdultAndChildNum(selectedPassagerArray);
+    if (numOfChild > 0) {
+      titleTip.html("已选：成人" + num.selectAdultNum + "/" + numOfAdult + "  儿童" + num.selectChildNum + "/" + numOfChild + "")
     } else {
-      titleTip.html("已选：成人" + selectAdultNum + "/" + numOfAdult)
+      titleTip.html("已选：成人" + num.selectAdultNum + "/" + numOfAdult)
     }
   };
 
@@ -716,17 +778,17 @@
           }
           var html = template(tpl_traveler, json);
           document.getElementById("allList").innerHTML = html;
-          var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
-          if (selectPassagerList != null) {
+          selectedPassagerArray = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId)) || {};
+          if (selectedPassagerArray != null) {
             // 遍历选中对象，选中并计算成人数和儿童数
-            Object.keys(selectPassagerList).forEach(function (key) {
-              if (selectPassagerList[key].PagerType == from) {
+            Object.keys(selectedPassagerArray).forEach(function (key) {
+              if (selectedPassagerArray[key].PagerType == from) {
                 // 切换元素选中状态
                 var li = $(".list-traveler .user_choice[data-id=" + key + "]");
                 selectUser(li);
 
                 // 成人和儿童数添加
-                calculatePersonNum(selectPassagerList[key].traveller.PassengerType);
+                calculatePersonNum(selectedPassagerArray[key].traveller.PassengerType);
               }
             });
           }
@@ -761,18 +823,17 @@
       choiceAir_AddPassagerArray.forEach(function (info) {
         passagerArray[info.traveller.travellerId] = info;
       })
-      var selectPassagerList = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId));
 
-      if (currentOperationType == "new" && selectPassagerList != null) {
+      if (currentOperationType == "new" && selectedPassagerArray != null) {
         // 遍历选中对象，选中并计算成人数和儿童数
-        Object.keys(selectPassagerList).forEach(function (key) {
-          if (selectPassagerList[key].PagerType == from) {
+        Object.keys(selectedPassagerArray).forEach(function (key) {
+          if (selectedPassagerArray[key].PagerType == from) {
             // 切换元素选中状态
             var li = $(".list-traveler .user_choice[data-id=" + key + "]");
             selectUser(li);
 
             // 成人和儿童数添加
-            calculatePersonNum(selectPassagerList[key].traveller.PassengerType);
+            calculatePersonNum(selectedPassagerArray[key].traveller.PassengerType);
           }
         });
       }
@@ -890,6 +951,9 @@
       ul_contect.show();
     }
 
+    // 初始化页面时，sessionStorage取出选中数据
+    selectedPassagerArray = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId)) || {};
+
     _getPassagerList();
     _bindEvent();
 
@@ -973,6 +1037,16 @@
 
     $(".addAir_page .sex_cho_wrap .icon_h").removeClass("traveler_sex1").addClass("traveler_sex2")
 
+  }
+
+  /**
+   * clone() 用于克隆引用类型的JSON
+   *
+   * @param {JSON Object} jsonObj
+   * @return {JSON Object} cloned jsonObj
+   */
+  function clone(jsonObj) {
+    return JSON.parse(JSON.stringify(jsonObj));
   }
 
   _initPage()
