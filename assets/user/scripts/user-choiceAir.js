@@ -45,9 +45,15 @@
 
 
   /**
-   * @param {Object} passagerArray 全部用户数据
+   * @param {Object} passagerArray
+   *   用途：登录状态下，全部用户数据；未登录状态下，全部用户数据
+   *   来源：登录状态下，根据travellerId遍历“服务器返回data”；未登录状态下，根据travellerId遍历“choiceAir_AddPassagerArray”生成
+   *
    * @param {Object} selectedPassagerArray 选中用户数据
+   *
    * @param {Array} choiceAir_AddPassagerArray
+   *   用途：未登录状态下，全部用户数据
+   *   来源：sessionStorage.getItem('choiceAir_AddPassagerArray')中取出
    */
   var passagerArray = {};
   var selectedPassagerArray = {};
@@ -360,7 +366,7 @@
             }
           })
         } else {
-          //免登录
+          //未登录
           //编辑状态，移除数组元素，为了更数据
           if (currentOperationType === "new") {
             model.traveller.travellerId = new Date().getTime();
@@ -740,7 +746,7 @@
       });
 
     } else {
-      //如果免登录，查询LocalStorge数据
+      //如果未登录
 
       // isInternational传true或false，为了防止template报错。后面改为ejs解析
       var json = {
@@ -830,6 +836,11 @@
   /*页面初始化方法*/
   var _initPage = function () {
 
+    /**
+     * picker1
+     * picker2
+     * picker3
+     */
     var picker1 = new ATplugins.Picker({
       input: "#time-cont",
       type: "validate",
@@ -850,7 +861,7 @@
     });
 
     _clearDate();
-    //免登录，如果缓存没有数据，自己显示添加页面
+    //未登录，如果缓存没有数据，自己显示添加页面
     if (!isLogin) {
       var data = JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
       if (data == null) {
@@ -897,11 +908,7 @@
     _setTitleTip();
     if (dataCache == null) {
       titleTip.html("选择" + titleType);
-    } else {
-      _setTitleTip();
     }
-
-    //_setTitleTip();
   };
 
 
