@@ -450,8 +450,8 @@ var fIndexModal = {
                     "routeType": that.type,
                     "isHideSharedFlight": "false",
                     "isDirectFlight": "false",
-                    "numofAdult": adultValue,
-                    "numofChild": childValue,
+                    "numOfAdult": adultValue,
+                    "numOfChild": childValue,
                     "departStartHour": "00",
                     "departEndHour": "24",
                     "priorityRule": 0,
@@ -638,8 +638,8 @@ var fIndexModal = {
         doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
         doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
         weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
-        adultValue.innerHTML = data.numofAdult;
-        childValue.innerHTML = data.numofChild;
+        adultValue.innerHTML = data.numOfAdult;
+        childValue.innerHTML = data.numOfChild;
         seatValue.innerHTML = reSeat(data.cabinClass);
         that.buttonStatusHandler();
     },

@@ -150,14 +150,14 @@
 </script>
 <script id="template_flight_price" type="text/template">
   <p>成人单价<span
-    class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %> x <%= flightInfo.numofAdult %>人</span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %> x <%= flightInfo.numOfAdult %>人</span></span></p>
   <p>成人税费<span
-    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %> x <%= flightInfo.numofAdult %>人</span></span></p>
-  <%if(parseInt(flightInfo.numofChild)>0){ %>
+    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %> x <%= flightInfo.numOfAdult %>人</span></span></p>
+  <%if(parseInt(flightInfo.numOfChild)>0){ %>
   <p>儿童单价<span
-    class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHD %> x <%= flightInfo.numofChild %>人</span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHD %> x <%= flightInfo.numOfChild %>人</span></span></p>
   <p>儿童税费<span
-    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHD %> x <%= flightInfo.numofChild %>人</span></span></p>
+    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHD %> x <%= flightInfo.numOfChild %>人</span></span></p>
   <%} %>
 </script>
 

@@ -421,19 +421,19 @@
 
       //机+酒详情tpl
       if (type.id == 5) {
-        //var numofAdult=0;
-        //var numofChild=0;
+        //var numOfAdult=0;
+        //var numOfChild=0;
         //for (var i = 0;i<data.data.chargeDetails.length;i++){
         //  if(data.data.chargeDetails[i].category=="ADULT"){
-        //    numofAdult+=1
+        //    numOfAdult+=1
         //    totalPrice+=data.data.chargeDetails[i].totalAmount;
         //  }else if(data.data.chargeDetails[i].category=="CHILD"){
-        //    numofChild+=1;
+        //    numOfChild+=1;
         //    totalPrice+=data.data.chargeDetails[i].totalAmount;
         //  }
         //}
-        //data.data.numofAdult=numofAdult;
-        //data.data.numofChild=numofChild;
+        //data.data.numOfAdult=numOfAdult;
+        //data.data.numOfChild=numOfChild;
         var html = template("tpl_flighthotel_detail", data.data);
         $(".payment-type-list").append(html);
       }
@@ -475,21 +475,21 @@
       //景点详情tpl
       else if (type.id == 3) {
         var totalPrice = 0;
-        var numofAdult = 0;
-        var numofChild = 0;
+        var numOfAdult = 0;
+        var numOfChild = 0;
         for (var i = 0; i < data.data.chargeDetails.length; i++) {
           if (data.data.chargeDetails[i].category == "ADULT") {
-            numofAdult += parseInt(data.data.chargeDetails[i].quantity);
+            numOfAdult += parseInt(data.data.chargeDetails[i].quantity);
             totalPrice += data.data.chargeDetails[i].totalAmount;
           } else if (data.data.chargeDetails[i].category == "CHILD") {
-            numofChild += parseInt(data.data.chargeDetails[i].quantity);
+            numOfChild += parseInt(data.data.chargeDetails[i].quantity);
             totalPrice += data.data.chargeDetails[i].totalAmount;
           }
         }
         data.data.totalFlightPrice = data.data.payAmount; // 新增订单总额字段 如果使用了优惠券 金额已经扣除
         //data.data.totalFlightPrice=totalPrice;
-        data.data.numofAdult = numofAdult;
-        data.data.numofChild = numofChild;
+        data.data.numOfAdult = numOfAdult;
+        data.data.numOfChild = numOfChild;
         var html = template("tpl_scenic_detail", data.data);
         $(".payment-type-list").append(html);
       }
@@ -497,39 +497,39 @@
       else if (type.id == 4) {
         var totalPrice = 0;
 
-        var numofAdult = 0;
-        var numofChild = 0;
+        var numOfAdult = 0;
+        var numOfChild = 0;
         for (var i = 0; i < data.data.chargeDetails.length; i++) {
           if (data.data.chargeDetails[i].category == "ADULT") {
-            numofAdult = data.data.chargeDetails[i].quantity;
+            numOfAdult = data.data.chargeDetails[i].quantity;
             totalPrice += data.data.chargeDetails[i].totalAmount;
           } else if (data.data.chargeDetails[i].category == "CHILD") {
-            numofChild = data.data.chargeDetails[i].quantity;
+            numOfChild = data.data.chargeDetails[i].quantity;
             totalPrice += data.data.chargeDetails[i].totalAmount;
           }
         }
         data.data.totalPrice = totalPrice;
         data.data.totalFlightPrice = totalPrice;
 
-        data.data.numofAdult = numofAdult;
-        data.data.numofChild = numofChild;
+        data.data.numOfAdult = numOfAdult;
+        data.data.numOfChild = numOfChild;
 
         var html = template("tpl_tour_detail", data.data);
         $(".payment-type-list").append(html);
       }
       else if (type.id == 6) {
-        var numofAdult = 0;
-        var numofChild = 0;
+        var numOfAdult = 0;
+        var numOfChild = 0;
         var numofRoom = 0;
         for (var i = 0; i < data.data.chargeDetails.length; i++) {
           if (data.data.chargeDetails[i].category == "ADULT") {
-            numofAdult += parseInt(data.data.chargeDetails[i].quantity)
+            numOfAdult += parseInt(data.data.chargeDetails[i].quantity)
           } else if (data.data.chargeDetails[i].category == "CHILD") {
-            numofChild += parseInt(data.data.chargeDetails[i].quantity);
+            numOfChild += parseInt(data.data.chargeDetails[i].quantity);
           }
         }
-        data.data.numofAdult = numofAdult;
-        data.data.numofChild = numofChild;
+        data.data.numOfAdult = numOfAdult;
+        data.data.numOfChild = numOfChild;
         data.data.numofRoom = data.data.hotelDetails.roomDetails.numRoom;
         var html = template("tpl_flighthoteltour_detail", data.data);
         $(".payment-type-list").append(html);

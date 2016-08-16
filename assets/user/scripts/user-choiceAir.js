@@ -30,8 +30,8 @@
   var elementId = vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, ""); //id
   var from = vlm.getpara("from");
   var ifrCilent = window.parent.document.getElementById("choiceAir");
-  var numOfAdult = vlm.getpara("numofAdult"); //id
-  var numOfChild = vlm.getpara("numofChild"); //id;
+  var numOfAdult = vlm.getpara("numOfAdult"); //id
+  var numOfChild = vlm.getpara("numOfChild"); //id;
   var selectAdultNum = 0;
   var selectChildNum = 0;
   var departDate = vlm.getpara("departDate"); //departDate;

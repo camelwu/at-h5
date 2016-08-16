@@ -617,7 +617,7 @@ var userSub = {
 				choPassengerUlList.removeChild(target.parentNode);
 				choPassengerUlChoosed.appendChild(target.parentNode);
 				console.log(choPassengerUlChoosed.innerHTML)
-				adultNumber.innerHTML = choPassengerUlChoosed.querySelectorAll('li').length + '/' + that.ruleNUmber.NumofAdult;
+				adultNumber.innerHTML = choPassengerUlChoosed.querySelectorAll('li').length + '/' + that.ruleNumber.numOfAdult;
 			}
 		});
 		this.addHandler(choPassengerUlChoosed, 'click', function() {
@@ -632,7 +632,7 @@ var userSub = {
 	},
 	init : function() {
 		var transferPara = this.parseUrlPara(document.location.search, true);
-		this.ruleNUmber = transferPara
+		this.ruleNumber = transferPara
 		this.state = transferPara.type;
 		if (this.state == 'edit') {
 			document.querySelector("#addAir-page").style.display = "block";
