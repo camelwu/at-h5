@@ -574,8 +574,8 @@
         var o = {
           "Id": selectedPassagerArray[key].traveller.travellerId,
           "SexCode": selectedPassagerArray[key].traveller.sexCode,
-          "FirstName": selectedPassagerArray[key].traveller.firstName,
-          "LastName": selectedPassagerArray[key].traveller.lastName,
+          "FirstName": isInternationalTrip ? selectedPassagerArray[key].traveller.firstName : selectedPassagerArray[key].traveller.idName,//如果是国内机票 将中文名通过first name传递
+          "LastName": isInternationalTrip ? selectedPassagerArray[key].traveller.lastName : selectedPassagerArray[key].traveller.idName, //如果是国内机票 将中文名通过lastname传递
           "idName": selectedPassagerArray[key].traveller.idName,
           "DateOfBirth": selectedPassagerArray[key].traveller.dateOfBirth,
           "email": selectedPassagerArray[key].traveller.email,
