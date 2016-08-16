@@ -37,15 +37,18 @@
   var departDate = vlm.getpara("departDate"); //departDate;
 
   /**
-   *
    * @param {String} memberId 用户id
    * @param {Boolean} isLogin 判断登录状态：true登录 false未登录
    */
   var memberId = localStorage.getItem('memberid') || sessionStorage.getItem('memberid');
   var isLogin = memberId !== null && memberId !== undefined ? true : false;
 
-  var closeWindowBtn = $("#toper .closedWin");
 
+  /**
+   * @param {Object} passagerArray 全部用户数据
+   * @param {Object} selectedPassagerArray 选中用户数据
+   * @param {Array} choiceAir_AddPassagerArray
+   */
   var passagerArray = {};
   var selectedPassagerArray = {};
   var choiceAir_AddPassagerArray = [];
@@ -68,7 +71,7 @@
   //页面Dom对象
   var closeWindowBtn = $("#toper .closedWin");
   var nameDescriptPager = $(".fillName_page");
-  var submitBtn = $("#toper .addPassager_finish");
+  var finishBtn = $("#toper .addPassager_finish");
   var idName = $(".addAir_page .cnNameUL");
   var enName = $(".addAir_page .enNameUL");
   var ul_contect = $(".addAir_page .ul_contect");
@@ -289,7 +292,7 @@
      * 点击后_replacePagerAttri操作parent页面的节点
      */
     // FIXME: 此处直接操作parent页面的节点，待修复为：只为parent页面提供数据，回调location.href传递的callbackName，即执行parent[callbackName](data)
-    submitBtn.on("click", function () {
+    finishBtn.on("click", function () {
       var selectPassagerList = $(".list-traveler .choiced")
       for (var i = 0; i <= selectPassagerList.length - 1; i++) {
         var key = $(selectPassagerList[i]).attr("data-id")
@@ -321,7 +324,7 @@
       if (flag) {
         _getPassagerList();
         if (travId != "null") {
-          submitBtn.click();
+          finishBtn.click();
         }
       }
     })
@@ -399,8 +402,9 @@
 
   // 获取dom节点上的数据
   var _ui2Model = function (type) {
+    var model;
     if (type == "new") {
-      var model = {
+      model = {
         "traveller": {
           "idName": $(".addAir_page .cnName").val(),
           "lastName": $(".addAir_page .lastName").val(),
@@ -429,11 +433,7 @@
           }
         ]
       }
-
-      return model;
-    } else {
-
-      var model;
+    } else if (type === 'edit') {
       for (var key in passagerArray) {
         if (key == editIDKey) {
           model = passagerArray[key];
@@ -458,8 +458,8 @@
       model.listTravellerIdInfo[0].idActivatedDate = $(".addAir_page .cardDateLimit").eq(0).html().replace('年', '/').replace('月', '/').replace('号', '').replace('日', '');
       model.listTravellerIdInfo[0].nationalityCode = $(".addAir_page .cardCountry").attr("data-code");
 
-      return model;
     }
+    return model;
   }
 
   var _model2UI = function (model) {
@@ -539,13 +539,7 @@
     } else {
       //免登录
       //编辑状态，移除数组元素，为了更数据
-      if (currentOperationType == "edit") {
-        choiceAir_AddPassagerArray.forEach(function (info) {
-          if (info.traveller.travellerId == editIDKey) {
-            return;
-          }
-        })
-      } else {
+      if (currentOperationType === "new") {
         model.traveller.travellerId = new Date().getTime();
         model.isInternationalTrip = isInternationalTrip;
         choiceAir_AddPassagerArray.push(model);
@@ -705,11 +699,6 @@
       };
       vlm.loadJson("", JSON.stringify(Parameters), function (json) {
         if (json.success) {
-          // 缓存原始数据
-
-          // 复制原始数据
-          // var cloneData = Object.assign({}, json.data)
-
           for (var i = 0; i <= json.data.length - 1; i++) {
             json.data[i].selected = false; //默认未选择
             passagerArray[json.data[i].traveller.travellerId] = json.data[i];
@@ -974,9 +963,5 @@
 
   }
 
-
-  /*接口*/
-  return {
-    InitPage: _initPage()
-  }
-})()
+  _initPage()
+})();
