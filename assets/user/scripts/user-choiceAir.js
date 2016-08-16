@@ -327,6 +327,121 @@
           finishBtn.click();
         }
       }
+
+      function _saveDb() {
+        /**
+         * 新增乘机人是否成功
+         *
+         * @return {Boolean} true成功 false失败
+         */
+
+        // 校验单条数据合法性
+        if (!_validate()) {
+          return false;
+        }
+
+        // 根据操作类型，返回不同的数据
+        var model = _ui2Model(currentOperationType);
+
+        // isLogin判断登录状态
+        if (isLogin) {
+          //登录
+          var Parameters = {
+            Parameters: model,
+            ForeEndType: 3,
+            Code: operationType[currentOperationType].code
+          }
+          vlm.loadJson("", JSON.stringify(Parameters), function (data) {
+            if (data.success) {
+              _getPassagerList();
+            } else {
+              alert("接口错误！");
+              return;
+            }
+          })
+        } else {
+          //免登录
+          //编辑状态，移除数组元素，为了更数据
+          if (currentOperationType === "new") {
+            model.traveller.travellerId = new Date().getTime();
+            model.isInternationalTrip = isInternationalTrip;
+            choiceAir_AddPassagerArray.push(model);
+          }
+
+          sessionStorage.setItem('choiceAir_AddPassagerArray', JSON.stringify(choiceAir_AddPassagerArray));
+          passagerListPage.show();
+          addOrEditPassagePage.hide();
+          //_getPassagerList();
+        }
+        _clearDate();
+        return true;
+      }
+
+
+      /**
+       * _validate()校验单条数据合法性
+       *
+       * @return {Boolean} true通过 false未通过
+       */
+      function _validate () {
+
+        if (idName.is(':visible')) {
+          if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cnName").eq(0).val())) {
+            jAlert("中文姓名不能为空！", "", null, "确认");
+            return false;
+          }
+          if (!vlm.Utils.validate["chiName"]($(addOrEditPassagePage).find(".cnName").eq(0).val())) {
+            jAlert("请输入有效的中文名！", "", null, "确认");
+            return false;
+          }
+        }
+
+        if (enName.is(':visible')) {
+          if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())) {
+            jAlert("英文姓不能为空！", "", null, "确认");
+            return false;
+          }
+          if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".firstName").eq(0).val())) {
+            jAlert("英文名不能为空！", "", null, "确认");
+            return false;
+          }
+
+          if (!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".lastName").eq(0).val())) {
+            jAlert("姓必须为英文！", "", null, "确认");
+            return false;
+          }
+          if (!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".firstName").eq(0).val())) {
+            jAlert("名必须为英文！", "", null, "确认");
+            return false;
+          }
+        }
+
+        if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cardNumber").eq(0).val())) {
+          jAlert("证件号不能为空！", "", null, "确认");
+          return false;
+        }
+        if ($(addOrEditPassagePage).find(".traveler_sex1").length == 0) {
+          jAlert("请选择性别！", "", null, "确认");
+          return false;
+        }
+
+        //证件有效期验证
+        var card_validity = $('#time-cont').html();
+        if (!$(addOrEditPassagePage).find("#time-cont").html()) {
+          jAlert("请选择证件有效期！", "", null, "确认");
+          return false;
+        } else if (!vlm.Utils.compareTime(card_validity)) {
+          jAlert('证件有效期无效，请重新选择!');
+          return;
+        }
+
+        if (!$(addOrEditPassagePage).find("#birth-cont").html()) {
+          jAlert("请选择出生日期！", "", null, "确认");
+          return false;
+        }
+
+        return true;
+      }
     })
 
     /**
@@ -339,66 +454,6 @@
       $(this).find("b").removeClass("traveler_sex2").addClass("traveler_sex1");
     })
   };
-
-  var _validate = function () {
-
-    if (idName.is(':visible')) {
-      if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cnName").eq(0).val())) {
-        jAlert("中文姓名不能为空！", "", null, "确认");
-        return false;
-      }
-      if (!vlm.Utils.validate["chiName"]($(addOrEditPassagePage).find(".cnName").eq(0).val())) {
-        jAlert("请输入有效的中文名！", "", null, "确认");
-        return false;
-      }
-    }
-
-    if (enName.is(':visible')) {
-      if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())) {
-        jAlert("英文姓不能为空！", "", null, "确认");
-        return false;
-      }
-      if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".firstName").eq(0).val())) {
-        jAlert("英文名不能为空！", "", null, "确认");
-        return false;
-      }
-
-      if (!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".lastName").eq(0).val())) {
-        jAlert("姓必须为英文！", "", null, "确认");
-        return false;
-      }
-      if (!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".firstName").eq(0).val())) {
-        jAlert("名必须为英文！", "", null, "确认");
-        return false;
-      }
-    }
-
-    if (!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cardNumber").eq(0).val())) {
-      jAlert("证件号不能为空！", "", null, "确认");
-      return false;
-    }
-    if ($(addOrEditPassagePage).find(".traveler_sex1").length == 0) {
-      jAlert("请选择性别！", "", null, "确认");
-      return false;
-    }
-
-    //证件有效期验证
-    var card_validity = $('#time-cont').html();
-    if (!$(addOrEditPassagePage).find("#time-cont").html()) {
-      jAlert("请选择证件有效期！", "", null, "确认");
-      return false;
-    } else if (!vlm.Utils.compareTime(card_validity)) {
-      jAlert('证件有效期无效，请重新选择!');
-      return;
-    }
-
-    if (!$(addOrEditPassagePage).find("#birth-cont").html()) {
-      jAlert("请选择出生日期！", "", null, "确认");
-      return false;
-    }
-
-    return true;
-  }
 
   // 获取dom节点上的数据
   var _ui2Model = function (type) {
@@ -502,56 +557,6 @@
     $(".addAir_page .sex_cho_wrap .icon_h[data-code='" + model.traveller.sexCode + "']").removeClass("traveler_sex2").addClass("traveler_sex1")
 
 
-  }
-
-
-  var _saveDb = function () {
-    /**
-     * 新增乘机人是否成功
-     *
-     * @return {Boolean} true成功 false失败
-     */
-
-    // 校验数据合法性
-    if (!_validate()) {
-      return false;
-    }
-
-    // 根据操作类型，返回不同的数据
-    var model = _ui2Model(currentOperationType);
-
-    // isLogin判断登录状态
-    if (isLogin) {
-      //登录
-      var Parameters = {
-        Parameters: model,
-        ForeEndType: 3,
-        Code: operationType[currentOperationType].code
-      }
-      vlm.loadJson("", JSON.stringify(Parameters), function (data) {
-        if (data.success) {
-          _getPassagerList();
-        } else {
-          alert("接口错误！");
-          return;
-        }
-      })
-    } else {
-      //免登录
-      //编辑状态，移除数组元素，为了更数据
-      if (currentOperationType === "new") {
-        model.traveller.travellerId = new Date().getTime();
-        model.isInternationalTrip = isInternationalTrip;
-        choiceAir_AddPassagerArray.push(model);
-      }
-
-      sessionStorage.setItem('choiceAir_AddPassagerArray', JSON.stringify(choiceAir_AddPassagerArray));
-      passagerListPage.show();
-      addOrEditPassagePage.hide();
-      //_getPassagerList();
-    }
-    _clearDate();
-    return true;
   }
 
   //缓存数据
