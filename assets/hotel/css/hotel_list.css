@@ -293,6 +293,7 @@ li {
 .screen {
   width: 100%;
   padding: 1px;
+  padding-top: 0;
   background-color: white;
   position: fixed;
   bottom: -550rem;
@@ -318,7 +319,7 @@ li {
 
 .s-ul {
   margin: .2rem 0 0 .4rem;
-  padding: 0 .4rem .4rem 0;
+  padding: 0 .18rem .4rem 0;
   list-style-type: none;
   overflow: hidden;
   border-bottom: 1px solid #dedede;
@@ -330,7 +331,7 @@ li {
   width: 29%;
   height: 0.7rem;
   margin-bottom: .3rem;
-  margin-right: .2rem;
+  margin-right: .25rem;
   text-align: center;
   border-radius: .4rem;
   border: 1px solid #d0d0d3;
@@ -344,7 +345,7 @@ li {
   width: 29%;
   height: 0.7rem;
   margin-bottom: .3rem;
-  margin-right: .2rem;
+  margin-right: .25rem;
   text-align: center;
   border-radius: .4rem;
   border: 1px solid #7bc300;
@@ -357,6 +358,7 @@ li {
   line-height: 0.89rem;
   background: #f7f7f7;
   position: relative;
+  z-index: 10;
 }
 
 .s-but .cancel {
