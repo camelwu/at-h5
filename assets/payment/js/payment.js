@@ -411,7 +411,7 @@
           jAlert(data.message);
           vlm.loadend();
         }
-      });
+      }, null, null, 'nothing');
 
     };
     /*生成订单详情HTML片段*/
