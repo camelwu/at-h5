@@ -191,7 +191,7 @@
       });
 
       $('#arr1 .i_address').on('touchend', function () {
-        hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
+        $('#Dom').trigger('click');
         //$('#h_in').text(localAddress['city']);
         GEOIKIT().callMethod("CurrentLocation", {});
         return false;

@@ -43,6 +43,7 @@ div#h-Tab .off {
 }
 
 .hotel_content {
+  position: relative;
   margin-top: .04rem;
   background-color: #fff;
 }
