@@ -537,7 +537,7 @@
       // });
       var myDate2 = new ATplugins.Calender({
         id: "chooseDate",
-        headerSign: 'tip', //tipClean  tip
+        headerSign: 'hotelTip', //tipClean  tip
         type:'hotel',
         noComfirmBtn: true,
         time: dateInitObj,
