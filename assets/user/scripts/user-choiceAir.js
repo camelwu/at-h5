@@ -45,19 +45,19 @@
 
 
   /**
-   * @param {Object} passagerArray
+   * @param {Object} passengerArray
    *   用途：登录状态下，全部用户数据；未登录状态下，全部用户数据
-   *   来源：登录状态下，根据travellerId遍历“服务器返回data”；未登录状态下，根据travellerId遍历“choiceAir_AddPassagerArray”生成
+   *   来源：登录状态下，根据travellerId遍历“服务器返回data”；未登录状态下，根据travellerId遍历“choiceAir_AddPassengerArray”生成
    *
-   * @param {Object} selectedPassagerArray 选中用户数据
+   * @param {Object} selectedPassengerArray 选中用户数据
    *
-   * @param {Array} choiceAir_AddPassagerArray
+   * @param {Array} choiceAir_AddPassengerArray
    *   用途：未登录状态下，全部用户数据
-   *   来源：sessionStorage.getItem('choiceAir_AddPassagerArray')中取出
+   *   来源：sessionStorage.getItem('choiceAir_AddPassengerArray')中取出
    */
-  var passagerArray = {};
-  var selectedPassagerArray = {};
-  var choiceAir_AddPassagerArray = [];
+  var passengerArray = {};
+  var selectedPassengerArray = {};
+  var choiceAir_AddPassengerArray = [];
   var editIDKey = null;
 
   /**
@@ -77,17 +77,17 @@
   //页面Dom对象
   var closeWindowBtn = $("#toper .closedWin");
   var nameDescriptPager = $(".fillName_page");
-  var finishBtn = $("#toper .addPassager_finish");
+  var finishBtn = $("#toper .addPassenger_finish");
   var idName = $(".addAir_page .cnNameUL");
   var enName = $(".addAir_page .enNameUL");
   var ul_contect = $(".addAir_page .ul_contect");
 
   var titleTip = $("#toper h3");
   /*页面*/
-  var passagerListPage = $(".passageListPage");
+  var passengerListPage = $(".passageListPage");
   var addOrEditPassagePage = $(".addAir_page");
-  var addPassagerBackBtn = $(".addAir_page .header_quit");
-  var addPassagerTitle = $(".add_passager .newTitle");
+  var addPassengerBackBtn = $(".addAir_page .header_quit");
+  var addPassengerTitle = $(".add_passenger .newTitle");
 
   //var tpl_traveler = ['{% var defaultShowCardType=vlm.getpara("isInternationalTrip").toLowerCase()=="true"? 1:2;  for(var i=0,len=data.length;i<len;i++){ alert(data.length); var dd=data[i];%}',
   //  '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
@@ -183,16 +183,16 @@
       editIDKey = $(this).attr('data-id');
 
       // 取出对应乘机人信息
-      var passagerInfo = passagerArray[editIDKey];
+      var passengerInfo = passengerArray[editIDKey];
       // 传入当前航班类型：true国际，false国内
-      passagerInfo.isInternationalTrip = isInternationalTrip;
-      if (passagerInfo.isInternationalTrip) {
-        if (!passagerInfo.traveller.lastName) {
+      passengerInfo.isInternationalTrip = isInternationalTrip;
+      if (passengerInfo.isInternationalTrip) {
+        if (!passengerInfo.traveller.lastName) {
           jAlert('请补全信息')
           return;
         }
       } else {
-        if (!passagerInfo.traveller.idName) {
+        if (!passengerInfo.traveller.idName) {
           jAlert('请补全信息')
           return;
         }
@@ -253,11 +253,11 @@
 
 
       function choicedArray() {
-        var selectPassagerList = $(".list-traveler .choiced")
-        for (var i = 0; i <= selectPassagerList.length - 1; i++) {
-          var key = $(selectPassagerList[i]).attr("data-id")
-          passagerArray[key].PagerType = from;
-          selectedPassagerArray[key] = passagerArray[key];
+        var selectPassengerList = $(".list-traveler .choiced")
+        for (var i = 0; i <= selectPassengerList.length - 1; i++) {
+          var key = $(selectPassengerList[i]).attr("data-id")
+          passengerArray[key].PagerType = from;
+          selectedPassengerArray[key] = passengerArray[key];
         }
       }
     })
@@ -273,17 +273,17 @@
       editIDKey = $(this).attr('data-id');
 
       // 取出对应乘机人信息
-      var passagerInfo = passagerArray[editIDKey];
+      var passengerInfo = passengerArray[editIDKey];
       // 传入当前航班类型：true国际，false国内
-      passagerInfo.isInternationalTrip = isInternationalTrip;
+      passengerInfo.isInternationalTrip = isInternationalTrip;
 
       // 编辑乘机人面板的数据回显
-      _model2UI(passagerInfo);
+      _model2UI(passengerInfo);
 
       _setTitleTip();
 
       // 用户列表隐藏，添加编辑页面展示
-      passagerListPage.hide();
+      passengerListPage.hide();
       addOrEditPassagePage.show();
     })
 
@@ -291,12 +291,12 @@
      * 个人中心选择乘机人（出行人等）-新增按钮
      * 点击后弹出新增乘机人（出行人等）表单
      */
-    $(".add_passager").on("click", function () {
+    $(".add_passenger").on("click", function () {
       currentOperationType = "new";
       editIDKey = null;
       _setTitleTip();
       _clearDate();
-      passagerListPage.hide();
+      passengerListPage.hide();
       addOrEditPassagePage.show();
     });
 
@@ -322,9 +322,9 @@
       }
       ;
     });
-    addPassagerBackBtn.on("click", function () {
+    addPassengerBackBtn.on("click", function () {
       if (travId == "null") {
-        passagerListPage.show();
+        passengerListPage.show();
         addOrEditPassagePage.hide();
       } else {
         closeWindowBtn.click();
@@ -337,27 +337,27 @@
      */
     // FIXME: 此处直接操作parent页面的节点，待修复为：只为parent页面提供数据，回调location.href传递的callbackName，即执行parent[callbackName](data)
     finishBtn.on("click", function () {
-      var selectPassagerList = $(".list-traveler .choiced");
+      var selectPassengerList = $(".list-traveler .choiced");
 
-      // 清空selectedPassagerArray
-      selectedPassagerArray = {};
-      for (var i = 0; i <= selectPassagerList.length - 1; i++) {
-        var key = $(selectPassagerList[i]).attr("data-id")
-        passagerArray[key].PagerType = from;
-        var o = passagerArray[key].traveller;
+      // 清空selectedPassengerArray
+      selectedPassengerArray = {};
+      for (var i = 0; i <= selectPassengerList.length - 1; i++) {
+        var key = $(selectPassengerList[i]).attr("data-id")
+        passengerArray[key].PagerType = from;
+        var o = passengerArray[key].traveller;
         if (vlm.Utils.getAge(o.dateOfBirth, departDate) < 12) {
           o.PassengerType = "CHILD"; //乘客类型
         } else {
           o.PassengerType = "ADULT"; //乘客类型
         }
-        selectedPassagerArray[key] = passagerArray[key];
+        selectedPassengerArray[key] = passengerArray[key];
       }
       _replacePagerAttri();
       _saveLocalStorge();
 
       if (callbackName !== undefined && callbackName !== "undefined" && callbackName !== null && callbackName !== "null") {
         //parent.callbackName();
-        eval("parent." + callbackName + '(' + JSON.stringify(selectedPassagerArray[key]) + ')');
+        eval("parent." + callbackName + '(' + JSON.stringify(selectedPassengerArray[key]) + ')');
       }
       closeWindowBtn.click();
     });
@@ -375,7 +375,7 @@
       // 存储到storage
       var flag = _saveDb();
       if (flag) {
-        _getPassagerList();
+        _getPassengerList();
         if (travId != "null") {
           finishBtn.click();
         }
@@ -390,8 +390,8 @@
 
         // 根据操作类型，返回不同的数据
         var model = _ui2Model(currentOperationType);
-        // selectedPassagerArray[editIDKey]存在的话，同步passagerArray[editIDKey]到selectedPassagerArray[editIDKey]
-        selectedPassagerArray[editIDKey] ? selectedPassagerArray[editIDKey] = clone(model) : null;
+        // selectedPassengerArray[editIDKey]存在的话，同步passengerArray[editIDKey]到selectedPassengerArray[editIDKey]
+        selectedPassengerArray[editIDKey] ? selectedPassengerArray[editIDKey] = clone(model) : null;
 
         // isLogin判断登录状态
         if (isLogin) {
@@ -403,7 +403,7 @@
           }
           vlm.loadJson("", JSON.stringify(Parameters), function (data) {
             if (data.success) {
-              _getPassagerList();
+              _getPassengerList();
             } else {
               alert("接口错误！");
               return;
@@ -416,7 +416,7 @@
           if (currentOperationType === "new") {
             model.traveller.travellerId = new Date().getTime();
             model.isInternationalTrip = isInternationalTrip;
-            choiceAir_AddPassagerArray.push(model);
+            choiceAir_AddPassengerArray.push(model);
           } else if (currentOperationType === 'edit') {
             /**
              * 成人变更为儿童
@@ -426,14 +426,14 @@
              *
              * @return {Boolean} true成功 false失败
              */
-            var num = getAdultAndChildNum(selectedPassagerArray);
+            var num = getAdultAndChildNum(selectedPassengerArray);
             if (num.selectAdultNum > numOfAdult || num.selectChildNum > numOfChild) {
-              delete selectedPassagerArray[editIDKey];
+              delete selectedPassengerArray[editIDKey];
             }
           }
 
-          sessionStorage.setItem('choiceAir_AddPassagerArray', JSON.stringify(choiceAir_AddPassagerArray));
-          passagerListPage.show();
+          sessionStorage.setItem('choiceAir_AddPassengerArray', JSON.stringify(choiceAir_AddPassengerArray));
+          passengerListPage.show();
           addOrEditPassagePage.hide();
         }
         _clearDate();
@@ -551,9 +551,9 @@
         ]
       }
     } else if (type === 'edit') {
-      for (var key in passagerArray) {
+      for (var key in passengerArray) {
         if (key == editIDKey) {
-          model = passagerArray[key];
+          model = passengerArray[key];
           break;
         }
       }
@@ -631,24 +631,24 @@
     var param;
     if (isMulSelect) {
       param = []
-      for (var key in selectedPassagerArray) {
+      for (var key in selectedPassengerArray) {
         var o = {
-          "Id": selectedPassagerArray[key].traveller.travellerId,
-          "SexCode": selectedPassagerArray[key].traveller.sexCode,
-          "FirstName": isInternationalTrip ? selectedPassagerArray[key].traveller.firstName : selectedPassagerArray[key].traveller.idName,//如果是国内机票 将中文名通过first name传递
-          "LastName": isInternationalTrip ? selectedPassagerArray[key].traveller.lastName : selectedPassagerArray[key].traveller.idName, //如果是国内机票 将中文名通过lastname传递
-          "idName": selectedPassagerArray[key].traveller.idName,
-          "DateOfBirth": selectedPassagerArray[key].traveller.dateOfBirth,
-          "email": selectedPassagerArray[key].traveller.email,
-          "mobile": selectedPassagerArray[key].traveller.mobilePhone,
+          "Id": selectedPassengerArray[key].traveller.travellerId,
+          "SexCode": selectedPassengerArray[key].traveller.sexCode,
+          "FirstName": isInternationalTrip ? selectedPassengerArray[key].traveller.firstName : selectedPassengerArray[key].traveller.idName,//如果是国内机票 将中文名通过first name传递
+          "LastName": isInternationalTrip ? selectedPassengerArray[key].traveller.lastName : selectedPassengerArray[key].traveller.idName, //如果是国内机票 将中文名通过lastname传递
+          "idName": selectedPassengerArray[key].traveller.idName,
+          "DateOfBirth": selectedPassengerArray[key].traveller.dateOfBirth,
+          "email": selectedPassengerArray[key].traveller.email,
+          "mobile": selectedPassengerArray[key].traveller.mobilePhone,
           "CertificateInfo": {
-            "IdType": selectedPassagerArray[key].listTravellerIdInfo[0].idType,
-            "IdCountry": selectedPassagerArray[key].listTravellerIdInfo[0].idCountry,
-            "IdNumber": selectedPassagerArray[key].listTravellerIdInfo[0].idNumber,
-            "IdActivatedDate": selectedPassagerArray[key].listTravellerIdInfo[0].idActivatedDate
+            "IdType": selectedPassengerArray[key].listTravellerIdInfo[0].idType,
+            "IdCountry": selectedPassengerArray[key].listTravellerIdInfo[0].idCountry,
+            "IdNumber": selectedPassengerArray[key].listTravellerIdInfo[0].idNumber,
+            "IdActivatedDate": selectedPassengerArray[key].listTravellerIdInfo[0].idActivatedDate
           },
           "BaggageCode": "",
-          "CountryCode": selectedPassagerArray[key].traveller.countryCode
+          "CountryCode": selectedPassengerArray[key].traveller.countryCode
         }
 
         if (vlm.Utils.getAge(o.DateOfBirth, departDate) < 12) {
@@ -660,21 +660,21 @@
       }
 
       localStorage.setItem('travellerInfo_selected', JSON.stringify(param));
-      sessionStorage.setItem('choiceAir_select_' + elementId, JSON.stringify(selectedPassagerArray));
+      sessionStorage.setItem('choiceAir_select_' + elementId, JSON.stringify(selectedPassengerArray));
     } else {
-      for (var key in selectedPassagerArray) {
+      for (var key in selectedPassengerArray) {
         param = {
-          "SexCode": selectedPassagerArray[key].traveller.sexCode,
-          "FirstName": isInternationalTrip ? selectedPassagerArray[key].traveller.firstName : selectedPassagerArray[key].traveller.idName,//如果是国内机票 将中文名通过first name传递
-          "LastName": isInternationalTrip ? selectedPassagerArray[key].traveller.lastName : selectedPassagerArray[key].traveller.idName, //如果是国内机票 将中文名通过lastname传递
-          "Email": selectedPassagerArray[key].traveller.email,
-          "CountryNumber": selectedPassagerArray[key].traveller.countryCode,
-          "ContactNumber": selectedPassagerArray[key].traveller.mobilePhone,
-          "MobilePhone": selectedPassagerArray[key].traveller.mobilePhone,
+          "SexCode": selectedPassengerArray[key].traveller.sexCode,
+          "FirstName": isInternationalTrip ? selectedPassengerArray[key].traveller.firstName : selectedPassengerArray[key].traveller.idName,//如果是国内机票 将中文名通过first name传递
+          "LastName": isInternationalTrip ? selectedPassengerArray[key].traveller.lastName : selectedPassengerArray[key].traveller.idName, //如果是国内机票 将中文名通过lastname传递
+          "Email": selectedPassengerArray[key].traveller.email,
+          "CountryNumber": selectedPassengerArray[key].traveller.countryCode,
+          "ContactNumber": selectedPassengerArray[key].traveller.mobilePhone,
+          "MobilePhone": selectedPassengerArray[key].traveller.mobilePhone,
         }
       }
       localStorage.setItem('contact_selected', JSON.stringify(param));
-      sessionStorage.setItem('choiceAir_select_' + elementId, JSON.stringify(selectedPassagerArray));
+      sessionStorage.setItem('choiceAir_select_' + elementId, JSON.stringify(selectedPassengerArray));
     }
   };
 
@@ -687,9 +687,9 @@
       htmlObj.children(":visible").remove()
       var children = htmlObj.children().eq(0);
 
-      for (var key in selectedPassagerArray) {
-        for (var i = 0; i <= selectedPassagerArray[key].listTravellerIdInfo.length - 1; i++) {
-          selectedPassagerArray[key].listTravellerIdInfo[i].idName = vlm.arr_t[selectedPassagerArray[key].listTravellerIdInfo[i].idType];
+      for (var key in selectedPassengerArray) {
+        for (var i = 0; i <= selectedPassengerArray[key].listTravellerIdInfo.length - 1; i++) {
+          selectedPassengerArray[key].listTravellerIdInfo[i].idName = vlm.arr_t[selectedPassengerArray[key].listTravellerIdInfo[i].idType];
         }
         var cloneObj = children.clone(true);
         cloneObj.show();
@@ -698,9 +698,9 @@
         for (var i = 0; i <= elementList.length - 1; i++) {
           var obj = elementList[i],
             attribute = elementList[i].attributes["data-elementname"].value,
-            val = passagerArray[key].traveller[attribute];
+            val = passengerArray[key].traveller[attribute];
           if (val == undefined || val == "") {
-            val = passagerArray[key].listTravellerIdInfo[0][attribute];
+            val = passengerArray[key].listTravellerIdInfo[0][attribute];
           }
           if (obj.tagName == "INPUT") {
             $(elementList[i]).val(val);
@@ -711,13 +711,13 @@
       }
     } else {
       var elementList = htmlObj.find("[data-elementname]");
-      for (var key in selectedPassagerArray) {
+      for (var key in selectedPassengerArray) {
         for (var i = 0; i <= elementList.length - 1; i++) {
           var obj = elementList[i],
             attribute = elementList[i].attributes["data-elementname"].value,
-            val = passagerArray[key].traveller[attribute];
+            val = passengerArray[key].traveller[attribute];
           if (val == undefined) {
-            passagerArray[key].listTravellerIdInfo[0][attribute];
+            passengerArray[key].listTravellerIdInfo[0][attribute];
           }
           if (obj.tagName == "INPUT") {
             $(elementList[i]).val(val);
@@ -739,7 +739,7 @@
     } else {
       _setSelectPessageTip();
     }
-    $(".add_passager .newTitle").html("新增" + titleType)
+    $(".add_passenger .newTitle").html("新增" + titleType)
 
     $(".addAir_page .oprationType").html(operationType[currentOperationType].name);
 
@@ -747,7 +747,7 @@
   };
 
   var _setSelectPessageTip = function () {
-    var num = getAdultAndChildNum(selectedPassagerArray);
+    var num = getAdultAndChildNum(selectedPassengerArray);
     if (numOfChild > 0) {
       titleTip.html("已选：成人" + num.selectAdultNum + "/" + numOfAdult + "  儿童" + num.selectChildNum + "/" + numOfChild + "")
     } else {
@@ -758,7 +758,7 @@
   /**
    * 获取常旅客数据，拼接数据+模板，存入常旅客列表
    */
-  var _getPassagerList = function () {
+  var _getPassengerList = function () {
     // 注意这里操作的全局下的selectAdultNum
     // 成人和儿童数清零
     selectAdultNum = 0, selectChildNum = 0;
@@ -774,33 +774,39 @@
         if (json.success) {
           for (var i = 0; i <= json.data.length - 1; i++) {
             json.data[i].selected = false; //默认未选择
-            passagerArray[json.data[i].traveller.travellerId] = json.data[i];
+            passengerArray[json.data[i].traveller.travellerId] = json.data[i];
+            var o = passengerArray[json.data[i].traveller.travellerId].traveller;
+            if (vlm.Utils.getAge(o.dateOfBirth, departDate) < 12) {
+              o.PassengerType = "CHILD"; //乘客类型
+            } else {
+              o.PassengerType = "ADULT"; //乘客类型
+            }
           }
           var html = template(tpl_traveler, json);
           document.getElementById("allList").innerHTML = html;
-          selectedPassagerArray = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId)) || {};
-          if (selectedPassagerArray != null) {
+          selectedPassengerArray = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId)) || {};
+          if (selectedPassengerArray != null) {
             // 遍历选中对象，选中并计算成人数和儿童数
-            Object.keys(selectedPassagerArray).forEach(function (key) {
-              if (selectedPassagerArray[key].PagerType == from) {
+            Object.keys(selectedPassengerArray).forEach(function (key) {
+              if (selectedPassengerArray[key].PagerType == from) {
                 // 切换元素选中状态
                 var li = $(".list-traveler .user_choice[data-id=" + key + "]");
                 selectUser(li);
 
                 // 成人和儿童数添加
-                calculatePersonNum(selectedPassagerArray[key].traveller.PassengerType);
+                calculatePersonNum(selectedPassengerArray[key].traveller.PassengerType);
               }
             });
           }
           if (travId != "null") {
             currentOperationType = "edit";
             editIDKey = travId;
-            _model2UI(passagerArray[editIDKey]);
-            passagerListPage.hide();
+            _model2UI(passengerArray[editIDKey]);
+            passengerListPage.hide();
             addOrEditPassagePage.show();
             _setTitleTip();
           } else {
-            passagerListPage.show();
+            passengerListPage.show();
             addOrEditPassagePage.hide();
           }
           vlm.init();
@@ -812,7 +818,7 @@
 
       // isInternational传true或false，为了防止template报错。后面改为ejs解析
       var json = {
-        data: choiceAir_AddPassagerArray
+        data: choiceAir_AddPassengerArray
       };
 
 
@@ -820,20 +826,27 @@
       document.getElementById("allList").innerHTML = html;
       vlm.init();
 
-      choiceAir_AddPassagerArray.forEach(function (info) {
-        passagerArray[info.traveller.travellerId] = info;
+
+      choiceAir_AddPassengerArray.forEach(function (info) {
+        passengerArray[info.traveller.travellerId] = info;
+        var o = passengerArray[info.traveller.travellerId].traveller;
+        if (vlm.Utils.getAge(o.dateOfBirth, departDate) < 12) {
+          o.PassengerType = "CHILD"; //乘客类型
+        } else {
+          o.PassengerType = "ADULT"; //乘客类型
+        }
       })
 
-      if (currentOperationType == "new" && selectedPassagerArray != null) {
+      if (currentOperationType == "new" && selectedPassengerArray != null) {
         // 遍历选中对象，选中并计算成人数和儿童数
-        Object.keys(selectedPassagerArray).forEach(function (key) {
-          if (selectedPassagerArray[key].PagerType == from) {
+        Object.keys(selectedPassengerArray).forEach(function (key) {
+          if (selectedPassengerArray[key].PagerType == from) {
             // 切换元素选中状态
             var li = $(".list-traveler .user_choice[data-id=" + key + "]");
             selectUser(li);
 
             // 成人和儿童数添加
-            calculatePersonNum(selectedPassagerArray[key].traveller.PassengerType);
+            calculatePersonNum(selectedPassengerArray[key].traveller.PassengerType);
           }
         });
       }
@@ -860,7 +873,7 @@
   var truncateCardInfo = function () {
     var cardId = $(".postCard").attr("data-code");
     if (editIDKey != null) {
-      var model = passagerArray[editIDKey];
+      var model = passengerArray[editIDKey];
       var cardList = model.listTravellerIdInfo;
       addOrEditPassagePage.find(".cardNumber").val("");
       addOrEditPassagePage.find(".cardDateLimit").val("");
@@ -924,16 +937,16 @@
     _clearDate();
     //未登录，如果缓存没有数据，自己显示添加页面
     if (!isLogin) {
-      var data = JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
-      if (data == null) {
-        passagerListPage.show();
+      var data = sessionStorage.getItem("choiceAir_AddPassengerArray") ? JSON.parse(sessionStorage.getItem("choiceAir_AddPassengerArray")) : null;
+      if (data === null) {
+        passengerListPage.show();
         addOrEditPassagePage.hide();
       } else {
         for (var i = 0; i <= data.length - 1; i++) {
           data[i].PagerType = from;
-          choiceAir_AddPassagerArray.push(data[i])
+          choiceAir_AddPassengerArray.push(data[i])
         }
-        passagerListPage.show();
+        passengerListPage.show();
         addOrEditPassagePage.hide();
       }
     }
@@ -952,23 +965,23 @@
     }
 
     // 初始化页面时，sessionStorage取出选中数据
-    selectedPassagerArray = JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId)) || {};
+    selectedPassengerArray = sessionStorage.getItem('choiceAir_select_' + elementId) ? JSON.parse(sessionStorage.getItem('choiceAir_select_' + elementId)) : {};
 
-    _getPassagerList();
+    _getPassengerList();
     _bindEvent();
 
     if (!isLogin && travId != "null") {
       currentOperationType = "edit";
       editIDKey = travId;
-      _model2UI(passagerArray[editIDKey]);
-      passagerListPage.hide();
+      _model2UI(passengerArray[editIDKey]);
+      passengerListPage.hide();
       addOrEditPassagePage.show();
       _setTitleTip();
       return;
     }
 
-    addPassagerTitle.html("新增" + titleType);
-    var dataCache = JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
+    addPassengerTitle.html("新增" + titleType);
+    var dataCache = JSON.parse(sessionStorage.getItem("choiceAir_AddPassengerArray"));
     _setTitleTip();
     if (dataCache == null) {
       titleTip.html("选择" + titleType);
