@@ -527,13 +527,26 @@
       var dateInitObj = new Object();
       dateInitObj[hotelDetail.gdataInfo.CheckInDate] = '入住';
       dateInitObj[hotelDetail.gdataInfo.CheckOutDate] = '离店';
-      var myDate2 = new Calender({
-        id: 'chooseDate',
-        num: 13,
+      // var myDate2 = new Calender({
+      //   id: 'chooseDate',
+      //   num: 13,
+      //   time: dateInitObj,
+      //   sClass1: 'enterDate',
+      //   id2: 'nightNum',
+      //   fn: hotelDetail.
+      // });upDateContent
+      var myDate2 = new ATplugins.Calender({
+        id: "chooseDate",
+        headerSign: 'tip', //tipClean  tip
+        type:'hotel',
+        noComfirmBtn: true,
         time: dateInitObj,
-        sClass1: 'enterDate',
-        id2: 'nightNum',
-        fn: hotelDetail.upDateContent
+        callback: function (result) {
+          console.info(result);
+          hotelDetail.upDateContent();
+          var nightNumEle = $('#nightNum');
+
+        }
       });
 
       result.data[0].dateInfo = {
