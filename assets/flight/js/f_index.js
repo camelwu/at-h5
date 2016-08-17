@@ -451,8 +451,8 @@ var fIndexModal = {
           "routeType": that.type,
           "isHideSharedFlight": "false",
           "isDirectFlight": "false",
-          "numOfAdult": adultValue,
-          "numOfChild": childValue,
+          "numofAdult": adultValue,
+          "numofChild": childValue,
           "departStartHour": "00",
           "departEndHour": "24",
           "priorityRule": 0,
@@ -639,8 +639,8 @@ var fIndexModal = {
     doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
     doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
     weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
-    adultValue.innerHTML = data.numOfAdult;
-    childValue.innerHTML = data.numOfChild;
+    adultValue.innerHTML = data.numofAdult;
+    childValue.innerHTML = data.numofChild;
     seatValue.innerHTML = reSeat(data.cabinClass);
     that.buttonStatusHandler();
   },
@@ -677,10 +677,10 @@ var fIndexModal = {
     if (fIndexInfoObj) {
 
       if (fIndexInfoObj.data.numofAdult) {
-        fIndexInfoObj.data.numOfAdult = fIndexInfoObj.data.numofAdult;
+        fIndexInfoObj.data.numofAdult = fIndexInfoObj.data.numofAdult;
       }
       if (fIndexInfoObj.data.numofChild || fIndexInfoObj.data.numofChlid || fIndexInfoObj.data.numOfChlid) {
-        fIndexInfoObj.data.numOfChild = fIndexInfoObj.data.numofChild || fIndexInfoObj.data.numofChlid || fIndexInfoObj.data.numOfChlid;
+        fIndexInfoObj.data.numofChild = fIndexInfoObj.data.numofChild || fIndexInfoObj.data.numofChlid || fIndexInfoObj.data.numOfChlid;
       }
 
       this.type = fIndexInfoObj.type;

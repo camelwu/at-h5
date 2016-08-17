@@ -280,8 +280,8 @@
       </li>
       <li>
         <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
-        <span class="hf-f"><i>{%=numOfAdult%}</i>成人</span> {% if( numOfChild >0 ){ %}
-        <span class="hf-f"><i>{%=numOfChild%}</i>儿童</span> {% } %}
+        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if( numofChild >0 ){ %}
+        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span> {% } %}
       </li>
       {% } else{ %}
       <li>
@@ -290,8 +290,8 @@
       <li>
         <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</p></span>
         <span class="hf-f"><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"cymd")%}</p></span>
-        <span class="hf-f"><i>{%=numOfAdult%}</i>成人</span> {% if( numOfChild >0 ){ %}
-        <span class="hf-f"><i>{%=numOfChild%}</i>儿童</span> {% } %} {% } %}
+        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span> {% if( numofChild >0 ){ %}
+        <span class="hf-f"><i>{%=numofChild%}</i>儿童</span> {% } %} {% } %}
       </li>
       <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
     </ul>
@@ -333,8 +333,8 @@
         <div class="hf-anum">
           <span>人数:</span>
 
-          <span><i>{%=numOfAdult%}</i>成人</span>
-          <span><i>{%=numOfChild%}</i>儿童</span>
+          <span><i>{%=numofAdult%}</i>成人</span>
+          <span><i>{%=numofChild%}</i>儿童</span>
 
         </div>
       </li>
@@ -379,8 +379,8 @@
       <li>
         <div class="hf-anum">
           <span>人数:</span>
-          <span><i>{%=numOfAdult%}</i>成人</span>
-          <span><i>{%=numOfChild%}</i>儿童</span>
+          <span><i>{%=numofAdult%}</i>成人</span>
+          <span><i>{%=numofChild%}</i>儿童</span>
         </div>
       </li>
       <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
@@ -424,9 +424,9 @@
       <li>
         <span class="hf-f">去程：<p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"md")%}</p></span>
         <span class="hf-f">返程：<p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"md")%}</p></span>
-        <span class="hf-f"><i>{%=numOfAdult%}</i>成人</span>
-        {% if(numOfChild >0){ %}
-        <span class="hf-f"><i>{%=numOfChild %}</i>儿童</span>
+        <span class="hf-f"><i>{%=numofAdult%}</i>成人</span>
+        {% if(numofChild >0){ %}
+        <span class="hf-f"><i>{%=numofChild %}</i>儿童</span>
         {% } %}
         <span class="hf-f"><i>{%=numofRoom %}</i>间</span>
       </li>

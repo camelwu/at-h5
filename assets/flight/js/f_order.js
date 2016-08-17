@@ -190,8 +190,8 @@ var fOrder = {
     postPara.wapOrder.cacheID = that.curFlightData.cacheID;
     postPara.wapOrder.cityCodeFrom = searchInfo.cityCodeFrom;
     postPara.wapOrder.cityCodeTo = searchInfo.cityCodeTo;
-    postPara.wapOrder.numOfAdult = searchInfo.numOfAdult;
-    postPara.wapOrder.numOfChild = searchInfo.numOfChild;
+    postPara.wapOrder.numofAdult = searchInfo.numofAdult;
+    postPara.wapOrder.numofChild = searchInfo.numofChild;
     postPara.wapOrder.routeType = searchInfo.routeType;
     postPara.wapOrder.cabinClass = searchInfo.cabinClass;
     postPara.wapOrder.sourceType = "H5";
@@ -199,8 +199,8 @@ var fOrder = {
       var e = e || window.event, target = e.target || e.srcElement, contactInfo = {}, selectTravellerList = window['localStorage']['travellerInfo_selected'];
       if (target.className == "preserve") {
         passengerOuter = document.querySelectorAll('.passenger_outer');
-        if (!window['localStorage']['travellerInfo_selected']||passengerOuter.length -1 != parseInt(searchInfo.numOfAdult)+parseInt(searchInfo.numOfChild)) {
-          jAlert('请选择' + searchInfo.numOfAdult + '名成人,' + searchInfo.numOfChild + '名儿童!', '提示');
+        if (!window['localStorage']['travellerInfo_selected']||passengerOuter.length -1 != parseInt(searchInfo.numofAdult)+parseInt(searchInfo.numofChild)) {
+          jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         } else {
           var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']), contactInfoCache = {};
@@ -215,8 +215,8 @@ var fOrder = {
             tempChild++;
           }
         }
-        if (tempAdult != searchInfo.numOfAdult || tempChild != searchInfo.numOfChild) {
-          jAlert('请选择' + searchInfo.numOfAdult + '名成人,' + searchInfo.numOfChild + '名儿童!', '提示');
+        if (tempAdult != searchInfo.numofAdult || tempChild != searchInfo.numofChild) {
+          jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         }
         postPara.travellerInfo = storageInfo;
@@ -277,8 +277,8 @@ var fOrder = {
             orderResultInfo['orderTime'] = new Date();
             orderResultInfo['totalPrice'] = that.priceData['totalPrice'];
             orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
-            orderResultInfo['numOfAdult'] = that.postPara['wapOrder']['numOfAdult'];
-            orderResultInfo['numOfChild'] = that.postPara['wapOrder']['numOfChild'];
+            orderResultInfo['numofAdult'] = that.postPara['wapOrder']['numofAdult'];
+            orderResultInfo['numofChild'] = that.postPara['wapOrder']['numofChild'];
             orderResultInfo['routeType'] = that.postPara['wapOrder']['routeType'];
             orderResultInfo['flightInfo'] = that.curFlightData;
             orderResultInfo['travellerInfo'] = storageInfo;
@@ -358,8 +358,8 @@ var fOrder = {
        * @param {String} travellerId
        * @param {Boolean} isInternationalTrip 是否国际航班
        * @param {Boolean} isMulSelect 是否多选
-       * @param {Number} numOfAdult 成人数
-       * @param {Number} numOfChild 儿童数
+       * @param {Number} numofAdult 成人数
+       * @param {Number} numofChild 儿童数
        * @param {String} id
        * @param {Date} departDate 出发日期
        * @param {Boolean} isShowChinaName 是否显示中文名
@@ -368,7 +368,7 @@ var fOrder = {
        */
       var fIndexInfo = JSON.parse(localStorage.getItem('fIndexInfo')).data;
       var isInternationalTrip = fOrder.isInternationalTrip()
-      vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numOfAdult, fIndexInfo.numOfChild, null, fIndexInfo.departDate, !isInternationalTrip, false, 'fOrder.flight_callback');
+      vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numofAdult, fIndexInfo.numofChild, null, fIndexInfo.departDate, !isInternationalTrip, false, 'fOrder.flight_callback');
     });
 
     /**
@@ -404,7 +404,7 @@ var fOrder = {
         var id = $(obj).find("input").eq(0).val();
         var fIndexInfo = JSON.parse(localStorage.getItem('fIndexInfo')).data;
         var isInternationalTrip = fOrder.isInternationalTrip()
-        vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numOfAdult, fIndexInfo.numOfChild, id, fIndexInfo.departDate, !isInternationalTrip, false)
+        vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numofAdult, fIndexInfo.numofChild, id, fIndexInfo.departDate, !isInternationalTrip, false)
       }
     });
   },
@@ -467,8 +467,8 @@ var fOrder = {
     var flightData = {}, fIndexInfo = {}, storage = window.localStorage, priceTotal = "", priceData = {};
     flightData = JSON.parse(storage.getItem('currentFlight'));
     fIndexInfo = JSON.parse(storage.getItem("fIndexInfo")).data;
-    priceData.numOfAdult = fIndexInfo.numOfAdult;
-    priceData.numOfChild = fIndexInfo.numOfChild;
+    priceData.numofAdult = fIndexInfo.numofAdult;
+    priceData.numofChild = fIndexInfo.numofChild;
     priceData.totalFareAmountADT = flightData.totalFareAmountADT;
     priceData.totalTaxAmountADT = flightData.totalTaxAmountADT;
     priceData.totalFareAmountExc = flightData.totalFareAmountExc;
@@ -476,9 +476,9 @@ var fOrder = {
       priceData.totalFareAmountCHD = flightData.totalFareAmountCHD;
       priceData.totalTaxAmountCHD = flightData.totalTaxAmountCHD;
       priceData.totalFareAmountExc = Number(flightData.totalFareAmountCHD) + Number(flightData.totalTaxAmountCHD);
-      priceData.priceTotal = flightData.totalFareAmountExc * Number(fIndexInfo.numOfAdult) + (flightData.totalFareAmountCHD + flightData.totalTaxAmountCHD) * Number(fIndexInfo.numOfChild);
+      priceData.priceTotal = flightData.totalFareAmountExc * Number(fIndexInfo.numofAdult) + (flightData.totalFareAmountCHD + flightData.totalTaxAmountCHD) * Number(fIndexInfo.numofChild);
     } else {
-      priceData.priceTotal = flightData.totalFareAmountExc * Number(fIndexInfo.numOfAdult)
+      priceData.priceTotal = flightData.totalFareAmountExc * Number(fIndexInfo.numofAdult)
     }
     this.curFlightData = flightData;
     this.fIndexInfo = fIndexInfo;

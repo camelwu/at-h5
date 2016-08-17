@@ -125,8 +125,8 @@ var data2 = '', roomdata = '';
     var searchInfo = JSON.parse(localStorage.getItem("searchInfo"));
     roomNum = searchInfo.RoomInfo.length;
     data2.hotelInfo.roomNum = roomNum;
-    data2.hotelInfo.numOfAdult = searchInfo.AdultNum;
-    data2.hotelInfo.numOfChild = searchInfo.ChildNum;
+    data2.hotelInfo.numofAdult = searchInfo.AdultNum;
+    data2.hotelInfo.numofChild = searchInfo.ChildNum;
 
     var str = $('#num').html();
     var jhf_star = ejs.render(str, data2.hotelInfo);

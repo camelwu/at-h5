@@ -320,7 +320,7 @@ var lsf_myweb={
                     "iPAddress": "",
                     "memberId": localStorage.memberid,
                     "nationlityCode": "",
-                    "numOfChild": 0,
+                    "numofChild": 0,
                     "numOfGuest": json.NumOfRoom,
                     "numOfRoom": json.NumOfRoom,
                     "residenceCode": "",

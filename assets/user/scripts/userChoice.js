@@ -617,7 +617,7 @@ var userSub = {
 				choPassengerUlList.removeChild(target.parentNode);
 				choPassengerUlChoosed.appendChild(target.parentNode);
 				console.log(choPassengerUlChoosed.innerHTML)
-				adultNumber.innerHTML = choPassengerUlChoosed.querySelectorAll('li').length + '/' + that.ruleNumber.numOfAdult;
+				adultNumber.innerHTML = choPassengerUlChoosed.querySelectorAll('li').length + '/' + that.ruleNumber.numofAdult;
 			}
 		});
 		this.addHandler(choPassengerUlChoosed, 'click', function() {

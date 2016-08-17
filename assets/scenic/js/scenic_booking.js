@@ -454,7 +454,7 @@
       bindDate: function () {
         var myTime;
         $(".js_booking_package_date").click(function (e) {
-          var e = e || window.event,
+          var e = e  || window.event,
             tar = e.target || e.srcElement;
           tar = $(tar).parent()[0];
           if (tar.nodeName.toLowerCase() === 'div') {

@@ -16,12 +16,12 @@ define(['../vim'],function (){
   /* 参数说明
      tpye:        业务类型(H,F,T,FT,FHT)
      isMulSelect：是否多选(True Or False)
-     numOfAdult：成人数量
-     numOfChild：小孩数量
+     numofAdult：成人数量
+     numofChild：小孩数量
      departDate：出发时间
   */
-  var init = function (type,isMulSelect,numOfAdult,numOfChild,departDate){
-      var _type=typeArray[type],_isMulSelect=isMulSelect,_numOfAdult=numOfAdult,_numOfChild=numOfChild,_departDate=departDate,_selectOperationConfig;
+  var init = function (type,isMulSelect,numofAdult,numofChild,departDate){
+      var _type=typeArray[type],_isMulSelect=isMulSelect,_numofAdult=numofAdult,_numofChild=numofChild,_departDate=departDate,_selectOperationConfig;
       if(!isMulSelect){
         _selectOperationConfig=_type.selectOperationConfig[0] /*默认第一个单选*/
       }

@@ -1205,7 +1205,7 @@
             }
           }, true);
           return back;
-        }, _choice = function (elementId, flight, tour, travellerId, isInternationalTrip, isMulSelect, numOfAdult, numOfChild, id, departDate, isShowChinaName, isShowContact, callbackName) {
+        }, _choice = function (elementId, flight, tour, travellerId, isInternationalTrip, isMulSelect, numofAdult, numofChild, id, departDate, isShowChinaName, isShowContact, callbackName) {
           //if(arguments.length<1){return ;}
           //var arg = arguments.callee.slice(this);
           var type = '',
@@ -1236,7 +1236,7 @@
           } else {
             type = 'add';
           }
-          var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + flight + tour + '&isNeedPassport=' + isInternationalTrip + '&title=' + title + '&type=' + type + '&TravellerId=' + travellerId + '' + '&isMulSelect=' + isMulSelect + '&numOfAdult=' + numOfAdult + "&numOfChild=" + numOfChild + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callbackName);
+          var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + flight + tour + '&isNeedPassport=' + isInternationalTrip + '&title=' + title + '&type=' + type + '&TravellerId=' + travellerId + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChild=" + numofChild + "&Id=" + id + "&departDate=" + departDate + "&isShowChinaName=" + isShowChinaName + "&isShowContact=" + isShowContact + "&callback=" + callbackName);
           document.body.appendChild(choice);
           //choice.location = urls;
         }, createIframe = function (urlstr, id) {
