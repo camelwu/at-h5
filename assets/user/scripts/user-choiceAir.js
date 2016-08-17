@@ -665,8 +665,8 @@
       for (var key in selectedPassagerArray) {
         param = {
           "SexCode": selectedPassagerArray[key].traveller.sexCode,
-          "FirstName": selectedPassagerArray[key].traveller.firstName,
-          "LastName": selectedPassagerArray[key].traveller.lastName,
+          "FirstName": isInternationalTrip ? selectedPassagerArray[key].traveller.firstName : selectedPassagerArray[key].traveller.idName,//如果是国内机票 将中文名通过first name传递
+          "LastName": isInternationalTrip ? selectedPassagerArray[key].traveller.lastName : selectedPassagerArray[key].traveller.idName, //如果是国内机票 将中文名通过lastname传递
           "Email": selectedPassagerArray[key].traveller.email,
           "CountryNumber": selectedPassagerArray[key].traveller.countryCode,
           "ContactNumber": selectedPassagerArray[key].traveller.mobilePhone,
