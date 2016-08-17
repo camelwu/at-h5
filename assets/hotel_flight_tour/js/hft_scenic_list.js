@@ -116,7 +116,7 @@
       var sortList = data.data.sortTypes || {};
       if(sortList.length > 0){
         for(var i=0;i < sortList.length;i++){
-          sortList[i].sortValue = i+1;
+          sortList[i].sortValue = i;
         }
       }
 
