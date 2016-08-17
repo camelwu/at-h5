@@ -533,8 +533,8 @@
       //   time: dateInitObj,
       //   sClass1: 'enterDate',
       //   id2: 'nightNum',
-      //   fn: hotelDetail.
-      // });upDateContent
+      //   fn: hotelDetail.upDateContent
+      // });
       var myDate2 = new ATplugins.Calender({
         id: "chooseDate",
         headerSign: 'tip', //tipClean  tip
@@ -543,9 +543,10 @@
         time: dateInitObj,
         callback: function (result) {
           console.info(result);
+          $('#nightNum').html(Math.round(((new Date(result[1].replace(/-/g, "/"))) - new Date(result[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)));
+          $(".enterDate").eq(0).html(result[0]);
+          $(".enterDate").eq(1).html(result[1])
           hotelDetail.upDateContent();
-          var nightNumEle = $('#nightNum');
-
         }
       });
 
