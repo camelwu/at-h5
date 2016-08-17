@@ -227,13 +227,21 @@ window.onload = function () {
             jAlert("请输入正确的图形验证码");
             return;
           }
-        }
-        var Parameters = {
-          "Parameters": "{\"CultureName\":\"\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
-          "ForeEndType": 3,
-          "Code": "0052"
 
-        };
+          var Parameters = {
+            "Parameters": "{\"CultureName\":\"\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value +"\",\"ImageNo\":\""+$('.captcha_img_three').attr('data-imageno')+"\",\"InputCode\":\""+$('#img_active_login_three').val()+ "\"}",
+            "ForeEndType": 3,
+            "Code": "0052"
+          };
+
+        }else{
+          var Parameters = {
+            "Parameters": "{\"CultureName\":\"\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
+            "ForeEndType": 3,
+            "Code": "0052"
+
+          };
+        }
         //console.log(Parameters);
         vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
 
