@@ -139,7 +139,7 @@
       this.ableWeekRange = options.ableWeekRange; //日期根据wenken 可选不可选 '1,2,3,4,5,6,0'
       this.prefix = options.prefix || "calendar";
       this.comfirmTip = options.comfirmTip, //确认按钮的提示信息     默认是 ~至~    或者~至~(3晚)
-      this.op = 0; //已操作次数
+        this.op = 0; //已操作次数
       this.defaultComfirmBtn = options.defaultComfirmBtn;
       this.theLastAbleDay = options.theLastAbleDay;
       this.checkInTimeOptId = options.checkInTimeOptId;
@@ -235,13 +235,13 @@
       var secondDate = calendar.find(".second_select .date");
       var secondWeek = calendar.find(".second_select .week");
       if (this.selectTime === 2 && this.time) {
-        if(Object.prototype.toString.call(this.time) === "[object Array]"){
-          for(var i=0,len = this.time.length;i<len;i++){
+        if (Object.prototype.toString.call(this.time) === "[object Array]") {
+          for (var i = 0, len = this.time.length; i < len; i++) {
             for (var key in this.time[i]) {
               dates.push(key);
             }
           }
-        }else{
+        } else {
           for (var key in this.time) {
             dates.push(key);
           }
@@ -276,16 +276,16 @@
       var tims = this.time;
       this.result.length = 0;
       //机票允许用户选择出发日期和返程日期为同一天
-      if(Object.prototype.toString.call(tims) === "[object Array]"){
+      if (Object.prototype.toString.call(tims) === "[object Array]") {
         var tempTimes = {};
-        for(var i=0,len = tims.length;i<len;i++){
+        for (var i = 0, len = tims.length; i < len; i++) {
           for (var key in tims[i]) {
             this.result.push(key);
             tempTimes[key] = tims[i][key];
           }
         }
         tims = tempTimes;
-      }else{
+      } else {
         for (var key in tims) {
           this.result.push(key);
         }
@@ -403,16 +403,16 @@
       var tims = this.time;
       this.result.length = 0;
       //机票允许用户选择出发日期和返程日期为同一天
-      if(Object.prototype.toString.call(tims) === "[object Array]"){
+      if (Object.prototype.toString.call(tims) === "[object Array]") {
         var tempTimes = {};
-        for(var i=0,len = tims.length;i<len;i++){
+        for (var i = 0, len = tims.length; i < len; i++) {
           for (var key in tims[i]) {
             this.result.push(key);
             tempTimes[key] = tims[i][key];
           }
         }
         tims = tempTimes;
-      }else{
+      } else {
         for (var key in tims) {
           this.result.push(key);
         }
@@ -647,7 +647,7 @@
         firstWeek.html(vlm.Utils.getWeek(values[0]));
         secondDate.html(values[1]);
         secondWeek.html(vlm.Utils.getWeek(values[1]));
-        if(this.defaultComfirmBtn){
+        if (this.defaultComfirmBtn) {
           this.showComfirmBtn(1);
         }
       }
@@ -746,7 +746,7 @@
           if (!this.noComfirmBtn) {
             this.showComfirmBtn(1);
           }
-        }else if(this.type == "flight" && this.selectTime === 2 && twoSelect.getTime() == oneSelect.getTime() ){
+        } else if (this.type == "flight" && this.selectTime === 2 && twoSelect.getTime() == oneSelect.getTime()) {
           this.result.push(selectValue);
           //控制确认按钮是否显示
           if (!this.noComfirmBtn) {
@@ -832,12 +832,12 @@
         var oneSelect = new Date(that.result[0]);
         var twoSelect = new Date(that.result[1]);
 
-        if(that.type == "flight" && twoSelect.getTime() == oneSelect.getTime()){
-          var obj1 = {},obj2 = {};
+        if (that.type == "flight" && twoSelect.getTime() == oneSelect.getTime()) {
+          var obj1 = {}, obj2 = {};
           obj1[that.result[0]] = that._word[that.type][0];
           obj2[that.result[1]] = that._word[that.type][1];
 
-          that.time = [obj1,obj2];
+          that.time = [obj1, obj2];
         }
 
       } else {
@@ -902,6 +902,23 @@
         that.showComfirmBtn(0);
       });
     },
+    //滑动到默认选中的月
+    scrollDefaultMonth: function () {
+      console.info(this.result);
+      if (this.result[0]) {
+        var now = new Date();
+        var nowYear = now.getFullYear();
+        var nowMonth = now.getMonth();
+        var initDate = new Date(this.result[0].replace(/-/g, '/'));
+        var initDateYear = initDate.getFullYear();
+        var initDateMonth = initDate.getMonth();
+        var distanceMonth = (initDateYear - nowYear) * 12 + (initDateMonth - nowMonth);
+        console.info("distanceMonth:" + distanceMonth);
+
+        var monthHeight = $("#calendarWrap .ca_month").eq(0).height();
+        $("#" + this.container.id).scrollTop(monthHeight * distanceMonth);
+      }
+    },
     // 表单的事件
     inputEvent: function () {
       var that = this;
@@ -936,6 +953,8 @@
         //初始化日期状态
         that.resetSelected();
         that.showSelected();
+        //将默认选中的月滑动到首屏
+        that.scrollDefaultMonth();
       });
     },
     // 鼠标在对象区域外点击，移除日期层
