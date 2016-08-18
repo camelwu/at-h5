@@ -292,13 +292,13 @@ li {
 
 .screen {
   width: 100%;
-  padding: 1px;
-  padding-top: 0;
+  /*padding: 1px;*/
+  /*padding-top: 0;*/
   background-color: white;
   position: fixed;
   bottom: -550rem;
   z-index: 2000000;
-  height: 490rem;
+  height: 7.8rem;
   overflow: hidden;
 }
 
