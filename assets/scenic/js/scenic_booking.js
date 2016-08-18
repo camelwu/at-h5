@@ -463,25 +463,50 @@
             var outid = $(tar).find(".js_booking_package_date_p").attr("id");
             var obj = {};
             obj[defaultdate] = "fristDate";
+            if(window.location.search.indexOf('oneticket') != -1){
+              //一元门票限制日期
+              var oDate=new Date();
+              var date=oDate.getDate();
+              myTime = myTime || new ATplugins.Calender({
+                id: tid,
+                selectTime: 1,
+                time: obj,
+                ableDateRange: {
+                  rangeStartDate:'2016-07-'+date,
+                  rangeEndDate:'2016-07-31'
+                },
+                //checkInTimeOptId: outid,
+                callback: function (result) {
+                  var out_date = "", out_day = "";
+                  var currentDay = result.toString();
+                  out_day = result.toString() + "T00:00:00";
+                  out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
+                  $("#" + tid + "").attr("data-defaultdate", currentDay);
+                  $("#" + tid + "").attr("data-value", out_day);
+                  $("#" + outid + "").html(out_date);
+                  console.info(result.toString());
+                }
+              });
 
-            myTime = myTime || new ATplugins.Calender({
-              id: tid,
-              selectTime: 1,
-              time: obj,
-              //checkInTimeOptId: outid,
-              callback: function (result) {
-                var out_date = "", out_day = "";
-                var currentDay = result.toString();
-                out_day = result.toString() + "T00:00:00";
-                out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
-                $("#" + tid + "").attr("data-defaultdate", currentDay);
-                $("#" + tid + "").attr("data-value", out_day);
-                $("#" + outid + "").html(out_date);
-                console.info(result.toString());
-              }
-            });
+            }else{
+              myTime = myTime || new ATplugins.Calender({
+                id: tid,
+                selectTime: 1,
+                time: obj,
+                //checkInTimeOptId: outid,
+                callback: function (result) {
+                  var out_date = "", out_day = "";
+                  var currentDay = result.toString();
+                  out_day = result.toString() + "T00:00:00";
+                  out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
+                  $("#" + tid + "").attr("data-defaultdate", currentDay);
+                  $("#" + tid + "").attr("data-value", out_day);
+                  $("#" + outid + "").html(out_date);
+                  console.info(result.toString());
+                }
+              });
+            }
           }
-
         });
       },
       addChildInput: function (id, count) {

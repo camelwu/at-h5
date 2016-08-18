@@ -346,7 +346,7 @@
       console.log(Parameters);
       $('#verify_phone_btn').html('60秒重发');
       timedown_verifynum(60);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify_code, true, false, true);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify_code, false, false, true);
     };
   }
 
@@ -427,7 +427,7 @@
       console.log(Parameters);
       phone_verify.innerHTML = '60秒重发';
       timedown_modify(60);
-      vlm.loadJson("", JSON.stringify(Parameters), mycallback_modify_code);
+      vlm.loadJson("", JSON.stringify(Parameters), mycallback_modify_code,false,false,true);
     };
   }
 
