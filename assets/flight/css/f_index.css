@@ -424,10 +424,12 @@ input:-ms-input-placeholder {
 }
 
 .flight_ul {
+  width: 100%;
   background: #fff;
   padding: 0 .28rem;
   margin-top: -3px;
   border-bottom: 1px solid #e6e6e6;
+  box-sizing: border-box;
 }
 
 .flight_ul .trip_go, .flight_ul .trip_back {
@@ -457,7 +459,7 @@ input:-ms-input-placeholder {
 .flight_ul li {
   padding: .20rem 0;
   /*height: 1.8rem;*/
-  border-bottom: 1px solid #e6e6e6;;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .flight_ul li:first-child {

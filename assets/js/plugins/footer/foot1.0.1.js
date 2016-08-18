@@ -556,6 +556,9 @@ var footer = (function(){
       remove : function() {
         if (masker.style.display != "none") {
           masker.style.display = "none";
+          if($('.flight_ul')){
+            $('.flight_ul').css('position','static');
+          }
         }
         var node = sec.getElementsByTagName("section");
         // first
@@ -809,6 +812,9 @@ var footer = (function(){
             if (masker.style.display == "none") {
               masker.style.display = "block";
               sec.childNodes[n].style.bottom = "0.98rem";
+              if($('.flight_ul')){
+                $('.flight_ul').css('position','fixed');
+              }
             } else {
               if (sec.childNodes[n].style.bottom == "0.98rem") {
                 box.childNodes[n].style.backgroundColor = "";
