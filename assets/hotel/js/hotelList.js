@@ -155,7 +155,7 @@ $(window).load(function () {
             obj.style.transition = "all 350ms";
         }
 
-        function mb_close() {
+        function mb_close(event) {
             var windowHeight = window.innerHeight;
             mb = document.getElementById("r-mb");
             mb.style.display = "none";
@@ -246,6 +246,9 @@ $(window).load(function () {
             obj1.onclick = function () {
                 show(obj2);
                 mb.addEventListener("click", mb_close);
+                mb.addEventListener("touchmove",function(event){
+                  event.preventDefault();
+                })
             }
         }
 
