@@ -144,6 +144,7 @@
       this.theLastAbleDay = options.theLastAbleDay;
       this.checkInTimeOptId = options.checkInTimeOptId;
       this.checkOutTimeOptId = options.checkOutTimeOptId;
+      this.sameDay = options.sameDay;  //支持选择的两个日期可以为同一天
       this.input = $('#' + this.id); // 获取INPUT元素
       this.eventBind();
       //this.inputEvent(); // input的事件绑定，获取焦点事件
@@ -746,7 +747,7 @@
           if (!this.noComfirmBtn) {
             this.showComfirmBtn(1);
           }
-        } else if (this.type == "flight" && this.selectTime === 2 && twoSelect.getTime() == oneSelect.getTime()) {
+        } else if (this.sameDay && this.selectTime === 2 && twoSelect.getTime() == oneSelect.getTime()) {
           this.result.push(selectValue);
           //控制确认按钮是否显示
           if (!this.noComfirmBtn) {
