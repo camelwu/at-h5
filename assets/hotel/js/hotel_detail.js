@@ -540,6 +540,7 @@
         headerSign: 'hotelTip', //tipClean  tip
         type:'hotel',
         noComfirmBtn: true,
+        disableDateAfterLength: 30,
         time: dateInitObj,
         callback: function (result) {
           console.info(result);
