@@ -160,7 +160,6 @@ i, em {
 
 .addtra_info li {
   margin-left: .3rem;
-  height: .96rem;
   line-height: .96rem;
   border-bottom: 1px solid #e6e6e6;
   overflow: hidden;
@@ -266,7 +265,7 @@ i, em {
   float: left;
   margin-left: 12%;
   width: 60%;
-  height: 90%;
+  height: 0.9rem;
   font-size: .28rem;
 }
 
