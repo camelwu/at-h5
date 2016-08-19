@@ -420,7 +420,7 @@
       }
       Bflag_modify = true;
       var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":2,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
         "ForeEndType": 3,
         "Code": "0058"
       };
