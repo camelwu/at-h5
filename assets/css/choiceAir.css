@@ -142,7 +142,8 @@ i, em {
 
 .addtra_title {
   width: 100%;
-  padding: .2rem .28rem;
+  padding: 0 .28rem;
+  line-height: 0.66rem;
   font-size: .24rem;
   background-color: #f7f7f7;
   position: relative;
@@ -308,7 +309,7 @@ i, em {
   margin-left: .1rem;
   background-size: 7rem 4.66rem;
   background-position: -3.6rem -1.36rem;
-  /*margin-top:.08rem;*/
+  top: 0.12rem;
 }
 
 .name_text {
