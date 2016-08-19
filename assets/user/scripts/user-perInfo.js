@@ -285,9 +285,8 @@
         var Parameters = {
           "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + input[0].value + "\",\"NewPassword\":\"" + input[3].value + "\",\"Code\":\"" + input[2].value + "\"}",
           "ForeEndType": 3,
-          "Code": "0054"
+          "Code": "0055"
         };
-
         console.log(Parameters);
         vlm.loadJson("", JSON.stringify(Parameters), mycallback_newKey);
       }
@@ -420,7 +419,7 @@
       }
       Bflag_modify = true;
       var Parameters = {
-        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":2,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
+        "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + phone_num.value + "\",\"VerificationCodeType\":3,\"ImageNo\":\"" + findPhoneCaptchaImg.attr('data-imageno') + "\",\"InputCode\":\"" + findPhoneCaptchaInput.val() + "\"}",
         "ForeEndType": 3,
         "Code": "0058"
       };
@@ -598,6 +597,7 @@
     }
   }
 
+  //修改密码和手机号验证共用
   function cb_test_phone() {
     document.getElementById("infoForm").submit();
   }
@@ -606,14 +606,10 @@
     var myJson = ret;
     console.log(myJson);
     if (myJson.success) {
-      jAlert('修改成功', '', cb_modify);
+      jAlert('修改成功', '', cb_test_phone);
     } else {
       jAlert(myJson.message);
     }
-  }
-
-  function cb_modify() {
-    document.getElementById("keyForm").submit();
   }
 
   /*退出账户清除localStorage*/
