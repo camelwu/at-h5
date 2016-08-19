@@ -380,18 +380,20 @@
             var birthday = new Date(birthday.replace('-', "/").replace('-', "/").replace('T', " "))
             if (birthday != null) {
               birthdayYear = birthday.getFullYear();
-              birthdayMonth = birthday.getMonth();
+              birthdayMonth = birthday.getMonth() + 1;
               birthdayDay = birthday.getDate();
               if (todayYear - birthdayYear < 0) {
                 alert("出生日期选择错误!");
               } else {
                 if (todayMonth * 1 - birthdayMonth * 1 < 0) {
                   age = (todayYear * 1 - birthdayYear * 1) - 1;
-                } else {
-                  if (todayDay - birthdayDay >= 0) { //alert(thisDay+'-'+brithd+"_ddd");
+                } else if(todayMonth * 1 - birthdayMonth * 1 > 0){
+                  age = (todayYear * 1 - birthdayYear * 1);
+                } else{
+                  if (todayDay - birthdayDay > 0) { //
                     age = (todayYear * 1 - birthdayYear * 1);
                   } else {
-                    age = (todayYear * 1 - birthdayYear * 1) - 1;
+                    age = (todayYear * 1 - birthdayYear * 1) - 1;  //todayDay - birthdayDay ==0时 需要当天结束后年龄才+1
                   }
                 }
               }
