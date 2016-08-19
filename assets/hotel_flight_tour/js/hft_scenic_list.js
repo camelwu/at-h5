@@ -99,7 +99,7 @@
             window.location.href = 'index.html';
           });
           //点击加载更多
-          $('#LoadMore').on("click", function () {
+          $('#LoadMore').off("click").on("click", function () {
             loadMore();
           });
           clickMore(data);
