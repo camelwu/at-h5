@@ -730,6 +730,7 @@ var fIndexModal = {
       id: "timeDoubleWrap",
       headerSign: 'tipClean', //tipClean  tip
       time: this.time2,
+      sameDay: true,
       checkInTimeOptId: 'setOffDate',
       checkOutTimeOptId: 'arriveDate',
       callback: function () {
