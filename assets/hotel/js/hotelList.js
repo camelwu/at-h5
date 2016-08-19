@@ -776,7 +776,7 @@ $(window).load(function () {
     var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
 
     function sortHistory(myAsiaHlHistory) {
-        var hlSortLi = utils.getbyid('rank').children;
+        var hlSortLi = utils.getbyid('rankWrapper').children;
         if (!myAsiaHlHistory.hlSort)
             return;
         for (var i = 0; i < hlSortLi.length; i++) {
