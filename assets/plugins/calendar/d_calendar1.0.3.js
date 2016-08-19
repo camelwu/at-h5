@@ -717,7 +717,7 @@
       var startDate = startDate || vlm.Utils.format_date(fullYear + "-" + (month + 1) + "-" + day, "Ymd");
       var endDate = endDate || new Date(fullYear, month + this.num, day);
       var currentDay, startDateValue, endDateValue;
-      if (this.result.length === 0) {
+      if (this.result.length === 0 || this.selectTime === 2) {
         dayDate.each(function (index, ele) {
           currentDay = $(ele).attr("data-day");
           currentDay = new Date(currentDay.replace(/-/g, "/"));
@@ -781,6 +781,11 @@
         this.disableDateFrom(disableDateStart, disableDateEnd);
       }
       ;
+
+      //自由行产品选择好两个日期后,更新可点击日期
+      if(this.result.length === 2){
+        this.ableDateFrom();
+      }
 
       //显示选中日期到页面顶端
       this.showSelected();
