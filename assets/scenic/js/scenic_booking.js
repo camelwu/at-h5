@@ -491,8 +491,8 @@
                   out_day = result.toString() + "T00:00:00";
                   out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
                   var containerId = instance.id;
-                  $("#" + containerId).find(".js_booking_package_date_p").attr("data-defaultdate", currentDay);
-                  $("#" + containerId).find(".js_booking_package_date_p").attr("data-value", out_day);
+                  $("#" + containerId).attr("data-defaultdate", currentDay);
+                  $("#" + containerId).attr("data-value", out_day);
                   $("#" + containerId).find(".js_booking_package_date_p").html(out_date);
                   console.info(result.toString());
                 }
@@ -517,8 +517,8 @@
                 out_day = result.toString() + "T00:00:00";
                 out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
                 var containerId = instance.id;
-                $("#" + containerId).find(".js_booking_package_date_p").attr("data-defaultdate", currentDay);
-                $("#" + containerId).find(".js_booking_package_date_p").attr("data-value", out_day);
+                $("#" + containerId).attr("data-defaultdate", currentDay);
+                $("#" + containerId).attr("data-value", out_day);
                 $("#" + containerId).find(".js_booking_package_date_p").html(out_date);
                 console.info(result.toString());
               }
