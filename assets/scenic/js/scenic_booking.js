@@ -453,61 +453,78 @@
       },
       bindDate: function () {
         var myTime;
-        $(".js_booking_package_date").click(function (e) {
-          var e = e  || window.event,
-            tar = e.target || e.srcElement;
-          tar = $(tar).parent()[0];
-          if (tar.nodeName.toLowerCase() === 'div') {
-            var tid = $(tar).attr("id");
-            var defaultdate = $(tar).attr("data-defaultdate");
-            var outid = $(tar).find(".js_booking_package_date_p").attr("id");
-            var obj = {};
-            obj[defaultdate] = "fristDate";
-            if(window.location.search.indexOf('oneticket') != -1){
-              //一元门票限制日期
-              var oDate=new Date();
-              var date=oDate.getDate();
-              myTime = myTime || new ATplugins.Calender({
-                id: tid,
+        //多个景点日历初始化
+        var contentList = $(".js_booking_package_date");
+        var dateContentId;
+        // //获取景点可选择日期时间段
+        // var rangesDate = $("#date-range").attr("data-selectedTime") ? $("#date-range").attr("data-selectedTime") : vlm.Utils.format_date(day_start, "Ymd") + "," + vlm.Utils.format_date(day_end, "Ymd");
+        // rangesDate = rangesDate.split(",");
+        //
+        // //景点的默认选中日期为开始日期+1天
+        // var firstDate = new Date(rangesDate[0].replace(/-/g, '/'));
+        // var defaultDate = new Date(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate() + 1);
+        // var defaultSelectedDate = defaultDate.getFullYear() + "-" + (defaultDate.getMonth() + 1) + "-" + defaultDate.getDate();
+        // initTourDate[vlm.Utils.format_date(defaultSelectedDate, "Ymd")] = "initDate";
+
+        for (var i = 0, len = contentList.length; i < len; i++) {
+          var defaultdate = $(contentList[i]).attr("data-defaultdate");
+          var obj = {};
+          obj[defaultdate] = "fristDate";
+          if(window.location.search.indexOf('oneticket') != -1){
+            //一元门票限制日期
+            var oDate=new Date();
+            var date=oDate.getDate();
+            dateContentId = $(contentList[i]).attr("id");
+            myTime = null;
+            myTime = new ATplugins.Calender({
+                id: dateContentId,
                 selectTime: 1,
                 time: obj,
                 ableDateRange: {
-                  rangeStartDate:'2016-07-'+date,
-                  rangeEndDate:'2016-07-31'
+                  rangeStartDate:'2016-08-'+date,
+                  rangeEndDate:'2016-08-31'
                 },
                 //checkInTimeOptId: outid,
-                callback: function (result) {
+                callback: function (result,instance) {
                   var out_date = "", out_day = "";
                   var currentDay = result.toString();
                   out_day = result.toString() + "T00:00:00";
                   out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
-                  $("#" + tid + "").attr("data-defaultdate", currentDay);
-                  $("#" + tid + "").attr("data-value", out_day);
-                  $("#" + outid + "").html(out_date);
+                  var containerId = instance.id;
+                  $("#" + containerId).find(".js_booking_package_date_p").attr("data-defaultdate", currentDay);
+                  $("#" + containerId).find(".js_booking_package_date_p").attr("data-value", out_day);
+                  $("#" + containerId).find(".js_booking_package_date_p").html(out_date);
                   console.info(result.toString());
                 }
               });
-
-            }else{
-              myTime = myTime || new ATplugins.Calender({
-                id: tid,
-                selectTime: 1,
-                time: obj,
-                //checkInTimeOptId: outid,
-                callback: function (result) {
-                  var out_date = "", out_day = "";
-                  var currentDay = result.toString();
-                  out_day = result.toString() + "T00:00:00";
-                  out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
-                  $("#" + tid + "").attr("data-defaultdate", currentDay);
-                  $("#" + tid + "").attr("data-value", out_day);
-                  $("#" + outid + "").html(out_date);
-                  console.info(result.toString());
-                }
-              });
-            }
+          }else{
+            dateContentId = $(contentList[i]).attr("id");
+            tourCalendar = null;
+            tourCalendar = new ATplugins.Calender({
+              id: dateContentId,
+              //num: getDayNum(rangesDate[0], rangesDate[1], "m"),
+              time: obj,
+              selectTime: 1,
+              // ableDateRange: {
+              //   rangeStartDate: rangesDate[0],
+              //   rangeEndDate: rangesDate[1]
+              // },
+              //                    ableWeekRange: '1,2,3,',
+              type: 'hotel',
+              callback: function (result,instance) {
+                var out_date = "", out_day = "";
+                var currentDay = result.toString();
+                out_day = result.toString() + "T00:00:00";
+                out_date = Adapter.formatDate({date: out_day, format: "MM月dd日"});
+                var containerId = instance.id;
+                $("#" + containerId).find(".js_booking_package_date_p").attr("data-defaultdate", currentDay);
+                $("#" + containerId).find(".js_booking_package_date_p").attr("data-value", out_day);
+                $("#" + containerId).find(".js_booking_package_date_p").html(out_date);
+                console.info(result.toString());
+              }
+            });
           }
-        });
+        }
       },
       addChildInput: function (id, count) {
         var tplString = "", outString = "";
