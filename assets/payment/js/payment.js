@@ -317,10 +317,11 @@
             "roomTypeName": json.RoomTypeName,
             "sessionID": "",
             "totalPrice": json.totalPrice * parseInt(json.NumOfRoom),
-            totalPriceCNY: json.totalPriceCNY * parseInt(json.NumOfRoom),
+            "totalPriceCNY": json.totalPriceCNY * parseInt(json.NumOfRoom),
             "trck": "",
             "browserType": "",
-            "deviceID": vlm.getDeviceID()
+            "deviceID": vlm.getDeviceID(),
+            "Vouchers": json.Vouchers ? json.Vouchers.code : ""   //array
           }
           param = {
             "Code": type.payMentCode,
