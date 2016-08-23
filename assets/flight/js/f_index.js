@@ -590,6 +590,7 @@ var fIndexModal = {
       doubleWrap = document.querySelector('#timeDoubleWrap'),
       defaultDate = [],
       reSeat = function (arg) {
+        arg = arg || 'economy';
         var cabinStr = "";
         switch (arg) {
           case "economy":
