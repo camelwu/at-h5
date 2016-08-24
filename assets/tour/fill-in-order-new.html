@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" type="text/css" href="../css/plugins/jquery.alert/jqueryAlert.css">
     <link rel="stylesheet" type="text/css" href="../css/plugins/scroller/scroller1.1.css">
-    <link href="../css/country_list.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/tours.css">
+    <link href="../css/plugins/countryList/country_list.css" rel="stylesheet" type="text/css">
+    <link href="css/tours.css" rel="stylesheet" type="text/css" >
 </head>
 
 <body>
@@ -44,12 +44,6 @@
                             <!--<div class="detail-span">2016-03-31 至 2016-04-02 2晚</div>-->
                         </section>
                         <section id="tour_detail" class="sce-ticket tour_detail">
-                            <!--<div>-->
-                            <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
-                            <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
-                            <!--<div class="detail-span">成人票 2张</div>-->
-                            <!--<div class="detail-span">儿童票 1张</div>-->
-                            <!--</div>-->
                             <!--<div>-->
                             <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
                             <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
@@ -107,25 +101,24 @@
                 <div class="personal_data" id="personal_data">
                     <span class="title"><i>联系人信息</i><b><a href="javascript:;" class="add-contact"></a></b></span>
                     <ul id="ht_contact" class="order_trave">
-                        <li>
+                        <li class="clearfix">
                             <!--<span class="list_tit">姓</span>-->
-                            <span class="list_con2">
+                            <span class="list_con2 fl">
                                 <input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="姓（如：Li）"  data-elementName="lastName"  />
                             </span>
-
-                            <!--<span class="list_tit">名：</span>-->
-                            <span class="list_con2">
+                            <i class="ht_order_line fl"></i>
+                            <span class="list_con2 fl">
                                 <input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="名（如：Shimin）" data-elementName="firstName"  />
                             </span>
                         </li>
-                        <li class="phone clearfix">
+                        <li class="phone clearfix" >
                             <span class="list_tit">手机号：</span>
-                            <div class="p_86 tel-btn">
-                                <span>+86</span>
+                            <div class="p_86 tel-btn" id="oCountryCellAdd">
+                                <span data-code="86">+86</span>
                                 <i class="open_arw int_tel">&nbsp;</i>
                             </div>
                             <span class="list_con">
-                                <input class="list_inp2" id="list_con_tel" type="tel" placeholder="用于接收短信通知" data-elementName="mobilePhone"  />
+                                <input class="list_inp2" id="list_con_tel" type="tel" onkeyup="setNum(this)" maxlength="11" placeholder="用于接收短信通知" data-elementName="mobilePhone"  />
                             </span>
                         </li>
                         <li>
@@ -219,7 +212,7 @@
             <div class="travelnotes-header tr_header">接送须知<i class="travelnotes-header-icon js-travelnotes-close"></i>
             </div>
             <ol class="travelnotes-list">
-                <li>如果还未预订机票，您可任意填写航班信息，继续您的预订。请您至少在出发3天前，联系我们并提新的航班信息，我们会重新安排您的接送。</li>
+                <li>如果还未预订机票，您可任意填写航班信息，继续您的预订。请您至少在出发3天前，联系我们并提供新的航班信息，我们会重新安排您的接送。</li>
                 <li>不填写接送信息默认您不需要接送。</li>
                 <li>如果您需要修改航班信息，也请在出发前3天联系我们并提供新的航班信息，我们会及时处理。</li>
                 <li>接机时间是您抵达的时间，送机时间是您离开的时间。</li>
@@ -227,157 +220,9 @@
         </div>
     </div>
 
-    <!--国籍选择开始-->
-    <div class="header country_header">
-      <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
-      <div class="cl_search">
-        <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
-        <i class="icon_common"></i>
-      </div>
-    </div>
-    <div class="all_elements country-cho-wrap">
-      <div class="content">
-        <div id="country-wrap-hot"></div>
-        <div class="country-wrap" id="country-wrap"></div>
-      </div>
-      <!--热门国籍-->
-      <script id="countryList_hot" type="text/template">
-        <h4><a name="rm" class="target"></a>热门</h4>
-        <ul class="country_hot">
-          <% for(var i=0; i< arrCountry.length; i++){ %>
-          <% if(arrCountry[i].isHot == 1) { %>
-          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
-          <% } %>
-          <% } %>
-        </ul>
-      </script>
-
-      <!--国籍全部列表-->
-      <script id="countryList" type="text/template">
-        <div class="full_country_outer">
-          <% for(var tem in countryArray){ %>
-          <a class="target" name="<%=tem%>"></a>
-          <h4><%= tem%></h4>
-          <ul class="full_country_list">
-            <%countryArray[tem].forEach(function(array){ %>
-            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
-            <% })%>
-          </ul>
-          <% }%>
-        </div>
-      </script>
-
-      <!--热门手机区号-->
-      <script id="countryList_hot_tel" type="text/template">
-        <h4><a name="rm" class="target"></a>热门</h4>
-        <ul class="country_hot">
-          <% for(var i=0; i< arrCountry.length; i++){ %>
-          <% if(arrCountry[i].isHot == 1) { %>
-          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
-          <% } %>
-          <% } %>
-        </ul>
-      </script>
-
-      <!--手机区号全部列表-->
-      <script id="countryListTel" type="text/template">
-        <div class="full_country_outer">
-          <% for(var tem in countryArray){ %>
-          <a class="target" name="<%=tem%>"></a>
-          <h4><%= tem%></h4>
-          <ul class="full_country_list">
-            <%countryArray[tem].forEach(function(array){ %>
-            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
-            <% })%>
-          </ul>
-          <% }%>
-        </div>
-      </script>
-
-      <!--国籍a-z-->
-      <script id="country_index" type="text/template">
-        <ul>
-          <li><a href="#rm">热门</a></li>
-          <% for(var tem in countryArray){%>
-          <li><a href="#<%=tem%>"><%=tem%></a></li>
-          <%}%>
-        </ul>
-      </script>
-
-    </div>
-    <!--右侧a-z-->
-    <div class="country_index" id="country_index_wrap"></div>
-
-    <!--国籍弹窗开始-->
-    <ul class="country-list-searched"></ul>
-
-    <!--国籍选择结束-->
-
-
-
-
-
     <!--同意条款-->
-
     <script src="../js/lib/jquery.js"></script>
-    <!--    <script src="js/dateFixed_.js"></script>-->
-    <script>
-        (function() {
 
-          localStorage.removeItem("travellerInfo_selected");
-          localStorage.removeItem("contact_selected");
-          sessionStorage.removeItem("choiceAir_select_personal_data");
-
-            //阻止在嵌套元素中传播
-            function cancelPropagation(event) {
-                event = window.event || event;
-                if (document.all) {
-                    event.cancelBubble = true;
-                } else {
-                    event.stopPropagation();
-                }
-            }
-            $("#state_btn").click(function() {
-                $(".js-mask").show();
-                $('#traState').show();
-                $('#traState').css({
-                    "height": "50%"
-                });
-                $('#sendState').hide();
-                $('.sc-content').css({
-                    "overflow": "hidden"
-                })
-            });
-            $(".js-travelnotes-close").click(function() {
-                $(".js-mask").hide();
-                $('.sc-content').css({
-                    "overflow": "auto"
-                });
-                $(document.body).css('overflowY','auto');
-            });
-            $(".js-mask").click(function() {
-                $(".js-mask").hide();
-                $('.sc-content').css({
-                    "overflow": "auto"
-                });
-                $(document.body).css('overflowY','auto');
-            });
-            $(".js-travelnotes").click(function(e) {
-                cancelPropagation(e);
-            });
-            $("#send_btn").click(function() {
-                $(".js-mask").show();
-                $('#traState').hide();
-                $('#sendState').show();
-                //                $('#sendState').css({"height":"35%"});
-                $('.sc-content').css({
-                    "overflow": "hidden"
-                });
-                $(document.body).css('overflowY','hidden');
-            });
-        })();
-
-    </script>
     <!--填写订单-->
     <script src="../js/scenic.js"></script>
     <script src="../js/plugins/jquery.alert/jqueryAlert.js"></script>
@@ -385,9 +230,71 @@
     <script src="../js/lib/ejs.js"></script>
     <script src="../js/lib/plugins.js"></script>
     <script src="../js/plugins/scroller/scroller1.1.js"></script>
+    <script src="../js/plugins/countryList/countrydata.js"></script>
+    <script src="../js/plugins/countryList/country_list.js"></script>
     <script src="js/fill_order.js"></script>
-    <script src="../js/countrydata.js"></script>
-    <script src="../js/country_list.js"></script>
+
+    <script>
+      (function() {
+
+        localStorage.removeItem("travellerInfo_selected");
+        localStorage.removeItem("contact_selected");
+        sessionStorage.removeItem("choiceAir_select_personal_data");
+
+        //阻止在嵌套元素中传播
+        function cancelPropagation(event) {
+          event = window.event || event;
+          if (document.all) {
+            event.cancelBubble = true;
+          } else {
+            event.stopPropagation();
+          }
+        }
+        $("#state_btn").click(function() {
+          $(".js-mask").show();
+          $('#traState').show();
+          $('#traState').css({
+            "height": "50%"
+          });
+          $('#sendState').hide();
+          $('.sc-content').css({
+            "overflow": "hidden"
+          })
+        });
+        $(".js-travelnotes-close").click(function() {
+          $(".js-mask").hide();
+          $('.sc-content').css({
+            "overflow": "auto"
+                });
+                $(document.body).css('overflowY','auto');
+            });
+        $(".js-mask").click(function() {
+          $(".js-mask").hide();
+          $('.sc-content').css({
+            "overflow": "auto"
+                });
+                $(document.body).css('overflowY','auto');
+            });
+        $(".js-travelnotes").click(function(e) {
+          cancelPropagation(e);
+        });
+        $("#send_btn").click(function() {
+          $(".js-mask").show();
+          $('#traState').hide();
+          $('#sendState').show();
+          $('.sc-content').css({
+            "overflow": "hidden"
+          });
+                $(document.body).css('overflowY','hidden');
+        });
+      })();
+
+      // 输入只能纯数字
+      function setNum(obj) {
+        obj.value = obj.value.replace(/\D/ig, '');
+      }
+
+    </script>
 
     <script id="tpl3" type="text/template">
       <% var info = JSON.parse(localStorage.info); %>
@@ -397,9 +304,11 @@
           <%= tourInfos[i].tourName %>
         </div>
         <div class="detail_span">
-            <% if(tourInfos[i].travelDateSpecified){ %>游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %><% } %>
-          <%= weekday[i] %>
-          <%= noon[i] %>
+            <% if(tourInfos[i].travelDateSpecified){ %>
+              游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %>
+              <%= week%>
+              <%= noon[i] %>
+            <% } %>
         </div>
         <div class="detail_span">成人票
           <%= info.adultNum %>张

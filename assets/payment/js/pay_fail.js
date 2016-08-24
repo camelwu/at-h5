@@ -51,11 +51,13 @@
             }
             console.log(JSON.stringify(para));
             vlm.loadJson("", JSON.stringify(para),function(data){
+                // data = {"success":false,"message":"获取详细价格时出错(Error Occurs While GetRateDetails.)","code":9010};
+                var html;
                 if (data.success) {
                     if(type.id==1){
                         data.data[0].bookingRefNo=data.data[0].bookingReferenceNo;
                         data.data[0].productName=data.data[0].hotelName;
-                        data.data[0].totalPrice=data.data[0].totalRoomRate;
+                        data.data[0].totalPrice=data.data[0].payAmount;
                     }else if(type.id==2){
                         data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
@@ -70,7 +72,8 @@
                             }
                             totalPrice+=data.data.chargeDetails[i].totalAmount;
                         }
-                        data.data.totalPrice=totalPrice;
+                        //data.data.totalPrice=totalPrice;
+                        data.data.totalPrice=data.data.payAmount;   //新增payAmount字段为订单总额
                     }
                     else if(type.id==4){
                         data.data.productName=data.data.packageName;
@@ -88,8 +91,8 @@
                         data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
 
-                        Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))-1;
-                        Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
+                        var Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))+1;
+                        var Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
                         data.data.Day = Day;
                         data.data.Night = Night;
                     }
@@ -97,13 +100,21 @@
                       data.data.productCode = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                       data.data.totalPrice=data.data.totalFlightPrice;
 
-                      Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))-1;
-                      Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
+                      var Day = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10))+1;
+                      var Night = getDayNum(data.data.hotelDetails.checkInDate.substring(0,10),data.data.hotelDetails.checkoutDate.substring(0,10));
                       data.data.Day = Day;
                       data.data.Night = Night;
                     }
-                    var html = template("elements", data.data);
+                    html = template("template_success", data.data);
                     $("#elements").html(html);
+
+                  //绑定页面事件
+                  _init.bindbindPaymentTypeEvent();
+
+                } else {
+                    // 接口异常
+                    html = template("template_fail", {});
+                    $(document.body).append(html);
                 }
 
             });
@@ -113,8 +124,7 @@
             //获取url参数
             type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
             bookingRefNo=vlm.getpara("bookingRefNo");//订单code
-            //绑定页面事件
-            _init.bindbindPaymentTypeEvent();
+
             //获取支付数据
             _getData(type,bookingRefNo,3,function(data){
                 if (data.success) {

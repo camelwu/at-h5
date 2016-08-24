@@ -24,16 +24,16 @@
 				<p class="center-text"></p>
 			</div>
 		</div>
+    <header class="header">
+      <a href="f_index.html" class="header_back"> <i class="icon_back"></i> </a>
+      <h3><span>北京</span><i class="arrowSingle"></i><span>新加坡</span></h3>
+    </header>
+    <div class="searchZone">
+      <span class="previousDay">前一天</span>
+      <span class="nextDay">后一天</span>
+      <span class="middle_input" id="timeSingle"> <span class="monthDay" id="setOffDateSingle">4月29日</span><span class="weekWord">周五</span><i></i> </span>
+    </div>
 		<div class="all_elements">
-			<header class="header">
-				<a href="f_index.html" class="header_back"> <i class="icon_back"></i> </a>
-				<h3><span>北京</span><i class="arrowSingle"></i><span>新加坡</span></h3>
-			</header>
-      <div class="searchZone">
-        <span class="previousDay">前一天</span>
-        <span class="nextDay">后一天</span>
-        <span class="middle_input" id="timeSingle"> <span class="monthDay" id="setOffDateSingle">4月29日</span><span class="weekWord">周五</span><i></i> </span>
-      </div>
 			<div class="content_ addPaddingTop addMarginBottomHigh">
 				<!--输入框-->
 				<ul class="flight_ul"></ul>
@@ -60,7 +60,7 @@
       <% }%>
       <% }else{%>
       <p class="priceNumber domi">
-        <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+        <span class="money">￥</span><%= item["totalFareAmountADT"] %>
       </p>
       <% }%>
 		</div>
@@ -115,6 +115,7 @@
 	<script type="text/javascript" src="../js/lib/vlm.js"></script>
 	<script type="text/javascript" src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
 	<script type="text/javascript" src="../js/lib/ejs.js"></script>
-	<script type="text/javascript" src="../js/plugins/footer/footer.js"></script>
+	<!--<script type="text/javascript" src="js/flightData.js"></script>-->
+	<script type="text/javascript" src="../js/plugins/footer/foot1.0.1.js"></script>
   <script type="text/javascript" src="js/f_single_list.js"></script>
 </html>

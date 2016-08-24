@@ -6,10 +6,9 @@
     "use strict";
     //获取选中的房间id
     var ulrRoom = window.location.search;
-
     function initFooter(data) {
         var menu_data = {
-                hotelSort: {
+            sortTypes: {
                     title: "推荐排序",
                     c: "foot_sort",
                     s: 1,
@@ -35,7 +34,7 @@
                         sortValue: 1
                         }]
                 },
-                hotelScreen: {
+            filters: {
                     title: "筛选",
                     c: "foot_screen",
                     s: 2,
@@ -48,7 +47,7 @@
                         item: starChoose(data)
                     }]
                 },
-                hotelPosition: {
+            locationList: {
                     title: "位置",
                     c: "foot_position",
                     s: 2, //select
@@ -221,7 +220,6 @@
                 $.alerts.alert(result.message);
             }
         },
-
         check: function () {
             $("#hj_jList li:nth-child(1)").addClass("cur");
         },

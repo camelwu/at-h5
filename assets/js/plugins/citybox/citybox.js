@@ -1990,7 +1990,8 @@
         var data = config["CityListData"];
         var strValue = $('#js_citybox_searchactive_input').val();
         dom.innerHTML = "";
-        if(strValue == ""){
+        // #2237 两个字母以上显示
+        if(strValue.length <= 1) {
           return;
         }
         strValue = strValue.replace(/\s+/g,"");
@@ -2203,7 +2204,16 @@
         citybox_summary_item_litop1.onclick = function () {
           var key = this.getAttribute("data-key");
           var a = $("#js_" + key);
+
+          var showletter = $("#citybox_showletter");
+          showletter.html("当前");
+          showletter.addClass("show");
+          setTimeout(function(){
+            showletter.removeClass("show");
+          },400);
+
           if (a.length != 0) {
+
             i = a.offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $(".citybox_content").scrollTop();
           }
           $(".citybox_content").scrollTop(i);
@@ -2219,6 +2229,14 @@
         citybox_summary_item_litop1.onclick = function () {
           var key = this.getAttribute("data-key");
           var a = $("#js_" + key);
+
+          var showletter = $("#citybox_showletter");
+          showletter.html("当前");
+          showletter.addClass("show");
+          setTimeout(function(){
+            showletter.removeClass("show");
+          },400);
+
           if (a.length != 0) {
             i = a.offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $(".citybox_content").scrollTop();
           }
@@ -2235,6 +2253,12 @@
         citybox_summary_item_litop2.onclick = function(){
           var key = this.getAttribute("data-key");
           var a = $("#js_"+key);
+          var showletter = $("#citybox_showletter");
+          showletter.html("历史");
+          showletter.addClass("show");
+          setTimeout(function(){
+            showletter.removeClass("show");
+          },400);
           if (a.length != 0) {
             i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
           }
@@ -2250,7 +2274,15 @@
       citybox_summary_item_litop3.onclick = function(){
         var key = this.getAttribute("data-key");
         var a = $("#js_"+key);
+
+        var showletter = $("#citybox_showletter");
+        showletter.html("热门");
+        showletter.addClass("show");
+        setTimeout(function(){
+          showletter.removeClass("show");
+        },400);
         if (a.length != 0) {
+
           i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
         }
         $(".citybox_content").scrollTop(i);
@@ -2267,9 +2299,16 @@
           var key = this.getAttribute("data-key");
           var a = $("#js_index_" + key);
 
+          var showletter = $("#citybox_showletter");
+          showletter.html(key.toLocaleUpperCase());
+          showletter.addClass("show");
+          setTimeout(function(){
+            showletter.removeClass("show");
+          },400);
+
           if (a.length != 0) {
+
             i = a.offset().top - ($("html").css("font-size").replace("px","")*0.88) + $(".citybox_content").scrollTop();
-            //console.log($("html").css("font-size") +","+a.offset().top+","+$(".citybox_search_container").scrollTop());
           }
           $(".citybox_content").scrollTop(i);
 

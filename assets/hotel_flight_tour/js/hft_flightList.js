@@ -195,29 +195,29 @@ var flightList = {
     };
     var bottom = function (d) {
       var menu_data = {
-        hotelPosition: {
-          title: "航空公司",
-          c: "flight_company",
-          type: 3,
-          s: 1,
-          key: 'airways',
-          listData: d.airways
+        airways : {
+          title : "航空公司",
+          c : "flight_company",
+          type : 3,
+          s:1,
+          key : 'airways',
+          listData : d.airways
         },
-        hotelSort: {
-          title: "快速排序",
-          c: "foot_sort",
-          type: 1,
-          s: 1,
-          key: 'sortTypes',
-          listData: d.sortTypes
+        sortTypes : {
+          title : "快速排序",
+          c : "foot_sort",
+          type : 1,
+          s:1,
+          key : 'sortTypes',
+          listData : d.sortTypes
         },
-        hotelScreen: {
-          title: "筛选",
-          c: "foot_screen",
-          type: 2,
-          s: 2,
-          key: 'filters',
-          listData: d.filters
+        filters : {
+          title : "筛选",
+          c : "foot_screen",
+          type : 2,
+          s:2,
+          key : 'filters',
+          listData : d.filters
         }
       };
       var menu_call = function (back) {

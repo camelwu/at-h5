@@ -1,6 +1,9 @@
 /**
  * Created by Venson on 16/5/24.
  */
+window.addEventListener('load', function () {
+  FastClick.attach(document.body);
+}, false);
 (function(){
   var webkit = this || (0, eval)('this');
   var val = vlm.parseUrlPara(window.location.href);
@@ -233,7 +236,6 @@
           var htmlC = ejs.render(htmlc,json.data);
           $("#barContent").html(htmlC);
         }
-
         var htmls = $("#Sceniccontent").html();
         var htmlS = ejs.render(htmls,json.data);
         //图片点击事件
@@ -258,11 +260,11 @@
           if($("#Sheight1").hasClass("js_show")){
             $("#Sheight1").removeClass("js_show");
             $(".scenic_height1").css({'height':'4.8rem'});
-            $("#Sheight1").css({"background-position":  "-3.71rem -2.26rem"});
+            $("#Sheight1").css({"background-position":  "-3.64rem -2.14rem"});
           }else{
             $("#Sheight1").addClass("js_show");
             $(".scenic_height1").css({'height':'100%'});
-            $("#Sheight1").css({"background-position":  "-4.1rem -2.26rem"});
+            $("#Sheight1").css({"background-position":  "-3.99rem -2.14rem"});
           }
 
         };
@@ -270,22 +272,22 @@
           if($("#Sheight2").hasClass("js_show")){
             $("#Sheight2").removeClass("js_show");
             $(".scenic_height2").css({'height':'4.8rem'});
-            $("#Sheight2").css({"background-position":  "-3.71rem -2.26rem"});
+            $("#Sheight2").css({"background-position":  "-3.64rem -2.14rem"});
           }else{
             $("#Sheight2").addClass("js_show");
             $(".scenic_height2").css({'height':'100%'});
-            $("#Sheight2").css({"background-position":  "-4.1rem -2.26rem"});
+            $("#Sheight2").css({"background-position":  "-3.99rem -2.14rem"});
           }
         };
         Sheight3.onclick =function(){
           if($("#Sheight3").hasClass("js_show")){
             $("#Sheight3").removeClass("js_show");
             $(".scenic_height3").css({'height':'4.8rem'});
-            $("#Sheight3").css({"background-position":  "-3.71rem -2.26rem"});
+            $("#Sheight3").css({"background-position":  "-3.64rem -2.14rem"});
           }else{
             $("#Sheight3").addClass("js_show");
             $(".scenic_height3").css({'height':'100%'});
-            $("#Sheight3").css({"background-position":  "-4.1rem -2.26rem"});
+            $("#Sheight3").css({"background-position":  "-3.99rem -2.14rem"});
           }
         };
 
@@ -419,24 +421,23 @@
   T.Load("js_scenic_detail");
 
 })();
-//(function(){
-//  $(window)[0].addEventListener("scroll",function(){
-//    var header = $(".header_scenic")[0];
-//    //var height = $(".bar_img")[0].height;
-//    //var scroll = $(".contents").scrollTop();
-//    console.log(scroll);
-//    if(!$(".content_detail").scrollTop == 0){
-//      header.style.position="fixed";
-//      header.style.opacity="1";
-//      //$("#oldHeader")[0].style.opacity = "0";
-//    }else{
-//      header.style.position="absolute";
-//      header.style.opacity="0";
-//    }
-//    //if(scroll>height){
-//    //  header.style.backgroundColor = "#f7f7f7";
-//    //}
-//  });
-//})()
-
-
+(function(){
+  $(".content_detail").scroll(function(){
+    var header = $(".header_scenic")[0];
+    var scroll = $(".content_detail").scrollTop();
+    var oldgo = $(".icon_go_back")[0];
+    if(!scroll== 0){
+      header.style.position="fixed";
+      header.style.opacity="1";
+      header.style.backgroundColor = "#f7f7f7";
+      oldgo.style.zIndex = 98;
+      $('.icon_go_back').hide();
+    }else{
+      header.style.position="absolute";
+      header.style.opacity="0";
+      header.style.backgroundColor = "transparent";
+      oldgo.style.zIndex = 998;
+      $('.icon_go_back').show();
+    }
+  });
+})();

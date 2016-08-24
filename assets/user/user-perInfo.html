@@ -24,7 +24,7 @@
 		<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
 		<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
-		<link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
+    <link href="../css/plugins/scroller/picker.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="preloader">
@@ -55,16 +55,13 @@
 					</li>
 					<li  class="sex-alter" id="ppp">
 						<div class="birth_date fl">出生日期</div>
-						<div id="birth-cont-per" class="birth_cont" data-cache="1990年-1月-1日">1990-01-01</div>
+						<div id="birth-cont-per" class="birth_cont" data-selected="1990年,1月,1日">1990-01-01</div>
 						<b class="open_arw"></b>
 					</li>
-					<li id="a_phone">
+					<li id="verify_phone_line">
 						手机 <span id="hostmobile" class="info_name"></span><b class="open_arw"></b>
 					</li>
-					<li id="a_email">
-						邮箱 <span id="hostemail" class="info_name"></span><b class="open_arw"></b>
-					</li>
-					<li id="a_key">
+					<li  id="modify_password">
 						修改密码<b class="open_arw"></b>
 					</li>
 				</ul>
@@ -72,84 +69,73 @@
 			</div>
 		</div>
 		<!--     修改信息浮层     -->
-		<div id="amend_info" class="all_elements" style="display: none;">
+		<div id="amend_info" class="all_elements">
       <div class="header">
         <span id="close_page" class="header_back"><i class="icon_back"></i></span>
-        <h3 id="title">修改昵称/填写姓名/手机号验证/邮箱/修改密码</h3>
+        <h3 id="title">修改昵称/填写姓名/修改密码/验证手机/</h3>
       </div>
 			<ul id="info_content" class="user_content">
-				<li id="changename" style="display: none;">
+				<li id="changename">
 					<form id="nickForm" action="user-perInfo.html" method="get">
 						<div class="u_name">
-							<input id="name" name="name" placeholder="请输入用户昵称" type="text" value="" maxlength="20" autofocus="autofocus"/>
+							<input id="name" name="name" placeholder="请填写昵称" type="text" value="" maxlength="20" autofocus="autofocus"/>
 							<b class="icon_person name_close"></b>
 						</div>
 						<div class="name_text">4-20个字符，可由中英文字母，数字、“_”组成。</div>
-            <a id="nick_btn" href="javascript:" class="f_btn">保存</a>
+            <a id="nick_btn" href="javascript:" class="f_btns">保存</a>
 					</form>
 				</li>
 				<form id="infoForm" action="user-perInfo.html" method="get">
 					<li id="fillname">
 						<div class="u_name">
-							<input id="realName" type="text" value placeholder="请填写真实姓名" autofocus="autofocus" maxlength="20" data-type="code">
+							<input id="realName" type="text" placeholder="请填写真实姓名"  maxlength="20" data-type="code">
               <b class="icon_person name_close"></b>
 						</div>
 						<div class="name_text">不超过10个汉字或者20个英文字符，支持空格和“.”</div>
 					</li>
-					<li id="phoneverify">
-						<ul class="f_key">
-							<li>
-								<input id="phone_num" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
-							</li>
+          <li id="verify_phone_num">
+            <ul class="f_key">
               <li>
-                <input class="captcha" type="text" value placeholder="输入图形验证码" data-type="captcha">
-                <img class="fk_captcha" src="" alt="验证码">
+                <input id="verify_cellphone_code" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
               </li>
-							<li>
-								<input class="fk_put mob_code" type="text" value placeholder="请输入验证码" data-type="code">
-								<div class="fk_div" id="phone_ver">发送验证码</div>
-							</li>
-						</ul>
-					</li>
-					<li id="useremail">
-						<div class="u_name">
-							<input id="email" type="text" placeholder="请输入邮箱" data-type="email">
-						</div>
-					</li>
-          <a id="amend_btn_0" href="javascript:;" class="f_btn">保存</a>
-          <a id="amend_btn_1" href="javascript:;" class="f_btn">保存</a>
-          <a id="amend_btn_2" href="javascript:;" class="f_btn">保存</a>
+              <li>
+                <input class="fk_put captcha_ver_cell" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">
+                <img class="fk_captcha_modify" src="" alt="验证码" />
+              </li>
+              <li>
+                <input class="fk_put mob_phonecode" type="text" value placeholder="请输入验证码" data-type="code">
+                <div class="fk_div_phone" id="verify_phone_btn">发送验证码</div>
+              </li>
+            </ul>
+          </li>
+          <li id="modify_pass">
+            <ul class="f_key">
+              <li>
+                <input id="phone_num" class="fk_put mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
+              </li>
+              <li>
+                <input class="fk_put captcha_modify" type="text" value="" placeholder="请输入图形验证码" data-type="imgcode">
+                <img class="fk_captcha_modify" src="" alt="验证码" />
+              </li>
+              <li>
+                <input class="fk_put mob_code" type="text" value placeholder="请输入验证码" data-type="code">
+                <div class="fk_div_phone" id="phone_ver">发送验证码</div>
+              </li>
+              <li>
+                <input id="phone_pass_new" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请设置6-18位新密码" data-type="pass">
+              </li>
+            </ul>
+          </li>
+          <a id="amend_btn_0" href="javascript:;" class="f_btns">保存</a>
+          <a id="amend_btn_1" href="javascript:;" class="f_btns">保存</a>
+          <a id="amend_btn_2" href="javascript:;" class="f_btns">保存</a>
 				</form>
-				<li id="amendkey">
-					<form id="keyForm" action="user-perInfo.html" method="get">
-						<ul class="f_key mb_none">
-							<li>
-								<span>当前密码</span>
-								<input type="password" placeholder="6-20位字符" data-type="pass" autofocus="autofocus"/>
-							</li>
-							<li>
-								<span>新密码</span>
-								<input type="password" placeholder="6-20位字符" data-type="pass"/>
-							</li>
-							<li>
-								<span>确认密码</span>
-								<input type="password" placeholder="6-20位字符" data-type="pass"/>
-							</li>
-						</ul>
-					</form>
-					<div id="ifshowkey" class="showkey clearfix">
-						<div class="showkey_tab fr"><b class="show_key"></b><span class="pas_showhide">显示密码</span></div>
-					</div>
-          <a id="newkey_btn" href="javascript:;" class="f_btn">完成</a>
-					<div class="con_pass">注意：密码需要填写6-20位字符，可由英文字母，数字和符号组成，不能含空格</div>
-				</li>
 			</ul>
 		</div>
 		<script src="../js/lib/jquery.js"></script>
 		<script src="../js/lib/jquery.alert.js"></script>
 		<script src="../js/lib/vlm.js"></script>
-    <script src="../js/plugins/jquery.scrollevent/scrollevent.js" type="text/javascript" ></script>
-    <script src="../js/plugins/scroller/scroller1.1.js"></script>
+    <script src="../js/plugins/scroller/picker.js"></script>
     <script src="scripts/user-perInfo.js"></script>
 	</body>
 </html>

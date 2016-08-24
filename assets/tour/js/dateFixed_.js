@@ -146,7 +146,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         $(ele).val(defaultSelectedDate);
                     });
                     $("#tourTime").find(".week-tour").each(function (index, ele) {
-                        $(ele).html(vlm.Utils.getWeek(defaultSelectedDate));
+                        $(ele).html(vlm.Utils.getWeek(defaultSelectedDate.replace(/-/g, '/')));
                     });
                     initTourCalendar();
                 }
@@ -298,7 +298,11 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         if (target.hasClass("cur")) {
                             childNumValue = childNumValue + 1;
                             childNumEle.html(childNumValue);
-                            extraChildHtml = addNewChildHtml(allExtraChild.length + 1);
+                            if (target.parents('.hotelInfo_numb_people').hasClass('init-hotel-room-detail')) {
+                                extraChildHtml = addNewChildHtml(allExtraChild.length + 1);
+                            } else {
+                                extraChildHtml = addNewChildHtml(allExtraChild.length);
+                            }
 
                             addBedShowOrHide(target)
                                 //target.parents(".hotelInfo_numb_people").append(extraChildHtml);
@@ -386,7 +390,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
             if (onlyForAdult) {
                 return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn"></span></div>' + '</div>';
             } else {
-                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: none;">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
+                return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minAdultNum + '</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')岁</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div>' + '</div>' + '<div class="extraChild" style="display: none;">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
             }
 
 
@@ -419,16 +423,18 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                         }
 
                     } else if (temAdultNum == 1 && temChildNum == 2) {
-                      //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
-                      if(temEle.querySelectorAll('.extraChild').length == 0){
+                        //暂时简单处理方法，为了新增房间，有个display:none,所以需要取第二节点，这不是很好方案，先保证功能，后续修改
+                        if (temEle.querySelectorAll('.extraChild').length == 0) {
+                          childWithBed.push(temEle.querySelectorAll('input')[0].value);
+                          childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
 
-                        childWithBed.push(temEle.querySelectorAll('input')[0].value);
-                        childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
-
-                      }else if(temEle.querySelectorAll('.extraChild')[0].style.display == 'none'){
-                        childWithBed.push(temEle.querySelectorAll('input')[1].value);
-                        childWithOutBed.push(temEle.querySelectorAll('input')[2].value);
-                      }
+                        } else if (temEle.querySelectorAll('.extraChild')[0].style.display == 'none') {
+                          childWithBed.push(temEle.querySelectorAll('input')[1].value);
+                          childWithOutBed.push(temEle.querySelectorAll('input')[2].value);
+                        }else if (temEle.querySelectorAll('.extraChild')[0].style.display == 'block'){
+                          childWithBed.push(temEle.querySelectorAll('input')[0].value);
+                          childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+                        }
                     }
                     if (temAdultNum == 2 || temAdultNum == 3) {
                         for (var s = 0; s < childChooseParent.length; s++) {
@@ -652,7 +658,7 @@ var day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周�
                 ary_a = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
                 ary_as = ['<div class="numbList"><span class="n_tit">成人</span><div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn cur" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">', '</i><span class="up_btn cur"></span></div></div>'],
                 // 儿童
-                ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
+                ary_c = ['<div class="numbList"><span class="n_tit">儿童</span><span class="child-age">(' + childAgeMin + '-' + (parseInt(childAgeMax)) + ')岁</span>', '<i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于' + childAgeMin + '周岁，小于' + childAgeMax + '周岁</div><div></div></div>', '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn cur"></span></div></div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>'];
             //  默认房间数为1人，如有最少起订人数，则更换
             roomNum.innerHTML = nums;
             for (var i = 0; i < nums; i++) {

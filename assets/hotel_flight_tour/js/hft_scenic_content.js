@@ -6,7 +6,7 @@
     var packageID=vlm.getpara("packageId");
     var tourId=vlm.getpara("tourId");
     var tpl1 = [
-        '<span class="bar_img_theme">景点详情</span>',
+        '<span class="icon_go_back"></span>',
         '<% if(images.length==0){ %>',
             '<img src="<%= pictureURL%>" alt="image"/>',
         '<% }else{ %>' +
@@ -118,3 +118,22 @@
 
 })();
 vlm.load();
+(function(){
+  $(".div").scroll(function(){
+    var header = $(".hft_header")[0];
+    var scroll = $(".div").scrollTop();
+    console.log(scroll);
+    if(!scroll== 0){
+      header.style.position="fixed";
+      header.style.opacity="1";
+      header.style.backgroundColor = "#f7f7f7";
+    }else{
+      header.style.position="absolute";
+      header.style.opacity="0";
+      header.style.backgroundColor = "transparent";
+    }
+  });
+  //$(window).scroll(function(){
+  //  console.log($(".contents").offset().top);
+  //});
+})();

@@ -139,31 +139,6 @@ var fOrder = {
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
       var searchResult_ = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
-      Array.prototype.distinct=function(){
-        var sameObj=function(a,b){
-          var tag = true;
-          if(!a||!b)return false;
-          for(var x in a){
-            if(!b[x])
-              return false;
-            if(typeof(a[x])==='object'){
-              tag=sameObj(a[x],b[x]);
-            }else{
-              if(a[x]!==b[x])
-                return false;
-            }
-          }
-          return tag;
-        };
-        var newArr=[],obj={};
-        for(var i=0,len=this.length;i<len;i++){
-          if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
-            newArr.push(this[i]);
-            obj[typeof(this[i])+this[i]]=this[i];
-          }
-        }
-        return newArr;
-      };
       if(reg.test(valueStr)){
         var mb = String(valueStr).toLowerCase();
         dataArray.forEach(function (array) {
@@ -177,7 +152,7 @@ var fOrder = {
           }
         });
       }
-      searchResult_ = searchResult_.distinct();
+      searchResult_ =that.distinct(searchResult_);
       if(!searchResult_.length){
         resultStr +='<li>无搜索结果</li>';
       }else{
@@ -199,7 +174,7 @@ var fOrder = {
   },
 
   eventHandler: function () {
-    var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
+    var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.localStorage.getItem('fIndexInfo')).data;
     var postPara = {}, temObject = {},priceTotalWrap = document.querySelector('.priceTotal_wrap'),changeTip = document.querySelector('.change_tip'), passengerOuter = null;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", iArrow = document.querySelector('.total_word i');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
@@ -367,27 +342,100 @@ var fOrder = {
       }
     });
 
+    /**
+     * 机票订单填写页-乘机人-“+”
+     * iframe打开../user/user-choiceAir.html?
+     * 传递参数给iframe
+     */
+    $('.add-user').on('click', function () {
+      /**
+       * 当前页面在iframe中打开
+       * location.href接收iframe.parent传递的参数
+       *
+       * @param {String} elementId
+       * @param {String} flight
+       * @param {String} tour
+       * @param {String} travellerId
+       * @param {Boolean} isInternationalTrip 是否国际航班
+       * @param {Boolean} isMulSelect 是否多选
+       * @param {Number} numofAdult 成人数
+       * @param {Number} numofChild 儿童数
+       * @param {String} id
+       * @param {Date} departDate 出发日期
+       * @param {Boolean} isShowChinaName 是否显示中文名
+       * @param {Boolean} isShowContact 是否显示联系人
+       * @param {String} callbackName 勾选乘机人后，回调iframe.parent.window[callback](arguments)，即传递参数arguments给callback
+       */
+      var fIndexInfo = JSON.parse(localStorage.getItem('fIndexInfo')).data;
+      var isInternationalTrip = fOrder.isInternationalTrip()
+      vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numofAdult, fIndexInfo.numofChild, null, fIndexInfo.departDate, !isInternationalTrip, false, 'fOrder.flight_callback');
+    });
+
+    /**
+     * 机票订单填写页-乘机人-“-”
+     * 删除对应乘机人
+     */
+    $('#passenger-list').on('click', '.minus_person', function () {
+      deletePassager(this)
+      function deletePassager(obj){
+        $(obj).parent().parent().parent().remove();
+
+        var id=$(obj).parent().find(".itemId").val();
+        var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+        var temp={};
+        for(var key in list){
+          if(key != id){
+            temp[key]=list[key];
+          }
+        }
+        sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
+      }
+    });
+
+    /**
+     * 机票订单填写页-乘机人-“>”
+     * 编辑对应乘机人
+     * iframe打开../user/user-choiceAir.html?
+     * 传递参数给iframe，用于回显乘机人数据
+     */
+    $('#passenger-list').on('click', '.passenger', function () {
+      editPassager(this)
+      function editPassager(obj) {
+        var id = $(obj).find("input").eq(0).val();
+        var fIndexInfo = JSON.parse(localStorage.getItem('fIndexInfo')).data;
+        var isInternationalTrip = fOrder.isInternationalTrip()
+        vlm.f_choice('passenger-list', 'f', 'traver', '', isInternationalTrip, true, fIndexInfo.numofAdult, fIndexInfo.numofChild, id, fIndexInfo.departDate, !isInternationalTrip, false)
+      }
+    });
   },
-  deletePassager:function(obj){
-  $(obj).parent().parent().parent().remove();
 
-  var id=$(obj).parent().find(".itemId").val();
-  var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
-  var temp={};
-  for(var key in list){
-    if(key !=id){
-      temp[key]=list[key];
+  // 传回数据后，渲染数据
+  flight_callback: function (data) {
+    console.log(data);
+    var isInternational = fOrder.isInternationalTrip()
+    if (isInternational) {
+      $('.cn_name').hide()
+    } else {
+      $('.en_name').hide()
     }
-  }
-  sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
-},
+  },
 
-editPassager:function(obj){
-  var id=$(obj).find("input").eq(0).val();
-  var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
-  var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-  vlm.f_choice('passenger-list','f','traver','',!fOrder.isInternationalTrip(),true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,id,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate,!fOrder.isInternationalTrip(), !fOrder.isInternationalTrip())
-},
+  distinct:function(){
+    var obj={},ary=[], arr = arguments[0];
+    for (var i = 0; i < arr.length; i++) {
+      var str="";
+      for(var key in arr[i]){
+        str+=key+":"+arr[i][key]+",";
+      }
+      var cur=str;
+      if(obj[cur]==cur){
+        continue;
+      }
+      obj[cur]=cur;
+      ary.push(arr[i]);
+    }
+    return ary;
+  },
 
   createTags: function () {
     var data = arguments[0];
@@ -402,26 +450,23 @@ editPassager:function(obj){
   },
 
   priceTags: function () {
-    console.log(arguments[0])
     var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.total_word b'), personNum = document.querySelector('.totalPersonNumber b');
     tempString1 = $("#template_flight_price").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
     $(".priceDetailInfo").eq(0).html(outputString1);
-    console.log(data)
     moneyNumber.innerHTML = "￥"+data.priceTotal;
     return this;
   },
 
   isInternationalTrip:function(){
-    var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
-    return !data.data.internationalOrDomestic == "international"
+    var data = JSON.parse(window.localStorage.getItem('fIndexInfo'));
+    return data.data.internationalOrDomestic == "international"
   },
 
   innitData: function () {
-    var flightData = {}, fIndexInfo = {}, storage = window.sessionStorage, priceTotal = "", priceData = {};
+    var flightData = {}, fIndexInfo = {}, storage = window.localStorage, priceTotal = "", priceData = {};
     flightData = JSON.parse(storage.getItem('currentFlight'));
     fIndexInfo = JSON.parse(storage.getItem("fIndexInfo")).data;
-    console.log(flightData)
     priceData.numofAdult = fIndexInfo.numofAdult;
     priceData.numofChild = fIndexInfo.numofChild;
     priceData.totalFareAmountADT = flightData.totalFareAmountADT;

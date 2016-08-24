@@ -63,7 +63,7 @@
 				}
 				fts.item = items;
 				var f_data = {
-					PriceSortType : {
+          sortTypes : {
 						title : "价格排序",
 						c : "foot_sort",
 						type : 1,
@@ -77,7 +77,7 @@
 							sortValue : "HighToLow"
 						}]
 					},
-					themes : {
+          filters : {
 						title : "过滤",
 						c : "foot_screen",
 						s : 1,

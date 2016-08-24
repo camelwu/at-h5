@@ -149,9 +149,9 @@
         s : 1,
         type : 1,
         key : 'sortTypes',
-        listData : [{sortText: "按价格从低到高",sortValue:0},{sortText: "按价格从高到低",sortValue:1}]
+        listData : [{sortText: "推荐排序",sortValue:1},{sortText: "按价格从低到高",sortValue:2},{sortText: "按价格从高到低",sortValue:3}]
       },
-      hotelScreen : {
+      filters : {
         title : "筛选",
         c : "foot_screen",
         s : 1,
@@ -163,7 +163,17 @@
       var Param = {};
 
       Param.DestCityCode = val.DestCityCode;
-      Param.PriceSortType = obj.sortTypes[0] == 1?"HighToLow":"LowToHigh";
+      switch (obj.sortTypes[0]){
+        case "1":
+          Param.PriceSortType = "";
+          break;
+        case "2":
+          Param.PriceSortType = "LowToHigh";
+          break;
+        case "3":
+          Param.PriceSortType = "HighToLow";
+          break;
+      }
       Param.ThemeID = obj.filters[0].FilterValues[0];
       console.log(Param);
       tAjax("",Param,"0087","3",Method["m_scenic_listCallback"]);
@@ -210,11 +220,19 @@
         outString = ejs.render(tplString,{lists:json.data.lists});
         if(json.data.lists.length == 0){
           $(".scenic_list_error").show();
+          $(".scenic_list_error_div").show();
+          $(".scenic_list_error_p").show();
+          $(".scenic-detile").hide();
+        }else{
+          $(".scenic_list_error").hide();
+          $(".scenic_list_error_div").hide();
+          $(".scenic_list_error_p").hide();
+          $(".scenic-detile").show();
         }
         $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
-            tar = $(tar).closest("li")[0];
+          tar = $(tar).closest("li")[0];
           if(tar.nodeName.toLowerCase() === 'li') {
             var packageid = tar.getAttribute("data-code");
             window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;

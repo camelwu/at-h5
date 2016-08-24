@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="css/hft_scenic_list.css" />
   <link rel="stylesheet" href="../css/plugins/footer/footer.css" />
 </head>
-
 <body data-statp="productList">
 <div id="preloader">
   <div id="status">
@@ -78,7 +77,6 @@
   <% if(recommendCities.length > 1){ %>
   <ul class = "city_box">
     <% for(var i=0;i< recommendCities.length;i++){%>
-
     <li class="city_list1 <% if(i==0){%>current<%} %>" data-code="<%=recommendCities[i].cityCode%>">
       <%= recommendCities[i].cityName %><i></i></li>
     <% } %>

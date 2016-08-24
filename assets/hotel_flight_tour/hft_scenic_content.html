@@ -24,12 +24,14 @@
 
 </div>
 </div>
+<div class="header hft_header">
+  <a href="javascript:window.history.go(-1);" class="header_back">
+    <i class="icon_back"></i>
+  </a>
+  <h3>景点详情</h3>
+</div>
+<div class = "div">
 <div class="contents">
-    <div class="header_scenic">
-        <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
-        <div class="icon_go_back"></div>
-            </a>
-    </div>
     <div>
         <section class="bar_img" id = "barImg">
         </section>
@@ -37,7 +39,7 @@
         </section>
         <section class = "scenic_content" id = "scenicContent">
         </section>
-    </div>
+</div>
 </div>
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
@@ -54,23 +56,13 @@
 <!--</script>-->
 <script type="text/template" id="Barimg2">
   <span class="bar_img_theme"></span>
-  <% if(images.length==0){ %>
+
     <% for(var i = 0;i<tours.length;i++){ %>
       <% if(tours[i].tourID == vlm.getpara("tourId") ){%>
         <img src="<%= tours[i].tourPictureURL%>" alt="image"/>
       <%}%>
     <%}%>
-  <% }else{ %>
-  <a href="<%= images[0].imageURL%>" class="swipebox" title="1/<%=(images.length)%>">
-    <img src="<%= images[0].imageURL %>" alt="image" style="height:100%;"/></a>
-  <% for(var i=1;i<images.length;i++){ %>
-    <a href="<%= images[i].imageURL%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">
-    <img src="<%= images[i].imageURL%>" alt="image"/></a>
-  <% }%>
-  <!--<span class = "bar_img_num">编号：<%= packageRefNo %></span>-->
-  <!--<% if(images.length>0) %>-->
-    <!--<span class = "bar_img_page"><%=(images.length)%>张</span>-->
-  <!--<% } %>-->
+
 </script>
 <script type ="text/template" id = "Barcontent">
     <% for(var i = 0;i<tours.length;i++){ %>
@@ -100,7 +92,7 @@
   <!--</div>-->
   <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>
   <div class="scenic_content_scheduling">
-    <h3><i></i>行程安排</h3>
+    <h3><i></i>行程概述</h3>
     <ul>
       <li class = "scenic_height1"><%- tours[i].overview%></li>
     </ul>

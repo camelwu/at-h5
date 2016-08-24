@@ -63,9 +63,8 @@
             </div>
             <div class="middle">
               <% if(Number(leaveItem.techStopTotal)){%>
-                  <div class="timeCost share_word">经停</div>
                   <div class="arrow"></div>
-                  <div class="transferCity"><%= leaveItem["techStopAirportName"] %></div>
+                  <div class="transferCity">经停<%= leaveItem["techStopAirportName"] %></div>
               <%}else{%>
                   <div class="timeCost"></div>
                   <div class="arrow"></div>
@@ -82,7 +81,13 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= leaveItem.airwayLogo %>" /></span>
+            <span><%=  leaveItem["airCorpName"] %></span>
+            <span><%=  leaveItem["airCorpCode"] %><%=  leaveItem["flightNo"] %></span>
+            <%if(leaveItem["planeName"]){%><span><%=  leaveItem["planeName"] %></span><%}%>
+            <%if(flightInfo["isLeaveShareFlight"]){%>
+            <span class="share_word">实际乘坐<%= leaveItem.operatingCarrierName%></span>
+            <% }%>
           </p>
         </li>
         <%if(item
@@ -121,9 +126,8 @@
             </div>
             <div class="middle">
               <% if(Number(returnItem.techStopTotal)){%>
-                <div class="timeCost share_word">经停</div>
                 <div class="arrow"></div>
-                <div class="transferCity"><%= returnItem["techStopAirportName"] %></div>
+                <div class="transferCity">经停<%= returnItem["techStopAirportName"] %></div>
               <%}else{%>
                 <div class="timeCost"></div>
                 <div class="arrow"></div>
@@ -134,13 +138,17 @@
               <span class="arriveTime"><%= returnItem["arriveDate"].substring(11, 16) %></span>
               <% if(returnItem["spacingDay"]>=1){ %>
               <span class="plusDay">+<%=returnItem["spacingDay"]%>天</span>
-              <% }%>
+              <%}%>
             <span
               class="arrivePort"><%=  returnItem["airportNameTo"] %><%=  returnItem["termArrive"] %></span>
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
+            <span class="airCropIcon"><img src="../images/loading_def_big.png" data-src=" <%= returnItem.airwayLogo %>" /></span>
+            <span><%=  returnItem["airCorpName"] %></span><span><%=  returnItem["airCorpCode"] %><%=  returnItem["flightNo"] %></span><%if(returnItem["planeName"]){%><span><%=  returnItem["planeName"] %></span><%}%>
+            <%if(flightInfo["isLeaveShareFlight"]){%>
+              <span class="share_word">实际乘坐<%= returnItem.operatingCarrierName%></span>
+            <%}%>
           </p>
         </li>
         <%if(item_
@@ -163,13 +171,17 @@
           <button>预订</button>
           </div>
            <div class="left_small_word">
-             <% if(window.location.search.substring(8) == "0"){ %>
+             <% if(fSeatChoose.postObjInfo.internationalOrDomestic == "domestic"){%>
+                 <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
+                 <p><span class="explain">退改签说明</span> <!--<span class="taxFair">价格</span>--> </p>
+             <% }else{%>
+             <% if(fSeatChoose.postObjInfo.hasTax == "0"){ %>
              <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountADT"]%></span> </p>
              <p><span class="explain">退改签说明</span> <span class="taxFair">￥税费<%= flightInfo["totalTaxAmountADT"]%></span> </p>
              <%}else{ %>
              <p><span class="seat_word">经济舱</span> <span class="prices">￥<%= flightInfo["totalFareAmountExc"]%></span> </p>
              <p><span class="explain">退改签说明</span> <span class="taxFair">含税总价</span> </p>
-             <% } %>
+             <% }}%>
            </div>
       </div>
     </div>

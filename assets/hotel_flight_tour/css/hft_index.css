@@ -88,8 +88,8 @@ input{
   height: .6rem;
   background-image: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 7.90rem auto;
-  background-position: -3.708rem -3.12062rem;
+  background-size: 7.90rem 7.83rem;
+  background-position: -3.71rem -3.12062rem;
   overflow: hidden;
 }
 .iconTip span{
@@ -374,8 +374,8 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   position: absolute;
   right: .1rem;
   top: .24rem;
-  width: .42rem;
-  height: .42rem;
+  width: .48rem;
+  height: .48rem;
   background-position: -3.42rem -4.33rem;
 }
 .search_button {
@@ -445,7 +445,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   left: 0;
   width: auto;
   height: auto;
-  padding-top: 1.54rem;
+  padding-top: 1.46rem;
   padding-bottom: 1rem;
   z-index: 2;
   overflow: auto;

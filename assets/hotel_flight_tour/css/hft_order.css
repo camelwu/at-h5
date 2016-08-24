@@ -19,7 +19,18 @@ input {
 .flight_section {
   background-color: #fff;
 }
-
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 0.24rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
 .fht_hd {
   background-color: #f7f7f7;
   height: 0.68rem;
@@ -509,8 +520,8 @@ li.order_tlist2 {
 
 .hft_detail_fare p {
   margin-bottom: 0;
-  height: .3rem;
   margin-bottom: .28rem;
+  overflow: hidden;
 }
 
 .hft_detail_fare p span:nth-child(2) {

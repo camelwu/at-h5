@@ -12,23 +12,27 @@
     "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005",tplKey:"tpl_fh"},
     "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011",tplKey:"tpl_fht"}
   };
+  window.TourTimer = {
+    0: "上午",
+    1: "下午",
+    2: "晚上",
+    3: "全天",
+    4: "全天"
+  };
 
 
   var bindEvent=function(){
-    var hft_flightDetail=$(".fht_hd"),fare_tip= $('.fare_tip').parent(),hft_pri_details=$(".hft_pri_details");
-    //hft_flightDetail.on("click",function(){
-    //  window.location.href="hft_flightDetail.html";
-    //})
-    //$(".fare_tip").toggleClass("tip");
+    var fare_tip= $('.fare_tip').parent(),hft_pri_details=$(".hft_pri_details");
+
     //折叠订单价格
     fare_tip.toggle(function(){
-      $('.hft_pri_details').hide();
-    },function(){
       hft_pri_details.show();
       $('.all_elements').scrollTop($('.all_elements').height());
+    },function(){
+      $('.hft_pri_details').hide();
     });
-    $("#tip").on("click",function(){
-      $(".fare_tip") .toggleClass("tip");
+    $(".fare_tip").on("click",function(){
+      $(this) .toggleClass("on");
     });
     $(".cancelOrder").on("click",function(){
         var Parameters = {
@@ -87,12 +91,12 @@
       if (data.success) {
 
         if(type.id == 1){
-           html = ejs.render($("#"+type.tplKey).html(), data.data[0]);
+          html = ejs.render($("#"+type.tplKey).html(), data.data[0]);
         }
         else{
-           html = ejs.render($("#"+type.tplKey).html(), data.data);
+          html = ejs.render($("#"+type.tplKey).html(), data.data);
         }
-        $("#order_detail").html(html);
+        $("#order_details").html(html);
         vlm.init();
 
         if(type.id==4){
@@ -102,8 +106,7 @@
           })
         }
         bindEvent();
-      }
-      else{
+      } else{
         alert("接口错误！");
       }
     });

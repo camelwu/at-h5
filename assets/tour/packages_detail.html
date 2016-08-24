@@ -21,10 +21,11 @@
 		<div id="preloader">
 			<div id="status"></div>
 		</div>
-    <div class="tour_header">
-      <a href="javascript:window.history.go(-1)" class="com_icon go_back" id = "g_back">
+    <div class="header tour_header">
+      <a href="javascript:window.history.go(-1);" class="header_back">
+        <i class="icon_back"></i>
       </a>
-      <h3 id="icon_go_back">景点详情</h3>
+      <h3>景点详情</h3>
     </div>
 		<div class="all_elements" id="package">
 			<!-- 产品详情内容   -->
@@ -195,13 +196,19 @@
 				};
 				package_detail();
 			})();
-//      (function(){
-//        $(".all_elements")[0].onscroll = function(){
-//          var header = $(".tour_header")[0];
-//          header.style.position = "fixed";
-//          header.style.opacity = "1";
-//        }
-//      })()
+$(".all_elements").scroll(function(){
+        var header = $(".tour_header")[0];
+        var scroll = $(".all_elements").scrollTop();
+        if(!scroll== 0){
+          header.style.position="fixed";
+          header.style.opacity="1";
+          header.style.backgroundColor = "#f7f7f7";
+        }else{
+          header.style.position="absolute";
+          header.style.opacity="0";
+          header.style.backgroundColor = "transparent";
+        }
+      });
 		</script>
 	</body>
 

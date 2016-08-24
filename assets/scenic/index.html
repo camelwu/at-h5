@@ -27,7 +27,7 @@
 </div>
 <!--header-->
 <div class="header">
-  <a href="javascript:window.history.go(-1);" class="header_back">
+  <a href="../index.html" class="header_back">
     <i class="icon_back"></i>
   </a>
   <h3>景点</h3>
@@ -188,14 +188,16 @@
 
     </div>
     <!--城市列表-->
-
+    <!--字母定位 浮动-->
+    <div class="citybox_letter" id="citybox_showletter"></div>
+    <!--字母定位 浮动-->
   </div>
 </div>
 <!--整体城市列表-->
 <script id="tpl_city_list" type="text/template">
       <% for(var i = 0;i<data.destCities.length;i++){ %>
       <li class="t_city_content_item" >
-        <div class="t_city_content_itemtitle" data-code="<%=data.destCities[i].cityCode%>"><%=data.destCities[i].cityName%></div>
+        <div class="t_city_content_itemtitle" data-code="<%=data.destCities[i].cityCode%>" data-name="<%=data.destCities[i].cityName%>" data-countrycode="<%=data.destCities[i].countryCode%>"><%=data.destCities[i].cityName%></div>
       </li>
       <% } %>
 </script>

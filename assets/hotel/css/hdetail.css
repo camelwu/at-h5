@@ -3,6 +3,11 @@
 .calendar dl dt.title-date{
   font-size: .28rem;
 }
+.h_header{
+  position: absolute;
+  opacity: 0;
+  background-color: transparent;
+}
 /*header*/
 .header{
   background: white;
@@ -141,7 +146,7 @@ strong{
   background-image: url(../../images/ui.1.0/icon_hotel.png);
   background-repeat: no-repeat;
   background-size: 7.9rem 2.52rem;
-  background-position: -0.64rem -0.47rem;
+  background-position: -1.45rem -0.47rem;
   vertical-align: -0.12rem;
   margin-left: .2rem;
 }
@@ -220,13 +225,14 @@ strong{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding-top: .28rem;
 }
 .hotel_content_listTrigger{
   width: 2.4rem;
   height: .68rem;
   float: right;
   line-height: .68rem;
-  color: #ff5b13;;
+  color: #fb7530;;
 }
 .hotel_content_listTrigger_price{
   margin-top:.12rem;
@@ -236,7 +242,7 @@ strong{
 
 .hotel_content_listTrigger_price >span{
   font-size: .4rem;
-  color: #ff5b13;
+  color: #fb7530;
 }
 .d-icon5{
   width: .4rem;
@@ -268,6 +274,7 @@ strong{
   max-width: 75%;
   min-width: 5%;
   color: #484848;
+  vertical-align: top;
 }
 .hotel_content_roomEvent_detail{
   display: inline-block;
@@ -277,13 +284,13 @@ strong{
   background-image: url(../../images/ui.1.0/icon_hotel.png);
   background-position: -2.81rem -0.41rem;
   background-size: 7.9rem 2.52rem;
-  position: absolute;
-  top: .2rem;
 }
 .hotel_content_roomEvent_content{
-  margin-top:.12rem;
+  /*margin-top:.12rem;*/
   max-width: 90%;
   color: #999999;
+  display: inline-block;
+  vertical-align: top;
 }
 .super{
   font-size: .24rem;
@@ -373,7 +380,7 @@ strong{
 .hotel_content_roomDetail_money span.money{
   font-size:.24rem;
   display: inline-block;
-  color: #ff5b13;;
+  color: #fb7530;;
   position: absolute;
   top: .18rem;
   right: -0.2rem;

@@ -1,4 +1,3 @@
-
 body {
   background-color: #fff;
 }
@@ -7,18 +6,88 @@ body {
   box-sizing: border-box;
 }
 
-i, em {
+i,
+em {
   font-style: normal;
 }
 
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.24rem;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.24rem;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.24rem;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.24rem;
+}
+
+#all_user input::-webkit-input-placeholder, #fkey_page input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.32rem;
+  color: #fff;
+  opacity: 0.6;
+}
+
+#all_user input:-moz-placeholder, #fkey_page input::-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.32rem;
+  color: #fff;
+  opacity: 0.6;
+}
+
+#all_user input::-moz-placeholder, #fkey_page input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.32rem;
+  color: #fff;
+  opacity: 0.6;
+}
+
+#all_user input:-ms-input-placeholder, #fkey_page input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.32rem;
+  color: #fff;
+  opacity: 0.6;
+}
+
 /*登录注册开始*/
+#cellCode_login {
+  display: none;
+}
+
+#cellCode_login > ul {
+  padding: 0 .6rem;
+  margin-top: .5rem;
+}
+
+#all_user {
+  background: url("../images/user/login_bg.png") no-repeat;
+}
+
+@media screen and (min-width: 7.5rem) {
+  #all_user {
+    background-size: cover;
+  }
+}
 
 .login_page {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 99;
   font-size: .28rem;
+  color: #fff;
 }
 
 .login_header {
@@ -32,7 +101,6 @@ i, em {
 }
 
 .login_header h3 {
-  color: #333;
   text-align: center;
   line-height: .9rem;
   font-size: .36rem;
@@ -75,62 +143,133 @@ i, em {
   background-size: 8.2rem 4.8rem;
 }
 
+.icon_user {
+  width: .3rem;
+  height: .3rem;
+  display: inline-block;
+  background: url(../images/ui.1.0/icon_user.png) no-repeat;
+  background-size: 4.8rem .8rem;
+}
+
+#fkey_page {
+  background-color: #fff;
+}
+
 .find_go_back {
   position: absolute;
-  width: .36rem;
-  height: .36rem;
-  left: .28rem;
-  top: .25rem;
-  background-position: -.29rem -.4rem;
-  background-size: 6rem 4rem;
+  width: 0.36rem;
+  height: .4rem;
+  left: .4rem;
+  top: .2rem;
+  background-position: -.55rem -.22rem;
 }
 
-.header_close.icon_person {
+.header_close.icon_user {
   position: absolute;
-  width: .36rem;
+  width: 0.36rem;
   height: .36rem;
-  left: .28rem;
-  top: .25rem;
-  background-position: -2.92rem -.16rem;
+  left: .4rem;
+  top: .26rem;
+  background-position: -1.12rem -.26rem;
 }
 
-.go_back.icon_person {
+.go_back.icon_user {
   position: absolute;
-  width: .36rem;
+  width: 0.36rem;
   height: .36rem;
-  left: .28rem;
-  top: .25rem;
-  background-position: -3.36rem -.19rem;
+  left: .4rem;
+  top: .2rem;
+  background-position: -.1rem -.245rem;
 }
 
-#phone_login, #email_login {
-  margin-top: 1rem;
-  padding: 0 .4rem;
+#phone_login,
+#email_login {
+  margin-top: .5rem;
+  padding: 0 .6rem;
+}
+
+.login_tab_wrap {
+  border: 1px solid;
+  border-color: rgba(255, 255, 255, 0.4);
+  border-radius: .06rem;
+  -webkit-border-radius: .06rem;
+  height: .6rem;
+  line-height: .6rem;
+  margin: .4rem .6rem 0;
+  position: relative;
+  font-size: .3rem;
+}
+
+.login_tab_wrap > div {
+  float: left;
+  text-align: center;
+  width: 50%;
+  height: .6rem;
+  position: relative;
+  top: -1px;
+  overflow: hidden;
+}
+
+.login_tab_wrap .active a {
+  opacity: .3;
+  filter: alpha(opacity:30);
+  background-color: #fff;
+  display: block;
+  height: 100%;
+}
+
+.login_tab_wrap span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .5;
+  filter: alpha(opacity:50);
+  color: #fff;
+}
+
+.login_tab_wrap .active span {
+  opacity: 1;
+  filter: alpha(opacity:100);
 }
 
 .login_input {
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid;
+  border-color: rgba(255, 255, 255, 0.4);
   width: 100%;
-  height: 1.08rem;
+  height: 1.2rem;
   position: relative;
 }
 
-.tel_code_wrap{
-  padding-top: .32rem;
+.captcha_img_text, .captcha_inp_three {
+  width: 50%;
+}
+
+#img_clear, #img_clear_reg {
+  right: 2.7rem;
+}
+
+#img_code_clear, #img_clear_reg_code {
+  right: 2.2rem;
 }
 
 .login_phone {
-  margin-top: .04rem;
+  width: .35rem;
+  height: .38rem;
+  display: inline-block;
   vertical-align: top;
-  background-size: 8.48rem 4.8rem;
-  background-position: -5.3rem -.2rem;
+  margin-top: .39rem;
+  background-position: -3.3rem -.25rem;
 }
 
 .login_pass {
-  margin-top: .34rem;
+  width: .35rem;
+  height: .42rem;
+  display: inline-block;
   vertical-align: top;
-  background-size: 8.48rem 4.8rem;
-  background-position: -4.94rem -.2rem;
+  margin-top: .37rem;
+  background-position: -1.76rem -.22rem;
 }
 
 .login_mail {
@@ -141,31 +280,27 @@ i, em {
 
 .login_input input {
   background: transparent !important;
-  padding-left: .4rem;
+  padding-left: .25rem;
   height: .5rem;
-  color: #333;
-  font-size: .28rem;
-  margin-top: .28rem;
-}
-#r_phone,#phone {
-	margin-top: 0!important;
-}
-.change_way {
-  padding: .4rem;
-  overflow: hidden;
+  color: #fff;
+  font-size: .32rem;
+  margin-top: .35rem;
 }
 
-.login_button, .register_button, .f_btn {
+.login_button,
+.register_button,
+.f_btn {
   display: block;
   font-size: .36rem;
-  border-radius: .04rem;
+  border-radius: .5rem;
+  border: 1px solid;
+  border-color: rgba(255, 255, 255, 0.4);
   height: .96rem;
   line-height: .96rem;
   text-align: center;
   color: #fff;
-  font-weight: 600;
-  background-color: #7bc300;
-  margin: .96rem .4rem 0;
+  /*font-weight: 600;*/
+  margin: .96rem .6rem 0;
 }
 
 .f_btns {
@@ -178,10 +313,6 @@ i, em {
   color: #fff;
   background-color: #7bc300;
   margin: .96rem .4rem 0;
-}
-
-.login_button:hover {
-  background-color: #66a600;
 }
 
 .uset_name {
@@ -217,8 +348,7 @@ i, em {
 }
 
 .f_key > li {
-  height: .96rem;
-  line-height: .96rem;
+  height: 1.2rem;
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
@@ -229,25 +359,68 @@ i, em {
 }
 
 .f_key > li input {
-  height: 90%;
   width: 60%;
-  font-size: .28rem;
+  margin-top: .35rem;
+  font-size: .32rem;
 }
 
-#email, #r_email, #e_password, #r_p_password, #p_password, #find_phone, #r_e_password, #rs_e_password, .mob_cell {
-  width: 80%;
+#phone_find input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #d1d1d1;
+}
+
+#phone_find input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #d1d1d1;
+}
+
+#phone_find input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #d1d1d1;
+}
+
+#phone_find input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #d1d1d1;
+}
+
+#email,
+#cellCode_phone,
+#r_email,
+#e_password,
+#r_p_password,
+#p_password,
+#find_phone,
+#r_e_password,
+#rs_e_password,
+#new_pass_set,
+.mob_cell {
+  width: 90%;
 }
 
 #phone {
-  width: 65%;
+  width: 90%;
   height: .5rem;
-  display: inline-block;
-  font-size: .28rem;
+  font-size: .32rem;
 }
 
-#phone_register, #email_register {
-  margin: 0 .4rem;
-  margin-top: 1rem;
+#phone_register,
+#email_register {
+  margin: 0 .6rem;
+  margin-top: .5rem;
+}
+
+#findkey_btn {
+  display: block;
+  font-size: .36rem;
+  border-radius: .5rem;
+  -webkit-border-radius: .5rem;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  color: #fff;
+  background-color: #7bc300;
+  margin: .96rem .4rem 0;
 }
 
 .coun-find > div {
@@ -273,7 +446,6 @@ i, em {
 }
 
 .fk_put {
-  height: 90%;
   width: 100%;
   font-size: .28rem;
   color: #333;
@@ -284,6 +456,15 @@ i, em {
 }
 
 .fk_div {
+  position: absolute;
+  right: 0;
+  top: .33rem;
+  font-size: .32rem;
+  border-left: 1px solid #fff;
+  padding-left: .2rem;
+}
+
+.fk_div_phone {
   padding: 0 .2rem;
   width: 1.85rem;
   height: .68rem;
@@ -294,24 +475,36 @@ i, em {
   color: #fff;
   position: absolute;
   right: 0;
-  top: .12rem;
+  top: .25rem;
 }
 
+.fk_div_code {
+  position: absolute;
+  right: 0;
+  top: .25rem;
+  font-size: .28rem;
+  border: 1px solid #7bc300;
+  color: #7bc300;;
+  border-radius: .4rem;
+  -webkit-border-radius: .4rem;
+  padding: 0 .35rem;
+  height: .72rem;
+  line-height: .72rem;
+}
 
 .p_86 {
   display: inline-block;
   vertical-align: top;
-  color: #333;
   border-right: 1px solid #e6e6e6;
   position: relative;
   max-width: 1.55rem;
 }
 
-#content{
+#content {
   overflow-x: hidden;
 }
 
-#content-wrap{
+#content-wrap {
   position: absolute;
   overflow-x: hidden !important;
   width: 100%;
@@ -328,42 +521,6 @@ i, em {
   margin: .04rem .7rem 0 .2rem;
 }
 
-.open_arw.int_tel {
-  width: .28rem;
-  height: .32rem;
-  top: 0;
-  right: .2rem;
-  background-size: 8.4rem 5.2rem;
-}
-/*    captcha   */
-#phone_login .captchaWrap, #email_login .captchaWrap{
-  display: none;
-}
-#p_password, #captcha {
-  padding-left: .25rem;
-}
-
-.captcha_img{
-  float: right;
-  width: 2.6rem;
-  max-width: 130px;
-  margin-top: .28rem;
-  margin-right: .28rem;
-}
-
-.fk_captcha{
-  width: 2.6rem;
-  max-width: 130px;
-  height: .68rem;
-  position: absolute;
-  text-align: center;
-  line-height: .68rem;
-  right: 0;
-  top: .12rem;
-}
-.captcha{
-  max-width: 130px;
-}
 .login-input .in-phone {
   display: inline-block;
   padding-top: 2px;
@@ -372,47 +529,36 @@ i, em {
 }
 
 .forgotkey {
-  float: left;
-  margin: .3rem .24rem .3rem 0;
-  color: #333;
+  float: right;
+  margin-top: .3rem;
+  color: #fff;
+  opacity: 0.6;
 }
 
 .changelogin {
   float: right;
   margin: .3rem 0 .6rem 0;
-  color: #333;
-}
-
-.login_change {
-  width: .34rem;
-  height: .34rem;
-  background-position: -5.94rem -.2rem;
-  position: relative;
-  top: .06rem;
-  margin-left: .06rem;
+  color: #fff;
 }
 
 .login_clear {
   display: none;
   position: absolute;
-  right: 13px;
-  background-position: -85px -35px;
+  right: .26rem;
+  top: .45rem;
+  background-position: -5.94rem -.2rem;
 }
 
 .login_clear.get_code_del {
-  right: 125px;
+  right: 2.5rem;
 }
 
 .regist-code {
-  display: inline-block;
   position: absolute;
   right: 0;
-  top: 0;
-  width: 107px;
-  border-left: 1px solid #e6e6e6;
-  text-align: center;
-  color: #7bc300;
-  margin-top: 13px;
+  top: .33rem;
+  border-left: 1px solid #fff;
+  padding-left: .4rem;
 }
 
 /*登录注册结束*/
@@ -421,6 +567,12 @@ i, em {
 
 .user_lists {
   padding: .4rem .28rem;
+  margin-bottom: 2rem;
+}
+
+.user_lists .icon_person {
+  background: url(../images/ui/icons-user.png) no-repeat;
+  background-size: 8rem 2rem;
 }
 
 .user_lists > li {
@@ -430,22 +582,23 @@ i, em {
 }
 
 .user_info #userIcon {
-  border-radius: 50%;
   width: 1.2rem;
   height: 1.2rem;
   margin-bottom: .1rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 
 .user_top {
   width: 100%;
   height: 3.18rem;
   padding-top: .7rem;
-  background: url(../images/ui/icon_person.png) no-repeat;
-  background-position: -43px -154px;
+  background: url(../images/user/bg_green.png) no-repeat;
+  background-size: cover;
 }
 
 #u_info {
-  width: 150px;
+  width: 3rem;
   margin: 0 auto;
 }
 
@@ -468,8 +621,8 @@ i, em {
 }
 
 .college {
-  width: 84px;
-  height: 81px;
+  width: 1.68rem;
+  height: 1.62rem;
   background-position: 97% 51%;
 }
 
@@ -491,15 +644,30 @@ i, em {
 
 .buyOrder {
   width: 50%;
-  margin-left: 25%
+  margin-left: 25%;
+  border: 1px solid #fff;
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #register_page, #email_register, #fkey_page, #black_page, #email_find, #link_declaration, #header_phone {
+
+#link_page,
+#link_about_us,
+#link_at,
+#register_page,
+#email_register,
+#fkey_page,
+#black_page,
+#email_find,
+#link_declaration,
+#header_phone,
+#close_cellCode,
+#myRed,
+#link_redBag {
   display: none;
 }
 
 /*关于我们*/
+
 .asiatravel_wrap {
   margin-top: .6rem;
   text-align: center;
@@ -543,7 +711,8 @@ i, em {
   float: right;
 }
 
-.at_introduction, .at_declaration {
+.at_introduction,
+.at_declaration {
   padding: .4rem;
   line-height: .48rem;
 }
@@ -565,11 +734,14 @@ i, em {
   margin-bottom: .1rem;
 }
 
-.at_declaration dt, .at_declaration dd {
+.at_declaration dt,
+.at_declaration dd {
   margin: .1rem 0;
 }
 
-#link_at, #link_about_us, #link_page {
+#link_at,
+#link_about_us,
+#link_page {
   background-color: #fff;
 }
 
@@ -590,6 +762,10 @@ i, em {
   -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+}
+
+.user_content > li {
+  display: none;
 }
 
 #noOrder {
@@ -639,9 +815,9 @@ i, em {
 .info-circle1 {
   position: relative;
   margin-top: -5px;
-  margin-left: 15px;
-  width: 14px;
-  height: 14px;
+  margin-left: .3rem;
+  width: .28rem;
+  height: .28rem;
   border-radius: 7px;
   background-color: #7bc300;
   text-align: center;
@@ -713,7 +889,7 @@ i, em {
   position: absolute;
   top: .13rem;
   right: 0;
-  height: .66rem;
+  height: .62rem;
   border: 1px solid #7bc300;
   border-radius: .04rem;
   -webkit-border-radius: .04rem;
@@ -724,8 +900,8 @@ i, em {
 .info_sex .per_man {
   float: left;
   width: .76rem;
-  height: .62rem;
-  line-height: .64rem;
+  height: .58rem;
+  line-height: .6rem;
   text-align: center;
   color: #7bc300;
   background-color: #fff;
@@ -734,14 +910,16 @@ i, em {
 .info_sex .sex_act {
   color: #fff;
   background-color: #7bc300;
+  height: .6rem;
 }
 
-#uptra_page .info_sex_tab, #addtra_page .info_sex_tab {
+#uptra_page .info_sex_tab,
+#addtra_page .info_sex_tab {
   position: absolute;
   top: .13rem;
   right: .28rem;
   width: auto;
-  height: .66rem;
+  height: .62rem;
   border: 1px solid #7bc300;
   border-radius: .04rem;
   -webkit-border-radius: .04rem;
@@ -752,8 +930,8 @@ i, em {
 .info_sex_tab .per_man {
   float: left;
   width: .76rem;
-  height: .62rem;
-  line-height: .64rem;
+  height: .58rem;
+  line-height: .6rem;
   text-align: center;
   color: #7bc300;
   background-color: #fff;
@@ -762,6 +940,7 @@ i, em {
 .info_sex_tab .sex_act {
   color: #fff;
   background-color: #7bc300;
+  height: .6rem;
 }
 
 .user-mb {
@@ -853,6 +1032,10 @@ i, em {
 }
 
 /*修改昵称页css*/
+#amend_info {
+  display: none;
+}
+
 .u_name {
   height: .96rem;
   line-height: .96rem;
@@ -945,7 +1128,8 @@ i, em {
 .air_date li {
   margin-top: .2rem;
 }
-.all_order_tab .air_date{
+
+.all_order_tab .air_date {
   /*color: #999;*/
   font-size: .24rem
 }
@@ -963,11 +1147,6 @@ i, em {
   border: 1px solid #7bc300;
   color: #7bc300;
   border-radius: 4px;
-}
-
-.paybtn:hover {
-  background-color: #7bc300;
-  color: #fff;
 }
 
 .quitbtn {
@@ -1065,7 +1244,6 @@ i, em {
   height: .78rem;
   background: url(../images/ui/icon_person.png) no-repeat;
   background-size: 9rem 5rem;
-
 }
 
 .u_remark li .user_service {
@@ -1124,6 +1302,7 @@ i, em {
 /*联系我们结束*/
 
 /*常用信息页css*/
+
 .user_add {
   width: .4rem;
   height: .4rem;
@@ -1148,6 +1327,7 @@ i, em {
 }
 
 /*个人信息页出生日期*/
+
 #common-msg > em {
   font-size: .24rem;
 }
@@ -1197,13 +1377,13 @@ i, em {
 
 .user_lists li > b {
   position: absolute;
-  width: .4rem;
-  height: .4rem;
-  top: .22rem;
+  width: .32rem;
+  height: .32rem;
+  top: .28rem;
 }
 
-.myorder_tip {
-  background-position: -.48rem -.18rem;
+.user_lists .myorder_tip {
+  background-position: -2.8rem 0;
 }
 
 .my-order {
@@ -1211,8 +1391,22 @@ i, em {
   width: 100%;
 }
 
-.open_info {
-  background-position: -.02rem -.18rem;
+.user_lists .myred_tip {
+  background-position: -2.1rem 0;
+}
+
+.user_lists .my-red .useable {
+  float: right;
+  margin-right: .4rem;
+}
+
+.user_lists .my-red .useable .money {
+  color: #fb7530;
+  padding-right: .1rem;
+}
+
+.user_lists .open_info {
+  background-position: -1.4rem 0;
 }
 
 #common-msg em {
@@ -1221,31 +1415,27 @@ i, em {
   color: #999;
 }
 
-.open_msg {
-  background-position: -1.9rem -.18rem;
+.user_lists .open_msg {
+  background-position: 0 0;
 }
 
-.open_set {
-  background-position: -1.4rem -.18rem;
+.user_lists .open_set {
+  background-position: -.7rem 0;
 }
 
-.open_about {
-  background-position: -.96rem -.18rem;
+.user_lists .open_about {
+  background-position: -3.5rem 0;
 }
 
 .open_arw {
   position: absolute;
   right: 0;
-  top: .22rem;
+  top: .3rem;
   background: url("../images/ui/icon_common.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .28rem;
   height: .28rem;
   background-position: -1.12rem -.57rem;
-}
-
-.tip_right {
-  top: .3rem;
 }
 
 .birth_cont {
@@ -1261,10 +1451,10 @@ i, em {
   width: 4rem;
   margin: 0 auto;
   text-align: center;
-
 }
 
 /*电话拨号开始*/
+
 .jpop_box_tic {
   position: fixed;
   top: 0;
@@ -1304,7 +1494,8 @@ i, em {
   font-size: .28rem;
 }
 
-.jpop_box_tic dd a, .jpop_box_tic dd span {
+.jpop_box_tic dd a,
+.jpop_box_tic dd span {
   padding: 8px 20px;
   color: #fff;
   border-radius: 3px;
@@ -1337,6 +1528,7 @@ i, em {
 }
 
 /*footer*/
+
 .footer-menu {
   width: 100%;
   position: fixed;
@@ -1365,10 +1557,10 @@ i, em {
   margin: 0 auto 0 auto;
   width: .48rem;
   height: .48rem;
-
 }
 
-a.foot-homes, a.foot-users {
+a.foot-homes,
+a.foot-users {
   color: #7bc300;
 }
 
@@ -1401,6 +1593,7 @@ a.foot-homes, a.foot-users {
 /*首页footer结束*/
 
 /*新增常旅页开始*/
+
 #addUser {
   margin-top: .2rem;
   font-size: .32rem;
@@ -1419,6 +1612,16 @@ a.foot-homes, a.foot-users {
   right: .28rem;
   top: .23rem;
   font-size: .3rem;
+}
+
+.register_fast {
+  margin: .3rem 0;
+  text-align: center;
+}
+
+.register_fast em {
+  opacity: 0.7;
+  filter: alpha(opacity:70);
 }
 
 .user_edits {
@@ -1443,6 +1646,11 @@ a.foot-homes, a.foot-users {
   font-size: .3rem;
 }
 
+#addtra_page_hd, #edit_page_hd {
+  display: none;
+  z-index: 120;
+}
+
 .addtra_page {
   position: absolute;
   top: 0;
@@ -1450,12 +1658,15 @@ a.foot-homes, a.foot-users {
   width: 100%;
   height: 100%;
   background-color: #f7f7f7;
-
+  overflow-x: hidden !important;
 }
-#addtra_page,#uptra_page{
+
+#addtra_page,
+#uptra_page {
   z-index: 99;
   visibility: hidden;
 }
+
 .addtra_title {
   width: 100%;
   padding: .2rem .28rem;
@@ -1483,7 +1694,6 @@ a.foot-homes, a.foot-users {
 
 .traveler_contect li:last-child {
   border-bottom: none;
-
 }
 
 .traveler_contect li > div {
@@ -1616,7 +1826,6 @@ a.foot-homes, a.foot-users {
   width: 60%;
   height: 90%;
   font-size: .28rem;
-
 }
 
 .addAir_info .postCard {
@@ -1637,6 +1846,7 @@ a.foot-homes, a.foot-users {
   float: left;
   margin-left: 12%;
   width: 60%;
+  height: 100%;
 }
 
 .chn_eng_wrap {
@@ -1663,8 +1873,9 @@ a.foot-homes, a.foot-users {
 /*新增常旅结束*/
 
 /*填写姓名说明页css*/
+
 .fillName_page {
-  visibility: hidden;
+  display: none;
   background-color: #fff;
 }
 
@@ -1751,22 +1962,35 @@ a.foot-homes, a.foot-users {
   border-bottom: none;
 }
 
-.moreData{
+.moreData {
   display: none;
   margin-top: .3rem;
   margin-bottom: .4rem;
   vertical-align: middle;
   text-align: center
-
-}
-.header{
-  display: block;
 }
 
 /*填写姓名说明页结束*/
-#shade{
-  display: block;
+
+/*动态密码验证码*/
+.captcha_img, .captcha_img_reg, .captcha_img_three {
+  width: 2.6rem;
+  height: .6rem;
+  line-height: .6rem;
+  max-width: 2.6rem;
+  position: absolute;
+  right: 0;
+  top: .28rem;
+  text-align: center;
 }
 
-
-
+.fk_captcha, .fk_captcha_modify {
+  width: 2.6rem;
+  max-width: 130px;
+  height: .68rem;
+  position: absolute;
+  text-align: center;
+  line-height: .68rem;
+  right: 0;
+  top: .24rem;
+}

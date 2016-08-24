@@ -104,3 +104,30 @@
   vertical-align: top;
   margin-top: .04rem;
 }
+
+
+.page_error{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.page_error img{
+  width: 3.86rem;
+  height: 2.28rem;
+}
+.page_error .page_tips{
+  margin-top: 0.6rem;
+  text-align: center;
+  font-size: 0.3rem;
+  line-height: 0.45rem;
+  color: #666;
+}
+.page_error .page_click{
+  margin-top: 0.36rem;
+  text-align: center;
+  font-size: 0.3rem;
+  line-height: 0.45rem;
+  color: #999;
+}
+

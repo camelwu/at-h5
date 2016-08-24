@@ -14,6 +14,7 @@
   <title>自由行机票列表 - 亚程旅行网</title>
   <link href="../styles/reset.css" rel="stylesheet"/>
   <link href="css/hft_index.css" rel="stylesheet"/>
+  <link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet"/>
   <link href="../css/plugins/footer/footer.css" rel="stylesheet"/>
   <!--<link href="css/hft_hotel.css" rel="stylesheet"/>-->
 </head>
@@ -101,15 +102,14 @@
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=selectedFlight.segmentsReturnTotalTravelTimeString%></span>
-              <% if(selectedFlight.directFlight==1){ %>
-              <div class="arrow_word"></div>
-              <% }else{ %>
-              <span class="hft_icon arrow_time"></span>
-              <% } %>
               <%if(selectedFlight.transferListReturn&&selectedFlight.transferListReturn.length==1){%>
+              <div class="arrow_word"></div>
               <span class="air_port_word"><%=selectedFlight.transferListReturn[0]%></span>
               <%}else if(selectedFlight.transferListReturn&&selectedFlight.transferListReturn.length>1){%>
-               <span class="air_port_word"><%=selectedFlight.transferListReturn.length%>次</span>
+              <span class="arrow_word"></span>
+              <span class="air_port_word"><%= selectedFlight.transferListReturn.length %>次</span>
+              <%}else{%>
+              <span class="hft_icon arrow_time"></span>
               <%}%>
             </div>
             <div class="end_time_info">
@@ -178,7 +178,7 @@
             </div>
             <div class="total_time_info">
               <span class="time_hour_minute"><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturnTotalTravelTimeString%></span>
-              <% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %>
+              <% if(flightInfoListGroup[i].flightInfoList[j].transferListReturn||flightInfoListGroup[i].flightInfoList[j].transferListReturn){ %>
               <div class="arrow_word"></div>
               <% }else{ %>
               <span class="hft_icon arrow_time"></span>

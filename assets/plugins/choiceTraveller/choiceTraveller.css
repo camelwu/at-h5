@@ -1,0 +1,586 @@
+/*
+         找回密码页css
+*/
+body {
+  background-color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+i, em {
+  font-style: normal;
+}
+
+/*head title开始*/
+.header_finish {
+  position: absolute;
+  right: .28rem;
+  top: .23rem;
+  font-size: .3rem;
+}
+
+/*head title结束*/
+
+/*出行人列表开始*/
+.icon_person {
+  display: inline-block;
+  background: url(../../images/ui/icon_person.png) no-repeat;
+  background-size: 8.2rem 4.8rem;
+}
+
+.user_add {
+  width: .4rem;
+  height: .4rem;
+  margin: .32rem .2rem 0 0;
+  vertical-align: top;
+  background-position: -4.28rem -.16rem;
+}
+
+.often_traveler {
+  width: 100%;
+  overflow: auto;
+}
+
+.eve_traveler {
+  padding: .24rem .28rem;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: white;
+}
+
+.user_choice {
+  width: .42rem;
+  height: .42rem;
+  float: left;
+  margin: .2rem .2rem 0 0;
+  background-size: 7.4rem 4.8rem;
+  background-position: -4.12rem -.5rem;
+}
+
+.per_type {
+  display: inline-block;
+  vertical-align: middle;
+  width: .8rem;
+  height: .4rem;
+  border-radius: .4rem;
+  text-align: center;
+  line-height: .36rem;
+  color: #7bc300;
+  border: 1px solid #e6e6e6;
+  margin-left: .1rem;
+  font-size: .24rem;
+}
+
+.button_grey {
+  display: none;
+}
+
+.passport-num {
+  padding-left: .6rem;
+}
+
+.choiced {
+  background-position: -4.74rem -.5rem;
+}
+
+.user_edit {
+  width: .44rem;
+  height: .44rem;
+  float: right;
+  background: url(../../images/ui/icon_person.png) no-repeat;
+  background-size: 8.4rem 4.8rem;
+  background-position: -3.82rem -.14rem;
+}
+
+.user_edits {
+  width: .44rem;
+  height: .44rem;
+  float: right;
+  background: url(../../images/ui/icon.png) no-repeat;
+  background-size: 7.4rem 2.2rem;
+  background-position: 49% 0%;
+}
+
+/*出行人列表结束*/
+
+/*新增乘机人开始*/
+
+.f_btns {
+  display: block;
+  font-size: .32rem;
+  border-radius: .04rem;
+  height: .96rem;
+  line-height: .96rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  background-color: #7bc300;
+  margin: .2rem .4rem;
+}
+
+.header_quit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  padding-left: .3rem;
+  height: .9rem;
+  line-height: .9rem;
+  z-index: 1000;
+  color: #333;
+  font-size: .3rem;
+}
+
+.addtra_page {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.addtra_title {
+  width: 100%;
+  padding: .2rem .28rem;
+  font-size: .24rem;
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+.addtra_title > span {
+  display: inline-block;
+  vertical-align: top;
+  /*margin-top: .1rem;*/
+}
+
+.addtra_info {
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: .2rem;
+}
+
+.addtra_info li {
+  margin-left: .3rem;
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
+}
+
+.addtra_info li:last-child {
+  border: none;
+}
+
+.addtra_info div {
+  float: left;
+  width: 1.6rem;
+}
+
+.addtra_info .postCard {
+  width: 60%;
+  float: left;
+  margin-left: 12%;
+}
+
+.addAir_info .country-btn {
+  width: 60%;
+  float: left;
+  height: .4rem;
+  margin-left: 12%;
+}
+
+.addAir_page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.addAir_info {
+  background-color: #fff;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.addAir_info li {
+  height: .96rem;
+  line-height: .96rem;
+  margin-left: .3rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
+  position: relative;
+}
+
+.addAir_info li:last-child {
+  border: none;
+}
+
+.addAir_info div {
+  float: left;
+  width: 1.6rem;
+}
+
+.addAir_info .birth-cont {
+  width: 60%;
+  height: 100%;
+  margin-left: 12%;
+}
+
+.addAir_info .sex_cho_wrap {
+  width: 60%;
+  margin-left: 12%;
+}
+
+.sex_cho_wrap span:first-child {
+  margin-right: 15%;
+}
+
+.addAir_info input {
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 90%;
+  font-size: .28rem;
+
+}
+
+.addAir_info .postCard {
+  width: 60%;
+  float: left;
+  margin-left: 12%;
+}
+
+.addtra_info input {
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 90%;
+  font-size: .28rem;
+}
+
+.addtra_info .birth-cont {
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+}
+
+.icon_h {
+  background: url(../../images/ui/icon-h.png) no-repeat;
+  background-size: 8.04rem 3.48rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.traveler_sex1 {
+  width: .3rem;
+  height: .3rem;
+  margin: .32rem .1rem 0 0;
+  background-position: -.72rem -1.2rem;
+}
+
+.traveler_sex2 {
+  width: .3rem;
+  height: .3rem;
+  margin: .32rem .1rem 0 0;
+  background-position: -.34rem -1.2rem;
+}
+
+.chn_eng_wrap {
+  border-top: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
+.user_must {
+  width: .38rem;
+  height: .38rem;
+  position: absolute;
+  margin-left: .1rem;
+  background-size: 7rem 4.66rem;
+  background-position: -3.6rem -1.36rem;
+  /*margin-top:.08rem;*/
+}
+
+.name_text {
+  padding: 0 .4rem;
+  color: #999;
+  font-size: .24rem;
+}
+
+.name_text_tips {
+  margin: .32rem .15rem .6rem;
+  text-align: center;
+  font-size: .24rem;
+  color: #999;
+}
+
+/*新增乘机人结束*/
+
+/*姓名说明开始*/
+
+.fillName_page {
+  display: none;
+  background-color: #fff;
+}
+
+.ch_account {
+  width: 100%;
+  height: auto;
+  padding: .4rem;
+}
+
+#en_account {
+  padding-top: 0;
+}
+
+.ch_account > li {
+  margin-bottom: .32rem;
+}
+
+.ch_account > li:last-child {
+  margin-bottom: 0;
+}
+
+.name_ul {
+  margin: .2rem 0 0 .32rem;
+}
+
+.name_ul li {
+  list-style: none;
+  list-style-type: disc;
+  color: #999;
+  font-size: .24rem;
+}
+
+.name_ul li p {
+  line-height: .4rem;
+}
+
+.example_floor_down {
+  margin-bottom: .32rem;
+}
+
+.example_floor {
+  margin: .32rem 0;
+}
+
+.name_example {
+  width: 100%;
+  height: .8rem;
+  padding: .2rem .28rem;
+  border: 1px solid #e6e6e6;
+  border-radius: .04rem;
+  color: #333;
+  font-size: .28rem;
+}
+
+.name_example span:first-child {
+  width: 1.2rem;
+  display: inline-block;
+  margin-right: 1.08rem;
+}
+
+.name_example2 {
+  width: 100%;
+  height: 1.6rem;
+  border-radius: .04rem;
+  border: 1px solid #e6e6e6;
+  color: #333;
+  font-size: .28rem;
+}
+
+.name_example2 span:first-child {
+  width: 1.6rem;
+  display: inline-block;
+  margin-right: .65rem;
+}
+
+.name_ul .name_example2 p {
+  height: .8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 0 .28rem;
+}
+
+.name_example2 p:last-child {
+  border-bottom: none;
+}
+
+/*姓名说明结束*/
+
+.header_back {
+  position: absolute;
+  width: 1rem;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.icons {
+  background-image: url(../../images/ui/icons.png);
+  background-repeat: no-repeat;
+  background-size: 4.86rem 3.2rem;
+  display: inline-block;
+}
+
+.open_arw {
+  position: absolute;
+  right: 0;
+  top: .26rem;
+  background: url("../../images/ui/icon_common.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .28rem;
+  height: .28rem;
+  background-position: -1.12rem -.57rem;
+}
+
+.open_pho {
+  position: absolute;
+  width: .2rem;
+  height: .4rem;
+  right: .2rem;
+  background-position: -1.2rem -.48rem;
+}
+
+.fk_put {
+  height: 90%;
+  width: 100%;
+  font-size: .28rem;
+  color: #333;
+}
+
+.fk_div {
+  padding: 0 .2rem;
+  height: .68rem;
+  text-align: center;
+  line-height: .68rem;
+  background-color: #ffb500;
+  border-radius: .04rem;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: .12rem;
+}
+
+.ifbaby {
+  width: .7rem;
+  height: .34rem;
+  border: 1px solid #e0e0e0;
+  border-radius: .04rem;
+  display: inline-block;
+  margin-left: .16rem;
+  text-align: center;
+  color: #ffb413;
+  line-height: .34rem;
+}
+
+/*儿童购票说明页开始*/
+
+.childen_page {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.p_86 {
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  margin-left: .6rem;
+  margin-top: .32rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  padding-right: .8rem;
+  position: relative;
+}
+
+/*儿童购票说明页结束*/
+
+.traveler_contect {
+  background-color: #fff;
+  margin-bottom: .32rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.traveler_contect li {
+  margin-left: .28rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.traveler_contect li:last-child {
+  border-bottom: none;
+}
+
+.traveler_contect li > div {
+  width: 45%;
+  line-height: .96rem;
+  border-right: 1px solid #e6e6e6;
+  position: relative;
+}
+
+.traveler_contect li .email_code {
+  width: 1.8rem;
+  border: none;
+}
+
+.phone_pre {
+  float: right;
+  margin-right: .6rem;
+}
+
+.mobile_tip_right {
+  right: .2rem;
+  top: .34rem;
+}
+
+.traveler_contect input {
+  width: 50%;
+  height: .96rem;
+  margin-left: .32rem;
+}
+
+#uptra_page .info_sex_tab, #addtra_page .info_sex_tab {
+  position: absolute;
+  top: .13rem;
+  right: .28rem;
+  width: auto;
+  height: .66rem;
+  border: 1px solid #7bc300;
+  border-radius: .04rem;
+  -webkit-border-radius: .04rem;
+  background-color: #fff;
+  color: #7bc300;
+}
+
+.info_sex_tab .per_man {
+  float: left;
+  width: .76rem;
+  height: .62rem;
+  line-height: .64rem;
+  text-align: center;
+  color: #7bc300;
+  background-color: #fff;
+}
+
+.info_sex_tab .sex_act {
+  color: #fff;
+  background-color: #7bc300;
+}
+
+/*--*/
+#passagers_list_wrap {
+  position: absolute;
+  overflow-x: hidden !important;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  top: 0;
+
+}
+
+

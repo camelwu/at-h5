@@ -206,15 +206,16 @@
       var str = '';
       var tempArray = result.data[0].hotelRoomsList;
       for (var i = 0; i < tempArray.length; i++) {
-        str += '<li class="d-li1 super">' + '<div class="d-div3 roomEvent hotel_content_roomEvent" style="max-width: 60%" room-type-code=' + tempArray[i].roomTypeCode + '> ' + '<div class="d-p5 hotel_content_roomEvent_name">' + tempArray[i].roomTypeName + '</div><b class="d-icon3 hotel_content_roomEvent_detail"></b><div class="d-p6 hotel_content_roomEvent_content">32-38㎡ 大/双床</div></div><div class="showListTrigger hotel_content_listTrigger"><div class="priceNum hotel_content_listTrigger_price"><span class="money">￥</span><span class="moneyNum">' + tempArray[i].minAvgPrice + '<span>起</span></span></div><a href="javascript:void(0)" class="at d-icon5"></a></div>' + hotelDetail.subRoomList(tempArray[i].roomList) + '</li>';
+        str += '<li class="d-li1 super">' + '<div class="d-div3 roomEvent hotel_content_roomEvent" style="max-width: 60%" room-type-code=' + tempArray[i].roomTypeCode + '> ' + '<div class="d-p5 hotel_content_roomEvent_name">' + tempArray[i].roomTypeName + '</div><b class="d-icon3 hotel_content_roomEvent_detail"></b></div><div class="showListTrigger hotel_content_listTrigger"><div class="priceNum hotel_content_listTrigger_price"><span class="money">￥</span><span class="moneyNum">' + tempArray[i].minAvgPrice + '<span>起</span></span></div><a href="javascript:void(0)" class="at d-icon5"></a></div>' + hotelDetail.subRoomList(tempArray[i].roomList) + '</li>';
       }
       return str;
     },
 
     subRoomListNoService: function (arg) {
       var cashOrOnline = arg.paymentModeID == 1 ? "在线付" : (arg.paymentModeID == 2) ? "到店付" : "";
-      var brackfast = arg.isabd ? '<span class="breakfast">含早</span>' : '<span class="breakfast">无早</span>';
-      var str = arg.listNum ? '<li class="d-li1 " style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '(标准价)</div><div class="d-p6">' + brackfast + '<span class="big-bed">大床</span><span class="no-cancel">不可取消</span><span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '(标准价)</div><div class="d-p6">' + brackfast + '<span class="big-bed">大床</span><span class="no-cancel">不可取消</span></div></div><div class="moneyTip hotel_content_roomDetail_money"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve hotel_content_roomDetail_price" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>';
+      var brackfast = arg.isABD ? '<span class="breakfast">含早</span>' : '<span class="breakfast">不含早</span>';
+      var canceAble = arg.cancellationPeriod > 0 ? '<span class="no-cancel">可取消</span>' : '<span class="no-cancel">不可取消</span>';
+      var str = arg.listNum ? '<li class="d-li1 " style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '</div><div class="d-p6">' + brackfast + canceAble + '<span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5 hotel_content_roomDetail_name">' + arg.roomName + '</div><div class="d-p6">' + brackfast+ canceAble + '</div></div><div class="moneyTip hotel_content_roomDetail_money"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve hotel_content_roomDetail_price" room-code="' + arg.roomCode + '"><span>预订</span><span>' + cashOrOnline + '</span></div></li>';
 
       return str;
     },
@@ -230,9 +231,7 @@
 
     subRoomList: function (arg) {
       var str = '<ul class="roomDetailList hotel_content_roomDetail">';
-      console.log("arg=");
       arg.sort(getSortFun('asc', "avgPriceCNY"));
-      console.log(arg);
       for (var i = 0; i < arg.length; i++) {
         str += hotelDetail.subRoomListNoService(arg[i]); // + hotelDetail.subRoomListHasService(arg[i]);
       }
@@ -380,7 +379,6 @@
     },
 
     createAll: function (result) {
-      //result = JSON.parse(result);
       console.log('callback函数得到的数据');
       hotelDetail.myData.createAllback = result;
       console.log(hotelDetail.myData);
@@ -445,15 +443,14 @@
       var rege = result.data[0].hotelGenInfo.hotelNameLocale.replace(/[^\u4e00-\u9fa5]/g, '');
       console.log(rege);
       firstUl += '<div class="maps"><h3><p class="d-p1">' + rege + "(" + result.data[0].hotelGenInfo.hotelName + ")" + '</p></h3><div id="map"></div><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></div><ul class="d-ul1 hotel_shoulder">' + '' + rateStr + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>' + isFreeWifi + isFreeTransfer + '<b class="icons open-arg hotel_shoulder_icon"></b>' + hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList) + '</li></ul>';
+      vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md")
 
       if(hotelDetail.showRoomList(result) == ''){
         //房间已售罄
-        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + '<div class="room_soldout">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div>'+ '</ul>';
+        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + '<div class="room_soldout">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div>'+ '</ul>';
       }else{
-        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
+        secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span>&nbsp入住<span class="enterDate" style="margin-left: 5px;">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span>&nbsp离店 &nbsp <em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b><div class = "hotel_content_num"><span class = "">' + hotelDetail.gdataInfo.NumRoom + '</span>&nbsp房间&nbsp<span>' + hotelDetail.gdataInfo.NumAdult + '</span>&nbsp成人&nbsp<span>' + hotelDetail.gdataInfo.NumChild + '</span>&nbsp儿童&nbsp</div></li>' + hotelDetail.showRoomList(result) + '</ul>';
       }
-
-      //footer += '<div class="footer"><span>  </span></div>';
 
       contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl + '</div>';
       //firstUl + secondUl +footer+'</div>'
@@ -515,23 +512,43 @@
 
       hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
       hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
+
+      //选择日期之后，有加载图标，解决网速接口慢的问题
+      var mask=$('<div id="preloader"><div id="status"></div></div>');
+      mask.appendTo($(document.body));
+
       hotelDetail.init(hotelDetail.gdataInfo);
 
     },
 
     initDate: function (result) {
-      hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
-      hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
+      //hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
+      //hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
       var dateInitObj = new Object();
       dateInitObj[hotelDetail.gdataInfo.CheckInDate] = '入住';
       dateInitObj[hotelDetail.gdataInfo.CheckOutDate] = '离店';
-      var myDate2 = new Calender({
-        id: 'chooseDate',
-        num: 13,
+      // var myDate2 = new Calender({
+      //   id: 'chooseDate',
+      //   num: 13,
+      //   time: dateInitObj,
+      //   sClass1: 'enterDate',
+      //   id2: 'nightNum',
+      //   fn: hotelDetail.upDateContent
+      // });
+      var myDate2 = new ATplugins.Calender({
+        id: "chooseDate",
+        headerSign: 'hotelTip', //tipClean  tip
+        type:'hotel',
+        noComfirmBtn: true,
+        disableDateAfterLength: 30,
         time: dateInitObj,
-        sClass1: 'enterDate',
-        id2: 'nightNum',
-        fn: hotelDetail.upDateContent
+        callback: function (result) {
+          console.info(result);
+          $('#nightNum').html(Math.round(((new Date(result[1].replace(/-/g, "/"))) - new Date(result[0].replace(/-/g, "/"))) / (1000 * 60 * 60 * 24)));
+          $(".enterDate").eq(0).html(result[0]);
+          $(".enterDate").eq(1).html(result[1])
+          hotelDetail.upDateContent();
+        }
       });
 
       result.data[0].dateInfo = {

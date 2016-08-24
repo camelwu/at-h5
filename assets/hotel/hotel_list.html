@@ -12,6 +12,7 @@
     <meta name="x5-page-mode" content="app">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="wap-font-scale" content="no">
     <meta name="Keywords" content="亚程旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
     <!--<link href="../styles/style.css" type="text/css" rel="stylesheet">-->
@@ -48,7 +49,7 @@
         </div>
         <!--   内容   -->
         <div class="snap-content" id="c1">
-            <ul class="hotelcontent hotel_lists" id="lsf_list" data-no-img="../images/loading_def_small.png">
+            <ul class="hotelcontent hotel_lists" id="hotelList" data-no-img="../images/loading_def_small.png">
                 <!--<li class="ho_list hotel_list">
 					<div class="ho_pic hotel_pictrue">
 					<img src="images/1_02.jpg" class="ho_img" />
@@ -110,116 +111,122 @@
     <div id="hl_hiddenBox">
         <!--   排序块   -->
         <div class="r-div" id="r-mb"></div>
-        <ul class="rank" id="rank">
-            <li class="r-li" style="color:rgb(123, 195, 0)">
-                <b class="hl-icon4"></b> 推荐排序
-            </li>
-            <li class="r-li">
-                价格升序
-            </li>
-            <li class="r-li">
-                价格降序
-            </li>
-            <li class="r-li" style="border: none">
-                好评优先
-            </li>
-        </ul>
+        <div class="rank" id="rank">
+            <ul id="rankWrapper">
+                <li class="r-li" style="color:rgb(123, 195, 0)">
+                    <b class="hl-icon4"></b> 推荐排序
+                </li>
+                <li class="r-li">
+                    价格升序
+                </li>
+                <li class="r-li">
+                    价格降序
+                </li>
+                <li class="r-li" style="border: none">
+                    好评优先
+                </li>
+            </ul>
+        </div>
+
         <!--   筛选块   -->
         <div class="r-div" id="s-mb"></div>
         <div class="screen" id="screen">
-            <div class="hl_sc_chil">
-                <div class="s-but">
-                    <p class="cancel" id="cancelBtn">取消</p>
-                    <p class="clears" id="clearBtn">清除筛选</p>
-                    <p class="sure" id="s_but">确定</p>
-                </div>
-                <h4>星级档次</h4>
-                <ul class="s-ul" id="h-level">
-                    <li class="s-li1">
-                        不限
-                    </li>
-                    <li class="s-li">
-                        二星级以下
-                    </li>
-                    <li class="s-li">
-                        三星
-                    </li>
-                    <li class="s-li">
-                        四星
-                    </li>
-                    <li class="s-li">
-                        五星
-                    </li>
-                </ul>
-                <h4>酒店类型</h4>
-                <ul class="s-ul" id="h-type">
-                    <li class="s-li1">
-                        不限
-                    </li>
-                    <li class="s-li">
-                        酒店
-                    </li>
-                    <li class="s-li">
-                        汽车旅馆
-                    </li>
-                    <li class="s-li">
-                        酒店式公寓
-                    </li>
-                    <li class="s-li">
-                        家庭旅馆
-                    </li>
-                    <li class="s-li">
-                        背包客栈
-                    </li>
-                    <li class="s-li">
-                        宾馆/招待所
-                    </li>
-                    <li class="s-li">
-                        精品酒店
-                    </li>
-                    <li class="s-li">
-                        度假类酒店
-                    </li>
-                    <li class="s-li">
-                        游轮度假酒店
-                    </li>
-                    <li class="s-li">
-                        别墅型酒店
-                    </li>
-                    <li class="s-li">
-                        乡村平房酒店
-                    </li>
-                    <li class="s-li">
-                        家庭寄宿
-                    </li>
-                    <li class="s-li">
-                        农舍式房子
-                    </li>
-                    <li class="s-li">
-                        豪华露营地
-                    </li>
-                    <li class="s-li">
-                        标准露营地
-                    </li>
-                </ul>
-            </div>
+          <div class="s-but">
+            <p class="cancel" id="cancelBtn">取消</p>
+            <p class="clears" id="clearBtn">清除筛选</p>
+            <p class="sure" id="s_but">确定</p>
+          </div>
+          <div class="hl_sc_chil" id="screenWrapper">
+              <h4>星级档次</h4>
+              <ul class="s-ul" id="h-level">
+                  <li class="s-li1">
+                      不限
+                  </li>
+                  <li class="s-li">
+                      二星级以下
+                  </li>
+                  <li class="s-li">
+                      三星
+                  </li>
+                  <li class="s-li">
+                      四星
+                  </li>
+                  <li class="s-li">
+                      五星
+                  </li>
+              </ul>
+              <h4>酒店类型</h4>
+              <ul class="s-ul" id="h-type">
+                  <li class="s-li1">
+                      不限
+                  </li>
+                  <li class="s-li">
+                      酒店
+                  </li>
+                  <li class="s-li">
+                      汽车旅馆
+                  </li>
+                  <li class="s-li">
+                      酒店式公寓
+                  </li>
+                  <li class="s-li">
+                      家庭旅馆
+                  </li>
+                  <li class="s-li">
+                      背包客栈
+                  </li>
+                  <li class="s-li">
+                      宾馆/招待所
+                  </li>
+                  <li class="s-li">
+                      精品酒店
+                  </li>
+                  <li class="s-li">
+                      度假类酒店
+                  </li>
+                  <li class="s-li">
+                      游轮度假酒店
+                  </li>
+                  <li class="s-li">
+                      别墅型酒店
+                  </li>
+                  <li class="s-li">
+                      乡村平房酒店
+                  </li>
+                  <li class="s-li">
+                      家庭寄宿
+                  </li>
+                  <li class="s-li">
+                      农舍式房子
+                  </li>
+                  <li class="s-li">
+                      豪华露营地
+                  </li>
+                  <li class="s-li">
+                      标准露营地
+                  </li>
+              </ul>
+          </div>
         </div>
         <!--   位置块   -->
         <div class="r-div" id="l-mb"></div>
         <div class="location" id="location">
             <!--loca_con脱离文档流，p的作用是为了撑开父级-->
-            <p id="loca_conBro"></p>
+            <!--   <p id="loca_conBro"></p>-->
             <div class="loca_con" id="loca_con">
-                <div class="s-but1" id="s_but1">
-                    <div class="s-but">
-                        <p class="cancel" id="l_cancelBtn">取消</p>
-                        <p class="clears" id="l_clearBtn">清除筛选</p>
-                        <p class="sure" id="l_but">确定</p>
+                <div id="locationWrapper">
+                    <div class="s-but1" id="s_but1">
+                        <div class="s-but">
+                            <p class="cancel" id="l_cancelBtn">取消</p>
+                            <p class="clears" id="l_clearBtn">清除筛选</p>
+                            <p class="sure" id="l_but">确定</p>
+                        </div>
                     </div>
-                </div>
-                <ul class="l-ul" id="l-ul">
+                    <ul class="l-ul" id="l-ul">
 
-                </ul>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
@@ -227,8 +234,10 @@
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/lazyLoad.js"></script>
+<script src="../js/plugins/scrollLayer/scrollLayer.js"></script>
 <script src="js/hotelList.js"></script>
 <script src="../js/lib/plugins.js"></script>
+
 
 
 </html>

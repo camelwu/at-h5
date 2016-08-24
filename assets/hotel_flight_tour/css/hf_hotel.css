@@ -21,7 +21,7 @@ a:link {
 .jpa {
   position: absolute;
 }
-.header{
+.hf_header{
   position: absolute;
   background-color: transparent;
   opacity: 0;
@@ -215,6 +215,13 @@ a:link {
   position: relative;
   z-index: 20;
 }
+.jhf_score li.hotel_name{
+  font-size: 0.32rem;
+  font-weight: bold;
+  line-height: 0.32rem;
+  padding: .26rem;
+  /*margin: 0;*/
+}
 .hf_map{
   height:2.4rem;
   margin-top:-0.6rem;
@@ -240,7 +247,7 @@ a:link {
 }
 .jhf_star .star{
   font-size: 0.24rem;
-  line-height: 1.2rem;
+  line-height: 1rem;
 }
 .jhf_star .star .detail{
   position: absolute;
@@ -256,25 +263,39 @@ a:link {
 }
 
 .jhf-ul li.jhf-date {
-  height: 1.2rem;
-  line-height: 1.2rem;
+  /*height: 1.2rem;*/
+  line-height: 0.5rem;
   /*margin-bottom: 0;*/
 }
-
+.jhf-mes li.jhf-date span.num{
+  display: block;
+  margin-top: .2rem;
+  font-size:.24rem;color:#333;
+}
+.jhf-mes li.jhf-date span.num span{
+  font-size: 0.32rem;
+  color:#7bc300;;
+}
+.li_first{
+  padding-top: .2rem;
+}
+/*.num span{*/
+  /*color:#7bc300;*/
+/*}*/
 .jhf-ul li .arrow {
   background: url(../../images/ui/icon_common.png) no-repeat;
   width: 0.2rem;
   height: 0.28rem;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 54%;
   margin-top: -0.16rem;
   background-position: -1.13rem -0.63rem;
   background-size: 7.9rem 5.13rem;
 }
-.jhf-ul li.li_first .arrow{
-  right: 0.28rem;
-}
+/*.jhf-ul li.li_first .arrow{*/
+  /*right: 0.28rem;*/
+/*}*/
 .jhf-ul li:nth-of-type(1) .arrow {
   margin-top: -0.14rem;
 }
@@ -295,7 +316,7 @@ a:link {
 
 .jhf-score li span.score {
   font-size: 0.44rem;
-  color: #55bfb7;
+  font-weight: 500;
 }
 
 .jhf-ul.jhf_score li.last_child {
@@ -351,10 +372,14 @@ a:link {
 }
 
 .jhf-mes > li:nth-child(1) {
-  padding: 0 0.28rem;
+  padding: 0.3rem 0.28rem;
   border-bottom: 1px solid #e6e6e6;
+  font-size:0.2rem;
 }
-
+.jhf-mes > li:nth-child(1)>span{
+  color: #7bc300;
+  font-size: .32rem;
+}
 .jhf-mes li.showh {
   border-bottom: 1px solid #e6e6e6;
 }
@@ -372,7 +397,7 @@ a:link {
 .jhf-mes .jhf-drg b.cur {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -0.28rem;
   width: 0.42rem;
   height: 0.42rem;
   background-image: url(../../images/ui.1.0/icon_common.png);

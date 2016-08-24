@@ -1,0 +1,270 @@
+@import "../../less/module";
+
+
+@inputColor: #666666;
+@inputPlaceholderColor: #999999;
+@lotterylinkColor: #05cdff;
+@inputFontSize: .28rem;
+@listitemFontSize: .32rem;
+
+.register {
+  margin: 0;
+  padding: 0;
+
+  &.main {
+    width: 100%;
+  }
+
+  .register_img {
+    width: 100%;
+    display: block;
+    overflow-x: hidden;
+  }
+
+  .register_button {
+    position: absolute;
+    outline: none;
+    &.button_1 {
+      font-size: @inputFontSize;
+      top: 9.4rem;
+      left: 4.6rem;
+      height: .6rem;
+      width: 1.8rem;
+      background-color: #ffd93a;
+      border: none;
+      border-radius: .05rem;
+      padding: 0;
+    }
+
+    &.button_2 {
+      top: 12.2rem;
+      left: 2rem;
+      height: .95rem;
+      width: 3.6rem;
+      border: none;
+      background: url("../img/register_submit.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  .register_input {
+    position: absolute;
+    //background-color: yellowgreen;
+    font-size: @inputFontSize;
+    color: @inputColor;
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+
+    &::-webkit-input-placeholder {
+      font-size: @inputFontSize;
+      color: @inputPlaceholderColor;
+    }
+
+    &::-moz-placeholder {
+      font-size: @inputFontSize;
+      color: @inputPlaceholderColor;
+    }
+
+    &:-ms-input-placeholder {
+      font-size: @inputFontSize;
+      color: @inputPlaceholderColor;
+    }
+    &.input_1 {
+      top: 6.4rem;
+      left: 2.6rem;
+      height: .6rem;
+      width: 3.8rem;
+    }
+
+    &.input_2 {
+      top: 7.4rem;
+      left: 2.6rem;
+      height: .6rem;
+      width: 3.8rem;
+    }
+
+    &.input_3 {
+      top: 9.4rem;
+      left: 2.6rem;
+      height: .6rem;
+      width: 1.8rem;
+    }
+
+    &.input_4 {
+      top: 10.3rem;
+      left: 2rem;
+      height: .6rem;
+      width: 4.4rem;
+    }
+
+    &.input_5 {
+      top: 11.3rem;
+      left: 2rem;
+      height: .6rem;
+      width: 4.4rem;
+    }
+
+    &.input_6 {
+      top: 8.4rem;
+      left: 3.4rem;
+      height: .6rem;
+      width: 1.3rem;
+    }
+
+    &.v_pic{
+      //background-color: greenyellow;
+      top: 8.4rem;
+      left: 4.9rem;
+      width: 1.5rem;
+      height: .6rem;
+    }
+  }
+
+  .register_ul {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    //background-color: yellowgreen;
+    font-size: @listitemFontSize;
+    color: @inputColor;
+
+    &.list {
+      display: block;
+      top: 13.6rem;
+      width: 100%;
+      list-style: none;
+      box-sizing: content-box;
+      text-align: center;
+    }
+
+    .item {
+      display: inline-block;
+
+      .lotterylink {
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        padding: 2px;
+        text-decoration:none;
+        color: @lotterylinkColor;
+      }
+    }
+
+  }
+
+  &.pop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none;
+
+    .pop_img {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      margin-left: -3.18rem;
+      display: block;
+      width: 6.36rem;
+      height: 5.16rem;
+    }
+
+    .pop_confirmbtn {
+      position: absolute;
+      width: 2.98rem;
+      height: .86rem;
+      top: 78%;
+      left: 50%;
+      margin-left: -1.49rem;
+      z-index: 9;
+    }
+
+  }
+
+  &.pop_mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 9;
+    pointer-events: auto;
+    display: none;
+  }
+
+  &.tips {
+    position: absolute;
+    top: 5rem;
+    left: 40px;
+    font-size: @inputFontSize;
+    height: auto;
+    width: 200px;
+    background-color: transparent;
+    //border: 1px solid #666;
+    display: none;
+
+    s{
+      position     :absolute;
+      top          :-20px;
+      left         :20px;
+      line-height  : 0;
+      border-color :transparent transparent #666 transparent;
+      border-style :dashed dashed solid dashed;
+      border-width :10px;
+    }
+    i{
+      position     :absolute;
+      top          :-9px;
+      left         :-10px;
+      line-height  : 0;
+      border-color :transparent transparent #fff transparent;
+      border-style :dashed dashed solid dashed;
+      border-width :10px;
+    }
+
+    .tips_content{
+      border                :1px solid #666;
+      -moz-border-radius    :3px;
+      -webkit-border-radius :3px;
+      position              :absolute;
+      background-color      :#fff;
+      width                 :100%;
+      padding               :5px;
+      top                  :-2px;
+      border-top           :1px solid #666;
+      box-shadow            : 3px 3px 4px #999;
+      -moz-box-shadow       : 3px 3px 4px #999;
+      -webkit-box-shadow    : 3px 3px 4px #999;
+      /* For IE 5.5 - 7 */
+      filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999');
+      /* For IE 8 */
+      -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
+    }
+  }
+
+
+}
+
+.stopgray {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+

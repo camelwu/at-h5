@@ -481,7 +481,7 @@
 
 			secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
-			footer += '<div class="footer"><span>  </span></div>';
+			footer += '<div class="footer"><span></span></div>';
 
 			contentStr = '<div id="content" class="snap-content" style="padding-top: .88rem;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
 

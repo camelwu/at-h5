@@ -122,6 +122,8 @@ var  hftFlightDetail = {
   createTags:function(){
     var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
     console.log(data);
+    console.log(data.flightInfo.segmentsLeave);
+    console.log(data.flightInfo.segmentsReturn);
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr,data);
     $(".all_elements").eq(0).html(outputStr);
@@ -153,24 +155,29 @@ var  hftFlightDetail = {
     return this
   },
   init:function(){
-    var bookingRefNo=vlm.getpara("bookingRefNo");//订单code
+    /**
+     *  资源选择页和订单详情页，都会查看航班详情。根据地址栏是否有bookingRefNo确定页面来源
+     **/
+    var bookingRefNo = vlm.getpara("bookingRefNo");//订单code
     //获取Url参数
-    var type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
-    if(bookingRefNo==undefined){
-        var flightData = null, storage = window.sessionStorage;
-        flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
-        this.createTags({flightInfo:flightData.flightInfo}).delayLoadImage();
-        $("#status").fadeOut();
-        $("#preloader").delay(400).fadeOut("medium");
-    }
-    else{
-       var para = {
-          "Parameters": {"BookingRefNo": bookingRefNo},
-          "ForeEndType": 3,
-          "Code": type.detailCode
-        };
-      vlm.loadJson("", JSON.stringify(para),function(data){
-        hftFlightDetail.createTags({flightInfo:data.data.flightInfo}).delayLoadImage();
+    var type = _bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
+
+    if (bookingRefNo == undefined) {
+      // 资源选择页查看航班详情
+      var flightData = null, storage = window.sessionStorage;
+      flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
+      this.createTags({flightInfo: flightData.flightInfo}).delayLoadImage();
+      $("#status").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+    } else {
+      // 订单详情页查看航班详情
+      var para = {
+        "Parameters": {"BookingRefNo": bookingRefNo},
+        "ForeEndType": 3,
+        "Code": type.detailCode
+      };
+      vlm.loadJson("", JSON.stringify(para), function (data) {
+        hftFlightDetail.createTags({flightInfo: data.data.flightInfo}).delayLoadImage();
         $("#status").fadeOut();
         $("#preloader").delay(400).fadeOut("medium");
       })

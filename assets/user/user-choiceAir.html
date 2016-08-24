@@ -16,9 +16,10 @@
   <title>个人中心选择乘机人 - 亚程旅行网</title>
   <link href="../styles/reset.css"		rel="stylesheet" type="text/css">
   <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
-  <link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
+  <link href="../css/plugins/scroller/picker.css"	rel="stylesheet" type="text/css">
   <link href="../css/choiceAir.css"	rel="stylesheet" type="text/css">
-  <link href="../css/country_list.css" rel="stylesheet" type="text/css">
+  <link href="../css/plugins/countryList/country_list.css" rel="stylesheet" type="text/css">
+  <link href="../css/plugins/jquery.alert/jqueryAlert.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <!-- 遮罩层-->
@@ -29,18 +30,20 @@
 
 
 <!-- 常旅列表-->
-<div class="passageListPage"  id="passagers_list" >
+<div class="passageListPage" id="passengers_list">
   <div class="header" id="toper">
     <a href="javascript:;" id="close_page" class="header_back name-illustrate closedWin">
       <i class="icon_back"></i>
     </a>
+
     <h3>已选：<span class="adult-number"></span></h3>
-    <div class="header_finish addPassager_finish">完成</div>
+
+    <div class="header_finish addPassenger_finish">完成</div>
   </div>
-  <div class="all_elements">
+  <div class="all_elements_sce">
 
     <div class="content">
-      <a href="javascript:;" class="add_passager f_btns">
+      <a href="javascript:;" class="add_passenger f_btns">
         <b class="icon_person user_add"></b><span class="newTitle"></span>
       </a>
       <ul class="often_traveler list-traveler" id="allList"></ul>
@@ -51,7 +54,7 @@
 
 <!-- 新增乘机人页-->
 <div class="addAir_page" id="addAir-page">
-  <div class="all_elements">
+  <div class="all_elements_sce">
     <div class="header">
       <div class="header_quit">取消</div>
       <h3><span class="oprationType">新增</span><span class="bussinessTitle">乘机人</span></h3>
@@ -66,7 +69,7 @@
             <input type="text" placeholder="与乘机人姓名一致" class="cnName">
           </li>
         </ul>
-        <ul class="addtra_info nameche_wrap">
+        <ul class="addtra_info nameche_wrap enNameUL">
           <li>
             <div>英文姓</div>
             <input type="text" placeholder="Surname,如Li" class="lastName">
@@ -93,7 +96,7 @@
           <div class="birth-date">证件有效期</div>
           <div id="time-cont" type="text" class="birth-cont cardDateLimit" data-cache="2016年-1月-1日"></div>
         </li>
-        <li class="countries-wrap">
+        <li class="countries-wrap" id="oCountry1">
           <b class="open_arw open_pho"></b>
           <div>发证国家</div>
           <div class="country-btn cardCountry" data-code="CN" >中国</div>
@@ -101,7 +104,7 @@
       </ul>
       <div class="addtra_title">其他信息</div>
       <ul class="addAir_info mart-non">
-        <li class="countries-wrap">
+        <li class="countries-wrap" id="oCountry2">
           <b class="open_arw open_pho"></b>
           <div>国籍</div>
           <div class="country-btn country" data-code="CN" >中国</div>
@@ -109,8 +112,8 @@
         <li>
           <div>性别</div>
           <div class="sex_cho_wrap">
-            <span><b class="icon_h traveler_sex2" id="man" data-code="Mr" data-name="男"></b>男士</span>
-            <span><b class="icon_h traveler_sex2" id="woman" data-code="Mrs" data-name="女"></b>女士</span>
+            <span><b class="icon_h traveler_sex2" id="man" data-code="Mr" data-name="男"></b>男</span>
+            <span><b class="icon_h traveler_sex2" id="woman" data-code="Mrs" data-name="女"></b>女</span>
           </div>
         </li>
         <li>
@@ -119,11 +122,11 @@
           <div id="birth-cont" type="text" class="birth-cont birthDay" data-cache="1990年-1月-1日" value="1990年1月1号"></div>
         </li>
       </ul>
-      <div class="ul_contect">
+      <!--<div class="ul_contect">
         <div class="addtra_title">联系方式</div>
         <ul class="traveler_contect">
           <li class="clearfix">
-            <div class="con_phone fl">手机号
+            <div class="con_phone fl" id="oCountryCellAdd">手机号
               <span class="phone_pre tel-btn">+86</span>
               <em class="open_arw mobile_tip_right"></em>
             </div>
@@ -135,19 +138,14 @@
           </li>
         </ul>
         <div class="name_text_tips" id="name-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
-        <!--<div class="user-account" onclick="showChild_page()">-->
-        <!--儿童婴儿购票说明>-->
-        <!--</div>-->
-        <!--<div id="delTra" class="f_btns">删除常旅客</div>-->
-
-      </div>
+      </div>-->
     </div>
   </div>
 </div>
 
 <!-- 儿童购票说明页-->
 <div class="childen_page" id="childen-page">
-  <div class="all_elements">
+  <div class="all_elements_sce">
     <div class="header">
       <div id="childExplanation" class="header_quit"><i class="icon_back"></i></div>
       <h3>儿童购票说明</h3>
@@ -170,94 +168,9 @@
   </div>
 </div>
 
-<!--国籍选择开始-->
-<div class="header country_header">
-  <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
-  <div class="cl_search">
-    <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
-    <i class="icon_common"></i>
-  </div>
-</div>
-<div class="all_elements country-cho-wrap">
-  <div class="content">
-    <div id="country-wrap-hot"></div>
-    <div class="country-wrap" id="country-wrap"></div>
-  </div>
-  <!--热门国籍-->
-  <script id="countryList_hot" type="text/template">
-    <h4><a name="rm" class="target"></a>热门</h4>
-    <ul class="country_hot">
-      <% for(var i=0; i< arrCountry.length; i++){ %>
-      <% if(arrCountry[i].isHot == 1) { %>
-      <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
-      <% } %>
-      <% } %>
-    </ul>
-  </script>
-
-  <!--国籍全部列表-->
-  <script id="countryList" type="text/template">
-    <div class="full_country_outer">
-      <% for(var tem in countryArray){ %>
-      <a class="target" name="<%=tem%>"></a>
-      <h4><%= tem%></h4>
-      <ul class="full_country_list">
-        <%countryArray[tem].forEach(function(array){ %>
-        <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
-        <% })%>
-      </ul>
-      <% }%>
-    </div>
-  </script>
-
-  <!--热门手机区号-->
-  <script id="countryList_hot_tel" type="text/template">
-    <h4><a name="rm" class="target"></a>热门</h4>
-    <ul class="country_hot">
-      <% for(var i=0; i< arrCountry.length; i++){ %>
-      <% if(arrCountry[i].isHot == 1) { %>
-      <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><em data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].chineseName%></em><span class="tel_code" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>"><%=arrCountry[i].phoneCode%></span></li>
-      <% } %>
-      <% } %>
-    </ul>
-  </script>
-
-  <!--手机区号全部列表-->
-  <script id="countryListTel" type="text/template">
-    <div class="full_country_outer">
-      <% for(var tem in countryArray){ %>
-      <a class="target" name="<%=tem%>"></a>
-      <h4><%= tem%></h4>
-      <ul class="full_country_list">
-        <%countryArray[tem].forEach(function(array){ %>
-        <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><em data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></em><span class="tel_code" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.phoneCode%></span></li>
-        <% })%>
-      </ul>
-      <% }%>
-    </div>
-  </script>
-
-  <!--国籍a-z-->
-  <script id="country_index" type="text/template">
-    <ul>
-      <li><a href="#rm">热门</a></li>
-      <% for(var tem in countryArray){%>
-      <li><a href="#<%=tem%>"><%=tem%></a></li>
-      <%}%>
-    </ul>
-  </script>
-
-</div>
-<!--右侧a-z-->
-<div class="country_index" id="country_index_wrap"></div>
-
-<!--国籍弹窗开始-->
-<ul class="country-list-searched"></ul>
-
-<!--国籍选择结束-->
 
 <!-- 填写姓名说明页-->
-<div class="fillName_page all_elements" id="fillName_page">
+<div class="fillName_page all_elements_sce" id="fillName_page">
   <div class="header">
     <div id="closeName" class="header_quit"><i class="icon_back"></i></div>
     <h3>填写姓名说明</h3>
@@ -286,15 +199,58 @@
   </div>
 </div>
 
+<script id="tpl_traveler" type="text/template">
+  {% var defaultShowCardType=vlm.getpara("isNeedPassport").toLowerCase()=="true"? 1:2;%}
+  {% for(var i=0,len=data.length;i<len;i++){ %}
+    {% var dd=data[i]; %}
+
+    {% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); %}
+      <li class="eve_traveler"  index={%=i%}>
+        <b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>
+        <b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>
+        <ul class="often_user">
+          <input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>
+          <input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>
+          <li data-card="{%=dd.listTravellerIdInfo[0].idType%}">
+            {% if (dd.traveller.lastName) { %}
+            <span>姓 / 名</span>
+            <span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>&nbsp;/&nbsp;<span class="firstName">{%=dd.traveller.firstName%}</span>
+            {% } else { %}
+            <span>姓名</span>
+            <span class="cnName" style="padding-left: 6px">{%=dd.traveller.idName%}</span>
+            {% } %}
+
+            {%  if(age<2){ %}
+            <i class="per_type" data-id="0">婴儿</i>
+            {% } else if(age>=2 && age<12){ %}
+            <i class="per_type" data-id="1">儿童</i>
+            {% } else if(age>=12){ %}
+            <i class="per_type" data-id="2">成人</i>
+            {% } %}
+          </li>
+          {% for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ if(dd.listTravellerIdInfo[j].idType==1){ %}
+          <li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>
+          {% break; } else if(dd.listTravellerIdInfo[j].idType==2 && defaultShowCardType==1){ %}
+          <li class="passport-num"><span class="passport-card-type" style="color: #999;">请补全护照信息</span></li>
+          {% } else{ %}
+          <li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>
+          {% } %}
+          {% } %}
+        </ul>
+    </li>
+  {% } %}
+</script>
+
 <script src="../js/lib/jquery.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/plugins/jquery.alert/jqueryAlert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/plugins.js"></script>
+<!--<script src="../js/lib/ejs.js"></script>-->
 <script src="../js/lib/template.js"></script>
-<script src="../js/plugins/scroller/scroller1.1.js"></script>
-<script src="../js/countrydata.js"></script>
-<script src="../js/country_list.js"></script>
+<script src="../js/plugins/scroller/picker.js"></script>
+<script src="../js/plugins/countryList/countrydata.js"></script>
+<script src="../js/plugins/countryList/country_list.js"></script>
 <script src="scripts/user-choiceAir.js"></script>
 
 <!--国内航班不需要护照过期提示-->
@@ -310,7 +266,13 @@
         $('#con-text').html('')
       }
     }
-  })
+  });
+
+  //国籍和发证国家和手机区号
+  var oCountry1=new CountryList({id:'#oCountry1',telCode:false});
+  var oCountry2=new CountryList({id:'#oCountry2',telCode:false});
+  var oCountryCellAdd=new CountryList({id:'#oCountryCellAdd',telCode:true});
+
 </script>
 
 </body>

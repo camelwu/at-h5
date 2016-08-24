@@ -2,41 +2,40 @@
 <html>
 
 <head lang="cn">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="browsermode" content="application">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="x5-fullscreen" content="true">
-    <meta name="x5-page-mode" content="app">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚程旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <title>订单填写页 - 亚程旅行网</title>
-    <!--<link href="../styles/framework.css" rel="stylesheet" />-->
-    <!--<link href="../styles/style.css" rel="stylesheet" />-->
-    <link href="css/user_order.css" rel="stylesheet" />
-    <link href="../styles/tips.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles/reset.css" />
-
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚程旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>订单填写页 - 亚程旅行网</title>
+  <link href="../styles/reset.css" rel="stylesheet"/>
+  <link href="../styles/tips.css" rel="stylesheet"/>
+  <link href="../user/css/redbag.css" rel="stylesheet"/>
+  <link href="../css/plugins/countryList/country_list.css" rel="stylesheet">
+  <link href="css/user_order.css" rel="stylesheet"/>
 </head>
 
 <body>
-    <div id="preloader">
-        <div id="status">
+<div id="preloader">
+  <div id="status">
 
-        </div>
-    </div>
-    <div class="all_elements input-relative" id="all_elements">
-        <div class="header" id="vlm-login">
-            <a href="javascript:window.history.go(-1);" class="header_back" id="uo_back">
-                <i class="icon_back"></i>
-            </a>
-            <h3>填写订单</h3>
-        </div>
-        <div class="uo_box hotel_user" id="uo_box">
+  </div>
+</div>
+<div class="all_elements input-relative" id="all_elements">
+  <div class="header" id="vlm-login">
+    <a href="javascript:window.history.go(-1);" class="header_back" id="uo_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>填写订单</h3>
+  </div>
+     <div class="uo_box hotel_user" id="uo_box">
             <div class="uo_con1 hotel_user_box">
                 <p>
                     取消说明：
@@ -96,6 +95,13 @@
                     <input type="text" placeholder="用于接收邮件通知" id="uo_c3_email" />
                 </div>
             </form>
+            <div class="coupon" id="coupon" style="display: none;">
+              <p class="title">可选优惠</p>
+              <div class="content">
+                <p>红包<span class="desc"><em class="money">200</em>元酒店红包抵扣</span></p>
+                <em class="open_arw"></em>
+              </div>
+            </div>
             <div class="uo_con5 hotel_user_prompt">
                 <p class="first_prompt">
                     温馨提示
@@ -158,12 +164,60 @@
             <input type="button" value="确认订单" id="uo_confirm" class="hotel_footer_button" />
         </div>
     </div>
+    <script type="text/template" id="redTemplate">
+      <div class="red_bag_wrap" id="redBagWrap">
+        <div class="header">
+          <a href="javascript:;" class="header_back" id="close_page"> <i class="icon_back"></i> </a>
+          <h3 class="title">可选红包(<%= allCouponList.length %>)</h3>
+        </div>
+        <div class="content">
+          <div class="red_List_wrap">
+            <ul class="red_list">
+              <% for(var i=0;i < allCouponList.length;i++) { %>
+              <li>
+                <% if(allCouponList[i].status ==2 ) {%>
+                <div class="red" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                  <% }else if(allCouponList[i].status ==4){%>
+                  <div class="red done" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                    <% }else if(allCouponList[i].status ==5){ %>
+                    <div class="red expire" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                      <% } else {%>
+                      <div class="red" data-amount="<%= allCouponList[i].amount %>" data-code="<%= allCouponList[i].codeCN %>">
+                      <% } %>
+                      <% if(i == 0) {%>
+                        <i class="icon_hook selected"></i>
+                      <% } else {%>
+                        <i class="icon_hook"></i>
+                      <% } %>
 
+                      <div class="wrap">
+                        <p class="title"><%= allCouponList[i].title %></p>
+                        <p class="expire">有效期至<%= allCouponList[i].endDate %></p>
+                        <p class="money"><em>¥</em><%= allCouponList[i].amount %></p>
+                      </div>
+                      <p class="desc"><%= allCouponList[i].desc %></p>
+                      <i class="left_icon"></i>
+                      <i class="right_icon"></i>
+                    </div>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+          <!--<a class="more">点击查看更多往期红包 ></a>-->
+        </div>
+      </div>
+    </script>
 </body>
+
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/plugins/countryList/country_list.js"></script>
+<script src="../js/plugins/countryList/countrydata.js"></script>
+<script src="../user/scripts/userRedBag.js"></script>
 <script src="js/user_order.js"></script>
+
 
 </html>

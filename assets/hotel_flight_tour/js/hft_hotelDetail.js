@@ -5,9 +5,7 @@
   //添加当前选中样式  资源选择页有roomId、列表页没有，所以用判断
   var ulrRoom = window.location.search;
   var dataTransferObj = null, flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
-  if(ulrRoom){
-    var ulrRoomId = ulrRoom.substring(40);
-  }
+  var ulrRoomId = window.localStorage.getItem('selectedRoomId')
   //酒店详情页的入参 存入session
   var fhtHotelCharacteristic = {};
   //酒店详情特色
@@ -87,14 +85,14 @@
     $('ul.ul_room').html(ulList);
     //添加当前选中
     //判断  从资源选择页跳转 有选中，列表页过来没有选中
-    if(ulrRoom){
+   /* if(ulrRoom){*/
       $('.ul_room li').each(function(i){
         var attr = $('.ul_room li').eq(i).attr('data-hotelid');
         if( attr == ulrRoomId ){
           $('.ul_room li').eq(i).addClass('cur');
         }
       });
-    }
+  /*  }*/
     //点击事件  跳转
     $('.hotel_detail_rooms ul.ul_room li').on('click',function(){
       var roomID = $(this).attr('data-hotelId');
@@ -102,13 +100,14 @@
       flightHotelAllData.hotelInfo = dataTransferObj.data.hotelInfo;
       flightHotelAllData.hotelInfo.starRating = starRatingStorage(flightHotelAllData.hotelInfo.starRating);
        window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(flightHotelAllData));
+       window.localStorage.setItem('selectedRoomId',roomID);
        window.timer2 = setTimeout(function () {
         window.clearTimeout(window.timer2);
         window.timer2 = null;
         if(ulrRoom){
-          window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'&selectedRoomId='+roomID;
+          window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24);
         }else{
-          window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
+           window.location.href = 'hft_choose.html'+chooseUrl;
         }
       }, 500);
     });
@@ -126,7 +125,6 @@
     var hotelAddress = ejs.render(str,data.hotelInfo);
     $('.hotel_detail_msg li.mes2').html(hotelAddress);
   }
-
   //  map
   function map(data){
     latitude = data.hotelInfo.latitude-0;
@@ -218,9 +216,10 @@
     var returnDate = new Date(sStorage.returnDate.substring(0,10)).getTime();
     var numberNeight = (returnDate-departDate)/1000/60/60/24;
     $('.numberNeight').html(numberNeight);
-    $('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
-    $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
-
+    //$('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
+    //$('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
+    $('.hotel_detail_rooms .departDate').html(vlm.Utils.format_date(sStorage.departDate ,"md"));
+    $('.hotel_detail_rooms .returnDate').html(vlm.Utils.format_date(sStorage.returnDate ,"md"));
   //  房间
     var searchInfo = JSON.parse(localStorage.getItem("searchInfo"));
     var roomNumber = searchInfo.RoomInfo.length;
@@ -233,17 +232,18 @@
   }
 
 })();
-//(function(){
-//  $(window)[0].addEventListener("scroll",function(){
-//    var header = $(".hft_header")[0];
-//    if(!$(".contents").scrollTop == 0){
-//      header.style.position="fixed";
-//      header.style.opacity="1";
-//      header.style.backgroundColor = "#f7f7f7";
-//    }else{
-//      header.style.position="absolute";
-//      header.style.opacity="0";
-//      header.style.backgroundColor = "transparent";
-//    }
-//  });
-//})()
+(function(){
+    $(".div").scroll(function(){
+      var header = $(".hft_header")[0];
+      var scroll = $(".div").scrollTop();
+      if(!scroll== 0){
+        header.style.position="fixed";
+        header.style.opacity="1";
+        header.style.backgroundColor = "#f7f7f7";
+      }else{
+        header.style.position="absolute";
+        header.style.opacity="0";
+        header.style.backgroundColor = "transparent";
+      }
+    });
+})()
