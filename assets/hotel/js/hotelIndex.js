@@ -46,37 +46,7 @@
         panels.eq(index).show().siblings().hide();
       });
     },
-    // initSlider: function () {
-    //   //国际国内切换实现滑动效果
-    //   hotelIndex.owlQuoteSlider = $(".quote-slider");
-    //
-    //   hotelIndex.owlQuoteSlider.owlCarousel({
-    //     items: 1
-    //   });
-    //   hotelIndex.owlQuoteSlider.on('changed.owl.carousel', function (event) {
-    //     var Inter = $('#Inter')[0],
-    //       Dom = $('#Dom')[0];
-    //     if (Dom.className == 'on') {
-    //       Dom.className = '';
-    //       Inter.className = 'on';
-    //     } else {
-    //       Dom.className = 'on';
-    //       Inter.className = '';
-    //     }
-    //   });
-    //   //tab 点击事件切换
-    //   hotelIndex._initTabEvent();
-    // },
-    // _initTabEvent: function () {
-    //   $("#Dom").click(function () {
-    //     hotelIndex.owlQuoteSlider.trigger('next.owl.carousel');
-    //     return false;
-    //   });
-    //   $("#Inter").click(function () {
-    //     hotelIndex.owlQuoteSlider.trigger('prev.owl.carousel');
-    //     return false;
-    //   });
-    // },
+
     saveHistory: function () {
       //用于记录用户历史选择
       var hotelStorage12345 = {
@@ -215,6 +185,12 @@
 
       $("#h_out").click(function () {
         VM.Load("h_out");
+      });
+
+      $('.choose-aim1 #h_in').on('click',function(){
+        if($('#arr2 .i_address').hasClass('on')){
+          $('#arr2 .i_address').removeClass('on');
+        }
       });
 
       //加 减按钮
