@@ -199,7 +199,6 @@ var hoPos = window.localStorage.getItem('hoPos');
 function uoHisData() {
   var localData = JSON.parse(window.localStorage.getItem('user_order_storage12345'));
   console.log(localData);
-  console.log('上面是localStorage');
   if (localData) {
     //fake_data=localData;
     fake_data.GuestContactNo = localData.GuestContactNo;

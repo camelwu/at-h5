@@ -212,6 +212,7 @@
     },
 
     subRoomListNoService: function (arg) {
+      //console.log(arg);
       var cashOrOnline = arg.paymentModeID == 1 ? "在线付" : (arg.paymentModeID == 2) ? "到店付" : "";
       var brackfast = arg.isABD ? '<span class="breakfast">含早</span>' : '<span class="breakfast">不含早</span>';
       var canceAble = arg.cancellationPeriod > 0 ? '<span class="no-cancel">可取消</span>' : '<span class="no-cancel">不可取消</span>';

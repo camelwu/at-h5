@@ -191,6 +191,7 @@
       });
 
       $('#arr1 .i_address').on('touchend', function () {
+        $('#arr2 .i_address').addClass('on');
         $('#Dom').trigger('click');
         //$('#h_in').text(localAddress['city']);
         GEOIKIT().callMethod("CurrentLocation", {});

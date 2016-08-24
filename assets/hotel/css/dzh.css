@@ -92,7 +92,7 @@ div#h-Tab .off {
 
 i.i_address {
   position: absolute;
-  right: .26rem;
+  right: .4rem;
   top: .3rem;
   width: .36rem;
   height: .42rem;
@@ -101,6 +101,19 @@ i.i_address {
   background-size: 0.36rem .42rem;
   background-position: 0 0;
 }
+
+i.i_address.on {
+  position: absolute;
+  right: .4rem;
+  top: .3rem;
+  width: .36rem;
+  height: .42rem;
+  background-image: url(../../images/ui.1.0/iv_location_on.png);
+  background-repeat: no-repeat;
+  background-size: 0.36rem .42rem;
+  background-position: 0 0;
+}
+
 
 /*第二栏*/
 
