@@ -39,6 +39,9 @@
       $("#h-Tab").on("click","a",function(event){
         var target = $(event.target);
         var index = tabHeader.index(target);
+        if($('#arr2 .i_address').hasClass('on')){
+          $('#arr2 .i_address').removeClass('on');
+        }
         tabHeader.eq(index).addClass("on").siblings().removeClass("on");
         panels.eq(index).show().siblings().hide();
       });
@@ -191,13 +194,14 @@
       });
 
       $('#arr1 .i_address').on('touchend', function () {
-        $('#arr2 .i_address').addClass('on');
         $('#Dom').trigger('click');
+        $('#arr2 .i_address').addClass('on');
         //$('#h_in').text(localAddress['city']);
         GEOIKIT().callMethod("CurrentLocation", {});
         return false;
       });
       $('#arr2 .i_address').on('touchend', function () {
+        $(this).addClass('on');
         //$('#h_in').text(localAddress['city']);
         GEOIKIT().callMethod("CurrentLocation", {});
         //$('#h_in').text(localAddress['province']+localAddress['city']);
