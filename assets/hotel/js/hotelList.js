@@ -578,7 +578,7 @@ $(window).load(function () {
                     scoreHtml = '<span class="hotel_content_score_span">' + hotelList[i].hotelReviewScore.toFixed(1) + '分</span><span>' + hotelList[i].hotelReviewCount + '人点评</span>'
                 }
                 var namestr = hotelList[i].hotelNameLocale != null && hotelList[i].hotelNameLocale != "" ? hotelList[i].hotelNameLocale + '(' + hotelList[i].hotelName + ')' : hotelList[i].hotelName,
-                    str = '<li class="ho_list hotel_list" data-hotelCode="' + hotelList[i].hotelCode + '" data-InstantConfirmation="' + hotelList[i].InstantConfirmation + '" hotelList-AllOccupancy="' + hotelList[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + hotelList[i].frontPgImage + '" class="ho_img"/ data-all="' + hotelList[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + scoreHtml + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + hotelList[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + hotelList[i].location + '</p>' + '</div>' + '</li>';
+                    str = '<li class="ho_list hotel_list" data-freeTransfer="'+hotelList[i].isFreeTransfer+'" data-hotelCode="' + hotelList[i].hotelCode + '" data-InstantConfirmation="' + hotelList[i].InstantConfirmation + '" hotelList-AllOccupancy="' + hotelList[i].AllOccupancy + '">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading_def_small.png" data-src="' + hotelList[i].frontPgImage + '" class="ho_img"/ data-all="' + hotelList[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + scoreHtml + '<p class="hotel_content_price">' + '<span class = "hotel_content_price_start1">￥</span>' + '<span >' + hotelList[i].avgPriceCNY + '</span>' + '<span class ="hotel_content_price_start">起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + hotelList[i].location + '</p>' + '</div>' + '</li>';
 
                 liHtml += str;
             }
@@ -629,6 +629,8 @@ $(window).load(function () {
                         paraObj.NumRoom = urlArgs.NumRoom;
                         paraObj.NumAdult = urlArgs.NumAdult;
                         paraObj.NumChild = urlArgs.NumChild;
+                        //免费接送图标
+                        paraObj.freeTransfer = that.getAttribute('data-freeTransfer');
 
                         var paramStr = "";
                         for (var attr in paraObj) {

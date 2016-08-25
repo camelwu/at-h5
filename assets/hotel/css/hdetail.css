@@ -139,17 +139,19 @@ strong{
   right: .28rem;
   top: .6rem;
 }
-/*.CrazyRate {*/
-  /*display: inline-block;*/
-  /*width: .4rem;*/
-  /*height: .4rem;*/
-  /*background-image: url(../../images/ui.1.0/icon_hotel.png);*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: 7.9rem 2.52rem;*/
-  /*background-position: -1.45rem -0.47rem;*/
-  /*vertical-align: -0.12rem;*/
-  /*margin-left: .2rem;*/
-/*}*/
+.star_level{
+  margin-right: .15rem;
+}
+.h-transfer {
+  display: inline-block;
+  width: .4rem;
+  height: .4rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-repeat: no-repeat;
+  background-size: 7.5rem 4.54rem;
+  background-position: -2.22rem -2.21rem;
+  vertical-align: top;
+}
 .hotel_shoulder_address{
   min-width: 10%;
   max-width: 90%;
@@ -166,9 +168,8 @@ strong{
   background-image: url(../../images/ui.1.0/icon_hotel.png);
   background-repeat: no-repeat;
   background-size: 7.9rem 2.52rem;
-  background-position: -1.45rem -0.47rem;
-  vertical-align: -0.12rem;
-  margin-left: .2rem;
+  background-position: -1.42rem -0.48rem;
+  vertical-align: top;
 }
 .toHotelDetail{
   padding: .28rem .28rem .28rem 0;
