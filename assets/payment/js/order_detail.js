@@ -21,7 +21,7 @@
   };
 
 
-  var bindEvent=function(){
+  var bindEvent=function(data_hotel){
     var fare_tip= $('.fare_tip').parent(),hft_pri_details=$(".hft_pri_details");
 
     //折叠订单价格
@@ -41,7 +41,10 @@
           "ForeEndType":3
         };
         console.log(Parameters);
-        jConfirm('是否取消订单?', '提示', function(status){
+        //取消酒店订单扣款情况说明
+        //console.log(data_hotel);
+        var json_descript=data_hotel.data[0].cancellationDesc;
+        jConfirm(json_descript+'<p style="margin-top: .2rem">您是否确定取消此订单？</p>', '提示', function(status){
           if(status == true){
             vlm.loadJson("",JSON.stringify(Parameters),function(json){
               if(json.success) {
@@ -105,7 +108,7 @@
             location.href=url;
           })
         }
-        bindEvent();
+        bindEvent(data);
       } else{
         alert("接口错误！");
       }
