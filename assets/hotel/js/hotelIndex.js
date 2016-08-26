@@ -36,10 +36,10 @@
       tabHeader.eq(0).addClass("on").siblings().removeClass("on");
       panels.eq(0).show().siblings().hide();
       //tab 点击事件切换
-      $("#h-Tab").on("click","a",function(event){
+      $("#h-Tab").on("click", "a", function (event) {
         var target = $(event.target);
         var index = tabHeader.index(target);
-        if($('#arr2 .i_address').hasClass('on')){
+        if ($('#arr2 .i_address').hasClass('on')) {
           $('#arr2 .i_address').removeClass('on');
         }
         tabHeader.eq(index).addClass("on").siblings().removeClass("on");
@@ -53,9 +53,9 @@
         //"InterDes" : lsf_myweb.getbyid('input1').value,
         "InterBeginDate": document.forms[0].InterCheckInDate.value,
         "InterLeaveDate": document.forms[0].InterCheckOutDate.value,
-        "NumRoom": $("#count1").val(),
-        "NumAdult": $("#count2").val(),
-        "NumChild": $("#count3").val(),
+        "NumRoom": $("#js_roomNum").html(),
+        "NumAdult": $("#js_adultNum").html(),
+        "NumChild": $("#js_childNum").html(),
         //已去掉城市模糊搜索
         "InterTotalDay": $("#total_day").html(),
         "InterBeginDateWeek": $("#week_span1").html(),
@@ -187,83 +187,13 @@
         VM.Load("h_out");
       });
 
-      $('.choose-aim1 #h_in').on('click',function(){
-        if($('#arr2 .i_address').hasClass('on')){
+      $('.choose-aim1 #h_in').on('click', function () {
+        if ($('#arr2 .i_address').hasClass('on')) {
           $('#arr2 .i_address').removeClass('on');
         }
       });
 
-      //加 减按钮
-      /*
-       *@desc 成人数与房间数联动   成人数必须大于等于房间数 房间数小于成人数时 成人数方可减
-       *
-       */
-      $("#content1").on("click", ".add", function (event) {
-        var target = $(event.target);
-        if (target.hasClass('disable')) {
-          return;
-        }
-        var inputEle = target.siblings("input");
-        var minusEle = target.siblings(".minus");
-        var maxValue = parseInt(inputEle.attr("data-max"));
-        var inputValue = inputEle.val();
-        var atferValue = parseInt(inputValue) + 1;
 
-        inputEle.val(atferValue <= maxValue ? atferValue : inputValue);
-        var roomNemEle = $("#count1");
-        var roomValue = parseInt(roomNemEle.val());
-        var adultNumEle = $("#count2");
-        var adultValue = parseInt(adultNumEle.val());
-
-        if (atferValue >= maxValue) {
-          target.addClass("disable");
-        }
-        if (target.hasClass("hotel_people_right_adult_add") && atferValue <= roomValue) {
-          minusEle.removeClass("able").addClass("disable");
-        } else if (atferValue < maxValue && !minusEle.hasClass('able')) {
-          minusEle.removeClass("disable").addClass("able");
-        }
-        if (target.hasClass("hotel_roomNum_add") && atferValue > adultValue) {
-          $("#ho_i7").trigger("click");
-        }
-
-        if (target.hasClass("hotel_roomNum_add") && atferValue == adultValue) {
-          $(".hotel_people_right_adult_minus").removeClass('able').addClass("disable");
-        }
-      });
-      $("#content1").on("click", ".minus", function (event) {
-        var target = $(event.target);
-        if (target.hasClass('disable')) {
-          return;
-        }
-        var inputEle = target.siblings("input");
-        var addEle = target.siblings(".add");
-        var minValue = parseInt(inputEle.attr("data-min"));
-        var maxValue = parseInt(inputEle.attr("data-max"));
-        var inputValue = inputEle.val();
-        var atferValue = parseInt(inputValue) - 1;
-        inputEle.val(atferValue >= minValue ? atferValue : inputValue);
-        var roomNemEle = $("#count1");
-        var roomValue = parseInt(roomNemEle.val());
-        var adultNumEle = $("#count2");
-        var adultValue = parseInt(adultNumEle.val());
-        if (atferValue > minValue && !target.hasClass('able')) {
-          target.removeClass('disable').addClass("able");
-        } else if (atferValue <= minValue) {
-          target.removeClass('able').addClass("disable");
-        }
-        if (atferValue < maxValue) {
-          addEle.removeClass('disable').addClass("able");
-        } else {
-          addEle.removeClass('able').addClass("disable");
-        }
-        if (target.hasClass("hotel_roomNum_reduce") && atferValue < adultValue) {
-          $(".hotel_people_right_adult_minus").removeClass('disable').addClass("able");
-        }
-        if (target.hasClass("hotel_people_right_adult_minus") && atferValue <= roomValue) {
-          target.removeClass("able").addClass("disable");
-        }
-      });
     },
     initData: function () {
       var checkIn = $('#CheckInDate'),
@@ -578,4 +508,11 @@
 
   geokit.VM = geokit.VM || {};
   geokit.GEOIKIT = currgeo;
+
 })();
+
+//入住人数选择
+new Perchoice({
+  id: '#js_room_peo_show',
+  perArr: ['#js_roomNum', '#js_adultNum', '#js_childNum']
+});

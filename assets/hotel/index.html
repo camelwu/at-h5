@@ -34,6 +34,7 @@
         media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
   <link rel="stylesheet" href="../styles/reset.css"/>
   <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+  <link href="../css/plugins/perchoice/perchoice.css" rel="stylesheet" type="text/css">
   <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>
   <link href="css/dzh.css?ver=0505" rel="stylesheet" type="text/css" rel="stylesheet">
   <link href="../css/plugins/calendar/calendar.css" type="text/css" rel="stylesheet">
@@ -51,6 +52,7 @@
       <a href="../index.html" class="header_back">
         <i class="icon_back"></i>
       </a>
+
       <h3>酒店</h3>
     </div>
     <div id="content ddd" class="snap-content" style="padding-top: .88rem;">
@@ -79,66 +81,34 @@
             <div class="content2 hotel_time" id="content2">
               <div class="nav2-center hotel_time_center" id="nav2-center1">
                 <div class="nav2-centertop hotel_time_center_start">
-                  <span class="hotel_roomTime">入住</span>
-                  <div id="CheckInDate"  class="fl select_date"></div>
+                  <span class="hotel_roomTime">入住日期</span>
+
+                  <div id="CheckInDate" class="select_date"></div>
                   <input type="hidden" name="InterCheckInDate" value=""/>
                   <span id="week_span1" class="hotel_week">周二</span>
                 </div>
                 <div class="nav2-left hotel_time_left">
                   <!--<span class="nav2-lefttop">日 期</span>-->
-                  <span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
+                  <span class="nav2-leftbottom"><span id="total_day">1</span> 晚</span>
                 </div>
                 <div class="nav2-centerbottom hotel_time_center_end">
-                  <span class="hotel_roomTime">离店</span>
-                  <div id="CheckOutDate" class="fl select_date"></div>
-                  <input name="InterCheckOutDate" type="hidden" value="" />
+                  <span class="hotel_roomTime">离店日期</span>
+
+                  <div id="CheckOutDate" class="select_date"></div>
+                  <input name="InterCheckOutDate" type="hidden" value=""/>
                   <span id="week_span2" class="hotel_week">周五</span>
                 </div>
               </div>
-              <!--<div class="nav2-centerright hotel_time_right">-->
-              <!--<i></i>-->
-              <!--</div>-->
             </div>
-            <div id="room" class="content3 hotel_roomNum">
-              <div class="nav3-left hotel_roomNum_left">
-                房间
-              </div>
-              <div class="nav3-right hotel_roomNum_right">
-                <input type="text" id="count1" name="NumRoom" value="1" readonly data-min="1" data-max="10">
-                <i class="add hotel_roomNum_add " id="ho_i1"></i>
-                <i class="minus hotel_roomNum_reduce disable" id="ho_i2"></i>
-              </div>
-            </div>
-            <div id="people" class="content4 hotel_people">
-              <div class="nav4 nav41 hotel_people-content">
-                <!--<div class="nav4-left hotel_people_left">-->
-                <!--人数-->
-                <!--</div>-->
-                <div class="nav4-center hotel_people_right">
-                  <div class="nav4-centertop hotel_people_right_adult" id="nav4-centertop">
-                    <p>
-                      <input type="text" value="1" name="NumAdult" id="count2" readonly data-min="1" data-max="50">
-                      <span>成人</span>
-                      <i class="add hotel_people_right_adult_add " id="ho_i7"></i>
-                      <i class="minus hotel_people_right_adult_minus disable" id="ho_i6"></i>
-                    </p>
-                  </div>
-                  <div class="nav4-centerbottom hotel_people_right_child" id="nav4-centerbottom">
-                    <p>
-                      <input type="text" value="0" name="NumChild" id="count3" readonly data-min="0" data-max="10">
-                      <span>儿童</span>
-                      <i class="add hotel_people_right_child_add" id="ho_i3"></i>
-                      <i class="minus hotel_people_right_child_minus disable" id="ho_i4"></i>
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div class="content2 room_peo_wrap clearfix" id="js_room_peo_show">
+              <div>房间<span class="room_num" id="js_roomNum">1</span><input type="hidden" name="NumRoom" value=""/></div>
+              <div>成人<span class="adult_num" id="js_adultNum">1</span><input type="hidden" name="NumAdult" value=""/></div>
+              <div>儿童<span class="child_num" id="js_childNum">0</span><input type="hidden" name="NumChild" value=""/></div>
             </div>
             <div class="aa hotel_submit">
               <div>
                 <input type="submit" id="InterBtn" value="查询" class="button-yellow hotelInter hotel_submit_refer">
               </div>
-
             </div>
           </div>
           <div class="content1 hotel_content">
@@ -161,18 +131,20 @@
 
               <div class="nav2-center hotel_time_center" id="nav2-center2">
                 <div class="nav2-centertop hotel_time_center_start">
-                  <span class="hotel_roomTime">入住</span>
-                  <div  id="DomCheckInDate" class="fl select_date"></div>
+                  <span class="hotel_roomTime">入住日期</span>
+
+                  <div id="DomCheckInDate" class="select_date"></div>
                   <input type="hidden" name="DomCheckInDate"/>
                   <span id="weekSpan3" class="hotel_week">周二</span>
                 </div>
                 <div class="nav2-left hotel_time_left">
                   <!--<span class="nav2-lefttop">日期</span>-->
-                  <span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
+                  <span class="nav2-leftbottom"><span id="domeTotalDay">1</span> 晚</span>
                 </div>
                 <div class="nav2-centerbottom hotel_time_center_end">
-                  <span class="hotel_roomTime">离店</span>
-                  <div id="DomCheckOutDate"  class="fl select_date"></div>
+                  <span class="hotel_roomTime">离店日期</span>
+
+                  <div id="DomCheckOutDate" class="select_date"></div>
                   <input type="hidden" name="DomCheckOutDate"/>
                   <span id="weekSpan4" class="hotel_week">周五</span>
                 </div>
@@ -188,7 +160,6 @@
             </div>
           </div>
         </div>
-
       </form>
       <div class="footer">
         <span></span>
@@ -197,6 +168,8 @@
     </div>
   </div>
 </div>
+
+
 <!--整体城市列表-->
 <div id="citybox_header" class="citybox_wrap" data-bind="type:'cityboxHeader'">
   <!--默认搜索-->
@@ -285,6 +258,8 @@
 <!--整体城市列表-->
 </body>
 <script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/plugins/perchoice/perchoice.js"></script>
 <!--<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>-->
 <script src="../js/plugins/jquery.alert/jqueryAlert.js"></script>
 <script src="../js/plugins/fastclick-master/lib/fastclick.js"></script>
