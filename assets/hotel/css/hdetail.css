@@ -137,7 +137,7 @@ strong{
 }
 .open-arg1{
   right: .28rem;
-  top: .6rem;
+  top: .42rem;
 }
 .star_level{
   margin-right: .15rem;
@@ -192,11 +192,8 @@ strong{
 }
 .hotel_content > li:first-child{
   font-size:.24rem;
-  padding:.2rem;
-  line-height: .84rem;
-  /*padding: .1rem;*/
-  /*line-height: .44rem;*/
-  margin:.2rem 0;
+  padding: 0;
+  padding-left:.28rem;
 }
 .enterDate,.time_span{
   font-size: 0.32rem;
@@ -570,6 +567,31 @@ span.money{
 /*房间售罄*/
 .room_soldout{
   font-size: .2rem;
-  padding: 0 .2rem .4rem;
+  padding: .1rem .2rem .4rem;
   line-height: .45rem;
+}
+
+.check_inout_msg{
+  position: relative;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+.check_inout_msg:last-child{
+  border: none;
+}
+
+.hotel_pad{
+  display: inline-block;
+  margin-left: .1rem;
+  margin-right: .2rem;
+  font-weight: normal;
+  color: #333;
+}
+
+.hot_room_pad{
+  display: inline-block;
+  margin-left: .05rem;
+  margin-right: .2rem;
+  font-weight: normal;
 }

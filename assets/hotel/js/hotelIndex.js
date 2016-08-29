@@ -68,6 +68,10 @@
         "DomBeginDateWeek": $("#weekSpan3").html(),
         "DomLeaveDateWeek": $("#weekSpan4").html()
       };
+
+      if(sessionStorage.h_agesArr){
+        hotelStorage12345.AgesChild=sessionStorage.h_agesArr;
+      }
       sessionStorage.setItem('hotelStorage12345', JSON.stringify(hotelStorage12345));
     },
     //初始化国际 国内日期
