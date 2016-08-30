@@ -184,6 +184,10 @@ strong{
   background: #fff;
   padding-left: .28rem;
 }
+.hotel_content_wrap{
+  margin-top: .2rem;
+  background: #fff;
+}
 .hotel_content > li{
   padding:.2rem;
   position: relative;
@@ -232,7 +236,7 @@ strong{
   width: .4rem;
   height: .4rem;
   background-image: url(../../images/ui.1.0/icon_common.png);
-  background-position: -2.23rem -0.6rem;
+  background-position: -2.2rem -0.6rem;
   background-size: 7.9rem 7.98rem;
   transition: none!important;
   position: absolute;
@@ -555,15 +559,30 @@ span.money{
   padding: .1rem .2rem .4rem;
   line-height: .45rem;
 }
+.room_soldout.hide{
+  display: none;
+}
+
+.showRoom >li{
+  padding: .2rem;
+  padding-left: .28rem;
+  position: relative;
+  border-bottom: 1px solid #dfdfdd;
+  min-height: 1.2rem;
+  box-sizing: border-box;
+}
 
 .check_inout_msg{
   position: relative;
   height: 1.2rem;
   line-height: 1.2rem;
   border-bottom: 1px solid #e6e6e6;
+  margin-left: .28rem;
 }
+
 .hotel_content_num.check_inout_msg{
-  border: none;
+  margin-left: 0%;
+  padding-left: .28rem;
 }
 
 .hotel_pad{

@@ -152,10 +152,24 @@ Perchoice.prototype = {
     var str = '', n = $('#count3').val();
     ;
     for (var i = 0; i < n; i++) {
-      var oChildAge = '<li class="clearfix"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">2岁</span></li>';
+      var oChildAge = '<li class="clearfix js_childAges_li"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">2岁</span></li>';
       str += oChildAge;
     }
     $('#js_childAges').html(str);
+
+    //修改年龄
+    new ATplugins.Picker({
+      input: ".js_childAges_li",
+      type: "ages",
+      value: [2,3,4,5,6,7,8,9,10,11],
+      cont: "per_child_age",
+      callback: ages_change
+    });
+
+    function ages_change(){
+      alert(1);
+    }
+
   },
 
   //加 减按钮
