@@ -19,6 +19,7 @@ Perchoice.prototype = {
   init: function (options) {
     this.id = options.id;
     this.perArr = options.perArr;
+    this.callback = options.callback;
     this.bindEvent(options.id, options.perArr);
   },
 
@@ -107,6 +108,7 @@ Perchoice.prototype = {
 
   //移除面板
   removePanel: function (perarr) {
+    var that=this;
     //取消
     $('#js_room_hide').on('click', function () {
       $('.room_peo_choice').css('visiility', 'hidden');
@@ -122,13 +124,26 @@ Perchoice.prototype = {
       $(perarr[1]).parent().find('input').val($('#count2').val());
       $(perarr[2]).html($('#count3').val());
       $(perarr[2]).parent().find('input').val($('#count3').val());
-      agesArr = [], ages_child = $('#js_childAges .per_child_age');
+      var h_numAgeWrap={},agesArr = [], ages_child = $('#js_childAges .per_child_age');
       for (var i = 0; i < ages_child.length; i++) {
         agesArr.push(parseInt(ages_child.eq(i).html()));
       }
+      h_numAgeWrap.roomNumber=$('#count1').val();
+      h_numAgeWrap.adultNumber=$('#count2').val();
+      h_numAgeWrap.childNumber=$('#count3').val();
+      if(h_numAgeWrap.childNumber){
+        h_numAgeWrap.agesArr=agesArr;
+      }
       window.sessionStorage.h_agesArr = JSON.stringify(agesArr);
+      window.sessionStorage.h_numAgeWrap = JSON.stringify(h_numAgeWrap);
 
       $('.room_peo_choice').remove();
+
+      //执行回调
+      if (that.callback && typeof that.callback == 'function') {
+        that.callback();
+      }
+
     });
   },
 
@@ -137,10 +152,24 @@ Perchoice.prototype = {
     var str = '', n = $('#count3').val();
     ;
     for (var i = 0; i < n; i++) {
-      var oChildAge = '<li class="clearfix"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">2岁</span></li>';
+      var oChildAge = '<li class="clearfix js_childAges_li"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">2岁</span></li>';
       str += oChildAge;
     }
     $('#js_childAges').html(str);
+
+    //修改年龄
+    new ATplugins.Picker({
+      input: ".js_childAges_li",
+      type: "ages",
+      value: [2,3,4,5,6,7,8,9,10,11],
+      cont: "per_child_age",
+      callback: ages_change
+    });
+
+    function ages_change(){
+      alert(1);
+    }
+
   },
 
   //加 减按钮

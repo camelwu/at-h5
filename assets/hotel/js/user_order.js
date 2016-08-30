@@ -205,7 +205,6 @@ function uoHisData() {
     fake_data.GuestEmail = localData.GuestEmail;
     fake_data.guestName = localData.guestName;
     console.log(fake_data);
-    console.log('hahahahhahahahah');
     return;
   } else {
     fake_data.guestName = [];

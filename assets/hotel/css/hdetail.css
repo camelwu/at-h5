@@ -180,8 +180,9 @@ strong{
 
 /*内容部分开始*/
 .hotel_content{
-  margin-top:.2rem;
-  background: #f7f7f7;
+  margin-top: .2rem;
+  background: #fff;
+  padding-left: .28rem;
 }
 .hotel_content > li{
   padding:.2rem;
@@ -190,25 +191,9 @@ strong{
   min-height: .84rem;
   background: #fff;
 }
-.hotel_content > li:first-child{
-  font-size:.24rem;
-  padding: 0;
-  padding-left:.28rem;
-}
 .enterDate,.time_span{
   font-size: 0.32rem;
   color: #7bc300;
-}
-
-
-.hotel_content > li:first-child em{
-  font-style: normal;
-
-}
-.hotel_content > li:last-child{
-  padding:.2rem;
-  border-bottom: 2px solid #dfdfdd;
-  margin-bottom: .8rem;
 }
 .hotel_content_num{
   font-size: .2rem;
@@ -577,7 +562,7 @@ span.money{
   line-height: 1.2rem;
   border-bottom: 1px solid #e6e6e6;
 }
-.check_inout_msg:last-child{
+.hotel_content_num.check_inout_msg{
   border: none;
 }
 

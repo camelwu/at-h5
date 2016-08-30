@@ -32,6 +32,7 @@
   <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"
         media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
   <link rel="stylesheet" href="../../styles/reset.css"/>
+  <link rel="stylesheet" href="../../plugins/scroller/picker.css"/>
   <link rel="stylesheet" href="perchoice.css"/>
   <style>
     #demo1 {
@@ -74,11 +75,20 @@
 
 <script src="../../js/lib/jquery.js"></script>
 <script src="../../plugins/perchoice/perchoice.js"></script>
+<script src="../../plugins/scroller/picker.js"></script>
+
 <script>
+
+  function hotel_per_cb(){
+    alert(1);
+  }
   //入住人数选择
   new Perchoice({
     id: '#demo1',
-    perArr: ['#js_n1', '#js_n2', '#js_n3']
+    perArr: ['#js_n1', '#js_n2', '#js_n3'],
+    callback:function(){
+      hotel_per_cb();
+    }
   });
 </script>
 
