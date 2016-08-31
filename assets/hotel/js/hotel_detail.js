@@ -377,9 +377,8 @@
     },
 
     createAll: function (result) {
-      console.log(result);
+      //console.log(result);
       hotelDetail.myData.createAllback = result;
-      console.log(hotelDetail.myData);
       if (result.success == true) {
         hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
         //data = hotelDetail.myData[0];
@@ -444,9 +443,9 @@
 
       if (hotelDetail.showRoomList(result) == '') {
         //房间已售罄
-        secondUl += '<div class="hotel_content_wrap">' + '<div class="check_inout_msg"  id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span><b class="hotel_pad">入住</b><span class="enterDate" >' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span><b class="hotel_pad">离店</b><em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b></div><div class = "hotel_content_num check_inout_msg" id="js_hotel_content_num"><span id="js_hot_det_roomnum">' + hotelDetail.gdataInfo.NumRoom + '</span><b class="hot_room_pad">间房</b><span id="js_hot_det_adultnum">' + hotelDetail.gdataInfo.NumAdult + '</span><b class="hot_room_pad">成人</b><span id="js_hot_det_childnum">' + hotelDetail.gdataInfo.NumChild + '</span><b class="hot_room_pad">儿童</b><b class="icons open-arg1 hotel_shoulder_icon"></b></div><ul class="showRoom"></ul>' + '<div class="room_soldout">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div>' + '</div>';
+        secondUl += '<div class="hotel_content_wrap">' + '<div class="check_inout_msg"  id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span><b class="hotel_pad">入住</b><span class="enterDate" >' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span><b class="hotel_pad">离店</b><em>共 <span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span> 晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b></div><div class = "hotel_content_num check_inout_msg" id="js_hotel_content_num"><span id="js_hot_det_roomnum">' + JSON.parse(sessionStorage.h_numAgeWrap).roomNumber + '</span><b class="hot_room_pad">间房</b><span id="js_hot_det_adultnum">' + JSON.parse(sessionStorage.h_numAgeWrap).adultNumber + '</span><b class="hot_room_pad">成人</b><span id="js_hot_det_childnum">' + JSON.parse(sessionStorage.h_numAgeWrap).childNumber + '</span><b class="hot_room_pad">儿童</b><b class="icons open-arg1 hotel_shoulder_icon"></b></div><ul class="showRoom"></ul>' + '<div class="room_soldout">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div>' + '</div>';
       } else {
-        secondUl += '<div class="hotel_content_wrap">' + '<div class="check_inout_msg"  id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span><b class="hotel_pad">入住</b><span class="enterDate" >' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span><b class="hotel_pad">离店</b><em>共<span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b></div><div class = "hotel_content_num check_inout_msg" id="js_hotel_content_num"><span id="js_hot_det_roomnum">' + hotelDetail.gdataInfo.NumRoom + '</span><b class="hot_room_pad">间房</b><span id="js_hot_det_adultnum">' + hotelDetail.gdataInfo.NumAdult + '</span><b class="hot_room_pad">成人</b><span id="js_hot_det_childnum">' + hotelDetail.gdataInfo.NumChild + '</span><b class="hot_room_pad">儿童</b><b class="icons open-arg1 hotel_shoulder_icon"></b></div><ul class="showRoom">' + hotelDetail.showRoomList(result) + '</ul><div class="room_soldout hide">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div></div>';
+        secondUl += '<div class="hotel_content_wrap">' + '<div class="check_inout_msg"  id="chooseDate"><span class="enterDate">' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckInDate, "md") + '</span><b class="hotel_pad">入住</b><span class="enterDate" >' + vlm.Utils.format_date(hotelDetail.gdataInfo.CheckOutDate, "md") + '</span><b class="hotel_pad">离店</b><em>共 <span id="nightNum" class = "time_span">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span> 晚</em><b class="icons open-arg1 hotel_shoulder_icon"></b></div><div class = "hotel_content_num check_inout_msg" id="js_hotel_content_num"><span id="js_hot_det_roomnum">' + JSON.parse(sessionStorage.h_numAgeWrap).roomNumber + '</span><b class="hot_room_pad">间房</b><span id="js_hot_det_adultnum">' + JSON.parse(sessionStorage.h_numAgeWrap).adultNumber + '</span><b class="hot_room_pad">成人</b><span id="js_hot_det_childnum">' + JSON.parse(sessionStorage.h_numAgeWrap).childNumber + '</span><b class="hot_room_pad">儿童</b><b class="icons open-arg1 hotel_shoulder_icon"></b></div><ul class="showRoom">' + hotelDetail.showRoomList(result) + '</ul><div class="room_soldout hide">房间已售完，您可以选择其他酒店或者修改入离日期和入住人数重新查询。</div></div>';
       }
 
       contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl + '</div>';
@@ -535,7 +534,6 @@
     },
     //只更改房间列表展示
     room_sel_show: function (res) {
-      console.log(res);
       var roomWrap = '';
       if (res.data.length > 0) {
         var result = {
@@ -549,10 +547,27 @@
         hotelDetail.eventHandle();
 
         //更改房间后的hotelDetailData缓存
-
-        JSON.parse(localStorage.hotelDetailData).data.data[0].hotelRoomsList=[];
-        console.log(localStorage.hotelDetailData);
-
+        var newHotelDetaiData = {}, dataArr = [], greatObj = {}, newHotelDetobj = {};
+        var hotelGenInfoNew = JSON.parse(localStorage.hotelDetailData).data.data[0].hotelGenInfo;
+        var hotelRoomsListNew = JSON.parse(localStorage.hotelDetailData).data.data[0].hotelRoomsList;
+        var hotelImagesListNew = JSON.parse(localStorage.hotelDetailData).data.data[0].hotelImagesList;
+        var dateInfoNew = JSON.parse(localStorage.hotelDetailData).data.data[0].dateInfo;
+        var successNew = JSON.parse(localStorage.hotelDetailData).data.success;
+        var codeNew = JSON.parse(localStorage.hotelDetailData).data.code;
+        var timeNew = JSON.parse(localStorage.hotelDetailData).time;
+        hotelRoomsListNew = res.data;
+        //refresh新的房间详情缓存
+        newHotelDetobj.hotelGenInfo = hotelGenInfoNew;
+        newHotelDetobj.hotelRoomsList = hotelRoomsListNew;
+        newHotelDetobj.hotelImagesList = hotelImagesListNew;
+        newHotelDetobj.dateInfo = dateInfoNew;
+        dataArr.push(newHotelDetobj);
+        greatObj.data = dataArr;
+        greatObj.success = successNew;
+        greatObj.code = codeNew;
+        newHotelDetaiData.data = greatObj;
+        newHotelDetaiData.time = timeNew;
+        localStorage.hotelDetailData = JSON.stringify(newHotelDetaiData);
 
       } else {
         $('.showRoom').html('');
@@ -577,6 +592,7 @@
       dataRoom.numRoom = $('#js_hot_det_roomnum').html();
       dataRoom.numAdult = $('#js_hot_det_adultnum').html();
       dataRoom.numChild = $('#js_hot_det_childnum').html();
+      dataRoom.ChildAges = JSON.parse(sessionStorage.h_agesArr);
       dataRoom.instantConfirmation = 'false';
       dataRoom.allOccupancy = 0;
 
@@ -999,9 +1015,6 @@
       }
       this.gdataInfo = dataObj;
       this.myData.getByUrl = dataObj;
-      console.log(this.myData);
-      console.log('url得到的数据');
-      console.log(this.gdataInfo);
 
       this.jAjax(this.requestUrl, dataObj, "0008", 3, this.createAll);
 

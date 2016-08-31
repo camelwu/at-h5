@@ -184,11 +184,10 @@ if (window.localStorage.getItem('user_order_storage12345')) {
 fake_data.HotelGenInfo = JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
 fake_data.dateInfo = JSON.parse(user_order_storage2).data.data[0].dateInfo;
 var HotelRoomsList = JSON.parse(user_order_storage2).data.data[0].hotelRoomsList;
-console.log(HotelRoomsList);
 var hoPos = window.localStorage.getItem('hoPos');
 for (var i = 0; i < HotelRoomsList.length; i++) {
   for (var j = 0; j < HotelRoomsList[i].roomList.length; j++) {
-    alert(HotelRoomsList[i].roomList[j].roomCode);
+
     if (HotelRoomsList[i].roomList[j].roomCode == RoomCode) {
 
       fake_data.MinAvgPrice = HotelRoomsList[i].minAvgPrice;
@@ -200,11 +199,6 @@ for (var i = 0; i < HotelRoomsList.length; i++) {
     }
   }
 }
-
-console.log(fake_data);
-
-//本地存储数据
-//localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
 (function () {
 
@@ -293,6 +287,9 @@ console.log(fake_data);
   //姓名手机号邮箱实现历史选择记忆功能
   function uoHisFillIn() {
     //实现历史记忆功能，把记忆的东西添加到value中
+    if (!fake_data.guestName) {
+      return;
+    }
     var uo_lastname = lsf_myweb.getbyclass(uo_c3_peoBox, 'uo_lastname');
     var uo_firstname = lsf_myweb.getbyclass(uo_c3_peoBox, 'uo_firstname');
     for (var j = 0; j < uo_lastname.length; j++) {
@@ -372,7 +369,7 @@ console.log(fake_data);
     }
     fake_data.calcuTotalPrice = accuracy > 0 ? formatFloat(totalPrice, accuracy) : totalPrice;
     fake_data.calcuTotalPriceCNY = accuracy > 0 ? formatFloat(totalPriceCNY, accuracy) : totalPriceCNY;
-    //localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
+    localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
   }
 
   uo_detail('uo_hid_p2', 'uo_hid_span2', 'uo_hid_span3', 'uo_hid_met', 'uo_or_sum', 'uo_or_sum2', 'uo_or_sum2CNY', fake_data);
@@ -498,7 +495,6 @@ console.log(fake_data);
 
     window.localStorage.setItem('user_order_storage12345', JSON.stringify(fake_data));
     console.log(fake_data);
-    //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
 
     location.href = "../payment/payment.html?type=Hotle";
 
