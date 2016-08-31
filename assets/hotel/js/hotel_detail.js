@@ -323,10 +323,6 @@
     },
 
     toggleSlider: function () {
-      /*$(this.parentNode.parentNode).find('ul.roomDetailList').hide();
-       $(this.parentNode.parentNode).find('a.at').each(function () {
-       $(this).attr('class', 'at d-icon5');
-       });*/
 
       if (this.isOpen) {
         $(this.parentNode).find('ul.roomDetailList').slideUp("400");
@@ -381,7 +377,7 @@
     },
 
     createAll: function (result) {
-      //console.log('callback函数得到的数据');
+      console.log(result);
       hotelDetail.myData.createAllback = result;
       console.log(hotelDetail.myData);
       if (result.success == true) {
@@ -476,8 +472,9 @@
         h_store.InterBeginDate = origin_h_store.InterBeginDate;
         h_store.InterLeaveDate = origin_h_store.InterLeaveDate;
         h_store.NumRoom = JSON.parse(sessionStorage.h_numAgeWrap).roomNumber;
-        h_store.NumAdult = origin_h_store.NumAdult;
-        h_store.NumChild = origin_h_store.NumChild;
+        h_store.NumAdult = JSON.parse(sessionStorage.h_numAgeWrap).adultNumber;
+        h_store.NumChild = JSON.parse(sessionStorage.h_numAgeWrap).childNumber;
+        ;
         h_store.InterTotalDay = origin_h_store.InterTotalDay;
         h_store.InterBeginDateWeek = origin_h_store.InterBeginDateWeek;
         h_store.InterLeaveDateWeek = origin_h_store.InterLeaveDateWeek;
@@ -550,6 +547,13 @@
         $('.showRoom').html(roomWrap);
         $('.room_soldout').addClass('hide');
         hotelDetail.eventHandle();
+
+        //更改房间后的hotelDetailData缓存
+
+        JSON.parse(localStorage.hotelDetailData).data.data[0].hotelRoomsList=[];
+        console.log(localStorage.hotelDetailData);
+
+
       } else {
         $('.showRoom').html('');
         $('.room_soldout').removeClass('hide');
@@ -843,8 +847,7 @@
     },
 
     toggleSubModals: function () {
-      var info = this.getAttribute('room-code'),
-        tempInfo;
+      var info = this.getAttribute('room-code'), tempInfo;
       var compareData = hotelDetail.sourceData.data[0].hotelRoomsList;
       for (var i = 0; i < compareData.length; i++) {
         for (var j = 0, teList = compareData[i].roomList; j < teList.length; j++) {

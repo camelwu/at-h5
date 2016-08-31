@@ -160,7 +160,7 @@ Perchoice.prototype = {
     //修改年龄
     new ATplugins.Picker({
       input: ".js_childAges_li",
-      type: "dateTime",
+      type: "ages",
       value: [2,3,4,5,6,7,8,9,10,11],
       cont: "per_child_age",
       callback: ages_change
