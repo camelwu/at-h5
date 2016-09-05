@@ -92,6 +92,10 @@
     <div id="picker7" class="button"></div>
     <h2>日期 + 时间</h2>
     <div id="picker8" class="button"></div>
+    <h2>自定义</h2>
+    <div id="picker9" class="button"></div>
+    <h2>自定义</h2>
+    <div id="picker10" class="button"></div>
     <ul>
       <li>item 1</li>
       <li>item 1</li>
@@ -187,6 +191,29 @@
   var myDate8 = new ATplugins.Picker({
     input: '#picker8',
     type: 'dateTime',
+    callback: function (arrayData) {
+      console.info(arrayData);
+      // $("#picker8").html(arrayData.join(" "));
+    }
+  });
+  var myDate9 = new ATplugins.Picker({
+    input: '#picker9',
+    type: 'custom',
+    cols: [
+      {values:[1,2,3,4,5,6]},
+      {values:['one','two']}
+    ],
+    callback: function (arrayData) {
+      console.info(arrayData);
+      // $("#picker8").html(arrayData.join(" "));
+    }
+  });
+  var myDate9 = new ATplugins.Picker({
+    input: '#picker10',
+    type: 'custom',
+    cols: [
+      {values:[1,2,3,4,5,6]}
+    ],
     callback: function (arrayData) {
       console.info(arrayData);
       // $("#picker8").html(arrayData.join(" "));

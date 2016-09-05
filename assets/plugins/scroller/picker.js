@@ -533,6 +533,9 @@
         case 'validate':
           p.cols = setValidateCols(['年', '月', '日']);
           break;
+        case 'custom':
+          p.cols = p.params.cols;
+          break;
         default:
           p.cols = setDateCols(['年', '月', '日']);
           break;
@@ -552,6 +555,7 @@
         '</div>';
       p.pickerHtml = pickerHtml;
     };
+
     //设置月 周 时 分
     function setDateTimeCols(formatArray) {
       var cols = [];
