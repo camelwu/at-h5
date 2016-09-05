@@ -11,7 +11,7 @@ function Perchoice() {
     alert("需要jQuery!");
   }
 };
-var agesArr, ages_child;
+var agesArr, ages_child, ageNum = 0;
 Perchoice.prototype = {
 
   constructor: Perchoice,
@@ -19,6 +19,7 @@ Perchoice.prototype = {
   init: function (options) {
     this.id = options.id;
     this.perArr = options.perArr;
+    this.limitArr = options.limitArr || [2,3,4,5,6,7,8,9,10,11];
     this.callback = options.callback;
     this.bindEvent(options.id, options.perArr);
   },
@@ -83,7 +84,7 @@ Perchoice.prototype = {
       '</div>' +
       '<ul class="child_ages_ul" id="js_childAges">' +
       '</ul>' +
-      '<p class="child_add_tips">如果您带一名儿童，并需要增加一张床，请直接增加为一名成人。</p>'+
+      '<p class="child_add_tips">如果您带一名儿童，并需要增加一张床，请直接增加为一名成人。</p>' +
       '</div>'
     ].join('');
     var perWrap = $('<div class="room_peo_choice" ></div>');
@@ -101,17 +102,25 @@ Perchoice.prototype = {
       $('#ho_i4').removeClass('disable').addClass('able');
     }
 
+    if (parseInt($('#count3').val()) >= 2 * parseInt($('#count1').val())) {
+      $('#ho_i3').removeClass('able').addClass('disable');
+    }
+
     //儿童年龄展示个数
-    var n = $(perarr[2]).html();
-    this.childAgeChoose();
+    var showNum = $(perarr[2]).html(),childstr='';
+    for(var i=0;i<showNum;i++){
+      childstr += '<li class="clearfix js_childAges_li" id="js_childAges_li_0' + i + '"><span class="fl">儿童' + (i+1) + '年龄</span><span class="fr per_child_age">'+JSON.parse(sessionStorage.h_agesArr)[i]+'岁</span></li>';
+    }
+    $('#js_childAges').html(childstr);
+    that.childAgeChoose();
   },
 
   //移除面板
   removePanel: function (perarr) {
-    var that=this;
+    var that = this;
     //取消
     $('#js_room_hide').on('click', function () {
-      $('.room_peo_choice').css('visiility', 'hidden');
+      $('.room_peo_choice').css('visibility', 'hidden');
       setTimeout(function () {
         $('.room_peo_choice').remove();
       }, 150);
@@ -124,15 +133,15 @@ Perchoice.prototype = {
       $(perarr[1]).parent().find('input').val($('#count2').val());
       $(perarr[2]).html($('#count3').val());
       $(perarr[2]).parent().find('input').val($('#count3').val());
-      var h_numAgeWrap={},agesArr = [], ages_child = $('#js_childAges .per_child_age');
+      var h_numAgeWrap = {}, agesArr = [], ages_child = $('#js_childAges .per_child_age');
       for (var i = 0; i < ages_child.length; i++) {
         agesArr.push(parseInt(ages_child.eq(i).html()));
       }
-      h_numAgeWrap.roomNumber=$('#count1').val();
-      h_numAgeWrap.adultNumber=$('#count2').val();
-      h_numAgeWrap.childNumber=$('#count3').val();
-      if(h_numAgeWrap.childNumber){
-        h_numAgeWrap.agesArr=agesArr;
+      h_numAgeWrap.roomNumber = $('#count1').val();
+      h_numAgeWrap.adultNumber = $('#count2').val();
+      h_numAgeWrap.childNumber = $('#count3').val();
+      if (h_numAgeWrap.childNumber) {
+        h_numAgeWrap.agesArr = agesArr;
       }
       window.sessionStorage.h_agesArr = JSON.stringify(agesArr);
       window.sessionStorage.h_numAgeWrap = JSON.stringify(h_numAgeWrap);
@@ -149,27 +158,25 @@ Perchoice.prototype = {
 
   //儿童年龄选择
   childAgeChoose: function () {
-    var str = '', n = $('#count3').val();
-    ;
-    for (var i = 0; i < n; i++) {
-      var oChildAge = '<li class="clearfix js_childAges_li"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">2岁</span></li>';
-      str += oChildAge;
+    var that=this;
+    var len = $('#js_childAges li').length, arr = [];
+    for (var i = 0; i < len; i++) {
+      arr.push('#js_childAges_li_0' + (i + 1));
+      //修改年龄
+      (function (index) {
+        new ATplugins.Picker({
+          input: arr[i],
+          type: "custom",
+          cols: [
+            {values: that.limitArr}
+          ],
+          callback: function (arrayData) {
+            console.info(arrayData);
+            $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
+          }
+        });
+      })(i);
     }
-    $('#js_childAges').html(str);
-
-    //修改年龄
-    new ATplugins.Picker({
-      input: ".js_childAges_li",
-      type: "ages",
-      value: [2,3,4,5,6,7,8,9,10,11],
-      cont: "per_child_age",
-      callback: ages_change
-    });
-
-    function ages_change(){
-      alert(1);
-    }
-
   },
 
   //加 减按钮
@@ -215,11 +222,11 @@ Perchoice.prototype = {
         $('#ho_i3').removeClass('disable').addClass('able');
       }
 
-      if (parseInt($('#count2').val()) >= 6*parseInt($('#count1').val())) {
+      if (parseInt($('#count2').val()) >= 6 * parseInt($('#count1').val())) {
         $('#ho_i7').removeClass('able').addClass('disable');
       }
 
-      if (target.hasClass("hotel_roomNum_add") && parseInt($('#count2').val()) <= 6*parseInt($('#count1').val())) {
+      if (target.hasClass("hotel_roomNum_add") && parseInt($('#count2').val()) <= 6 * parseInt($('#count1').val())) {
         $('#ho_i7').removeClass('disable').addClass('able');
       }
 
@@ -230,6 +237,10 @@ Perchoice.prototype = {
         if (n >= 2 * room_n) {
           $('#ho_i3').addClass('disable');
         }
+
+        ageNum++;
+        var childLi = $('<li class="clearfix js_childAges_li" id="js_childAges_li_0' + ageNum + '"><span class="fl">儿童' + ageNum + '年龄</span><span class="fr per_child_age">2岁</span></li>');
+        childLi.appendTo($('#js_childAges'));
         that.childAgeChoose();
       }
 
@@ -274,24 +285,22 @@ Perchoice.prototype = {
         target.removeClass("able").addClass("disable");
       }
 
-      if (parseInt($('#count3').val()) == parseInt($('#count1').val())*2) {
+      if (parseInt($('#count3').val()) == parseInt($('#count1').val()) * 2) {
         $('#ho_i3').removeClass('able').addClass('disable');
       }
 
-      if (parseInt($('#count2').val()) >= 6*parseInt($('#count1').val())) {
-        $('#count2').val(6*parseInt($('#count1').val()));
+      if (parseInt($('#count2').val()) >= 6 * parseInt($('#count1').val())) {
+        $('#count2').val(6 * parseInt($('#count1').val()));
         $('#ho_i7').removeClass('able').addClass('disable');
       }
 
       //儿童减时，年龄栏
-      var n = $('#count3').val();
-      var str = '';
       if (target.hasClass('hotel_people_right_child_minus')) {
-        for (var i = 0; i < n; i++) {
-          var oChildAge = '<li class="clearfix"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">2岁</span></li>';
-          str += oChildAge;
+        ageNum--;
+        if ($('#count3').val() == 0) {
+          ageNum = 0;
         }
-        $('#js_childAges').html(str);
+        $('#js_childAges li').last().remove();
       }
 
     });
