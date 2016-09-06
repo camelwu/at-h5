@@ -160,35 +160,24 @@ Perchoice.prototype = {
   //儿童年龄选择
   childAgeChoose: function () {
     var that = this;
-    //var len = $('#js_childAges li').length, arr = [];
-    //for (var i = 0; i < len; i++) {
-    //  arr.push('#js_childAges_li_0' + (i + 1));
-    //  //修改年龄
-    //  (function (index) {
-    //    new ATplugins.Picker({
-    //      input: arr[i],
-    //      type: "custom",
-    //      cols: [
-    //        {values: that.limitArr}
-    //      ],
-    //      callback: function (arrayData) {
-    //        //console.info(arrayData);
-    //        $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
-    //      }
-    //    });
-    //  })(i);
-    //}
-    new ATplugins.Picker({
-      input: arr[i],
-      type: "custom",
-      cols: [
-        {values: that.limitArr}
-      ],
-      callback: function (arrayData) {
-        //console.info(arrayData);
-        $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
-      }
-    });
+    var len = $('#js_childAges li').length, arr = [];
+    for (var i = 0; i < len; i++) {
+      arr.push('#js_childAges_li_0' + (i + 1));
+      //修改年龄
+      (function (index) {
+        new ATplugins.Picker({
+          input: arr[i],
+          type: "custom",
+          cols: [
+            {values: that.limitArr}
+          ],
+          callback: function (arrayData) {
+            //console.info(arrayData);
+            $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
+          }
+        });
+      })(i);
+    }
   },
 
   //加 减按钮

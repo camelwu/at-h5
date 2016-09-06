@@ -142,13 +142,13 @@
     var originBug = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) && (navigator.userAgent.toLowerCase().indexOf('safari') >= 0 && navigator.userAgent.toLowerCase().indexOf('chrome') < 0);
 
     //初始化columns
-    p.columnHtml = function (col,styleWidth) {
+    p.columnHtml = function (col, styleWidth) {
       var columnHtml = '';
       var columnItemsHtml = '';
       for (var i = 0, len = col.values.length; i < len; i++) {
         columnItemsHtml += col.dataValues ? '<div  class="picker_item" data-value="' + col.dataValues[i] + '" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>' : '<div  class="picker_item" data-value="' + col.values[i] + '" data-picker-value="' + col.values[i] + '">' + col.values[i] + '</div>';
       }
-      columnHtml += '<div class="picker_items_col" style="width: '+styleWidth+'"><div class="picker_items_col_wrapper">' + columnItemsHtml + '</div></div>';
+      columnHtml += '<div class="picker_items_col" style="width: ' + styleWidth + '"><div class="picker_items_col_wrapper">' + columnItemsHtml + '</div></div>';
       return columnHtml;
     };
     //设置每行的值
@@ -542,10 +542,10 @@
       }
       var colsHtml = '';
       var len = p.cols.length;
-      var styleWidth = Math.round(1/len*10000)/100 + "%";
+      var styleWidth = Math.round(1 / len * 10000) / 100 + "%";
       for (i = 0; i < len; i++) {
         var col = p.cols[i];
-        colsHtml += p.columnHtml(col,styleWidth);
+        colsHtml += p.columnHtml(col, styleWidth);
       }
 
       pickerHtml = p.params.toolbarTemplate +
@@ -787,6 +787,13 @@
       overlay.id = "pickerOverlay";
       overlay.className = 'mask';
       document.body.appendChild(overlay);
+
+      if ($('.mask').length > 1) {
+        for (var i = 0; i < $('.mask').length - 1; i++) {
+          $('.mask').eq(i).remove();
+        }
+      }
+
       document.body.appendChild(pickerContainer);
 
       p.container = $("#" + pickerContainerId);
@@ -931,7 +938,7 @@
       e.preventDefault();
       p.input.focus();
       //让当前获取焦点的input失去焦点
-      $("input").each(function(index,ele){
+      $("input").each(function (index, ele) {
         $(ele).blur();
       });
       if (p.opened) return;
