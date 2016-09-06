@@ -621,7 +621,7 @@ $(window).load(function () {
             // paraObj.PartnerCode=hotelList[that.index].PartnerCode!=null?hotelList[that.index].PartnerCode:1000;
             paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
             paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
-            if (hoPos == 'inter') {
+            if (hoPos == 'inter' || hoPos== undefined) {
               //国际
               paraObj.CheckInDate = urlArgs.InterCheckInDate;
               paraObj.CheckOutDate = urlArgs.InterCheckOutDate;
