@@ -473,7 +473,7 @@
       }
 
       //每个房间限制最大儿童数
-      var limitOccupancy=2;
+      var limitOccupancy = 2;
       if (result.data[0].hotelRoomsList.length > 0 && result.data[0].hotelRoomsList[0].roomList.length > 0) {
         limitOccupancy = parseInt(result.data[0].hotelRoomsList[0].roomList[0].limitOccupancy)
       }
@@ -488,22 +488,24 @@
 
       function perChoose() {
         //重置hotelStorage12345
-        var h_store = {}, origin_h_store = JSON.parse(sessionStorage.hotelStorage12345);
-        h_store.InterBeginDate = origin_h_store.InterBeginDate;
-        h_store.InterLeaveDate = origin_h_store.InterLeaveDate;
-        h_store.NumRoom = JSON.parse(sessionStorage.h_numAgeWrap).roomNumber;
-        h_store.NumAdult = JSON.parse(sessionStorage.h_numAgeWrap).adultNumber;
-        h_store.NumChild = JSON.parse(sessionStorage.h_numAgeWrap).childNumber;
-        ;
-        h_store.InterTotalDay = origin_h_store.InterTotalDay;
-        h_store.InterBeginDateWeek = origin_h_store.InterBeginDateWeek;
-        h_store.InterLeaveDateWeek = origin_h_store.InterLeaveDateWeek;
-        h_store.DomCheckInDate = origin_h_store.DomCheckInDate;
-        h_store.DomCheckOutDate = origin_h_store.DomCheckOutDate;
-        h_store.DomeTotalDay = origin_h_store.DomeTotalDay;
-        h_store.DomBeginDateWeek = origin_h_store.DomBeginDateWeek;
-        h_store.DomLeaveDateWeek = origin_h_store.DomLeaveDateWeek;
-        sessionStorage.setItem('hotelStorage12345', JSON.stringify(h_store));
+        if (sessionStorage.hotelStorage12345) {
+          var h_store = {}, origin_h_store = JSON.parse(sessionStorage.hotelStorage12345);
+          h_store.InterBeginDate = origin_h_store.InterBeginDate;
+          h_store.InterLeaveDate = origin_h_store.InterLeaveDate;
+          h_store.NumRoom = JSON.parse(sessionStorage.h_numAgeWrap).roomNumber;
+          h_store.NumAdult = JSON.parse(sessionStorage.h_numAgeWrap).adultNumber;
+          h_store.NumChild = JSON.parse(sessionStorage.h_numAgeWrap).childNumber;
+          ;
+          h_store.InterTotalDay = origin_h_store.InterTotalDay;
+          h_store.InterBeginDateWeek = origin_h_store.InterBeginDateWeek;
+          h_store.InterLeaveDateWeek = origin_h_store.InterLeaveDateWeek;
+          h_store.DomCheckInDate = origin_h_store.DomCheckInDate;
+          h_store.DomCheckOutDate = origin_h_store.DomCheckOutDate;
+          h_store.DomeTotalDay = origin_h_store.DomeTotalDay;
+          h_store.DomBeginDateWeek = origin_h_store.DomBeginDateWeek;
+          h_store.DomLeaveDateWeek = origin_h_store.DomLeaveDateWeek;
+          sessionStorage.setItem('hotelStorage12345', JSON.stringify(h_store));
+        }
 
         //更改房间，人数之后，有加载图标
         var mask = $('<div id="preloader"><div id="status"></div></div>');
@@ -599,7 +601,6 @@
 
     //更改房间请求
     room_select: function (arg) {
-
       var dataRoom = arg || this.parseUrlPara(document.location.search, true);
       var hotelId = dataRoom.HotelID;
       var hotelCode = dataRoom.HotelCode;
@@ -613,10 +614,14 @@
       dataRoom.numRoom = $('#js_hot_det_roomnum').html();
       dataRoom.numAdult = $('#js_hot_det_adultnum').html();
       dataRoom.numChild = $('#js_hot_det_childnum').html();
-      dataRoom.ChildAges = JSON.parse(sessionStorage.h_agesArr);
       dataRoom.instantConfirmation = 'false';
       dataRoom.allOccupancy = 0;
 
+      if (sessionStorage.h_agesArr) {
+        if (JSON.parse(sessionStorage.h_agesArr).length > 0) {
+          dataRoom.ChildAges = JSON.parse(sessionStorage.h_agesArr);
+        }
+      }
       var Parameters = {
         "parameters": dataRoom,
         "foreEndType": 2,
@@ -1036,7 +1041,7 @@
       }
       this.gdataInfo = dataObj;
       this.myData.getByUrl = dataObj;
-      if($('#js_hot_det_roomnum').html()){
+      if ($('#js_hot_det_roomnum').html()) {
         dataObj.NumRoom = $('#js_hot_det_roomnum').html();
         dataObj.NumAdult = $('#js_hot_det_adultnum').html();
         dataObj.NumChild = $('#js_hot_det_childnum').html();
