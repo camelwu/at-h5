@@ -79,14 +79,16 @@
 
 <script>
 
-  function hotel_per_cb(){
+  function hotel_per_cb() {
     alert(1);
   }
   //入住人数选择
   new Perchoice({
     id: '#demo1',
     perArr: ['#js_n1', '#js_n2', '#js_n3'],
-    callback:function(){
+    limitArr: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],   //限制年龄
+    limitOccupancy: 2,   //限制每个房间儿童数
+    callback: function () {
       hotel_per_cb();
     }
   });
