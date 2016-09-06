@@ -459,19 +459,22 @@
       hotelDetail.$CN('all_elements')[0].innerHTML = allStr;
 
       console.log(result.data[0].hotelRoomsList[0].roomList[0].maxChildAge);
-      var roomNumbers = result.data[0].hotelRoomsList[0].roomList[0].length, limitArray;
-      if (roomNumbers) {
-        for (var i = 2; i <= roomNumbers; i++) {
+      var roomNumbers = result.data[0].hotelRoomsList[0].roomList, limitArray = [];
+      if (roomNumbers.length) {
+        for (var i = 2; i <= roomNumbers[0].maxChildAge; i++) {
           limitArray.push(i);
         }
       } else {
         limitArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
       }
+      //每个房间限制最大儿童数
+      var limitOccupancy = parseInt(result.data[0].hotelRoomsList[0].roomList[0].limitOccupancy) || 2;
       //入住人数选择
       new Perchoice({
         id: '#js_hotel_content_num',
         perArr: ['#js_hot_det_roomnum', '#js_hot_det_adultnum', '#js_hot_det_childnum'],
         limitArr: limitArray,   //限制年龄
+        limitOccupancy:limitOccupancy,   //限制每个房间儿童数
         callback: perChoose
       });
 

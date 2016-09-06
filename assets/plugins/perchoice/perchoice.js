@@ -19,7 +19,8 @@ Perchoice.prototype = {
   init: function (options) {
     this.id = options.id;
     this.perArr = options.perArr;
-    this.limitArr = options.limitArr || [2,3,4,5,6,7,8,9,10,11];
+    this.limitArr = options.limitArr || [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    this.limitOccupancy = options.limitOccupancy || 2;
     this.callback = options.callback;
     this.bindEvent(options.id, options.perArr);
   },
@@ -102,14 +103,14 @@ Perchoice.prototype = {
       $('#ho_i4').removeClass('disable').addClass('able');
     }
 
-    if (parseInt($('#count3').val()) >= 2 * parseInt($('#count1').val())) {
+    if (parseInt($('#count3').val()) >= that.limitOccupancy * parseInt($('#count1').val())) {
       $('#ho_i3').removeClass('able').addClass('disable');
     }
 
     //儿童年龄展示个数
-    var showNum = $(perarr[2]).html(),childstr='';
-    for(var i=0;i<showNum;i++){
-      childstr += '<li class="clearfix js_childAges_li" id="js_childAges_li_0' + i + '"><span class="fl">儿童' + (i+1) + '年龄</span><span class="fr per_child_age">'+JSON.parse(sessionStorage.h_agesArr)[i]+'岁</span></li>';
+    var showNum = $(perarr[2]).html(), childstr = '';
+    for (var i = 0; i < showNum; i++) {
+      childstr += '<li class="clearfix js_childAges_li" data-selected="' + JSON.parse(sessionStorage.h_agesArr)[i] + '" id="js_childAges_li_0' + (i + 1) + '"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">' + JSON.parse(sessionStorage.h_agesArr)[i] + '岁</span></li>';
     }
     $('#js_childAges').html(childstr);
     that.childAgeChoose();
@@ -158,25 +159,36 @@ Perchoice.prototype = {
 
   //儿童年龄选择
   childAgeChoose: function () {
-    var that=this;
-    var len = $('#js_childAges li').length, arr = [];
-    for (var i = 0; i < len; i++) {
-      arr.push('#js_childAges_li_0' + (i + 1));
-      //修改年龄
-      (function (index) {
-        new ATplugins.Picker({
-          input: arr[i],
-          type: "custom",
-          cols: [
-            {values: that.limitArr}
-          ],
-          callback: function (arrayData) {
-            console.info(arrayData);
-            $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
-          }
-        });
-      })(i);
-    }
+    var that = this;
+    //var len = $('#js_childAges li').length, arr = [];
+    //for (var i = 0; i < len; i++) {
+    //  arr.push('#js_childAges_li_0' + (i + 1));
+    //  //修改年龄
+    //  (function (index) {
+    //    new ATplugins.Picker({
+    //      input: arr[i],
+    //      type: "custom",
+    //      cols: [
+    //        {values: that.limitArr}
+    //      ],
+    //      callback: function (arrayData) {
+    //        //console.info(arrayData);
+    //        $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
+    //      }
+    //    });
+    //  })(i);
+    //}
+    new ATplugins.Picker({
+      input: arr[i],
+      type: "custom",
+      cols: [
+        {values: that.limitArr}
+      ],
+      callback: function (arrayData) {
+        //console.info(arrayData);
+        $(arr[index]).find('.per_child_age').html(arrayData[0] + '岁');
+      }
+    });
   },
 
   //加 减按钮
@@ -234,10 +246,10 @@ Perchoice.prototype = {
       if (target.hasClass('hotel_people_right_child_add')) {
         var n = $('#count3').val();
         var room_n = $('#count1').val();
-        if (n >= 2 * room_n) {
+        if (n >= that.limitOccupancy * room_n) {
           $('#ho_i3').addClass('disable');
         }
-
+        ageNum = $('#js_childAges li').length;
         ageNum++;
         var childLi = $('<li class="clearfix js_childAges_li" id="js_childAges_li_0' + ageNum + '"><span class="fl">儿童' + ageNum + '年龄</span><span class="fr per_child_age">2岁</span></li>');
         childLi.appendTo($('#js_childAges'));
@@ -276,8 +288,12 @@ Perchoice.prototype = {
       }
       if (target.hasClass("hotel_roomNum_reduce") && atferValue < adultValue) {
         $(".hotel_people_right_adult_minus").removeClass('disable').addClass("able");
-        if (parseInt($('#count3').val()) > parseInt($('#count1').val()) * 2) {
-          $('#count3').val(parseInt($('#count1').val()) * 2);
+        if (parseInt($('#count3').val()) > parseInt($('#count1').val()) * that.limitOccupancy) {
+          var MaxChildLen = parseInt($('#count3').val()) - parseInt($('#count1').val()) * that.limitOccupancy;
+          for (i = 0; i < MaxChildLen; i++) {
+            $('#js_childAges li').last().remove();
+          }
+          $('#count3').val(parseInt($('#count1').val()) * that.limitOccupancy);
           that.childAgeChoose();
         }
       }
@@ -285,7 +301,7 @@ Perchoice.prototype = {
         target.removeClass("able").addClass("disable");
       }
 
-      if (parseInt($('#count3').val()) == parseInt($('#count1').val()) * 2) {
+      if (parseInt($('#count3').val()) == parseInt($('#count1').val()) * that.limitOccupancy) {
         $('#ho_i3').removeClass('able').addClass('disable');
       }
 
