@@ -433,7 +433,6 @@ $(window).load(function () {
           'NumRoom': json.NumRoom,
           'NumAdult': json.NumAdult,
           'NumChild': json.NumChild,
-          'childAges': JSON.parse(sessionStorage.h_agesArr),
           'InstantConfirmation': true,
           'AllOccupancy': true,
           'PageIndex': json.pageIndex,
@@ -446,7 +445,12 @@ $(window).load(function () {
         "Code": "0007",
         "ForeEndType": 3
       };
-    } else if (hoPos = 'dom') {
+      if (sessionStorage.h_agesArr && JSON.parse(sessionStorage.h_agesArr).length > 0) {
+        data.Parameters.childAges = JSON.parse(sessionStorage.h_agesArr);
+      }
+    }
+
+    else if (hoPos = 'dom') {
       //中文,需要匹配
       if (pattern.test(json.DomCityName)) {
         for (var i = 0; i < hl_cityListInfo.length; i++) {
@@ -529,7 +533,7 @@ $(window).load(function () {
 
   }
 
-  //数据展示部分
+//数据展示部分
   function renderList(data) {
     if (!data) return;
     var locationList = data.locationList;
@@ -775,7 +779,7 @@ $(window).load(function () {
 
   }
 
-  //推荐排序 恢复缓存中状态
+//推荐排序 恢复缓存中状态
   var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
 
   function sortHistory(myAsiaHlHistory) {
@@ -803,7 +807,7 @@ $(window).load(function () {
   sortHistory(myAsiaHlHistory);
 
 
-  //筛选 恢复缓存中状态
+//筛选 恢复缓存中状态
   function filterHistory(myAsiaHlHistory) {
     if (!myAsiaHlHistory.hlFilter)
       return;
@@ -836,7 +840,7 @@ $(window).load(function () {
   filterHistory(myAsiaHlHistory);
 
 
-  //位置信息 恢复缓存中状态   获取到数据后  再执行一次
+//位置信息 恢复缓存中状态   获取到数据后  再执行一次
   function locationHistory() {
     var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
     if (!myAsiaHlHistory.hlLocation)
@@ -868,7 +872,7 @@ $(window).load(function () {
 
   getListByPage(urlArgs);
 
-  //推荐排序里面的点击事件（交互）
+//推荐排序里面的点击事件（交互）
   utils.bind(oBody, 'click', function (ev) {
     var oEvent = ev || event;
     var oSrc = oEvent.srcElement || oEvent.target;
@@ -905,7 +909,7 @@ $(window).load(function () {
     //ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
     // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
   });
-  //筛选里面确定按钮的点击事件（交互）
+//筛选里面确定按钮的点击事件（交互）
   utils.bind(oBody, 'click', function (ev) {
     var oEvent = ev || event;
     var oFilter = document.getElementById('screen');
@@ -1064,7 +1068,7 @@ $(window).load(function () {
     ATplugins.ScrollLayer().scroll("#screen", '#screenWrapper');
     // ATplugins.ScrollLayer().scroll("#location", '#locationWrapper');
   });
-  //位置里面的城市实现筛选交互
+//位置里面的城市实现筛选交互
   utils.bind(oBody, 'click', function (ev) {
     var oEvent = ev || event;
     var oLocation = document.getElementById('location');
@@ -1122,7 +1126,7 @@ $(window).load(function () {
   });
 
 
-  //加载更多
+//加载更多
   utils.bind(document.getElementById("loadMore"), 'click', function () {
     var loadMore = document.getElementById("loadMore");
     var pageIndex = urlArgs.pageIndex + 1;
@@ -1138,7 +1142,8 @@ $(window).load(function () {
   });
 
 
-})();
+})
+();
 
 //把星级英文数字换成汉字
 function num2chin(num) {
