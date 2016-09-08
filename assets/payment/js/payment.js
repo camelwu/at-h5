@@ -273,7 +273,11 @@
           var param;
 
           var hotelStorage = sessionStorage.getItem('hotelStorage12345');
-          hotelStorage = hotelStorage ? JSON.parse(hotelStorage) : {};
+          hotelStorage = hotelStorage ? JSON.parse(hotelStorage) : {
+            "NumChild": 0,
+            "NumAdult": 1,
+            "NumRoom": 1
+          };
           Parameters = {
             "availability": true,
             "bankName": model.bankName,
@@ -403,14 +407,13 @@
             } else {
               location.href = data.data[0].paymentRedirectURL
             }
-          }
-          else {
+          } else {
             location.href = data.data.paymentRedirectURL;
           }
-        }
-        else {
+        } else {
           jAlert(data.message);
-          vlm.loadend();
+          $("#status").fadeOut();
+          $("#preloader").delay(400).fadeOut("medium");
         }
       }, null, null, 'nothing');
 
