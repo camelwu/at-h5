@@ -1294,10 +1294,10 @@
 
 
 //百度统计代码m.yazhoulvyou.cn
-var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?bf1dc34f2ac8db101af8e4b3f1996c82";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
+//var _hmt = _hmt || [];
+//(function () {
+//    var hm = document.createElement("script");
+//    hm.src = "//hm.baidu.com/hm.js?bf1dc34f2ac8db101af8e4b3f1996c82";
+//    var s = document.getElementsByTagName("script")[0];
+//    s.parentNode.insertBefore(hm, s);
+//})();
