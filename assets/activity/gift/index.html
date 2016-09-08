@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+  <title>玩赚东南亚 880元红包马上领</title>
+  <link rel="stylesheet" href="./less/index.css">
+  <link rel="stylesheet" href="../js/jquery.alert/jqueryAlert.css" type="text/css">
+</head>
+<body module-css-reset module-css-base>
+<div class="mask hidden"></div>
+<div class="container">
+  <div class="background">
+    <img src="./img/background.jpg">
+  </div>
+  <div class="content">
+    <div class="decorations_lefttop"></div>
+    <div class="decorations_leftbottom"></div>
+    <div class="decorations_rightbottom"></div>
+    <div class="decorations_righttop"></div>
+    <div class="form gift_background">
+      <div class="input-row tel">
+        <input type="tel" class="tel-input" @input="inputTelphone" v-model="tel" placeholder="请输入手机号码">
+      </div>
+      <div class="input-row identify">
+        <input type="text" class="identify-input" @input="inputIdentifyCode" v-model="identify" placeholder="请输入图片验证码">
+        <div class="identify-code" @click="refreshIdentifyCode"></div>
+      </div>
+      <div class="input-row message clearfix">
+        <input type="tel" class="message-input" @input="inputMessageCode" v-model="message" placeholder="请输入短信验证码">
+        <button class="message-btn" :disabled="messageBtnState" @click="getMessageCode" v-text="messageTips" type="button"></button>
+      </div>
+      <div class="input-row submit">
+        <button class="submit-btn" :disabled="giftBtnState" @click="submitInfo" v-text="giftTips" type="button"></button>
+      </div>
+    </div>
+
+    <div class="rule_title">
+      <p><a href="#activityRule">活动规则</a></p>
+      <div class="line"></div>
+    </div>
+    <div id="activityRule" class="activity_rule">
+      <p>1、红包有效期：截止至9月30日;</p>
+      <p>2、新手红包不与其他活动（一元门票）共享;</p>
+      <p>3、每笔订单只能使用一个红包，一笔订单内红包不可叠加使用;</p>
+      <p>4、未注册用户领取红包时，亚程自动为用户注册，请您使用动态密码登录;</p>
+      <p>5、红包查询：可在 “个人中心”，点击“红包”查看;</p>
+      <p>6、红包不得提现，不得转赠他人，不得为他人付款;</p>
+      <p>7、如使用本次活动发放的红包下单，使用红包的订单发生退款时，红包不再退还;</p>
+      <p>8、在获取和使用红包过程中，如果出现违规行为（如作弊领取、恶意套现等），将有权撤销违规交易，收回红包（含已使用的红包及未使用的红包）;</p>
+      <p>9、同一手机、联系方式、IP地址、身份证件、银行卡号、终端设备号或其他可以合理显示为同一用户的情形，均视为同一用户;</p>
+      <p>10、亚程旅游可根据本活动的实际情况对活动规则进行变动或者调整，如有相关变动或调整将公布在活动页面上，并于公布时即时生效。</p>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery/jquery.min.js"></script>
+<script src="../js/vue/vue.min.js"></script>
+<script src="../js/vlm.js"></script>
+<script src="../js/jquery.alert/jqueryAlert.js"></script>
+<script>
+  (function () {
+    // rem布局异常检测
+    function getBoundingClientRect(el) {
+      var rect = el.getBoundingClientRect();
+      if (!rect) {
+        rect = {};
+        rect.width = el.offsetWidth;
+        rect.height = el.offsetHeight;
+
+        rect.left = el.offsetLeft;
+        rect.top = el.offsetTop;
+        var parent = el.offsetParent;
+        while (parent) {
+          rect.left += parent.offsetLeft;
+          rect.top += parent.offsetTop;
+          parent = parent.offsetParent;
+        }
+
+        rect.right = rect.left + rect.width;
+        rect.bottom = rect.top + rect.height;
+      }
+      return rect;
+    }
+    var htmlFontSize = parseInt($(document.documentElement).css('fontSize'));
+    var htmlWidth = getBoundingClientRect(document.documentElement).width;
+    if (htmlFontSize * 7.5 > htmlWidth + 10 || htmlFontSize * 7.5 < htmlWidth - 10) {
+      setTimeout(function () {
+        $(document.documentElement).css('fontSize', Math.ceil(htmlWidth / 10) * 1.111111 + 'px');
+      }, 300)
+    }
+  })();
+
+  (function () {
+    var createImage = function (url, callback) {
+      var image = new Image();
+      image.src = url;
+      image.onload = function () {
+        if (image.complete) {
+          callback && callback.success(image);
+        }
+        image.onload = null;
+      }
+      image.onerror = function (error) {
+        callback && callback.fail(error);
+        image.onerror = null;
+      }
+    };
+    var getIdentifyCode = (function () {
+      var parameters = {
+        "Parameters": {},
+        "ForeEndType": 3,
+        "Code": "70100022"
+      }
+      var args = JSON.stringify(parameters);
+      return function (callback) {
+        vlm.loadJson("", args, function (json) {
+          if (json.success) {
+            createImage(json.data.imageUrl, {
+              success: function (image) {
+                $('.identify-code').html(image);
+              },
+              fail: function (error) {
+              }
+            })
+            typeof callback === 'function' && callback(json.data);
+          } else {
+            jAlert(json.message);
+          }
+        })
+      };
+    })();
+    var getMessageCode = (function () {
+      var parameters = {
+        "Parameters": {
+          "Mobile": null,
+          "VerificationCodeType": 5,
+          "ImageNo": null,
+          "InputCode": null
+        },
+        "ForeEndType": 3,
+        "Code": "70100002"
+      }
+      return function (param, successCallback) {
+        parameters.Parameters.Mobile = param.Mobile;
+        parameters.Parameters.ImageNo = param.ImageNo;
+        parameters.Parameters.InputCode = param.InputCode;
+        var args = JSON.stringify(parameters);
+        vlm.loadJson("", args, function (json) {
+          if (json.success) {
+            successCallback && successCallback();
+          } else {
+            jAlert(json.message);
+          }
+        })
+      };
+    })();
+    /**
+     * 领取红包接口
+     */
+    var getGift = (function () {
+      var parameters = {
+        "Parameters": {
+          "Mobile": null,
+          "VerificationCode": null,
+        },
+        "ForeEndType": 3,
+        "Code": "97100006"
+      }
+      return function (param, callback) {
+        parameters.Parameters.Mobile = param.Mobile;
+        parameters.Parameters.VerificationCode = param.VerificationCode;
+        var args = JSON.stringify(parameters);
+        vlm.loadJson("", args, function (json) {
+          switch (json.code){
+            case 200:
+              jAlert(json.data.message);
+              callback && typeof callback.success === 'function' && callback.success()
+              break;
+            case 404:
+            case 3301:
+            case 3302:
+            case 3306:
+            case 3307:
+            case 3308:
+            case 3309:
+            case 3311:
+            case 3312:
+            case 3313:
+            case 3314:
+            case 3315:
+            case 3316:
+            case 3317:
+            case 3319:
+            case 3320:
+            case 3321:
+              jAlert(json.message);
+              callback && typeof callback.fail === 'function' && callback.fail()
+              break;
+            default:
+              jAlert('哎呀，小亚也不知道怎么啦！');
+              callback && typeof callback.fail === 'function' && callback.fail()
+          }
+          callback && typeof callback.complete === 'function' && callback.complete()
+        })
+      };
+    })();
+
+    function Gift() {
+      this.init()
+    }
+
+    Gift.prototype.init = function () {
+      this.initViewModel();
+    }
+    Gift.prototype.getIdentifyCode = function () {
+      var _this = this;
+      getIdentifyCode(function (data) {
+        _this.vm.$set('imageNo', data.imageNo);
+        _this.vm.$set('imageUrl', data.imageUrl);
+      })
+    }
+    Gift.prototype.initViewModel = function () {
+      var _this = this;
+      this.vm = new Vue({
+        ready: function () {
+          _this.getIdentifyCode();
+        },
+        el: '.form',
+        data: {
+          tel: '',
+          identify: '',
+          message: '',
+          imageNo: '',
+          imageUrl: '',
+
+          messageBtnState: false,
+          messageTips: '获取验证码',
+          giftBtnState: false
+        },
+        computed: {
+          giftTips: function () {
+            return this.giftBtnState ? '领取中' : '领取红包';
+          }
+        },
+        methods: {
+          inputTelphone:function (e) {
+            if (e.target.value.length > 11) {
+              this.tel = e.target.value = e.target.value.slice(0, 11);
+            }
+          },
+          inputIdentifyCode:function (e) {
+            if (e.target.value.length > 4) {
+              this.identify = e.target.value = e.target.value.slice(0, 4);
+            }
+          },
+          inputMessageCode:function (e) {
+            if (e.target.value.length > 6) {
+              this.message = e.target.value = e.target.value.slice(0, 6);
+            }
+          },
+          refreshIdentifyCode: function () {
+            _this.getIdentifyCode();
+          },
+
+          validate: function () {
+            for (var i = 0; i < arguments.length; i++) {
+              var obj = arguments[i];
+              var result = obj.validate(this[obj.key])
+              if (!result) {
+                jAlert(obj.fail);
+                return false;
+              }
+            }
+            return true;
+          },
+          getMessageCode: function (e) {
+            var vm = this;
+
+            // 校验手机号、图片验证码
+            var result = this.validate({
+              key: 'tel',
+              validate: function (tel) {
+                return /1\d{10}/.test(tel);
+              },
+              fail: '请输入正确的手机号码'
+            }, {
+              key: 'identify',
+              validate: function (identify) {
+                return /\w{4}/.test(identify);
+              },
+              fail: '请输入正确的图片验证码'
+            });
+            // 校验通过
+            if (!result) {
+              return;
+            }
+            // 发送手机号、图片验证码给后端
+            getMessageCode({
+              Mobile: vm.tel,
+              ImageNo: vm.$get('imageNo'),
+              InputCode: vm.identify
+            }, function () {
+              /**
+               * 验证码发送成功
+               * 倒计时60s & 重置图片验证码
+               */
+              _this.setMessageTips()
+              _this.getIdentifyCode();
+            });
+          },
+
+          submitInfo: function (e) {
+            var vm = this;
+
+            // 校验手机号、短信验证码
+            var result = this.validate({
+              key: 'tel',
+              validate: function (tel) {
+                return /1\d{10}/.test(tel);
+              },
+              fail: '请输入正确的手机号码'
+            }, {
+              key: 'message',
+              validate: function (identify) {
+                return /\d{6}/.test(identify);
+              },
+              fail: '请输入正确的短信验证码'
+            });
+            // 校验通过
+            if (!result) {
+              return;
+            }
+            vm.$set('giftBtnState', true);
+            vm.$set('giftTips', '领取中');
+            getGift({
+              Mobile: vm.tel,
+              VerificationCode: vm.message
+            }, {
+              complete: function () {
+                vm.$set('giftBtnState', false);
+                vm.$set('giftTips', '领取红包');
+              }
+            });
+          }
+        }
+      });
+    }
+    Gift.prototype.setMessageTips = function () {
+      var _this = this;
+      var gap = 0;
+      var seconds = 60;
+
+      _this.vm.$set('messageBtnState', true);
+      _this.vm.$set('messageTips', '重新发送(' + (seconds - gap) + ')');
+      var interval = setInterval(function () {
+        gap++;
+        _this.vm.$set('messageTips', '重新发送(' + (seconds - gap) + ')');
+        if (seconds === gap) {
+          clearInterval(interval);
+          _this.vm.$set('messageBtnState', false);
+          _this.vm.$set('messageTips', '获取验证码');
+        }
+      }, 1000);
+    };
+    var gift = new Gift();
+  })();
+
+</script>
+</body>
+</html>

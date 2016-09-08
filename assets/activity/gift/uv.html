@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<script src="../js/jquery/jquery.min.js"></script>
+<script src="../js/vlm.js"></script>
+<script>
+  (function () {
+
+    var atripSessionId = getCookie('atripSessionId')
+    if (!atripSessionId) {
+      atripSessionId = uuid(8, 16);
+      setCookie("atripSessionId", atripSessionId);
+    }
+    /**
+     * 统计页面UV和PV
+     * @param name
+     * @returns {boolean}
+     */
+    var param = {
+      "parameters": {
+        "event": [
+          {
+            "sessionID": atripSessionId,
+            "category": "",
+            "action": "",
+            "label": "",
+            "data": "",
+            "trackable": ""
+          },
+        ],
+        "foreEndType": 3,
+        "code": "99100001"
+      }
+    };
+
+    //统计代码
+    vlm.loadJsonActivity({
+      url: ''
+    }, JSON.stringify(param));
+
+
+    //取得cookie
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');    //把cookie分割成组
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];                      //取得字符串
+        while (c.charAt(0) == ' ') {          //判断一下字符串有没有前导空格
+          c = c.substring(1, c.length);      //有的话，从第二位开始取
+        }
+        if (c.indexOf(nameEQ) == 0) {       //如果含有我们要的name
+          return unescape(c.substring(nameEQ.length, c.length));    //解码并截取我们要值
+        }
+      }
+      return false;
+    }
+
+    //清除cookie
+    function clearCookie(name) {
+      setCookie(name, "", -1);
+    }
+
+    //设置cookie
+    function setCookie(name, value, seconds) {
+      seconds = seconds || 0;   //seconds有值就直接赋值，没有为0，这个根php不一样。
+      var expires = "";
+      if (seconds != 0) {      //设置cookie生存时间
+        var date = new Date();
+        date.setTime(date.getTime() + (seconds * 1000));
+        expires = "; expires=" + date.toGMTString();
+      }
+      document.cookie = name + "=" + escape(value) + expires + "; path=/";   //转码并赋值
+    }
+
+    function uuid(len, radix) {
+      var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+      var uuid = [], i;
+      radix = radix || chars.length;
+      if (len) {
+        // Compact form
+        for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
+      } else {
+        // rfc4122, version 4 form
+        var r;
+
+        // rfc4122 requires these characters
+        uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+        uuid[14] = '4';
+
+        // Fill in random data.  At i==19 set the high bits of clock sequence as
+        // per rfc4122, sec. 4.1.5
+        for (i = 0; i < 36; i++) {
+          if (!uuid[i]) {
+            r = 0 | Math.random() * 16;
+            uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+          }
+        }
+      }
+
+      return uuid.join('');
+    }
+
+  })();
+</script>
+</body>
+</html>

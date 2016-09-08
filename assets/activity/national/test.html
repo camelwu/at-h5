@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maxinum-scale=1.0, minimal-ui">
+  <title>国庆活动接口测试</title>
+</head>
+<body>
+<button type="button" id="hotelCode">Get Hotel Code</button>
+<button type="button" id="countryISOCode">Get ISO Code</button>
+<button type="button" id="toHotelDetail">toHotelDetail(80)</button>
+<button type="button" id="toHotelList">toHotelList('SG')</button>
+<script src="../js/jquery/jquery.min.js"></script>
+<script>
+  $('#hotelCode').on('click',function () {
+    alert(window.activity.hotelCode);
+  })
+  $('#countryISOCode').on('click',function () {
+    alert(window.activity.countryISOCode);
+  })
+  $('#toHotelDetail').on('click',function () {
+    alert(window.activity.toHotelDetail('hotelID=9186&hotelCode=9186&instantConfirmation=false&allOccupancy=true&checkInDate=2016-09-03&checkOutDate=2016-09-04&numRoom=1&numAdult=1&numChild=0&international=yes'));
+  })
+  $('#toHotelList').on('click',function () {
+    alert(window.activity.toHotelList('cityName=Singapore&countryISOCode=SG&checkInDate=2016-09-03&checkOutDate=2016-09-04&numRoom=1&numAdult=1&numChild=0&international=yes'));
+  })
+</script>
+</body>
+</html>

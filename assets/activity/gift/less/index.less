@@ -1,0 +1,179 @@
+@import "../../less/option/_library";
+@import "../../less/module";
+
+html, body {
+  height: 100%;
+}
+
+.mask {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.container {
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  .background {
+    position: absolute;
+    z-index: 0;
+    img {
+      width: 100%;
+    }
+  }
+
+  .content {
+    position: absolute;
+    z-index: 100;
+  }
+
+  .gift_background {
+    margin: 0 auto;
+    margin-top: 4.9rem;
+    width: 6.32rem;
+    height: 7.5rem;
+    .backgroundSize("../img/gift_background.png");
+  }
+  .decorations_lefttop {
+    position: absolute;
+    top: 1.18rem;
+    left: 0.22rem;
+    width: 1.76rem;
+    height: 4.12rem;
+    .backgroundSize("../img/decorations_lefttop.png")
+  }
+  .decorations_leftbottom {
+    position: absolute;
+    top: 6.74rem;
+    left: 0;
+    width: 0.76rem;
+    height: 0.88rem;
+    .backgroundSize("../img/decorations_leftbottom.png")
+  }
+  .decorations_righttop {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.8rem;
+    width: 1.54rem;
+    height: 5.74rem;
+    .backgroundSize("../img/decorations_righttop.png")
+  }
+  .decorations_rightbottom {
+    position: absolute;
+    top: 10.3rem;
+    right: 0;
+    width: 0.8rem;
+    height: 0.88rem;
+    .backgroundSize("../img/decorations_rightbottom.png")
+  }
+
+  .form {
+    overflow: hidden;
+    .input-placeholder(0.28rem, #ccc);
+
+    .input-row {
+      height: 1.2rem;
+    }
+    input, button {
+      background-color: transparent;
+      height: 0.9rem;
+      vertical-align: top;
+    }
+    input {
+      margin-left: 0.52rem;
+      font-size: initial;
+      padding: 0 0.2rem;
+      color: #666;
+    }
+    .tel {
+      margin-top: 2.1rem;
+      input {
+        width: 5.2rem;
+      }
+    }
+    .identify {
+      input {
+        float: left;
+        width: 2.8rem;
+      }
+      .identify-code {
+        float: right;
+        margin-right: 0.62rem;
+        padding-right: 0.2rem;
+        width: 1.8rem;
+        height: 0.9rem;
+        img {
+          width: 100%;
+          height: 70%;
+          margin-top: 0.12rem;
+        }
+      }
+    }
+    .btn () {
+      float: right;
+      margin-right: 0.62rem;
+      font-size: 0.28rem;
+      color: #ad0725;
+    }
+    .message {
+      input {
+        float: left;
+        width: 3rem;
+      }
+      .message-btn {
+        width: 2rem;
+        .btn ();
+      }
+    }
+    .submit {
+      input {
+        width: 3rem;
+      }
+      .submit-btn {
+        width: 5.2rem;
+        .btn ();
+        background-color: #ffe643;
+        .box-shadow(0 0.04rem 0 0 #eeb900);
+        border-radius: 0.2rem;
+        &:active,&:disabled {
+          background-color: #eeb900;
+        }
+      }
+    }
+  }
+
+  .rule_title {
+    position: relative;
+    margin-top: 0.24rem;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 0.6rem;
+    font-size: 0.34rem;
+    letter-spacing: 2px;
+    color: #dffcfa;
+  }
+  .line {
+    position: absolute;
+    left: 50%;
+    .transform(translateX(-50%));
+    top: 0.62rem;
+    width: 1.7rem;
+    height: 1px;
+    background-color: #dffcfa;
+  }
+  .activity_rule {
+    padding-top: 0.4rem;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    line-height: 0.4rem;
+    font-size: 0.24rem;
+    color: #dffcfa;
+  }
+}
