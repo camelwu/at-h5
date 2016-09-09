@@ -646,6 +646,70 @@ body {
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
 }
+.nav {
+  padding: 0.2rem;
+  height: 1.68rem;
+  background-color: #8ed100;
+}
+.nav.price-nav--fixed {
+  position: fixed;
+  z-index: -1;
+  opacity: 0;
+}
+.nav.price-nav--fixed.active {
+  z-index: 100;
+}
+.nav.price-nav--fixed.transparent {
+  opacity: 1;
+}
+.nav.price-nav--static {
+  position: static;
+  opacity: 1;
+}
+.nav.price-nav--static.transparent {
+  opacity: 0;
+}
+.nav .nav-content {
+  margin-right: -0.1rem;
+  height: 1.28rem;
+}
+.nav .nav-content.active {
+  top: 0;
+  left: 0;
+  background-color: #8ed100;
+}
+.nav li {
+  float: left;
+  margin-right: 0.1rem;
+  margin-bottom: 0.16rem;
+  text-align: center;
+  width: 2.3rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  font-size: 0.34rem;
+  background-color: #399b09;
+  -webkit-border-radius: 0.06rem;
+  -moz-border-radius: 0.06rem;
+  -o-border-radius: 0.06rem;
+  border-radius: 0.06rem;
+}
+.nav li a {
+  color: #fff;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nav li.active {
+  -webkit-border-radius: 0.06rem;
+  -moz-border-radius: 0.06rem;
+  -o-border-radius: 0.06rem;
+  border-radius: 0.06rem;
+  box-shadow: 0 0 0 0.04rem #399b09;
+  background-color: #fff;
+}
+.nav li.active a {
+  color: #399b09;
+}
 .container {
   -webkit-overflow-scrolling: touch;
   position: relative;
@@ -801,7 +865,7 @@ body {
 .container .module-price {
   position: relative;
   height: 14.9rem;
-  padding: 0.7rem 0.2rem 0;
+  padding: 0.7rem 0 0;
   height: 71.66rem;
   background-color: #8ed100;
 }
@@ -822,57 +886,8 @@ body {
   width: 5.63rem;
   height: 1.36rem;
 }
-.container .module-price .nav {
-  margin: 0.2rem 0;
-  height: 1.28rem;
-}
-.container .module-price .nav ul {
-  margin-right: -0.1rem;
-  height: 1.28rem;
-}
-.container .module-price .nav ul.active {
-  margin-right: -0.1rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0.2rem 0.2rem 0;
-  height: 1.68rem;
-  background-color: #8ed100;
-  z-index: 100;
-}
-.container .module-price .nav li {
-  float: left;
-  margin-right: 0.1rem;
-  margin-bottom: 0.16rem;
-  text-align: center;
-  width: 2.3rem;
-  height: 0.56rem;
-  line-height: 0.56rem;
-  font-size: 0.34rem;
-  background-color: #399b09;
-  -webkit-border-radius: 0.06rem;
-  -moz-border-radius: 0.06rem;
-  -o-border-radius: 0.06rem;
-  border-radius: 0.06rem;
-}
-.container .module-price .nav li a {
-  color: #fff;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.container .module-price .nav li.active {
-  -webkit-border-radius: 0.06rem;
-  -moz-border-radius: 0.06rem;
-  -o-border-radius: 0.06rem;
-  border-radius: 0.06rem;
-  box-shadow: 0 0 0 0.04rem #399b09;
-  background-color: #fff;
-}
-.container .module-price .nav li.active a {
-  color: #399b09;
-}
 .container .module-price .content {
+  margin: 0 0.2rem;
   height: 100%;
 }
 .container .module-price .content.auto-width-box {

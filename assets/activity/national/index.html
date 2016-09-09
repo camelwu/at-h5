@@ -18,6 +18,7 @@
 <script src="../js/vlm.js?v=1"></script>
 <script src="../js/jquery.alert/jqueryAlert.js"></script>
 <script id="appTemplate" type="x-template">
+  <price-nav id="nav" class="price-nav--fixed" :active-nav="activeNav"></price-nav>
   <div id="container" class="container" @scroll="scrollContainer">
     <div id="top"></div>
     <div class="banner">
@@ -41,16 +42,7 @@
       <div class="title">
         <img src="./img/title2.png" alt="">
       </div>
-      <div id="nav" class="nav">
-        <ul class="clearfix" :class="activeNav ? 'active' : '' ">
-          <li class="active"><a href="#Thailand">泰国</a></li>
-          <li><a href="#Singapore">新加坡</a></li>
-          <li><a href="#Malaysia">马来西亚</a></li>
-          <li><a href="#Bali">巴厘岛</a></li>
-          <li><a href="#PCV">菲柬越</a></li>
-          <li><a href="#HM">港澳</a></li>
-        </ul>
-      </div>
+      <price-nav class="price-nav--static" :active-nav="activeNav"></price-nav>
       <div class="content auto-width-box">
         <ul class="clearfix">
           <li is="price"></li>
@@ -133,6 +125,18 @@
       <img v-lazy.container="item.image" alt="">
     </div>
   </li>
+</script>
+<script id="navTemplate" type="x-template">
+  <div class="nav" :class="activeNav ? 'transparent active' : '' ">
+    <ul class="nav-content clearfix" :class="activeNav ? 'active' : '' ">
+      <li class="active"><a href="#Thailand">泰国</a></li>
+      <li><a href="#Singapore">新加坡</a></li>
+      <li><a href="#Malaysia">马来西亚</a></li>
+      <li><a href="#Bali">巴厘岛</a></li>
+      <li><a href="#PCV">菲柬越</a></li>
+      <li><a href="#HM">港澳</a></li>
+    </ul>
+  </div>
 </script>
 <script>
   Vue.use(VueLazyload, {
@@ -227,6 +231,9 @@
       var App = this.createApp();
       new Vue({
         el: 'body',
+        data: {
+          activeNav: false
+        },
         components: {
           app: App
         },
@@ -251,16 +258,16 @@
       var CrazyRate = this.createCrazyRate();
       var Price = this.createPrice();
       var Hot = this.createHot();
+      var priceNav = this.createNav();
       var vm = Vue.extend({
         template: '#appTemplate',
-        data: {
-          activeNav: false
-        },
+        props: ['activeNav'],
         components: {
           // 将CrazyRate组件注册到Vue实例下
           'crazy-rate' : CrazyRate,
           'price': Price,
-          'hot': Hot
+          'hot': Hot,
+          'price-nav': priceNav
         },
         methods: {
           openPageGift: function () {
@@ -306,7 +313,7 @@
     }
     National.prototype.switchNav = function (scrollTop, vm) {
       var index = 0;
-      if (scrollTop >= this.price.Thailand && scrollTop < this.price.HM + 2 * this.price.priceLiHeight) {
+      if (scrollTop >= this.price.Thailand && scrollTop < this.price.HM + 3 * this.price.priceLiHeight) {
         vm.$set('activeNav', true);
       } else {
         vm.$set('activeNav', false);
@@ -329,7 +336,7 @@
       if (scrollTop >= this.price.HM) {
         index = 5
       }
-      $('#nav').find('li').eq(index).addClass('active').siblings().removeClass('active')
+      $('.nav').find('li').eq(index).addClass('active').siblings().removeClass('active')
     }
     National.prototype.createCrazyRate = function () {
       var _this = this;
@@ -453,6 +460,12 @@
         }
       })
     }
+    National.prototype.createNav = function () {
+      return Vue.extend({
+        props: ['activeNav'],
+        template: '#navTemplate'
+      })
+    }
     National.prototype.openView = function (url, type) {
       /**
        * @param {Number} type
@@ -542,7 +555,7 @@
         var CityName = getParam(url, 'ct');
         CityName = CityName.replace('%20', '+');
         var defaultDate = this.getDefaultDate();
-        location.href = visitUrl + '/hotel/hotel_list.html?InterCityName=' + CityName + '&InterCountryISOCode=' + CountryISOCode + '&InterCheckInDate=' + defaultDate.beginDate + '&InterCheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0' + '&DomCityName=beijing&DomCountryISOCode=CN&DomCheckInDate=' + defaultDate.beginDate + '&DomCheckOutDate=' + defaultDate.endDate;
+        location.href = visitUrl + '/hotel/hotel_list.html?InterCityName=' + CityName + '&InterCountryISOCode=' + CountryISOCode + '&InterCheckInDate=' + defaultDate.beginDate + '&InterCheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0' + '&DomCityName=beijing&DomCountryISOCode=CN&DomCheckInDate=' + defaultDate.beginDate + '&DomCheckOutDate=' + defaultDate.endDate + 'isGlobal=true';
       }
     }
 
