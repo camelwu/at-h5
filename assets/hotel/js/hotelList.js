@@ -411,7 +411,8 @@ $(window).load(function () {
 
     //判断点击的是国际酒店按钮还是国内酒店按钮
     var pattern = /^([\u4e00-\u9fa5])*$/;
-    if (hoPos == 'inter' || hoPos== null) {
+    if (hoPos == 'inter' || hoPos == null || location.search.indexOf('isGlobal=true') != -1) {
+      localStorage.setItem('hoPos', 'inter');
       //中文,需要匹配
       if (pattern.test(json.InterCityName)) {
         for (var i = 0; i < hl_cityListInfo.length; i++) {
@@ -621,7 +622,7 @@ $(window).load(function () {
             // paraObj.PartnerCode=hotelList[that.index].PartnerCode!=null?hotelList[that.index].PartnerCode:1000;
             paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
             paraObj.AllOccupancy = (that.getAttribute('data-AllOccupancy') != undefined && that.getAttribute('data-AllOccupancy') != "undefined") ? that.getAttribute('data-AllOccupancy') : true;
-            if (hoPos == 'inter' || hoPos== null) {
+            if (hoPos == 'inter' || hoPos == null) {
               //国际
               paraObj.CheckInDate = urlArgs.InterCheckInDate;
               paraObj.CheckOutDate = urlArgs.InterCheckOutDate;

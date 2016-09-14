@@ -311,15 +311,13 @@
 
     reserveHandler: function (event) {
       var code = this.getAttribute("room-code");
-
-      try {
-        //var sign = vlm.checkLogin('../hotel/user_order.html?' + 'roomCode=' + code);
-        //if(sign){
+      alert(window.location.search);
+      if (window.location.search.indexOf('isGlobal=true') != -1){
+        document.location.href = 'user_order.html?' + 'roomCode=' + code+'&isGlobal=true';
+      }else{
         document.location.href = 'user_order.html?' + 'roomCode=' + code;
-        //}
-      } catch (e) {
-        console.info(e);
       }
+
     },
 
     toggleSlider: function () {
