@@ -209,18 +209,15 @@ Perchoice.prototype = {
       } else if (atferValue < maxValue && !minusEle.hasClass('able')) {
         minusEle.removeClass("disable").addClass("able");
       }
+
       if (target.hasClass("hotel_roomNum_add") && atferValue > adultValue) {
         $("#ho_i7").trigger("click");
         $('#ho_i3').removeClass('disable');
-      }
-
-      if (target.hasClass("hotel_roomNum_add") && atferValue == adultValue) {
+      } else if (target.hasClass("hotel_roomNum_add") && atferValue == adultValue) {
         $(".hotel_people_right_adult_minus").removeClass('able').addClass("disable");
         $('#ho_i3').removeClass('disable');
-      }
-
-      if (parseInt($('#count1').val()) >= 2) {
-        $('#ho_i3').removeClass('disable').addClass('able');
+      } else if (target.hasClass("hotel_roomNum_add") && atferValue < adultValue) {
+        $('#ho_i3').removeClass('disable');
       }
 
       if (parseInt($('#count2').val()) >= 6 * parseInt($('#count1').val())) {
