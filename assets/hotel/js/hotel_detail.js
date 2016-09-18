@@ -311,7 +311,6 @@
 
     reserveHandler: function (event) {
       var code = this.getAttribute("room-code");
-      alert(window.location.search);
       if (window.location.search.indexOf('isGlobal=true') != -1){
         document.location.href = 'user_order.html?' + 'roomCode=' + code+'&isGlobal=true';
       }else{
