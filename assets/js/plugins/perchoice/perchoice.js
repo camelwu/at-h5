@@ -68,7 +68,7 @@ Perchoice.prototype = {
       '<div class="nav4-centertop hotel_people_right_adult clearfix" id="nav4-centertop">' +
       '<span class="fl">成人</span>' +
       '<div class="fr adult_btn_wrap">' +
-      '<input type="text" value="' + $(perarr[1]).html() + '" name="NumAdult" id="count2" readonly data-min="1" data-max="50">' +
+      '<input type="text" value="' + $(perarr[1]).html() + '" name="NumAdult" id="count2" readonly data-min="1" data-max="60">' +
       '<i class="add hotel_people_right_adult_add " id="ho_i7"></i>' +
       '<i class="minus hotel_people_right_adult_minus disable" id="ho_i6"></i>' +
       '</div>' +
@@ -76,7 +76,7 @@ Perchoice.prototype = {
       '<div class="nav4-centerbottom hotel_people_right_child clearfix" id="nav4-centerbottom">' +
       '<span class="fl">儿童</span>' +
       '<div class="fr child_btn_wrap">' +
-      '<input type="text" value="' + $(perarr[2]).html() + '" name="NumChild" id="count3" readonly data-min="0" data-max="10">' +
+      '<input type="text" value="' + $(perarr[2]).html() + '" name="NumChild" id="count3" readonly data-min="0" data-max="20">' +
       '<i class="add hotel_people_right_child_add" id="ho_i3"></i>' +
       '<i class="minus hotel_people_right_child_minus disable" id="ho_i4"></i>' +
       '</div>' +
@@ -91,6 +91,9 @@ Perchoice.prototype = {
     var perWrap = $('<div class="room_peo_choice" ></div>');
     perWrap.appendTo($(document.body));
     perWrap.html(perPanel);
+
+    $('#count3').attr('data-max',that.limitOccupancy*10);
+
     if (parseInt($('#count1').val()) >= 2) {
       $('#ho_i2').removeClass('disable').addClass('able');
     }
@@ -102,7 +105,7 @@ Perchoice.prototype = {
     if (parseInt($('#count3').val()) > 0) {
       $('#ho_i4').removeClass('disable').addClass('able');
     }
-
+console.log(that.limitOccupancy );
     if (parseInt($('#count3').val()) >= that.limitOccupancy * parseInt($('#count1').val())) {
       $('#ho_i3').removeClass('able').addClass('disable');
     }

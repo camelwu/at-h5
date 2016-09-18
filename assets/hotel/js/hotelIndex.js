@@ -518,7 +518,5 @@
 //入住人数选择
 new Perchoice({
   id: '#js_room_peo_show',
-  perArr: ['#js_roomNum', '#js_adultNum', '#js_childNum'],
-  limitArr:[2,3,4,5,6,7,8,9,10,11],   //限制年龄
-  limitOccupancy:2
+  perArr: ['#js_roomNum', '#js_adultNum', '#js_childNum']
 });
