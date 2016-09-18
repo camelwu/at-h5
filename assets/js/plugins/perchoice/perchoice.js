@@ -105,7 +105,7 @@ Perchoice.prototype = {
     if (parseInt($('#count3').val()) > 0) {
       $('#ho_i4').removeClass('disable').addClass('able');
     }
-console.log(that.limitOccupancy );
+    console.log(that.limitOccupancy );
     if (parseInt($('#count3').val()) >= that.limitOccupancy * parseInt($('#count1').val())) {
       $('#ho_i3').removeClass('able').addClass('disable');
     }

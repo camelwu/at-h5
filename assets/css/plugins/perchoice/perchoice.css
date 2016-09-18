@@ -103,24 +103,26 @@
   width: .36rem;
   height: .36rem;
   text-align: center;
+  vertical-align: middle;
 }
 
 .hotel_people_right_child input {
   width: .36rem;
   height: .36rem;
   text-align: center;
+  vertical-align: middle;
 }
 
 .hotel_people_right_adult_add, .hotel_people_right_child_add {
   background-position: 0.5rem 3.2rem;
   right: 0;
-  top: .34rem;
+  top: .3rem;
 }
 
 .hotel_people_right_adult_minus, .hotel_people_right_child_minus {
   background-position: 0rem -0.6rem;
   left: 0;
-  top: .34rem;
+  top: .3rem;
 }
 
 .add {
@@ -158,16 +160,17 @@
   width: .36rem;
   height: .36rem;
   text-align: center;
+  vertical-align: middle;
 }
 
 .hotel_roomNum_add {
   right: 0;
-  top: .34rem;
+  top: .3rem;
 }
 
 .hotel_roomNum_reduce {
   left: 0;
-  top: .34rem;
+  top: .3rem;
 }
 
 .per_child_age {
