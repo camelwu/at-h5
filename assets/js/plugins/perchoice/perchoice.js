@@ -110,7 +110,7 @@ Perchoice.prototype = {
     //儿童年龄展示个数
     var showNum = $(perarr[2]).html(), childstr = '';
     for (var i = 0; i < showNum; i++) {
-      childstr += '<li class="clearfix js_childAges_li" data-selected="' + JSON.parse(sessionStorage.h_agesArr)[i] + '" id="js_childAges_li_0' + (i + 1) + '"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">' + JSON.parse(sessionStorage.h_agesArr)[i] + '岁</span></li>';
+      childstr += '<li class="clearfix js_childAges_li" data-selected="' + JSON.parse(sessionStorage.h_agesArr)[i] + '" id="js_childAges_li_0' + (i + 1) + '"><span class="fl">儿童' + (i + 1) + '年龄</span><span class="fr per_child_age">' + JSON.parse(sessionStorage.h_agesArr)[i] + '岁</span><i class="right_arrow_age"></i></li>';
     }
     $('#js_childAges').html(childstr);
     that.childAgeChoose();
@@ -240,7 +240,7 @@ Perchoice.prototype = {
         }
         ageNum = $('#js_childAges li').length;
         ageNum++;
-        var childLi = $('<li class="clearfix js_childAges_li" id="js_childAges_li_0' + ageNum + '"><span class="fl">儿童' + ageNum + '年龄</span><span class="fr per_child_age">2岁</span></li>');
+        var childLi = $('<li class="clearfix js_childAges_li" id="js_childAges_li_0' + ageNum + '"><span class="fl">儿童' + ageNum + '年龄</span><span class="fr per_child_age">2岁</span><i class="right_arrow_age"></i></li>');
         childLi.appendTo($('#js_childAges'));
         that.childAgeChoose();
       }
