@@ -219,7 +219,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .hotel_user_detail_Email input {
-  width: 81%;
+  width: 76%;
   height: .48rem;
   line-height: .48rem;
   font-size: .28rem;
