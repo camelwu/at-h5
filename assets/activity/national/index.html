@@ -548,14 +548,14 @@
       hotelDetail: function (url) {
         var HotelId = getParam(url, 'hid');
         var defaultDate = this.getDefaultDate();
-        location.href = visitUrl + '/hotel/hotel_detail.html?HotelID=' + HotelId + '&HotelCode=' + HotelId + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + defaultDate.beginDate + '&CheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0';
+        location.href = visitUrl + '/hotel/hotel_detail.html?HotelID=' + HotelId + '&HotelCode=' + HotelId + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + defaultDate.beginDate + '&CheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0&isGlobal=true';
       },
       hotelList: function (url) {
         var CountryISOCode = getParam(url, 'cn');
         var CityName = getParam(url, 'ct');
         CityName = CityName.replace('%20', '+');
         var defaultDate = this.getDefaultDate();
-        location.href = visitUrl + '/hotel/hotel_list.html?InterCityName=' + CityName + '&InterCountryISOCode=' + CountryISOCode + '&InterCheckInDate=' + defaultDate.beginDate + '&InterCheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0' + '&DomCityName=beijing&DomCountryISOCode=CN&DomCheckInDate=' + defaultDate.beginDate + '&DomCheckOutDate=' + defaultDate.endDate + 'isGlobal=true';
+        location.href = visitUrl + '/hotel/hotel_list.html?InterCityName=' + CityName + '&InterCountryISOCode=' + CountryISOCode + '&InterCheckInDate=' + defaultDate.beginDate + '&InterCheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0' + '&DomCityName=beijing&DomCountryISOCode=CN&DomCheckInDate=' + defaultDate.beginDate + '&DomCheckOutDate=' + defaultDate.endDate + '&isGlobal=true';
       }
     }
 
