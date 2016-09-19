@@ -155,7 +155,6 @@ function styleChange2(parentid, sClass, mytext) {
  styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
  */
 
-
 //设置默认国际酒店hoPos
 if (location.search.indexOf('isGlobal=true') != -1 || localStorage.hoPos == undefined) {
   localStorage.hoPos = 'inter';
