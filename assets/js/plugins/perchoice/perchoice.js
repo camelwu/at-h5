@@ -92,7 +92,11 @@ Perchoice.prototype = {
     perWrap.appendTo($(document.body));
     perWrap.html(perPanel);
 
-    $('#count3').attr('data-max',that.limitOccupancy*10);
+    $('#count3').attr('data-max', that.limitOccupancy * 10);
+
+    if ($('#count1').val() >= parseInt($('#count1').attr('data-max'))) {
+      $('#ho_i1').addClass('disable');
+    }
 
     if (parseInt($('#count1').val()) >= 2) {
       $('#ho_i2').removeClass('disable').addClass('able');
@@ -105,7 +109,6 @@ Perchoice.prototype = {
     if (parseInt($('#count3').val()) > 0) {
       $('#ho_i4').removeClass('disable').addClass('able');
     }
-    console.log(that.limitOccupancy );
     if (parseInt($('#count3').val()) >= that.limitOccupancy * parseInt($('#count1').val())) {
       $('#ho_i3').removeClass('able').addClass('disable');
     }
