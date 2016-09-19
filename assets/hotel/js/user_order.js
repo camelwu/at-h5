@@ -157,7 +157,7 @@ function styleChange2(parentid, sClass, mytext) {
 
 
 //设置默认国际酒店hoPos
-if (location.search.indexOf('isGlobal=true') != -1) {
+if (location.search.indexOf('isGlobal=true') != -1 || localStorage.hoPos == undefined) {
   localStorage.hoPos = 'inter';
 };
 
