@@ -268,7 +268,7 @@ var flight_list = {
 						sortText : "耗时升序",
 						sortValue : 3
 					}, {
-						sortText : "耗时升序",
+						sortText : "耗时降序",
 						sortValue : 4
 					}, {
 						sortText : "起飞时间升序",
