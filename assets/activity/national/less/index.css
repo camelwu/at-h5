@@ -830,8 +830,8 @@ body {
   margin-top: 0.16rem;
   padding-left: 0.1rem;
   height: 0.64rem;
-  line-height: 0.32rem;
-  font-size: 0.2rem;
+  line-height: 0.33rem;
+  font-size: 0.26rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
@@ -848,7 +848,7 @@ body {
 }
 .container .module-crazy-rate .content li .price .price-now .price-money {
   font-weight: bold;
-  font-size: 0.36rem;
+  font-size: 0.4rem;
 }
 .container .module-crazy-rate .content li .price .price-before {
   float: right;
@@ -860,12 +860,12 @@ body {
 .container .module-crazy-rate .content li .price .price-before .price-money {
   text-decoration: line-through;
   font-weight: bold;
-  font-size: 0.3rem;
+  font-size: 0.36rem;
 }
 .container .module-price {
   position: relative;
   height: 14.9rem;
-  padding: 0.7rem 0 0;
+  padding-top: 0.7rem;
   height: 71.66rem;
   background-color: #8ed100;
 }
@@ -952,10 +952,9 @@ body {
   top: 1.58rem;
   right: 0.09rem;
   left: 0.09rem;
-  font-size: 0.2rem;
+  font-size: 0.24rem;
   padding: 0 0.12rem;
   line-height: 0.38rem;
-  border-radius: 0.06rem;
   color: #fff;
   background: rgba(0, 0, 0, 0.45);
   overflow: hidden;
@@ -980,8 +979,8 @@ body {
   margin-top: 0.16rem;
   padding-left: 0.1rem;
   height: 0.64rem;
-  line-height: 0.32rem;
-  font-size: 0.2rem;
+  line-height: 0.33rem;
+  font-size: 0.26rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
@@ -998,11 +997,11 @@ body {
 }
 .container .module-price .content li .price .price-now .price-money {
   font-weight: bold;
-  font-size: 0.36rem;
+  font-size: 0.4rem;
 }
 .container .module-price .content li .price .order-btn {
   float: right;
-  font-size: 0.18rem;
+  font-size: 0.3rem;
   margin-right: 0.06rem;
   color: #999;
 }
