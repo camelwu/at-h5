@@ -129,12 +129,7 @@
 <script id="navTemplate" type="x-template">
   <div class="nav" :class="activeNav ? 'transparent active' : '' ">
     <ul class="nav-content clearfix" :class="activeNav ? 'active' : '' ">
-      <li class="active"><a href="#Thailand">泰国</a></li>
-      <li><a href="#Singapore">新加坡</a></li>
-      <li><a href="#Malaysia">马来西亚</a></li>
-      <li><a href="#Bali">巴厘岛</a></li>
-      <li><a href="#PCV">菲柬越</a></li>
-      <li><a href="#HM">港澳</a></li>
+      <li v-for="item in list" :class="$index === 0 ? 'active' : ''" @click="scrollToPriceItem(item, $index)"><a href="javascript:void(0)" v-text="item.name"></a></li>
     </ul>
   </div>
 </script>
@@ -461,9 +456,46 @@
       })
     }
     National.prototype.createNav = function () {
+      var _this = this;
       return Vue.extend({
         props: ['activeNav'],
-        template: '#navTemplate'
+        template: '#navTemplate',
+        data: function () {
+          return {
+            list: [
+              {
+                id: '#Thailand',
+                name: '泰国'
+              },
+              {
+                id: '#Singapore',
+                name: '新加坡'
+              },
+              {
+                id: '#Malaysia',
+                name: '马来西亚'
+              },
+              {
+                id: '#Bali',
+                name: '巴厘岛'
+              },
+              {
+                id: '#PCV',
+                name: '菲柬越'
+              },
+              {
+                id: '#HM',
+                name: '港澳'
+              }
+            ]
+          }
+        },
+        methods: {
+          scrollToPriceItem:function (item, index) {
+            var yArr = [_this.price.Thailand, _this.price.Singapore, _this.price.Malaysia, _this.price.Bali, _this.price.PCV, _this.price.HM];
+            document.querySelector('#container').scrollTo(0, yArr[index])
+          }
+        }
       })
     }
     National.prototype.openView = function (url, type) {
