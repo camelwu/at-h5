@@ -493,7 +493,7 @@
         methods: {
           scrollToPriceItem:function (item, index) {
             var yArr = [_this.price.Thailand, _this.price.Singapore, _this.price.Malaysia, _this.price.Bali, _this.price.PCV, _this.price.HM];
-            document.querySelector('#container').scrollTo(0, yArr[index])
+            document.querySelector('#container').scrollTop = yArr[index];
           }
         }
       })
