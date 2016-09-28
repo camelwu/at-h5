@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+</head>
+<body>
+<textarea name="content" id="t1" cols="30" rows="10"></textarea>
+<a href="http://www.baidu.com">baidu</a>
+<script>
+
+  //  function setCookie(name,value,iDay){
+  //    if(iDay){
+  //      var oDate=new Date();
+  //      oDate.setDate(oDate.getDate()+iDay);
+  //
+  //      document.cookie=name+'='+value+'; expires='+oDate;
+  //    }else{
+  //      document.cookie=name+'='+value;
+  //    }
+  //  }
+  //  function getCookie(name){
+  //    var arr=document.cookie.split('; ');
+  //    for(var i=0; i<arr.length; i++){
+  //      var arr2=arr[i].split('=');
+  //      if(arr2[0]==name)return arr2[1];
+  //    }
+  //    return '';
+  //  }
+  //  function removeCookie(name){
+  //    setCookie(name,'asdfadsf',-1000);
+  //  }
+
+
+  function setCookie(name, value, iDay) {
+    if (iDay) {
+      var oDate = new Date();
+      oDate.setDate(oDate.getDate() + iDay);
+      document.cookie = name + '=' + value + '; expires=' + oDate;
+    } else {
+      document.cookie = name + '=' + value;
+    }
+  }
+
+  function getCookie(name) {
+    var arr = document.cookie.split('; ');
+    for (var i = 0; i < arr.length; i++) {
+      var arr2 = arr[i].split('=');
+      if (arr2[0] == name)return arr2[1];
+    }
+    return '';
+  }
+
+  function removeCookie(name){
+    setCookie(name,'dssdf',-100);
+  }
+
+  var t1 = document.getElementById('t1');
+
+
+  var videoShowHide = getCookie('show');
+  if (videoShowHide) {
+    t1.style.display = 'none';
+  } else {
+    setCookie('show', 'abc')
+  }
+
+
+</script>
+</body>
+</html>
