@@ -492,6 +492,17 @@ img {
   }
 }
 /*1rem = 50px */
+@media only screen and (min-width: 384px) {
+  html {
+    font-size: 320%;
+  }
+}
+/*1rem = 50px */
+@media only screen and (min-width: 400px) {
+  html {
+    font-size: 333.33333%;
+  }
+}
 @media only screen and (min-width: 411px) {
   html {
     font-size: 342.5%;
@@ -574,6 +585,11 @@ img {
   }
 }
 /* 1rem = 106.66666666666667px */
+@media only screen and (min-width: 853px) {
+  html {
+    font-size: 710.83333%;
+  }
+}
 @media only screen and (min-width: 1024px) {
   html {
     font-size: 853.333333%;
@@ -592,30 +608,11 @@ img {
   }
 }
 /* 1rem = 170.66666px */
-@media only screen and (min-width: 1536px) {
+@media only screen and (min-width: 1366px) {
   html {
-    font-size: 1280%;
+    font-size: 1138.33333%;
   }
 }
-/* 1rem = 204.8px */
-@media only screen and (min-width: 1600px) {
-  html {
-    font-size: 1333.33333%;
-  }
-}
-/* 1rem = 213.33333px */
-@media only screen and (min-width: 1920px) {
-  html {
-    font-size: 1600%;
-  }
-}
-/* 1rem = 256px */
-@media only screen and (min-width: 2048px) {
-  html {
-    font-size: 1706.66666%;
-  }
-}
-/* 1rem = 273.06666px */
 html,
 body {
   height: 100%;
@@ -732,6 +729,9 @@ body {
 .container .form .input-row {
   height: 1.2rem;
 }
+.container .form .input-row:last-of-type {
+  height: 1rem;
+}
 .container .form input,
 .container .form button {
   background-color: transparent;
@@ -796,6 +796,12 @@ body {
 .container .form .submit .submit-btn:disabled {
   background-color: #eeb900;
 }
+.container .form .update-tips {
+  line-height: 0.34rem;
+  text-align: center;
+  font-size: 0.28rem;
+  color: #fff;
+}
 .container .rule_title {
   position: relative;
   margin-top: 0.24rem;
@@ -824,6 +830,7 @@ body {
   margin-left: 0.3rem;
   margin-right: 0.3rem;
   line-height: 0.4rem;
-  font-size: 0.24rem;
+  font-size: 0.28rem;
+  letter-spacing: 0.06rem;
   color: #dffcfa;
 }

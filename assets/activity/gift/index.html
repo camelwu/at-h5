@@ -33,6 +33,7 @@
       <div class="input-row submit">
         <button class="submit-btn" :disabled="giftBtnState" @click="submitInfo" v-text="giftTips" type="button"></button>
       </div>
+      <p class="update-tips">如果无法领取，请升级到最新版APP</p>
     </div>
 
     <div class="rule_title">
@@ -55,7 +56,7 @@
 </div>
 <script src="../js/jquery/jquery.min.js"></script>
 <script src="../js/vue/vue.min.js"></script>
-<script src="../js/vlm.js"></script>
+<script src="../js/vlm.js?v=1"></script>
 <script src="../js/jquery.alert/jqueryAlert.js"></script>
 <script>
   (function () {
@@ -85,7 +86,7 @@
     var htmlWidth = getBoundingClientRect(document.documentElement).width;
     if (htmlFontSize * 7.5 > htmlWidth + 10 || htmlFontSize * 7.5 < htmlWidth - 10) {
       setTimeout(function () {
-        $(document.documentElement).css('fontSize', Math.ceil(htmlWidth / 10) * 1.111111 + 'px');
+        $(document.documentElement).css('fontSize', Math.ceil(htmlWidth / 10) + 'px');
       }, 300)
     }
   })();
@@ -245,17 +246,20 @@
         methods: {
           inputTelphone:function (e) {
             if (e.target.value.length > 11) {
-              this.tel = e.target.value = e.target.value.slice(0, 11);
+              e.target.value = e.target.value.slice(0, 11);
+              this.$set('tel', e.target.value.slice(0, 11));
             }
           },
           inputIdentifyCode:function (e) {
             if (e.target.value.length > 4) {
-              this.identify = e.target.value = e.target.value.slice(0, 4);
+              e.target.value = e.target.value.slice(0, 4);
+              this.$set('identify', e.target.value.slice(0, 4));
             }
           },
           inputMessageCode:function (e) {
             if (e.target.value.length > 6) {
-              this.message = e.target.value = e.target.value.slice(0, 6);
+              e.target.value = e.target.value.slice(0, 6);
+              this.$set('message', e.target.value.slice(0, 6));
             }
           },
           refreshIdentifyCode: function () {
@@ -296,9 +300,9 @@
             }
             // 发送手机号、图片验证码给后端
             getMessageCode({
-              Mobile: vm.tel,
+              Mobile: vm.$get('tel'),
               ImageNo: vm.$get('imageNo'),
-              InputCode: vm.identify
+              InputCode: vm.$get('identify')
             }, function () {
               /**
                * 验证码发送成功
@@ -333,8 +337,8 @@
             vm.$set('giftBtnState', true);
             vm.$set('giftTips', '领取中');
             getGift({
-              Mobile: vm.tel,
-              VerificationCode: vm.message
+              Mobile: vm.$get('tel'),
+              VerificationCode: vm.$get('message')
             }, {
               complete: function () {
                 vm.$set('giftBtnState', false);
