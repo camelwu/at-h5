@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
+  <title>双11东南亚精品酒店 - 惊爆低价，好货集结！</title>
+  <link rel="stylesheet" href="./less/index.css">
+  <link rel="stylesheet" href="../js/jquery.alert/jqueryAlert.css" type="text/css">
+</head>
+<body module-css-reset module-css-base>
+<div class="module-top" @click="scrollTop"></div>
+<div class="mask hidden"></div>
+<app></app>
+<script src="../js/jquery/jquery.min.js"></script>
+<script src="../js/vue/vue.min.js"></script>
+<script src="../js/es6-promise/es6-promise.min.js"></script>
+<script src="../js/vue-lazyLoad/vue-lazyload.es5.js"></script>
+<script src="../js/vlm.js?v=1"></script>
+<script src="../js/jquery.alert/jqueryAlert.js"></script>
+<script id="appTemplate" type="x-template">
+  <price-nav id="nav" class="price-nav--fixed" :active-nav="activeNav"></price-nav>
+  <div id="container" class="container" @scroll="scrollContainer">
+    <div id="top"></div>
+    <div class="banner">
+      <img src="./img/banner.jpg" alt="">
+    </div>
+    <div id="crazyRate" class="module-crazy-rate">
+      <div class="title">
+        <img src="./img/title1.png" alt="">
+      </div>
+      <div class="content auto-width-box">
+        <ul>
+          <li is="crazy-rate"></li>
+        </ul>
+      </div>
+    </div>
+    <div id="price" class="module-price">
+      <div class="title">
+        <img src="./img/title2.png" alt="">
+      </div>
+      <price-nav class="price-nav--static" :active-nav="activeNav"></price-nav>
+      <div class="content auto-width-box">
+        <ul class="clearfix">
+          <li is="price"></li>
+        </ul>
+      </div>
+    </div>
+    <div id="hot" class="module-hot">
+      <div class="title">
+        <img src="./img/title3.png" alt="">
+      </div>
+      <div class="content auto-width-box">
+        <ul>
+          <li is="hot"></li>
+        </ul>
+      </div>
+    </div>
+    <div id="download" class="download">
+      <div class="logo">
+        <img src="./img/logo.png" alt="">
+      </div>
+      <div class="title">
+        <div class="title-main">
+          亚程旅游APP
+        </div>
+        <div class="title-sub">
+          更多精彩活动
+        </div>
+      </div>
+      <button class="button" type="button" @click="download">立即下载</button>
+    </div>
+  </div>
+</script>
+<script id="crazyRateTemplate" type="x-template">
+  <li v-for="(index, item) in crazyRate" @click="viewHotelDetail($event, item, $index)">
+    <div class="title-main">
+      <span v-text="item.productCity"></span>
+      <span> - </span>
+      <span v-text="item.productSite"></span>
+      <span> </span>神秘<span v-text="item.star"></span>星酒店
+    </div>
+    <div class="img">
+      <img v-lazy.container="item.image" alt="">
+    </div>
+    <div class="title-sub" v-text="item.titleSub"></div>
+    <div class="price">
+      <div class="price-now">
+        ￥<span class="price-money" v-text="item.priceNow"></span>起
+      </div>
+      <div class="price-before">
+        ￥<span class="price-money" v-text="item.priceBefore"></span>起
+      </div>
+    </div>
+  </li>
+</script>
+<script id="priceTemplate" type="x-template">
+  <li v-for="(index, item) in price" @click="viewHotelDetail($event, item, $index)">
+    <a class="shortcut" v-if="$index % 6 === 0" id="{{country[index / 6]}}"></a>
+    <div class="city">
+      <span v-text="item.city"></span>
+    </div>
+    <div class="img">
+      <img v-lazy.container="item.image" alt="">
+    </div>
+    <div class="title-sub" v-text="item.titleSub"></div>
+    <div class="title-main" v-text="item.titleMain"></div>
+    <div class="price">
+      <div class="price-now">
+        ￥<span class="price-money" v-text="item.priceNow"></span>起
+      </div>
+      <div class="order-btn">
+        <button type="button">立即预定</button>
+      </div>
+    </div>
+  </li>
+</script>
+<script id="hotTemplate" type="x-template">
+  <li v-for="(index, item) in hot" @click="viewHotelDetail($event, item, $index)">
+    <div class="li-title"><span v-text="item.name"></span>（<span v-text="item.hotelNum"></span>家）</div>
+    <div class="img">
+      <img v-lazy.container="item.image" alt="">
+    </div>
+  </li>
+</script>
+<script id="navTemplate" type="x-template">
+  <div class="nav" :class="activeNav ? 'transparent active' : '' ">
+    <ul class="nav-content clearfix" :class="activeNav ? 'active' : '' ">
+      <li v-for="item in list" :class="$index === 0 ? 'active' : ''" @click="scrollToPriceItem(item, $index)"><a href="javascript:void(0)" v-text="item.name"></a></li>
+    </ul>
+  </div>
+</script>
+<script>
+  Vue.use(VueLazyload, {
+    error: '../static/images/error.png',
+    loading: '../static/images/loading.gif'
+  });
+  var htmlFontSize;
+//  var visitUrl = 'http://m.yazhoulvyou.cn';
+  var visitUrl = 'http://10.7.2.119';
+  var getPosition = function (obj) {
+    var left = 0;
+    var top = 0;//如果obj的有最近的父级定位元素就继续
+    while (obj.offsetParent) {
+      left += obj.offsetLeft;//累加
+      top += obj.offsetTop;
+      obj = obj.offsetParent;//更新obj,继续判断新的obj是否还有父级定位，然后继续累加
+    }
+    return {left: left, top: top}//返回json格式
+  };
+
+  (function () {
+    function getBoundingClientRect(el) {
+      var rect = el.getBoundingClientRect();
+      if (!rect) {
+        rect = {};
+        rect.width = el.offsetWidth;
+        rect.height = el.offsetHeight;
+
+        rect.left = el.offsetLeft;
+        rect.top = el.offsetTop;
+        var parent = el.offsetParent;
+        while (parent) {
+          rect.left += parent.offsetLeft;
+          rect.top += parent.offsetTop;
+          parent = parent.offsetParent;
+        }
+
+        rect.right = rect.left + rect.width;
+        rect.bottom = rect.top + rect.height;
+      }
+      return rect;
+    }
+    // rem布局异常检测
+    htmlFontSize = parseInt($(document.documentElement).css('fontSize'));
+    var htmlWidth = getBoundingClientRect(document.documentElement).width;
+    if (htmlFontSize * 7.5 > htmlWidth + 10 || htmlFontSize * 7.5 < htmlWidth - 10) {
+      setTimeout(function () {
+        htmlFontSize = Math.ceil(htmlWidth / 10) + 'px';
+        $(document.documentElement).css('fontSize', htmlFontSize);
+      }, 300)
+    }
+  })();
+
+  (function () {
+    function getParam(url, param) {
+      var r = new RegExp("\\?(?:.+&)?" + param + "=(.*?)(?:[\?&].*)?$");
+      var m = url.match(r);
+      return m ? m[1] : "";
+    }
+    function getQueryStringArgs () {
+      var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+              args = {},
+              items = qs.length ? qs.split("&") : [],
+              item = null,
+              name = null,
+              value = null,
+              i,
+              len = items.length;
+      for (i = 0; i < len; i++) {
+        item = items[i].split("=");
+        name = decodeURIComponent(item[0]);
+        value = decodeURIComponent(item[1]);
+        if (name.length) {
+          args[name] = value;
+        }
+      }
+      return args;
+    }
+    var queryStringArgs = getQueryStringArgs();
+
+
+    function National() {
+      this.price = {}
+      this.init()
+    }
+
+    National.prototype.init = function () {
+      this.initViewModel()
+    }
+    National.prototype.initViewModel = function () {
+      var _this = this;
+      var App = this.createApp();
+      new Vue({
+        el: 'body',
+        data: {
+          activeNav: false
+        },
+        components: {
+          app: App
+        },
+        methods: {
+          scrollTop:function () {
+            document.querySelector('.container').scrollTop = 0;
+          }
+        },
+        ready: function () {
+          _this.price.Thailand = getPosition($('#Thailand')[0]).top
+          _this.price.Singapore = getPosition($('#Singapore')[0]).top
+          _this.price.Malaysia = getPosition($('#Malaysia')[0]).top
+          _this.price.Bali = getPosition($('#Bali')[0]).top
+          _this.price.PCV = getPosition($('#PCV')[0]).top
+          _this.price.HM = getPosition($('#HM')[0]).top
+          _this.price.priceLiHeight = $('#price .content li').eq(0).height()
+        }
+      })
+    }
+    National.prototype.createApp = function () {
+      var _this = this;
+      var CrazyRate = this.createCrazyRate();
+      var Price = this.createPrice();
+      var Hot = this.createHot();
+      var priceNav = this.createNav();
+      var vm = Vue.extend({
+        template: '#appTemplate',
+        props: ['activeNav'],
+        components: {
+          // 将CrazyRate组件注册到Vue实例下
+          'crazy-rate' : CrazyRate,
+          'price': Price,
+          'hot': Hot,
+          'price-nav': priceNav
+        },
+        methods: {
+          download: function () {
+            _this.openQQPhoneManager()
+          },
+          scrollContainer: function (event) {
+            _this.throttle(_this.scrollToShowNavigator, 300, _this, [event, this]);
+          }
+        }
+      });
+      return vm;
+    }
+    National.prototype.throttle = function(method, delay, context, args){
+      context = context == undefined ? null : context;
+      args = args ? args : [];
+      method.tId && clearTimeout(method.tId);
+      method.tId = setTimeout(function () {
+        method.apply(context, args);
+      }, ( delay ? delay : 140 ));
+    }
+    /*National.prototype.debounce = function(method, gap, context){
+      var last;
+      return function(){
+        var ctx = context, args = arguments;
+        clearTimeout(last);
+        last = setTimeout(function(){
+          method.apply(ctx, args);
+        }, gap);
+      };
+    }*/
+    National.prototype.scrollToShowNavigator = function (event, vm) {
+      var target = $(event.target);
+      var containerScrollTop = target.scrollTop();
+      this.switchNav(containerScrollTop, vm);
+    }
+    National.prototype.switchNav = function (scrollTop, vm) {
+      var index = 0;
+      if (scrollTop >= this.price.Thailand && scrollTop < this.price.HM + 3 * this.price.priceLiHeight) {
+        vm.$set('activeNav', true);
+      } else {
+        vm.$set('activeNav', false);
+      }
+      if (scrollTop < this.price.Singapore) {
+        index = 0
+      }
+      if (scrollTop >= this.price.Singapore && scrollTop < this.price.Malaysia) {
+        index = 1
+      }
+      if (scrollTop >= this.price.Malaysia && scrollTop < this.price.Bali) {
+        index = 2
+      }
+      if (scrollTop >= this.price.Bali && scrollTop < this.price.PCV) {
+        index = 3
+      }
+      if (scrollTop >= this.price.PCV && scrollTop < this.price.HM) {
+        index = 4
+      }
+      if (scrollTop >= this.price.HM) {
+        index = 5
+      }
+      $('.nav').find('li').eq(index).addClass('active').siblings().removeClass('active')
+    }
+    National.prototype.createCrazyRate = function () {
+      var _this = this;
+      return Vue.extend({
+        template: '#crazyRateTemplate',
+        data: function () {
+          return {
+            crazyRate: [{"image":"http://images.asiatravel.com/Hotel/14798/14798Bali-seminyak.jpg","productCity":"巴厘岛","productSite":"水明漾","star":"4","titleSub":"酒店距离水明漾海滩5分钟车程，距离库塔海滩15分钟车程","priceNow":"284","priceBefore":"442","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=14798&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/20490/20490crazy-rate-phuket-kata-beach.jpg","productCity":"普吉岛","productSite":"卡塔海滩","star":"4","titleSub":"酒店享有大海全景的屋顶游泳池,距离巴东海滩15分钟车程","priceNow":"488","priceBefore":"845","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Phuket&hid=20490&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/14778/14778Little-India.jpg","productCity":"新加坡","productSite":"小印度","star":"5","titleSub":"酒店距离24小时营业的慕达发中心400米，距离城市广场购物中心450米","priceNow":"1066","priceBefore":"2041","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=14778&cid=10/26/2016&nn=2&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/17763/17763Sentosa.jpg","productCity":"新加坡","productSite":"圣淘沙","star":"5","titleSub":"酒店位于圣淘沙岛的中心地带，步行可抵达环球影城","priceNow":"1038","priceBefore":"2440","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=17763&cid=08/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/8324/8324suria-klcc.jpg","productCity":"吉隆坡","productSite":"吉隆坡市中心","star":"5","titleSub":"酒店坐落在吉隆坡双子塔对面","priceNow":"371","priceBefore":"791","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Kuala%20Lumpur&hid=8324&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/19406/19406project_bukit_bintang_content_05.jpg","productCity":"吉隆坡","productSite":"Pudu，近地铁站","star":"4","titleSub":"酒店距金河广场900米，双子塔2.3公里， Suria KLCC购物中心2.4公里","priceNow":"457","priceBefore":"551","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Kuala%20Lumpur&hid=19406&cid=09/28/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"}]
+          }
+        },
+        methods: {
+          viewHotelDetail: function ($event, item, index) {
+            _this.openView(item.href, 1)
+          }
+        }
+      })
+    }
+    National.prototype.createPrice = function () {
+      var _this = this;
+      return Vue.extend({
+        template: '#priceTemplate',
+        data: function () {
+          return {
+            country: ['Thailand', 'Singapore', 'Malaysia', 'Bali', 'PCV', 'HM'],
+            price: [{"image":"http://images.asiatravel.com/Hotel/981/981_Davis_Bangkok_Deluxe_02.gif","city":"曼谷","titleMain":"曼谷戴维斯酒店Davis Bangkok","titleSub":"酒店位于素坤逸路，临近轻轨、商业区，是曼谷游的理想出发点。","priceNow":"265","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Bangkok&hid=981&cid=06/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/999/999_residence_rajtaevee.jpg?_ga=1.8004785.200375633.1463101167","city":"曼谷","titleMain":"拉吉塔维住所 The Residence Rajtaevee Hotel","titleSub":"酒店坐落在曼谷最繁华的购物和娱乐中心区，毗邻商业区。","priceNow":"215","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Bangkok&hid=999&cid=06/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/16781/16781-Eastin-Tan-Hotel-Chiang-Mai.jpg","city":"清迈","titleMain":"清迈谭易思廷酒店Eastin Tan Hotel Chiang Mai","titleSub":"酒店位于清迈最受欢迎的宁曼路上，吃喝玩乐十分便利。","priceNow":"455","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Chiang%20Mai&hid=16781&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/1027/1027-Chanalai-Garden-Resort.jpg","city":"普吉岛","titleMain":"查纳莱花园度假村，卡塔海滩Chanalai Garden Resort","titleSub":"酒店可观赏到安达曼海景，只要步行即可到达卡塔海滩。","priceNow":"187","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Phuket&hid=1027&cid=10/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/959/959-Samui-Palm-Beach-Resort.jpg","city":"苏梅岛","titleMain":"苏梅岛棕榈海滩度假酒店Samui Palm Beach Resort","titleSub":"酒店是沿270米长海滨线建造，是放松、度假、享受生活的首选地点。","priceNow":"240","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Koh%20Samui&hid=959&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/9291/9291-vogue-pattaya-hotel.jpg","city":"芭提雅","titleMain":"芭堤雅沃格酒店 Vogue Pattaya Hotel","titleSub":"位于芭堤雅中心，地理位置优越，交通便利，毗邻芭提雅沙滩。","priceNow":"195","href":"http://book.asiatravel.com/Hotel.aspx?cn=TH&ct=Pattaya&hid=9291&cid=06/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/52/facade.jpg","city":"新加坡","titleMain":"新加坡飞龙酒店-水晶Fragrance Hotel Crystal","titleSub":"酒店位于中心地段，距离商业区和休闲区都很近，出行方便。","priceNow":"328","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=52&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/20/dscn0003.jpg","city":"新加坡","titleMain":"新加坡基督教青年会国际屋YMCA Orchard","titleSub":"一流的设施与优越的地理位置让这里成为新加坡旅游的最佳留宿酒店。","priceNow":"396","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=20&cid=06/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/21757/21757_facade.jpg","city":"新加坡","titleMain":"新加坡市中豪亚酒店Oasis Hotel Downtown, Singapore *","titleSub":"优质服务与高品质住宿将带给您宾至如归的享受。","priceNow":"776","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=21757&cid=07/30/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/80/Exterior.jpg","city":"新加坡","titleMain":"圣淘沙喜乐度假酒店Siloso Beach Resort, Sentosa","titleSub":"自然风光优美，为旅客提供了浪漫的居住环境，享受度假的悠闲时光。","priceNow":"722","href":"http://book.asiatravel.com/hotel.aspx?cn=SG&ct=Singapore&hid=80&nn=1&nr=1&na=1&nc=0&cid=2016-06-23&sid=ACX98110SG&lan=zh-CN"},{"image":"http://images.asiatravel.com/Hotel/19188/19188new_facade.jpg","city":"新加坡","titleMain":"新加坡泛太平洋酒店Pan Pacific Singapore *","titleSub":"屡次荣获“世界领先商务酒店”称号，是新加坡最受欢迎的酒店之一。","priceNow":"973","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=19188&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/58/Facade-Day.jpg","city":"新加坡","titleMain":"新加坡文化大酒店Mandarin Orchard Singapore","titleSub":"酒店位于乌节路上，拥有绝佳的地理位置，新加坡酒店业的杰出代表。","priceNow":"987","href":"http://book.asiatravel.com/Hotel.aspx?cn=SG&ct=Singapore&hid=58&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/161/Facade.jpg","city":"吉隆坡","titleMain":"吉隆坡歌丽酒店Corus Hotel","titleSub":"酒店位于吉隆坡金山角，轻轨站就在酒店邻近，旅客可轻松到达各处。","priceNow":"347","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Kuala%20Lumpur&hid=161&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/2379/Hotel%20Maya-Facade.jpg","city":"吉隆坡","titleMain":"吉隆坡玛雅酒店 Hotel Maya","titleSub":"酒店位于双子塔对面，独特氛围调动您所有感官来感受这异国情调。","priceNow":"375","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Kuala%20Lumpur&hid=2379&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/19807/Hotel-Building.jpg","city":"沙巴","titleMain":"欧胜娜酒店Oceania Hotel","titleSub":"酒店位置便捷，设施完善，装饰精美，是游览亚庇的理想住宿选择。","priceNow":"210","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Kota%20Kinabalu&hid=19807&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/11772/Facade.jpg","city":"沙巴","titleMain":"哥打京那巴鲁豪丽胜酒店Horizon Hotel","titleSub":"酒店坐落在市中心，交通便利，毗邻旅游景点、娱乐区和商业区。","priceNow":"371","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Kota%20Kinabalu&hid=11772&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/3400/Facade.jpg","city":"兰卡威","titleMain":"兰卡威湾景酒店Bayview Hotel, Langkawi","titleSub":"酒店坐落在Kuah市中心，临近商业区，可以满足商旅的各种需求。","priceNow":"310","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Langkawi&hid=3400&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/2297/facade.jpg","city":"兰卡威","titleMain":"兰卡威达泰度假酒店The Datai Langkawi","titleSub":"位于西北部峡谷边缘，这里是野外风景的天堂，令人精神为之一振。","priceNow":"2338","href":"http://book.asiatravel.com/Hotel.aspx?cn=MY&ct=Langkawi&hid=2297&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/17630/17630_HotelBuilding.jpg","city":"巴厘岛","titleMain":"巴厘岛格兰达斯纳英达酒店Grand Sinar Indah Hotel ","titleSub":"地理位置便捷，客房融合了巴厘岛元素和现代风格，让人轻松愉悦！","priceNow":"139","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=17630&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/16190/16190_SwimmingPool1.gif?_ga=1.41044257.200375633.1463101167","city":"巴厘岛","titleMain":"沙努尔阿佩尔别墅酒店Apel Villa Sanur","titleSub":"位于巴厘岛、交通方便，沙努尔阿佩尔别墅是当地旅游最佳落脚点。","priceNow":"224","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=16190&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/16101/Rooftop-3-(Custom).jpg","city":"巴厘岛","titleMain":"巴厘岛皇家18度假村Grand Hardys Hotel & Spa – Kuta","titleSub":"完善的客房带来宾至如归感，现代化设施让人更好的享受假期生活！","priceNow":"167","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=16101&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/16088/01.jpg","city":"巴厘岛","titleMain":"水明漾金色郁金香酒店 Golden Tulip Devins Hotel Seminyak","titleSub":"位于塞米尼亚克，设施完善，装饰精美，让旅程变得更加舒适和便捷。","priceNow":"396","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=16088&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/14118/main-images.gif","city":"巴厘岛","titleMain":"巴厘岛穆丽雅度假村Mulia Resort Nusa Dua","titleSub":"位于努沙杜瓦，可便捷抵达任何的地方，还可感受印度洋的壮美景色。","priceNow":"1722","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=14118&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/19270/19270_facade.jpg","city":"巴厘岛","titleMain":"巴厘岛特兰斯度假村THE TRANS Resort Bali","titleSub":"这是塞米亚克中心的豪华的绿洲，紧邻附近的餐饮和娱乐和购物区。","priceNow":"720","href":"http://book.asiatravel.com/Hotel.aspx?cn=ID&ct=Bali&hid=19270&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/6965/sww_facade.jpg","city":"长滩岛","titleMain":"锡蒂澳长滩别墅套房酒店The Sitio Boracay Villas and Suites","titleSub":"优美的环境、高品质的服务和设施，成为您在长滩岛的绝佳住宿选择。","priceNow":"262","href":"http://book.asiatravel.com/Hotel.aspx?cn=PH&ct=Boracay&hid=6965&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/5651/viewdeck03.jpg?_ga=1.77743255.200375633.1463101167","city":"长滩岛","titleMain":"长滩岛阿瓦纳酒店及餐厅Alta Vista de Boracay ","titleSub":"典雅新颖的风格与远离城市的喧嚣，让您愉悦的进入梦乡。","priceNow":"270","href":"http://book.asiatravel.com/Hotel.aspx?cn=PH&ct=Boracay&hid=5651&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/4039/4039_Pool.jpg","city":"暹粒","titleMain":"博瑞吴哥酒店Borei Angkor Resort & Spa","titleSub":"酒店位于暹粒中心，酒店为您提供名人般的礼遇和世界级的服务。","priceNow":"366","href":"http://book.asiatravel.com/Hotel.aspx?cn=KH&ct=Siem%20Reap&hid=4039&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/17440/OutdoorPoolView2.jpg","city":"暹粒","titleMain":"萨兰度假水疗酒店Sarai Resort & Spa","titleSub":"酒店位于暹粒核心区，酒店以世界级的服务标准给您贵宾般的款待。","priceNow":"331","href":"http://book.asiatravel.com/Hotel.aspx?cn=KH&ct=Siem%20Reap&hid=17440&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/15376/15376_Rooftop-Infinity-Pool2.jpg","city":"岘港","titleMain":"岘港阿拉卡特海滩度假酒店A La Carte Da Nang Beach Hotel","titleSub":"酒店位于岘港海边，环境舒适，交通便捷，是您岘港旅游的理想住所。","priceNow":"517","href":"http://book.asiatravel.com/Hotel.aspx?cn=VN&ct=Danang&hid=15376&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/14210/Facade4.jpg","city":"岘港","titleMain":"岘港假日海滩度假酒店Holiday Beach Danang Hotel & Resort","titleSub":"精致的装修和现代化的设施，提供SPA会所为客人提供最好的放松。","priceNow":"544","href":"http://book.asiatravel.com/Hotel.aspx?cn=VN&ct=Danang&hid=14210&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/427/17-l.jpg","city":"香港","titleMain":"万年青酒店 Evergreen Hotel","titleSub":"位于弥敦道，毗邻商业和购物区，一流的设备和服务，让您宾至如归。","priceNow":"418","href":"http://book.asiatravel.com/Hotel.aspx?cn=HK&ct=Hong%20Kong&hid=427&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/12117/BestWestern.jpg?_ga=1.76236437.1603362550.1458039440","city":"香港","titleMain":"华丽酒店尖沙咀-最佳西方酒店 Best Western Grand Hotel","titleSub":"位于尖沙咀繁华地带，邻近美丽华商场、弥敦道购物区及红磡体育馆。","priceNow":"536","href":"http://book.asiatravel.com/Hotel.aspx?cn=HK&ct=Hong%20Kong&hid=12117&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/418/23369088.jpg","city":"香港","titleMain":"城市花园酒店 City Garden Hotel","titleSub":"毗邻铜锣湾，一楼的“粤”被评为米其林餐厅，带给您正宗的粤式滋味。","priceNow":"684","href":"http://book.asiatravel.com/Hotel.aspx?cn=HK&ct=Hong%20Kong&hid=418&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/2337/64316_14051917210019478235_800x600.jpg","city":"香港","titleMain":"香港丽悦酒店 Cosmo Hotel Hong Kong","titleSub":"位于湾仔区、铜锣湾区及跑马地，在此可同时享受香港繁忙与宁静。","priceNow":"556","href":"http://book.asiatravel.com/Hotel.aspx?cn=HK&ct=Hong%20Kong&hid=2337&cid=08/20/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/5159/Grand-Emperor8.jpg?_ga=1.107687297.200375633.1463101167","city":"澳门","titleMain":"澳门英皇娱乐酒店Grand Emperor Macau","titleSub":"位于澳门市中心交通便利，现代化设施和一流服务为您提供优质的享受。","priceNow":"768","href":"http://book.asiatravel.com/Hotel.aspx?cn=MO&ct=Macau&hid=5159&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"},{"image":"http://images.asiatravel.com/Hotel/9191/hardrockmacau_facadebig.jpg?_ga=1.78875927.200375633.1463101167","city":"澳门","titleMain":"澳门hardrock酒店Hard Rock Hotel - City of Dreams ","titleSub":"位于新濠天地度假区内，足不出户便能享受到刺激丰富的精彩旅程。","priceNow":"749","href":"http://book.asiatravel.com/Hotel.aspx?cn=MO&ct=Macau&hid=9191&cid=09/13/2016&nn=1&nr=1&na=1&nc=0&lan=zh-CN&selCurr=CNY&sid=ACX98110SG&fid=&usid=&trck=&pp=0&type=rates#rates"}]
+          }
+        },
+        methods: {
+          viewHotelDetail: function ($event, item, index) {
+            _this.openView(item.href, 2)
+          }
+        }
+      })
+    }
+    National.prototype.createHot = function () {
+      var _this = this;
+      return Vue.extend({
+        template: '#hotTemplate',
+        data: function () {
+          return {
+            hot: [{"image":"./img/hot/01.jpg","city":"368家","name":"新加坡","href":"http://book.asiatravel.com/hotellist.aspx?cn=SG&ct=Singapore&lan=zh-CN"},{"image":"./img/hot/02.jpg","city":"438家","name":"吉隆坡","href":"http://book.asiatravel.com/hotellist.aspx?cn=MY&ct=Kuala%20Lumpur&lan=zh-CN"},{"image":"./img/hot/03.jpg","city":"828家","name":"曼谷","href":"http://book.asiatravel.com/hotellist.aspx?cn=TH&ct=Bangkok&lan=zh-CN"},{"image":"./img/hot/04.jpg","city":"208家","name":"芭提雅","href":"http://book.asiatravel.com/hotellist.aspx?cn=TH&ct=Pattaya&lan=zh-CN"},{"image":"./img/hot/05.jpg","city":"768家","name":"巴厘岛","href":"http://book.asiatravel.com/hotellist.aspx?cn=ID&ct=Bali&lan=zh-CN"},{"image":"./img/hot/06.jpg","city":"268家","name":"香港","href":"http://book.asiatravel.com/hotellist.aspx?cn=HK&ct=Hong%20Kong&lan=zh-CN"},{"image":"./img/hot/07.jpg","city":"198家","name":"清迈","href":"http://book.asiatravel.com/hotellist.aspx?cn=TH&ct=Chiang%20Mai&lan=zh-CN"},{"image":"./img/hot/08.jpg","city":"228家","name":"岘港","href":"http://book.asiatravel.com/hotellist.aspx?cn=VN&ct=Danang&lan=zh-CN"},{"image":"./img/hot/09.jpg","city":"188家","name":"兰卡威","href":"http://book.asiatravel.com/hotellist.aspx?cn=MY&ct=Langkawi&lan=zh-CN"},{"image":"./img/hot/10.jpg","city":"658家","name":"普吉岛","href":"http://book.asiatravel.com/hotellist.aspx?cn=TH&ct=Phuket&lan=zh-CN"},{"image":"./img/hot/11.jpg","city":"218家","name":"甲米岛","href":"http://book.asiatravel.com/hotellist.aspx?cn=TH&ct=Krabi&lan=zh-CN"},{"image":"./img/hot/12.jpg","city":"228家","name":"长滩岛","href":"http://book.asiatravel.com/hotellist.aspx?cn=PH&ct=Boracay&lan=zh-CN"}]
+          }
+        },
+        methods: {
+          viewHotelDetail: function ($event, item, index) {
+            _this.openView(item.href, 3)
+          }
+        }
+      })
+    }
+    National.prototype.createNav = function () {
+      var _this = this;
+      return Vue.extend({
+        props: ['activeNav'],
+        template: '#navTemplate',
+        data: function () {
+          return {
+            list: [
+              {
+                id: '#Thailand',
+                name: '泰国'
+              },
+              {
+                id: '#Singapore',
+                name: '新加坡'
+              },
+              {
+                id: '#Malaysia',
+                name: '马来西亚'
+              },
+              {
+                id: '#Bali',
+                name: '巴厘岛'
+              },
+              {
+                id: '#PCV',
+                name: '菲柬越'
+              },
+              {
+                id: '#HM',
+                name: '港澳'
+              }
+            ]
+          }
+        },
+        methods: {
+          scrollToPriceItem:function (item, index) {
+            var yArr = [_this.price.Thailand, _this.price.Singapore, _this.price.Malaysia, _this.price.Bali, _this.price.PCV, _this.price.HM];
+            document.querySelector('#container').scrollTop = yArr[index];
+          }
+        }
+      })
+    }
+    National.prototype.openView = function (url, type) {
+      /**
+       * @param {Number} type
+       *   1.crazyRate
+       *   2.price
+       *   3.hot
+       */
+      var openBrowserHotelDetail = this.openBrowser['hotelDetail'].bind(this);
+      var openBrowserHotelList = this.openBrowser['hotelList'].bind(this);
+      var openAppHotelDetail = this.openApp['hotelDetail'].bind(this);
+      var openAppHotelList = this.openApp['hotelList'].bind(this);
+      if (queryStringArgs.origin === 'browser') {
+        if (type === 1) {
+          openBrowserHotelDetail(url);
+        } else if (type === 2) {
+          openBrowserHotelDetail(url);
+        } else if (type === 3) {
+          openBrowserHotelList(url);
+        }
+      } else {
+        if (type === 1) {
+          openAppHotelDetail(url);
+        } else if (type === 2) {
+          openAppHotelDetail(url);
+        } else if (type === 3) {
+          openAppHotelList(url);
+        }
+      }
+    }
+    National.prototype.getDefaultDate = function () {
+      var oDate = new Date();
+      var year = oDate.getFullYear();
+      var month = oDate.getMonth();
+      var day = oDate.getDate();
+      // 城市默认时间
+      var oDate1 = new Date(year, month, day + 2); //默认入住时间T+2
+      var oDate2 = new Date(year, month, day + 3);
+
+      var beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd');
+      var endDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
+      return {
+        beginDate: beginDate,
+        endDate: endDate
+      }
+    }
+    National.prototype.openApp = {
+      hotelDetail: function (url) {
+        var HotelId = getParam(url, 'hid');
+        var defaultDate = this.getDefaultDate();
+        if (window.activity && window.activity.toHotelDetail) {
+          window.activity.toHotelDetail('hotelID=' + HotelId + '&hotelCode=' + HotelId + '&instantConfirmation=false&allOccupancy=true&checkInDate=' + defaultDate.beginDate + '&checkOutDate=' + defaultDate.endDate + '&numRoom=1&numAdult=1&numChild=0&international=yes');
+        } else {
+          this.tipsUpdateApp()
+        }
+      },
+      hotelList: function (url) {
+        var CountryISOCode = getParam(url, 'cn');
+        var CityName = getParam(url, 'ct');
+        CityName = CityName.replace('%20', ' ');
+        var defaultDate = this.getDefaultDate();
+        if (window.activity && window.activity.toHotelList) {
+          window.activity.toHotelList('cityName=' + CityName + '&countryISOCode=' + CountryISOCode + '&checkInDate=' + defaultDate.beginDate + '&checkOutDate=' + defaultDate.endDate + '&numRoom=1&numAdult=1&numChild=0&international=yes')
+        } else {
+          this.tipsUpdateApp()
+        }
+      }
+    }
+    National.prototype.openQQPhoneManager = function () {
+      location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.asiatravel.asiatravel'
+    }
+    National.prototype.tipsUpdateApp = function () {
+      var _this = this;
+      window.jConfirm('对不起，此版本不支持此活动，请更新到最新版本。', '', function (result) {
+        if (result) {
+          _this.openQQPhoneManager()
+        }
+      }, '确定', '取消');
+    }
+    National.prototype.openBrowser = {
+      hotelDetail: function (url) {
+        var HotelId = getParam(url, 'hid');
+        var defaultDate = this.getDefaultDate();
+        location.href = visitUrl + '/hotel/hotel_detail.html?HotelID=' + HotelId + '&HotelCode=' + HotelId + '&InstantConfirmation=false&AllOccupancy=true&CheckInDate=' + defaultDate.beginDate + '&CheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0&isGlobal=true';
+      },
+      hotelList: function (url) {
+        var CountryISOCode = getParam(url, 'cn');
+        var CityName = getParam(url, 'ct');
+        CityName = CityName.replace('%20', '+');
+        var defaultDate = this.getDefaultDate();
+        location.href = visitUrl + '/hotel/hotel_list.html?InterCityName=' + CityName + '&InterCountryISOCode=' + CountryISOCode + '&InterCheckInDate=' + defaultDate.beginDate + '&InterCheckOutDate=' + defaultDate.endDate + '&NumRoom=1&NumAdult=1&NumChild=0' + '&DomCityName=beijing&DomCountryISOCode=CN&DomCheckInDate=' + defaultDate.beginDate + '&DomCheckOutDate=' + defaultDate.endDate + '&isGlobal=true';
+      }
+    }
+
+    var national = new National();
+  })();
+
+</script>
+</body>
+</html>
