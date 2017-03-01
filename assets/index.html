@@ -24,7 +24,7 @@
   <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
   <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png" media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
   <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png" media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
-  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href=./images/index/favicon.ico" type="image/x-icon">
   <title>首页 - 亚程旅行网</title>
   <script src="js/lib/logRecord.js"></script>
   <link href="styles/reset.css" rel="stylesheet" type="text/css">
@@ -33,358 +33,156 @@
 </head>
 
 <body>
-<div id="preloader">
-  <div id="status"></div>
-</div>
-
 <div class="all_elements" id="app">
-  <div class="content no_header">
-    <!--头部banner开始-->
-    <div class="slider-container">
-      <ul class="homepage_slider clearfix"  id="banner">
-        <li v-for="banner in bannerList" class="fl">
-          <a :href="banner.bannerChangeLink">
-            <img :src="banner.bannerPicUrl" class="responsive_image" alt="img">
-          </a>
-        </li>
-      </ul>
-      <div class="banner_num_wrap">
-        <ul class="banner_num"></ul>
-      </div>
-    </div>
-    <!--头部banner结束-->
-  </div>
-  <!--column开始-->
-  <ul class="column_wrap clearfix">
-    <li v-for="column in columnList" class="adaptive_item">
-      <a :href="column.href">
-        <img class="res_image" :src="column.icon" alt="img">
-        <span class="center_text">{{column.title}}</span>
-        <!--或<span class="center_text" v-text="item.title"></span>-->
-      </a>
-    </li>
-  </ul>
-  <!--column结束-->
-
-  <!--当月热玩海外门票开始-->
-  <div class="container">
-    <div class="recommends" id="recommend">
-      <ul class="recommends_tab clearfix">
+  <!--banner star-->
+  <section class = bannerDiv>
+    <div class = "banner">
+      <ul class = "banner_img">
         <li class="fl">
-          <a href="index-hotplay.html"><img src="images/index/hot_play.jpg" class="hot_sea"></a>
+          <a href="">
+            <img src="./images/index/banner.png" class="responsive_image" alt="img">
+          </a>
         </li>
-        <li class="fr">
-          <a href="index-seaticket.html"><img src="images/index/sea_ticket.jpg" class="hot_sea"></a>
+      </ul>
+      <div class="banner_num">
+        <ul class="banner_num_wrap">
+          <li class="active"><span></span></li>
+          <li class=""><span></span></li>
+          <li class=""><span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--banner end-->
+  <!--label star-->
+  <section class="labelDiv">
+    <div class = "label_top clearfix">
+      <div><img src="./images/index/国际酒店bg@2x.png" alt="img"/><span><span>国际酒店</span></span></div>
+      <div><img src="./images/index/机票bg@2x.png" alt="img"/><span><span>国内酒店</span></span></div>
+      <div class = "label_top_last"><img src="./images/index/特价酒店bg@2x.png" alt="img"/><span><span>机票</span></span></div>
+    </div>
+    <div class = "label_bottom">
+      <div class = "label_bottom_first"><img src="./images/index/境外旅游bg@2x.png" alt="img"/><span><span>境外旅游</span></span><i></i></div>
+      <div class = "label_bottom_right clearfix">
+        <div><img src="./images/index/景点门票bg@2x.png" alt="img"/><span><span>景点门票</span></span></div>
+        <div class = "label_last_margin"><img src="./images/index/自由行bg@2x.png" alt="img"/><span><span>自由行</span></span></div>
+        <div><img src="./images/index/酒+景bg@2x.png" alt="img"/><span><span>酒+景</span></span></div>
+        <div class = "label_last_margin"><img src="./images/index/出境精选bg@2x.png" alt="img"/><span><span>出境精选</span></span></div>
+      </div>
+    </div>
+  </section>
+  <!--label end-->
+  <!--timer star-->
+  <section class = "timerDiv">
+    <div class = "clearfix timerDiv_top">
+      <span class="fl timerDiv_top_left"><img src="./images/index/限时专享@2x.png" alt=""/></span>
+            <span class = "fr time">
+                <span class = "time_reside">剩余</span>:
+                <span>12</span>
+                <span class="time_day">天</span>
+                <span>23</span>:
+                <span>15</span>:
+                <span>08</span>
+            </span>
+    </div>
+    <div class = "clearfix timerDiv_bottom">
+      <div class = " fl timerDiv_bottom_imgDiv"><img src="./images/index/img1.png" alt=""/></div>
+      <div class = "fr timerDiv_bottom_content">
+        <p class = "timerDiv_bottom_content_info">[皇家加勒比海洋]2017年5月19日出发天津-釜山-静冈6晚七日游</p>
+        <p class = "timerDiv_bottom_content_price">￥<strong>237</strong>起</p>
+        <p class = "timerDiv_bottom_content_limit"><span>仅限 <em> 100 </em>份</span><span class = "limit_right fr">抢购更多</span></p>
+      </div>
+    </div>
+  </section>
+  <!--timet end-->
+  <!--hot_destination star-->
+  <section class = "hotDiv">
+    <h3><i></i>热门目的地</h3>
+    <ul class = "hotDiv_content clearfix">
+      <li>
+        <div class="hotDiv_imgDiv"><img src="./images/index/img3.png" alt=""/></div>
+        <h3>新加坡新加坡</h3>
+        <p>全球最干净的城市</p>
+      </li>
+      <li>
+        <div class="hotDiv_imgDiv"><img src="./images/index/img3.png" alt=""/></div>
+        <h3>新加坡新加坡</h3>
+        <p>全球最干净的城市</p>
+      </li>
+      <li class = "hotDiv_content_lastLi">
+        <div class="hotDiv_imgDiv"><img src="./images/index/img3.png" alt=""/></div>
+        <h3>新加坡新加坡</h3>
+        <p>全球最干净的城市</p>
+      </li>
+    </ul>
+  </section>
+  <!--hot_destination end-->
+  <!--selection hotel star-->
+  <section class = "selectHotel">
+    <h3><i></i>精选酒店</h3>
+    <div>
+      <ul class="hotel_div clearfix">
+        <li>
+          <div class = "hotel_imgDiv"><img src="./images/index/img2.png" alt=""/></div>
+          <div class = "hotel_content">
+            <h3>新加坡费尔蒙特酒店是新加坡费尔门特酒店</h3>
+            <p>身处新加坡的中心区，距离莱佛士成仅几步之遥，而且需要几分</p>
+          </div>
+        </li>
+        <li>
+          <div class = "hotel_imgDiv"><img src="./images/index/img2.png" alt=""/></div>
+          <div class = "hotel_content">
+            <h3>新加坡费尔蒙特酒店是新加坡费尔门特酒店</h3>
+            <p>身处新加坡的中心区，距离莱佛士成仅几步之遥，而且需要几分</p>
+          </div>
+        </li>
+        <li>
+          <div class = "hotel_imgDiv"><img src="./images/index/img2.png" alt=""/></div>
+          <div class = "hotel_content">
+            <h3>新加坡费尔蒙特酒店是新加坡费尔门特酒店</h3>
+            <p>身处新加坡的中心区，距离莱佛士成仅几步之遥，而且需要几分</p>
+          </div>
         </li>
       </ul>
     </div>
-  </div>
-  <!--当月热玩海外门票结束-->
-  <!--玩家推荐-->
-  <div class="player_recommend">
-    <div class="player_rec_title">
-      <h5 class="play_rec_text">
-        <span class="player_line"></span>玩家推荐<span class="player_line right"></span>
-      </h5>
-    </div>
-    <div class="container" id="tuijian" style="">
-      <div v-for="item in recommendList">
-        <div class="half_top">
-          <a :href="item.productHref">
-            <div class="rec_price">
-              <span class="rec_price_tit">
-                <i>¥</i>{{item.productPrice}}<i> 起</i>
-              </span>
-            </div>
-            <img src="images/loading_def_big.png" :data-src="item.productPicUrl" alt="img" width="100%">
-          </a>
+  </section>
+  <!--selection hotel end-->
+  <!--outbound travel star-->
+  <section class = "outTravelDiv">
+    <h3><i></i>出境游产品</h3>
+    <ul>
+      <li>
+        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
+        <div class = "outTravel_content">
+          <h3>曼谷3天2晚自由行</h3>
+          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
         </div>
-        <h5 class="to_rec_tit">{{item.productName}}</h5>
-        <p class="to_recommend">{{item.productDesc}}</p>
-      </div>
+      </li>
+      <li>
+        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
+        <div class = "outTravel_content">
+          <h3>曼谷3天2晚自由行</h3>
+          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
+        </div>
+      </li>
+      <li>
+        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
+        <div class = "outTravel_content">
+          <h3>曼谷3天2晚自由行</h3>
+          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
+        </div>
+      </li>
+      <li>
+        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
+        <div class = "outTravel_content">
+          <h3>曼谷3天2晚自由行</h3>
+          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
+        </div>
+      </li>
+    </ul>
 
-    </div>
-  </div>
-  <div class="footer">
-    <p>Copyright @ 2016</p>
-    <p>北京祺迹国际旅行社有限公司 | 京ICP备 16028783号-1</p>
-    <p>北京朝阳区五里桥一街非中心32号楼3层</p>
-    <p>4008-909-202/010-58535627</p>
-  </div>
+  </section>
+  <!--outbound travel end-->
 </div>
-<div id="menu"></div>
-<script src="js/lib/jquery.js"></script>
-<script src="js/lib/plugins.js"></script>
-<script src="js/lib/jquery.alert.js"></script>
-<script src="js/lib/vlm.js"></script>
-<!--<script src="js/lib/template.js"></script>-->
-<script src="js/lib/vue/vue@2.0.8.js"></script>
-
-<script>
-  (function() {
-    var linkurl = {
-      1: "./hotel/hotel_detail.html?HotelID=",
-      2: "./flight/ticket_seat_choose.html?setId=",
-      3: "./scenic/scenic_detail.html?packageID=",
-      4: "./tour/packages_detail.html?packageID="
-    };
-    // 控制底部 footer 展示。
-    vlm.init();
-    $(document).ready(function() {
-      // FastClick 是防止 click 的 300ms 等待
-      FastClick.attach(document.body);
-    });
-    var app = new Vue({
-      el: '#app',
-      data: {
-        bannerList: [{
-          // 默认图片
-          url: 'images/loading_def_big.png'
-        }],
-
-        columnList:[{
-          href: './hotel/index.html',
-          icon: './images/index/hotel_guide.png',
-          title: '酒店',
-        }, {
-          href: './flight/f_index.html',
-          icon: './images/index/flight_guide.png',
-          title: '机票',
-        }, {
-          href: './scenic/index.html',
-          icon: './images/index/scenic_guide.png',
-          title: '景点',
-        }, {
-          href: './hotel_flight_tour/index.html',
-          icon: './images/index/fht_guide.png',
-          title: '自由行',
-        }, {
-          href: './tour/index.html',
-          icon: './images/index/tour_guide.png',
-          title: '酒+景',
-        }],
-
-        playerRecommendList: [],
-      },
-
-      methods: {},
-      computed: {
-        // computed 是计算属性，用于对 data 求值
-        // computed 也是响应式的，data 变化，computed 也会相应重新计算
-        recommendList: function () {
-          var playerRecommendList = this.playerRecommendList;
-
-          var recommendList = playerRecommendList.map(function (item, index) {
-            var productType = item.productType;
-            var productHref = linkurl[productType] + item.productID;
-
-            if (productType === 4) {
-              productHref += '&productPrice=' + item.productPrice + '&status=1';
-            }
-            return {
-              productHref: productHref,
-              productPrice:item.productPrice,
-              productPicUrl:item.productPicUrl,
-              productName:item.productName,
-              productDesc:item.productDesc
-            }
-          });
-
-          return recommendList
-        }
-      },
-      mounted: function () {
-        var _this = this;
-
-        //banner
-        function LoadBanner() {
-//        var tpl0 = ['<li class="fl"><a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a></li>'].join('');
-          var tmp = {
-            "Parameters": {
-              "BannerType": 1
-            },
-
-            "ForeEndType": 3,
-            "Code": "001302"
-          };
-          vlm.loadJson("", JSON.stringify(tmp), function(json) {
-            if (json.success) {
-              var data = json.data;
-              _this.bannerList = data.bannerList;
-              Vue.nextTick(function () {
-                bannerTab();
-              });
-//            var html_b = template(tpl0, data.bannerList);
-//            $("#banner").html(html_b);
-            } else {
-              console.log(json);
-              jAlert("数据格式错误", "提示");
-            }
-          });
-        }
-        //playerRecommend
-        function PlayerRecommend() {
-//        var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
-          var tmp = {
-            "Parameters": {
-              "PageNo": 1,
-              "PageSize": 10
-            },
-            "ForeEndType": 3,
-            "Code": "001303"
-          };
-          vlm.loadJson("", JSON.stringify(tmp), function(json) {
-            console.log(json);
-            if (json.success) {
-              var data = json.data;
-              _this.playerRecommendList = data.playerRecommendList;
-
-//            html_tj = template(tpl1, data.playerRecommendList);
-//            $("#tuijian").html(html_tj);
-
-              Vue.nextTick(function () {
-                //默认图片
-                var images = $("#tuijian").find('img');
-                var error_url = 'images/loading_def_big.png';
-                for (var i = 0; i < images.length; i++) {
-
-                  (function(index) {
-                    var re_url = images[i].getAttribute('data-src');
-                    loadImage(re_url, error_url, function() {
-                      images[index].setAttribute('src', re_url);
-
-                    }, function() {
-                      images[index].setAttribute('src', error_url);
-                    });
-
-                    function loadImage(url, error_url, callback, errorFunc) {
-                      var img = new Image();
-                      img.src = url;
-                      img.onload = function() {
-                        img.onload = null;
-                        callback();
-                      };
-                      img.onerror = function() {
-                        img.onerror = null;
-                        errorFunc();
-                      }
-                    }
-                  })(i);
-                }
-              })
-
-
-            } else {
-              console.log(json);
-              jAlert("数据格式错误", "提示");
-            }
-          });
-        }
-
-        //bannerTab
-        function bannerTab(){
-          var startX,startY, endX,endY;
-          var i= 0,timer=null,timerTimeout=null;bFlag=false;viewWidth=$(window).width();
-          for (var j = 0; j < $('.homepage_slider li').length; j++) {
-            $('.banner_num').append('<li><span></span></li>')
-          }
-          $('.banner_num li').first().addClass('active');
-          var firstimg=$('.homepage_slider li').first().clone();
-          firstimg.css('width',viewWidth);
-          $('.homepage_slider li').css('width',viewWidth);
-
-          $(window).on('resize',function(){
-            viewWidth=$(window).width();
-            $('.homepage_slider li').css('width',viewWidth);
-            firstimg.css('width',viewWidth);
-            $('.homepage_slider').width($('.homepage_slider li').length*($('.homepage_slider li').width()));
-            $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function() {
-              bFlag=false;
-            }});
-          });
-
-          $('.homepage_slider').append(firstimg).width($('.homepage_slider li').length*($('.homepage_slider li').width()));
-
-          // 滑动
-          $('.slider-container').on('touchstart',function(event) {
-            var touch = event.originalEvent.targetTouches[0];
-            startX = touch.pageX,
-              startY = touch.pageY;
-          });
-
-          $('.slider-container').on('touchmove',function(event){
-            var touch = event.originalEvent.targetTouches[0];
-            endX = touch.pageX,
-              endY = touch.pageY;
-            if( bFlag){
-              return;
-            }
-            if(Math.abs(startY - endY) <= 5){
-              bFlag=true;
-            }
-
-            clearInterval(timer);
-            if ((startX - endX) >= 5) {
-              i++;
-              if (i==$('.homepage_slider li').length) {
-                i=1; //这里不是i=0
-                $('.homepage_slider').css({left:0}); //保证无缝轮播，设置left值
-              };
-              $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
-                bFlag=false;
-              }});
-              if (i==$('.homepage_slider li').length-1) { //设置小圆点指示
-                $('.banner_num li').eq(0).addClass('active').siblings().removeClass('active');
-              }else{
-                $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
-              }
-            }else if((startX - endX) < -5){
-              i--;
-              if (i == -1) {
-                i=$('.homepage_slider li').length-2;
-                $('.homepage_slider').css({left:-($('.homepage_slider li').length-1)*viewWidth});
-              }
-              $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
-                bFlag=false;
-              }});
-              $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
-            }
-
-            clearTimeout(timerTimeout);
-            timerTimeout=setTimeout(function(){
-              timer_play();
-            },1500);
-
-          });
-
-          //定时器自动播放
-          timer_play();
-          function timer_play(){
-            clearInterval(timer);
-            timer=setInterval(function(){
-              i++;
-              if (i==$('.homepage_slider li').length) {
-                i=1;
-                $('.homepage_slider').css({left:0});
-              };
-              $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
-                bFlag=false;
-              }});
-              if (i==$('.homepage_slider li').length-1) {
-                $('.banner_num li').eq(0).addClass('active').siblings().removeClass('active');
-              }else{
-                $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
-              }
-            },4000)
-          }
-
-        }
-
-        LoadBanner();
-        PlayerRecommend()
-      }
-    });
-  })();
-</script>
 </body>
 </html>
