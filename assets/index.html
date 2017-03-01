@@ -36,11 +36,16 @@
 <div class="all_elements" id="app">
   <!--banner star-->
   <section class = bannerDiv>
-    <div class = "banner">
-      <ul class = "banner_img">
-        <li class="fl">
-          <a href="">
-            <img src="./images/index/banner.png" class="responsive_image" alt="img">
+    <div class = "banner slider-container">
+      <ul class = "banner_img homepage_slider" id="banner">
+        <!--<li class="fl">-->
+          <!--<a href="">-->
+            <!--<img src="./images/index/banner.png" class="responsive_image" alt="img">-->
+          <!--</a>-->
+        <!--</li>-->
+        <li v-for="banner in bannerList" class="fl">
+          <a :href="banner.bannerChangeLink">
+            <img :src="banner.bannerPicUrl" class="responsive_image" alt="img">
           </a>
         </li>
       </ul>
@@ -183,6 +188,224 @@
 
   </section>
   <!--outbound travel end-->
+  <!--<div id="menu" class="footer-menu-three-icons footer-menu"><a href="http://10.7.2.119" class="foot-homes"><i></i>首页</a><a href="http://10.7.2.119/user/user.html" class="foot-user"><i></i>我的</a></div>-->
 </div>
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/plugins.js"></script>
+<script src="js/lib/jquery.alert.js"></script>
+<script src="js/lib/vlm.js"></script>
+<!--<script src="js/lib/template.js"></script>-->
+<script src="js/lib/vue/vue@2.0.8.js"></script>
+<script>
+  (function() {
+    var linkurl = {
+      1: "./hotel/hotel_detail.html?HotelID=",
+      2: "./flight/ticket_seat_choose.html?setId=",
+      3: "./scenic/scenic_detail.html?packageID=",
+      4: "./tour/packages_detail.html?packageID="
+    };
+    // 控制底部 footer 展示。
+    vlm.init();
+    var app = new Vue({
+      el: '#app',
+      data: {
+        bannerList: [{
+          // 默认图片
+          url: 'images/loading_def_big.png'
+        }]
+      },
+      mounted: function () {
+        var _this = this;
+
+        //banner
+        function LoadBanner() {
+//        var tpl0 = ['<li class="fl"><a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a></li>'].join('');
+          var tmp = {
+            "Parameters": {
+              "BannerType": 1
+            },
+
+            "ForeEndType": 3,
+            "Code": "001302"
+          };
+          vlm.loadJson("", JSON.stringify(tmp), function(json) {
+            if (json.success) {
+              var data = json.data;
+              _this.bannerList = data.bannerList;
+              Vue.nextTick(function () {
+                bannerTab();
+              });
+//            var html_b = template(tpl0, data.bannerList);
+//            $("#banner").html(html_b);
+            } else {
+              console.log(json);
+              jAlert("数据格式错误", "提示");
+            }
+          });
+        }
+        //playerRecommend
+        function PlayerRecommend() {
+//        var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>￥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+          var tmp = {
+            "Parameters": {
+              "PageNo": 1,
+              "PageSize": 10
+            },
+            "ForeEndType": 3,
+            "Code": "001303"
+          };
+          vlm.loadJson("", JSON.stringify(tmp), function(json) {
+            console.log(json);
+            if (json.success) {
+              var data = json.data;
+              _this.playerRecommendList = data.playerRecommendList;
+
+//            html_tj = template(tpl1, data.playerRecommendList);
+//            $("#tuijian").html(html_tj);
+
+              Vue.nextTick(function () {
+                //默认图片
+                var images = $("#tuijian").find('img');
+                var error_url = 'images/loading_def_big.png';
+                for (var i = 0; i < images.length; i++) {
+
+                  (function(index) {
+                    var re_url = images[i].getAttribute('data-src');
+                    loadImage(re_url, error_url, function() {
+                      images[index].setAttribute('src', re_url);
+
+                    }, function() {
+                      images[index].setAttribute('src', error_url);
+                    });
+
+                    function loadImage(url, error_url, callback, errorFunc) {
+                      var img = new Image();
+                      img.src = url;
+                      img.onload = function() {
+                        img.onload = null;
+                        callback();
+                      };
+                      img.onerror = function() {
+                        img.onerror = null;
+                        errorFunc();
+                      }
+                    }
+                  })(i);
+                }
+              })
+
+
+            } else {
+              console.log(json);
+              jAlert("数据格式错误", "提示");
+            }
+          });
+        }
+
+        //bannerTab
+        function bannerTab(){
+          var startX,startY, endX,endY;
+          var i= 0,timer=null,timerTimeout=null;bFlag=false;viewWidth=$(window).width();
+          for (var j = 0; j < $('.homepage_slider li').length; j++) {
+            $('.banner_num').append('<li><span></span></li>')
+          }
+          $('.banner_num li').first().addClass('active');
+          var firstimg=$('.homepage_slider li').first().clone();
+          firstimg.css('width',viewWidth);
+          $('.homepage_slider li').css('width',viewWidth);
+
+          $(window).on('resize',function(){
+            viewWidth=$(window).width();
+            $('.homepage_slider li').css('width',viewWidth);
+            firstimg.css('width',viewWidth);
+            $('.homepage_slider').width($('.homepage_slider li').length*($('.homepage_slider li').width()));
+            $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function() {
+              bFlag=false;
+            }});
+          });
+
+          $('.homepage_slider').append(firstimg).width($('.homepage_slider li').length*($('.homepage_slider li').width()));
+
+          // 滑动
+          $('.slider-container').on('touchstart',function(event) {
+            var touch = event.originalEvent.targetTouches[0];
+            startX = touch.pageX,
+                    startY = touch.pageY;
+          });
+
+          $('.slider-container').on('touchmove',function(event){
+            var touch = event.originalEvent.targetTouches[0];
+            endX = touch.pageX,
+                    endY = touch.pageY;
+            if( bFlag){
+              return;
+            }
+            if(Math.abs(startY - endY) <= 5){
+              bFlag=true;
+            }
+
+            clearInterval(timer);
+            if ((startX - endX) >= 5) {
+              i++;
+              if (i==$('.homepage_slider li').length) {
+                i=1; //这里不是i=0
+                $('.homepage_slider').css({left:0}); //保证无缝轮播，设置left值
+              };
+              $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
+                bFlag=false;
+              }});
+              if (i==$('.homepage_slider li').length-1) { //设置小圆点指示
+                $('.banner_num li').eq(0).addClass('active').siblings().removeClass('active');
+              }else{
+                $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
+              }
+            }else if((startX - endX) < -5){
+              i--;
+              if (i == -1) {
+                i=$('.homepage_slider li').length-2;
+                $('.homepage_slider').css({left:-($('.homepage_slider li').length-1)*viewWidth});
+              }
+              $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
+                bFlag=false;
+              }});
+              $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
+            }
+
+            clearTimeout(timerTimeout);
+            timerTimeout=setTimeout(function(){
+              timer_play();
+            },1500);
+
+          });
+
+          //定时器自动播放
+          timer_play();
+          function timer_play(){
+            clearInterval(timer);
+            timer=setInterval(function(){
+              i++;
+              if (i==$('.homepage_slider li').length) {
+                i=1;
+                $('.homepage_slider').css({left:0});
+              };
+              $('.homepage_slider').stop().animate({left:-i*viewWidth},{easing:"linear",duration:500,complete:function(){
+                bFlag=false;
+              }});
+              if (i==$('.homepage_slider li').length-1) {
+                $('.banner_num li').eq(0).addClass('active').siblings().removeClass('active');
+              }else{
+                $('.banner_num li').eq(i).addClass('active').siblings().removeClass('active');
+              }
+            },4000)
+          }
+
+        }
+
+        LoadBanner();
+        PlayerRecommend()
+      }
+    });
+  })();
+</script>
 </body>
 </html>

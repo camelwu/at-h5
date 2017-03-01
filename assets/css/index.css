@@ -41,6 +41,10 @@
   margin: 8px;
   cursor: pointer;
 }
+.banner_num li {
+  display: inline-block;
+  zoom: 1;
+}
 
 
 /*label star*/
@@ -334,3 +338,30 @@ li.hotDiv_content_lastLi{
   overflow: hidden;
 }
 /*outbound travel end*/
+
+/*nav µ¼º½*/
+.footer-menu {
+  width: 100%;
+  position: fixed;
+  z-index: 98;
+  background-color: #fff;
+  opacity: .98;
+  bottom: 0;
+  border-top: 1px solid #e6e6e6;
+  padding: .06rem 0 .04rem;
+}
+.footer-menu-three-icons a {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+a.foot-homes, a.foot-users {
+  color: #7bc300;
+}
+.footer-menu a {
+  text-align: center;
+  font-size: .2rem;
+  color: #999;
+  overflow: hidden;
+}
+
