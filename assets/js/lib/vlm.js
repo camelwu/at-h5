@@ -8,7 +8,7 @@
  */
 (function (e, t) {
     var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111  10.7.2.119 m.yazhoulvyou.cn
-        var _api = location.protocol + "//10.7.2.119/api/GetServiceApiResult",
+        var _api = location.protocol + "//10.7.2.119:8888/api/GetServiceApiResult",
             _apiWithDeviceID = location.protocol + "//10.7.2.119/apiWihtDeviceID/GetServiceApiResult",
             lStorage = window.localStorage,
             sStorage = window.sessionStorage,
