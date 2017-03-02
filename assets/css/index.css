@@ -1,5 +1,5 @@
 .all_elements{
-  background: #c1c1c1;
+  background: #f2f2f2;
 }
 .all_elements section{
   background: #fff;
@@ -47,7 +47,7 @@
 }
 
 
-/*label star*/
+/*label start*/
 .labelDiv{
   padding:0.4rem 0.2rem;
   min-height: 3.2rem;
@@ -108,7 +108,7 @@ div.label_last_margin{
   margin-right: 0rem;
 }
 /*label end*/
-/*timer star*/
+/*timer start*/
 .timerDiv{
   padding:0.36rem 0.2rem 0.4rem;
 }
@@ -182,7 +182,7 @@ div.label_last_margin{
   margin-right: 0.4rem;
 }
 /*timet end*/
-/*hot_destination star*/
+/*hot_destination start*/
 .hotDiv{
   margin-top: 0.2rem;
   padding: 0.34rem 0 0.32rem 0;
@@ -238,7 +238,7 @@ li.hotDiv_content_lastLi{
   overflow: hidden;
 }
 /*hot_destination end*/
-/*selection hotel star*/
+/*selection hotel start*/
 .selectHotel{
   padding:0.34rem 0 0.24rem;
   margin-top: 0.2rem;
@@ -286,7 +286,7 @@ li.hotDiv_content_lastLi{
   padding:0 0.24rem;
 }
 /*selection hotel end*/
-/*outbound travel star*/
+/*outbound travel start*/
 .outTravelDiv{
   margin-top: 0.2rem;
   padding: 0.32rem 0 0.24rem 0;
