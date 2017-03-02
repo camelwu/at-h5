@@ -209,7 +209,7 @@ div.label_last_margin{
 }
 .hotDiv_content li{
   float: left;
-  margin:0.32rem  0.24rem 0 0;
+  margin:0.32rem  0.16rem 0 0;
   width: 31%;
   overflow: hidden;
 }
