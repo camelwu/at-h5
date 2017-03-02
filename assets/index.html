@@ -82,25 +82,27 @@
   <!--label end-->
   <!--timer start-->
   <section class = "timerDiv">
-    <div class = "clearfix timerDiv_top">
-      <span class="fl timerDiv_top_left"><img src="./images/index/限时专享@2x.png" alt=""/></span>
-            <span class = "fr time">
-                <span class = "time_reside">剩余</span>:
-                <span>12</span>
-                <span class="time_day">天</span>
-                <span>23</span>:
-                <span>15</span>:
-                <span>08</span>
-            </span>
-    </div>
-    <div class = "clearfix timerDiv_bottom">
-      <div class = " fl timerDiv_bottom_imgDiv"><img :src="limitedExclusiveList.imageUrl" alt=""/></div>
-      <div class = "fr timerDiv_bottom_content">
-        <p class = "timerDiv_bottom_content_info">{{limitedExclusiveList.title}}</p>
-        <p class = "timerDiv_bottom_content_price">￥<strong>{{limitedExclusiveList.price}}</strong>起</p>
-        <p class = "timerDiv_bottom_content_limit"><span>仅限 <em> {{limitedExclusiveList.totalNumber}} </em>份</span><span class = "limit_right fr">抢购更多</span></p>
+    <a href="./activity/flashsale/index.html">
+      <div class = "clearfix timerDiv_top">
+        <span class="fl timerDiv_top_left"><img src="./images/index/限时专享@2x.png" alt=""/></span>
+              <span class = "fr time">
+                  <span class = "time_reside">剩余</span>:
+                  <span>12</span>
+                  <span class="time_day">天</span>
+                  <span>23</span>:
+                  <span>15</span>:
+                  <span>08</span>
+              </span>
       </div>
-    </div>
+      <div class = "clearfix timerDiv_bottom">
+        <div class = " fl timerDiv_bottom_imgDiv"><img :src="limitedExclusiveList.imageUrl" alt=""/></div>
+        <div class = "fr timerDiv_bottom_content">
+          <p class = "timerDiv_bottom_content_info">{{limitedExclusiveList.title}}</p>
+          <p class = "timerDiv_bottom_content_price">￥<strong>{{limitedExclusiveList.price}}</strong>起</p>
+          <p class = "timerDiv_bottom_content_limit"><span>仅限 <em> {{limitedExclusiveList.totalNumber}} </em>份</span><span class = "limit_right fr">更多抢购</span></p>
+        </div>
+      </div>
+    </a>
   </section>
   <!--timet end-->
   <!--hot_destination start-->
@@ -149,7 +151,6 @@
     </ul>
   </section>
   <!--outbound travel end-->
-
 </div>
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/plugins.js"></script>

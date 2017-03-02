@@ -112,6 +112,9 @@ div.label_last_margin{
 .timerDiv{
   padding:0.36rem 0.2rem 0.4rem;
 }
+.timerDiv a{
+  color: #333;
+}
 .timerDiv_top_left{
   display: inline-block;
   width: 1.6rem;
