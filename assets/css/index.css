@@ -78,7 +78,7 @@
   left: 0;
   width: 100%;
 }
-.label_top div>span>span,.label_bottom div>span>span{
+.label_top div>span>a,.label_bottom div>span>a{
   text-align: center;
   font-size: 0.28rem;
   color:#fff;
@@ -339,7 +339,7 @@ li.hotDiv_content_lastLi{
 }
 /*outbound travel end*/
 
-/*nav µ¼º½*/
+/*nav å¯¼èˆª*/
 .footer-menu {
   width: 100%;
   position: fixed;
