@@ -39,9 +39,9 @@
     <div class = "banner slider-container">
       <ul class = "banner_img homepage_slider" id="banner">
         <!--<li class="fl">-->
-          <!--<a href="">-->
-            <!--<img src="./images/index/banner.png" class="responsive_image" alt="img">-->
-          <!--</a>-->
+        <!--<a href="">-->
+        <!--<img src="./images/index/banner.png" class="responsive_image" alt="img">-->
+        <!--</a>-->
         <!--</li>-->
         <li v-for="banner in bannerList" class="fl">
           <a :href="banner.bannerChangeLink">
@@ -91,11 +91,11 @@
             </span>
     </div>
     <div class = "clearfix timerDiv_bottom">
-      <div class = " fl timerDiv_bottom_imgDiv"><img src="./images/index/img1.png" alt=""/></div>
+      <div class = " fl timerDiv_bottom_imgDiv"><img :src="limitedExclusiveList.imageUrl" alt=""/></div>
       <div class = "fr timerDiv_bottom_content">
-        <p class = "timerDiv_bottom_content_info">[皇家加勒比海洋]2017年5月19日出发天津-釜山-静冈6晚七日游</p>
-        <p class = "timerDiv_bottom_content_price">￥<strong>237</strong>起</p>
-        <p class = "timerDiv_bottom_content_limit"><span>仅限 <em> 100 </em>份</span><span class = "limit_right fr">抢购更多</span></p>
+        <p class = "timerDiv_bottom_content_info">{{limitedExclusiveList.title}}</p>
+        <p class = "timerDiv_bottom_content_price">￥<strong>{{limitedExclusiveList.price}}</strong>起</p>
+        <p class = "timerDiv_bottom_content_limit"><span>仅限 <em> {{limitedExclusiveList.totalNumber}} </em>份</span><span class = "limit_right fr">抢购更多</span></p>
       </div>
     </div>
   </section>
@@ -104,20 +104,10 @@
   <section class = "hotDiv">
     <h3><i></i>热门目的地</h3>
     <ul class = "hotDiv_content clearfix">
-      <li>
-        <div class="hotDiv_imgDiv"><img src="./images/index/img3.png" alt=""/></div>
-        <h3>新加坡新加坡</h3>
-        <p>全球最干净的城市</p>
-      </li>
-      <li>
-        <div class="hotDiv_imgDiv"><img src="./images/index/img3.png" alt=""/></div>
-        <h3>新加坡新加坡</h3>
-        <p>全球最干净的城市</p>
-      </li>
-      <li class = "hotDiv_content_lastLi">
-        <div class="hotDiv_imgDiv"><img src="./images/index/img3.png" alt=""/></div>
-        <h3>新加坡新加坡</h3>
-        <p>全球最干净的城市</p>
+      <li v-for="hotDes in hotDestinationList">
+        <div class="hotDiv_imgDiv"><img :src="hotDes.imageUrl" alt=""/></div>
+        <h3>{{hotDes.cityCategory}}</h3>
+        <p>{{hotDes.cityDesc}}</p>
       </li>
     </ul>
   </section>
@@ -127,25 +117,11 @@
     <h3><i></i>精选酒店</h3>
     <div>
       <ul class="hotel_div clearfix">
-        <li>
-          <div class = "hotel_imgDiv"><img src="./images/index/img2.png" alt=""/></div>
+        <li v-for="item in hotTopicList">
+          <div class = "hotel_imgDiv"><img :src="item.imageUrl" alt=""/></div>
           <div class = "hotel_content">
-            <h3>新加坡费尔蒙特酒店是新加坡费尔门特酒店</h3>
-            <p>身处新加坡的中心区，距离莱佛士成仅几步之遥，而且需要几分</p>
-          </div>
-        </li>
-        <li>
-          <div class = "hotel_imgDiv"><img src="./images/index/img2.png" alt=""/></div>
-          <div class = "hotel_content">
-            <h3>新加坡费尔蒙特酒店是新加坡费尔门特酒店</h3>
-            <p>身处新加坡的中心区，距离莱佛士成仅几步之遥，而且需要几分</p>
-          </div>
-        </li>
-        <li>
-          <div class = "hotel_imgDiv"><img src="./images/index/img2.png" alt=""/></div>
-          <div class = "hotel_content">
-            <h3>新加坡费尔蒙特酒店是新加坡费尔门特酒店</h3>
-            <p>身处新加坡的中心区，距离莱佛士成仅几步之遥，而且需要几分</p>
+            <h3>{{item.topicTitle}}</h3>
+            <p>{{item.topicDesc}}</p>
           </div>
         </li>
       </ul>
@@ -156,36 +132,16 @@
   <section class = "outTravelDiv">
     <h3><i></i>出境游产品</h3>
     <ul>
-      <li>
-        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
-        <div class = "outTravel_content">
-          <h3>曼谷3天2晚自由行</h3>
-          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
-        </div>
-      </li>
-      <li>
-        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
-        <div class = "outTravel_content">
-          <h3>曼谷3天2晚自由行</h3>
-          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
-        </div>
-      </li>
-      <li>
-        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
-        <div class = "outTravel_content">
-          <h3>曼谷3天2晚自由行</h3>
-          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
-        </div>
-      </li>
-      <li>
-        <div class="outTravel_imgDiv"><img src="./images/index/img3.png" alt=""/><span>￥<strong>1680</strong>起</span></div>
-        <div class = "outTravel_content">
-          <h3>曼谷3天2晚自由行</h3>
-          <p>酒店+机场接送+丹嫰更多沙水上市场与汉语导游</p>
-        </div>
+      <li v-for="package in outboundTravelList">
+        <a>
+          <div class="outTravel_imgDiv"><img :src="package.otGeneralMessage.imageUrl" alt=""/><span>￥<strong>{{package.otGeneralMessage.price}}</strong>起</span></div>
+          <div class = "outTravel_content">
+            <h3>{{package.otGeneralMessage.productTitle}}</h3>
+            <p>{{package.otGeneralMessage.productDesc}}</p>
+          </div>
+        </a>
       </li>
     </ul>
-
   </section>
   <!--outbound travel end-->
   <!--<div id="menu" class="footer-menu-three-icons footer-menu"><a href="http://10.7.2.119" class="foot-homes"><i></i>首页</a><a href="http://10.7.2.119/user/user.html" class="foot-user"><i></i>我的</a></div>-->
@@ -212,7 +168,11 @@
         bannerList: [{
           // 默认图片
           url: 'images/loading_def_big.png'
-        }]
+        }],
+        limitedExclusiveList:{},
+        hotDestinationList:[],
+        outboundTravelList:[],
+        hotTopicList:[]
       },
       mounted: function () {
         var _this = this;
@@ -226,7 +186,7 @@
             },
 
             "ForeEndType": 3,
-            "Code": "001302"
+            "Code": "80100001"
           };
           vlm.loadJson("", JSON.stringify(tmp), function(json) {
             if (json.success) {
@@ -235,71 +195,92 @@
               Vue.nextTick(function () {
                 bannerTab();
               });
-//            var html_b = template(tpl0, data.bannerList);
-//            $("#banner").html(html_b);
             } else {
               console.log(json);
               jAlert("数据格式错误", "提示");
             }
           });
         }
-        //playerRecommend
-        function PlayerRecommend() {
-//        var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>￥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
-          var tmp = {
+        //限时抢购
+        function LimitedExclusive() {
+          var json = {
             "Parameters": {
-              "PageNo": 1,
-              "PageSize": 10
             },
             "ForeEndType": 3,
-            "Code": "001303"
+            "Code": "10100040"
           };
-          vlm.loadJson("", JSON.stringify(tmp), function(json) {
+          vlm.loadJson("", JSON.stringify(json), function(json) {
             console.log(json);
             if (json.success) {
               var data = json.data;
-              _this.playerRecommendList = data.playerRecommendList;
-
-//            html_tj = template(tpl1, data.playerRecommendList);
-//            $("#tuijian").html(html_tj);
-
-              Vue.nextTick(function () {
-                //默认图片
-                var images = $("#tuijian").find('img');
-                var error_url = 'images/loading_def_big.png';
-                for (var i = 0; i < images.length; i++) {
-
-                  (function(index) {
-                    var re_url = images[i].getAttribute('data-src');
-                    loadImage(re_url, error_url, function() {
-                      images[index].setAttribute('src', re_url);
-
-                    }, function() {
-                      images[index].setAttribute('src', error_url);
-                    });
-
-                    function loadImage(url, error_url, callback, errorFunc) {
-                      var img = new Image();
-                      img.src = url;
-                      img.onload = function() {
-                        img.onload = null;
-                        callback();
-                      };
-                      img.onerror = function() {
-                        img.onerror = null;
-                        errorFunc();
-                      }
-                    }
-                  })(i);
-                }
-              })
-
-
+              _this.limitedExclusiveList = data.appHomePageLimitedExclusive;
             } else {
               console.log(json);
               jAlert("数据格式错误", "提示");
             }
           });
+        }
+
+        //热门目的地
+        function hotDestination(){
+          var json = {
+            "Parameters": {
+            },
+            "ForeEndType": 3,
+            "Code": "10100042"
+          };
+          vlm.loadJson("", JSON.stringify(json), function(json) {
+            console.log(json);
+            if (json.success) {
+              var data = json.data;
+              _this.hotDestinationList = data.appHomePageHotDestination.city;
+            } else {
+              console.log(json);
+              jAlert("数据格式错误", "提示");
+            }
+          });
+
+        }
+        //精选酒店
+        function hotTopic(){
+          var json = {
+            "Parameters": {
+            },
+            "ForeEndType": 3,
+            "Code": "10100043"
+          };
+          vlm.loadJson("", JSON.stringify(json), function(json) {
+            console.log(json);
+            if (json.success) {
+              var data = json.data;
+              debugger;
+              _this.hotTopicList = data.appHomePageHotTopic.topic;
+            } else {
+              console.log(json);
+              jAlert("数据格式错误", "提示");
+            }
+          });
+
+        }
+        //出境游产品
+        function outboundTravel(){
+          var json = {
+            "Parameters": {
+            },
+            "ForeEndType": 3,
+            "Code": "10100045"
+          };
+          vlm.loadJson("", JSON.stringify(json), function(json) {
+            console.log(json);
+            if (json.success) {
+              var data = json.data;
+              _this.outboundTravelList = data.appOutboundTravel.product;
+            } else {
+              console.log(json);
+              jAlert("数据格式错误", "提示");
+            }
+          });
+
         }
 
         //bannerTab
@@ -402,7 +383,10 @@
         }
 
         LoadBanner();
-        PlayerRecommend()
+        LimitedExclusive();
+        hotDestination();
+        outboundTravel();
+        hotTopic();
       }
     });
   })();
