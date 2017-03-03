@@ -25,13 +25,13 @@
       </div>
       <div class = "banner_content">
         <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>23</span>: <span>15</span>: <span>08</span></span></p>
-        <p class = "banner_information">{{limitedExclusiveList.topBar.leGeneralMessage.title}}</p>
+        <p class = "banner_information">{{ limitedExclusiveList.topBar.leGeneralMessage.title }}</p>
       </div>
       <div class = "banner_price clearfix">
         <div class = "fl">
           <p class = "banner_price_left">
-            <span class = "price_num">￥<strong>{{limitedExclusiveList.topBar.leGeneralMessage.price}}</strong>起</span>
-            <span class = "price_sum">仅限 <em>{{limitedExclusiveList.topBar.leGeneralMessage.totalNumber}}</em>份</span>
+            <span class = "price_num">￥<strong>{{ limitedExclusiveList.topBar.leGeneralMessage.price }}</strong>起</span>
+            <span class = "price_sum">仅限 <em>{{ limitedExclusiveList.topBar.leGeneralMessage.totalNumber }}</em>份</span>
             <span class = "price_buy">已抢购 <em>50%</em></span>
           </p>
           <p class ="progress_bar"><span class = "bar_bg"></span><span class = "bar_show"></span></p>
@@ -51,7 +51,7 @@
       <div class = "special_content">
         <ul>
           <li v-for="item in currentItem" class = "clearfix">
-            <div class = "special_imgDiv"><img :src="item.leGeneralMessage.imageUrl" alt=""/></div>
+            <div class = "special_imgDiv"><img v-lazy.container="item.leGeneralMessage.imageUrl" alt=""/></div>
             <div class = "special_right">
               <p class = "special_right_content">{{item.leGeneralMessage.title}}</p>
               <p class = "special_right_price clearfix">
@@ -73,8 +73,13 @@
 </div>
 <script src="../js/jquery/jquery.min.js"></script>
 <script src="../js/vlm.js"></script>
+<script src="../js/vue-lazyLoad/vue-lazyload.es5.js"></script>
 <script src="../js/vue/vue@2.0.8.js"></script>
 <script>
+  Vue.use(VueLazyload, {
+    error: '../static/images/error.png',
+    loading: '../static/images/loading.gif'
+  });
   (function() {
     // 控制底部 footer 展示。
     vlm.init();
@@ -84,7 +89,6 @@
         limitedExclusiveList:{},
         titleList:[],
         currentItem:{},
-
         selectedIndex:0
       },
       methods:{
@@ -111,10 +115,8 @@
               for(var i=0;i<=data.appLimitedExclusive.bottomBarList.length-1;i++){
                 array.push(data.appLimitedExclusive.bottomBarList[i].bottomBarCategory)
               }
-              debugger;
               _this.titleList=array;
               _this.currentItem=data.appLimitedExclusive.bottomBarList[_this.selectedIndex].bottomBar;
-
 
             } else {
               console.log(json);
