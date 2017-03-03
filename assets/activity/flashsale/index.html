@@ -8,7 +8,9 @@
     <title>限时专享</title>
 </head>
 <body>
+
 <div class="all_elements" id="app">
+
     <!--top start-->
     <div class = "topDiv">
         <a href="javascript:window.history.go(-1);">
@@ -48,7 +50,7 @@
       </ul>
       <div class = "special_content">
         <ul>
-          <li v-for="item in packageList.currentItem" class = "clearfix">
+          <li v-for="item in currentItem" class = "clearfix">
             <div class = "special_imgDiv"><img :src="item.leGeneralMessage.imageUrl" alt=""/></div>
             <div class = "special_right">
               <p class = "special_right_content">{{item.leGeneralMessage.title}}</p>
@@ -80,15 +82,15 @@
       el: '#app',
       data: {
         limitedExclusiveList:{},
-        packageList:{},
+        titleList:[],
+        currentItem:{},
+
         selectedIndex:0
       },
       methods:{
-
         chooseTab:function(index){
         this.selectedIndex = index;
-        this.packageList.currentItem=this.limitedExclusiveList.bottomBarList[this.selectedIndex].bottomBar;
-
+        this.currentItem=this.limitedExclusiveList.bottomBarList[this.selectedIndex].bottomBar;
        }
     },
       mounted: function () {
@@ -109,8 +111,9 @@
               for(var i=0;i<=data.appLimitedExclusive.bottomBarList.length-1;i++){
                 array.push(data.appLimitedExclusive.bottomBarList[i].bottomBarCategory)
               }
-              _this.packageList.titleList=array;
-              _this.packageList.currentItem=data.appLimitedExclusive.bottomBarList[_this.selectedIndex].bottomBar;
+              debugger;
+              _this.titleList=array;
+              _this.currentItem=data.appLimitedExclusive.bottomBarList[_this.selectedIndex].bottomBar;
 
 
             } else {
