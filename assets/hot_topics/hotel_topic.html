@@ -8,7 +8,7 @@
     <title>热门专题</title>
 </head>
 <body>
-<div class="all_elements">
+<div class="all_elements" id="app">
     <!--top start-->
     <section class = "topDIv">
         <div class = "top_imgDiv"><img src="../images/activity/banner.png" alt=""/></div>
@@ -69,6 +69,43 @@
         <div class = "expense_reserve">立即预定</div>
     </section>
 </div>
-
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/vue/vue@2.0.8.js"></script>
+<script>
+    (function(){
+        var app = new Vue({
+            el:"#app",
+            data:{
+                data:data
+            },
+            mounted:function(){
+                //banner
+                function LoadBanner() {
+                    var tmp = {
+                        "Parameters": {
+                            "productCategory": 1,
+                            "productID":11,
+                        },
+                        "ForeEndType": 3,
+                        "Code": "10100044"
+                    };
+                    vlm.loadJson("", JSON.stringify(tmp), function(json) {
+                        if (json.success) {
+                            var data = json.data;
+                            this.bannerList=data;
+                        } else {
+                            console.log(json);
+                            jAlert("数据格式错误", "提示");
+                        }
+                    });
+                };
+                LoadBanner();
+            }
+        })
+    })()
+</script>
 </body>
 </html>
