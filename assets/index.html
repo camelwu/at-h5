@@ -120,16 +120,17 @@
   <!--selection hotel start-->
   <section class = "selectHotel">
     <h3><i></i>精选酒店</h3>
+
     <div>
       <ul class="hotel_div clearfix">
-        <li v-for="item in hotTopicList">
-          <div class = "hotel_imgDiv"><img :src="item.imageUrl" alt=""/></div>
-          <div class = "hotel_content">
-            <div>
-              <h3>{{item.topicTitle}}</h3>
-              <p>{{item.topicDesc}}</p>
+        <li v-for="item in hotTopicList" v-on:click="goLinkHotTopicDetail(item.productCategory,item.productID)">
+            <div class = "hotel_imgDiv"><img v-lazy="item.imageUrl" alt=""/></div>
+            <div class = "hotel_content">
+              <div>
+                <h3>{{item.topicTitle}}</h3>
+                <p>{{item.topicDesc}}</p>
+              </div>
             </div>
-          </div>
         </li>
       </ul>
     </div>
@@ -140,13 +141,11 @@
     <h3><i></i>出境游产品</h3>
     <ul>
       <li v-for="package in outboundTravelList">
-        <a>
-          <div class="outTravel_imgDiv"><img :src="package.otGeneralMessage.imageUrl" alt=""/><span>￥<strong>{{package.otGeneralMessage.price}}</strong>起</span></div>
+          <div class="outTravel_imgDiv" v-on:click="goLinkOutTravel(package)"><img v-lazy="package.otGeneralMessage.imageUrl" alt=""/><span>￥<strong>{{package.otGeneralMessage.price}}</strong>起</span></div>
           <div class = "outTravel_content">
             <h3>{{package.otGeneralMessage.productTitle}}</h3>
             <p>{{package.otGeneralMessage.productDesc}}</p>
           </div>
-        </a>
       </li>
     </ul>
   </section>
@@ -156,6 +155,7 @@
 <script src="js/lib/plugins.js"></script>
 <script src="js/lib/jquery.alert.js"></script>
 <script src="js/lib/vlm.js"></script>
+<script src="js/lib/vue/vue-lazyLoad/vue-lazyload.es5.js"></script>
 <!--<script src="js/lib/template.js"></script>-->
 <script src="js/lib/vue/vue@2.0.8.js"></script>
 <script>
@@ -168,6 +168,11 @@
     };
     // 控制底部 footer 展示。
     vlm.init();
+    Vue.use(VueLazyload, {
+      error: './images/loading.gif',
+      loading: './images/loading.gif',
+      try: 3 // default 1
+    });
     var app = new Vue({
       el: '#app',
       data: {
@@ -179,6 +184,16 @@
         hotDestinationList:[],
         outboundTravelList:[],
         hotTopicList:[]
+      },
+      methods:{
+        //热门酒店跳转
+        goLinkHotTopicDetail:function(productCategory,productID){
+          window.location.href="./hot_topics/hotel_topic.html?productCategory="+productCategory+"&productID="+productID;
+        },
+        //出境游产品跳转
+        goLinkOutTravel:function(obj){
+          window.location.href="./tour/packages_detail.html?packageID="+obj.searchParams.packageID+"&productPrice="+obj.otGeneralMessage.price+"&status=1";
+        }
       },
       mounted: function () {
         var _this = this;
