@@ -24,7 +24,7 @@
   <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
   <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png" media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
   <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png" media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
-  <link rel="shortcut icon" href=./images/index/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
   <title>首页 - 亚程旅行网</title>
   <script src="js/lib/logRecord.js"></script>
   <link href="styles/reset.css" rel="stylesheet" type="text/css">
@@ -87,11 +87,11 @@
         <span class="fl timerDiv_top_left"><img src="./images/index/限时专享@2x.png" alt=""/></span>
               <span class = "fr time">
                   <span class = "time_reside">剩余</span>:
-                  <span>12</span>
+                  <span>{{time.day}}</span>
                   <span class="time_day">天</span>
-                  <span>23</span>:
-                  <span>15</span>:
-                  <span>08</span>
+                  <span>{{time.hours}}</span>:
+                  <span>{{time.minutes}}</span>:
+                  <span>{{time.seconds}}</span>
               </span>
       </div>
       <div class = "clearfix timerDiv_bottom">
@@ -183,9 +183,14 @@
         limitedExclusiveList:{},
         hotDestinationList:[],
         outboundTravelList:[],
-        hotTopicList:[]
+        hotTopicList:[],
+        time:{day:"00",hours:"00",minutes:"00",seconds:"00"},
+        stop:false,
+        currentSecond:0,
+        Interval:null
       },
       methods:{
+
         //热门酒店跳转
         goLinkHotTopicDetail:function(productCategory,productID){
           window.location.href="./hot_topics/hotel_topic.html?productCategory="+productCategory+"&productID="+productID;
@@ -402,11 +407,52 @@
 
         }
 
+        function startTimeCountDown (startTime,endTime) {
+          var timespan = new Date(endTime).getTime()-new Date(startTime).getTime();   //时间差的毫秒数
+          if(timespan<=0){
+            _this.stop= true
+          }
+          //如果是false就开始倒计时，如果是true就停止倒计时
+          if(_this.stop == false)
+          {
+            setInterval(function update(timespan) {
+              timespan=timespan-1000*_this.currentSecond;
+              //计算出相差天数
+              let day=Math.floor(timespan/(24*3600*1000))
+              _this.time.day=day<=0?"0"+day.toString():day;
+
+              //计算出小时数
+              var leave1=timespan%(24*3600*1000)    //计算天数后剩余的毫秒数
+              let hours=Math.floor(leave1/(3600*1000));
+              _this.time.hours=hours<=0?"0"+hours.toString():hours;
+
+              //计算相差分钟数
+              var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
+              let minutes=Math.floor(leave2/(60*1000))
+              _this.time.minutes=minutes<=0?"0"+minutes.toString():minutes;
+              //计算相差秒数
+              var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+              let seconds=Math.round(leave3/1000)
+              _this.time.seconds=seconds<=0?"0"+seconds.toString():seconds;
+              _this.currentSecond++;
+            },1000,timespan);
+          }
+          else
+          {
+            clearInterval(_this.Interval);
+          }
+        };
+
+
         LoadBanner();
         LimitedExclusive();
         hotDestination();
         outboundTravel();
         hotTopic();
+        //倒计时
+        startTimeCountDown("2017-01-20 00:00:00","2017-03-04 14:55:56")
+
+
       }
     });
   })();
