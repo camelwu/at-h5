@@ -109,7 +109,7 @@
   <section class = "hotDiv">
     <h3><i></i>热门目的地</h3>
     <ul class = "hotDiv_content clearfix">
-      <li v-for="hotDes in hotDestinationList">
+      <li v-for="hotDes in hotDestinationList" v-on:click="goLinkHotDestinationDetail(hotDes)">
         <div class="hotDiv_imgDiv"><img :src="hotDes.imageUrl" alt=""/></div>
         <h3>{{hotDes.cityCategory}}</h3>
         <p>{{hotDes.cityDesc}}</p>
@@ -186,7 +186,7 @@
         hotTopicList:[],
         time:{day:"00",hours:"00",minutes:"00",seconds:"00"},
         stop:false,
-        currentSecond:0,
+        currentSecond:1,
         Interval:null
       },
       methods:{
@@ -198,7 +198,12 @@
         //出境游产品跳转
         goLinkOutTravel:function(obj){
           window.location.href="./tour/packages_detail.html?packageID="+obj.searchParams.packageID+"&productPrice="+obj.otGeneralMessage.price+"&status=1";
+        },
+        //热门目的地跳转
+        goLinkHotDestinationDetail:function(obj){
+          window.location.href="./hot_topics/h_ht_topic.html?cityCategory="+obj.cityCategory+"&cityCode"+obj.cityCode;
         }
+
       },
       mounted: function () {
         var _this = this;
@@ -384,7 +389,7 @@
 
           });
 
-          //定时器自动播放
+          //轮播定时器自动播放
           timer_play();
           function timer_play(){
             clearInterval(timer);
@@ -407,7 +412,8 @@
 
         }
 
-        function startTimeCountDown (startTime,endTime) {
+        //抢购倒计时
+        function timeCountDown (startTime,endTime) {
           var timespan = new Date(endTime).getTime()-new Date(startTime).getTime();   //时间差的毫秒数
           if(timespan<=0){
             _this.stop= true
@@ -443,14 +449,13 @@
           }
         };
 
-
         LoadBanner();
         LimitedExclusive();
         hotDestination();
         outboundTravel();
         hotTopic();
         //倒计时
-        startTimeCountDown("2017-01-20 00:00:00","2017-03-04 14:55:56")
+        timeCountDown("2017-01-20 00:00:00","2017-03-04 14:55:56")
 
 
       }
