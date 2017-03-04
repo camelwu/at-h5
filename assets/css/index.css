@@ -377,3 +377,24 @@ a.foot-homes, a.foot-users {
   overflow: hidden;
 }
 
+.foot-homes i {
+  background: url(../images/index/home_act.png) no-repeat;
+  background-size: .48rem .48rem;
+}
+.footer-menu i {
+  display: block;
+  margin: 0 auto;
+  width: .48rem;
+  height: .48rem;
+}
+.foot-user i {
+  background: url(../images/index/user_def.png) no-repeat;
+  background-size: .48rem .48rem;
+}
+.footer-menu i {
+  display: block;
+  margin: 0 auto;
+  width: .48rem;
+  height: .48rem;
+}
+
