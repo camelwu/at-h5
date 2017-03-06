@@ -25,7 +25,7 @@
         <div class = "label_div clearfix"><div   @click="toggle(index ,tab.view)" v-for="(tab,index) in tabs" :class="{cur:active==index}" >{{tab.text}}</div></div>
         <ul class = "content_div">
           <!--<component :is="currentView"></component>-->
-          <li class = "clearfix" v-for="item in packageList">
+          <li class = "clearfix" v-for="item in packageList" v-on:click="goLinkDetail(item.packageID)">
           <div class = "imgDiv"><img :src="item.pictureURL"/></div>
           <div class = "hotel_info">
             <p class = "hotel_name">{{item.packageName}}</p>
@@ -46,23 +46,27 @@
           el:"#app",
           data:{
             active: 0,
-            currentIndex:0,
             destCity:vlm.getpara("cityCategory"),
             tabs: [
               {
                 type: 'tab1',
                 text:"门票",
-                code:'20100002'
+                code:'20100002',
+                goLinkDetailUrl:"/scenic/scenic_detail.html"
               },
               {
                 type: 'tab2',
                 text:"酒景",
-                code:'40100007'
+                code:'40100007',
+                goLinkDetailUrl:"/tour/packages_detail.html"
               }
             ],
             packageList:[]
           },
           methods: {
+             goLinkDetail(packageID){
+              window.location.href=this.tabs[this.active].goLinkDetailUrl+"?packageID="+packageID;
+            },
             toggle(i, v){
               this.active = i;
               this.getjson(i);

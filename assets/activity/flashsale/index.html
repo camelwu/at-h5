@@ -46,14 +46,14 @@
     <section class = "specialDiv">
       <div class="special_title"><span></span><h3>限时优惠</h3><span></span></div>
       <ul class="special_link clearfix">
-        <li @click="chooseTab(0)">酒店</li>
-        <li @click="chooseTab(1)" >出境游</li>
-        <li @click="chooseTab(2)" class = "special_link_last">酒+景</li>
+        <li @click="toggle(index ,tab.view)" v-for="(tab,index) in tabs" :class="{cur:active==index}" >
+          {{tab.text}}
+        </li>
       </ul>
       <div class = "special_content">
         <ul>
           <li v-for="item in currentItem" class = "clearfix">
-            <div class = "special_imgDiv"><img  v-lazy.container="item.leGeneralMessage.imageUrl" alt=""/></div>
+            <div class = "special_imgDiv"><img  :src="item.leGeneralMessage.imageUrl" alt=""/></div>
             <div class = "special_right">
               <p class = "special_right_content">{{item.leGeneralMessage.title}}</p>
               <p class = "special_right_price clearfix">
@@ -79,8 +79,8 @@
 <script src="../js/vue/vue@2.0.8.js"></script>
 <script>
   Vue.use(VueLazyload, {
-    error: '../static/images/error.png',
-    loading: '../static/images/loading.gif',
+    error: './static/images/error.png',
+    loading: './static/images/activity/loading.gif',
     try: 3 // default 1
   });
   (function() {
@@ -89,22 +89,20 @@
     var app = new Vue({
       el: '#app',
       data: {
-
+        active: 0,
         limitedExclusiveList:{},
-        titleList:[],
         leGeneralMessage:{},
         currentItem:{},
-        selectedIndex:0
+        tabs: [],
       },
       methods:{
-        chooseTab:function(index){
-        this.selectedIndex = index;
-        this.currentItem=this.limitedExclusiveList.bottomBarList[this.selectedIndex].bottomBar;
-       }
-    },
-      mounted: function () {
-        var _this = this;
-        function hotTopic(){
+        toggle(i, v){
+          this.active = i;
+          this.getjson(i);
+        },
+        getjson(index)
+        {
+          _this = this;
           var json = {
             "Parameters": {
             },
@@ -118,12 +116,11 @@
               var data = json.data;
               _this.limitedExclusiveList = data.appLimitedExclusive;
               _this.leGeneralMessage=data.appLimitedExclusive.topBar.leGeneralMessage;
-              var array=[]
+              _this.tabs=[];
               for(var i=0;i<=data.appLimitedExclusive.bottomBarList.length-1;i++){
-                array.push(data.appLimitedExclusive.bottomBarList[i].bottomBarCategory)
+                _this.tabs.push({text:data.appLimitedExclusive.bottomBarList[i].bottomBarCategory})
               }
-              _this.titleList=array;
-              _this.currentItem=data.appLimitedExclusive.bottomBarList[_this.selectedIndex].bottomBar;
+              _this.currentItem=data.appLimitedExclusive.bottomBarList[index].bottomBar;
 
 
             } else {
@@ -132,8 +129,11 @@
             }
           });
         }
-        hotTopic();
-      },
+
+    },
+    mounted: function () {
+        this.getjson(0);
+    }
 
     });
   })();

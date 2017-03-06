@@ -192,14 +192,18 @@ font-size: 0.24rem;
 .special_link li{
   width: 30%;
   height: 0.68rem;
-  border:1px solid #c5e593;
+  border:1px solid #999;
   text-align: center;
   line-height: 0.68rem;
   font-size: 0.28rem;
-  color:#7ab621;
-  margin-right: 0.2rem;
+  color:#333;
+  margin-right: 0.1rem;
   border-radius: 1rem;
   float: left;
+}
+.special_link .cur{
+  color:#7ab621;
+  border:1px solid #c5e593;
 }
 li.special_link_last{
   margin-right: 0rem;
