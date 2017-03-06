@@ -11,7 +11,7 @@
       var protocol = location.protocol;
       var host = location.host;
       var _api = protocol + "//10.7.2.119/api/GetServiceApiResult",
-        _apiWithDeviceID = protocol + "//10.7.2.119/apiWihtDeviceID/GetServiceApiResult",
+        _apiWithDeviceID = protocol + "//10.7.2.119/GetServiceApiResult",
       // var _api = protocol + "//m.yazhoulvyou.cn/api/GetServiceApiResult",
       //   _apiWithDeviceID = protocol + "//m.yazhoulvyou.cn/apiWihtDeviceID/GetServiceApiResult",
         lStorage = window.localStorage,

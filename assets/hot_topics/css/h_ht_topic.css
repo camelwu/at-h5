@@ -57,11 +57,11 @@
     line-height: 0.78rem;
     text-align: center;
     color:#999;
-    border-bottom: 4px solid #f2f2f2;
+    border-bottom: 2px solid #f2f2f2;
 }
 .label_div div.cur{
     color:#8ace00;
-    border-bottom: 4px solid #8ace00;
+    border-bottom: 2px solid #8ace00;
 }
 .content_div li{
     padding-top: 0.32rem;

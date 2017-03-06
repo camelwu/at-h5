@@ -167,7 +167,7 @@
       4: "./tour/packages_detail.html?packageID="
     };
     // 控制底部 footer 展示。
-    vlm.init();
+
     Vue.use(VueLazyload, {
       error: './images/erro/error.png',
       loading: './images/loading.gif',
@@ -220,6 +220,7 @@
             "Code": "80100001"
           };
           vlm.loadJson("", JSON.stringify(tmp), function(json) {
+            vlm.init();
             if (json.success) {
               var data = json.data;
               _this.bannerList = data.bannerList;

@@ -8,56 +8,94 @@
     <title>热门专题</title>
 </head>
 <body>
+<div id="preloader">
+  <div id="status"></div>
+</div>
 <div class="all_elements" id="app">
     <!--top start-->
     <section class = "headerDiv">
         <a href="javascript:history.go(-1);" class="header_back">
             <i class="icon_back"></i>
         </a>
-        <h3>景点预订</h3>
+        <h3>{{destCity}}</h3>
     </section>
     <!--header end-->
     <!--content start-->
     <section class = "contentDiv">
-        <div class = "label_div clearfix"><div class = "cur">门票</div><div>酒+景</div></div>
+        <div class = "label_div clearfix"><div   @click="toggle(index ,tab.view)" v-for="(tab,index) in tabs" :class="{cur:active==index}" >{{tab.text}}</div></div>
         <ul class = "content_div">
-            <li class = "clearfix">
-                <div class = "imgDiv"><img src="../images/activity/hotel.png" alt=""/></div>
-                <div class = "hotel_info">
-                    <p class = "hotel_name">3天2晚 香港迪尼斯乐园提别促销酒店+香港迪尼斯乐园单日</p>
-                    <p class = "hotel_price">￥<strong>237</strong>起/人</p>
-                </div>
-            </li>
-            <li class = "clearfix">
-                <div class = "imgDiv"><img src="../images/activity/hotel.png" alt=""/></div>
-                <div class = "hotel_info">
-                    <p class = "hotel_name">3天2晚 香港迪尼斯乐园提别促销酒店+香港迪尼斯乐园单日</p>
-                    <p class = "hotel_price">￥<strong>237</strong>起/人</p>
-                </div>
-            </li>
-            <li class = "clearfix">
-                <div class = "imgDiv"><img src="../images/activity/hotel.png" alt=""/></div>
-                <div class = "hotel_info">
-                    <p class = "hotel_name">3天2晚 香港迪尼斯乐园提别促销酒店+香港迪尼斯乐园单日</p>
-                    <p class = "hotel_price">￥<strong>237</strong>起/人</p>
-                </div>
-            </li>
-            <li class = "clearfix">
-                <div class = "imgDiv"><img src="../images/activity/hotel.png" alt=""/></div>
-                <div class = "hotel_info">
-                    <p class = "hotel_name">3天2晚 香港迪尼斯乐园提别促销酒店+香港迪尼斯乐园单日</p>
-                    <p class = "hotel_price">￥<strong>237</strong>起/人</p>
-                </div>
-            </li>
-            <li class = "clearfix">
-                <div class = "imgDiv"><img src="../images/activity/hotel.png" alt=""/></div>
-                <div class = "hotel_info">
-                    <p class = "hotel_name">3天2晚 香港迪尼斯乐园提别促销酒店+香港迪尼斯乐园单日</p>
-                    <p class = "hotel_price">￥<strong>237</strong>起/人</p>
-                </div>
-            </li>
+          <!--<component :is="currentView"></component>-->
+          <li class = "clearfix" v-for="item in packageList">
+          <div class = "imgDiv"><img :src="item.pictureURL"/></div>
+          <div class = "hotel_info">
+            <p class = "hotel_name">{{item.packageName}}</p>
+            <p class = "hotel_price">￥<strong>{{item.leadinPrice}}</strong>起/人</p>
+            </div>
+          </li>'
         </ul>
     </section>
 </div>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/vue/vue@2.0.8.js"></script>
+<script>
+  (function(){
+    var app = new Vue({
+          el:"#app",
+          data:{
+            active: 0,
+            currentIndex:0,
+            destCity:vlm.getpara("cityCategory"),
+            tabs: [
+              {
+                type: 'tab1',
+                text:"门票",
+                code:'20100002'
+              },
+              {
+                type: 'tab2',
+                text:"酒景",
+                code:'40100007'
+              }
+            ],
+            packageList:[]
+          },
+          methods: {
+            toggle(i, v){
+              this.active = i;
+              this.getjson(i);
+            },
+            getjson(index){
+            _this=this;
+            var jsonText = {
+              "Parameters": {
+                "destCityCode": vlm.getpara("cityCode"),
+                "subProduct": "All",
+                "priceSortType": "LowToHigh",
+                "pageIndex": "1",
+                "pageSize": "20"
+              },
+              "ForeEndType": 3,
+              "Code": _this.tabs[index].code
+            };
+            vlm.loadJson("", JSON.stringify(jsonText), function (json) {
+              if (json.success) {
+                vlm.init();
+                var data = json.data;
+                _this.packageList = data.lists;
+              } else {
+                jAlert("数据格式错误", "提示");
+              }
+            });
+         }
+        },
+        created() {
+          this.getjson(0);
+      }
+    })
+  })()
+</script>
 </body>
 </html>
