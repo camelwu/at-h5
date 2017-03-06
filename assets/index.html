@@ -110,7 +110,7 @@
     <h3><i></i>热门目的地</h3>
     <ul class = "hotDiv_content clearfix">
       <li v-for="hotDes in hotDestinationList" v-on:click="goLinkHotDestinationDetail(hotDes)">
-        <div class="hotDiv_imgDiv"><img :src="hotDes.imageUrl" alt=""/></div>
+        <div class="hotDiv_imgDiv"><img  v-lazy="hotDes.imageUrl" alt=""/></div>
         <h3>{{hotDes.cityCategory}}</h3>
         <p>{{hotDes.cityDesc}}</p>
       </li>
@@ -208,9 +208,45 @@
       mounted: function () {
         var _this = this;
 
+        //抢购倒计时
+        function timeCountDown (startTime,endTime) {
+          var timespan = new Date(endTime).getTime()-new Date(startTime).getTime();   //时间差的毫秒数
+          if(timespan<=0){
+            _this.stop= true
+          }
+          //如果是false就开始倒计时，如果是true就停止倒计时
+          if(_this.stop == false)
+          {
+            setInterval(function update(timespan) {
+              timespan=timespan-1000*_this.currentSecond;
+              //计算出相差天数
+              let day=Math.floor(timespan/(24*3600*1000))
+              _this.time.day=day<=0?"0"+day.toString():day;
+
+              //计算出小时数
+              var leave1=timespan%(24*3600*1000)    //计算天数后剩余的毫秒数
+              let hours=Math.floor(leave1/(3600*1000));
+              _this.time.hours=hours<=0?"0"+hours.toString():hours;
+
+              //计算相差分钟数
+              var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
+              let minutes=Math.floor(leave2/(60*1000))
+              _this.time.minutes=minutes<=0?"0"+minutes.toString():minutes;
+              //计算相差秒数
+              var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+              let seconds=Math.round(leave3/1000)
+              _this.time.seconds=seconds<=0?"0"+seconds.toString():seconds;
+              _this.currentSecond++;
+            },1000,timespan);
+          }
+          else
+          {
+            clearInterval(_this.Interval);
+          }
+        };
+
         //banner
         function LoadBanner() {
-//        var tpl0 = ['<li class="fl"><a href="{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a></li>'].join('');
           var tmp = {
             "Parameters": {
               "BannerType": 1
@@ -246,6 +282,8 @@
             if (json.success) {
               var data = json.data;
               _this.limitedExclusiveList = data.appHomePageLimitedExclusive;
+              timeCountDown(_this.limitedExclusiveList.currentTime,_this.limitedExclusiveList.deadLine)
+
             } else {
               console.log(json);
               jAlert("数据格式错误", "提示");
@@ -413,51 +451,13 @@
 
         }
 
-        //抢购倒计时
-        function timeCountDown (startTime,endTime) {
-          var timespan = new Date(endTime).getTime()-new Date(startTime).getTime();   //时间差的毫秒数
-          if(timespan<=0){
-            _this.stop= true
-          }
-          //如果是false就开始倒计时，如果是true就停止倒计时
-          if(_this.stop == false)
-          {
-            setInterval(function update(timespan) {
-              timespan=timespan-1000*_this.currentSecond;
-              //计算出相差天数
-              let day=Math.floor(timespan/(24*3600*1000))
-              _this.time.day=day<=0?"0"+day.toString():day;
-
-              //计算出小时数
-              var leave1=timespan%(24*3600*1000)    //计算天数后剩余的毫秒数
-              let hours=Math.floor(leave1/(3600*1000));
-              _this.time.hours=hours<=0?"0"+hours.toString():hours;
-
-              //计算相差分钟数
-              var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
-              let minutes=Math.floor(leave2/(60*1000))
-              _this.time.minutes=minutes<=0?"0"+minutes.toString():minutes;
-              //计算相差秒数
-              var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-              let seconds=Math.round(leave3/1000)
-              _this.time.seconds=seconds<=0?"0"+seconds.toString():seconds;
-              _this.currentSecond++;
-            },1000,timespan);
-          }
-          else
-          {
-            clearInterval(_this.Interval);
-          }
-        };
 
         LoadBanner();
         LimitedExclusive();
         hotDestination();
         outboundTravel();
         hotTopic();
-        //倒计时
-        timeCountDown("2017-01-20 00:00:00","2017-03-04 14:55:56")
-
+//
 
       }
     });
