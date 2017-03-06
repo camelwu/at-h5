@@ -10,12 +10,12 @@
 <body>
 <div class="all_elements" id="app">
     <!--top start-->
-    <section class = "topDIv">
-        <div class = "top_imgDiv"><img src="../images/activity/banner.png" alt=""/></div>
+    <section class = "topDIv" @click="createDiv()">
+        <div class = "top_imgDiv"><img :src="hotelInfo.carouselImage[0]" alt=""/></div>
         <div class="top_information">
             <a href="javascript:window.history.go(-1);"></a>
             <div>
-                <span>1/20</span>
+                <span>1/{{hotelInfo.carouselImage.length}}</span>
             </div>
         </div>
     </section>
@@ -25,7 +25,7 @@
         <h3>{{hotelInfo.productName}}</h3>
         <div class = "hotelInfo_content clearfix">
             <span class ="hotelInfo_content_label"></span>
-            <span class = "fr hotelInfo_content_stat"><span class = "cur"><i class = "want"></i>想去({{hotelInfo.wantGo}})</span><span><i class ="been"></i>去过({{hotelInfo.haveBeenTo}})</span></span>
+            <span class = "fr hotelInfo_content_stat" v-on:click = "coutNum"><span class = "wantGo cur"><i class = "want"></i>想去(<em>{{hotelInfo.wantGo}}</em>)</span><span class = "haveBeen"><i class ="been"></i>去过(<em>{{hotelInfo.haveBeenTo}}</em>)</span></span>
         </div>
         <p class= "hotelInfo_special"><i class = "icon"></i><span v-for ="tagInfo in hotelInfo.tag">· {{tagInfo}}</span></p>
     </section>
@@ -51,7 +51,7 @@
         <p><i class = "phone"></i>400 88888888</p>
     </section>
     <section class = "expenseDiv">
-        <div class ="expense_price">￥<strong>1208</strong>起/晚</div>
+        <div class ="expense_price">￥<strong>{{hotelInfo.price}}</strong>起/晚</div>
         <div class = "expense_reserve">立即预定</div>
     </section>
 </div>
@@ -106,7 +106,16 @@
             methods:{
                 toggle:function(i){
                     this.active = i;
-                }
+                },
+                coutNum:function(){
+                    var onck = true;
+                    $(".hotelInfo_content_stat>span").on("click",function(){
+                        var emHtml = $(this).find("em").html();
+                        var num = parseInt(emHtml)+1;
+                        $(this).find("em").html(num);
+                        onck=false;
+                    })
+                },
             }
         })
     })()
