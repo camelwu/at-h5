@@ -32,19 +32,13 @@
     <!--hotelInfo end-->
     <!--specialLabel start-->
     <section class = "specialLabel">
-        <span >印象</span><span class = "cur">房型</span>
+        <span @click="toggle(index)" v-for="(tab,index) in tabs" :class="{cur:active==index}" >{{tab.text}}</span>
     </section>
     <!--specialLabel end-->
     <!--hotel special label start-->
-    <section class = "hotelSpecial"  v-for="desInfo in hotelInfo.descriptionList">
-        <ul v-if="desInfo.descCategory=='印象'" :data_value="desInfo.descCategory">
-            <li v-for="item in desInfo.descDetail">
-                <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
-                <p>{{item.detailDesc}}</p>
-            </li>
-        </ul>
-        <ul style="display: none"v-else :data_value="desInfo.descCategory">
-            <li v-for="item in desInfo.descDetail">
+    <section class = "hotelSpecial">
+        <ul >
+            <li v-for="item in hotelInfo.descriptionList[active].descDetail">
                 <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
                 <p>{{item.detailDesc}}</p>
             </li>
@@ -71,6 +65,7 @@
         var app = new Vue({
             el:"#app",
             data:{
+                active: 0,
                 hotelInfo:{},
                 tabs: [
                     {
@@ -105,12 +100,13 @@
                             jAlert("数据格式错误", "提示");
                         }
                     });
-                };
-                function bindClick(){
-                    $(".")
                 }
                 LoadBanner();
-                bindClick()
+            },
+            methods:{
+                toggle:function(i){
+                    this.active = i;
+                }
             }
         })
     })()
