@@ -22,39 +22,31 @@
     <!--top end-->
     <!--hotelInfo start-->
     <section class = "hotelInfo">
-        <h3>京东冬季涉谷卓越大酒店（Shibuya Eccel Hotel Tokyu Tokyo）</h3>
+        <h3>{{hotelInfo.productName}}</h3>
         <div class = "hotelInfo_content clearfix">
             <span class ="hotelInfo_content_label"></span>
-            <span class = "fr hotelInfo_content_stat"><span class = "cur"><i class = "want"></i>想去(124)</span><span><i class ="been"></i>去过(48)</span></span>
+            <span class = "fr hotelInfo_content_stat"><span class = "cur"><i class = "want"></i>想去({{hotelInfo.wantGo}})</span><span><i class ="been"></i>去过({{hotelInfo.haveBeenTo}})</span></span>
         </div>
-        <p class= "hotelInfo_special"><i class = "icon"></i><span>· 新加坡</span><span>· 设计感</span><span>· 奢华</span><span>· 干净</span></p>
+        <p class= "hotelInfo_special"><i class = "icon"></i><span v-for ="tagInfo in hotelInfo.tag">· {{tagInfo}}</span></p>
     </section>
     <!--hotelInfo end-->
     <!--specialLabel start-->
     <section class = "specialLabel">
-        <span>印象</span><span class = "cur">房型</span>
+        <span >印象</span><span class = "cur">房型</span>
     </section>
     <!--specialLabel end-->
     <!--hotel special label start-->
-    <section class = "hotelSpecial">
-        <ul>
-            <li>
-                <div class = "Special_imgDiv"><img src="../images/activity/precia.png" alt=""/></div>
-                <p>住在新加坡费尔蒙特酒店，您将身处新加坡的中心区，距离莱佛士城仅几步之遥，而且字需要几分钟就能到达赞美广场</p>
-            </li>
-            <li>
-                <div class = "Special_imgDiv"><img src="../images/activity/precia.png" alt=""/></div>
-                <p>住在新加坡费尔蒙特酒店，您将身处新加坡的中心区，距离莱佛士城仅几步之遥，而且字需要几分钟就能到达赞美广场</p>
+    <section class = "hotelSpecial"  v-for="desInfo in hotelInfo.descriptionList">
+        <ul v-if="desInfo.descCategory=='印象'" :data_value="desInfo.descCategory">
+            <li v-for="item in desInfo.descDetail">
+                <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
+                <p>{{item.detailDesc}}</p>
             </li>
         </ul>
-        <ul style="display: none">
-            <li>
-                <div class = "Special_imgDiv"><img src="../images/activity/precia.png" alt=""/></div>
-                <p>住在新加坡费尔蒙特酒店，您将身处新加坡的中心区，距离莱佛士城仅几步之遥，而且字需要几分钟就能到达赞美广场</p>
-            </li>
-            <li>
-                <div class = "Special_imgDiv"><img src="../images/activity/precia.png" alt=""/></div>
-                <p>住在新加坡费尔蒙特酒店，您将身处新加坡的中心区，距离莱佛士城仅几步之遥，而且字需要几分钟就能到达赞美广场</p>
+        <ul style="display: none"v-else :data_value="desInfo.descCategory">
+            <li v-for="item in desInfo.descDetail">
+                <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
+                <p>{{item.detailDesc}}</p>
             </li>
         </ul>
     </section>
@@ -79,30 +71,46 @@
         var app = new Vue({
             el:"#app",
             data:{
-                data:data
+                hotelInfo:{},
+                tabs: [
+                    {
+                        type: 'tab1',
+                        text:"印象"
+                    },
+                    {
+                        type: 'tab2',
+                        text:"房型"
+                    }
+                ],
             },
             mounted:function(){
+                var that=this;
                 //banner
                 function LoadBanner() {
                     var tmp = {
                         "Parameters": {
-                            "productCategory": 1,
-                            "productID":11,
+                            "productCategory":vlm.getpara("productCategory"),
+                            "productID":vlm.getpara("productID")
                         },
                         "ForeEndType": 3,
                         "Code": "10100044"
                     };
+                    console.log(tmp);
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         if (json.success) {
                             var data = json.data;
-                            this.bannerList=data;
+                            that.hotelInfo=data.topicGeneralMessage;
                         } else {
                             console.log(json);
                             jAlert("数据格式错误", "提示");
                         }
                     });
                 };
+                function bindClick(){
+                    $(".")
+                }
                 LoadBanner();
+                bindClick()
             }
         })
     })()
