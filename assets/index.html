@@ -170,7 +170,7 @@
 
     Vue.use(VueLazyload, {
       error: './images/erro/error.png',
-      loading: './images/loading.gif',
+      loading: './images/loading_bg_big.png',
       try: 3 // default 1
     });
     var app = new Vue({
@@ -178,7 +178,7 @@
       data: {
         bannerList: [{
           // 默认图片
-          url: 'images/loading_def_big.png'
+          url: 'images/loading_bg_big.png'
         }],
         limitedExclusiveList:{},
         hotDestinationList:[],
