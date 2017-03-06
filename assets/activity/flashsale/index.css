@@ -170,7 +170,9 @@ font-size: 0.24rem;
   margin-top: 0.2rem;
 }
 .special_title{
-  padding:0 1rem 0.4rem;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0.1rem 0 0.4rem 0;
 }
 .special_title span{
   display: inline-block;

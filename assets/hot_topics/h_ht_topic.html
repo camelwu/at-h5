@@ -5,6 +5,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
     <link rel="stylesheet" href="../styles/reset.css"/>
     <link rel="stylesheet" href="./css/h_ht_topic.css"/>
+    <link href="../css/plugins/footer/footer.css" rel="stylesheet" type="text/css">
     <title>热门专题</title>
 </head>
 <body>
@@ -40,6 +41,7 @@
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/vue/vue@2.0.8.js"></script>
+<script src="../js/plugins/footer/foot.js"></script>
 <script>
   (function(){
     var app = new Vue({
@@ -50,13 +52,13 @@
             tabs: [
               {
                 type: 'tab1',
-                text:"门票",
+                text:"景点",
                 code:'20100002',
                 goLinkDetailUrl:"/scenic/scenic_detail.html"
               },
               {
                 type: 'tab2',
-                text:"酒景",
+                text:"酒+景",
                 code:'40100007',
                 goLinkDetailUrl:"/tour/packages_detail.html"
               }
@@ -64,20 +66,59 @@
             packageList:[]
           },
           methods: {
-             goLinkDetail(packageID){
+          //跳转Link
+          goLinkDetail(packageID){
               window.location.href=this.tabs[this.active].goLinkDetailUrl+"?packageID="+packageID;
-            },
-            toggle(i, v){
+          },
+          //切换tab
+          toggle(i, v){
               this.active = i;
               this.getjson(i);
-            },
-            getjson(index){
+           },
+           initFoot(filters){
+          //footer  begin
+          var menu_data = {
+              sortTypes : {
+                  title : "推荐排序",
+                  c : "foot_sort",
+                  s:1,
+                  type :1,
+                  key : 'sortTypes',
+                  listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
+              },
+              filters:filters
+//                  filters : {
+//                      title : "筛选",
+//                      c : "foot_screen",
+//                      s: 1,
+//                      type : 2,
+//                      key : 'filters',
+//                      listData : [{
+//                          title: "星级",
+//                          allowMultiSelect: 1,
+//                          filterType: 1,
+//                          item: filters
+//                      }]
+//                  }
+          }, menu_call = function(data) {
+              debugger;
+              //入参位置重构
+              alert(1111);
+          };
+          if (footer) {
+              footer.data = menu_data;
+              footer.callback = menu_call;
+          }
+          footer.filters.init();
+      },
+           //获取数据源
+          getjson(index){
             _this=this;
             var jsonText = {
               "Parameters": {
                 "destCityCode": vlm.getpara("cityCode"),
-                "subProduct": "All",
-                "priceSortType": "LowToHigh",
+//                "subProduct": "All",
+//                "priceSortType": "LowToHigh",
                 "pageIndex": "1",
                 "pageSize": "20"
               },
@@ -87,17 +128,44 @@
             vlm.loadJson("", JSON.stringify(jsonText), function (json) {
               if (json.success) {
                 vlm.init();
-                var data = json.data;
-                _this.packageList = data.lists;
+                var data = json.data
+                  _this.packageList = data.lists;
+                  var filters={}
+                  if(_this.active==0){
+                      var themeItme=[]
+                      debugger;
+                      for(var i=0; i<=data.themes.length-1;i++){
+                          themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
+                      }
+                      filters= {
+                          title : "筛选",
+                          c : "foot_screen",
+                          s: 1,
+                          type : 2,
+                          key : 'filters',
+                          listData : [{
+                              title: "景点主题",
+                              allowMultiSelect: 1,
+                              filterType: 1,
+                              item: themeItme
+                          }]
+                      };
+                      _this.initFoot(filters)
+                  }else{
+
+                  }
+
+
               } else {
                 jAlert("数据格式错误", "提示");
               }
             });
-         }
+          }
+
         },
-        created() {
+        mounted() {
           this.getjson(0);
-      }
+        }
     })
   })()
 </script>
