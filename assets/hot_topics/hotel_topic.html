@@ -5,9 +5,14 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
     <link rel="stylesheet" href="../styles/reset.css"/>
     <link rel="stylesheet" href="./css/hotel_topic.css"/>
+    <link rel="stylesheet" href="../css/plugins/picCarousel/picCarousel.css"/>
+
     <title>热门专题</title>
 </head>
 <body>
+<div id="preloader">
+    <div id="status"></div>
+</div>
 <div class="all_elements" id="app">
     <!--top start-->
     <section class = "topDIv" @click="createDiv()">
@@ -54,14 +59,66 @@
         <div class ="expense_price">￥<strong>{{hotelInfo.price}}</strong>起/晚</div>
         <div class = "expense_reserve">立即预定</div>
     </section>
+    <item class="item"
+          v-for="model in tabs"
+          :model="model">
+    </item>
 </div>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/vue/vue@2.0.8.js"></script>
+<!-- 图片轮播 template -->
+<script type="text/x-template" id="picCarousel-template">
+    <div id="imageContainer">
+        <h5 class="indexShow">1/0</h5>
+        <div class="showZone">
+            <ul class="imgUl" style="left: 0px; width: 100%;">
+                <li class="noImage">暂无图片</li>
+            </ul>
+        </div>
+    </div>
+</script>
 <script>
     (function(){
+        // define the item component
+        Vue.component('item', {
+            template: '#picCarousel-template',
+            props: {
+                model: Object,
+            },
+            data: function () {
+                return {
+                    open: false
+                }
+            },
+            computed: {
+                isFolder: function () {
+                    return this.model.children &&
+                            this.model.children.length
+                },
+            },
+            methods: {
+                toggle: function () {
+                    if (this.isFolder) {
+                        this.open = !this.open
+                    }
+                },
+                changeType: function () {
+                    if (!this.isFolder) {
+                        Vue.set(this.model, 'children', [])
+                        this.addChild()
+                        this.open = true
+                    }
+                },
+                addChild: function () {
+                    this.model.children.push({
+                        name: 'new stuff'
+                    })
+                }
+            }
+        })
         var app = new Vue({
             el:"#app",
             data:{
@@ -93,6 +150,7 @@
                     console.log(tmp);
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         if (json.success) {
+                            vlm.init();
                             var data = json.data;
                             that.hotelInfo=data.topicGeneralMessage;
                         } else {

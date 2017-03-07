@@ -688,7 +688,8 @@
       var outerDiv = document.getElementById('imageContainer');
       var innerDiv = document.getElementsByClassName('showZone')[0];
       var totalNum = document.getElementsByClassName('totalNum')[0];
-      var faceImg = document.getElementsByClassName('faceImg')[0];
+      var faceImg = document
+          .getElementsByClassName('faceImg')[0];
 
       outerDiv.onclick = function (event) {
         var e = event || window.event;

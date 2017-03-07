@@ -87,19 +87,6 @@
                   listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
               },
               filters:filters
-//                  filters : {
-//                      title : "筛选",
-//                      c : "foot_screen",
-//                      s: 1,
-//                      type : 2,
-//                      key : 'filters',
-//                      listData : [{
-//                          title: "星级",
-//                          allowMultiSelect: 1,
-//                          filterType: 1,
-//                          item: filters
-//                      }]
-//                  }
           }, menu_call = function(data) {
               //入参位置重构
               alert(1111);
@@ -130,6 +117,7 @@
                 var data = json.data
                   _this.packageList = data.lists;
                   var filters={}
+                  debugger;
                   if(_this.active==0){
                       var themeItme=[]
                       for(var i=0; i<=data.themes.length-1;i++){
@@ -150,7 +138,33 @@
                       };
                       _this.initFoot(filters)
                   }else{
-
+                      var themeItme=[]
+                      var durationsItem=[]
+                      for(var i=0; i<=data.themes.length-1;i++){
+                          themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
+                      }
+                      for(var i=0; i<=data.durations.length-1;i++){
+                          durationsItem.push({"filterText":data.durations[i].text,"filterValue":data.themes[i].value});
+                      }
+                      filters= {
+                          title : "筛选",
+                          c : "foot_screen",
+                          s: 1,
+                          type : 2,
+                          key : 'filters',
+                          listData : [{
+                              title: "景点主题",
+                              allowMultiSelect: 1,
+                              filterType: 1,
+                              item: themeItme
+                          },{
+                              title: "游玩天数",
+                              allowMultiSelect: 1,
+                              filterType: 1,
+                              item: durationsItem
+                          }]
+                      };
+                      _this.initFoot(filters)
                   }
 
 

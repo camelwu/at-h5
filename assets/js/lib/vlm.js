@@ -15,6 +15,7 @@
             basePath = basePath == undefined ? "http://" + window.location.host : basePath,
             menus = {
                 home: ['首页', basePath],
+                limitedBuy: ['抢购',basePath+ '/activity/flashsale/index.html'],
                 user: ['我的', basePath + '/user/user.html']
             },
             _codeDic = {
@@ -169,7 +170,10 @@
                     _k = "user";
                 } else if (_s == "building.html") {
                     _k = "find";
+                }else if (_s == "activity/flashsale/index.html") {
+                    _k = "limitedBuy";
                 }
+
             }
             //底部菜单
 
@@ -191,6 +195,7 @@
                     document.body.appendChild(menuer);
                 }
                 var _str = "";
+                console.info()
                 for (var k in menus) {
                     var cn = k == _k ? "foot-" + k + "s" : "foot-" + k;
                     _str += "<a href='" + menus[k][1] + "' class='" + cn + "'><i></i>" + menus[k][0] + "</a>";

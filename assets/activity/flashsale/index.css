@@ -277,3 +277,58 @@ li.special_link_last{
 .special_timer_buy{
   color:#fc7075;
 }
+
+/*nav µ¼º½*/
+.footer-menu {
+  width: 100%;
+  position: fixed;
+  z-index: 98;
+  background-color: #fff;
+  opacity: .98;
+  bottom: 0;
+  border-top: 1px solid #e6e6e6;
+  padding: .06rem 0 .04rem;
+}
+.footer-menu-three-icons a {
+  width: 33.3%;
+  float: left;
+  text-align: center;
+}
+a.foot-homes, a.foot-users {
+  color: #7bc300;
+}
+.footer-menu a {
+  text-align: center;
+  font-size: .2rem;
+  color: #999;
+  overflow: hidden;
+}
+.foot-homes i {
+  background: url(../static/images/home_act.png) no-repeat;
+  background-size: .48rem .48rem;
+}
+.foot-user i {
+  background: url(../static/images/user_def.png) no-repeat;
+  background-size: .48rem .48rem;
+}
+
+.foot-homes i {
+  background: url(../static/images/home_act.png) no-repeat;
+  background-size: .48rem .48rem;
+}
+.footer-menu i {
+  display: block;
+  margin: 0 auto;
+  width: .48rem;
+  height: .48rem;
+}
+.foot-user i {
+  background: url(../static/images/user_def.png) no-repeat;
+  background-size: .48rem .48rem;
+}
+.footer-menu i {
+  display: block;
+  margin: 0 auto;
+  width: .48rem;
+  height: .48rem;
+}
