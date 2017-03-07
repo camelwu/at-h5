@@ -40,7 +40,6 @@
     font-size: .36rem;
 }
 /*header end*/
-/*content start*/
 .contentDiv{
     margin-top: 0.88rem;
 }
@@ -51,8 +50,8 @@
     left: 0;
     background: #fff;
 }
-.label_div div{
-    width: 50%;
+.label_div li{
+    width: 25%;
     height: 100%;
     float: left;
     font-size: 0.32rem;
@@ -61,50 +60,51 @@
     color:#999;
     border-bottom: 2px solid #f2f2f2;
 }
-.label_div div.cur{
+.label_div li.cur{
     color:#8ace00;
     border-bottom: 2px solid #8ace00;
 }
-.content_div{
-    padding:0.14rem 0.2rem 0;
-    margin: 1.7rem 0 0.88rem;
+.outTravelDiv{
+    padding:0.88rem 0.2rem 0.88rem;
 }
-.content_div li{
-    padding: 0.2rem 0 0.12rem;
-    border-bottom: 1px solid #f2f2f2;
+.outTravelDiv li{
+    padding: 0.32rem 0 0.44rem;
 }
-.imgDiv{
-    width:2.2rem ;
-    height: 1.6rem;
-    float: left;
+.outTravel_imgDiv{
+    width: 100%;
+    height: 2.8rem;
 }
-.imgDiv img{
+.outTravel_imgDiv img{
     width: 100%;
     height: 100%;
 }
-.hotel_info{
-    float: right;
-    width: 4.7rem;
+.outTravel_imgDiv span{
+    position: absolute;
+    left: 0.2rem;
+    top: 2.04rem;
+    width: 1.93rem;
+    height: 0.72rem;
+    display: block;
+    background: rgba(0,0,0,0.3);
+    color:#fff;
+    line-height: 0.72rem;
+    text-align: center;
+    font-size: 0.24rem;
 }
-.hotel_name{
-    width: 99%;
-    line-height: 0.44rem;
-    font-size: 0.3rem;
-    color:#000;
-    overflow: hidden;
-    word-break: break-all;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+.outTravel_imgDiv span strong{
+    font-size: 0.32rem;
 }
-.hotel_price{
-    margin-top: 0.24rem;
-    color: #fd7530;
+.outTravelDiv li h3{
+    margin: 0.28rem 0 0.16rem;
     font-size: 0.28rem;
-    background: #fff;
+    color:#000;
+    padding-left: 0;
 }
-.hotel_price strong{
-    font-size: 0.4rem;
+.outTravelDiv p{
+    width: 100%;
+    font-size: 0.2rem;
+    color:#333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
