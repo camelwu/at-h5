@@ -49,6 +49,7 @@
     top: 0.88rem;
     left: 0;
     background: #fff;
+    z-index: 100;
 }
 .label_div li{
     width: 25%;
@@ -65,10 +66,11 @@
     border-bottom: 2px solid #8ace00;
 }
 .outTravelDiv{
-    padding:0.88rem 0.2rem 0.88rem;
+    padding:0.88rem 0.2rem 0;
 }
 .outTravelDiv li{
     padding: 0.32rem 0 0.44rem;
+    position: relative;
 }
 .outTravel_imgDiv{
     width: 100%;
@@ -80,12 +82,12 @@
 }
 .outTravel_imgDiv span{
     position: absolute;
-    left: 0.2rem;
+    left: 0;
     top: 2.04rem;
     width: 1.93rem;
     height: 0.72rem;
     display: block;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.8);
     color:#fff;
     line-height: 0.72rem;
     text-align: center;

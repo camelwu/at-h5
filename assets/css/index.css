@@ -420,4 +420,8 @@ a.foot-homes, a.foot-users {
   width: .48rem;
   height: .48rem;
 }
+.foot-limitedBuy i{
+  background: url(../images/index/limitedBuy.png) no-repeat;
+  background-size: .48rem .48rem;
+}
 
