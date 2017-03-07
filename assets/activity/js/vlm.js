@@ -161,7 +161,6 @@
           if (hrefstr == "http://" + basePath + "/index.html" || hrefstr == "http://" + basePath + "/") {
             _k = "home";
           } else {
-            debugger;
             var _s = hrefstr.substr(basePath.length + 1);
             if (_s == "" || _s == "index.html") {
               _k = "home";
