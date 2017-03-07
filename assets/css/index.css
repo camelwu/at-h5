@@ -93,6 +93,17 @@
   width: 32.2%;
   margin-right: 0.1rem;
 }
+.label_bottom_first i{
+  width: 1.04rem;
+  height: 0.96rem;
+  position: absolute;
+  top: 0.84rem;
+  left: 0.66rem;
+  background: url("../images/index/icon.png") no-repeat;
+  background-size: 7.5rem 3.4rem;
+  background-position: -0.2rem -0.16rem;
+
+}
 .label_bottom_right{
   float: left;
   width: 66%;
@@ -177,12 +188,24 @@ div.label_last_margin{
 .timerDiv_bottom_content_limit{
   margin-top: 0.16rem;
   font-size: 0.24rem;
+  position: relative;
 }
 .timerDiv_bottom_content_limit em{
   color:#ff0033;
 }
 .limit_right{
   margin-right: 0.4rem;
+}
+.timerDiv_bottom_content_limit span i{
+  width: 0.16rem;
+  height: 0.26rem;
+  position: absolute;
+  top: 2px;
+  right: 0.06rem;
+  background: url("../images/index/icon.png") no-repeat;
+  background-size: 7.5rem 3.4rem;
+  background-position: -1.6rem -0.3rem;
+
 }
 /*timet end*/
 /*hot_destination start*/
