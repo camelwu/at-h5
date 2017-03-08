@@ -32,6 +32,9 @@
   display: inline-block;
   zoom: 1;
 }
+.banner_num li.active span {
+  background-color: rgba(255,255,255,1);
+}
 .banner_num_wrap li span{
   width: 8px;
   height: 8px;
