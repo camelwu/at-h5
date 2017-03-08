@@ -148,7 +148,7 @@ font-size: 0.24rem;
   position: absolute;
   background: url("./img/bar_bg.png") no-repeat;
   background-size: 4.17rem 0.26rem;
-  left: 0.28rem;
+  left: 0.36rem;
   bottom: 0rem;
   z-index: 0;
 }
@@ -159,7 +159,7 @@ font-size: 0.24rem;
   position: absolute;
   background: url("./img/bar_show.png") no-repeat;
   background-size: 4.17rem 0.26rem;
-  left: 0.28rem;
+  left: 0.36rem;
   bottom:0rem;
   z-index: 1;
 }

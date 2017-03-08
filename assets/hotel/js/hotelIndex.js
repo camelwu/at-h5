@@ -33,9 +33,14 @@
     initTab: function () {
       var tabHeader = $("#h-Tab a");
       var panels = $(".quote-slider .hotel_content");
-      tabHeader.eq(0).addClass("on").siblings().removeClass("on");
-      panels.eq(0).show().siblings().hide();
       //tab 点击事件切换
+      if(vlm.getpara("style")=="Inter"){
+        tabHeader.eq(0).addClass("on").siblings().removeClass("on");
+        panels.eq(0).show().siblings().hide();
+      }else{
+        tabHeader.eq(1).addClass("on").siblings().removeClass("on");
+        panels.eq(1).show().siblings().hide();
+      }
       $("#h-Tab").on("click", "a", function (event) {
         var target = $(event.target);
         var index = tabHeader.index(target);
