@@ -1,9 +1,10 @@
-/*
+/**
  * 底部菜单
+ * 2017-03-10 一个底部菜单需要考虑内容的替换
  * 创建底部菜单，id,class会有不同,每个页面只有一个底部，多个筛选条件
  * menu：根据页面url地址进行判断
  * filters：根据传入的json对象显示和判断
- * 传入参数说明：
+ * @param
  *
  {
  hotelSort : {//传入标识
@@ -364,6 +365,18 @@ var footer = (function(){
         this.bindEvent();
         return this;
       },
+      // 重置底部内容
+      resets : function(){
+        var data = footer.data, ca = [];
+        //清空box & sec
+        sec.innerHTML = '';
+        for (var p in data) {
+          ca.push('<dl class=' + data[p].c + ' id=' + p + ' data-type=' + data[p].type + '><dt></dt><dd>' + data[p].title + '</dd></dl>');
+          this.createSec(data[p].s, data[p].c, data[p].type, data[p].key, data[p].listData);
+        }
+        box.innerHTML = ca.join('');
+        //this.bindEvent();
+      },
       // container
       createContainer : function() {
         if (!sec) {
@@ -518,6 +531,8 @@ var footer = (function(){
         } else {
           if (!box)
             this.create();
+          else
+            this.resets();
           this.redTip();
         }
         //缓存数据&导入

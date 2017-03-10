@@ -91,10 +91,11 @@
               //入参位置重构
               alert(1111);
           };
-          if (footer) {
+          if (footer) {console.log(menu_data);
               footer.data = menu_data;
               footer.callback = menu_call;
           }
+          console.log('do');
           footer.filters.init();
       },
            //获取数据源
@@ -153,12 +154,12 @@
                           key : 'filters',
                           listData : [{
                               title: "景点主题",
-                              allowMultiSelect: 1,
+                              allowMultiSelect: 0,
                               filterType: 1,
                               item: themeItme
                           },{
                               title: "游玩天数",
-                              allowMultiSelect: 1,
+                              allowMultiSelect: 0,
                               filterType: 1,
                               item: durationsItem
                           }]
