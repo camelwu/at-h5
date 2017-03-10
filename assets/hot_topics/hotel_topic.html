@@ -5,6 +5,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
     <link rel="stylesheet" href="../styles/reset.css"/>
     <link rel="stylesheet" href="./css/hotel_topic.css"/>
+    <link href="../css/plugins/swiper/swiper.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/plugins/picCarousel/picCarousel.css"/>
 
     <title>热门专题</title>
@@ -15,7 +16,7 @@
 </div>
 <div class="all_elements" id="app">
     <!--top start-->
-    <section class = "topDIv" @click="createDiv()">
+    <section class = "topDIv" v-on:click ="showPicPop">
         <div class = "top_imgDiv"><img :src="hotelInfo.carouselImage[0]" alt=""/></div>
         <div class="top_information">
             <a href="javascript:window.history.go(-1);"></a>
@@ -30,7 +31,7 @@
         <h3>{{hotelInfo.productName}}</h3>
         <div class = "hotelInfo_content clearfix">
             <span class ="hotelInfo_content_label"></span>
-            <span class = "fr hotelInfo_content_stat" v-on:click = "coutNum"><span class = "wantGo cur"><i class = "want"></i>想去(<em>{{hotelInfo.wantGo}}</em>)</span><span class = "haveBeen"><i class ="been"></i>去过(<em>{{hotelInfo.haveBeenTo}}</em>)</span></span>
+            <span class = "fr hotelInfo_content_stat" v-on:click ="coutNum"><span class = "wantGo cur"><i class = "want"></i>想去(<em>{{hotelInfo.wantGo}}</em>)</span><span class = "haveBeen"><i class ="been"></i>去过(<em>{{hotelInfo.haveBeenTo}}</em>)</span></span>
         </div>
         <p class= "hotelInfo_special"><i class = "icon"></i><span v-for ="tagInfo in hotelInfo.tag">· {{tagInfo}}</span></p>
     </section>
@@ -44,7 +45,7 @@
     <section class = "hotelSpecial">
         <ul >
             <li v-for="item in hotelInfo.descriptionList[active].descDetail">
-                <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
+                <div class = "Special_imgDiv"><img v-lazy="item.imageUrl" alt=""/></div>
                 <p>{{item.detailDesc}}</p>
             </li>
         </ul>
@@ -54,69 +55,71 @@
         <div class ="expense_price">￥<strong>{{hotelInfo.price}}</strong>起/晚</div>
         <div class = "expense_reserve">立即预定</div>
     </section>
-    <item class="item"
-          v-for="model in tabs"
-          :model="model">
+
+    <item :columns="hotelInfo.carouselImage" v-show='display'>
     </item>
+
+
 </div>
+
 <script src="../js/lib/jquery.js"></script>
+<script src="../js/plugins/swiper/swiper.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/vue/vue@2.0.8.js"></script>
+<script src="../js/lib/vue/vue-lazyLoad/vue-lazyload.es5.js"></script>
 <!-- 图片轮播 template -->
-<script type="text/x-template" id="picCarousel-template">
-    <div id="imageContainer">
-        <h5 class="indexShow">1/0</h5>
-        <div class="showZone">
-            <ul class="imgUl" style="left: 0px; width: 100%;">
-                <li class="noImage">暂无图片</li>
-            </ul>
+<script type="text/x-template" id="picCarousel-template" >
+    <!-- Swiper JS -->
+    <div id="imageContainer" v-show="display" v-on:click ="closedWin">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="col in columns"><img v-lazy="col"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </script>
+
 <script>
     (function(){
+        Vue.use(VueLazyload, {
+            error: '../images/erro/error.png',
+            loading: '../images/loading_bg_big.png',
+            try: 3 // default 1
+        });
         // define the item component
         Vue.component('item', {
             template: '#picCarousel-template',
-            props: {
-                model: Object,
-            },
-            data: function () {
+            props: {  columns: Array,display:false},
+            data: function() {
                 return {
-                    open: false
+                    display: false,
                 }
             },
-            computed: {
-                isFolder: function () {
-                    return this.model.children &&
-                            this.model.children.length
-                },
+            mounted:function(){
+                var swiper = new Swiper('.swiper-container', {
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
+                    pagination: '.swiper-pagination',
+                    paginationType: 'fraction'
+                });
             },
-            methods: {
-                toggle: function () {
-                    if (this.isFolder) {
-                        this.open = !this.open
-                    }
-                },
-                changeType: function () {
-                    if (!this.isFolder) {
-                        Vue.set(this.model, 'children', [])
-                        this.addChild()
-                        this.open = true
-                    }
-                },
-                addChild: function () {
-                    this.model.children.push({
-                        name: 'new stuff'
-                    })
+            methods:{
+                closedWin:function(){
+                    this.display=false;
                 }
             }
+
         })
+
         var app = new Vue({
             el:"#app",
             data:{
+                display: false,
                 active: 0,
                 hotelInfo:{},
                 tabs: [
@@ -128,7 +131,7 @@
                         type: 'tab2',
                         text:"房型"
                     }
-                ],
+                ]
             },
             mounted:function(){
                 var that=this;
@@ -155,6 +158,9 @@
                 }
                 LoadBanner();
             },
+            ready:function(){
+                this.display=false;
+            },
             methods:{
                 toggle:function(i){
                     this.active = i;
@@ -168,6 +174,9 @@
                         onck=false;
                     })
                 },
+                showPicPop:function(){
+                    this.display=true;
+                }
             }
         })
     })()
