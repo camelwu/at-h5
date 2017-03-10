@@ -21,7 +21,7 @@
         <h3>限时专享</h3>
     </div>
     <!--banner start-->
-    <section class="bannerDiv">
+    <section class="bannerDiv" v-on:click="goLinkHotHotel(topBar)">
       <div class = "banner_imgDiv">
         <img :src="topBar.leGeneralMessage.imageUrl" alt=""/>
       </div>
@@ -29,7 +29,7 @@
         <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>23</span>: <span>15</span>: <span>08</span></span></p>
         <p class = "banner_information">{{topBar.leGeneralMessage.title}}</p>
       </div>
-      <div class = "banner_price clearfix" v-on:click="goLinkHotHotel(topBar)">
+      <div class = "banner_price clearfix" >
         <div class = "fl">
           <p class = "banner_price_left">
             <span class = "price_num">￥<strong>{{topBar.leGeneralMessage.price }}</strong>起</span>
