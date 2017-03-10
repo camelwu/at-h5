@@ -48,6 +48,7 @@
           el:"#app",
           data:{
             active: 0,
+            searchParame:{"themeID":"", "priceSortType":"","durationValue":"","pageIndex":1,"pageSize":20},
             destCity:vlm.getpara("cityCategory"),
             tabs: [
               {
@@ -87,10 +88,24 @@
                   listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
               },
               filters:filters
-          }, menu_call = function(data) {
-              //入参位置重构
-              alert(1111);
-          };
+              }, menu_call = function(data) {
+
+                  //排序条件
+                  var priceSort=data.sortTypes;
+                  if(priceSort=="1"){
+                    this.searchParame.priceSortType="LowToHigh";
+
+                  }
+                  else if(priceSort=="1"){
+                    this.searchParame.priceSortType="HighToLow";
+                  }
+                  else{
+                     this.searchParame.priceSortType="";
+                  }
+                 //筛选条件
+                 this.searchParame.themeID=data.filters[0].FilterValues[0]
+                 this.getjson(this.active)
+          }.bind(this);
           if (footer) {
               footer.data = menu_data;
               footer.callback = menu_call;
@@ -103,10 +118,11 @@
             var jsonText = {
               "Parameters": {
                 "destCityCode": vlm.getpara("cityCode"),
-//                "subProduct": "All",
-//                "priceSortType": "LowToHigh",
-                "pageIndex": "1",
-                "pageSize": "20"
+                "themeID":_this.searchParame.themeID,
+                "priceSortType":_this.searchParame.priceSortType,
+                "durationValue":_this.searchParame.durationValue,
+                "pageIndex": _this.searchParame.pageIndex,
+                "pageSize": _this.searchParame.pageSize
               },
               "ForeEndType": 3,
               "Code": _this.tabs[index].code
