@@ -45,7 +45,7 @@
     <section class = "hotelSpecial">
         <ul >
             <li v-for="item in hotelInfo.descriptionList[active].descDetail">
-                <div class = "Special_imgDiv"><img v-lazy="item.imageUrl" alt=""/></div>
+                <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
                 <p>{{item.detailDesc}}</p>
             </li>
         </ul>

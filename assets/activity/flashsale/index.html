@@ -23,17 +23,17 @@
     <!--banner start-->
     <section class="bannerDiv">
       <div class = "banner_imgDiv">
-        <img :src="leGeneralMessage.imageUrl" alt=""/>
+        <img :src="topBar.leGeneralMessage.imageUrl" alt=""/>
       </div>
       <div class = "banner_content">
         <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>23</span>: <span>15</span>: <span>08</span></span></p>
-        <p class = "banner_information">{{leGeneralMessage.title}}</p>
+        <p class = "banner_information">{{topBar.leGeneralMessage.title}}</p>
       </div>
-      <div class = "banner_price clearfix">
+      <div class = "banner_price clearfix" v-on:click="goLinkHotHotel(topBar)">
         <div class = "fl">
           <p class = "banner_price_left">
-            <span class = "price_num">￥<strong>{{leGeneralMessage.price }}</strong>起</span>
-            <span class = "price_sum">仅限 <em>{{leGeneralMessage.totalNumber}}</em>份</span>
+            <span class = "price_num">￥<strong>{{topBar.leGeneralMessage.price }}</strong>起</span>
+            <span class = "price_sum">仅限 <em>{{topBar.leGeneralMessage.totalNumber}}</em>份</span>
             <span class = "price_buy">已抢购 <em>50%</em></span>
           </p>
           <p class ="progress_bar"><span class = "bar_bg"></span><span class = "bar_show"></span></p>
@@ -52,7 +52,7 @@
       </ul>
       <div class = "special_content">
         <ul>
-          <li v-for="item in currentItem" class = "clearfix">
+          <li v-for="item in currentItem" class = "clearfix" v-on:click="goLinkDetail(item)">
             <div class = "special_imgDiv"><img  :src="item.leGeneralMessage.imageUrl" alt=""/></div>
             <div class = "special_right">
               <p class = "special_right_content">{{item.leGeneralMessage.title}}</p>
@@ -60,12 +60,12 @@
                 <span class = "special_price_num">￥<strong>{{item.leGeneralMessage.price}}</strong>起/人</span>
                 <span class = "fr progress_price">
                   <span class = "price_bg"></span>
-                  <span class = "price_show"></span>
+                  <span class = "price_show"  :style="{'width':2*item.leGeneralMessage.rate*0.01+'rem'}"></span>
                 </span>
               </p>
               <p class = "special_timer">
                 <span class = "special_timer_sale">仅限<em>{{item.leGeneralMessage.totalNumber}}</em>份</span>
-                <span class="fr special_timer_buy">已抢购50%</span>
+                <span class="fr special_timer_buy">已抢购{{item.leGeneralMessage.rate}}%</span>
               </p>
             </div>
           </li>
@@ -85,13 +85,13 @@
   });
   (function() {
     // 控制底部 footer 展示。
-    vlm.init();
+
     var app = new Vue({
       el: '#app',
       data: {
         active: 0,
+        topBar:{},
         limitedExclusiveList:{},
-        leGeneralMessage:{},
         currentItem:{},
         tabs: [],
       },
@@ -115,26 +115,49 @@
             if (json.success) {
               var data = json.data;
               _this.limitedExclusiveList = data.appLimitedExclusive;
-              _this.leGeneralMessage=data.appLimitedExclusive.topBar.leGeneralMessage;
+              _this.topBar=data.appLimitedExclusive.topBar;
               _this.tabs=[];
               for(var i=0;i<=data.appLimitedExclusive.bottomBarList.length-1;i++){
-                _this.tabs.push({text:data.appLimitedExclusive.bottomBarList[i].bottomBarCategory})
+                _this.tabs.push({text:data.appLimitedExclusive.bottomBarList[i].bottomBarCategory});
+                for(var j=0; j<=data.appLimitedExclusive.bottomBarList[i].bottomBar.length-1;j++){
+                  data.appLimitedExclusive.bottomBarList[i].bottomBar[j].leGeneralMessage.rate=Math.ceil(Math.random() * 100);
+                }
               }
               _this.currentItem=data.appLimitedExclusive.bottomBarList[index].bottomBar;
-
-
             } else {
               console.log(json);
               jAlert("数据格式错误", "提示");
             }
           });
+        },
+        goLinkDetail(obj){
+           debugger;
+           if(this.active==0) {
+             window.location.href = "/hotel/hotel_detail.html?HotelID=" + obj.searchParams.hotelCode + "&HotelCode=" + obj.searchParams.hotelCode + "&InstantConfirmation=false&AllOccupancy=true&CheckInDate=" + obj.searchParams.checkInDate + "&CheckOutDate=" + obj.searchParams.checkOutDate + "&NumRoom=" + obj.searchParams.numRoom + "&NumAdult=" + obj.searchParams.numAdult + "&NumChild=" + obj.searchParams.numChild + "&freeTransfer=false";
+           }else if(this.active==1){
+             window.location.href ="/scenic/scenic_detail.html?packageID="+obj.searchParams.packageID;
+             //window.location.href ="/scenic/scenic_detail.html?packageID="+obj.searchParams.packageID+"&CheckInDate=" + obj.searchParams.checkInDate + "&CheckOutDate=" + obj.searchParams.checkOutDate+obj.searchParams.numAdult + "&NumChild=" + obj.searchParams.numChild;
+           }else{
+             window.location.href ="/tour/packages_detail.html?packageID="+obj.searchParams.packageID+"&productPrice="+obj.leGeneralMessage.price+"&status=1";
+           }
+        },
+        goLinkHotHotel(obj){
+            if(obj.productCategory=="1"){
+              window.location.href = "/hotel/hotel_detail.html?HotelID=" + obj.searchParams.hotelCode + "&HotelCode=" + obj.searchParams.hotelCode + "&InstantConfirmation=false&AllOccupancy=true&CheckInDate=" + obj.searchParams.checkInDate + "&CheckOutDate=" + obj.searchParams.checkOutDate + "&NumRoom=" + obj.searchParams.numRoom + "&NumAdult=" + obj.searchParams.numAdult + "&NumChild=" + obj.searchParams.numChild + "&freeTransfer=false";
+            }else if(obj.productCategory=="2"){
+              window.location.href ="/scenic/scenic_detail.html?packageID="+obj.searchParams.packageID;
+            }
+            else if(obj.productCategory=="3"){
+              window.location.href ="/tour/packages_detail.html?packageID="+obj.searchParams.packageID+"&productPrice="+obj.leGeneralMessage.price+"&status=1";
+            }
+
+
         }
 
     },
     mounted: function () {
         this.getjson(0);
     }
-
     });
   })();
 
