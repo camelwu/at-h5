@@ -241,13 +241,13 @@ div.label_last_margin{
   background-color: #99cc00;
 }
 .hotDiv_content{
-  padding:0 0.2rem 0;
+  padding:0 0.08rem 0;
 }
 .hotDiv_content li{
   float: left;
-  margin:0.32rem  0.16rem 0 0;
-  width: 31%;
+  width: 30%;
   overflow: hidden;
+  padding: 0.32rem 0.12rem 0 0.12rem;
 }
 li.hotDiv_content_lastLi{
   margin-right : 0;
