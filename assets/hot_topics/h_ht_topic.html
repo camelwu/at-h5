@@ -74,6 +74,10 @@
           //切换tab
           toggle(i, v){
               this.active = i;
+              this.searchParame.priceSortType="",
+              this.searchParame.themeID="",
+              this.searchParame.durationValue="",
+              this.searchParame.pageIndex=1
               this.getjson(i);
            },
            initFoot(filters){
