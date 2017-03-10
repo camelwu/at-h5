@@ -52,7 +52,7 @@
 
 /*label start*/
 .labelDiv{
-  padding:0.4rem 0.2rem;
+  padding:0.4rem 0.2rem 0.28rem;
   min-height: 3.2rem;
   margin-bottom: 0.2rem;
 }
@@ -299,8 +299,8 @@ li.hotDiv_content_lastLi{
   height: 2.6rem;
 }
 .hotel_imgDiv img{
-  width: 100%;
-  height: 100%;
+  /*width: 100%;*/
+  /*height: 100%;*/
 }
 .hotel_content{
   position: absolute;
@@ -319,7 +319,7 @@ li.hotDiv_content_lastLi{
   background: url("../images/index/hotel_bg.png") repeat-x bottom;
 }
 .hotel_content div h3{
-  padding:1.21rem 0.24rem 0;
+  padding:1.4rem 0.24rem 0;
   font-size: 0.28rem;
   color:#fff;
   margin-bottom: 0.04rem;
