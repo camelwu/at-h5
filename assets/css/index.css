@@ -158,6 +158,7 @@ div.label_last_margin{
   text-align: center;
   line-height: 0.32rem;
   margin-right: 0.08rem;
+  vertical-align: middle;
 }
 .time .time_day{
   color:#99cc00;
