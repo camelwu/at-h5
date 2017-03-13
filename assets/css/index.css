@@ -347,12 +347,16 @@ li.hotDiv_content_lastLi{
 /*outbound travel start*/
 .outTravelDiv{
   margin-top: 0.2rem;
+  margin-bottom: 0.8rem;
   padding: 0.32rem 0 0.24rem 0;
 }
 .outTravelDiv li{
   padding:0.32rem 0.2rem 0.34rem;
   border-bottom: 1px solid #c1c1c1;
   position: relative;
+}
+.outTravelDiv li:last-child{
+  border-bottom: 0px;
 }
 .outTravel_imgDiv{
   width: 100%;
