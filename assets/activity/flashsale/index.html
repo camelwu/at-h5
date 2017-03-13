@@ -26,7 +26,7 @@
         <img :src="topBar.leGeneralMessage.imageUrl" alt=""/>
       </div>
       <div class = "banner_content">
-        <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>00</span>: <span>00</span>: <span>00</span></span></p>
+        <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>{{time.day}}</span>天 <span>{{time.hours}}</span><span>{{time.minutes}}</span><span>{{time.seconds}}</span></span></p>
         <p class = "banner_information">{{topBar.leGeneralMessage.title}}</p>
       </div>
       <div class = "banner_price clearfix" >
@@ -95,8 +95,50 @@
         limitedExclusiveList:{},
         currentItem:{},
         tabs: [],
+        time:{day:"00",hours:"00",minutes:"00",seconds:"00"},
+        stop:false,
+        currentSecond:1,
       },
       methods:{
+
+      //抢购倒计时
+      timeCountDown:function(startTime,endTime){
+                var timespan = new Date(endTime.replace(/\-/g, "/")).getTime()-new Date(startTime.replace(/\-/g, "/")).getTime();   //时间差的毫秒数
+                if(timespan<=0){
+                  _this.stop= true
+                }
+                //如果是false就开始倒计时，如果是true就停止倒计时
+                if(_this.stop == false)
+                {
+                  setInterval(function update(timespan) {
+                    timespan=timespan-1000*_this.currentSecond;
+                    //计算出相差天数
+                    var day=Math.floor(timespan/(24*3600*1000))
+
+                    _this.time.day=day<10?"0"+day.toString():day;
+
+                    //计算出小时数
+                    var leave1=timespan%(24*3600*1000)    //计算天数后剩余的毫秒数
+                    var hours=Math.floor(leave1/(3600*1000));
+                    _this.time.hours=hours<10?"0"+hours.toString():hours;
+
+                    //计算相差分钟数
+                    var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
+                    var minutes=Math.floor(leave2/(60*1000))
+                    _this.time.minutes=minutes<=10?"0"+minutes.toString():minutes;
+                    //计算相差秒数
+                    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+                    var seconds=Math.round(leave3/1000)
+                    _this.time.seconds=seconds<10?"0"+seconds.toString():seconds;
+                    _this.currentSecond++;
+                  },1000,timespan);
+                }
+                else
+                {
+                  clearInterval(_this.Interval);
+                }
+       },
+
         toggle:function(i, v){
           this.active = i;
           this.getjson(i);
@@ -116,6 +158,9 @@
             if (json.success) {
               var data = json.data;
               _this.limitedExclusiveList = data.appLimitedExclusive;
+
+              _this.timeCountDown(_this.limitedExclusiveList.currentTime.replace(/\-/g, "/"),_this.limitedExclusiveList.topBar.leGeneralMessage.deadLine.replace(/\-/g, "/"))
+
               _this.topBar=data.appLimitedExclusive.topBar;
               _this.tabs=[];
               for(var i=0;i<=data.appLimitedExclusive.bottomBarList.length-1;i++){

@@ -141,6 +141,7 @@ div.label_last_margin{
 }
 .time{
   display: inline-block;
+  color: #99cc00;
 }
 .time .time_reside{
   width: 0.6rem;

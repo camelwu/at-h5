@@ -222,21 +222,22 @@
               timespan=timespan-1000*_this.currentSecond;
               //计算出相差天数
               var day=Math.floor(timespan/(24*3600*1000))
-              _this.time.day=day<=0?"0"+day.toString():day;
+
+              _this.time.day=day<10?"0"+day.toString():day;
 
               //计算出小时数
               var leave1=timespan%(24*3600*1000)    //计算天数后剩余的毫秒数
               var hours=Math.floor(leave1/(3600*1000));
-              _this.time.hours=hours<=0?"0"+hours.toString():hours;
+              _this.time.hours=hours<10?"0"+hours.toString():hours;
 
               //计算相差分钟数
               var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
               var minutes=Math.floor(leave2/(60*1000))
-              _this.time.minutes=minutes<=0?"0"+minutes.toString():minutes;
+              _this.time.minutes=minutes<=10?"0"+minutes.toString():minutes;
               //计算相差秒数
               var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
               var seconds=Math.round(leave3/1000)
-              _this.time.seconds=seconds<=0?"0"+seconds.toString():seconds;
+              _this.time.seconds=seconds<=1?"0"+seconds.toString():seconds;
               _this.currentSecond++;
             },1000,timespan);
           }
