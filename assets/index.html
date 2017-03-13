@@ -110,7 +110,7 @@
     <h3><i></i>热门目的地</h3>
     <ul class = "hotDiv_content clearfix">
       <li v-for="hotDes in hotDestinationList" v-on:click="goLinkHotDestinationDetail(hotDes)">
-        <div class="hotDiv_imgDiv"><img  v-lazy="hotDes.imageUrl" alt=""/></div>
+        <div class="hotDiv_imgDiv"><img  v-lazy.container="hotDes.imageUrl" alt=""/></div>
         <h3>{{hotDes.cityCategory}}</h3>
         <p>{{hotDes.cityDesc}}</p>
       </li>
@@ -124,7 +124,7 @@
     <div>
       <ul class="hotel_div clearfix">
         <li v-for="item in hotTopicList" v-on:click="goLinkHotTopicDetail(item.productCategory,item.productID)">
-            <div class = "hotel_imgDiv"><img v-lazy="item.imageUrl" alt=""/></div>
+            <div class = "hotel_imgDiv"><img v-lazy.container="item.imageUrl" alt=""/></div>
             <div class = "hotel_content">
               <div>
                 <h3>{{item.topicTitle}}</h3>
@@ -155,6 +155,7 @@
 <script src="js/lib/plugins.js"></script>
 <script src="js/lib/jquery.alert.js"></script>
 <script src="js/lib/vlm.js"></script>
+<script src="js/lib/vue/es6-promise/es6-promise.min.js"></script>
 <script src="js/lib/vue/vue-lazyLoad/vue-lazyload.es5.js"></script>
 <!--<script src="js/lib/template.js"></script>-->
 <script src="js/lib/vue/vue@2.0.8.js"></script>
@@ -210,7 +211,7 @@
 
         //抢购倒计时
         function timeCountDown (startTime,endTime) {
-          var timespan = new Date(endTime).getTime()-new Date(startTime).getTime();   //时间差的毫秒数
+          var timespan = new Date(endTime.replace(/\-/g, "/")).getTime()-new Date(startTime.replace(/\-/g, "/")).getTime();   //时间差的毫秒数
           if(timespan<=0){
             _this.stop= true
           }
@@ -220,21 +221,21 @@
             setInterval(function update(timespan) {
               timespan=timespan-1000*_this.currentSecond;
               //计算出相差天数
-              let day=Math.floor(timespan/(24*3600*1000))
+              var day=Math.floor(timespan/(24*3600*1000))
               _this.time.day=day<=0?"0"+day.toString():day;
 
               //计算出小时数
               var leave1=timespan%(24*3600*1000)    //计算天数后剩余的毫秒数
-              let hours=Math.floor(leave1/(3600*1000));
+              var hours=Math.floor(leave1/(3600*1000));
               _this.time.hours=hours<=0?"0"+hours.toString():hours;
 
               //计算相差分钟数
               var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
-              let minutes=Math.floor(leave2/(60*1000))
+              var minutes=Math.floor(leave2/(60*1000))
               _this.time.minutes=minutes<=0?"0"+minutes.toString():minutes;
               //计算相差秒数
               var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-              let seconds=Math.round(leave3/1000)
+              var seconds=Math.round(leave3/1000)
               _this.time.seconds=seconds<=0?"0"+seconds.toString():seconds;
               _this.currentSecond++;
             },1000,timespan);
@@ -282,7 +283,7 @@
             if (json.success) {
               var data = json.data;
               _this.limitedExclusiveList = data.appHomePageLimitedExclusive;
-              timeCountDown(_this.limitedExclusiveList.currentTime,_this.limitedExclusiveList.deadLine)
+              timeCountDown(_this.limitedExclusiveList.currentTime.replace(/\-/g, "/"),_this.limitedExclusiveList.deadLine.replace(/\-/g, "/"))
 
             } else {
               console.log(json);

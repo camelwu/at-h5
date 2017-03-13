@@ -26,7 +26,7 @@
         <img :src="topBar.leGeneralMessage.imageUrl" alt=""/>
       </div>
       <div class = "banner_content">
-        <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>23</span>: <span>15</span>: <span>08</span></span></p>
+        <p class = "banner_sale"><span class = "banner_sale_lowest">全网最低价</span><span class = "banner_sale_timer">距结束 <span>00</span>: <span>00</span>: <span>00</span></span></p>
         <p class = "banner_information">{{topBar.leGeneralMessage.title}}</p>
       </div>
       <div class = "banner_price clearfix" >
@@ -76,6 +76,7 @@
 <script src="../js/jquery/jquery.min.js"></script>
 <script src="../js/vlm.js"></script>
 <script src="../js/vue-lazyLoad/vue-lazyload.es5.js"></script>
+<script src="../js/lib/vue/es6-promise/es6-promise.min.js"></script>
 <script src="../js/vue/vue@2.0.8.js"></script>
 <script>
   Vue.use(VueLazyload, {
@@ -96,11 +97,11 @@
         tabs: [],
       },
       methods:{
-        toggle(i, v){
+        toggle:function(i, v){
           this.active = i;
           this.getjson(i);
         },
-        getjson(index)
+        getjson:function(index)
         {
           _this = this;
           var json = {
@@ -130,7 +131,7 @@
             }
           });
         },
-        goLinkDetail(obj){
+        goLinkDetail:function(obj){
            if(this.active==0) {
              window.location.href = "/hotel/hotel_detail.html?HotelID=" + obj.searchParams.hotelCode + "&HotelCode=" + obj.searchParams.hotelCode + "&InstantConfirmation=false&AllOccupancy=true&CheckInDate=" + obj.searchParams.checkInDate + "&CheckOutDate=" + obj.searchParams.checkOutDate + "&NumRoom=" + obj.searchParams.numRoom + "&NumAdult=" + obj.searchParams.numAdult + "&NumChild=" + obj.searchParams.numChild + "&freeTransfer=false";
            }else if(this.active==1){
@@ -140,7 +141,7 @@
              window.location.href ="/tour/packages_detail.html?packageID="+obj.searchParams.packageID+"&productPrice="+obj.leGeneralMessage.price+"&status=1";
            }
         },
-        goLinkHotHotel(obj){
+        goLinkHotHotel:function(obj){
             if(obj.productCategory=="1"){
               window.location.href = "/hotel/hotel_detail.html?HotelID=" + obj.searchParams.hotelCode + "&HotelCode=" + obj.searchParams.hotelCode + "&InstantConfirmation=false&AllOccupancy=true&CheckInDate=" + obj.searchParams.checkInDate + "&CheckOutDate=" + obj.searchParams.checkOutDate + "&NumRoom=" + obj.searchParams.numRoom + "&NumAdult=" + obj.searchParams.numAdult + "&NumChild=" + obj.searchParams.numChild + "&freeTransfer=false";
             }else if(obj.productCategory=="2"){

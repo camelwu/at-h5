@@ -27,12 +27,16 @@
         <ul class = "content_div">
           <!--<component :is="currentView"></component>-->
           <li class = "clearfix" v-for="item in packageList" v-on:click="goLinkDetail(item.packageID)">
-          <div class = "imgDiv"><img :src="item.pictureURL"/></div>
-          <div class = "hotel_info">
-            <p class = "hotel_name">{{item.packageName}}</p>
-            <p class = "hotel_price">￥<strong>{{item.leadinPrice}}</strong>起/人</p>
+              <div class = "imgDiv"><img :src="item.pictureURL"/></div>
+              <div class = "hotel_info">
+                <p class = "hotel_name">{{item.packageName}}</p>
+                <p class = "hotel_price">￥<strong>{{item.leadinPrice}}</strong>起/人</p>
+              </div>
+          </li>
+            <div>
+                <p class="get-more" v-on:click="getMore()" v-show="switchShow">点击加载更多</p>
+                <p class="loading" v-show="!switchShow">加载中...</p>
             </div>
-          </li>'
         </ul>
     </section>
 </div>
@@ -40,6 +44,7 @@
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/vue/es6-promise/es6-promise.min.js"></script>
 <script src="../js/lib/vue/vue@2.0.8.js"></script>
 <script src="../js/plugins/footer/foot.js"></script>
 <script>
@@ -48,6 +53,7 @@
           el:"#app",
           data:{
             active: 0,
+            switchShow:true,
             searchParame:{"themeID":"", "priceSortType":"","durationValue":"","pageIndex":1,"pageSize":20},
             destCity:vlm.getpara("cityCategory"),
             tabs: [
@@ -67,134 +73,141 @@
             packageList:[]
           },
           methods: {
-          //跳转Link
-          goLinkDetail(packageID){
-              window.location.href=this.tabs[this.active].goLinkDetailUrl+"?packageID="+packageID;
-          },
-          //切换tab
-          toggle(i, v){
-              this.active = i;
-              this.searchParame.priceSortType="",
-              this.searchParame.themeID="",
-              this.searchParame.durationValue="",
-              this.searchParame.pageIndex=1
-              this.getjson(i);
-           },
-           initFoot(filters){
-          //footer  begin
-          var menu_data = {
-              sortTypes : {
-                  title : "推荐排序",
-                  c : "foot_sort",
-                  s:1,
-                  type :1,
-                  key : 'sortTypes',
-                  listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
+              //跳转Link
+              goLinkDetail:function(packageID){
+                  window.location.href=this.tabs[this.active].goLinkDetailUrl+"?packageID="+packageID;
               },
-              filters:filters
-              }, menu_call = function(data) {
+              //切换tab
+              toggle:function(i, v){
+                  this.active = i;
+                  this.searchParame.priceSortType="",
+                  this.searchParame.themeID="",
+                  this.searchParame.durationValue="",
+                  this.searchParame.pageIndex=1
+                  this.getjson(i);
+               },
+               initFoot:function(filters){
+                  //footer  begin
+                  var menu_data = {
+                      sortTypes : {
+                          title : "推荐排序",
+                          c : "foot_sort",
+                          s:1,
+                          type :1,
+                          key : 'sortTypes',
+                          listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
+                      },
+                      filters:filters
+                      }, menu_call = function(data) {
 
-                  //排序条件
-                  var priceSort=data.sortTypes;
-                  if(priceSort=="1"){
-                    this.searchParame.priceSortType="LowToHigh";
+                          //排序条件
+                          var priceSort=data.sortTypes;
+                          if(priceSort=="1"){
+                            this.searchParame.priceSortType="LowToHigh";
 
+                          }
+                          else if(priceSort=="1"){
+                            this.searchParame.priceSortType="HighToLow";
+                          }
+                          else{
+                             this.searchParame.priceSortType="";
+                          }
+                         //筛选条件
+                         this.searchParame.themeID=data.filters[0].FilterValues[0]
+                         this.getjson(this.active)
+                  }.bind(this);
+                  if (footer) {
+                      footer.data = menu_data;
+                      footer.callback = menu_call;
                   }
-                  else if(priceSort=="1"){
-                    this.searchParame.priceSortType="HighToLow";
+                  footer.filters.init();
+             },
+               //获取数据源
+              getjson:function(index){
+                _this=this;
+                var jsonText = {
+                  "Parameters": {
+                    "destCityCode": vlm.getpara("cityCode"),
+                    "themeID":_this.searchParame.themeID,
+                    "priceSortType":_this.searchParame.priceSortType,
+                    "durationValue":_this.searchParame.durationValue,
+                    "pageIndex": _this.searchParame.pageIndex,
+                    "pageSize": _this.searchParame.pageSize
+                  },
+                  "ForeEndType": 3,
+                  "Code": _this.tabs[index].code
+                };
+                vlm.loadJson("", JSON.stringify(jsonText), function (json) {
+                  if (json.success) {
+                    this.switchShow=!this.switchShow;
+                    vlm.init();
+                    var data = json.data
+                      _this.packageList = data.lists;
+                      var filters={}
+                      if(_this.active==0){
+                          var themeItme=[]
+                          for(var i=0; i<=data.themes.length-1;i++){
+                              themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
+                          }
+                          filters= {
+                              title : "筛选",
+                              c : "foot_screen",
+                              s: 1,
+                              type : 2,
+                              key : 'filters',
+                              listData : [{
+                                  title: "景点主题",
+                                  allowMultiSelect: 1,
+                                  filterType: 1,
+                                  item: themeItme
+                              }]
+                          };
+                          _this.initFoot(filters)
+                      }else{
+                          var themeItme=[]
+                          var durationsItem=[]
+                          for(var i=0; i<=data.themes.length-1;i++){
+                              themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
+                          }
+                          for(var i=0; i<=data.durations.length-1;i++){
+                              durationsItem.push({"filterText":data.durations[i].text,"filterValue":data.themes[i].value});
+                          }
+                          filters= {
+                              title : "筛选",
+                              c : "foot_screen",
+                              s: 1,
+                              type : 2,
+                              key : 'filters',
+                              listData : [{
+                                  title: "景点主题",
+                                  allowMultiSelect: 0,
+                                  filterType: 1,
+                                  item: themeItme
+                              },{
+                                  title: "游玩天数",
+                                  allowMultiSelect: 0,
+                                  filterType: 1,
+                                  item: durationsItem
+                              }]
+                          };
+                          _this.initFoot(filters)
+                      }
+
+
+                  } else {
+                    jAlert("数据格式错误", "提示");
                   }
-                  else{
-                     this.searchParame.priceSortType="";
-                  }
-                 //筛选条件
-                 this.searchParame.themeID=data.filters[0].FilterValues[0]
-                 this.getjson(this.active)
-          }.bind(this);
-          if (footer) {
-              footer.data = menu_data;
-              footer.callback = menu_call;
-          }
-          footer.filters.init();
-      },
-           //获取数据源
-          getjson(index){
-            _this=this;
-            var jsonText = {
-              "Parameters": {
-                "destCityCode": vlm.getpara("cityCode"),
-                "themeID":_this.searchParame.themeID,
-                "priceSortType":_this.searchParame.priceSortType,
-                "durationValue":_this.searchParame.durationValue,
-                "pageIndex": _this.searchParame.pageIndex,
-                "pageSize": _this.searchParame.pageSize
+                });
               },
-              "ForeEndType": 3,
-              "Code": _this.tabs[index].code
-            };
-            vlm.loadJson("", JSON.stringify(jsonText), function (json) {
-              if (json.success) {
-                vlm.init();
-                var data = json.data
-                  _this.packageList = data.lists;
-                  var filters={}
-                  if(_this.active==0){
-                      var themeItme=[]
-                      for(var i=0; i<=data.themes.length-1;i++){
-                          themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
-                      }
-                      filters= {
-                          title : "筛选",
-                          c : "foot_screen",
-                          s: 1,
-                          type : 2,
-                          key : 'filters',
-                          listData : [{
-                              title: "景点主题",
-                              allowMultiSelect: 1,
-                              filterType: 1,
-                              item: themeItme
-                          }]
-                      };
-                      _this.initFoot(filters)
-                  }else{
-                      var themeItme=[]
-                      var durationsItem=[]
-                      for(var i=0; i<=data.themes.length-1;i++){
-                          themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
-                      }
-                      for(var i=0; i<=data.durations.length-1;i++){
-                          durationsItem.push({"filterText":data.durations[i].text,"filterValue":data.themes[i].value});
-                      }
-                      filters= {
-                          title : "筛选",
-                          c : "foot_screen",
-                          s: 1,
-                          type : 2,
-                          key : 'filters',
-                          listData : [{
-                              title: "景点主题",
-                              allowMultiSelect: 0,
-                              filterType: 1,
-                              item: themeItme
-                          },{
-                              title: "游玩天数",
-                              allowMultiSelect: 0,
-                              filterType: 1,
-                              item: durationsItem
-                          }]
-                      };
-                      _this.initFoot(filters)
-                  }
+              getMore: function () {
+                      this.switchShow=!this.switchShow;
+                      this.searchParame.pageIndex=this.searchParame.pageIndex+1;
+                      this.searchParame.pageSize=this.searchParame.pageSize*this.searchParame.pageIndex;
+                      this.getjson(this.active);
 
-
-              } else {
-                jAlert("数据格式错误", "提示");
-              }
-            });
-          }
-
+               }
         },
-        mounted() {
+        mounted:function(){
           this.getjson(0);
         }
     })
