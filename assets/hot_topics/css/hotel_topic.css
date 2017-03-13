@@ -1,0 +1,215 @@
+section{
+    background: #fff;
+}
+.topDIv{
+    padding-bottom: 0.32rem;
+}
+.top_imgDiv{
+    height: 5rem;
+    position: relative;
+    background: url(../../images/loading_def_big.png) no-repeat;
+    background-size: 100% 100%;
+}
+.top_imgDiv img{
+    width: 100%;
+    height: 100%;
+}
+.top_information{
+    height: 5rem;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.top_information a{
+    width: .64rem;
+    height: .64rem;
+    position: absolute;
+    left: .25rem;
+    top: .25rem;
+    z-index: 10;
+    background: url(../../images/activity/icon.png);
+    background-size: 7.5rem 3.4rem;
+    background-position: -5.5rem -0.19rem;
+}
+.top_information div{
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0)0,rgba(0,0,0,.5)100%);
+    background: -moz-linear-gradient(top,rgba(0,0,0,0)0,rgba(0,0,0,.5)100%);
+    background: -o-linear-gradient(top,rgba(0,0,0,0)0,rgba(0,0,0,.5)100%);
+    background: linear-gradient(top,rgba(0,0,0,0)0,rgba(0,0,0,.5)100%);
+    bottom: 0;
+}
+.top_information div span{
+    color: #fff;
+    position: absolute;
+    right: 50%;
+    bottom: .24rem;
+    font-size: 0.24rem;
+}
+/*top end*/
+/*hotelInfo start*/
+.hotelInfo{
+    padding:0 0.28rem 0.4rem;
+}
+.hotelInfo h3{
+    font-size: 0.32rem;
+    color:#000;
+    line-height: 0.46rem;
+    padding-bottom: 0.32rem;
+}
+.hotelInfo_content{
+    padding-bottom: 0.4rem;
+}
+.hotelInfo_content_stat i{
+    position: absolute;
+    top: 0.03rem;
+    left: 0;
+    background: url(../../images/activity/icon.png);
+    background-size: 7.5rem 3.4rem;
+}
+.hotelInfo_content_stat span{
+    padding-left: 0.4rem;
+    position: relative;
+    font-size: 0.28rem;
+    color:#bbb;
+}
+.hotelInfo_content_stat span.cur{
+    color:#fa6f22;
+}
+.hotelInfo_content_label{
+    float: left;
+    display: inline-block;
+    width: 1.44rem;
+    height: .4rem;
+    background: url(../../images/activity/icon.png);
+    background-size: 7.5rem 3.4rem;
+    background-position: -0.15rem -0.19rem;
+}
+i.want{
+    width: 0.28rem;
+    height: 0.26rem;
+    background-position: -1.78rem -0.27rem;
+}
+i.been{
+    width: 0.19rem;
+    height: 0.29rem;
+    left: 0.12rem;
+    background-position: -3.4rem -0.26rem;
+}
+.hotelInfo_special{
+    position: relative;
+    padding-left: 0.56rem;
+    color:#53b2fe;
+}
+.hotelInfo_special span{
+    margin-right: 0.16rem;
+}
+.hotelInfo_special i{
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../images/activity/icon.png);
+    background-size: 7.5rem 3.4rem;
+    background-position: -3.72rem -0.25rem;
+}
+/*hotelInfo start*/
+/*specialLabel start*/
+.specialLabel {
+    background: #f2f2f2;
+    height: 0.8rem;
+}
+.specialLabel span{
+    display: inline-block;
+    width: 50%;
+    color: #999999;
+    font-size: 0.32rem;
+    text-align: center;
+    line-height: 0.8rem;
+}
+.specialLabel span.cur{
+    border-bottom: 2px solid #8ace00;
+    color:#8ace00;
+}
+/*specialLabel end*/
+/*hotel special label start*/
+.hotelSpecial{
+    padding: 0 0.28rem 0;
+}
+.hotelSpecial ul{
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #f2f2f2;
+}
+.hotelSpecial li{
+    padding: 0.28rem 0 0;
+}
+.Special_imgDiv{
+    width: 100%;
+    height: 3.6rem;
+    margin-bottom: 0.32rem;
+}
+.Special_imgDiv img{
+    width: 100%;
+    height: 100%;
+}
+.hotelSpecial p{
+    font-size: 0.28rem;
+    color:#333;
+    line-height: 0.46rem;
+}
+/*hotel special label end*/
+/*address and phone start*/
+.contactDiv{
+    padding: 0.4rem 0.28rem 0;
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 1rem;
+}
+.contactDiv p{
+    position: relative;
+    padding-left: 0.6rem;
+    margin-bottom: 0.4rem;
+}
+.contactDiv i{
+    width: 0.36rem;
+    height: 0.36rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../images/activity/icon.png);
+    background-size: 7.5rem 3.4rem;
+    background-position: -4.38rem -0.3rem;
+}
+i.phone{
+    background-position: -4.91rem -0.3rem;
+}
+.expenseDiv{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 0.98rem;
+    width: 100%;
+    background: #fff;
+}
+.expenseDiv div{
+    float: left;
+    width: 50%;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    text-align: center;
+}
+.expense_price{
+    color: #fd7530;
+    font-size: 0.28rem;
+    background: #fff;
+}
+.expense_price strong{
+    font-size: 0.4rem;
+}
+.expense_reserve{
+    color: #fff;
+    background: #8ace00;
+}

@@ -1585,9 +1585,13 @@ a.foot-users {
 }
 
 .footer-menu-three-icons a {
-  width: 50%;
+  width: 33.3%;
   float: left;
   text-align: center;
+}
+.foot-limitedBuy i{
+  background: url(../images/index/limitedBuy.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 /*首页footer结束*/

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <link rel="stylesheet" href="../styles/reset.css"/>
+    <link rel="stylesheet" href="./css/hotel_topic.css"/>
+    <link href="../css/plugins/swiper/swiper.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/plugins/picCarousel/picCarousel.css"/>
+
+    <title>热门专题</title>
+</head>
+<body>
+<div id="preloader">
+    <div id="status"></div>
+</div>
+<div class="all_elements" id="app">
+    <!--top start-->
+    <section class = "topDIv" v-on:click ="showPicPop">
+        <div class = "top_imgDiv"><img :src="hotelInfo.carouselImage[0]" alt=""/></div>
+        <div class="top_information">
+            <a href="javascript:window.history.go(-1);"></a>
+            <div>
+                <span>1/{{hotelInfo.carouselImage.length}}</span>
+            </div>
+        </div>
+    </section>
+    <!--top end-->
+    <!--hotelInfo start-->
+    <section class = "hotelInfo">
+        <h3>{{hotelInfo.productName}}</h3>
+        <div class = "hotelInfo_content clearfix">
+            <span class ="hotelInfo_content_label"></span>
+            <span class = "fr hotelInfo_content_stat" v-on:click ="coutNum"><span class = "wantGo cur"><i class = "want"></i>想去(<em>{{hotelInfo.wantGo}}</em>)</span><span class = "haveBeen"><i class ="been"></i>去过(<em>{{hotelInfo.haveBeenTo}}</em>)</span></span>
+        </div>
+        <p class= "hotelInfo_special"><i class = "icon"></i><span v-for ="tagInfo in hotelInfo.tag">· {{tagInfo}}</span></p>
+    </section>
+    <!--hotelInfo end-->
+    <!--specialLabel start-->
+    <section class = "specialLabel">
+        <span @click="toggle(index)" v-for="(tab,index) in tabs" :class="{cur:active==index}" >{{tab.text}}</span>
+    </section>
+    <!--specialLabel end-->
+    <!--hotel special label start-->
+    <section class = "hotelSpecial">
+        <ul >
+            <li v-for="item in hotelInfo.descriptionList[active].descDetail">
+                <div class = "Special_imgDiv"><img :src="item.imageUrl" alt=""/></div>
+                <p>{{item.detailDesc}}</p>
+            </li>
+        </ul>
+    </section>
+    <!--hotel special label end-->
+    <section class = "expenseDiv">
+        <div class ="expense_price">￥<strong>{{hotelInfo.price}}</strong>起/晚</div>
+        <div class = "expense_reserve">立即预定</div>
+    </section>
+
+    <item :columns="hotelInfo.carouselImage" v-show='display'>
+    </item>
+
+
+</div>
+
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/plugins/swiper/swiper.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/vue/es6-promise/es6-promise.min.js"></script>
+<script src="../js/lib/vue/vue@2.0.8.js"></script>
+<script src="../js/lib/vue/vue-lazyLoad/vue-lazyload.es5.js"></script>
+<!-- 图片轮播 template -->
+<script type="text/x-template" id="picCarousel-template" >
+    <!-- Swiper JS -->
+    <div id="imageContainer" v-show="display" v-on:click ="closedWin">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="col in columns"><img v-lazy="col"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</script>
+
+<script>
+    (function(){
+        Vue.use(VueLazyload, {
+            error: '../images/erro/error.png',
+            loading: '../images/loading_bg_big.png',
+            try: 3 // default 1
+        });
+        // define the item component
+        Vue.component('item', {
+            template: '#picCarousel-template',
+            props: {  columns: Array,display:false},
+            data: function() {
+                return {
+                    display: false,
+                }
+            },
+            mounted:function(){
+                var swiper = new Swiper('.swiper-container', {
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
+                    pagination: '.swiper-pagination',
+                    paginationType: 'fraction'
+                });
+            },
+            methods:{
+                closedWin:function(){
+                    this.display=false;
+                }
+            }
+
+        })
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                display: false,
+                active: 0,
+                hotelInfo:{},
+                tabs: [
+                    {
+                        type: 'tab1',
+                        text:"印象"
+                    },
+                    {
+                        type: 'tab2',
+                        text:"房型"
+                    }
+                ]
+            },
+            mounted:function(){
+                var that=this;
+                //banner
+                function LoadBanner() {
+                    var tmp = {
+                        "Parameters": {
+                            "productCategory":vlm.getpara("productCategory"),
+                            "productID":vlm.getpara("productID")
+                        },
+                        "ForeEndType": 3,
+                        "Code": "10100044"
+                    };
+                    vlm.loadJson("", JSON.stringify(tmp), function(json) {
+                        if (json.success) {
+                            vlm.init();
+                            var data = json.data;
+                            that.hotelInfo=data.topicGeneralMessage;
+                        } else {
+                            console.log(json);
+                            jAlert("数据格式错误", "提示");
+                        }
+                    });
+                }
+                LoadBanner();
+            },
+            ready:function(){
+                this.display=false;
+            },
+            methods:{
+                toggle:function(i){
+                    this.active = i;
+                },
+                coutNum:function(){
+                    var onck = true;
+                    $(".hotelInfo_content_stat>span").on("click",function(){
+                        var emHtml = $(this).find("em").html();
+                        var num = parseInt(emHtml)+1;
+                        $(this).find("em").html(num);
+                        onck=false;
+                    })
+                },
+                showPicPop:function(){
+                    this.display=true;
+                }
+            }
+        })
+    })()
+</script>
+</body>
+</html>
