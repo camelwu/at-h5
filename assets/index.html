@@ -216,8 +216,7 @@
             _this.stop= true
           }
           //如果是false就开始倒计时，如果是true就停止倒计时
-          if(_this.stop == false)
-          {
+          if(_this.stop == false) {
             setInterval(function update(timespan) {
               timespan=timespan-1000*_this.currentSecond;
               //计算出相差天数

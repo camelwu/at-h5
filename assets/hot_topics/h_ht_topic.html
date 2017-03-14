@@ -35,7 +35,6 @@
           </li>
             <div>
                 <p class="get-more" v-on:click="getMore()" v-show="switchShow">点击加载更多</p>
-                <p class="loading" v-show="!switchShow">加载中...</p>
             </div>
         </ul>
     </section>
@@ -53,6 +52,7 @@
           el:"#app",
           data:{
             active: 0,
+            isfirstLoadPager:true,
             switchShow:true,
             searchParame:{"themeID":"", "priceSortType":"","durationValue":"","pageIndex":1,"pageSize":20},
             destCity:vlm.getpara("cityCategory"),
@@ -83,10 +83,11 @@
                   this.searchParame.priceSortType="",
                   this.searchParame.themeID="",
                   this.searchParame.durationValue="",
-                  this.searchParame.pageIndex=1
-                  this.getjson(i);
+                  this.searchParame.pageIndex=1,
+                  this.isfirstLoadPager=true;
+                  this.getjson(i,false);
                },
-               initFoot:function(filters){
+              initFoot:function(filters){
                   //footer  begin
                   var menu_data = {
                       sortTypes : {
@@ -99,14 +100,13 @@
                       },
                       filters:filters
                       }, menu_call = function(data) {
-
                           //排序条件
                           var priceSort=data.sortTypes;
                           if(priceSort=="1"){
                             this.searchParame.priceSortType="LowToHigh";
 
                           }
-                          else if(priceSort=="1"){
+                          else if(priceSort=="2"){
                             this.searchParame.priceSortType="HighToLow";
                           }
                           else{
@@ -123,7 +123,7 @@
                   footer.filters.init();
              },
                //获取数据源
-              getjson:function(index){
+              getjson:function(index,isPage){
                 _this=this;
                 var jsonText = {
                   "Parameters": {
@@ -142,7 +142,14 @@
                     this.switchShow=!this.switchShow;
                     vlm.init();
                     var data = json.data
-                      _this.packageList = data.lists;
+                      if(isPage){
+                          for(var i=0;i<=data.lists.length-1;i++){
+                              _this.packageList.push(data.lists[i]);
+                          }
+
+                      }else {
+                          _this.packageList = data.lists;
+                      }
                       var filters={}
                       if(_this.active==0){
                           var themeItme=[]
@@ -162,7 +169,11 @@
                                   item: themeItme
                               }]
                           };
-                          _this.initFoot(filters)
+                          //是否第一次页面加载
+                          if(_this.isfirstLoadPager){
+                              _this.initFoot(filters)
+                          }
+                          _this.isfirstLoadPager=false;
                       }else{
                           var themeItme=[]
                           var durationsItem=[]
@@ -190,7 +201,11 @@
                                   item: durationsItem
                               }]
                           };
-                          _this.initFoot(filters)
+                          //是否第一次页面加载
+                          if(_this.isfirstLoadPager){
+                              _this.initFoot(filters)
+                          }
+                          _this.isfirstLoadPager=false;
                       }
 
 
@@ -200,15 +215,12 @@
                 });
               },
               getMore: function () {
-                      this.switchShow=!this.switchShow;
                       this.searchParame.pageIndex=this.searchParame.pageIndex+1;
-                      this.searchParame.pageSize=this.searchParame.pageSize*this.searchParame.pageIndex;
-                      this.getjson(this.active);
-
+                      this.getjson(this.active,true);
                }
         },
         mounted:function(){
-          this.getjson(0);
+          this.getjson(0,false);
         }
     })
   })()
