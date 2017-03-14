@@ -26,7 +26,7 @@
         <div class = "label_div clearfix"><div   @click="toggle(index ,tab.view)" v-for="(tab,index) in tabs" :class="{cur:active==index}" >{{tab.text}}</div></div>
         <ul class = "content_div">
           <!--<component :is="currentView"></component>-->
-          <li class = "clearfix" v-for="item in packageList" v-on:click="goLinkDetail(item.packageID)">
+          <li class = "clearfix" v-for="item in packageList" v-on:click="goLinkDetail(item)">
               <div class = "imgDiv"><img :src="item.pictureURL"/></div>
               <div class = "hotel_info">
                 <p class = "hotel_name">{{item.packageName}}</p>
@@ -74,8 +74,12 @@
           },
           methods: {
               //跳转Link
-              goLinkDetail:function(packageID){
-                  window.location.href=this.tabs[this.active].goLinkDetailUrl+"?packageID="+packageID;
+              goLinkDetail:function(obj){
+                  if(this.active==0) {
+                      window.location.href = this.tabs[this.active].goLinkDetailUrl + "?packageID=" + obj.packageID;
+                  }else{
+                      window.location.href = this.tabs[this.active].goLinkDetailUrl + "?packageID=" + obj.packageID+"&productPrice="+obj.leadinPrice+"&status=1";
+                  }
               },
               //切换tab
               toggle:function(i, v){
