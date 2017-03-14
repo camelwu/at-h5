@@ -113,7 +113,11 @@
                              this.searchParame.priceSortType="";
                           }
                          //筛选条件
-                         this.searchParame.themeID=data.filters[0].FilterValues[0]
+                         this.searchParame.themeID=data.filters[0].FilterValues[0];
+                         //酒+景需要多一个天数过滤
+                         if(this.active==1){
+                             this.searchParame.durationValue=data.filters[1].FilterValues[0]
+                         }
                          this.getjson(this.active)
                   }.bind(this);
                   if (footer) {
@@ -139,9 +143,9 @@
                 };
                 vlm.loadJson("", JSON.stringify(jsonText), function (json) {
                   if (json.success) {
-                    this.switchShow=!this.switchShow;
                     vlm.init();
-                    var data = json.data
+                    var data = json.data;
+                      //是不是翻页调用，：true array 添加元素， false：对象覆盖
                       if(isPage){
                           for(var i=0;i<=data.lists.length-1;i++){
                               _this.packageList.push(data.lists[i]);
@@ -149,6 +153,12 @@
 
                       }else {
                           _this.packageList = data.lists;
+                      }
+                      //判断是否显示分页样式
+                      if(_this.searchParame.pageIndex>parseInt(data.totalCount/20)){
+                          _this.switchShow=false;
+                      }else{
+                          _this.switchShow=true;
                       }
                       var filters={}
                       if(_this.active==0){
@@ -164,7 +174,7 @@
                               key : 'filters',
                               listData : [{
                                   title: "景点主题",
-                                  allowMultiSelect: 1,
+                                  allowMultiSelect:0,
                                   filterType: 1,
                                   item: themeItme
                               }]
@@ -181,7 +191,7 @@
                               themeItme.push({"filterText":data.themes[i].themeName,"filterValue":data.themes[i].themeID});
                           }
                           for(var i=0; i<=data.durations.length-1;i++){
-                              durationsItem.push({"filterText":data.durations[i].text,"filterValue":data.themes[i].value});
+                              durationsItem.push({"filterText":data.durations[i].text,"filterValue":data.durations[i].value});
                           }
                           filters= {
                               title : "筛选",
