@@ -31,7 +31,7 @@
         <h3>{{hotelInfo.topicGeneralMessage.productName}}</h3>
         <div class = "hotelInfo_content clearfix">
             <span class ="hotelInfo_content_label"></span>
-            <span class = "fr hotelInfo_content_stat" v-on:click ="coutNum"><span class = "wantGo cur"><i class = "want"></i>想去(<em>{{hotelInfo.wantGo}}</em>)</span><span class = "haveBeen"><i class ="been"></i>去过(<em>{{hotelInfo.haveBeenTo}}</em>)</span></span>
+            <span class = "fr hotelInfo_content_stat" v-on:click ="coutNum"><span class = "wantGo cur"><i class = "want"></i>想去(<em>{{hotelInfo.topicGeneralMessage.wantGo}}</em>)</span><span class = "haveBeen"><i class ="been"></i>去过(<em>{{hotelInfo.topicGeneralMessage.haveBeenTo}}</em>)</span></span>
         </div>
         <p class= "hotelInfo_special"><i class = "icon"></i><span v-for ="tagInfo in hotelInfo.topicGeneralMessage.tag">· {{tagInfo}}</span></p>
     </section>

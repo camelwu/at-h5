@@ -141,9 +141,9 @@
 
         toggle:function(i, v){
           this.active = i;
-          this.getjson(i);
+          this.getjson(i,false);
         },
-        getjson:function(index)
+        getjson:function(index,isFirstLoadPage)
         {
           _this = this;
           var json = {
@@ -158,9 +158,9 @@
             if (json.success) {
               var data = json.data;
               _this.limitedExclusiveList = data.appLimitedExclusive;
-
-              _this.timeCountDown(_this.limitedExclusiveList.currentTime.replace(/\-/g, "/"),_this.limitedExclusiveList.topBar.leGeneralMessage.deadLine.replace(/\-/g, "/"))
-
+              if(isFirstLoadPage) {
+                _this.timeCountDown(_this.limitedExclusiveList.currentTime.replace(/\-/g, "/"), _this.limitedExclusiveList.topBar.leGeneralMessage.deadLine.replace(/\-/g, "/"))
+              }
               _this.topBar=data.appLimitedExclusive.topBar;
               _this.tabs=[];
               for(var i=0;i<=data.appLimitedExclusive.bottomBarList.length-1;i++){
@@ -201,7 +201,7 @@
 
     },
     mounted: function () {
-        this.getjson(0);
+        this.getjson(0,true);
     }
     });
   })();
