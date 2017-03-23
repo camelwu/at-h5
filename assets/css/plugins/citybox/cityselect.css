@@ -136,7 +136,7 @@
 .citybox_search_input {
   background: none;
   /* box-sizing: border-box; */
-  width: 6.2rem; 
+  /* width: 6.2rem; */
   /* height: 0.6rem; */
   padding: 0.06rem 0.28rem 0.06rem 0.6rem;
   /* outline: none; */
@@ -481,9 +481,8 @@
   z-index: 99;
 }
 
-.show{
+.citybox_letter.show{
   display: block;
-  opacity: 1;
   -webkit-animation-name: fadeOut;
   -webkit-animation-duration: 1s;
   -webkit-animation-iteration-count: 1;
