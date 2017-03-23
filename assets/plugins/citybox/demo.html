@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚程旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>城市组件 - 亚程旅行网</title>
+    <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="cityselect.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="preloader" style="display: none;">
+        <div id="status" style="display: none;"></div>
+    </div>
+<div class="all-elements">
+<div id="ret">内容</div><br>
+<a href="javascript:void(0);" id="f_dep" data-bind="type:'setCityBox',data:'f_dep_domes',returnId:'#ret',returnAttr:'value',returnStrId:'#f_dep'">机票出发</a>
+<a href="javascript:void(0);" id="f_des" data-bind="type:'setCityBox',data:'f_des_inter',returnId:'#ret',returnAttr:'value',returnStrId:'#f_des'">机票目的</a>
+<br>
+<a href="javascript:void(0);" id="fh_dep" data-bind="type:'setCityBox',data:'fh_dep_domes',returnId:'#ret',returnAttr:'value',returnStrId:'#fh_dep'">机酒出发</a>
+<a href="javascript:void(0);" id="fh_des" data-bind="type:'setCityBox',data:'fh_des_inter',returnId:'#ret',returnAttr:'value',returnStrId:'#fh_des'">机酒目的</a>
+<br>
+<a href="javascript:void(0);" id="fht_dep" data-bind="type:'setCityBox',data:'fht_des_domes',returnId:'#ret',returnAttr:'value',returnStrId:'#fht_dep'">机酒景出发</a>
+<a href="javascript:void(0);" id="fht_des" data-bind="type:'setCityBox',data:'fht_des_inter',returnId:'#ret',returnAttr:'value',returnStrId:'#fht_des'">机酒景目的</a>
+<br>
+<a href="javascript:void(0);" id="h_inter" data-bind="type:'setCityBox',data:'h_des_inter',returnId:'#ret',returnAttr:'value',returnStrId:'#h_inter'">酒店 国际</a>
+<a href="javascript:void(0);" id="h_domes" data-bind="type:'setCityBox',data:'h_des_domes',returnId:'#ret',returnAttr:'value',returnStrId:'#h_domes'">酒店 国内</a>
+<br>
+<a href="javascript:void(0);" data-bind="type:'setCityBox',data:'t'">景 城市列表</a>
+<a href="javascript:void(0);" data-bind="type:'setCityBox',data:'ht'">酒景 城市列表</a>
+</div>
+
+<script src="../../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../../js/lib/vlm.js"></script>
+<script src="./cityselect.js"></script>
+<script>
+    n.bindDoc();
+</script>
+</body>
+</html>
