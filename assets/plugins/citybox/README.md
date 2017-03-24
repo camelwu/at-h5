@@ -33,7 +33,7 @@ suggest(搜索结果建议)
 * Chrome on Android
 * Opera Mobile
 * UC
-etc
+* etc
 
 ## 使用方法 ##
 

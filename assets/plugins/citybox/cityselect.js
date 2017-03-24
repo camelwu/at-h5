@@ -19,7 +19,7 @@ var n = (function () {
             ht: [40100010,40100011],
             t: [20100014,20100013]
         }
-    }, _b, _d, _t, _json, box, instance, input, masker, suggest, result,
+    }, _b, _d, _t, _json, box, instance, input, masker, suggest,
     Citylist_H = function (a,b) {
         return a.pingYin.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.pingYin.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
     }, _init = function () {
@@ -59,29 +59,32 @@ var n = (function () {
     },
     bindEvent=function() {
         var that = this;
-        input.bind('keyup.plugins',function(){
-          var n = 0,key = $(this).val(), list = $('.citybox_content_lettername'), pattern = /^([\u4e00-\u9fa5a-zA-Z]){1,11}$/;
-          if (pattern.test(key)) {
-            for(var i=0;i<list.length;i++){
-              if(list[i].attr('data-name').indexOf(key)>-1){
-                suggest.appendChild(list[i]);
-                n++;
+        $('.citybox_search_input').bind('keyup',debounce(function(){
+          var str = '', key = $(this).val(),
+          list = document.getElementById('citybox_'+_d).querySelectorAll('.citybox_content_item'),
+          pattern = new RegExp("[\\u4E00-\\u9FFF]+","g");
+          if(key.length==0||key==''){
+            suggest.innerHTML = '';
+          }else{
+            if (pattern.test(key)) {
+              str = '';
+              for(var i=0;i<list.length;i++){
+                if(list[i].getAttribute('data-name').indexOf(key)>-1){
+                  str += '<li class="citybox_content_item" data-code="' + list[i].getAttribute('data-code') + '" data-name="' + list[i].getAttribute('data-name') + '" data-countrycode="' + list[i].getAttribute('data-countryCode') + '"><i class="icon"></i>' + list[i].getAttribute('data-name') + '</li>';
+                }
+              }
+            } else {
+              str = '';
+              for(var i=0;i<list.length;i++){
+                if(list[i].getAttribute('data-py').indexOf(key)>-1||list[i].getAttribute('data-code').indexOf(key)>-1||list[i].getAttribute('data-countrycode').indexOf(key)>-1){
+                  str += '<li class="citybox_content_item" data-code="' + list[i].getAttribute('data-code') + '" data-name="' + list[i].getAttribute('data-name') + '" data-countrycode="' + list[i].getAttribute('data-countryCode') + '"><i class="icon"></i>' + list[i].getAttribute('data-name') + '</li>';
+                }
               }
             }
-          } else {
-            for(var i=0;i<list.length;i++){
-              if(list[i].attr('data-py').indexOf(key)>-1||list[i].attr('data-code').indexOf(key)||list[i].attr('data-countrycode').indexOf(key)){
-                suggest.appendChild(list[i]);
-                n++;
-              }
-            }
+            suggest.innerHTML = str;
           }
-          if(n){
-            suggest.style.display = 'block';
-          }else {
-            console.log('none!');
-          }
-        })
+          suggest.style.display = 'block';
+          }, 300, false));
         //代理
         $("#instance").bind('click.plugins', function(event) {
         //on(instance, 'click.my_event', function(event) {
@@ -104,7 +107,8 @@ var n = (function () {
 			}
 			/*头部输入*/
 			if (target.className.indexOf("citybox_search_relative")>-1 || src.className.indexOf("citybox_search_relative")>-1){
-				showSuggest(1);
+				if(masker.style.display!="blcok"){showSuggest(1);}
+        input.focus();
 			}
 			/*头部输入消除*/
 			if (target.className.indexOf("citybox_searchactive_return")>-1 || src.className.indexOf("citybox_searchactive_return")>-1){
@@ -130,7 +134,7 @@ var n = (function () {
 			if(src.className.indexOf("citybox_content_item")>-1){
 				closure(src);
 			}
-			if(target==suggest){
+			if(src==suggest){
 				closure(target);
 			}
 			/*右侧索引*/
@@ -166,8 +170,8 @@ var n = (function () {
           letter.addEventListener('animationend', function () {
               this.className = 'citybox_letter';
           });
-					i = $(dom).offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $("#instance").scrollTop();
-					$("#instance").scrollTop(i);
+					i = $(dom).offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $(".citybox_container").scrollTop();
+					$(".citybox_container").scrollTop(i);
 				}
 			}
 
@@ -193,18 +197,10 @@ var n = (function () {
 		if (!instance) {
 			instance = document.createElement('div');
 			instance.id = 'instance';
-			instance.style.display = "none";
-			instance.style.position = "fixed";
-			instance.style.zIndex = 110;
-			instance.style.left = 0;
-			instance.style.top = 0;
-			instance.style.width = '100%';
-			instance.style.height = '100%';
-			instance.style['overflow-x'] = 'hidden';
-			instance.style['-webkit-overflow-scrolling'] = 'touch';
-  		instance.style['background-color']='#fcfcfc';
+			instance.className = 'citybox_wrapper';
+      instance.style.display = "none";
 			box = document.createElement('div');
-			box.className = 'citybox_wrap';
+			box.className = 'citybox_container';
 			instance.appendChild(box);
 			/*查询遮罩*/
 			masker = document.createElement('div');
@@ -214,7 +210,7 @@ var n = (function () {
 			/*查询结果*/
 			suggest = document.createElement('ul');
 			suggest.className = 'citybox_search_suggest';
-			suggest.id = 'citybox_result';
+			suggest.id = 'citybox_suggest';
 			instance.appendChild(suggest);
 			/*头部查询*/
 			var header = document.createElement('div');
@@ -272,12 +268,12 @@ var n = (function () {
 			box.appendChild(letter);
 			/*索引列表，国外内各一个*/
 			document.body.appendChild(instance);
-			input = $('.citybox_search_input');
+			input = document.querySelector('.citybox_search_input');
 			bindEvent();
 		}
 	},
 	/*完成操作*/
-	closure = function(dom) {console.log(_json);
+	closure = function(dom) {
 		var res = {
 			cityCode : dom.getAttribute('data-code'),
 			cityName : dom.getAttribute('data-name'),
@@ -287,23 +283,26 @@ var n = (function () {
     if(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)){
       d = JSON.parse(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d));
     }
-    d[d.length] = res;
+    if(!findInObj(d,res.cityCode)){
+      d[d.length] = res;
+    }
     localStorage.setItem('At-CH-'+_t+'-'+_b+'-'+_d,JSON.stringify(d));
     if(_json.returnAttr=="value"&&_json.returnId){
-      $(_json.returnId).html(res.name);
-      $(_json.returnId).attr("data-code",res.code);
+      $(_json.returnId).html(res.cityName);
+      $(_json.returnId).attr("data-code",res.cityCode);
     }else{
       // 暂时随便搞
       var cac = {ht:'tour',t:'scenic'};
-      window.location.href = cac[_t]+'/scenic_list.html?DestCityCode='+res.code;
+      window.location.href = cac[_t]+'/scenic_list.html?DestCityCode='+res.cityCode;
     }
+    showInstance();
 	},
 	/* 绘制城市内容
 	 * 组件类型
 	 */
 	DrawCity = function(data, s) {
         /* _t,_b,_d */
-        var css = s==0?"lettername":"item",d,
+        var css = "item",d,
         // 出发地和目的地
         cache = (localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d))?['loc','his','hot']:['loc','hot'],
         // 左侧索引定位
@@ -631,13 +630,22 @@ fullSpellingName:"*/
 	showInstance = function() {
 		if (instance.style.display == "none") {
 			instance.style.display = "block";
-			box.className = 'citybox_container';
+      instance.classList.add('lfi');
+      instance.addEventListener('animationend', function () {
+          // this.className = 'citybox_wrapper';
+          instance.classList.remove('lfi');
+      });
       var tag = document.getElementById('citybox_tag');
       tag.style.display = _t=='h'?"none":"block";
       //$("body").unbind(".box_event");
 		} else {
-			box.className = 'citybox_wrap';
-			instance.style.display = "none";
+      instance.classList.add('lfo');
+      instance.addEventListener('animationend', function lfo() {
+          instance.classList.remove('lfo');
+          instance.removeEventListener("animationend", lfo);
+          instance.style.display = "none";
+      });
+      //instance.style.display = "none";
 		}
 	},
 	/*出发或目的地打开组件就固定，只做国际，国内切换*/
@@ -666,11 +674,11 @@ fullSpellingName:"*/
     _b = b;
 	},
 	/*搜索容器显示控制*/
-	showSuggest = function(i) {console.log(input);
+	showSuggest = function(i) {
 		var dom = $('.citybox_search_relative');
 		if (i==0) {
 			dom.css('left','3rem');
-      input.val('');
+      input.value = '';
 			masker.style.display = 'none';
 			suggest.style.display = 'none';
 		}else if(i==1){
@@ -757,6 +765,15 @@ fullSpellingName:"*/
 		   HEAD.appendChild(s[i]);
 		};
 		recursiveLoad(0);
+  }, findInObj = function(d,code){
+    var s = false;
+    for(var i=0;i<d.length;i++){
+      if(d[i].cityCode==code){
+        s = true;
+        break;
+      }
+    }
+    return s;
   }, Filter = function (a,b) {
       // ary.sort();
       // return function(){

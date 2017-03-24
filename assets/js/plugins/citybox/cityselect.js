@@ -19,17 +19,12 @@ var n = (function () {
             ht: [40100010,40100011],
             t: [20100014,20100013]
         }
-    }, _b, _d, _t, _json,
-    box,/*城市容器*/instance,/*实例*/input,/*输入*/header,masker,suggest,
-    result,/*返回结果*/
+    }, _b, _d, _t, _json, box, instance, input, masker, suggest, result,
     Citylist_H = function (a,b) {
         return a.pingYin.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.pingYin.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
-    },
-    callbacks = function (a,b) {
-        return a.cityNameInitial.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.cityNameInitial.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
     }, _init = function () {
-      var a=[].slice.call(arguments,0), _json = a[0],
-      arg = _json.data.split('_');
+      _json = [].slice.call(arguments,0)[0];
+      var arg = _json.data.split('_');
         /*开始初始化，默认国际+目的地*/
         if(arg.length<1){
         	alert('参数不足');
@@ -53,8 +48,8 @@ var n = (function () {
         var len = config.para[_t].length;
         for(var i=0;i<len;i++){
             if (localStorage.getItem('At-CC-'+_t+i)) {
-                var json = JSON.parse(localStorage.getItem('At-CC-'+_t+i));console.log(_t+i+'='+json);
-        		DrawCity(json,i);
+                var json = (_t=="fh"&&i==0)?JSON.parse(localStorage.getItem('At-CC-'+_t+'-'+_d)):JSON.parse(localStorage.getItem('At-CC-'+_t+i));
+            		DrawCity(json,i);
             } else {
                 _getpara(i);
             }
@@ -64,8 +59,31 @@ var n = (function () {
     },
     bindEvent=function() {
         var that = this;
+        input.bind('keyup.plugins',function(){
+          var n = 0,key = $(this).val(), list = $('.citybox_content_lettername'), pattern = /^([\u4e00-\u9fa5a-zA-Z]){1,11}$/;
+          if (pattern.test(key)) {
+            for(var i=0;i<list.length;i++){
+              if(list[i].attr('data-name').indexOf(key)>-1){
+                suggest.appendChild(list[i]);
+                n++;
+              }
+            }
+          } else {
+            for(var i=0;i<list.length;i++){
+              if(list[i].attr('data-py').indexOf(key)>-1||list[i].attr('data-code').indexOf(key)||list[i].attr('data-countrycode').indexOf(key)){
+                suggest.appendChild(list[i]);
+                n++;
+              }
+            }
+          }
+          if(n){
+            suggest.style.display = 'block';
+          }else {
+            console.log('none!');
+          }
+        })
         //代理
-        $("#instance").on('click.my_event', function(event) {
+        $("#instance").bind('click.plugins', function(event) {
         //on(instance, 'click.my_event', function(event) {
 			event = event || window.event;
 			var returnVal, index = 0, target = event.target || event.srcElement,str = '',
@@ -143,10 +161,11 @@ var n = (function () {
 		            	str = key;
 		            }
 					letter.innerHTML = str;
+          // letter.className = "citybox_letter show";
 					$(letter).addClass("show");
-					setTimeout(function(){
-						$(letter).removeClass("show");
-					},1000);
+          letter.addEventListener('animationend', function () {
+              this.className = 'citybox_letter';
+          });
 					i = $(dom).offset().top - ($("html").css("font-size").replace("px", "") * 0.88) + $("#instance").scrollTop();
 					$("#instance").scrollTop(i);
 				}
@@ -157,7 +176,7 @@ var n = (function () {
 	/*页面的按钮点击，包括输入框*/
 	bindDoc = function(){
         $("body").children().click(function () {});  //解决iPhone safari中Document事件不触发
-        $("body").on('click.box_event', function(event) {
+        $("body").bind('click.box_event', function(event) {
 			event = event || window.event;
 			var target = event.target || event.srcElement, src = target.parentNode;
 			/*来源*/
@@ -167,12 +186,7 @@ var n = (function () {
 					_init(json);
 				}
 			}
-			function getBindData(dom) {
-				if(!dom)return;
-				var data = dom.getAttribute("data-bind");
-				return !!data && (new Function("return ({" + data + "})"))();
-		    }
-        });
+		});
 	},
 	/* 容器添加 */
 	createContainer = function() {
@@ -203,9 +217,9 @@ var n = (function () {
 			suggest.id = 'citybox_result';
 			instance.appendChild(suggest);
 			/*头部查询*/
-			header = document.createElement('div');
+			var header = document.createElement('div');
 			header.className = 'citybox_header';
-			header.innerHTML = '<a href="javascript:;" class="header_back"><i class="icon_back"></i></a><div class="citybox_search_bg"></div><div class="citybox_search_relative"><span class="citybox_search_icon"></span><input type="search" class="citybox_search_input" placeholder="中文/英文"><span class="citybox_search_clr"></span></div>';
+			header.innerHTML = '<a href="javascript:;" class="header_back"><i class="icon_back"></i></a><div class="citybox_search_bg"></div><div class="citybox_search_relative"><span class="citybox_search_icon"></span><input type="search" class="citybox_search_input" placeholder="中文/英文"></div>';
 			box.appendChild(header);
 			var top = document.createElement('div');
 			top.style.display = "block";
@@ -223,20 +237,23 @@ var n = (function () {
 			loccity.className = 'citybox_relative';
 			loccity.innerHTML = '<div class="citybox_content_title" id="js_loc">当前</div><div class="citybox_content_container" id="citybox_location"></div>';
 			box.appendChild(loccity);
+			/*历史*/
+			var history = document.createElement('div');
+			history.className = 'citybox_relative';
+			history.id = 'citybox_history';
+      if(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)){
+        history.style.display = 'block';
+      }else{
+        history.style.display = 'none';
+      }
+			history.innerHTML = '<div class="citybox_content_title" id="js_his">历史选择</div><ul class="citybox_content_container" id="citybox_his_inter"></ul><ul class="citybox_content_container" id="citybox_his_domes"></ul>';
+			box.appendChild(history);
 			/*热门*/
 			var hotcity = document.createElement('div');
 			hotcity.className = 'citybox_relative';
 			hotcity.id = 'citybox_hot';
 			hotcity.innerHTML = '<div class="citybox_content_title" id="js_hot">热门城市</div><ul class="citybox_content_container" id="citybox_hot_inter"></ul><ul class="citybox_content_container" id="citybox_hot_domes"></ul>';
 			box.appendChild(hotcity);
-			/*历史*/
-			if(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)){
-				var history = document.createElement('div');
-				history.className = 'citybox_relative';
-				history.id = 'citybox_history';
-				history.innerHTML = '<div class="citybox_content_title" id="js_his">历史选择</div><ul class="citybox_content_container" id="citybox_his_inter"></ul><ul class="citybox_content_container" id="citybox_his_domes"></ul>';
-				box.insertBefore(history,hotcity);
-			}
 			/*出发，目的容器*/
 			var dep = document.createElement('div');
 			dep.className = 'citybox_boxer';
@@ -260,13 +277,12 @@ var n = (function () {
 		}
 	},
 	/*完成操作*/
-	closure = function(dom) {
+	closure = function(dom) {console.log(_json);
 		var res = {
-			code : dom.getAttribute('data-code'),
-			name : dom.getAttribute('data-name'),
-			countrycode : dom.getAttribute('data-countrycode')
+			cityCode : dom.getAttribute('data-code'),
+			cityName : dom.getAttribute('data-name'),
+			countryCode : dom.getAttribute('data-countrycode')
 		}, d = [];
-		console.log(res);
 		//prefix+type+inter|domes+dep|des
     if(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)){
       d = JSON.parse(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d));
@@ -289,7 +305,7 @@ var n = (function () {
         /* _t,_b,_d */
         var css = s==0?"lettername":"item",d,
         // 出发地和目的地
-        cache = ['citybox_dep_list_inter','citybox_dep_list_domes','citybox_des_list_inter','citybox_des_list_domes'],
+        cache = (localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d))?['loc','his','hot']:['loc','hot'],
         // 左侧索引定位
         leftindex = ['<div class="citybox_content_title" data-key="js_','">', '</div>'],
         // 左侧容器citybox_content_lettercitylist
@@ -299,14 +315,14 @@ var n = (function () {
         case 'f':
         	if(s==0){
 		        for(var j=0;j<2;j++){
-		        	var left = '', cnstr = '', enstr = '', index = '', ci = ['loc','hot'],
+		        	var left = '', cnstr = '', enstr = '', index = '', ci = cache,
 		        	dt = j==0?data.internationalCities:data.domesticCities;
 		        	for(var k in dt) {
 		        		ci[ci.length] = k;
 		        		d = dt[k];//[String.fromCharCode(65+i)];
 		        		left += leftindex[0] + k + leftindex[1] + k + leftindex[2] + leftul[0];
 			        	for (var i=0; i < d.length; i++) {
-			        		left += '<li class="citybox_content_'+css+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNameCn + '" data-countrycode="' + d[i].countryId + '">' + d[i].cityNameCn + '</li>';
+			        		left += '<li class="citybox_content_'+css+'" data-py="'+d[i].pingYin+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNameCn + '" data-countrycode="' + d[i].countryId + '">' + d[i].cityNameCn + '</li>';
 			        	}
 			        	left += leftul[1];
 		        	}
@@ -337,12 +353,12 @@ var n = (function () {
 	    break;
 	    case 'fh':
 			var  cstr = '', enstr = '', cnstr = '', cn='' ,en = '',
-			i=0, ci = ['loc','hot'],ei = ['loc','hot'], cstr = '';console.log(data);
+			i=0, ci = cache,ei = cache, cstr = '';console.log(data);
 	    	if(s==0){
 	    		/*fullSpellingName*/
 	    		d = data.citys;
 	    		for (; i < d.length; i++) {
-        			cstr = '<li class="citybox_content_'+css+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNormalName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityNormalName + '</li>';
+        			cstr = '<li class="citybox_content_'+css+'" data-py="'+d[i].fullSpellingName+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNormalName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityNormalName + '</li>';
 	    			if(d[i].countryCode=='CN'){
 						if(cn != d[i].fullSpellingName.substr(0,1).toUpperCase()){
 							if(cn==''){
@@ -397,10 +413,10 @@ var n = (function () {
 	    	if(s==0){
 	    		/*FullSpellingName*/
 	    		for(var j=0;j<2;j++){
-	    		var enstr = '', cnstr = '', cn = '', en = '', listr = '',ei = ['loc','hot'],ci = ['loc','hot'],cstr = '';
+	    		var enstr = '', cnstr = '', cn = '', en = '', listr = '',ei = cache,ci = cache,cstr = '';
 	    			d = j==0?data.departCities:data.destCities;
 		    		for (var i=0; i < d.length; i++) {
-	        			cstr = '<li class="citybox_content_'+css+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNormalName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityNormalName + '</li>';
+	        			cstr = '<li class="citybox_content_'+css+'" data-py="'+d[i].fullSpellingName+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNormalName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityNormalName + '</li>';
 		    			if(d[i].countryCode=='CN'){
 							if(cn != d[i].fullSpellingName.substr(0,1).toUpperCase()){
 								if(cn==''){
@@ -460,12 +476,12 @@ countryChineseName:"韩国"
 countryCode:"KR"
 countryEnglishName:"Korea"
 fullSpellingName:"*/
-			var enstr = '', cnstr = '', cn = '', en = '', listr = '', i=0,ei = ['loc','hot'],ci = ['loc','hot'],cstr = '';
+			var enstr = '', cnstr = '', cn = '', en = '', listr = '', i=0,ei = cache,ci = cache,cstr = '';
         	/*默认内容添加*/
 			if(s==0){
         		d = data.sort(Citylist_H);
         		for (; i < d.length; i++) {
-        			cstr = '<li class="citybox_content_'+css+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNameCN + '" data-countrycode="' + d[i].countryISOCode + '">' + d[i].cityNameCN + '</li>';
+        			cstr = '<li class="citybox_content_'+css+'" data-py="'+d[i].pingYin+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNameCN + '" data-countrycode="' + d[i].countryISOCode + '">' + d[i].cityNameCN + '</li>';
         			if(d[i].countryISOCode=='CN'){
 						if(cn != d[i].pingYin.substr(0,1).toUpperCase()){
 							if(cn==''){
@@ -512,13 +528,13 @@ fullSpellingName:"*/
 	    break;
 	    default:/*t||ht*/
 	        for(var j=0;j<2;j++){
-	        	var left = '', index = '', listr = '', i = 0, ci = ['loc','hot'];
+	        	var left = '', index = '', listr = '', i = 0, ci = cache;
 	        	d = j==0?data.internationalCities:data.domesticCities
 	        	/*数组是否需要排序？*/
 	        	//d.sort(FtCitylist);
 	        	for (; i < d.length; i++) {
 	        		/*默认内容添加*/
-	        		var cstr = '<li class="citybox_content_'+css+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityName + '</li>';
+	        		var cstr = '<li class="citybox_content_'+css+'" data-py="'+d[i].cityNameInitial+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityName + '</li>';
 	        		listr += cstr;
 	        		if(s==0){
 						if(index != d[i].cityNamePY.substr(0,1).toUpperCase()){
@@ -585,21 +601,26 @@ fullSpellingName:"*/
               index++;
             }
 		}*/
+  }, getBindData = function(dom) {
+      if(!dom)return;
+      var data = dom.getAttribute("data-bind");
+      return !!data && (new Function("return ({" + data + "})"))();
     },
 	/* 重置历史 */
 	resetHR = function(b) {
 		if(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)){
-			if (document.getElementById('citybox_history')) {
-				var history = document.getElementById('citybox_history');
-				his.style.display = "block";
-				his.innerHTML = '';
-			} else {
-				var history = document.createElement('div'),hotcity = document.getElementById('citybox_hot');
-				history.className = 'citybox_relative';
-				history.id = 'citybox_history';
-				box.insertBefore(history,hotcity);
-			}
-      var json = JSON.parse(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d));
+			document.getElementById('citybox_history').style.display = 'block';
+      var i=0,str='',d = JSON.parse(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)),
+      history = $('#citybox_his_'+b);
+      for (; i < d.length; i++) {
+        str += '<li class="citybox_content_item" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityName + '</li>';
+      }
+      for(i=0;i<2;i++){
+  			var l = config.para.b[i];
+        $('#citybox_his_'+l).hide();
+      }
+      history.show();
+      history.html(str);
 		}else{
 			if (document.getElementById('citybox_history')) {
 				document.getElementById('citybox_history').style.display = 'none';
@@ -613,6 +634,7 @@ fullSpellingName:"*/
 			box.className = 'citybox_container';
       var tag = document.getElementById('citybox_tag');
       tag.style.display = _t=='h'?"none":"block";
+      //$("body").unbind(".box_event");
 		} else {
 			box.className = 'citybox_wrap';
 			instance.style.display = "none";
@@ -641,12 +663,14 @@ fullSpellingName:"*/
       document.getElementById('citybox_'+d).style.display = 'none';
 		}
     document.getElementById('citybox_'+_d).style.display = 'block';
+    _b = b;
 	},
 	/*搜索容器显示控制*/
-	showSuggest = function(i) {
+	showSuggest = function(i) {console.log(input);
 		var dom = $('.citybox_search_relative');
 		if (i==0) {
 			dom.css('left','3rem');
+      input.val('');
 			masker.style.display = 'none';
 			suggest.style.display = 'none';
 		}else if(i==1){
@@ -699,25 +723,23 @@ fullSpellingName:"*/
 	        		localStorage.setItem('At-CC-f0',JSON.stringify(data));
 	        		DrawCity(data,i);
 	        	});
-			}
+			    }
         }else{
-			req.Code = config.para[_t][i];
-			//console.log(config.data_req);
-			vlm.loadJson("",JSON.stringify(req),function(json){
-				if(json.success){
-					var data = json.data;
-          if(_t=="fh"){
-            //localStorage.setItem('At-CC-'+_t+i,JSON.stringify(json.data));
-
-          }else{
-					  localStorage.setItem('At-CC-'+_t+i,JSON.stringify(json.data));
-          }
-					DrawCity(data,i);
-				}else{
-					console.log(json.message);
-				}
-			});
-		}
+          req.Code = config.para[_t][i];
+          vlm.loadJson("",JSON.stringify(req),function(json){
+    				if(json.success){
+    					var data = json.data;
+              if(_t=="fh"&&i==0){
+                localStorage.setItem('At-CC-'+_t+'-'+_d,JSON.stringify(json.data));
+              }else{
+    					  localStorage.setItem('At-CC-'+_t+i,JSON.stringify(json.data));
+              }
+    					DrawCity(data,i);
+    				}else{
+    					console.log(json.message);
+    				}
+    			});
+    		}
     },
     seriesLoadScripts = function(scripts,callback) {
 		if(typeof(scripts) != "object") var scripts = [scripts];
@@ -735,6 +757,10 @@ fullSpellingName:"*/
 		   HEAD.appendChild(s[i]);
 		};
 		recursiveLoad(0);
+  }, Filter = function (a,b) {
+      // ary.sort();
+      // return function(){
+        return a.cityNameInitial.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.cityNameInitial.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
     };
     //out api
     return {
