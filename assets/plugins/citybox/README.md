@@ -42,9 +42,6 @@ suggest(搜索结果建议)
 ```
 ```js
 <script src="./cityselect.js"></script>
-<script>
-    n.bindDoc();
-</script>
 ```
 html引用之后，有data-bind的参数类型的dom元素上点击触发整体渲染，参数解析后是json，如下:
 

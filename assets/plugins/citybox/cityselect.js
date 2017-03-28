@@ -1,14 +1,7 @@
-
-var n = (function () {
-    var config = {
+(function () {
+    var _b, _d, _t, _json, box, instance, input, masker, suggest,
+    config = {
         data_req : {'Parameters':{},'ForeEndType':3,'Code':''},
-        tips : {
-            GEO_UNKNOWN_DATA:"尚无旅行产品,请切换其他城市。",
-            GEO_UNKNOWN_ERROR:"由于未知原因，无法获取地理定位信息，请重新尝试。",
-            GEO_PERMISSION_DENIED:"您的当前位置不可用,请开启设备上的\"定位服务\"。",
-            GEO_TIMEOUT:"获取信息超时，请重新尝试。",
-            GEO_POSITION_UNAVAILABLE:"由于网络或信号等问题，地理定位失败，请检查网络或信号。"
-        },
         para : {
             b:['inter','domes'],/*国际，国内*/
             d:['dep','des'],/*出发，目的*/
@@ -19,8 +12,13 @@ var n = (function () {
             ht: [40100010,40100011],
             t: [20100014,20100013]
         }
-    }, _b, _d, _t, _json, box, instance, input, masker, suggest,
-    Citylist_H = function (a,b) {
+    }, tips = {
+        GEO_UNKNOWN_DATA:"尚无旅行产品,请切换其他城市。",
+        GEO_UNKNOWN_ERROR:"由于未知原因，无法获取地理定位信息，请重新尝试。",
+        GEO_PERMISSION_DENIED:"您的当前位置不可用,请开启设备上的\"定位服务\"。",
+        GEO_TIMEOUT:"获取信息超时，请重新尝试。",
+        GEO_POSITION_UNAVAILABLE:"由于网络或信号等问题，地理定位失败，请检查网络或信号。"
+    }, Citylist_H = function (a,b) {
         return a.pingYin.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.pingYin.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
     }, _init = function () {
       _json = [].slice.call(arguments,0)[0];
@@ -56,6 +54,7 @@ var n = (function () {
         }
         showInstance();
         showItems(_b);
+        Adapter.Location();
     },
     bindEvent=function() {
         var that = this;
@@ -231,7 +230,7 @@ var n = (function () {
 			/*当前*/
 			var loccity = document.createElement('div');
 			loccity.className = 'citybox_relative';
-			loccity.innerHTML = '<div class="citybox_content_title" id="js_loc">当前</div><div class="citybox_content_container" id="citybox_location"></div>';
+			loccity.innerHTML = '<div class="citybox_content_title" id="js_loc">当前</div><ul class="citybox_content_container" id="citybox_location"></ul>';
 			box.appendChild(loccity);
 			/*历史*/
 			var history = document.createElement('div');
@@ -399,10 +398,10 @@ var n = (function () {
 	    	}else{
 	    		var dc = data.hotCitysCN,de = data.hotCitysInternational;
 	    		for (; i < dc.length; i++) {
-					cnstr += '<li class="citybox_content_'+css+'" data-code="' + dc[i].cityCode + '" data-name="' + dc[i].cityNormalName + '" data-countrycode="' + dc[i].countryCode + '">' + dc[i].cityNormalName + '</li>';
+					cnstr += '<li class="citybox_content_'+css+'" data-code="' + dc[i].cityCode + '" data-name="' + dc[i].cityName + '" data-countrycode="' + dc[i].countryCode + '">' + dc[i].cityNormalName + '</li>';
 				}
 				for (i=0; i < de.length; i++) {
-					enstr += '<li class="citybox_content_'+css+'" data-code="' + de[i].cityCode + '" data-name="' + de[i].cityNormalName + '" data-countrycode="' + de[i].countryCode + '">' + de[i].cityNormalName + '</li>';
+					enstr += '<li class="citybox_content_'+css+'" data-code="' + de[i].cityCode + '" data-name="' + de[i].cityName + '" data-countrycode="' + de[i].countryCode + '">' + de[i].cityNormalName + '</li>';
 				}
 				document.getElementById('citybox_hot_inter').innerHTML = enstr;
 	        	document.getElementById('citybox_hot_domes').innerHTML = cnstr;
@@ -605,7 +604,79 @@ fullSpellingName:"*/
       var data = dom.getAttribute("data-bind");
       return !!data && (new Function("return ({" + data + "})"))();
     },
-	/* 重置历史 */
+    Adapter = {
+      Location:function(){
+        $("#citybox_location").html('<li class="citybox_content_word">正在定位...</li>');
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(function(e) {
+            Adapter.LocationSuccess({
+            lat: e.coords.latitude,
+            lng: e.coords.longitude
+            });
+          }, function(e) {
+            Adapter.LocationError(e);
+          },{
+            enableHighAccuracy: true, // 是否获取高精度结果
+            timeout: 6000, //超时,毫秒
+            maximumAge: 0 //可以接受多少毫秒的缓存位置
+          });
+        }else{
+          $("#citybox_location").html('<li class="citybox_content_word">抱歉！您的浏览器无法使用地位功能</li>');
+        }
+      },
+      LocationSuccess:function(param){
+        var latlon = param.lat+','+param.lng;
+        var url = 'http://maps.google.cn/maps/api/geocode/json?latlng='+latlon+'&language=CN';
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $("#citybox_location").html('<li class="citybox_content_word">正在定位...</li>');
+            },
+            success: function (json) {
+                if(json.status=='OK'){
+                    var results = json.results;
+                    $.each(results,function(index,array){
+                        if(index==0){
+                          console.log(array);//$("#citybox_location").html(array['formatted_address']);
+                          $("#citybox_location").html('<li class="citybox_content_word">'+array['formatted_address']+'<li>');
+                        }
+                    });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#citybox_location").html('<li class="citybox_content_word">'+latlon+"地址位置获取失败</li>");
+            }
+        });
+      },
+      LocationError:function(e){
+        //var josn = _t=="fh"?JSON.parse(localStorage.getItem('At-CC-'+_t+'-'+_d)):JSON.parse(localStorage.getItem('At-CC-'+_t+'0'));
+        //console.log(josn);
+        seriesLoadScripts('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
+          var city = remote_ip_info['city'];
+          /*var newArr = josn.filter(function(item){
+            return item.cityName == city||cityNameCn==city||cityNameCn==city;
+          });
+          console.log(newArr);*/
+          $("#citybox_location").html('<li class="citybox_content_local">'+city+"</li>");
+          // return true;
+        });
+        /*switch(e.code) {
+          case 1://用户拒绝
+            alert(tips.GEO_PERMISSION_DENIED);
+            break;
+          case 2://地理位置获取失败（可能是用户没网或卫星搜不到等原因）
+            alert(tips.GEO_POSITION_UNAVAILABLE);
+            break;
+          case 3://地理位置获取超时
+            if(!Adapter.CurrentNetLocation) alert(tips.GEO_TIMEOUT);
+            break;
+          default://其他出错原因
+            alert(tips.GEO_UNKNOWN_ERROR);
+            break;
+        }*/
+      }
+    },/* 重置历史 */
 	resetHR = function(b) {
 		if(localStorage.getItem('At-CH-'+_t+'-'+_b+'-'+_d)){
 			document.getElementById('citybox_history').style.display = 'block';
@@ -780,7 +851,8 @@ fullSpellingName:"*/
         return a.cityNameInitial.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.cityNameInitial.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
     };
     //out api
-    return {
+    /*return {
     	bindDoc:bindDoc
-    };
-})();
+    };*/
+    bindDoc();
+}).call(this, window, document);
