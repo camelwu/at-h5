@@ -15,6 +15,7 @@ body{
   width: 100%;
   top:0;
   left:0;
+  -webkit-overflow-scrolling: touch;
 }
 /*出发返回开始*/
 .time_people_list{
@@ -219,7 +220,7 @@ li.scenic_detile_project_first{
 .hft_header{
   position: absolute;
   background-color: rgba(247,247,247,0.5);
-}
+
 .bar_img{
   width: 100%;
   height: 4.88rem;
