@@ -41,6 +41,7 @@ suggest(搜索结果建议)
 <a href="javascript:void(0);" id="h_out" data-bind="type:'setCityBox',data:'f_dep_domes',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret'">机票出发</a>
 ```
 ```js
+<script src="/js/lib/debounce.js"></script>
 <script src="./cityselect.js"></script>
 ```
 html引用之后，有data-bind的参数类型的dom元素上点击触发整体渲染，参数解析后是json，如下:
@@ -48,7 +49,7 @@ html引用之后，有data-bind的参数类型的dom元素上点击触发整体�
 ```json
 @param = {
 	type:'setCityBox',//标志本js使用
-	data:'f_dep_domes',//产品（f,fh,fht……）_出发（dep）|目的（des）_国外（inter）|国内（domes）
+	data:'f_dep_domes',//产品（f0,f1,fh,fht……）_出发（dep）|目的（des）_国外（inter）|国内（domes）
 	returnId:'#ret',
 	returnAttr:'value',
 	returnStrId:'#h_ret'
