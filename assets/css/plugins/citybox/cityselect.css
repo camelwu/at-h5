@@ -217,7 +217,7 @@
   overflow: hidden
 }
 
-.citybox_content_container .citybox_content_item {
+.citybox_content_container .citybox_content_item,.citybox_content_container .citybox_content_local {
   box-sizing: border-box;
   width: 28%;
   float: left;
@@ -234,6 +234,20 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.citybox_content_container .citybox_content_word {
+  box-sizing: border-box;
+  float: left;
+  margin-bottom: 0.4rem;
+  margin-left: 0.28rem;
+  line-height: 0.66rem;
+  padding-left: 0.03rem;
+  padding-right: 0.03rem;
+  border-radius: 0.32rem;
+  font-size: 0.28rem;
+  color: #333;
+
 }
 
 .citybox_content .citybox_content_container .citybox_content_item.selected .citybox_content_itemtitle {
