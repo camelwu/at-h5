@@ -125,15 +125,14 @@ vlm.load();
     console.log(scroll);
     if(!scroll== 0){
       header.style.position="fixed";
-      header.style.opacity="1";
       header.style.backgroundColor = "#f7f7f7";
     }else{
-      header.style.position="absolute";
-      header.style.opacity="0";
-      header.style.backgroundColor = "transparent";
+      header.style="";
     }
   });
-  //$(window).scroll(function(){
-  //  console.log($(".contents").offset().top);
-  //});
+  $(".hft_header").hover(function(){
+   $(".header_back").css("background-color","black");
+ },function(){
+    $(".header_back").css("background-color","");
+ });
 })();

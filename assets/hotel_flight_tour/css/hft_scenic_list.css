@@ -218,8 +218,7 @@ li.scenic_detile_project_first{
 }
 .hft_header{
   position: absolute;
-  opacity: 0;
-  background-color: transparent;
+  background-color: rgba(247,247,247,0.5);
 }
 .bar_img{
   width: 100%;
@@ -477,7 +476,3 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   background-size: 7.5rem 4.54rem;
   background-position:  -3.71rem -2.26rem;
 }
-
-
-
-
