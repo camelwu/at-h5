@@ -346,7 +346,7 @@
 	    break;
 	    case 'fh':
 			var  cstr = '', enstr = '', cnstr = '', cn='' ,en = '',
-			i=0, ci = cache,ei = cache, cstr = '';console.log(data);
+			i=0, ci = cache,ei = cache, cstr = '';
 	    	if(s==0){
 	    		/*fullSpellingName*/
 	    		d = data.citys;
@@ -392,12 +392,12 @@
 				/*CityType: 1:出发，2：目的*/
 	    	}else{
 	    		var dc = data.hotCitysCN,de = data.hotCitysInternational;
-	    		for (; i < dc.length; i++) {
-					cnstr += '<li class="citybox_content_'+css+'" data-code="' + dc[i].cityCode + '" data-name="' + dc[i].cityName + '" data-countrycode="' + dc[i].countryCode + '">' + dc[i].cityNormalName + '</li>';
-				}
-				for (i=0; i < de.length; i++) {
-					enstr += '<li class="citybox_content_'+css+'" data-code="' + de[i].cityCode + '" data-name="' + de[i].cityName + '" data-countrycode="' + de[i].countryCode + '">' + de[i].cityNormalName + '</li>';
-				}
+				dc.forEach(function(item){
+					cnstr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityName + '" data-countrycode="' + item.countryCode + '">' + item.cityNormalName + '</li>';
+				})
+				de.forEach(function(item){
+					enstr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityName + '" data-countrycode="' + item.countryCode + '">' + item.cityNormalName + '</li>';
+				})
 				document.getElementById('citybox_hot_inter').innerHTML = enstr;
 	        	document.getElementById('citybox_hot_domes').innerHTML = cnstr;
 	    	}
@@ -408,15 +408,16 @@
 	    		for(var j=0;j<2;j++){
 	    		var enstr = '', cnstr = '', cn = '', en = '', listr = '',ei = cache,ci = cache,cstr = '';
 	    			d = j==0?data.departCities:data.destCities;
-		    		for (var i=0; i < d.length; i++) {
-	        			cstr = '<li class="citybox_content_'+css+'" data-py="'+d[i].fullSpellingName+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityNormalName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityNormalName + '</li>';
-		    			if(d[i].countryCode=='CN'){
-							if(cn != d[i].fullSpellingName.substr(0,1).toUpperCase()){
+		    		//for (var i=0; i < d.length; i++) {
+					d.forEach(function(item){
+						cstr = '<li class="citybox_content_'+css+'" data-py="'+item.fullSpellingName+'" data-code="' + item.cityCode + '" data-name="' + item.cityNormalName + '" data-countrycode="' + item.countryCode + '">' + item.cityNormalName + '</li>';
+		    			if(item.countryCode=='CN'){
+							if(cn != item.fullSpellingName.substr(0,1).toUpperCase()){
 								if(cn==''){
-									cn = d[i].fullSpellingName.substr(0,1).toUpperCase();
+									cn = item.fullSpellingName.substr(0,1).toUpperCase();
 									cnstr += leftindex[0] + cn + leftindex[1] + cn + leftindex[2] + leftul[0] + cstr;
 								}else{
-									cn = d[i].fullSpellingName.substr(0,1).toUpperCase();
+									cn = item.fullSpellingName.substr(0,1).toUpperCase();
 									cnstr += leftul[1] + leftindex[0] + cn + leftindex[1] + cn + leftindex[2] + leftul[0] + cstr;
 								}
 								ci[ci.length] = cn;//ci.push(cn);
@@ -424,12 +425,12 @@
 								cnstr += cstr;
 							}
 						}else{
-							if(en != d[i].fullSpellingName.substr(0,1).toUpperCase()){
+							if(en != item.fullSpellingName.substr(0,1).toUpperCase()){
 								if(en==''){
-								en = d[i].fullSpellingName.substr(0,1).toUpperCase();
+								en = item.fullSpellingName.substr(0,1).toUpperCase();
 									enstr += leftindex[0] + en + leftindex[1] + en + leftindex[2] + leftul[0]+cstr;
 								}else{
-								en = d[i].fullSpellingName.substr(0,1).toUpperCase();
+								en = item.fullSpellingName.substr(0,1).toUpperCase();
 									enstr += leftul[1] + leftindex[0] + en + leftindex[1] + en + leftindex[2] + leftul[0]+cstr;
 								}
 								ei.push(en);
@@ -437,7 +438,7 @@
 								enstr += cstr;
 							}
 	        			}
-		    		}
+		    		})
 		    		//console.log(j+','+en+','+cn+','+config.para.d[j]);
 					if(en!=''){
 						document.getElementById('citybox_'+config.para.d[j]+'_list_inter').innerHTML = enstr+leftul[1];
@@ -450,12 +451,13 @@
 		    	}
 	    	}else{
 	    		var enstr = '', cnstr = '', dc = data.hotCitysCN,de = data.hotCitysInternational;
-	    		for (; i < dc.length; i++) {
-					cnstr += '<li class="citybox_content_'+css+'" data-code="' + dc[i].cityCode + '" data-name="' + dc[i].cityName + '" data-countrycode="' + dc[i].countryCode + '">' + dc[i].cityName + '</li>';
-				}
-				for (i=0; i < de.length; i++) {
-					enstr += '<li class="citybox_content_'+css+'" data-code="' + de[i].cityCode + '" data-name="' + de[i].cityName + '" data-countrycode="' + de[i].countryCode + '">' + de[i].cityName + '</li>';
-				}
+	    		//for (; i < dc.length; i++) {
+				dc.forEach(function(item){
+					cnstr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityName + '" data-countrycode="' + item.countryCode + '">' + item.cityName + '</li>';
+				})
+				de.forEach(function(item){
+					enstr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityName + '" data-countrycode="' + item.countryCode + '">' + item.cityName + '</li>';
+				})
 				document.getElementById('citybox_hot_inter').innerHTML = enstr;
 	        	document.getElementById('citybox_hot_domes').innerHTML = cnstr;
 	    	}
@@ -473,7 +475,7 @@ fullSpellingName:"*/
         	/*默认内容添加*/
 			if(s==0){
         		d = data.sort(Citylist_H);
-				console.log(d);
+				console.log(data);
 				d.forEach(function(item){
         			cstr = '<li class="citybox_content_'+css+'" data-py="'+item.pingYin+'" data-code="' + item.cityCode + '" data-name="' + item.cityNameCN + '" data-countrycode="' +item.countryISOCode + '">' + item.cityNameCN + '</li>';
         			if(item.countryISOCode=='CN'){
@@ -504,16 +506,20 @@ fullSpellingName:"*/
 						}
         			}
 				})
+				if(en!=""){
     			document.getElementById('citybox_des_list_inter').innerHTML = enstr+leftul[1];
     			DrawIndex(ei,'inter');
-    			document.getElementById('citybox_des_list_domes').innerHTML = cnstr+leftul[1];
-    			DrawIndex(ci,'domes');
+				}
+				if(cn!="") {
+				document.getElementById('citybox_des_list_domes').innerHTML = cnstr + leftul[1];
+				DrawIndex(ci, 'domes');
+				}
         	}else{
         		d = data;
 				d.forEach(function(item){
 					listr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityChineseName + '" data-countrycode="' + item.countryCode + '">' + item.cityChineseName + '</li>';
 				})
-	    		if(s==1){
+                if(s==1){
 	        		document.getElementById('citybox_hot_inter').innerHTML = listr;
 	        	}else{
 	        		document.getElementById('citybox_hot_domes').innerHTML = listr;
@@ -565,7 +571,6 @@ fullSpellingName:"*/
         var sec = document.getElementById('citybox_'+_d+'_list_'+b),
         rightul = sec.querySelector('.citybox_index')?sec.querySelector('.citybox_index'):document.createElement('ul'),
         str='',s,rli = ['<li class="citybox_summary_item" data-key="','">', '</li>'];
-        console.log(d);
         for(var i=0;i<d.length;i++) {
             switch(d[i]){
             	case 'loc':
