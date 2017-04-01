@@ -316,7 +316,6 @@
 		        for(var j=0;j<2;j++){
 		        	var left = '', cnstr = '', enstr = '', index = '', ci = cache,
 		        	dt = j==0?data.internationalCities:data.domesticCities;
-					console.log(dt);
 		        	for(var k in dt) {
 		        		ci[ci.length] = k;
 		        		d = dt[k];
@@ -332,7 +331,6 @@
 	        }else{
 				var enstr = '', cnstr = '';
 				d = data.cities;
-				//for (var i=0; i < d.length; i++) {
 				d.forEach(function(item){
 					if(item.countryCode=='CN'){
 						cnstr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityChineseName + '" data-countrycode="' + item.countryCode + '">' + item.cityChineseName + '</li>';
@@ -352,7 +350,7 @@
 	    		d = data.citys;
 				d.forEach(function(item){
         			cstr = '<li class="citybox_content_'+css+'" data-py="'+item.fullSpellingName+'" data-code="' + item.cityCode + '" data-name="' + item.cityNormalName + '" data-countrycode="' + item.countryCode + '">' + item.cityNormalName + '</li>';
-	    			if(item.countryCode=='CN'){
+          if(item.countryCode=='CN'){
 						if(cn != item.fullSpellingName.substr(0,1).toUpperCase()){
 							if(cn==''){
 								cn = item.fullSpellingName.substr(0,1).toUpperCase();
@@ -408,7 +406,6 @@
 	    		for(var j=0;j<2;j++){
 	    		var enstr = '', cnstr = '', cn = '', en = '', listr = '',ei = cache,ci = cache,cstr = '';
 	    			d = j==0?data.departCities:data.destCities;
-		    		//for (var i=0; i < d.length; i++) {
 					d.forEach(function(item){
 						cstr = '<li class="citybox_content_'+css+'" data-py="'+item.fullSpellingName+'" data-code="' + item.cityCode + '" data-name="' + item.cityNormalName + '" data-countrycode="' + item.countryCode + '">' + item.cityNormalName + '</li>';
 		    			if(item.countryCode=='CN'){
@@ -451,7 +448,6 @@
 		    	}
 	    	}else{
 	    		var enstr = '', cnstr = '', dc = data.hotCitysCN,de = data.hotCitysInternational;
-	    		//for (; i < dc.length; i++) {
 				dc.forEach(function(item){
 					cnstr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityName + '" data-countrycode="' + item.countryCode + '">' + item.cityName + '</li>';
 				})
@@ -474,8 +470,7 @@ fullSpellingName:"*/
 			var enstr = '', cnstr = '', cn = '', en = '', listr = '', i=0,ei = cache,ci = cache,cstr = '';
         	/*默认内容添加*/
 			if(s==0){
-        		d = data.sort(Citylist_H);
-				console.log(data);
+        d = data.sort(Citylist_H);
 				d.forEach(function(item){
         			cstr = '<li class="citybox_content_'+css+'" data-py="'+item.pingYin+'" data-code="' + item.cityCode + '" data-name="' + item.cityNameCN + '" data-countrycode="' +item.countryISOCode + '">' + item.cityNameCN + '</li>';
         			if(item.countryISOCode=='CN'){
@@ -515,7 +510,7 @@ fullSpellingName:"*/
 				DrawIndex(ci, 'domes');
 				}
         	}else{
-        		d = data;
+        d = data;
 				d.forEach(function(item){
 					listr += '<li class="citybox_content_'+css+'" data-code="' + item.cityCode + '" data-name="' + item.cityChineseName + '" data-countrycode="' + item.countryCode + '">' + item.cityChineseName + '</li>';
 				})
@@ -529,20 +524,20 @@ fullSpellingName:"*/
 	    default:/*t||ht*/
 	        for(var j=0;j<2;j++){
 	        	var left = '', index = '', listr = '', i = 0, ci = cache;
-	        	d = j==0?data.internationalCities:data.domesticCities
+	        	d = j==0?data.internationalCities:data.domesticCities;
 	        	/*数组是否需要排序？*/
 	        	//d.sort(FtCitylist);
-	        	for (; i < d.length; i++) {
+            d.forEach(function(item){
 	        		/*默认内容添加*/
-	        		var cstr = '<li class="citybox_content_'+css+'" data-py="'+d[i].cityNameInitial+'" data-code="' + d[i].cityCode + '" data-name="' + d[i].cityName + '" data-countrycode="' + d[i].countryCode + '">' + d[i].cityName + '</li>';
+	        		var cstr = '<li class="citybox_content_'+css+'" data-py="'+item.cityNameInitial+'" data-code="' + item.cityCode + '" data-name="' + item.cityName + '" data-countrycode="' + item.countryCode + '">' + item.cityName + '</li>';
 	        		listr += cstr;
 	        		if(s==0){
-						if(index != d[i].cityNamePY.substr(0,1).toUpperCase()){
+						if(index != item.cityNamePY.substr(0,1).toUpperCase()){
 							if(index==''){
-								index = d[i].cityNamePY.substr(0,1).toUpperCase();
+								index = item.cityNamePY.substr(0,1).toUpperCase();
 								left += leftindex[0] + index + leftindex[1] + index + leftindex[2] + leftul[0] + cstr;
 							}else{
-								index = d[i].cityNamePY.substr(0,1).toUpperCase();
+								index = item.cityNamePY.substr(0,1).toUpperCase();
 								left += leftul[1] + leftindex[0] + index + leftindex[1] + index + leftindex[2] + leftul[0] + cstr;
 							}
 							ci.push(index);
@@ -550,7 +545,7 @@ fullSpellingName:"*/
 							left += cstr;
 						}
 	        		}
-	        	}
+	        	})
         		if(s==0){
         			document.getElementById('citybox_'+_d+'_list_'+config.para.b[j]).innerHTML = left+leftul[1];
         			DrawIndex(ci,config.para.b[j]);
