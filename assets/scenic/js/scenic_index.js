@@ -167,7 +167,7 @@
             var cityCode = (e.target).getAttribute("data-code");
             var cityName = (e.target).getAttribute("data-name");
             var countryCode = (e.target).getAttribute("data-countrycode");
-            VM.Method["setcityboxHistory"](tar,cityCode,cityName,countryCode,"t_des");
+            //VM.Method["setcityboxHistory"](tar,cityCode,cityName,countryCode,"t_des");
             window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
           }
 
@@ -234,7 +234,7 @@
 (function(){
   T.Load("js_city_list");
   T.Load("js_product_list");
-  $("#t_des").click(function(e){
-    VM.Load("t_des");
-  });
+  //$("#t_des").click(function(e){
+  //  VM.Load("t_des");
+  //});
 })();

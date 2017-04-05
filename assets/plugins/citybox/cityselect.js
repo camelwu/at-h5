@@ -292,7 +292,7 @@
     }else{
       // 暂时随便搞
       var cac = {ht:'tour',t:'scenic'};
-      window.location.href = cac[_t]+'/scenic_list.html?DestCityCode='+res.cityCode;
+      window.location.href ='../../'+ cac[_t]+'/scenic_list.html?DestCityCode='+res.cityCode;
     }
     showInstance();
 	},

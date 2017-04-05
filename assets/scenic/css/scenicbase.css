@@ -77,6 +77,7 @@ element::-webkit-scrollbar{
 /*通用_content*/
 /*通用_头部*/
 .header_more {
+  width: 1.2rem;
   font-size: .28rem;
   color: #333333;
   position: absolute;
