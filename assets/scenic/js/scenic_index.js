@@ -234,7 +234,7 @@
 (function(){
   T.Load("js_city_list");
   T.Load("js_product_list");
-  $("#t_des").click(function(e){
-    VM.Load("t_des");
-  });
+  //$("#t_des").click(function(e){
+  //  VM.Load("t_des");
+  //});
 })();
