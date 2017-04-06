@@ -106,7 +106,7 @@
 			}
 			/*头部输入*/
 			if (target.className.indexOf("citybox_search_relative")>-1 || src.className.indexOf("citybox_search_relative")>-1){
-				if(masker.style.display!="blcok"){showSuggest(1);}
+				if(masker.style.display!="block"){showSuggest(1);}
         input.focus();
 			}
 			/*头部输入消除*/
@@ -292,7 +292,7 @@
     }else{
       // 暂时随便搞
       var cac = {ht:'tour',t:'scenic'};
-      window.location.href = cac[_t]+'/scenic_list.html?DestCityCode='+res.cityCode;
+      window.location.href = '../'+ cac[_t]+'/scenic_list.html?DestCityCode='+res.cityCode;
     }
     showInstance();
 	},
