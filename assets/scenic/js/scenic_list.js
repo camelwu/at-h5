@@ -275,8 +275,12 @@
  */
 (function(){
   $("#t_des").click(function(e){
-    VM.Load("t_des");
+    var block = $("#instance").css("display");
+    if( block == "block"){
+      $(".footer_two").css({"position":"initial"})
+    }else{
+      $(".footer_two").css({"position":"fixed"})
+    }
   });
   T.Load("js_scenic_list");
-
 })();
